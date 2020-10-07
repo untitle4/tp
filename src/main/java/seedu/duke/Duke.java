@@ -45,8 +45,8 @@ public class Duke {
                     + "[end date-time of test]\n"
                     + "\t6. Delete test: type delete test /n [test number]\n"
                     + "\t7. Delete all: delete all\n");
-            // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
-            // "\te.g. 2020-08-19 1300\n\n);
+        // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
+        // "\te.g. 2020-08-19 1300\n\n);
         } else {
             throw new InvalidHelpCommandException();
         }
