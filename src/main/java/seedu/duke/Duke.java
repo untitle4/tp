@@ -35,18 +35,18 @@ public class Duke {
 
     public static void handleHelp(String[] checkCommand) throws InvalidHelpCommandException {
         if (checkCommand.length == 1) {
-            System.out.println("Hello! Here is a list of commands you can try:\n\n" +
-                    "\t1. Add class: add class /n [name of class] /s [start date-time of class] /e" +
-                    " [end date-time of class]\n" +
-                    "\t2. Delete class: delete class /n [class number]\n" +
-                    "\t3. Add cca: add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]\n" +
-                    "\t4. Delete cca: type delete cca /n [cca number]\n" +
-                    "\t5. Add test: type add test /n [name of test] /s [start date-time of test] /e " +
-                    "[end date-time of test]\n" +
-                    "\t6. Delete test: type delete test /n [test number]\n" +
-                    "\t7. Delete all: delete all\n");
-                    // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
-                    // "\te.g. 2020-08-19 1300\n\n);
+            System.out.println("Hello! Here is a list of commands you can try:\n\n"
+                    + "\t1. Add class: add class /n [name of class] /s [start date-time of class] /e"
+                    + " [end date-time of class]\n"
+                    + "\t2. Delete class: delete class /n [class number]\n"
+                    + "\t3. Add cca: add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]\n"
+                    + "\t4. Delete cca: type delete cca /n [cca number]\n"
+                    + "\t5. Add test: type add test /n [name of test] /s [start date-time of test] /e "
+                    + "[end date-time of test]\n"
+                    + "\t6. Delete test: type delete test /n [test number]\n"
+                    + "\t7. Delete all: delete all\n");
+            // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
+            // "\te.g. 2020-08-19 1300\n\n);
         } else {
             throw new InvalidHelpCommandException();
         }
