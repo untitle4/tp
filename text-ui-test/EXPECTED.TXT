@@ -5,4 +5,5 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-What can we do for you?
+What is your name?
+Hello James Gosling
