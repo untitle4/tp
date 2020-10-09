@@ -1,11 +1,14 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+    static ArrayList<Event> test = new ArrayList<>();
+    private static TestManager testManager = new TestManager(test);
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -13,7 +16,7 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
+        System.out.println("What can we do for you?");
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
@@ -29,6 +32,8 @@ public class Duke {
                 } catch (InvalidHelpCommandException e) {
                     System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
                 }
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("test")) {
+                testManager.addTest(line);
             }
         }
     }
