@@ -3,13 +3,13 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public class TestManager {
-    static ArrayList<Event> test = new ArrayList<>();
+    private ArrayList<Event> test = new ArrayList<>();
 
     public TestManager(ArrayList<Event> inputList) {
         test = inputList;
     }
 
-    private static int getTestListSize() {
+    private int getTestListSize() {
         return test.size();
     }
 
@@ -20,7 +20,7 @@ public class TestManager {
         String testStartDate = testDetails[2].substring(2);
         String testEndDate = testDetails[3].substring(2);
 
-        test.add(new Test(testDescription,testStartDate,testEndDate));
+        test.add(new Test(testDescription, testStartDate, testEndDate));
 
         System.out.println("Got it. I've added this test:");
         System.out.println("  " + test.get(getTestListSize() - 1));
