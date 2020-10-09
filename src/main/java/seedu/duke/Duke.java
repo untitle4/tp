@@ -1,8 +1,13 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class Duke {
+    static ArrayList<Event> test = new ArrayList<>();
+    private static TestManager testManager = new TestManager(test);
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -17,8 +22,11 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+        System.out.println("What can we do for you?");
+
         String line;
         Scanner input = new Scanner(System.in);
+
         while (input.hasNextLine()) {
             line = input.nextLine();
 
@@ -29,6 +37,8 @@ public class Duke {
                 } catch (InvalidHelpCommandException e) {
                     System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
                 }
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("test")) {
+                testManager.addTest(line);
             }
         }
     }
