@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Duke {
     static ArrayList<Event> test = new ArrayList<>();
     private static TestManager testManager = new TestManager(test);
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */

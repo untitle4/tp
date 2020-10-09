@@ -1,6 +1,6 @@
 package seedu.duke;
 
-public class Test extends Event{
+public class Test extends Event {
 
     protected String start;
     protected String end;

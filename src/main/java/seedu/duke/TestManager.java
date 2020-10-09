@@ -9,11 +9,11 @@ public class TestManager {
         test = inputList;
     }
 
-    private static int getTestListSize () {
+    private static int getTestListSize() {
         return test.size();
     }
 
-    public void addTest (String userInput) {
+    public void addTest(String userInput) {
         final String[] testDetails = userInput.trim().split("\\/");
 
         String testDescription = testDetails[1].substring(2);
@@ -28,7 +28,7 @@ public class TestManager {
     }
 
     private void getTaskStatement() {
-        if (getTestListSize() - 1 == 0 ) {
+        if (getTestListSize() - 1 == 0) {
             System.out.println("Now you have " + getTestListSize() + " task in the list.");
         } else {
             System.out.println("Now you have " + getTestListSize() + " tasks in the list.");
