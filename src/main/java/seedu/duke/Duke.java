@@ -22,7 +22,7 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
-        System.out.println("What can we do for you?\n");
+        System.out.println("What can we do for you?");
 
         String line;
         Scanner input = new Scanner(System.in);
