@@ -3,14 +3,13 @@ package seedu.duke;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Duke {
     static ArrayList<Event> test = new ArrayList<>();
     private static TestManager testManager = new TestManager(test);
-
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -23,10 +22,8 @@ public class Duke {
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
         System.out.println("What can we do for you?");
-
         String line;
         Scanner input = new Scanner(System.in);
-
         while (input.hasNextLine()) {
             line = input.nextLine();
 
@@ -39,6 +36,8 @@ public class Duke {
                 }
             } else if (checkCommand[0].equals("add") && checkCommand[1].equals("test")) {
                 testManager.addTest(line);
+            } else if (checkCommand[0].equals("delete")) {
+                testManager.deleteTest(checkCommand);
             }
         }
     }
