@@ -38,8 +38,12 @@ public class Duke {
                 testManager.addTest(line);
             } else if (checkCommand[0].equals("delete")) {
                 testManager.deleteTest(checkCommand);
+            } else if (checkCommand[0].equals("bye")) {
+                break;
             }
         }
+        //Exit Message
+        System.out.println("BYE BYE! SEE YOU NEXT TIME! :3");
     }
 
     public static void handleHelp(String[] checkCommand) throws InvalidHelpCommandException {
