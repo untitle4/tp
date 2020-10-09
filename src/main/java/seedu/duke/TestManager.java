@@ -27,8 +27,19 @@ public class TestManager {
         getTaskStatement();
     }
 
+    public void deleteTest (String[] userInput) {
+        int testNumber = Integer.parseInt(userInput[1]);
+
+        System.out.println("Noted. I've removed this task:");
+        System.out.println("  " + test.get(testNumber-1));
+
+        test.remove(testNumber-1);
+
+        getTaskStatement();
+    }
+
     private void getTaskStatement() {
-        if (getTestListSize() - 1 == 0 ) {
+        if ((getTestListSize() - 1 == 0) || (getTestListSize() == 0) ) {
             System.out.println("Now you have " + getTestListSize() + " task in the list.");
         } else {
             System.out.println("Now you have " + getTestListSize() + " tasks in the list.");

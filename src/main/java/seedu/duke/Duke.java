@@ -16,10 +16,8 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("What can we do for you?");
+        System.out.println("What can we do for you?\n");
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
         String line;
         Scanner input = new Scanner(System.in);
         while (input.hasNextLine()) {
@@ -34,6 +32,8 @@ public class Duke {
                 }
             } else if (checkCommand[0].equals("add") && checkCommand[1].equals("test")) {
                 testManager.addTest(line);
+            } else if (checkCommand[0].equals("delete")) {
+                testManager.deleteTest(checkCommand);
             }
         }
     }
