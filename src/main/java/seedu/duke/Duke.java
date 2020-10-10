@@ -6,6 +6,10 @@ import java.util.Scanner;
 public class Duke {
     static ArrayList<Event> classes = new ArrayList<>();
     private static ClassManager classManager = new ClassManager(classes);
+    static ArrayList<Event> test = new ArrayList<>();
+    static ArrayList<Event> cca = new ArrayList<>(); // for file input
+    private static TestManager testManager = new TestManager(test);
+    private static CcaManager ccaManager = new CcaManager(cca);
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -36,12 +40,23 @@ public class Duke {
                 }
             } else if (checkCommand[0].equals("add") && checkCommand[1].equals("class")) {
                 classManager.addClass(line);
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("test")) {
+                testManager.addTest(line);
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("cca")) {
+                ccaManager.addCca(line);
             } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("class")) {
                 classManager.deleteClass(checkCommand);
+            } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("test")) {
+                testManager.deleteTest(checkCommand);
+            } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("cca")) {
+                ccaManager.deleteCca(checkCommand);
             } else if (checkCommand[0].equals("bye")) {
                 break;
             }
         }
+
+        //Exit Message
+        System.out.println("BYE BYE! SEE YOU NEXT TIME! :3");
     }
 
     public static void handleHelp(String[] checkCommand) throws InvalidHelpCommandException {
