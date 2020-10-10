@@ -71,4 +71,8 @@ public class Duke {
             throw new InvalidHelpCommandException();
         }
     }
+
+    public static class InvalidHelpCommandException extends Exception {
+    }
+
 }
