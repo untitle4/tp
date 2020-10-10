@@ -3,19 +3,23 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public class ListSchedule {
-    private final ArrayList<Event> cca;
-    private final ArrayList<Event> test;
+    private final ArrayList<Event> classes;
+    private final ArrayList<Event> ccas;
+    private final ArrayList<Event> tests;
 
-    public ListSchedule(ArrayList<Event> cca, ArrayList<Event> test) {
-        this.cca = cca;
-        this.test = test;
+    public ListSchedule(ArrayList<Event> classes, ArrayList<Event> ccas, ArrayList<Event> tests) {
+        this.classes = classes;
+        this.ccas = ccas;
+        this.tests = tests;
     }
 
     public void printAllEvents() {
+        System.out.println("Class:");
+        printArrayPaddedNumbers(classes);
         System.out.println("CCA:");
-        printArrayPaddedNumbers(cca);
+        printArrayPaddedNumbers(ccas);
         System.out.println("Test:");
-        printArrayPaddedNumbers(test);
+        printArrayPaddedNumbers(tests);
     }
 
     private void printArrayPaddedNumbers(ArrayList<Event> eventArr) {
