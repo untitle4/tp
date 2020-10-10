@@ -9,7 +9,7 @@ public class CcaManager {
         cca = inputList;
     }
 
-    public ArrayList<Event> getCcaList () {
+    public ArrayList<Event> getCcaList() {
         return cca;
     }
 

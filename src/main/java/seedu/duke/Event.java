@@ -14,11 +14,11 @@ public class Event {
         this.isDone = isDone;
     }
 
-    public boolean isDone () {
+    public boolean isDone() {
         return isDone;
     }
 
-    public String getDescription () {
+    public String getDescription() {
         return description;
     }
 }

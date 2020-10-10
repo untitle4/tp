@@ -9,7 +9,7 @@ public class ClassManager {
         classes = inputList;
     }
 
-    public ArrayList<Event> getClasses () {
+    public ArrayList<Event> getClasses() {
         return classes;
     }
 

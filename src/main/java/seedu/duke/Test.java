@@ -11,17 +11,17 @@ public class Test extends Event {
         this.end = end;
     }
 
-    public Test (String description, boolean isDone, String start, String end) {
+    public Test(String description, boolean isDone, String start, String end) {
         super(description, isDone);
         this.start = start;
         this.end = end;
     }
 
-    public String getStart () {
+    public String getStart() {
         return start;
     }
 
-    public String getEnd () {
+    public String getEnd() {
         return end;
     }
 

@@ -17,11 +17,11 @@ public class Cca extends Event {
         this.end = end;
     }
 
-    public String getStart () {
+    public String getStart() {
         return start;
     }
 
-    public String getEnd () {
+    public String getEnd() {
         return end;
     }
 

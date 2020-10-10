@@ -31,19 +31,19 @@ public class StorageManager {
         initializeStorageManager();
     }
 
-    public ArrayList<Event> getEventList () {
+    public ArrayList<Event> getEventList() {
         return eventList;
     }
 
-    public ArrayList<Event> getCcaList () {
+    public ArrayList<Event> getCcaList() {
         return ccaList;
     }
 
-    public ArrayList<Event> getTestList () {
+    public ArrayList<Event> getTestList() {
         return testList;
     }
 
-    public ArrayList<Event> getClassList () {
+    public ArrayList<Event> getClassList() {
         return classList;
     }
 
@@ -53,7 +53,7 @@ public class StorageManager {
 
         try {
             boolean fileCreated = createDataFile();
-            if(!fileCreated) {
+            if (!fileCreated) {
                 Scanner sc = new Scanner(eventFile);
                 while (sc.hasNext()) {
                     String dataString = sc.nextLine();
@@ -67,8 +67,8 @@ public class StorageManager {
         }
     }
 
-    private void separateEventsIntoList (ArrayList<Event> events) {
-        for(Event event : events) {
+    private void separateEventsIntoList(ArrayList<Event> events) {
+        for (Event event : events) {
             if (event instanceof Cca) {
                 ccaList.add(event);
             } else if (event instanceof Class) {
@@ -80,7 +80,7 @@ public class StorageManager {
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    private boolean createDataFile () throws IOException {
+    private boolean createDataFile() throws IOException {
         File file = new File(STORAGE_DIRECTORY_PATH);
         file.mkdir();
         file = new File(STORAGE_EVENT_PATH);
@@ -88,7 +88,7 @@ public class StorageManager {
         return file.createNewFile();
     }
 
-    public void save (ArrayList<Event> eventList) throws IOException {
+    public void save(ArrayList<Event> eventList) throws IOException {
         ArrayList<String> encodedEventList = eventListEncoder.encodeEventList(eventList);
         Files.write(Path.of(STORAGE_EVENT_PATH), encodedEventList);
     }

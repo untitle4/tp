@@ -9,7 +9,7 @@ public class TestManager {
         test = inputList;
     }
 
-    public ArrayList<Event> getTestList () {
+    public ArrayList<Event> getTestList() {
         return test;
     }
 

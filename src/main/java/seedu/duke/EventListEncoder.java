@@ -6,7 +6,7 @@ public class EventListEncoder {
     public EventListEncoder() {
     }
 
-    public ArrayList<String> encodeEventList (ArrayList<Event> eventList) {
+    public ArrayList<String> encodeEventList(ArrayList<Event> eventList) {
         ArrayList<String> encodedEvents = new ArrayList<>();
 
         for (Event event : eventList) {
@@ -16,10 +16,10 @@ public class EventListEncoder {
         return encodedEvents;
     }
 
-    private String encodeEventToString (Event event) {
+    private String encodeEventToString(Event event) {
         String result = "";
 
-        if(event instanceof Cca) {
+        if (event instanceof Cca) {
             Cca cca = (Cca) event;
             result = cca.getTypeIcon() + "|"
                     + cca.isDone() + "|"
@@ -33,13 +33,13 @@ public class EventListEncoder {
                     + test.getDescription() + "|"
                     + test.getStart() + "|"
                     + test.getEnd();
-        } else if (event instanceof Class){
-            Class aClass = (Class) event;
-            result = aClass.getTypeIcon() + "|"
-                    + aClass.isDone() + "|"
-                    + aClass.getDescription() + "|"
-                    + aClass.getStart() + "|"
-                    + aClass.getEnd();
+        } else if (event instanceof Class) {
+            Class newClass = (Class) event;
+            result = newClass.getTypeIcon() + "|"
+                    + newClass.isDone() + "|"
+                    + newClass.getDescription() + "|"
+                    + newClass.getStart() + "|"
+                    + newClass.getEnd();
         }
 
         return result;

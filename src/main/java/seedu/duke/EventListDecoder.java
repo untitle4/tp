@@ -8,7 +8,7 @@ public class EventListDecoder {
     public EventListDecoder() {
     }
 
-    public ArrayList<Event> decodeEventList (ArrayList<String> encodedEventList) {
+    public ArrayList<Event> decodeEventList(ArrayList<String> encodedEventList) {
         final ArrayList<Event> decodedEvents = new ArrayList<>();
         for (String encodedEvent : encodedEventList) {
             decodedEvents.add(decodeEventFromString(encodedEvent));
@@ -16,22 +16,22 @@ public class EventListDecoder {
         return decodedEvents;
     }
 
-    private Event decodeEventFromString (String encodedEvent) {
+    private Event decodeEventFromString(String encodedEvent) {
         final String[] data = encodedEvent.trim().split("\\|", 3);
 
         switch (data[0]) {
-            case "[CCA]":
-                return parseCca(data);
-            case "[CLASS]":
-                return parseClass(data);
-            case "[TEST]":
-                return parseTest(data);
-            default:
-                return null;
+        case "[CCA]":
+            return parseCca(data);
+        case "[CLASS]":
+            return parseClass(data);
+        case "[TEST]":
+            return parseTest(data);
+        default:
+            return null;
         }
     }
 
-    private Cca parseCca (String[] data) {
+    private Cca parseCca(String[] data) {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -43,7 +43,7 @@ public class EventListDecoder {
         return new Cca(description, isDone, start, end);
     }
 
-    private Class parseClass (String[] data) {
+    private Class parseClass(String[] data) {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -55,7 +55,7 @@ public class EventListDecoder {
         return new Class(description, isDone, start, end);
     }
 
-    private Test parseTest (String[] data) {
+    private Test parseTest(String[] data) {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
