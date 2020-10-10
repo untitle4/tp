@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -27,8 +28,10 @@ public class Duke {
                 try {
                     handleHelp(checkCommand);
                 } catch (InvalidHelpCommandException e) {
-                    System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
+                    System.out.println("Oops! If you're trying to ask for help, simply enter 'help'! >.<\n\n");
                 }
+            } else {
+                handleUnknownCommand();
             }
         }
     }
@@ -45,10 +48,17 @@ public class Duke {
                     + "[end date-time of test]\n"
                     + "\t6. Delete test: type delete test /n [test number]\n"
                     + "\t7. Delete all: delete all\n");
-        // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
-        // "\te.g. 2020-08-19 1300\n\n);
+            // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
+            // "\te.g. 2020-08-19 1300\n\n);
         } else {
             throw new InvalidHelpCommandException();
         }
+    }
+
+    public static class InvalidHelpCommandException extends Exception {
+    }
+
+    public static void handleUnknownCommand() {
+        System.out.println("Oops! I don't think I know what you mean :/\n\n");
     }
 }
