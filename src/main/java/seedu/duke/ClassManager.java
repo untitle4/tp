@@ -9,6 +9,10 @@ public class ClassManager {
         classes = inputList;
     }
 
+    public ArrayList<Event> getClasses() {
+        return classes;
+    }
+
     private int getClassListSize() {
         return classes.size();
     }

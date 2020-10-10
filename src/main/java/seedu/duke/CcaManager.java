@@ -9,6 +9,10 @@ public class CcaManager {
         cca = inputList;
     }
 
+    public ArrayList<Event> getCcaList() {
+        return cca;
+    }
+
     private int getCcaListSize() {
         return cca.size();
     }
