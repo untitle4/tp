@@ -10,6 +10,8 @@ public class Duke {
     static ArrayList<Event> cca = new ArrayList<>(); // for file input
     private static TestManager testManager = new TestManager(test);
     private static CcaManager ccaManager = new CcaManager(cca);
+    private static ListSchedule listSchedule = new ListSchedule(classes, cca, test);
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -50,6 +52,8 @@ public class Duke {
                 testManager.deleteTest(checkCommand);
             } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("cca")) {
                 ccaManager.deleteCca(checkCommand);
+            } else if (checkCommand[0].equals("list")) {
+                listSchedule.printAllEvents();
             } else if (checkCommand[0].equals("bye")) {
                 break;
             }
