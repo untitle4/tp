@@ -100,4 +100,17 @@ public class Duke {
     public static class InvalidHelpCommandException extends Exception {
     }
 
+    private static void refreshEvents () {
+        ArrayList<Event> events = new ArrayList<>();
+
+        events.addAll(ccaManager.getCcaList());
+        events.addAll(testManager.getTestList());
+        events.addAll(classManager.getClasses());
+
+        try {
+            storageManager.save(events);
+        } catch (IOException e) {
+            System.out.println("STORAGE: There was an error");
+        }
+    }
 }
