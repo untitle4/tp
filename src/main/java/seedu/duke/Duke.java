@@ -48,6 +48,7 @@ public class Duke {
                 break;
             }
         }
+
         //Exit Message
         System.out.println("BYE BYE! SEE YOU NEXT TIME! :3");
     }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CcaManager {
     private ArrayList<Event> cca = new ArrayList<>();
 
-    public CcaManager(ArrayList<Event> inputList) {cca = inputList; }
+    public CcaManager(ArrayList<Event> inputList) { cca = inputList; }
 
     private int getCcaListSize() { return cca.size(); }
 
@@ -23,7 +23,7 @@ public class CcaManager {
         getCcaStatement();
     }
 
-    public void deleteCca(String[] userInput){
+    public void deleteCca(String[] userInput) {
         int ccaIndex = Integer.parseInt(userInput[2]);
 
         System.out.println("Noted. I've removed this cca: ");
@@ -33,7 +33,7 @@ public class CcaManager {
         getCcaStatement();
     }
 
-    private void getCcaStatement(){
+    private void getCcaStatement() {
         String ccaStatement = getCcaListSize() == 1 ? " cca" : " ccas";
         System.out.println("Now you have " + getCcaListSize() + ccaStatement
                 + " in the list.");
