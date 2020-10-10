@@ -53,7 +53,8 @@ public class Duke {
             } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("cca")) {
                 ccaManager.deleteCca(checkCommand);
             } else if (checkCommand[0].equals("list")) {
-                listSchedule.printAllEvents();
+                ArrayList<String> printedEvents = listSchedule.getAllEventsPrinted();
+                printArray(printedEvents);
             } else if (checkCommand[0].equals("bye")) {
                 break;
             }
@@ -61,6 +62,12 @@ public class Duke {
 
         //Exit Message
         System.out.println("BYE BYE! SEE YOU NEXT TIME! :3");
+    }
+
+    private static void printArray(ArrayList<String> printedEvents) {
+        for (String line : printedEvents) {
+            System.out.println(line);
+        }
     }
 
     public static void handleHelp(String[] checkCommand) throws InvalidHelpCommandException {
