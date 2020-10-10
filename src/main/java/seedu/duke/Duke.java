@@ -1,11 +1,15 @@
 package seedu.duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    static ArrayList<Event> classes = new ArrayList<>();
+    private static ClassManager classManager = new ClassManager(classes);
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -17,6 +21,7 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+        System.out.println("What can we do for you?");
         String line;
         Scanner input = new Scanner(System.in);
         while (input.hasNextLine()) {
@@ -29,6 +34,12 @@ public class Duke {
                 } catch (InvalidHelpCommandException e) {
                     System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
                 }
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("class")) {
+                classManager.addClass(line);
+            } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("class")) {
+                classManager.deleteClass(checkCommand);
+            } else if (checkCommand[0].equals("bye")) {
+                break;
             }
         }
     }
@@ -51,4 +62,8 @@ public class Duke {
             throw new InvalidHelpCommandException();
         }
     }
+
+    public static class InvalidHelpCommandException extends Exception {
+    }
+
 }
