@@ -5,9 +5,13 @@ import java.util.ArrayList;
 public class CcaManager {
     private ArrayList<Event> cca = new ArrayList<>();
 
-    public CcaManager(ArrayList<Event> inputList) { cca = inputList; }
+    public CcaManager(ArrayList<Event> inputList) {
+        cca = inputList;
+    }
 
-    private int getCcaListSize() { return cca.size(); }
+    private int getCcaListSize() {
+        return cca.size();
+    }
 
     public void addCca(String userInput) {
         final String[] ccaDetails = userInput.trim().split("\\/");
