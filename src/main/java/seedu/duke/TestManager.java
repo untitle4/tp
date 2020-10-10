@@ -9,6 +9,10 @@ public class TestManager {
         test = inputList;
     }
 
+    public ArrayList<Event> getTestList () {
+        return test;
+    }
+
     private int getTestListSize() {
         return test.size();
     }
