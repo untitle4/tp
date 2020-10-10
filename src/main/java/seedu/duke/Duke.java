@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    static ArrayList<Event> classes = new ArrayList<>();
+    private static ClassManager classManager = new ClassManager(classes);
     static ArrayList<Event> test = new ArrayList<>();
     static ArrayList<Event> cca = new ArrayList<>(); // for file input
     private static TestManager testManager = new TestManager(test);
@@ -36,10 +38,14 @@ public class Duke {
                 } catch (InvalidHelpCommandException e) {
                     System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
                 }
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("class")) {
+                classManager.addClass(line);
             } else if (checkCommand[0].equals("add") && checkCommand[1].equals("test")) {
                 testManager.addTest(line);
             } else if (checkCommand[0].equals("add") && checkCommand[1].equals("cca")) {
                 ccaManager.addCca(line);
+            } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("class")) {
+                classManager.deleteClass(checkCommand);
             } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("test")) {
                 testManager.deleteTest(checkCommand);
             } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("cca")) {
@@ -71,4 +77,8 @@ public class Duke {
             throw new InvalidHelpCommandException();
         }
     }
+
+    public static class InvalidHelpCommandException extends Exception {
+    }
+
 }
