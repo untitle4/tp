@@ -13,18 +13,21 @@ public class ListSchedule {
         this.tests = tests;
     }
 
-    public void printAllEvents() {
-        System.out.println("Class:");
-        printArrayPaddedNumbers(classes);
-        System.out.println("CCA:");
-        printArrayPaddedNumbers(ccas);
-        System.out.println("Test:");
-        printArrayPaddedNumbers(tests);
+    public ArrayList<String> getAllEventsPrinted() {
+        ArrayList<String> printedEvents = new ArrayList<>();
+        printedEvents.add("Classes:");
+        printArrayPaddedNumbers(printedEvents, classes);
+        printedEvents.add("CCAs:");
+        printArrayPaddedNumbers(printedEvents, ccas);
+        printedEvents.add("Tests:");
+        printArrayPaddedNumbers(printedEvents, tests);
+
+        return printedEvents;
     }
 
-    private void printArrayPaddedNumbers(ArrayList<Event> eventArr) {
+    private void printArrayPaddedNumbers(ArrayList<String> printedEvents, ArrayList<Event> eventArr) {
         for (int i = 0; i < eventArr.size(); i++) {
-            System.out.println(i + 1 + ". " + eventArr.get(i));
+            printedEvents.add(i + 1 + ". " + eventArr.get(i));
         }
     }
 }
