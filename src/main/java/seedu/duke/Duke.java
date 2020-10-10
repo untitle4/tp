@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    static ArrayList<Event> test = new ArrayList<>();
+    static ArrayList<Event> cca = new ArrayList<>(); // for file input
+    private static TestManager testManager = new TestManager(test);
+    private static CcaManager ccaManager = new CcaManager(cca);
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -18,6 +23,7 @@ public class Duke {
 
         Scanner in = new Scanner(System.in);
         System.out.println("Hello " + in.nextLine());
+        System.out.println("What can we do for you?");
         String line;
         Scanner input = new Scanner(System.in);
         while (input.hasNextLine()) {
@@ -28,12 +34,23 @@ public class Duke {
                 try {
                     handleHelp(checkCommand);
                 } catch (InvalidHelpCommandException e) {
-                    System.out.println("Oops! If you're trying to ask for help, simply enter 'help'! >.<\n\n");
+                    System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
                 }
-            } else {
-                handleUnknownCommand();
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("test")) {
+                testManager.addTest(line);
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("cca")) {
+                ccaManager.addCca(line);
+            } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("test")) {
+                testManager.deleteTest(checkCommand);
+            } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("cca")) {
+                ccaManager.deleteCca(checkCommand);
+            } else if (checkCommand[0].equals("bye")) {
+                break;
             }
         }
+
+        //Exit Message
+        System.out.println("BYE BYE! SEE YOU NEXT TIME! :3");
     }
 
     public static void handleHelp(String[] checkCommand) throws InvalidHelpCommandException {
@@ -48,17 +65,10 @@ public class Duke {
                     + "[end date-time of test]\n"
                     + "\t6. Delete test: type delete test /n [test number]\n"
                     + "\t7. Delete all: delete all\n");
-            // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
-            // "\te.g. 2020-08-19 1300\n\n);
+        // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
+        // "\te.g. 2020-08-19 1300\n\n);
         } else {
             throw new InvalidHelpCommandException();
         }
-    }
-
-    public static class InvalidHelpCommandException extends Exception {
-    }
-
-    public static void handleUnknownCommand() {
-        System.out.println("Oops! I don't think I know what you mean :/\n\n");
     }
 }
