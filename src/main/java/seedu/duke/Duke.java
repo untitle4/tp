@@ -1,22 +1,36 @@
 package seedu.duke;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    static ArrayList<Event> classes = new ArrayList<>();
-    private static ClassManager classManager = new ClassManager(classes);
-    static ArrayList<Event> test = new ArrayList<>();
-    static ArrayList<Event> cca = new ArrayList<>(); // for file input
-    private static TestManager testManager = new TestManager(test);
-    private static CcaManager ccaManager = new CcaManager(cca);
-    private static ListSchedule listSchedule = new ListSchedule(classes, cca, test);
+    static ArrayList<Event> classes;
+    static ArrayList<Event> tests;
+    static ArrayList<Event> ccas;
+    private static ClassManager classManager;
+    private static TestManager testManager;
+    private static CcaManager ccaManager;
+    private static ListSchedule listSchedule;
+    private static StorageManager storageManager;
 
     /**
      * Main entry-point for the java.duke.Duke application.
      */
 
     public static void main(String[] args) {
+        storageManager = new StorageManager();
+
+        // Initializing ArrayLists
+        classes = storageManager.getClassList();
+        tests = storageManager.getTestList();
+        ccas = storageManager.getCcaList();
+        classManager = new ClassManager(storageManager.getClassList());
+        testManager = new TestManager(storageManager.getTestList());
+        ccaManager = new CcaManager(storageManager.getCcaList());
+        listSchedule = new ListSchedule(classes, ccas, tests);
+
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -57,6 +71,7 @@ public class Duke {
             } else if (checkCommand[0].equals("bye")) {
                 break;
             }
+            refreshEvents();
         }
 
         //Exit Message
