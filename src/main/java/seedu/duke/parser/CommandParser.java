@@ -1,12 +1,7 @@
 package seedu.duke.parser;
 
-import seedu.duke.CcaManager;
-import seedu.duke.ClassManager;
+import seedu.duke.*;
 import seedu.duke.Duke.InvalidHelpCommandException;
-import seedu.duke.ListSchedule;
-import seedu.duke.TestEmptyStringException;
-import seedu.duke.TestManager;
-import seedu.duke.TestParamException;
 
 import java.util.ArrayList;
 
@@ -88,7 +83,11 @@ public class CommandParser {
             classManager.addClass(userInput);
             break;
         case ADD_CCA:
-            ccaManager.addCca(userInput);
+            try {
+                ccaManager.addCca(userInput);
+            } catch (CcaEmptyStringException | CcaParamException e) {
+                System.out.println("OOPS!!! The description of a cca cannot be empty.");
+            }
             break;
         case ADD_TEST:
             try {
