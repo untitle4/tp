@@ -31,7 +31,7 @@ public class Cca extends Event {
 
     @Override
     public String toString() {
-        return "[CCA] " + super.getDescription() + "from " + start
+        return "[CCA] " + super.toString() + "from " + start
                 + "to " + end;
     }
 
