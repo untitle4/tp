@@ -21,4 +21,12 @@ public class Event {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Event otherEvent = (Event) obj;
+
+        return this.description.equals(otherEvent.getDescription())
+                && this.isDone == otherEvent.isDone();
+    }
 }
