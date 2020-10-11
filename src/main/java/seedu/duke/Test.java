@@ -31,7 +31,7 @@ public class Test extends Event {
 
     @Override
     public String toString() {
-        return "[TEST] " + super.description + "from " + start
+        return "[TEST] " + super.toString() + "from " + start
                 + "to " + end;
     }
 
