@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    public static final String DATA_STRING = "data";
+    public static final String FILE_STRING = "/events.txt";
+
     static ArrayList<Event> classes;
     static ArrayList<Event> tests;
     static ArrayList<Event> ccas;
@@ -22,8 +25,11 @@ public class Duke {
      */
 
     public static void main(String[] args) {
-        storageManager = new StorageManager();
-
+        try {
+            storageManager = new StorageManager(DATA_STRING, FILE_STRING);
+        } catch (InvalidValueException e) {
+            e.printStackTrace();
+        }
         // Initializing ArrayLists
         classes = storageManager.getClassList();
         tests = storageManager.getTestList();
@@ -70,7 +76,7 @@ public class Duke {
         events.addAll(classManager.getClasses());
 
         try {
-            storageManager.save(events);
+            storageManager.save(events, FILE_STRING);
         } catch (IOException e) {
             System.out.println("STORAGE: There was an error");
         }

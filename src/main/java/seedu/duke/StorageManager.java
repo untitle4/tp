@@ -6,11 +6,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class StorageManager {
-    private static final String STORAGE_DIRECTORY_PATH = new File("data").getAbsolutePath();
-    private static final String STORAGE_EVENT_PATH = STORAGE_DIRECTORY_PATH + "/events.txt";
+    private static String storage_directory_path;
 
     private EventListEncoder eventListEncoder;
     private EventListDecoder eventListDecoder;
@@ -20,7 +18,7 @@ public class StorageManager {
     private ArrayList<Event> testList;
     private ArrayList<Event> classList;
 
-    public StorageManager() {
+    public StorageManager(String directoryPath, String filePath) throws InvalidValueException {
         this.eventListEncoder = new EventListEncoder();
         this.eventListDecoder = new EventListDecoder();
         this.eventList = new ArrayList<>();
@@ -28,7 +26,13 @@ public class StorageManager {
         this.testList = new ArrayList<>();
         this.classList = new ArrayList<>();
 
-        initializeStorageManager();
+        storage_directory_path = new File(directoryPath).getAbsolutePath();
+
+        if(!isFilePathValid(filePath)) {
+            throw new InvalidValueException();
+        }
+
+        initializeStorageManager(filePath);
     }
 
     public ArrayList<Event> getEventList() {
@@ -47,12 +51,12 @@ public class StorageManager {
         return classList;
     }
 
-    private void initializeStorageManager() {
-        eventFile = new File(STORAGE_EVENT_PATH);
+    private void initializeStorageManager(String filePath) {
+        eventFile = new File(storage_directory_path + filePath);
         ArrayList<String> data = new ArrayList<>();
 
         try {
-            boolean fileCreated = createDataFile();
+            boolean fileCreated = createDataFile(filePath);
             if (!fileCreated) {
                 Scanner sc = new Scanner(eventFile);
                 while (sc.hasNext()) {
@@ -79,17 +83,25 @@ public class StorageManager {
         }
     }
 
+    private boolean isFilePathValid(String filePath) {
+        int filePathLength = filePath.length();
+        if(!filePath.substring(filePathLength - 4).equals(".txt")) {
+            return false;
+        }
+        return true;
+    }
+
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    private boolean createDataFile() throws IOException {
-        File file = new File(STORAGE_DIRECTORY_PATH);
+    private boolean createDataFile(String filePath) throws IOException {
+        File file = new File(storage_directory_path);
         file.mkdir();
-        file = new File(STORAGE_EVENT_PATH);
+        file = new File(storage_directory_path + filePath);
 
         return file.createNewFile();
     }
 
-    public void save(ArrayList<Event> eventList) throws IOException {
+    public void save(ArrayList<Event> eventList, String filePath) throws IOException {
         ArrayList<String> encodedEventList = eventListEncoder.encodeEventList(eventList);
-        Files.write(Path.of(STORAGE_EVENT_PATH), encodedEventList);
+        Files.write(Path.of(storage_directory_path + filePath), encodedEventList);
     }
 }
