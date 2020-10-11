@@ -14,12 +14,20 @@ public class Event {
         this.isDone = isDone;
     }
 
+    public void setDone() {
+        this.isDone = true;
+    }
+
+    public String getStatus() {
+        return (isDone ? "[DONE]" : "[NOT DONE]");
+    }
+
     public boolean isDone() {
         return isDone;
     }
 
     public String getDescription() {
-        return description;
+        return getStatus() + " " + description;
     }
 
     @Override

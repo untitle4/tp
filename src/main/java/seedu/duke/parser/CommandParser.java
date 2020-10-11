@@ -1,10 +1,16 @@
 package seedu.duke.parser;
 
 import seedu.duke.ClassManager;
-import seedu.duke.Duke.InvalidHelpCommandException;
-import seedu.duke.ListSchedule;
-import seedu.duke.TestManager;
 import seedu.duke.CcaManager;
+import seedu.duke.TestManager;
+import seedu.duke.ListSchedule;
+import seedu.duke.CcaEmptyStringException;
+import seedu.duke.TestEmptyStringException;
+import seedu.duke.CcaParamException;
+import seedu.duke.TestParamException;
+import seedu.duke.exception.EmptyListException;
+
+import seedu.duke.Duke.InvalidHelpCommandException;
 
 import java.util.ArrayList;
 
@@ -86,10 +92,18 @@ public class CommandParser {
             classManager.addClass(userInput);
             break;
         case ADD_CCA:
-            ccaManager.addCca(userInput);
+            try {
+                ccaManager.addCca(userInput);
+            } catch (CcaEmptyStringException | CcaParamException e) {
+                System.out.println("OOPS!!! The description of a cca cannot be empty.");
+            }
             break;
         case ADD_TEST:
-            testManager.addTest(userInput);
+            try {
+                testManager.addTest(userInput);
+            } catch (TestEmptyStringException | TestParamException e) {
+                e.printStackTrace();
+            }
             break;
         case DELETE_CLASS:
             classManager.deleteClass(separatedInputs);
@@ -98,11 +112,20 @@ public class CommandParser {
             ccaManager.deleteCca(separatedInputs);
             break;
         case DELETE_TEST:
-            testManager.deleteTest(separatedInputs);
+            try {
+                testManager.deleteTest(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
             break;
         case LIST:
-            ArrayList<String> printedEvents = listSchedule.getAllEventsPrinted();
-            printArray(printedEvents);
+            ArrayList<String> printedEvents = null;
+            try {
+                printedEvents = listSchedule.getAllEventsPrinted();
+                printArray(printedEvents);
+            } catch (EmptyListException e) {
+                System.out.println("Schedule is empty. Add some!");
+            }
             break;
         case BYE:
             break;
