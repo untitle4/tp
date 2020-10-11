@@ -57,13 +57,21 @@ public class Duke {
             } else if (checkCommand[0].equals("add") && checkCommand[1].equals("class")) {
                 classManager.addClass(line);
             } else if (checkCommand[0].equals("add") && checkCommand[1].equals("test")) {
-                testManager.addTest(line);
+                try {
+                    testManager.addTest(line);
+                } catch (TestEmptyStringException | TestParamException e) {
+                    e.printStackTrace();
+                }
             } else if (checkCommand[0].equals("add") && checkCommand[1].equals("cca")) {
                 ccaManager.addCca(line);
             } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("class")) {
                 classManager.deleteClass(checkCommand);
             } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("test")) {
-                testManager.deleteTest(checkCommand);
+                try {
+                    testManager.deleteTest(checkCommand);
+                } catch (IndexOutOfBoundsException e) {
+                    e.printStackTrace();
+                }
             } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("cca")) {
                 ccaManager.deleteCca(checkCommand);
             } else if (checkCommand[0].equals("list")) {
