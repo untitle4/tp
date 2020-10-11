@@ -17,12 +17,21 @@ public class CcaManager {
         return cca.size();
     }
 
-    public void addCca(String userInput) {
-        final String[] ccaDetails = userInput.trim().split("\\/");
+    public void addCca(String userInput) throws CcaEmptyStringException, CcaParamException {
+        if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
+                || (!userInput.contains("/e"))) {
+            throw new CcaParamException();
+        }
 
+        final String[] ccaDetails = userInput.trim().split("\\/");
         String ccaDescription = ccaDetails[1].substring(2);
         String ccaStartDate = ccaDetails[2].substring(2);
         String ccaEndDate = ccaDetails[3].substring(2);
+
+        if (ccaDescription.equals("") || ccaStartDate.equals("")
+                || ccaEndDate.equals("")) {
+            throw new CcaEmptyStringException();
+        }
 
         cca.add(new Cca(ccaDescription, ccaStartDate, ccaEndDate));
 
