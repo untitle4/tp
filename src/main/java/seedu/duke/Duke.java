@@ -1,16 +1,36 @@
 package seedu.duke;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    static ArrayList<Event> test = new ArrayList<>();
-    private static TestManager testManager = new TestManager(test);
+    static ArrayList<Event> classes;
+    static ArrayList<Event> tests;
+    static ArrayList<Event> ccas;
+    private static ClassManager classManager;
+    private static TestManager testManager;
+    private static CcaManager ccaManager;
+    private static ListSchedule listSchedule;
+    private static StorageManager storageManager;
+
     /**
      * Main entry-point for the java.duke.Duke application.
      */
 
     public static void main(String[] args) {
+        storageManager = new StorageManager();
+
+        // Initializing ArrayLists
+        classes = storageManager.getClassList();
+        tests = storageManager.getTestList();
+        ccas = storageManager.getCcaList();
+        classManager = new ClassManager(storageManager.getClassList());
+        testManager = new TestManager(storageManager.getTestList());
+        ccaManager = new CcaManager(storageManager.getCcaList());
+        listSchedule = new ListSchedule(classes, ccas, tests);
+
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -34,16 +54,35 @@ public class Duke {
                 } catch (InvalidHelpCommandException e) {
                     System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
                 }
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("class")) {
+                classManager.addClass(line);
             } else if (checkCommand[0].equals("add") && checkCommand[1].equals("test")) {
                 testManager.addTest(line);
-            } else if (checkCommand[0].equals("delete")) {
+            } else if (checkCommand[0].equals("add") && checkCommand[1].equals("cca")) {
+                ccaManager.addCca(line);
+            } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("class")) {
+                classManager.deleteClass(checkCommand);
+            } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("test")) {
                 testManager.deleteTest(checkCommand);
+            } else if (checkCommand[0].equals("delete") && checkCommand[1].equals("cca")) {
+                ccaManager.deleteCca(checkCommand);
+            } else if (checkCommand[0].equals("list")) {
+                ArrayList<String> printedEvents = listSchedule.getAllEventsPrinted();
+                printArray(printedEvents);
             } else if (checkCommand[0].equals("bye")) {
                 break;
             }
+            refreshEvents();
         }
+
         //Exit Message
         System.out.println("BYE BYE! SEE YOU NEXT TIME! :3");
+    }
+
+    private static void printArray(ArrayList<String> printedEvents) {
+        for (String line : printedEvents) {
+            System.out.println(line);
+        }
     }
 
     public static void handleHelp(String[] checkCommand) throws InvalidHelpCommandException {
@@ -62,6 +101,23 @@ public class Duke {
         // "\te.g. 2020-08-19 1300\n\n);
         } else {
             throw new InvalidHelpCommandException();
+        }
+    }
+
+    public static class InvalidHelpCommandException extends Exception {
+    }
+
+    private static void refreshEvents() {
+        ArrayList<Event> events = new ArrayList<>();
+
+        events.addAll(ccaManager.getCcaList());
+        events.addAll(testManager.getTestList());
+        events.addAll(classManager.getClasses());
+
+        try {
+            storageManager.save(events);
+        } catch (IOException e) {
+            System.out.println("STORAGE: There was an error");
         }
     }
 }

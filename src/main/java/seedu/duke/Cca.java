@@ -1,17 +1,17 @@
 package seedu.duke;
 
-public class Test extends Event {
+public class Cca extends Event {
 
     protected String start;
     protected String end;
 
-    public Test(String description, String start, String end) {
+    public Cca(String description, String start, String end) {
         super(description);
         this.start = start;
         this.end = end;
     }
 
-    public Test(String description, boolean isDone, String start, String end) {
+    public Cca(String description, boolean isDone, String start, String end) {
         super(description, isDone);
         this.start = start;
         this.end = end;
@@ -26,12 +26,12 @@ public class Test extends Event {
     }
 
     public String getTypeIcon() {
-        return "[TEST]";
+        return "[CCA]";
     }
 
     @Override
     public String toString() {
-        return "[TEST] " + super.description + "from " + start
-                + "to " + end + " has been added.";
+        return "[CCA] " + super.description + "from " + start
+                + "to " + end;
     }
 }
