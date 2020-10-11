@@ -1,14 +1,16 @@
 package seedu.duke.parser;
 
-import seedu.duke.CcaEmptyStringException;
-import seedu.duke.CcaManager;
-import seedu.duke.CcaParamException;
 import seedu.duke.ClassManager;
-import seedu.duke.Duke.InvalidHelpCommandException;
-import seedu.duke.ListSchedule;
-import seedu.duke.TestEmptyStringException;
+import seedu.duke.CcaManager;
 import seedu.duke.TestManager;
+import seedu.duke.ListSchedule;
+import seedu.duke.CcaEmptyStringException;
+import seedu.duke.TestEmptyStringException;
+import seedu.duke.CcaParamException;
 import seedu.duke.TestParamException;
+import seedu.duke.exception.EmptyListException;
+
+import seedu.duke.Duke.InvalidHelpCommandException;
 
 import java.util.ArrayList;
 
@@ -99,9 +101,7 @@ public class CommandParser {
         case ADD_TEST:
             try {
                 testManager.addTest(userInput);
-            } catch (TestEmptyStringException e) {
-                e.printStackTrace();
-            } catch (TestParamException e) {
+            } catch (TestEmptyStringException | TestParamException e) {
                 e.printStackTrace();
             }
             break;
@@ -119,8 +119,13 @@ public class CommandParser {
             }
             break;
         case LIST:
-            ArrayList<String> printedEvents = listSchedule.getAllEventsPrinted();
-            printArray(printedEvents);
+            ArrayList<String> printedEvents = null;
+            try {
+                printedEvents = listSchedule.getAllEventsPrinted();
+                printArray(printedEvents);
+            } catch (EmptyListException e) {
+                System.out.println("Schedule is empty. Add some!");
+            }
             break;
         case BYE:
             break;
