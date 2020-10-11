@@ -14,19 +14,11 @@ public class Event {
         this.isDone = isDone;
     }
 
-    public void setDone() {
-        this.isDone = true;
-    }
-
-    public String getStatus() {
-        return (isDone ? "[✓]" : "[✘]");
-    }
-
     public boolean isDone() {
         return isDone;
     }
 
     public String getDescription() {
-        return getStatus() + " " + description;
+        return description;
     }
 }
