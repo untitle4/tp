@@ -13,7 +13,7 @@ public class TestManager {
         return test;
     }
 
-    private int getTestListSize() {
+    public int getTestListSize() {
         return test.size();
     }
 
@@ -64,7 +64,7 @@ public class TestManager {
         getTaskStatement();
     }
 
-    private void getTaskStatement() {
+    public void getTaskStatement() {
         if ((getTestListSize() - 1 == 0) || (getTestListSize() == 0)) {
             System.out.println("Now you have " + getTestListSize() + " task in the list.");
         } else {
