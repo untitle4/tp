@@ -32,6 +32,15 @@ public class Test extends Event {
     @Override
     public String toString() {
         return "[TEST] " + super.description + "from " + start
-                + "to " + end + " has been added.";
+                + "to " + end;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Test otherTest = (Test) obj;
+
+        return super.equals(obj)
+                && this.start.equals(otherTest.getStart())
+                && this.end.equals(otherTest.getEnd());
     }
 }
