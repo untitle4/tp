@@ -34,7 +34,7 @@ public class Event {
     public boolean equals(Object obj) {
         Event otherEvent = (Event) obj;
 
-        return this.description.equals(otherEvent.getDescription())
+        return this.description.equals(otherEvent.description)
                 && this.isDone == otherEvent.isDone();
     }
 }
