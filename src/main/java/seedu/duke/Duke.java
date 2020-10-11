@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.parser.CommandParser;
+import seedu.duke.parser.CommandType;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -43,9 +46,12 @@ public class Duke {
         System.out.println("Hello " + in.nextLine());
         System.out.println("What can we do for you?");
         String line;
+        CommandType commandType = null;
         Scanner input = new Scanner(System.in);
-        while (input.hasNextLine()) {
+        while (input.hasNextLine() && commandType != CommandType.BYE) {
             line = input.nextLine();
+            commandType = new CommandParser(line, testManager, ccaManager, classManager, listSchedule)
+                    .parseCommand();
 
             String[] checkCommand = line.split(" ");
             if (checkCommand[0].equals("help")) {
