@@ -1,7 +1,14 @@
 package seedu.duke.parser;
 
-import seedu.duke.*;
+import seedu.duke.CcaEmptyStringException;
+import seedu.duke.CcaManager;
+import seedu.duke.CcaParamException;
+import seedu.duke.ClassManager;
 import seedu.duke.Duke.InvalidHelpCommandException;
+import seedu.duke.ListSchedule;
+import seedu.duke.TestEmptyStringException;
+import seedu.duke.TestManager;
+import seedu.duke.TestParamException;
 
 import java.util.ArrayList;
 
