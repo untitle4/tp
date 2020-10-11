@@ -23,21 +23,21 @@ public class EventListEncoder {
             Cca cca = (Cca) event;
             result = cca.getTypeIcon() + "|"
                     + cca.isDone() + "|"
-                    + cca.getDescription() + "|"
+                    + cca.description + "|"
                     + cca.getStart() + "|"
                     + cca.getEnd();
         } else if (event instanceof Test) {
             Test test = (Test) event;
             result = test.getTypeIcon() + "|"
                     + test.isDone() + "|"
-                    + test.getDescription() + "|"
+                    + test.description + "|"
                     + test.getStart() + "|"
                     + test.getEnd();
         } else if (event instanceof Class) {
             Class newClass = (Class) event;
             result = newClass.getTypeIcon() + "|"
                     + newClass.isDone() + "|"
-                    + newClass.getDescription() + "|"
+                    + newClass.description + "|"
                     + newClass.getStart() + "|"
                     + newClass.getEnd();
         }
