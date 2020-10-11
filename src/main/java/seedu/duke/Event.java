@@ -31,6 +31,11 @@ public class Event {
     }
 
     @Override
+    public String toString() {
+        return getStatus() + " " + description;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         Event otherEvent = (Event) obj;
 
