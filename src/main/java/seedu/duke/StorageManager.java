@@ -28,7 +28,7 @@ public class StorageManager {
 
         storage_directory_path = new File(directoryPath).getAbsolutePath();
 
-        if(!isFilePathValid(filePath)) {
+        if (!isFilePathValid(filePath)) {
             throw new InvalidValueException();
         }
 
@@ -85,7 +85,7 @@ public class StorageManager {
 
     private boolean isFilePathValid(String filePath) {
         int filePathLength = filePath.length();
-        if(!filePath.substring(filePathLength - 4).equals(".txt")) {
+        if (!filePath.substring(filePathLength - 4).equals(".txt")) {
             return false;
         }
         return true;

@@ -37,10 +37,10 @@ public class Cca extends Event {
 
     @Override
     public boolean equals(Object obj) {
-        Cca otherCCA = (Cca) obj;
+        Cca otherCca = (Cca) obj;
 
         return super.equals(obj)
-                && this.start.equals(otherCCA.getStart())
-                && this.end.equals(otherCCA.getEnd());
+                && this.start.equals(otherCca.getStart())
+                && this.end.equals(otherCca.getEnd());
     }
 }
