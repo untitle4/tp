@@ -27,7 +27,7 @@ public class Event {
     }
 
     public String getDescription() {
-        return getStatus() + " " + description;
+        return description;
     }
 
     @Override
