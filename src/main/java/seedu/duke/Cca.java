@@ -17,6 +17,10 @@ public class Cca extends Event {
         this.end = end;
     }
 
+    public void setDone(){
+        this.isDone = true;
+    }
+
     public String getStart() {
         return start;
     }
@@ -31,7 +35,7 @@ public class Cca extends Event {
 
     @Override
     public String toString() {
-        return "[CCA] " + super.description + "from " + start
+        return "[CCA]" + super.getDescription() + "from " + start
                 + "to " + end;
     }
 }

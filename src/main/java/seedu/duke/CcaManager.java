@@ -46,4 +46,13 @@ public class CcaManager {
         System.out.println("Now you have " + getCcaListSize() + ccaStatement
                 + " in the list.");
     }
+
+    public void setCcaDone(String[] userInput){
+        int ccaIndex = Integer.parseInt(userInput[2]);
+
+        cca.get(ccaIndex - 1).setDone();
+
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(cca.get(ccaIndex - 1).getDescription());
+    }
 }
