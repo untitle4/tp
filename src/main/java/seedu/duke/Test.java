@@ -32,6 +32,6 @@ public class Test extends Event {
     @Override
     public String toString() {
         return "[TEST] " + super.getDescription() + " from " + start
-                + " to " + end + " has been added.";
+                + " to " + end;
     }
 }
