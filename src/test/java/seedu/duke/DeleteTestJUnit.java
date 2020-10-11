@@ -14,10 +14,10 @@ public class DeleteTestJUnit {
         TestManager testManager = new TestManager(test);
 
         try {
-            testManager.addTest("add test /n Math test " +
-                    "/s 26-09-2020 1400 /e 26-09-2020 1500");
-            testManager.addTest("add test /n Science test " +
-                    "/s 23-09-2020 1600 /e 23-09-2020 1800");
+            testManager.addTest("add test /n Math test "
+                    + "/s 26-09-2020 1400 /e 26-09-2020 1500");
+            testManager.addTest("add test /n Science test "
+                    + "/s 23-09-2020 1600 /e 23-09-2020 1800");
         } catch (TestEmptyStringException e) {
             e.printStackTrace();
         } catch (TestParamException e) {
