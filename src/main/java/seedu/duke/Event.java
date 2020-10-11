@@ -19,7 +19,7 @@ public class Event {
     }
 
     public String getStatus() {
-        return (isDone ? "[✓]" : "[✘]");
+        return (isDone ? "[DONE]" : "[NOT DONE]");
     }
 
     public boolean isDone() {
