@@ -1,10 +1,12 @@
 package seedu.duke.parser;
 
+import seedu.duke.CcaManager;
 import seedu.duke.ClassManager;
 import seedu.duke.Duke.InvalidHelpCommandException;
 import seedu.duke.ListSchedule;
+import seedu.duke.TestEmptyStringException;
 import seedu.duke.TestManager;
-import seedu.duke.CcaManager;
+import seedu.duke.TestParamException;
 
 import java.util.ArrayList;
 
@@ -89,7 +91,13 @@ public class CommandParser {
             ccaManager.addCca(userInput);
             break;
         case ADD_TEST:
-            testManager.addTest(userInput);
+            try {
+                testManager.addTest(userInput);
+            } catch (TestEmptyStringException e) {
+                e.printStackTrace();
+            } catch (TestParamException e) {
+                e.printStackTrace();
+            }
             break;
         case DELETE_CLASS:
             classManager.deleteClass(separatedInputs);
@@ -98,7 +106,11 @@ public class CommandParser {
             ccaManager.deleteCca(separatedInputs);
             break;
         case DELETE_TEST:
-            testManager.deleteTest(separatedInputs);
+            try {
+                testManager.deleteTest(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                e.printStackTrace();
+            }
             break;
         case LIST:
             ArrayList<String> printedEvents = listSchedule.getAllEventsPrinted();
