@@ -34,4 +34,13 @@ public class Class extends Event {
         return "[Class] " + super.description + "from " + start
                 + "to " + end;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Class otherClass = (Class) obj;
+
+        return super.equals(obj)
+                && this.start.equals(otherClass.getStart())
+                && this.end.equals(otherClass.getEnd());
+    }
 }
