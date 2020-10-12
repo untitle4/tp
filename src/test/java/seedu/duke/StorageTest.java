@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exception.InvalidValueException;
 
 import java.util.ArrayList;
 
@@ -21,14 +22,11 @@ public class StorageTest {
     }
 
     @Test
-    public void load_validFormat() {
-        try {
-            StorageManager storageManager = new StorageManager("test", "/ValidData.txt");
-            assertEquals(getEventList(), storageManager.getEventList());
-        } catch (InvalidValueException e) {
-            e.printStackTrace();
-        }
+    public void load_validFormat() throws InvalidValueException {
+        StorageManager storageManager = new StorageManager("test", "/ValidData.txt");
+        assertEquals(getEventList(), storageManager.getEventList());
     }
+
 
     private ArrayList<Event> getEventList() {
         ArrayList<Event> events = new ArrayList<>();

@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.exception.CcaEmptyStringException;
+import seedu.duke.exception.CcaParamException;
+
 import java.util.ArrayList;
 
 public class CcaManager {

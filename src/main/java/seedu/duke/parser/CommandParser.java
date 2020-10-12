@@ -4,10 +4,10 @@ import seedu.duke.ClassManager;
 import seedu.duke.CcaManager;
 import seedu.duke.TestManager;
 import seedu.duke.ListSchedule;
-import seedu.duke.CcaEmptyStringException;
-import seedu.duke.TestEmptyStringException;
-import seedu.duke.CcaParamException;
-import seedu.duke.TestParamException;
+import seedu.duke.exception.CcaEmptyStringException;
+import seedu.duke.exception.TestEmptyStringException;
+import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.TestParamException;
 import seedu.duke.exception.EmptyListException;
 
 import seedu.duke.Duke.InvalidHelpCommandException;
