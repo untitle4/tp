@@ -6,7 +6,7 @@ import seedu.duke.exception.CcaParamException;
 import java.util.ArrayList;
 
 public class CcaManager {
-    private ArrayList<Event> cca = new ArrayList<>();
+    private final ArrayList<Event> cca;
 
     public CcaManager(ArrayList<Event> inputList) {
         cca = inputList;
@@ -63,7 +63,6 @@ public class CcaManager {
 
     private void getCcaStatement() {
         String ccaStatement = getCcaListSize() == 1 ? " cca" : " ccas";
-        System.out.println("Now you have " + getCcaListSize() + ccaStatement
-                + " in the list.");
+        System.out.println("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
     }
 }

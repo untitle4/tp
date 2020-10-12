@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.event.EventManager;
 import seedu.duke.exception.InvalidValueException;
 import seedu.duke.parser.CommandParser;
 import seedu.duke.parser.CommandType;
@@ -12,14 +13,9 @@ public class Duke {
     public static final String DATA_STRING = "data";
     public static final String FILE_STRING = "/events.txt";
 
-    static ArrayList<Event> classes;
-    static ArrayList<Event> tests;
-    static ArrayList<Event> ccas;
-    private static ClassManager classManager;
-    private static TestManager testManager;
-    private static CcaManager ccaManager;
-    private static ListSchedule listSchedule;
     private static StorageManager storageManager;
+    private static EventManager eventManager;
+    private static boolean active = true;
 
     /**
      * Main entry-point for the java.duke.Duke application.
@@ -27,15 +23,7 @@ public class Duke {
 
     public static void main(String[] args) throws InvalidValueException {
         storageManager = new StorageManager(DATA_STRING, FILE_STRING);
-        // Initializing ArrayLists
-        classes = storageManager.getClassList();
-        tests = storageManager.getTestList();
-        ccas = storageManager.getCcaList();
-        classManager = new ClassManager(storageManager.getClassList());
-        testManager = new TestManager(storageManager.getTestList());
-        ccaManager = new CcaManager(storageManager.getCcaList());
-        listSchedule = new ListSchedule(classes, ccas, tests);
-
+        eventManager = new EventManager(storageManager);
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -45,21 +33,25 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
 
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-        System.out.println("What can we do for you?");
-        String line;
-        CommandType commandType = null;
         Scanner input = new Scanner(System.in);
-        while (input.hasNextLine() && commandType != CommandType.BYE) {
-            line = input.nextLine();
-            commandType = new CommandParser(line, testManager, ccaManager, classManager, listSchedule)
-                    .parseCommand();
+        System.out.println("Hello " + input.nextLine());
+        System.out.println("What can we do for you?");
+
+        while (active) {
+            String line = input.nextLine();
+            CommandType commandType = new CommandParser(line, eventManager).parseCommand();
+            checkIfProgramEnds(commandType);
             refreshEvents();
         }
 
         //Exit Message
         System.out.println("BYE BYE! SEE YOU NEXT TIME! :3");
+    }
+
+    private static void checkIfProgramEnds(CommandType commandType) {
+        if (commandType == CommandType.BYE) {
+            active = false;
+        }
     }
 
     public static class InvalidHelpCommandException extends Exception {
@@ -68,9 +60,9 @@ public class Duke {
     private static void refreshEvents() {
         ArrayList<Event> events = new ArrayList<>();
 
-        events.addAll(ccaManager.getCcaList());
-        events.addAll(testManager.getTestList());
-        events.addAll(classManager.getClasses());
+        events.addAll(eventManager.getCcaManager().getCcaList());
+        events.addAll(eventManager.getTestManager().getTestList());
+        events.addAll(eventManager.getClassManager().getClasses());
 
         try {
             storageManager.save(events, FILE_STRING);
