@@ -1,9 +1,13 @@
 package seedu.duke.parser;
 
 import seedu.duke.event.EventManager;
-import seedu.duke.exception.*;
 
 import seedu.duke.Duke.InvalidHelpCommandException;
+import seedu.duke.exception.CcaEmptyStringException;
+import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.TestEmptyStringException;
+import seedu.duke.exception.TestParamException;
 
 public class CommandParser {
     public static final String INPUT_ADD = "add";
