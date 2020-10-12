@@ -3,7 +3,7 @@ package seedu.duke;
 import java.util.ArrayList;
 
 public class ClassManager {
-    private ArrayList<Event> classes = new ArrayList<>();
+    private final ArrayList<Event> classes;
 
     public ClassManager(ArrayList<Event> inputList) {
         classes = inputList;
@@ -43,7 +43,6 @@ public class ClassManager {
 
     private void getClassStatement() {
         String classStatement = getClassListSize() == 1 ? " class" : " classes";
-        System.out.println("Now you have " + getClassListSize() + classStatement
-                + " in the list.");
+        System.out.println("Now you have " + getClassListSize() + classStatement + " in the list.");
     }
 }

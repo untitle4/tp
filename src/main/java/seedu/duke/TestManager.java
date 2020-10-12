@@ -6,7 +6,7 @@ import seedu.duke.exception.TestParamException;
 import java.util.ArrayList;
 
 public class TestManager {
-    private ArrayList<Event> test;
+    private final ArrayList<Event> test;
 
     public TestManager(ArrayList<Event> inputList) {
         test = inputList;
