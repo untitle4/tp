@@ -31,7 +31,16 @@ public class Cca extends Event {
 
     @Override
     public String toString() {
-        return "[CCA] " + super.getDescription() + "from " + start
+        return "[CCA] " + super.toString() + "from " + start
                 + "to " + end;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Cca otherCca = (Cca) obj;
+
+        return super.equals(obj)
+                && this.start.equals(otherCca.getStart())
+                && this.end.equals(otherCca.getEnd());
     }
 }
