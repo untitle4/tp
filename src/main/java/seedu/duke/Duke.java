@@ -33,12 +33,12 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("What is your name?");
 
-        Scanner input = new Scanner(System.in);
-        System.out.println("Hello " + input.nextLine());
+        Scanner in = new Scanner(System.in);
+        System.out.println("Hello " + in.nextLine());
         System.out.println("What can we do for you?");
 
         while (active) {
-            String line = input.nextLine();
+            String line = in.nextLine();
             CommandType commandType = new CommandParser(line, eventManager).parseCommand();
             checkIfProgramEnds(commandType);
             refreshEvents();
