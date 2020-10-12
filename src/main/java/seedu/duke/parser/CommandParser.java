@@ -1,10 +1,7 @@
 package seedu.duke.parser;
 
 import seedu.duke.event.EventManager;
-import seedu.duke.exception.CcaEmptyStringException;
-import seedu.duke.exception.TestEmptyStringException;
-import seedu.duke.exception.CcaParamException;
-import seedu.duke.exception.TestParamException;
+import seedu.duke.exception.*;
 
 import seedu.duke.Duke.InvalidHelpCommandException;
 
@@ -38,11 +35,13 @@ public class CommandParser {
             executeCommand();
         } catch (InvalidHelpCommandException e) {
             System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
+        } catch (InvalidCommandException e) {
+            System.out.println("Oops! I did not recognize that command! Enter 'help' if needed!");
         }
         return commandType;
     }
 
-    private void extractCommand() {
+    private void extractCommand() throws InvalidCommandException {
         if (separatedInputs[0].equals("help")) {
             commandType = CommandType.HELP;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
@@ -67,6 +66,8 @@ public class CommandParser {
             commandType = CommandType.LIST;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_BYE)) {
             commandType = CommandType.BYE;
+        } else {
+            throw new InvalidCommandException();
         }
     }
 
