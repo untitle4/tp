@@ -3,7 +3,7 @@ package seedu.duke.event;
 import seedu.duke.ClassManager;
 import seedu.duke.TestManager;
 import seedu.duke.CcaManager;
-import seedu.duke.StorageManager;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ListSchedule;
 import seedu.duke.exception.EmptyListException;
 
