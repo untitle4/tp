@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.exception.InvalidValueException;
 import seedu.duke.parser.CommandParser;
 import seedu.duke.parser.CommandType;
 
@@ -24,12 +25,8 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
 
-    public static void main(String[] args) {
-        try {
-            storageManager = new StorageManager(DATA_STRING, FILE_STRING);
-        } catch (InvalidValueException e) {
-            e.printStackTrace();
-        }
+    public static void main(String[] args) throws InvalidValueException {
+        storageManager = new StorageManager(DATA_STRING, FILE_STRING);
         // Initializing ArrayLists
         classes = storageManager.getClassList();
         tests = storageManager.getTestList();

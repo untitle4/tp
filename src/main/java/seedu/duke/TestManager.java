@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.exception.TestEmptyStringException;
+import seedu.duke.exception.TestParamException;
+
 import java.util.ArrayList;
 
 public class TestManager {
