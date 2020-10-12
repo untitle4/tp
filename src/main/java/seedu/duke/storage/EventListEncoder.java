@@ -1,4 +1,9 @@
-package seedu.duke;
+package seedu.duke.storage;
+
+import seedu.duke.Cca;
+import seedu.duke.Class;
+import seedu.duke.Event;
+import seedu.duke.Test;
 
 import java.util.ArrayList;
 
@@ -23,21 +28,21 @@ public class EventListEncoder {
             Cca cca = (Cca) event;
             result = cca.getTypeIcon() + "|"
                     + cca.isDone() + "|"
-                    + cca.description + "|"
+                    + cca.getDescription() + "|"
                     + cca.getStart() + "|"
                     + cca.getEnd();
         } else if (event instanceof Test) {
             Test test = (Test) event;
             result = test.getTypeIcon() + "|"
                     + test.isDone() + "|"
-                    + test.description + "|"
+                    + test.getDescription() + "|"
                     + test.getStart() + "|"
                     + test.getEnd();
         } else if (event instanceof Class) {
             Class newClass = (Class) event;
             result = newClass.getTypeIcon() + "|"
                     + newClass.isDone() + "|"
-                    + newClass.description + "|"
+                    + newClass.getDescription() + "|"
                     + newClass.getStart() + "|"
                     + newClass.getEnd();
         }
