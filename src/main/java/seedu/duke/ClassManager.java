@@ -54,6 +54,7 @@ public class ClassManager {
 
     public void deleteClass(String[] userInput) {
         try {
+            logger.log(Level.INFO, "initialising deletion of a class");
             int classIndex = Integer.parseInt(userInput[2]);
 
             // Just to test if class index is valid - for exception use only
@@ -63,13 +64,17 @@ public class ClassManager {
             System.out.println(classes.get(classIndex - 1));
 
             classes.remove(classIndex - 1);
+            logger.log(Level.INFO, "deletion of class from ArrayList");
             getClassStatement();
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("☹ OOPS! Please indicate which class you'd like to delete");
+            logger.log(Level.WARNING, "absence of class index for deletion");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("☹ OOPS! Please indicate a valid class index!");
+            logger.log(Level.WARNING, "invalid class index entered for deletion");
         } catch (NumberFormatException e) {
             System.out.println("☹ OOPS! Please indicate in NUMERALS, which class you'd like to delete!");
+            logger.log(Level.WARNING, "non-integer class index entered for deletion");
         }
     }
 
