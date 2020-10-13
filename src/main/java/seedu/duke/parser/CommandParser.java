@@ -34,7 +34,12 @@ public class CommandParser {
     public CommandParser(String userInput, EventManager eventManager) {
         this.userInput = userInput;
         this.eventManager = eventManager;
-        separatedInputs = userInput.split(" ");
+        if (userInput.trim().isEmpty()) {
+            separatedInputs = new String[] {" "};
+        } else {
+            separatedInputs = userInput.split(" ");
+        }
+
         commandType = null;
     }
 
