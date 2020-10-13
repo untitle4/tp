@@ -79,6 +79,47 @@ Example Output:
 
 <br>
 
+### Adding a cca: `add cca`
+Adds a new cca with a name, date and time
+
+Format: `add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]`
+
+* `[name of cca]` can be in a natural language format and 
+cannot contain '/' .  
+* `[start date-time of cca]`, `[end date-time of cca]` must be in 
+yyyy-mm-dd HHMM format.
+
+Examples: `add cca /n Basketball training /s 2020-09-19 1900 /e 2020-09-19 2100`
+
+Example Output: 
+
+`Got it. I've added this cca:`
+
+    [CCA] [NOT DONE] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
+
+`Now you have 1 cca in the list.`
+
+<br>
+
+### Deleting a cca: `delete cca`
+Deleting a cca based on its index in the list
+
+Format: `delete cca [cca number]`
+
+* `[cca number]` must be written in numerals. 
+
+Examples: `delete cca 1`
+
+Example Output: 
+
+`Noted. I've removed this cca:`
+
+    [CCA] [NOT DONE] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
+
+`Now you have 0 ccas in the list.`
+
+<br>
+
 ### Adding a test: `add test`
 Adds a new test with a name, date and time
 
