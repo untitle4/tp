@@ -11,23 +11,45 @@
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `Duke` from [here](http://link.to/duke).
 
-## Features 
+## List of Features 
 
-{Give detailed description of each feature}
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+### Adding a test: `add test`
+Adds a new test with a name, date and time
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+Format: `add test /n [name of test] /s [start date-time of test] /e [end date-time of test]`
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+* The `[name of test]`, `[start date-time of test]`, `[end date-time of test]`
+can be in a natural language format and 
+cannot contain '/n', '/s' or '/e' .  
 
-Example of usage: 
+Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
 
-`todo n/Write the rest of the User Guide d/next week`
+Example Output: 
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+`Got it. I've added this test:`
+
+    [TEST] [NOT DONE] Math test from 2020-10-3 1300 to 2020-10-3 1400
+
+`Now you have 1 task in the list.`
+
+### Deleting a test: `delete test`
+Deleting a test date based on its index in the list
+
+
+Format: `delete test /n [test number]`
+
+* `[test number]` must be in numerals. 
+
+Examples: `delete test /n 1`
+
+Example Output: 
+
+`Noted. I've removed this task:`
+
+    [TEST] [NOT DONE] Math test from 2020-10-3 1300 to 2020-10-3 1400
+
+`Now you have 0 task in the list.`
 
 ## FAQ
 

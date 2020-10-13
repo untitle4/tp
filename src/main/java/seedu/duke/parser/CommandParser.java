@@ -1,11 +1,11 @@
 package seedu.duke.parser;
 
 import seedu.duke.event.EventManager;
-
-import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
 
@@ -43,9 +43,9 @@ public class CommandParser {
             extractCommand();
             executeCommand();
         } catch (InvalidHelpCommandException e) {
-            System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
+            System.out.println("☹ Oops! If you're trying to ask for help, simply enter 'help'!\n");
         } catch (InvalidCommandException e) {
-            System.out.println("Oops! I did not recognize that command! Enter 'help' if needed!");
+            System.out.println("☹ Oops! I did not recognize that command! Enter 'help' if needed!");
         }
         return commandType;
     }
@@ -86,20 +86,24 @@ public class CommandParser {
             handleHelp(separatedInputs);
             break;
         case ADD_CLASS:
-            eventManager.getClassManager().addClass(userInput);
+            try {
+                eventManager.getClassManager().addClass(userInput);
+            } catch (InvalidClassInputException e) {
+                System.out.println("☹ OOPS! Remember to include ALL '/n', '/s' and '/e' inputs!");
+            }
             break;
         case ADD_CCA:
             try {
                 eventManager.getCcaManager().addCca(userInput);
             } catch (CcaEmptyStringException | CcaParamException e) {
-                System.out.println("OOPS!!! The description of a cca cannot be empty.");
+                System.out.println("☹ OOPS!!! The description of a cca cannot be empty.");
             }
             break;
         case ADD_TEST:
             try {
                 eventManager.getTestManager().addTest(userInput);
             } catch (TestEmptyStringException | TestParamException e) {
-                e.printStackTrace();
+                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
             }
             break;
         case DELETE_CLASS:
@@ -112,7 +116,7 @@ public class CommandParser {
             try {
                 eventManager.getTestManager().deleteTest(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                e.printStackTrace();
+                System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
             break;
         case LIST:

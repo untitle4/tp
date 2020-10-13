@@ -12,17 +12,19 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StorageManager {
     private static String storage_directory_path;
 
     private EventListEncoder eventListEncoder;
     private EventListDecoder eventListDecoder;
-    private File eventFile;
     private ArrayList<Event> eventList;
     private ArrayList<Event> ccaList;
     private ArrayList<Event> testList;
     private ArrayList<Event> classList;
+    private static Logger logger = Logger.getLogger("storage");
 
     public StorageManager(String directoryPath, String filePath) throws InvalidValueException {
         this.eventListEncoder = new EventListEncoder();
@@ -32,11 +34,14 @@ public class StorageManager {
         this.testList = new ArrayList<>();
         this.classList = new ArrayList<>();
 
-        storage_directory_path = new File(directoryPath).getAbsolutePath();
+        assert !directoryPath.equals("");
+        assert !filePath.equals("");
 
         if (!isFilePathValid(filePath)) {
             throw new InvalidValueException();
         }
+
+        storage_directory_path = new File(directoryPath).getAbsolutePath();
 
         initializeStorageManager(filePath);
     }
@@ -58,12 +63,14 @@ public class StorageManager {
     }
 
     private void initializeStorageManager(String filePath) {
-        eventFile = new File(storage_directory_path + filePath);
+        File eventFile = new File(storage_directory_path + filePath);
         ArrayList<String> data = new ArrayList<>();
+        logger.log(Level.INFO, "Loading storage...");
 
         try {
             boolean fileCreated = createDataFile(filePath);
             if (!fileCreated) {
+                logger.log(Level.INFO, "Data file found, reading data file...");
                 Scanner sc = new Scanner(eventFile);
                 while (sc.hasNext()) {
                     String dataString = sc.nextLine();
@@ -71,9 +78,13 @@ public class StorageManager {
                 }
                 eventList = eventListDecoder.decodeEventList(data);
                 separateEventsIntoList(eventList);
+                logger.log(Level.INFO, "Load successful");
+            } else {
+                logger.log(Level.INFO, "Data file not found, initializing data file...");
             }
         } catch (IOException e) {
             System.out.println("There was an error loading your files.");
+            logger.log(Level.SEVERE, "Initialization failed");
         }
     }
 
@@ -97,11 +108,16 @@ public class StorageManager {
         return true;
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     private boolean createDataFile(String filePath) throws IOException {
         File file = new File(storage_directory_path);
-        file.mkdir();
+        boolean isDirectoryCreated = file.mkdir();
         file = new File(storage_directory_path + filePath);
+
+        if (isDirectoryCreated) {
+            logger.log(Level.INFO, "Directory not found, creating...");
+        } else {
+            logger.log(Level.INFO, "Directory found...");
+        }
 
         return file.createNewFile();
     }
