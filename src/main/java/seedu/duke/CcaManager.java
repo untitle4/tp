@@ -94,8 +94,10 @@ public class CcaManager {
 
     public void setCcaDone(String[] userInput) {
         int ccaIndex = 0;
+        logger.log(Level.INFO, "initialising setting cca as done");
+
         try {
-            ccaIndex = Integer.parseInt(userInput[2]) - 1;
+            ccaIndex = Integer.parseInt(userInput[2]);
         } catch (NumberFormatException e) {
             System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which cca you'd like to delete!");
             return;
@@ -104,10 +106,16 @@ public class CcaManager {
             return;
         }
 
-        cca.get(ccaIndex).setDone();
+        if ((ccaIndex <= 0) || (ccaIndex > getCcaListSize())) {
+            logger.log(Level.WARNING, "index entered is out of bounds");
+            throw new IndexOutOfBoundsException();
+        }
 
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(cca.get(ccaIndex).getDescription());
+        cca.get(ccaIndex - 1).setDone();
+        logger.log(Level.INFO, "set cca as done from Arraylist");
+
+        System.out.println("Nice! I've marked this cca as done:");
+        System.out.println(cca.get(ccaIndex - 1));
     }
 
     private void getCcaStatement() {
