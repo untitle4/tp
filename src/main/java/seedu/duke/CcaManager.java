@@ -2,8 +2,12 @@ package seedu.duke;
 
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
+import seedu.duke.parser.DateTimeParser;
 
+import java.text.ParseException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class CcaManager {
     private final ArrayList<Event> cca;
@@ -36,7 +40,16 @@ public class CcaManager {
             throw new CcaEmptyStringException();
         }
 
-        cca.add(new Cca(ccaDescription, ccaStartDate, ccaEndDate));
+        try {
+            String changedCcaStartDate = new DateTimeParser(ccaStartDate).changeDateTime();
+            String changedCcaEndDate = new DateTimeParser(ccaEndDate).changeDateTime();
+
+            cca.add(new Cca(ccaDescription, changedCcaStartDate, changedCcaEndDate));
+        } catch (DateTimeParseException | StringIndexOutOfBoundsException
+                | ArrayIndexOutOfBoundsException | ParseException e) {
+            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
+            return;
+        }
 
         System.out.println("Got it. I've added this cca: ");
         System.out.println(cca.get(getCcaListSize() - 1));

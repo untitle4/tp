@@ -23,7 +23,7 @@ public class DateTimeParser {
         this.dateTime = dateTime;
     }
 
-    public String changeDateTime() {
+    public String changeDateTime() throws ParseException {
         logger.log(Level.INFO, "initialising changing of date and time to new format");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM yyyy");
         int divider = dateTime.indexOf(" ");
@@ -46,19 +46,13 @@ public class DateTimeParser {
         DateFormat outputDateTimeFormat = new SimpleDateFormat("hh:mm aa");
         Date oldTime = null;
         String changedTime = null;
-        try {
-            oldTime = inputDateTimeFormat.parse(time);
-            changedTime = outputDateTimeFormat.format(oldTime);
-        } catch (ParseException parseException) {
-            logger.log(Level.WARNING, "time is invalid");
-            parseException.printStackTrace();
-        }
+        oldTime = inputDateTimeFormat.parse(time);
+        changedTime = outputDateTimeFormat.format(oldTime);
 
         logger.log(Level.INFO, "generating day");
         String dayString = String.valueOf(dayInteger);
 
         return dayString + dayNumberSuffix + " " + changedDate + " , " + changedTime;
-
     }
 
     /*

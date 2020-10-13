@@ -1,12 +1,15 @@
 package seedu.duke;
 
 import java.io.InvalidClassException;
+import java.text.ParseException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
+import seedu.duke.parser.DateTimeParser;
 
 public class ClassManager {
     private final ArrayList<Event> classes;
@@ -44,7 +47,16 @@ public class ClassManager {
             throw new InvalidClassInputException();
         }
 
-        classes.add(new Test(classDescription, classStartDate, classEndDate));
+        try {
+            String changedClassStartDate = new DateTimeParser(classStartDate).changeDateTime();
+            String changedClassEndDate = new DateTimeParser(classEndDate).changeDateTime();
+
+            classes.add(new Test(classDescription, changedClassStartDate, changedClassEndDate));
+        } catch (DateTimeParseException | StringIndexOutOfBoundsException
+                | ArrayIndexOutOfBoundsException | ParseException e) {
+            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
+            return;
+        }
 
         System.out.println("Got it. I've added this class:");
         System.out.println("  " + classes.get(getClassListSize() - 1));
