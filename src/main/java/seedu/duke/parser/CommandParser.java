@@ -3,6 +3,7 @@ package seedu.duke.parser;
 import seedu.duke.event.EventManager;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.EmptyCommandException;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
@@ -36,7 +37,7 @@ public class CommandParser {
         this.userInput = userInput;
         this.eventManager = eventManager;
         if (userInput.trim().isEmpty()) {
-            separatedInputs = new String[] {" "};
+            separatedInputs = new String[] {""};
         } else {
             separatedInputs = userInput.split(" ");
         }
