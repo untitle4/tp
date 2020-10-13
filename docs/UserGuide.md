@@ -9,14 +9,52 @@ so they can plan well in advance for their tests and score better.
 
 ## Quick Start
 
-{Give steps to get started quickly}
-
-1. Ensure that you have Java 11 or above installed.
+1. Ensure that you have Java ```11``` or above installed.
 2. Down the latest version of `Plan&score` from [here](https://github.com/AY2021S1-CS2113T-W12-4/tp/releases).
 3. Run the program by entering `java -jar plan.jar` in a terminal.
 
 ## List of Features 
 
+### Adding a class: `add class`
+Adds a new class with a name, date and time
+
+Format: `add class /n [name of class] /s [start date-time of class] /e [end date-time of class]`
+
+* `[name of class]` can be in a natural language format and 
+cannot contain '/' .  
+* `[start date-time of class]`, `[end date-time of class]` must be in 
+yyyy-mm-dd HHMM format.
+
+Examples: `add class /n Math /s 2020-08-19 1300 /e 2020-08-19 1400`
+
+Example Output: 
+
+`Got it. I've added this class:`
+
+    [CLASS] [NOT DONE] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
+
+`Now you have 1 class in the list.`
+
+<br>
+
+### Deleting a class: `delete class`
+Deleting a class based on its index in the list
+
+Format: `delete class [class number]`
+
+* `[class number]` must be written in numerals. 
+
+Examples: `delete class 1`
+
+Example Output: 
+
+`Noted. I've removed this class:`
+
+    [CLASS] [NOT DONE] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
+
+`Now you have 0 classes in the list.`
+
+<br>
 
 ### Adding a test: `add test`
 Adds a new test with a name, date and time
@@ -36,7 +74,7 @@ Example Output:
 
     [TEST] [NOT DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
-`Now you have 1 task in the list.`
+`Now you have 1 test in the list.`
 
 <br />
 <br />
@@ -45,19 +83,19 @@ Example Output:
 Deleting a test date based on its index in the list
 
 
-Format: `delete test /n [test number]`
+Format: `delete test [test number]`
 
-* `[test number]` must be in numerals. 
+* `[test number]` must be written in numerals. 
 
-Examples: `delete test /n 1`
+Examples: `delete test 1`
 
 Example Output: 
 
-`Noted. I've removed this task:`
+`Noted. I've removed this test:`
 
     [TEST] [NOT DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
-`Now you have 0 task in the list.`
+`Now you have 0 tests in the list.`
 
 <br />
 <br />
