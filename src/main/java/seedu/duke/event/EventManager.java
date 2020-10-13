@@ -35,7 +35,7 @@ public class EventManager {
     public void listSchedule() {
         try {
             ListSchedule listSchedule = new ListSchedule(
-                classManager.getClasses(), testManager.getTestList(), ccaManager.getCcaList());
+                classManager.getClasses(), ccaManager.getCcaList(), testManager.getTestList());
             ArrayList<String> printedEvents = listSchedule.getAllEventsPrinted();
             printArray(printedEvents);
         } catch (EmptyListException e) {

@@ -99,7 +99,7 @@ public class CommandParser {
             try {
                 eventManager.getTestManager().addTest(userInput);
             } catch (TestEmptyStringException | TestParamException e) {
-                e.printStackTrace();
+                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
             }
             break;
         case DELETE_CLASS:
@@ -112,7 +112,7 @@ public class CommandParser {
             try {
                 eventManager.getTestManager().deleteTest(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                e.printStackTrace();
+                System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
             break;
         case LIST:
