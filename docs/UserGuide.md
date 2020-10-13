@@ -178,6 +178,7 @@ Example Output:
 Action | Format | Examples
 -------|--------|--------
 help|`help`
-add|`add <category> /n <description> /s <start-date-time> /e <end date-time>`|`add /n class /s 26-9-2020 1500 /e 26-9-2020 1700`
-delete|`delete <category> /n <item number>`|`delete class /n 1`
+add|`add <category> /n <description> /s <start-date-time> /e <end date-time>`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
+delete|`delete <category> /n <item number>`|`delete class 1`
+done|`done <item number>`|`done 1`
 list|`list`
