@@ -32,7 +32,7 @@ public class Class extends Event {
     @Override
     public String toString() {
         return "[Class] " + super.toString() + "from " + start
-                + "to " + end;
+                + " to " + end;
     }
 
     @Override

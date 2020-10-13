@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.duke.exception.InvalidClassInputException;

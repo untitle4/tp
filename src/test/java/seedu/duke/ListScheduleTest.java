@@ -20,7 +20,7 @@ class ListScheduleTest {
     @Test
     void getAllEventsPrinted_classSchedule_classList() throws EmptyListException {
         ArrayList<Event> classes = new ArrayList<>();
-        classes.add(new Class("Math ", "26/2/2019 ", "27/2/2019"));
+        classes.add(new Class("Math ", "26/2/2019", "27/2/2019"));
         ListSchedule listSchedule = new ListSchedule(classes, new ArrayList<>(), new ArrayList<>());
         ArrayList<String> actualOutputs = listSchedule.getAllEventsPrinted();
         ArrayList<String> expectedOutputs = new ArrayList<>(
