@@ -104,5 +104,34 @@ public class ClassManager {
         String classStatement = getClassListSize() == 1 ? " class" : " classes";
         System.out.println("Now you have " + getClassListSize() + classStatement + " in the list.");
     }
+
+    public void setClassDone(String[] userInput) throws IndexOutOfBoundsException {
+        int classNumber = 0;
+        logger.log(Level.INFO, "initialising setting class as done");
+
+        try {
+            classNumber = Integer.parseInt(userInput[2]);
+        } catch (NumberFormatException e) {
+            logger.log(Level.WARNING, "wrong number format entered");
+            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which class you'd like to set as Done!");
+            return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("☹ OOPS!!! Please indicate which class you'd like to set as Done!");
+            return;
+        }
+
+        if ((classNumber <= 0) || (classNumber > getClassListSize())) {
+            logger.log(Level.WARNING, "index entered is out of bounds");
+            throw new IndexOutOfBoundsException();
+        }
+
+        classes.get(classNumber - 1).setDone();
+        logger.log(Level.INFO, "set class as done from ArrayList");
+
+        System.out.println("Nice! I've marked this class as done:");
+        System.out.println("  " + classes.get(classNumber - 1));
+
+        getClassStatement();
+    }
 }
 
