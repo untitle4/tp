@@ -24,23 +24,23 @@ public class ClassManager {
     public void addClass(String userInput) throws InvalidClassInputException {
         logger.log(Level.INFO, "initialising adding of a class");
         if ((!userInput.contains("/n")) || (!userInput.contains("/s")) || (!userInput.contains("/e"))) {
-            logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is" +
-                    " missing");
+            logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
+                    + " missing");
             throw new InvalidClassInputException();
         }
 
         userInput.replaceAll("\\s+", "");
         final String[] classDetails = userInput.trim().split("\\/");
 
-        logger.log(Level.INFO, "splitting the user input into class description, start date-time and end " +
-                "date-time");
+        logger.log(Level.INFO, "splitting the user input into class description, start date-time and end "
+                + "date-time");
         String classDescription = classDetails[1].substring(1).trim();
         String classStartDate = classDetails[2].substring(1).trim();
         String classEndDate = classDetails[3].substring(1).trim();
 
         if (classDescription.equals("") || classStartDate.equals("") || classEndDate.equals("")) {
-            logger.log(Level.WARNING, "either class description, start date-time or end date-time is" +
-                    " missing");
+            logger.log(Level.WARNING, "either class description, start date-time or end date-time is"
+                    + " missing");
             throw new InvalidClassInputException();
         }
 
