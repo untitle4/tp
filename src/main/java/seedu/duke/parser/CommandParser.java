@@ -1,11 +1,11 @@
 package seedu.duke.parser;
 
 import seedu.duke.event.EventManager;
-
-import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
 
@@ -86,7 +86,11 @@ public class CommandParser {
             handleHelp(separatedInputs);
             break;
         case ADD_CLASS:
-            eventManager.getClassManager().addClass(userInput);
+            try {
+                eventManager.getClassManager().addClass(userInput);
+            } catch (InvalidClassInputException e) {
+                System.out.println("OOPS! Remember to include ALL '/n', '/s' and '/e' inputs!");
+            }
             break;
         case ADD_CCA:
             try {
