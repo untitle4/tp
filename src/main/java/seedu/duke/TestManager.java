@@ -5,6 +5,7 @@ import seedu.duke.exception.TestParamException;
 import seedu.duke.parser.DateTimeParser;
 
 import java.lang.reflect.Array;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,10 +50,16 @@ public class TestManager {
             throw new TestEmptyStringException();
         }
 
-        String changedTestStartDate = new DateTimeParser(testStartDate).changeDateTime();
-        String changedTestEndDate = new DateTimeParser(testEndDate).changeDateTime();
+        try {
+            String changedTestStartDate = new DateTimeParser(testStartDate).changeDateTime();
+            String changedTestEndDate = new DateTimeParser(testEndDate).changeDateTime();
 
-        test.add(new Test(testDescription, changedTestStartDate, changedTestEndDate));
+            test.add(new Test(testDescription, changedTestStartDate, changedTestEndDate));
+        } catch (DateTimeParseException | StringIndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "date&time is not valid or in wrong format");
+            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
+            return;
+        }
         logger.log(Level.INFO, "added test to ArrayList");
 
         System.out.println("Got it. I've added this test:");
