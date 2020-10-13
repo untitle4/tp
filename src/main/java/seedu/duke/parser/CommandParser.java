@@ -52,13 +52,17 @@ public class CommandParser {
             System.out.println("☹ Oops! If you're trying to ask for help, simply enter 'help'!\n");
         } catch (InvalidCommandException e) {
             System.out.println("☹ Oops! I did not recognize that command! Enter 'help' if needed!");
+        } catch (EmptyCommandException ignored) {
+            // Temporary fix for empty command input
         }
         return commandType;
     }
 
-    private void extractCommand() throws InvalidCommandException {
-        if (separatedInputs.length == 1 && !separatedInputs[0].equals("help")
-                && !separatedInputs[0].equals(INPUT_BYE) && !separatedInputs[0].equals(INPUT_LIST)) {
+    private void extractCommand() throws InvalidCommandException, EmptyCommandException {
+        if (separatedInputs[0].equals("")) {
+            throw new EmptyCommandException();
+        } else if (separatedInputs.length == 1 && !separatedInputs[0].equals("help")
+                && !separatedInputs[0].equals(INPUT_BYE)) {
             throw new InvalidCommandException();
         } else if (separatedInputs[0].equals("help")) {
             commandType = CommandType.HELP;
