@@ -18,7 +18,6 @@ public class StorageManager {
 
     private EventListEncoder eventListEncoder;
     private EventListDecoder eventListDecoder;
-    private File eventFile;
     private ArrayList<Event> eventList;
     private ArrayList<Event> ccaList;
     private ArrayList<Event> testList;
@@ -32,11 +31,14 @@ public class StorageManager {
         this.testList = new ArrayList<>();
         this.classList = new ArrayList<>();
 
-        storage_directory_path = new File(directoryPath).getAbsolutePath();
+        assert directoryPath != null;
+        assert filePath != null;
 
         if (!isFilePathValid(filePath)) {
             throw new InvalidValueException();
         }
+
+        storage_directory_path = new File(directoryPath).getAbsolutePath();
 
         initializeStorageManager(filePath);
     }
@@ -58,7 +60,7 @@ public class StorageManager {
     }
 
     private void initializeStorageManager(String filePath) {
-        eventFile = new File(storage_directory_path + filePath);
+        File eventFile = new File(storage_directory_path + filePath);
         ArrayList<String> data = new ArrayList<>();
 
         try {
