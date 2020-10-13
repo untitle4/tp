@@ -31,7 +31,8 @@ public class StorageManager {
         this.testList = new ArrayList<>();
         this.classList = new ArrayList<>();
 
-        assert filePath != null;
+        assert !directoryPath.equals("");
+        assert !filePath.equals("");
 
         if (!isFilePathValid(filePath)) {
             throw new InvalidValueException();
