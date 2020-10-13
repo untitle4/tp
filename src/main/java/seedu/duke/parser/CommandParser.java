@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 public class CommandParser {
     public static final String INPUT_ADD = "add";
     public static final String INPUT_DELETE = "delete";
+    public static final String INPUT_DONE = "done";
     public static final String INPUT_LIST = "list";
     public static final String INPUT_BYE = "bye";
     public static final String INPUT_SCHEDULE_CLASS = "class";
@@ -75,6 +76,9 @@ public class CommandParser {
             commandType = CommandType.LIST;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_BYE)) {
             commandType = CommandType.BYE;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DONE)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_TEST)) {
+            commandType = CommandType.DONE_TEST;
         } else {
             throw new InvalidCommandException();
         }
@@ -115,6 +119,13 @@ public class CommandParser {
         case DELETE_TEST:
             try {
                 eventManager.getTestManager().deleteTest(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("☹ OOPS!!! Please indicate a valid test index!");
+            }
+            break;
+        case DONE_TEST:
+            try {
+                eventManager.getTestManager().setTestDone(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
