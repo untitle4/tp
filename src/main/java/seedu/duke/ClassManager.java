@@ -5,11 +5,10 @@ import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.duke.exception.InvalidClassInputException;
-import seedu.duke.exception.TestEmptyStringException;
-import seedu.duke.exception.TestParamException;
 import seedu.duke.parser.DateTimeParser;
 
 public class ClassManager {
@@ -29,6 +28,7 @@ public class ClassManager {
     }
 
     public int getClassListSize() {
+        assert classes != null : "classes ArrayList should not be null";
         return classes.size();
     }
 
@@ -45,9 +45,9 @@ public class ClassManager {
 
         logger.log(Level.INFO, "splitting the user input into class description, start date-time and end "
                 + "date-time");
-        String classDescription = classDetails[1].substring(1).trim();
-        String classStartDate = classDetails[2].substring(1).trim();
-        String classEndDate = classDetails[3].substring(1).trim();
+        String classDescription = classDetails[1].substring(2);
+        String classStartDate = classDetails[2].substring(2);
+        String classEndDate = classDetails[3].substring(2);
 
         if (classDescription.equals("") || classStartDate.equals("") || classEndDate.equals("")) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time is"
@@ -67,15 +67,17 @@ public class ClassManager {
             return;
         }
 
-        System.out.println("Got it. I've added this class:");
-        System.out.println("  " + classes.get(getClassListSize() - 1));
+        System.out.println("Got it. I've added this class: ");
+        System.out.println(classes.get(getClassListSize() - 1));
         getClassStatement();
     }
 
+    private static int classIndex;
+
     public void deleteClass(String[] userInput) {
         try {
-            logger.log(Level.INFO, "initialising deletion of a class");
-            int classIndex = Integer.parseInt(userInput[2]);
+            classIndex = Integer.parseInt(userInput[2]);
+            assert classIndex > 0 : "classIndex should be a positive integer";
 
             // Just to test if class index is valid - for exception use only
             classes.get(classIndex - 1);
