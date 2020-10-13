@@ -51,7 +51,10 @@ public class CommandParser {
     }
 
     private void extractCommand() throws InvalidCommandException {
-        if (separatedInputs[0].equals("help")) {
+        if (separatedInputs.length == 1 && !separatedInputs[0].equals("help")
+                && !separatedInputs[0].equals(INPUT_BYE)) {
+            throw new InvalidCommandException();
+        } else if (separatedInputs[0].equals("help")) {
             commandType = CommandType.HELP;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CLASS)) {
