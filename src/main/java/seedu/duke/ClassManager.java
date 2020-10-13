@@ -14,6 +14,7 @@ public class ClassManager {
     }
 
     private int getClassListSize() {
+        assert classes != null : "classes ArrayList should not be null";
         return classes.size();
     }
 
@@ -32,7 +33,8 @@ public class ClassManager {
     }
 
     public void deleteClass(String[] userInput) {
-        int classIndex = Integer.parseInt(userInput[2]);
+        int classIndex = classIndex = Integer.parseInt(userInput[2]);
+        assert classIndex > 0 : "classIndex should be a positive integer";
 
         System.out.println("Noted. I've removed this class: ");
         System.out.println(classes.get(classIndex - 1));
