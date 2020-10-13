@@ -170,7 +170,10 @@ Example Output:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
+Action | Format | Examples
+-------|--------|--------
+help|`help`
+add|`add <category> /n <description> /s <start-date-time> /e <end date-time>`|`add /n class /s 26-9-2020 1500 /e 26-9-2020 1700`
+delete|`delete <category> /n <item number>`|`delete class /n 1`
+list|`list`
 
-* Add todo `todo n/TODO_NAME d/DEADLINE`
-* list `list`
