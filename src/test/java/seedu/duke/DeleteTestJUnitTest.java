@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DeleteTestJUnitTest {
 
     @Test
-    void addTestToList() throws TestParamException, TestEmptyStringException {
+    void deleteTestFromList() throws TestParamException, TestEmptyStringException {
         ArrayList<Event> test = new ArrayList<>();
         TestManager testManager = new TestManager(test);
 
