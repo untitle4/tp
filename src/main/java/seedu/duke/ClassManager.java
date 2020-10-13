@@ -59,7 +59,7 @@ public class ClassManager {
             String changedClassStartDate = new DateTimeParser(classStartDate).changeDateTime();
             String changedClassEndDate = new DateTimeParser(classEndDate).changeDateTime();
 
-            classes.add(new Test(classDescription, changedClassStartDate, changedClassEndDate));
+            classes.add(new Class(classDescription, changedClassStartDate, changedClassEndDate));
             logger.log(Level.INFO, "adding the new class to the ArrayList");
         } catch (DateTimeParseException | StringIndexOutOfBoundsException
                 | ArrayIndexOutOfBoundsException | ParseException e) {
