@@ -19,9 +19,10 @@ Adds a new test with a name, date and time
 
 Format: `add test /n [name of test] /s [start date-time of test] /e [end date-time of test]`
 
-* The `[name of test]`, `[start date-time of test]`, `[end date-time of test]`
-can be in a natural language format and 
-cannot contain '/n', '/s' or '/e' .  
+* `[name of test]` can be in a natural language format and 
+cannot contain '/' .  
+* `[start date-time of test]`, `[end date-time of test]` must be in 
+yyyy-mm-dd HHMM format.
 
 Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
 
@@ -29,7 +30,7 @@ Example Output:
 
 `Got it. I've added this test:`
 
-    [TEST] [NOT DONE] Math test from 2020-10-3 1300 to 2020-10-3 1400
+    [TEST] [NOT DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
 `Now you have 1 task in the list.`
 
@@ -47,7 +48,7 @@ Example Output:
 
 `Noted. I've removed this task:`
 
-    [TEST] [NOT DONE] Math test from 2020-10-3 1300 to 2020-10-3 1400
+    [TEST] [NOT DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
 `Now you have 0 task in the list.`
 
