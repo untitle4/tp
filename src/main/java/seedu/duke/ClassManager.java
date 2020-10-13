@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.TestEmptyStringException;
@@ -13,6 +14,7 @@ import seedu.duke.parser.DateTimeParser;
 
 public class ClassManager {
     private final ArrayList<Event> classes;
+    private static final Logger logger = Logger.getLogger("Class");
 
     private static String classDescription;
     private static String classStartDate;
@@ -58,6 +60,7 @@ public class ClassManager {
             String changedClassEndDate = new DateTimeParser(classEndDate).changeDateTime();
 
             classes.add(new Test(classDescription, changedClassStartDate, changedClassEndDate));
+            logger.log(Level.INFO, "adding the new class to the ArrayList");
         } catch (DateTimeParseException | StringIndexOutOfBoundsException
                 | ArrayIndexOutOfBoundsException | ParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
