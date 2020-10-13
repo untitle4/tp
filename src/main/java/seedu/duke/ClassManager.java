@@ -1,13 +1,24 @@
 package seedu.duke;
 
+import java.io.InvalidClassException;
+import java.text.ParseException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import seedu.duke.exception.InvalidClassInputException;
+import seedu.duke.exception.TestEmptyStringException;
+import seedu.duke.exception.TestParamException;
+import seedu.duke.parser.DateTimeParser;
 
 public class ClassManager {
     private final ArrayList<Event> classes;
     private static final Logger logger = Logger.getLogger("Class");
+
+    private static String classDescription;
+    private static String classStartDate;
+    private static String classEndDate;
 
     public ClassManager(ArrayList<Event> inputList) {
         classes = inputList;
@@ -44,8 +55,17 @@ public class ClassManager {
             throw new InvalidClassInputException();
         }
 
-        classes.add(new Test(classDescription, classStartDate, classEndDate));
-        logger.log(Level.INFO, "adding the new class to the ArrayList");
+        try {
+            String changedClassStartDate = new DateTimeParser(classStartDate).changeDateTime();
+            String changedClassEndDate = new DateTimeParser(classEndDate).changeDateTime();
+
+            classes.add(new Test(classDescription, changedClassStartDate, changedClassEndDate));
+            logger.log(Level.INFO, "adding the new class to the ArrayList");
+        } catch (DateTimeParseException | StringIndexOutOfBoundsException
+                | ArrayIndexOutOfBoundsException | ParseException e) {
+            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
+            return;
+        }
 
         System.out.println("Got it. I've added this class:");
         System.out.println("  " + classes.get(getClassListSize() - 1));
