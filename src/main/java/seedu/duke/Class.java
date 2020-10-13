@@ -1,17 +1,17 @@
 package seedu.duke;
 
-public class Test extends Event {
+public class Class extends Event {
 
     protected String start;
     protected String end;
 
-    public Test(String description, String start, String end) {
+    public Class(String description, String start, String end) {
         super(description);
         this.start = start;
         this.end = end;
     }
 
-    public Test(String description, boolean isDone, String start, String end) {
+    public Class(String description, boolean isDone, String start, String end) {
         super(description, isDone);
         this.start = start;
         this.end = end;
@@ -26,21 +26,21 @@ public class Test extends Event {
     }
 
     public String getTypeIcon() {
-        return "[TEST]";
+        return "[CLASS]";
     }
 
     @Override
     public String toString() {
-        return "[TEST] " + super.toString() + "from " + start
+        return "[Class] " + super.toString() + "from " + start
                 + "to " + end;
     }
 
     @Override
     public boolean equals(Object obj) {
-        Test otherTest = (Test) obj;
+        Class otherClass = (Class) obj;
 
         return super.equals(obj)
-                && this.start.equals(otherTest.getStart())
-                && this.end.equals(otherTest.getEnd());
+                && this.start.equals(otherClass.getStart())
+                && this.end.equals(otherClass.getEnd());
     }
 }
