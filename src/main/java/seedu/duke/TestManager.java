@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
+import seedu.duke.parser.DateTimeParser;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -48,7 +49,10 @@ public class TestManager {
             throw new TestEmptyStringException();
         }
 
-        test.add(new Test(testDescription, testStartDate, testEndDate));
+        String changedTestStartDate = new DateTimeParser(testStartDate).changeDateTime();
+        String changedTestEndDate = new DateTimeParser(testEndDate).changeDateTime();
+
+        test.add(new Test(testDescription, changedTestStartDate, changedTestEndDate));
         logger.log(Level.INFO, "added test to ArrayList");
 
         System.out.println("Got it. I've added this test:");
