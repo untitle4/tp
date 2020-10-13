@@ -52,7 +52,7 @@ public class CommandParser {
 
     private void extractCommand() throws InvalidCommandException {
         if (separatedInputs.length == 1 && !separatedInputs[0].equals("help")
-                && !separatedInputs[0].equals(INPUT_BYE)) {
+                && !separatedInputs[0].equals(INPUT_BYE) && !separatedInputs[0].equals(INPUT_LIST)) {
             throw new InvalidCommandException();
         } else if (separatedInputs[0].equals("help")) {
             commandType = CommandType.HELP;
