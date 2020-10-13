@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.parser.DateTimeParser;
 
@@ -72,20 +73,21 @@ public class ClassManager {
     }
 
     private static int classIndex;
+
     public void deleteClass(String[] userInput) {
         try {
             classIndex = Integer.parseInt(userInput[2]);
             assert classIndex > 0 : "classIndex should be a positive integer";
 
-        // Just to test if class index is valid - for exception use only
-        classes.get(classIndex - 1);
+            // Just to test if class index is valid - for exception use only
+            classes.get(classIndex - 1);
 
-        System.out.println("Noted. I've removed this class: ");
-        System.out.println(classes.get(classIndex - 1));
+            System.out.println("Noted. I've removed this class: ");
+            System.out.println(classes.get(classIndex - 1));
 
-        classes.remove(classIndex - 1);
-        logger.log(Level.INFO, "deletion of class from ArrayList");
-        getClassStatement();
+            classes.remove(classIndex - 1);
+            logger.log(Level.INFO, "deletion of class from ArrayList");
+            getClassStatement();
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("☹ OOPS! Please indicate which class you'd like to delete");
             logger.log(Level.WARNING, "absence of class index for deletion");
