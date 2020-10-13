@@ -15,6 +15,26 @@ so they can plan well in advance for their tests and score better.
 
 ## List of Features 
 
+### Viewing help: `help`
+Shows all available commands to the user
+
+Format: `help`
+
+Example Output:
+
+```
+Hello! Here is a list of commands you can try:
+
+   1. Add class: add class /n [name of class] /s [start date-time of class] /e [end date-time of class]
+   2. Delete class: delete class /n [class number]
+   3. Add cca: add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]
+   4. Delete cca: type delete cca /n [cca number]
+   5. Add test: type add test /n [name of test] /s [start date-time of test] /e [end date-time of test]
+   6. Delete test: type delete test /n [test number]
+   7. Delete all: delete all
+
+```
+
 ### Adding a class: `add class`
 Adds a new class with a name, date and time
 
