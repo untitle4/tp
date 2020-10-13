@@ -2,14 +2,18 @@
 
 ## Introduction
 
-{Give a product intro}
+Plan&Score is a Java command-line application that allows Primary 6 students 
+to plan and track their classes, CCAs and test dates.
+This enables the students to remember their schedule, 
+so they can plan well in advance for their tests and score better.
 
 ## Quick Start
 
 {Give steps to get started quickly}
 
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+2. Down the latest version of `Plan&score` from [here](https://github.com/AY2021S1-CS2113T-W12-4/tp/releases).
+3. Run the program by entering `java -jar plan.jar` in a terminal.
 
 ## List of Features 
 
@@ -34,6 +38,9 @@ Example Output:
 
 `Now you have 1 task in the list.`
 
+<br />
+<br />
+
 ### Deleting a test: `delete test`
 Deleting a test date based on its index in the list
 
@@ -52,6 +59,30 @@ Example Output:
 
 `Now you have 0 task in the list.`
 
+<br />
+<br />
+
+### List out schedule: `list`
+List out the entire schedule for classes, ccas and tests
+
+Format: `list`
+
+Example Output: 
+
+```
+    Classes:
+    Math from 19th Aug, 1pm to 19th Aug , 2pm 
+    Science from 19th Aug, 3pm to 19th Aug , 4pm 
+     
+    CCA:
+    Basketball Camp from 21st Sep, 1pm to 22nd Sep, 3pm
+    Frisbee from 19th Sep, 1pm to 19th Sep, 3pm
+    
+    Test:
+    Math test from 26th Sep, 11am to 26th Sep, 1pm
+```
+
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
@@ -63,3 +94,4 @@ Example Output:
 {Give a 'cheat sheet' of commands here}
 
 * Add todo `todo n/TODO_NAME d/DEADLINE`
+* list `list`
