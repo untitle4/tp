@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DeleteClassJUnitTest {
 
     @Test
-    void addTestToList() throws InvalidClassInputException {
+    void addClassToList() throws InvalidClassInputException {
         ArrayList<Event> classes = new ArrayList<>();
         ClassManager classManager = new ClassManager(classes);
 
