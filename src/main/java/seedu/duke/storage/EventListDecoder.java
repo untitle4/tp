@@ -45,6 +45,8 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
+        isValidParams(description, start, end);
+
         return new Cca(description, isDone, start, end);
     }
 
@@ -56,6 +58,8 @@ public class EventListDecoder {
         description = eventInfo[0];
         String start = eventInfo[1];
         String end = eventInfo[2];
+
+        isValidParams(description, start, end);
 
         return new Class(description, isDone, start, end);
     }
@@ -69,6 +73,17 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
+        isValidParams(description, start, end);
+
         return new Test(description, isDone, start, end);
+    }
+
+    private void isValidParams(String description, String start, String end) {
+        assert description != null;
+        assert !description.equals("");
+        assert start != null;
+        assert !start.equals("");
+        assert end != null;
+        assert !end.equals("");
     }
 }
