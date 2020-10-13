@@ -2,11 +2,18 @@ package seedu.duke;
 
 import java.io.InvalidClassException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+
 import seedu.duke.exception.InvalidClassInputException;
+import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
 
 public class ClassManager {
     private final ArrayList<Event> classes;
+
+    private static String classDescription;
+    private static String classStartDate;
+    private static String classEndDate;
 
     public ClassManager(ArrayList<Event> inputList) {
         classes = inputList;
@@ -26,21 +33,22 @@ public class ClassManager {
             throw new InvalidClassInputException();
         }
 
-        try {
-            final String[] classDetails = userInput.trim().split("\\/");
+        userInput.replaceAll("\\s+","");
+        final String[] classDetails = userInput.trim().split("\\/");
 
-            String classDescription = classDetails[1].substring(2);
-            String classStartDate = classDetails[2].substring(2);
-            String classEndDate = classDetails[3].substring(2);
+        String classDescription = classDetails[1].substring(1).trim();
+        String classStartDate = classDetails[2].substring(1).trim();
+        String classEndDate = classDetails[3].substring(1).trim();
 
-            classes.add(new Class(classDescription, classStartDate, classEndDate));
-
-            System.out.println("Got it. I've added this class: ");
-            System.out.println(classes.get(getClassListSize() - 1));
-            getClassStatement();
-        } catch (StringIndexOutOfBoundsException e) {
+        if (classDescription.equals("") || classStartDate.equals("") || classEndDate.equals("")) {
             throw new InvalidClassInputException();
         }
+
+        classes.add(new Test(classDescription, classStartDate, classEndDate));
+
+        System.out.println("Got it. I've added this class:");
+        System.out.println("  " + classes.get(getClassListSize() - 1));
+        getClassStatement();
     }
 
     public void deleteClass(String[] userInput) {
