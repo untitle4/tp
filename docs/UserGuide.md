@@ -59,6 +59,9 @@ Example Output:
 
 `Now you have 0 task in the list.`
 
+<br />
+<br />
+
 ### Setting a test as done: `done test`
 Seeting a test date as done based on its index in the list
 
