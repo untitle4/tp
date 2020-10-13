@@ -77,7 +77,7 @@ public class TestManager {
             testNumber = Integer.parseInt(userInput[2]);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
-            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which class you'd like to delete!");
+            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which test you'd like to delete!");
             return;
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("☹ OOPS!!! Please indicate which test you'd like to delete!");
