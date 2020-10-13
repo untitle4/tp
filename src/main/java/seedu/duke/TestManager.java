@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -63,11 +64,12 @@ public class TestManager {
             testNumber = Integer.parseInt(userInput[2]);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
-            System.out.println("☹ OOPS!!! You have entered the wrong number format!");
-        } /*catch (ArrayIndexOutOfBoundsException e) {
-            logger.log(Level.WARNING, "no list number for test is added");
-            System.out.println("☹ OOPS!!! The index entered is invalid!");
-        }*/
+            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which class you'd like to delete!");
+            return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("☹ OOPS!!! Please indicate which test you'd like to delete!");
+            return;
+        }
 
         if ((testNumber <= 0) || (testNumber > getTestListSize())) {
             logger.log(Level.WARNING, "index entered is out of bounds");
