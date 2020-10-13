@@ -33,7 +33,7 @@ Example Output:
 
     [CLASS] [NOT DONE] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
 
-`Now you have 1 task in the list.`
+`Now you have 1 class in the list.`
 
 <br>
 
@@ -48,11 +48,11 @@ Examples: `delete class 1`
 
 Example Output: 
 
-`Noted. I've removed this task:`
+`Noted. I've removed this class:`
 
     [CLASS] [NOT DONE] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
 
-`Now you have 0 task in the list.`
+`Now you have 0 classes in the list.`
 
 <br>
 
@@ -74,7 +74,7 @@ Example Output:
 
     [TEST] [NOT DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
-`Now you have 1 task in the list.`
+`Now you have 1 test in the list.`
 
 <br />
 <br />
@@ -91,11 +91,11 @@ Examples: `delete test 1`
 
 Example Output: 
 
-`Noted. I've removed this task:`
+`Noted. I've removed this test:`
 
     [TEST] [NOT DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
-`Now you have 0 task in the list.`
+`Now you have 0 tests in the list.`
 
 <br />
 <br />
