@@ -2,7 +2,7 @@ package seedu.duke.parser;
 
 import seedu.duke.event.EventManager;
 
-import seedu.duke.Duke.InvalidHelpCommandException;
+import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
 import seedu.duke.exception.InvalidCommandException;
