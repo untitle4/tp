@@ -33,7 +33,7 @@ public class ClassManager {
             throw new InvalidClassInputException();
         }
 
-        userInput.replaceAll("\\s+","");
+        userInput.replaceAll("\\s+", "");
         final String[] classDetails = userInput.trim().split("\\/");
 
         String classDescription = classDetails[1].substring(1).trim();
@@ -56,7 +56,7 @@ public class ClassManager {
             int classIndex = Integer.parseInt(userInput[2]);
 
             // Just to test if class index is valid - for exception use only
-            classes.get(classIndex-1);
+            classes.get(classIndex - 1);
 
             System.out.println("Noted. I've removed this class: ");
             System.out.println(classes.get(classIndex - 1));

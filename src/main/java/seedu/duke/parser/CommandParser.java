@@ -1,8 +1,13 @@
 package seedu.duke.parser;
 
 import seedu.duke.event.EventManager;
-
-import seedu.duke.exception.*;
+import seedu.duke.exception.CcaEmptyStringException;
+import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.InvalidClassInputException;
+import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.InvalidHelpCommandException;
+import seedu.duke.exception.TestEmptyStringException;
+import seedu.duke.exception.TestParamException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
