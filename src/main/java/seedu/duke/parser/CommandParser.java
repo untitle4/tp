@@ -52,7 +52,10 @@ public class CommandParser {
     }
 
     private void extractCommand() throws InvalidCommandException {
-        if (separatedInputs[0].equals("help")) {
+        if (separatedInputs.length == 1 && !separatedInputs[0].equals("help")
+                && !separatedInputs[0].equals(INPUT_BYE) && !separatedInputs[0].equals(INPUT_LIST)) {
+            throw new InvalidCommandException();
+        } else if (separatedInputs[0].equals("help")) {
             commandType = CommandType.HELP;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CLASS)) {
@@ -100,7 +103,7 @@ public class CommandParser {
             try {
                 eventManager.getCcaManager().addCca(userInput);
             } catch (CcaEmptyStringException | CcaParamException e) {
-                System.out.println("☹ OOPS!!! The description of a cca cannot be empty.");
+                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
             }
             break;
         case ADD_TEST:
@@ -111,10 +114,18 @@ public class CommandParser {
             }
             break;
         case DELETE_CLASS:
-            eventManager.getClassManager().deleteClass(separatedInputs);
+            try {
+                eventManager.getClassManager().deleteClass(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("☹ OOPS!!! Please indicate a valid class index!");
+            }
             break;
         case DELETE_CCA:
-            eventManager.getCcaManager().deleteCca(separatedInputs);
+            try {
+                eventManager.getCcaManager().deleteCca(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("☹ OOPS!!! Please indicate a valid cca index!");
+            }
             break;
         case DELETE_TEST:
             try {
