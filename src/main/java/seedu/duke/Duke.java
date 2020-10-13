@@ -71,8 +71,4 @@ public class Duke {
             System.out.println("STORAGE: There was an error");
         }
     }
-
-    public static class InvalidHelpCommandException extends Exception {
-    }
-
 }
