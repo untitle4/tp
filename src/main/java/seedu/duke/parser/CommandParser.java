@@ -86,7 +86,7 @@ public class CommandParser {
             handleHelp(separatedInputs);
             break;
         case ADD_CLASS:
-            eventManager.getClassManager().addClass(userInput);
+//            eventManager.getClassManager().addClass(userInput);
             break;
         case ADD_CCA:
             try {
