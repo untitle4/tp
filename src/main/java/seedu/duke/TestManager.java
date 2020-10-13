@@ -105,4 +105,33 @@ public class TestManager {
             System.out.println("Now you have " + getTestListSize() + " tasks in the list.");
         }
     }
+
+    public void setTestDone(String[] userInput) throws IndexOutOfBoundsException {
+        int testNumber = 0;
+        logger.log(Level.INFO, "initialising setting test as done");
+
+        try {
+            testNumber = Integer.parseInt(userInput[2]);
+        } catch (NumberFormatException e) {
+            logger.log(Level.WARNING, "wrong number format entered");
+            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which test you'd like to set as Done!");
+            return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("☹ OOPS!!! Please indicate which test you'd like to set as Done!");
+            return;
+        }
+
+        if ((testNumber <= 0) || (testNumber > getTestListSize())) {
+            logger.log(Level.WARNING, "index entered is out of bounds");
+            throw new IndexOutOfBoundsException();
+        }
+
+        test.get(testNumber - 1).setDone();
+        logger.log(Level.INFO, "set test as done from ArrayList");
+
+        System.out.println("Nice! I've marked this test as done:");
+        System.out.println("  " + test.get(testNumber - 1));
+
+        getTaskStatement();
+    }
 }

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DeleteTestJUnitTest {
+class DoneTestJUnitTest {
 
     @Test
-    void deleteTestFromList() throws TestParamException, TestEmptyStringException {
+    void setTestDoneFromList() throws TestParamException, TestEmptyStringException {
         ArrayList<Event> test = new ArrayList<>();
         TestManager testManager = new TestManager(test);
 
@@ -20,17 +20,18 @@ public class DeleteTestJUnitTest {
         testManager.addTest("add test /n Science test "
                 + "/s 2020-09-23 1600 /e 2020-09-23 1800");
 
-        String [] userInput = "delete test 1".trim().split(" ");
+        String [] userInput = "done test 1".trim().split(" ");
 
         try {
-            testManager.deleteTest(userInput);
+            testManager.setTestDone(userInput);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
 
-        int actualOutputs = testManager.getTestListSize();
-        int expectedOutputs = 1;
+        boolean actualOutputs = test.get(0).isDone();
+        boolean expectedOutputs = true;
 
         assertEquals(actualOutputs, expectedOutputs);
     }
+
 }

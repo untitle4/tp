@@ -62,6 +62,27 @@ Example Output:
 <br />
 <br />
 
+### Setting a test as done: `done test`
+Seeting a test date as done based on its index in the list
+
+
+Format: `done test [test number]`
+
+* `[test number]` must be in numerals. 
+
+Examples: `done test 1`
+
+Example Output: 
+
+`Nice! I've marked this test as done:`
+
+    [TEST] [DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
+
+`Now you have 1 task in the list.`
+
+<br />
+<br />
+
 ### List out schedule: `list`
 List out the entire schedule for classes, ccas and tests
 
