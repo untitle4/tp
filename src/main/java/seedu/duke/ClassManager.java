@@ -33,7 +33,7 @@ public class ClassManager {
     }
 
     public void deleteClass(String[] userInput) {
-        int classIndex = classIndex = Integer.parseInt(userInput[2]);
+        int classIndex = Integer.parseInt(userInput[2]);
         assert classIndex > 0 : "classIndex should be a positive integer";
 
         System.out.println("Noted. I've removed this class: ");
