@@ -1,0 +1,3 @@
+[CCA]|false|Basketball training |2020-09-21 1800 |2020-09-21 1900
+[CLASS]|false|Math tuition |2020-09-22 1400 |2020-09-22-1600
+[TEST]|false|CS2113T Finals |2020-12-04 1500 |2020-12-04 1600

@@ -1,14 +1,16 @@
 package seedu.duke.parser;
 
-import seedu.duke.CcaManager;
-import seedu.duke.ClassManager;
-import seedu.duke.Duke.InvalidHelpCommandException;
-import seedu.duke.ListSchedule;
-import seedu.duke.TestEmptyStringException;
-import seedu.duke.TestManager;
-import seedu.duke.TestParamException;
+import seedu.duke.event.EventManager;
 
-import java.util.ArrayList;
+import seedu.duke.exception.InvalidHelpCommandException;
+import seedu.duke.exception.CcaEmptyStringException;
+import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.TestEmptyStringException;
+import seedu.duke.exception.TestParamException;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CommandParser {
     public static final String INPUT_ADD = "add";
@@ -23,20 +25,15 @@ public class CommandParser {
 
     private final String[] separatedInputs;
     private final String userInput;
-    private final TestManager testManager;
-    private final CcaManager ccaManager;
-    private final ClassManager classManager;
-    private final ListSchedule listSchedule;
+    private final EventManager eventManager;
 
     private CommandType commandType;
 
-    public CommandParser(String userInput, TestManager testManager,
-                         CcaManager ccaManager, ClassManager classManager, ListSchedule listSchedule) {
+    private static Logger logger = Logger.getLogger("Help");
+
+    public CommandParser(String userInput, EventManager eventManager) {
         this.userInput = userInput;
-        this.testManager = testManager;
-        this.ccaManager = ccaManager;
-        this.classManager = classManager;
-        this.listSchedule = listSchedule;
+        this.eventManager = eventManager;
         separatedInputs = userInput.split(" ");
         commandType = null;
     }
@@ -47,11 +44,13 @@ public class CommandParser {
             executeCommand();
         } catch (InvalidHelpCommandException e) {
             System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
+        } catch (InvalidCommandException e) {
+            System.out.println("Oops! I did not recognize that command! Enter 'help' if needed!");
         }
         return commandType;
     }
 
-    private void extractCommand() {
+    private void extractCommand() throws InvalidCommandException {
         if (separatedInputs[0].equals("help")) {
             commandType = CommandType.HELP;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
@@ -76,6 +75,8 @@ public class CommandParser {
             commandType = CommandType.LIST;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_BYE)) {
             commandType = CommandType.BYE;
+        } else {
+            throw new InvalidCommandException();
         }
     }
 
@@ -85,36 +86,37 @@ public class CommandParser {
             handleHelp(separatedInputs);
             break;
         case ADD_CLASS:
-            classManager.addClass(userInput);
+            eventManager.getClassManager().addClass(userInput);
             break;
         case ADD_CCA:
-            ccaManager.addCca(userInput);
+            try {
+                eventManager.getCcaManager().addCca(userInput);
+            } catch (CcaEmptyStringException | CcaParamException e) {
+                System.out.println("OOPS!!! The description of a cca cannot be empty.");
+            }
             break;
         case ADD_TEST:
             try {
-                testManager.addTest(userInput);
-            } catch (TestEmptyStringException e) {
-                e.printStackTrace();
-            } catch (TestParamException e) {
+                eventManager.getTestManager().addTest(userInput);
+            } catch (TestEmptyStringException | TestParamException e) {
                 e.printStackTrace();
             }
             break;
         case DELETE_CLASS:
-            classManager.deleteClass(separatedInputs);
+            eventManager.getClassManager().deleteClass(separatedInputs);
             break;
         case DELETE_CCA:
-            ccaManager.deleteCca(separatedInputs);
+            eventManager.getCcaManager().deleteCca(separatedInputs);
             break;
         case DELETE_TEST:
             try {
-                testManager.deleteTest(separatedInputs);
+                eventManager.getTestManager().deleteTest(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 e.printStackTrace();
             }
             break;
         case LIST:
-            ArrayList<String> printedEvents = listSchedule.getAllEventsPrinted();
-            printArray(printedEvents);
+            eventManager.listSchedule();
             break;
         case BYE:
             break;
@@ -125,6 +127,7 @@ public class CommandParser {
 
     private static void handleHelp(String[] userInputs) throws InvalidHelpCommandException {
         if (userInputs.length == 1) {
+            logger.log(Level.INFO, "printing out all features users can use");
             System.out.println("Hello! Here is a list of commands you can try:\n\n"
                     + "\t1. Add class: add class /n [name of class] /s [start date-time of class] /e"
                     + " [end date-time of class]\n"
@@ -138,13 +141,8 @@ public class CommandParser {
             // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
             // "\te.g. 2020-08-19 1300\n\n);
         } else {
+            logger.log(Level.WARNING, "invalid help command");
             throw new InvalidHelpCommandException();
-        }
-    }
-
-    private static void printArray(ArrayList<String> printedEvents) {
-        for (String line : printedEvents) {
-            System.out.println(line);
         }
     }
 }

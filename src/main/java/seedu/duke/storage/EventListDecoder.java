@@ -1,4 +1,9 @@
-package seedu.duke;
+package seedu.duke.storage;
+
+import seedu.duke.Cca;
+import seedu.duke.Class;
+import seedu.duke.Event;
+import seedu.duke.Test;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

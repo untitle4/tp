@@ -1,9 +1,12 @@
 package seedu.duke;
 
+import seedu.duke.exception.CcaEmptyStringException;
+import seedu.duke.exception.CcaParamException;
+
 import java.util.ArrayList;
 
 public class CcaManager {
-    private ArrayList<Event> cca = new ArrayList<>();
+    private final ArrayList<Event> cca;
 
     public CcaManager(ArrayList<Event> inputList) {
         cca = inputList;
@@ -17,12 +20,21 @@ public class CcaManager {
         return cca.size();
     }
 
-    public void addCca(String userInput) {
-        final String[] ccaDetails = userInput.trim().split("\\/");
+    public void addCca(String userInput) throws CcaEmptyStringException, CcaParamException {
+        if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
+                || (!userInput.contains("/e"))) {
+            throw new CcaParamException();
+        }
 
+        final String[] ccaDetails = userInput.trim().split("\\/");
         String ccaDescription = ccaDetails[1].substring(2);
         String ccaStartDate = ccaDetails[2].substring(2);
         String ccaEndDate = ccaDetails[3].substring(2);
+
+        if (ccaDescription.equals("") || ccaStartDate.equals("")
+                || ccaEndDate.equals("")) {
+            throw new CcaEmptyStringException();
+        }
 
         cca.add(new Cca(ccaDescription, ccaStartDate, ccaEndDate));
 
@@ -51,7 +63,6 @@ public class CcaManager {
 
     private void getCcaStatement() {
         String ccaStatement = getCcaListSize() == 1 ? " cca" : " ccas";
-        System.out.println("Now you have " + getCcaListSize() + ccaStatement
-                + " in the list.");
+        System.out.println("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
     }
 }
