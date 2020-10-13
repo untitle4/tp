@@ -23,7 +23,7 @@ public class ClassManager {
         return classes;
     }
 
-    private int getClassListSize() {
+    public int getClassListSize() {
         return classes.size();
     }
 
@@ -64,11 +64,11 @@ public class ClassManager {
             classes.remove(classIndex - 1);
             getClassStatement();
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("OOPS! Please indicate which class you'd like to delete");
+            System.out.println("☹ OOPS! Please indicate which class you'd like to delete");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("OOPS! Please indicate a valid class index!");
+            System.out.println("☹ OOPS! Please indicate a valid class index!");
         } catch (NumberFormatException e) {
-            System.out.println("OOPS! Please indicate in NUMERALS, which class you'd like to delete!");
+            System.out.println("☹ OOPS! Please indicate in NUMERALS, which class you'd like to delete!");
         }
     }
 

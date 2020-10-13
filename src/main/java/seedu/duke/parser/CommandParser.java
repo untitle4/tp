@@ -43,9 +43,9 @@ public class CommandParser {
             extractCommand();
             executeCommand();
         } catch (InvalidHelpCommandException e) {
-            System.out.println("Oops! If you're trying to ask for help, simply enter 'help'!\n");
+            System.out.println("☹ Oops! If you're trying to ask for help, simply enter 'help'!\n");
         } catch (InvalidCommandException e) {
-            System.out.println("Oops! I did not recognize that command! Enter 'help' if needed!");
+            System.out.println("☹ Oops! I did not recognize that command! Enter 'help' if needed!");
         }
         return commandType;
     }
@@ -89,14 +89,14 @@ public class CommandParser {
             try {
                 eventManager.getClassManager().addClass(userInput);
             } catch (InvalidClassInputException e) {
-                System.out.println("OOPS! Remember to include ALL '/n', '/s' and '/e' inputs!");
+                System.out.println("☹ OOPS! Remember to include ALL '/n', '/s' and '/e' inputs!");
             }
             break;
         case ADD_CCA:
             try {
                 eventManager.getCcaManager().addCca(userInput);
             } catch (CcaEmptyStringException | CcaParamException e) {
-                System.out.println("OOPS!!! The description of a cca cannot be empty.");
+                System.out.println("☹ OOPS!!! The description of a cca cannot be empty.");
             }
             break;
         case ADD_TEST:
