@@ -92,6 +92,9 @@ public class CommandParser {
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DONE)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_TEST)) {
             commandType = CommandType.DONE_TEST;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DONE)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CCA)) {
+            commandType = CommandType.DONE_CCA;
         } else {
             throw new InvalidCommandException();
         }
@@ -147,6 +150,13 @@ public class CommandParser {
         case DONE_TEST:
             try {
                 eventManager.getTestManager().setTestDone(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("☹ OOPS!!! Please indicate a valid test index!");
+            }
+            break;
+        case DONE_CCA:
+            try {
+                eventManager.getCcaManager().setCcaDone(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
