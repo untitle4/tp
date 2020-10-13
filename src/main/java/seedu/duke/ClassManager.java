@@ -8,8 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import seedu.duke.exception.InvalidClassInputException;
-import seedu.duke.exception.TestEmptyStringException;
-import seedu.duke.exception.TestParamException;
 import seedu.duke.parser.DateTimeParser;
 
 public class ClassManager {
