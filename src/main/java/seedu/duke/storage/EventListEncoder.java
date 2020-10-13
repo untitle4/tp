@@ -42,7 +42,7 @@ public class EventListEncoder {
                     + test.getEnd();
         } else if (event instanceof Class) {
             Class newClass = (Class) event;
-            isValidClass(newClass);
+            assertValidClass(newClass);
             result = newClass.getTypeIcon() + "|"
                     + newClass.isDone() + "|"
                     + newClass.getDescription() + "|"
@@ -57,7 +57,7 @@ public class EventListEncoder {
         isValidParams(cca.getDescription(), cca.getStart(), cca.getEnd());
     }
 
-    private void isValidClass(Class inputClass) {
+    private void assertValidClass(Class inputClass) {
         isValidParams(inputClass.getDescription(), inputClass.getStart(), inputClass.getEnd());
     }
 
