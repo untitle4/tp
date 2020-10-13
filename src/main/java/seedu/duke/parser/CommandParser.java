@@ -193,9 +193,9 @@ public class CommandParser {
                     + "\t5. Add test: type add test /n [name of test] /s [start date-time of test] /e "
                     + "[end date-time of test]\n"
                     + "\t6. Delete test: type delete test /n [test number]\n"
-                    + "\t7. Delete all: delete all\n");
-            // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
-            // "\te.g. 2020-08-19 1300\n\n);
+                    + "\t7. Delete all: delete all\n"
+                    + "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n"
+                    + "\te.g. 2020-08-19 1300\n\n");
         } else {
             logger.log(Level.WARNING, "invalid help command");
             throw new InvalidHelpCommandException();

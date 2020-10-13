@@ -33,6 +33,9 @@ Hello! Here is a list of commands you can try:
    6. Delete test: type delete test /n [test number]
    7. Delete all: delete all
 
+    Please enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]
+    e.g. 2020-08-19 1300
+
 ```
 
 ### Adding a class: `add class`
@@ -120,11 +123,13 @@ Example Output:
 <br />
 <br />
 
-### Setting a test as done: `done test`
-Seeting a test date as done based on its index in the list
+### Setting an event as done: `done`
+Setting a class, test or cca event as done based on its index in the list
 
-
-Format: `done test [test number]`
+Format:
+* For class: `done class [class number]`
+* For test: `done test [test number]`
+* For cca: `done cca [cca number]`
 
 * `[test number]` must be in numerals. 
 
@@ -136,7 +141,7 @@ Example Output:
 
     [TEST] [DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
-`Now you have 1 task in the list.`
+`Now you have 1 test in the list.`
 
 <br />
 <br />
@@ -150,15 +155,15 @@ Example Output:
 
 ```
     Classes:
-    Math from 19th Aug, 1pm to 19th Aug , 2pm 
-    Science from 19th Aug, 3pm to 19th Aug , 4pm 
+    1. Math from 19th Aug, 1pm to 19th Aug , 2pm 
+    2. Science from 19th Aug, 3pm to 19th Aug , 4pm 
      
     CCA:
-    Basketball Camp from 21st Sep, 1pm to 22nd Sep, 3pm
-    Frisbee from 19th Sep, 1pm to 19th Sep, 3pm
+    1. Basketball Camp from 21st Sep, 1pm to 22nd Sep, 3pm
+    2. Frisbee from 19th Sep, 1pm to 19th Sep, 3pm
     
     Test:
-    Math test from 26th Sep, 11am to 26th Sep, 1pm
+    1. Math test from 26th Sep, 11am to 26th Sep, 1pm
 ```
 
 
@@ -166,11 +171,9 @@ Example Output:
 
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Shift the event.txt file to the same directory as the java file.
 
 ## Command Summary
-
-{Give a 'cheat sheet' of commands here}
 
 * Add todo `todo n/TODO_NAME d/DEADLINE`
 * list `list`
