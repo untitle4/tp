@@ -5,5 +5,5 @@ package seedu.duke.parser;
  */
 public enum CommandType {
     ADD_CLASS, ADD_CCA, ADD_TEST, DELETE_CLASS, DELETE_CCA, DELETE_TEST,
-    DONE_TEST, DONE_CLASS, BYE, LIST, HELP
+    DONE_TEST, DONE_CLASS, DONE_CCA, BYE, LIST, HELP
 }
