@@ -23,7 +23,7 @@ public class ClassManager {
         return classes;
     }
 
-    private int getClassListSize() {
+    public int getClassListSize() {
         return classes.size();
     }
 
