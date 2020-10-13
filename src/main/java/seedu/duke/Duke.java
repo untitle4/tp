@@ -55,9 +55,6 @@ public class Duke {
         }
     }
 
-    public static class InvalidHelpCommandException extends Exception {
-    }
-
     private static void refreshEvents() {
         ArrayList<Event> events = new ArrayList<>();
 

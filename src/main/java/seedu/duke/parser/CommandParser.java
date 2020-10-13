@@ -2,12 +2,15 @@ package seedu.duke.parser;
 
 import seedu.duke.event.EventManager;
 
-import seedu.duke.Duke.InvalidHelpCommandException;
+import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CommandParser {
     public static final String INPUT_ADD = "add";
@@ -25,6 +28,8 @@ public class CommandParser {
     private final EventManager eventManager;
 
     private CommandType commandType;
+
+    private static Logger logger = Logger.getLogger("Help");
 
     public CommandParser(String userInput, EventManager eventManager) {
         this.userInput = userInput;
@@ -122,6 +127,7 @@ public class CommandParser {
 
     private static void handleHelp(String[] userInputs) throws InvalidHelpCommandException {
         if (userInputs.length == 1) {
+            logger.log(Level.INFO, "printing out all features users can use");
             System.out.println("Hello! Here is a list of commands you can try:\n\n"
                     + "\t1. Add class: add class /n [name of class] /s [start date-time of class] /e"
                     + " [end date-time of class]\n"
@@ -135,6 +141,7 @@ public class CommandParser {
             // "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n" +
             // "\te.g. 2020-08-19 1300\n\n);
         } else {
+            logger.log(Level.WARNING, "invalid help command");
             throw new InvalidHelpCommandException();
         }
     }
