@@ -1,7 +1,7 @@
 package seedu.duke;
 
 public class Test extends Event {
-
+    public static final String TEST_ICON = "[TEST]";
     protected String start;
     protected String end;
 
@@ -25,13 +25,9 @@ public class Test extends Event {
         return end;
     }
 
-    public String getTypeIcon() {
-        return "[TEST]";
-    }
-
     @Override
     public String toString() {
-        return "[TEST] " + super.toString() + " from " + start
+        return TEST_ICON + " " + super.toString() + " from " + start
                 + " to " + end;
     }
 

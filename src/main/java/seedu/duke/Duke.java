@@ -40,8 +40,10 @@ public class Duke {
 
         while (active) {
             String line = in.nextLine();
-            CommandType commandType = new CommandParser(line, eventManager).parseCommand();
-            checkIfProgramEnds(commandType);
+            if (!line.trim().isEmpty()) {
+                CommandType commandType = new CommandParser(line, eventManager).parseCommand();
+                checkIfProgramEnds(commandType);
+            }
             refreshEvents();
         }
 

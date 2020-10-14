@@ -27,7 +27,7 @@ public class EventListEncoder {
         if (event instanceof Cca) {
             Cca cca = (Cca) event;
             assertValidCca(cca);
-            result = cca.getTypeIcon() + "|"
+            result = Cca.CCA_ICON + "|"
                     + cca.isDone() + "|"
                     + cca.getDescription() + "|"
                     + cca.getStart() + "|"
@@ -35,7 +35,7 @@ public class EventListEncoder {
         } else if (event instanceof Test) {
             Test test = (Test) event;
             assertValidTest(test);
-            result = test.getTypeIcon() + "|"
+            result = Test.TEST_ICON + "|"
                     + test.isDone() + "|"
                     + test.getDescription() + "|"
                     + test.getStart() + "|"
@@ -43,7 +43,7 @@ public class EventListEncoder {
         } else if (event instanceof Class) {
             Class newClass = (Class) event;
             assertValidClass(newClass);
-            result = newClass.getTypeIcon() + "|"
+            result = Class.CLASS_ICON + "|"
                     + newClass.isDone() + "|"
                     + newClass.getDescription() + "|"
                     + newClass.getStart() + "|"
