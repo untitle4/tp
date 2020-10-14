@@ -37,7 +37,12 @@ public class Class extends Event {
         return CLASS_ICON + " " + super.toString() + "from " + start
                 + " to " + end;
     }
-    
+    /**
+     * <h2>equals()</h2>
+     * Overridden method required for assertEquals() in test methods.
+     * @param obj class object to be compared
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         Class otherClass = (Class) obj;
