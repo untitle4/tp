@@ -37,6 +37,7 @@ public class Class extends Event {
         return CLASS_ICON + " " + super.toString() + "from " + start
                 + " to " + end;
     }
+
     /**
      * <h2>equals()</h2>
      * Overridden method required for assertEquals() in test methods.
