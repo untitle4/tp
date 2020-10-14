@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+import seedu.duke.ClassManager;
 import seedu.duke.event.EventManager;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
@@ -169,6 +170,12 @@ public class CommandParser {
         }
     }
 
+    /**
+     * <h2>handleHelp()</h2>
+     * Prints out all available features users can use.
+     * @param userInputs to check if user input for 'help' is in a valid format.
+     * @exception InvalidHelpCommandException to inform the user if their help input is invalid.
+     */
     private static void handleHelp(String[] userInputs) throws InvalidHelpCommandException {
         if (userInputs.length == 1) {
             logger.log(Level.INFO, "printing out all features users can use");
