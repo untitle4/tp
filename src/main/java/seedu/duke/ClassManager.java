@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import java.io.InvalidClassException;
 import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -14,12 +13,8 @@ public class ClassManager {
     private final ArrayList<Event> classes;
     private static final Logger logger = Logger.getLogger("Class");
 
-    private static String classDescription;
-    private static String classStartDate;
-    private static String classEndDate;
-
-    public ClassManager(ArrayList<Event> inputList) {
-        classes = inputList;
+    public ClassManager(ArrayList<Event> classes) {
+        this.classes = classes;
     }
 
     public ArrayList<Event> getClasses() {
@@ -71,11 +66,9 @@ public class ClassManager {
         getClassStatement();
     }
 
-    private static int classIndex;
-
     public void deleteClass(String[] userInput) {
         try {
-            classIndex = Integer.parseInt(userInput[2]);
+            int classIndex = Integer.parseInt(userInput[2]);
             assert classIndex > 0 : "classIndex should be a positive integer";
 
             // Just to test if class index is valid - for exception use only
@@ -105,7 +98,7 @@ public class ClassManager {
     }
 
     public void setClassDone(String[] userInput) throws IndexOutOfBoundsException {
-        int classNumber = 0;
+        int classNumber;
         logger.log(Level.INFO, "initialising setting class as done");
 
         try {

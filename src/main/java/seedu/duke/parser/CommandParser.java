@@ -3,7 +3,6 @@ package seedu.duke.parser;
 import seedu.duke.event.EventManager;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
-import seedu.duke.exception.EmptyCommandException;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
@@ -24,6 +23,7 @@ public class CommandParser {
     public static final String INPUT_SCHEDULE_CCA = "cca";
     public static final int MAIN_COMMAND_INDEX = 0;
     public static final int SUB_COMMAND_INDEX = 1;
+    public static final String INPUT_HELP = "help";
 
     private final String[] separatedInputs;
     private final String userInput;
@@ -31,17 +31,12 @@ public class CommandParser {
 
     private CommandType commandType;
 
-    private static Logger logger = Logger.getLogger("Help");
+    private static final Logger logger = Logger.getLogger("Help");
 
     public CommandParser(String userInput, EventManager eventManager) {
         this.userInput = userInput;
         this.eventManager = eventManager;
-        if (userInput.trim().isEmpty()) {
-            separatedInputs = new String[] {""};
-        } else {
-            separatedInputs = userInput.split(" ");
-        }
-
+        separatedInputs = userInput.split(" ");
         commandType = null;
     }
 
@@ -53,19 +48,12 @@ public class CommandParser {
             System.out.println("☹ Oops! If you're trying to ask for help, simply enter 'help'!\n");
         } catch (InvalidCommandException e) {
             System.out.println("☹ Oops! I did not recognize that command! Enter 'help' if needed!");
-        } catch (EmptyCommandException ignored) {
-            // Temporary fix for empty command input
         }
         return commandType;
     }
 
-    private void extractCommand() throws InvalidCommandException, EmptyCommandException {
-        if (separatedInputs[0].equals("")) {
-            throw new EmptyCommandException();
-        } else if (separatedInputs.length == 1 && !separatedInputs[0].equals("help")
-                && !separatedInputs[0].equals(INPUT_BYE) && !separatedInputs[0].equals(INPUT_LIST)) {
-            throw new InvalidCommandException();
-        } else if (separatedInputs[0].equals("help")) {
+    private void extractCommand() throws InvalidCommandException {
+        if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_HELP)) {
             commandType = CommandType.HELP;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CLASS)) {

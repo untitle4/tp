@@ -5,9 +5,7 @@ import seedu.duke.Class;
 import seedu.duke.Event;
 import seedu.duke.Test;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 public class EventListDecoder {
     public EventListDecoder() {
@@ -25,11 +23,11 @@ public class EventListDecoder {
         final String[] data = encodedEvent.trim().split("\\|", 3);
 
         switch (data[0]) {
-        case "[CCA]":
+        case Cca.CCA_ICON:
             return parseCca(data);
-        case "[CLASS]":
+        case Class.CLASS_ICON:
             return parseClass(data);
-        case "[TEST]":
+        case Test.TEST_ICON:
             return parseTest(data);
         default:
             return null;
