@@ -44,6 +44,7 @@ public class Class extends Event {
      * @param obj class object to be compared
      * @return boolean
      */
+
     @Override
     public boolean equals(Object obj) {
         Class otherClass = (Class) obj;
