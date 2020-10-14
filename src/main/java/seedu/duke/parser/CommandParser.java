@@ -174,7 +174,7 @@ public class CommandParser {
      * <h2>handleHelp()</h2>
      * Prints out all available features users can use.
      * @param userInputs to check if user input for 'help' is in a valid format.
-     * @exception InvalidHelpCommandException
+     * @exception InvalidHelpCommandException to inform the user if their help input is invalid.
      */
     private static void handleHelp(String[] userInputs) throws InvalidHelpCommandException {
         if (userInputs.length == 1) {
