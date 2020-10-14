@@ -4,8 +4,8 @@ package seedu.duke;
  * <h2>Class class</h2>
  * Contains constructors, getters, toString and equals methods.
  *
- * @see Class#toString() 
- * @see Class#equals(Object) 
+ * @see Class#toString()
+ * @see Class#equals(Object)
  */
 public class Class extends Event {
     public static final String CLASS_ICON = "[CLASS]";
@@ -41,11 +41,13 @@ public class Class extends Event {
     /**
      * <h2>equals()</h2>
      * Overridden method required for assertEquals() in test methods.
+     *
      * @param obj class object to be compared
      * @return boolean
      */
 
     @Override
+
     public boolean equals(Object obj) {
         Class otherClass = (Class) obj;
 
