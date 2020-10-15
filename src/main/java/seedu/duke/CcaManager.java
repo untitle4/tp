@@ -36,7 +36,6 @@ public class CcaManager {
             throw new CcaParamException();
         }
 
-        userInput.replaceAll("\\s+", "");
         final String[] ccaDetails = userInput.trim().split("\\/");
 
         logger.log(Level.INFO, "splitting user input into description, start date and end date");

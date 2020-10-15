@@ -1,7 +1,7 @@
 package seedu.duke.parser;
 
-import seedu.duke.ClassManager;
 import seedu.duke.event.EventManager;
+import seedu.duke.quiz.QuizManager;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
 import seedu.duke.exception.InvalidClassInputException;
@@ -9,7 +9,6 @@ import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
-import seedu.duke.quiz.QuizManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,14 +30,16 @@ public class CommandParser {
     private final String[] separatedInputs;
     private final String userInput;
     private final EventManager eventManager;
+    private final QuizManager quizManager;
 
     private CommandType commandType;
 
     private static final Logger logger = Logger.getLogger("Help");
 
-    public CommandParser(String userInput, EventManager eventManager) {
+    public CommandParser(String userInput, EventManager eventManager, QuizManager quizManager) {
         this.userInput = userInput;
         this.eventManager = eventManager;
+        this.quizManager = quizManager;
         separatedInputs = userInput.split(" ");
         commandType = null;
     }
@@ -76,6 +77,13 @@ public class CommandParser {
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CCA)) {
             commandType = CommandType.DELETE_CCA;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_QUIZ)) {
+            commandType = CommandType.DELETE_QUIZ;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)
+                && separatedInputs.length > 1
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_QUIZ)) {
+            commandType = CommandType.LIST_QUIZ;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)) {
             commandType = CommandType.LIST;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_BYE)) {
@@ -144,6 +152,13 @@ public class CommandParser {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
             break;
+        case DELETE_QUIZ:
+            try {
+                quizManager.deleteQuiz(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("☹ OOPS!!! Please indicate a valid quiz index!");
+            }
+            break;
         case DONE_CLASS:
             try {
                 eventManager.getClassManager().setClassDone(separatedInputs);
@@ -166,7 +181,6 @@ public class CommandParser {
             }
             break;
         case ADD_QUIZ:
-            QuizManager quizManager = new QuizManager();
             quizManager.addQuiz(userInput);
             break;
         case LIST:
