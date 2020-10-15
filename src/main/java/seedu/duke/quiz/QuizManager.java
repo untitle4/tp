@@ -1,25 +1,23 @@
 package seedu.duke.quiz;
 
-import seedu.duke.storage.QuizStorageManager;
-
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class QuizManager {
-    private final ArrayList<Quiz> quiz;
+    private final ArrayList<Quiz> quizzes;
     private static final Logger logger = Logger.getLogger("QUIZ");
 
-    public QuizManager(QuizStorageManager quizStorageManager) {
-        quiz = quizStorageManager.getQuizList();
+    public QuizManager(ArrayList<Quiz> quizzes) {
+        this.quizzes = quizzes;
     }
 
     public ArrayList<Quiz> getQuizList() {
-        return quiz;
+        return quizzes;
     }
 
     public int getQuizListSize() {
-        assert quiz != null;
-        return quiz.size();
+        assert quizzes != null;
+        return quizzes.size();
     }
 
     public void deleteQuiz(String[] userInput) throws IndexOutOfBoundsException {
@@ -40,9 +38,9 @@ public class QuizManager {
         }
 
         System.out.println("Noted. I've removed this quiz: ");
-        System.out.println(quiz.get(quizIndex - 1));
+        System.out.println(quizzes.get(quizIndex - 1));
 
-        quiz.remove(quizIndex - 1);
+        quizzes.remove(quizIndex - 1);
         getQuizStatement();
     }
 
@@ -67,9 +65,7 @@ public class QuizManager {
         String option4 = separatedInputs[11];
         String answer = separatedInputs[13];
 
-        Quiz quiz = new Quiz(question, option1, option2, option3, option4, answer);
-        new QuizStorageManager().saveQuizData(quiz);
-
+        quizzes.add(new Quiz(question, option1, option2, option3, option4, answer));
         System.out.println("Quiz question added!");
     }
 
