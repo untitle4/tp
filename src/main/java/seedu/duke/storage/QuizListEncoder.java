@@ -5,9 +5,6 @@ import seedu.duke.quiz.Quiz;
 import java.util.ArrayList;
 
 public class QuizListEncoder {
-    public QuizListEncoder() {
-
-    }
 
     public ArrayList<String> encodeQuizList(ArrayList<Quiz> quizList) {
         ArrayList<String> encodedQuizs = new ArrayList<>();
@@ -21,10 +18,9 @@ public class QuizListEncoder {
 
     private String encodeQuizToString(Quiz quiz) {
         String result = "";
-        assertValidQuiz(quiz.getDescription(), quiz.getOption1(), quiz.getOption2(),
+        assertValidQuiz(quiz.getQuestion(), quiz.getOption1(), quiz.getOption2(),
                 quiz.getOption3(), quiz.getOption4(), quiz.getAnswer());
-        result = quiz.getQuizIcon() + "|"
-                + quiz.getDescription() + "|"
+        result = quiz.getQuestion() + "|"
                 + quiz.getOption1() + "|"
                 + quiz.getOption2() + "|"
                 + quiz.getOption3() + "|"
@@ -40,14 +36,14 @@ public class QuizListEncoder {
         assert description != null;
         assert !description.equals("");
         assert option1 != null;
-        assert option1.equals("");
+        assert !option1.equals("");
         assert option2 != null;
-        assert option2.equals("");
+        assert !option2.equals("");
         assert option3 != null;
-        assert option3.equals("");
+        assert !option3.equals("");
         assert option4 != null;
-        assert option4.equals("");
+        assert !option4.equals("");
         assert answer != null;
-        assert answer.equals("");
+        assert !answer.equals("");
     }
 }

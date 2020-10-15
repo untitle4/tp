@@ -1,17 +1,15 @@
 package seedu.duke.quiz;
 
 public class Quiz {
-    public static final String QUIZ_ICON = "[QUIZ]";
-    protected String description;
-    protected String option1;
-    protected String option2;
-    protected String option3;
-    protected String option4;
-    protected String answer;
+    private final String question;
+    private final String option1;
+    private final String option2;
+    private final String option3;
+    private final String option4;
+    private final String answer;
 
-    public Quiz(String description, String option1, String option2,
-                 String option3, String option4, String answer) {
-        this.description = description;
+    public Quiz(String question, String option1, String option2, String option3, String option4, String answer) {
+        this.question = question;
         this.option1 = option1;
         this.option2 = option2;
         this.option3 = option3;
@@ -19,8 +17,8 @@ public class Quiz {
         this.answer = answer;
     }
 
-    public String getDescription() {
-        return description;
+    public String getQuestion() {
+        return question;
     }
 
     public String getOption1() {
@@ -43,13 +41,13 @@ public class Quiz {
         return answer;
     }
 
-    public String getQuizIcon() {
-        return QUIZ_ICON;
+    public String convertToData() {
+        return question + "|" + option1 + "|" + option2 + "|" + option3 + "|" + option4 + "|" + answer;
     }
 
     @Override
     public String toString() {
-        return description + "\n"
+        return question + "\n"
                 + "(1) " + option1 + "\n"
                 + "(2) " + option2 + "\n"
                 + "(3) " + option3 + "\n"

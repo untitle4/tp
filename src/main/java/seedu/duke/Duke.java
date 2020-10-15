@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Duke {
     public static final String DATA_STRING = "data";
     public static final String FILE_STRING = "/events.txt";
-    public static final String QUIZ_FILE_STRING = "/quizzes.txt";
+    public static final String QUIZ_FILE_STRING = "/quiz.txt";
 
     private static StorageManager storageManager;
     private static QuizStorageManager quizStorageManager;
