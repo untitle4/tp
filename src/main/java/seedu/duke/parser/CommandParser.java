@@ -186,6 +186,9 @@ public class CommandParser {
         case LIST:
             eventManager.listSchedule();
             break;
+        case LIST_QUIZ:
+            quizManager.listQuiz();
+            break;
         case BYE:
             break;
         default:
