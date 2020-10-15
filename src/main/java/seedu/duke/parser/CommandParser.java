@@ -9,6 +9,7 @@ import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
+import seedu.duke.quiz.QuizManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,9 +23,10 @@ public class CommandParser {
     public static final String INPUT_SCHEDULE_CLASS = "class";
     public static final String INPUT_SCHEDULE_TEST = "test";
     public static final String INPUT_SCHEDULE_CCA = "cca";
+    public static final String INPUT_HELP = "help";
+    public static final String INPUT_QUIZ = "quiz";
     public static final int MAIN_COMMAND_INDEX = 0;
     public static final int SUB_COMMAND_INDEX = 1;
-    public static final String INPUT_HELP = "help";
 
     private final String[] separatedInputs;
     private final String userInput;
@@ -87,6 +89,9 @@ public class CommandParser {
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DONE)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CCA)) {
             commandType = CommandType.DONE_CCA;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_QUIZ)) {
+            commandType = CommandType.ADD_QUIZ;
         } else {
             throw new InvalidCommandException();
         }
@@ -159,6 +164,10 @@ public class CommandParser {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
+            break;
+        case ADD_QUIZ:
+            QuizManager quizManager = new QuizManager();
+            quizManager.addQuiz(userInput);
             break;
         case LIST:
             eventManager.listSchedule();
