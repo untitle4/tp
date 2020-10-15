@@ -1,8 +1,11 @@
-package seedu.duke;
+package seedu.duke.storage;
 
-import java.time.LocalDateTime;
+import seedu.duke.Cca;
+import seedu.duke.Class;
+import seedu.duke.Event;
+import seedu.duke.Test;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class EventListDecoder {
     public EventListDecoder() {
@@ -20,11 +23,11 @@ public class EventListDecoder {
         final String[] data = encodedEvent.trim().split("\\|", 3);
 
         switch (data[0]) {
-        case "[CCA]":
+        case Cca.CCA_ICON:
             return parseCca(data);
-        case "[CLASS]":
+        case Class.CLASS_ICON:
             return parseClass(data);
-        case "[TEST]":
+        case Test.TEST_ICON:
             return parseTest(data);
         default:
             return null;
@@ -40,6 +43,8 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
+        isValidParams(description, start, end);
+
         return new Cca(description, isDone, start, end);
     }
 
@@ -51,6 +56,8 @@ public class EventListDecoder {
         description = eventInfo[0];
         String start = eventInfo[1];
         String end = eventInfo[2];
+
+        isValidParams(description, start, end);
 
         return new Class(description, isDone, start, end);
     }
@@ -64,6 +71,17 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
+        isValidParams(description, start, end);
+
         return new Test(description, isDone, start, end);
+    }
+
+    private void isValidParams(String description, String start, String end) {
+        assert description != null;
+        assert !description.equals("");
+        assert start != null;
+        assert !start.equals("");
+        assert end != null;
+        assert !end.equals("");
     }
 }

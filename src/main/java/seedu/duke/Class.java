@@ -1,7 +1,14 @@
 package seedu.duke;
 
+/**
+ * <h2>Class class</h2>
+ * Contains constructors, getters, toString and equals methods.
+ *
+ * @see Class#toString()
+ * @see Class#equals(Object)
+ */
 public class Class extends Event {
-
+    public static final String CLASS_ICON = "[CLASS]";
     protected String start;
     protected String end;
 
@@ -25,13 +32,18 @@ public class Class extends Event {
         return end;
     }
 
-    public String getTypeIcon() {
-        return "[CLASS]";
+    @Override
+    public String toString() {
+        return CLASS_ICON + " " + super.toString() + "from " + start
+                + " to " + end;
     }
 
     @Override
-    public String toString() {
-        return "[Class] " + super.description + "from " + start
-                + "to " + end;
+    public boolean equals(Object obj) {
+        Class otherClass = (Class) obj;
+
+        return super.equals(obj)
+                && this.start.equals(otherClass.getStart())
+                && this.end.equals(otherClass.getEnd());
     }
 }

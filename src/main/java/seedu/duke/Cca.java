@@ -1,7 +1,7 @@
 package seedu.duke;
 
 public class Cca extends Event {
-
+    public static final String CCA_ICON = "[CCA]";
     protected String start;
     protected String end;
 
@@ -25,13 +25,18 @@ public class Cca extends Event {
         return end;
     }
 
-    public String getTypeIcon() {
-        return "[CCA]";
+    @Override
+    public String toString() {
+        return CCA_ICON + " " + super.toString() + " from " + start
+                + " to " + end;
     }
 
     @Override
-    public String toString() {
-        return "[CCA] " + super.description + "from " + start
-                + "to " + end;
+    public boolean equals(Object obj) {
+        Cca otherCca = (Cca) obj;
+
+        return super.equals(obj)
+                && this.start.equals(otherCca.getStart())
+                && this.end.equals(otherCca.getEnd());
     }
 }
