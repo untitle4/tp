@@ -3,7 +3,6 @@ package seedu.duke.event;
 import seedu.duke.ClassManager;
 import seedu.duke.TestManager;
 import seedu.duke.CcaManager;
-import seedu.duke.storage.StorageManager;
 import seedu.duke.ListSchedule;
 import seedu.duke.exception.EmptyListException;
 
@@ -14,10 +13,10 @@ public class EventManager {
     private static TestManager testManager;
     private static CcaManager ccaManager;
 
-    public EventManager(StorageManager storageManager) {
-        classManager = new ClassManager(storageManager.getClassList());
-        testManager = new TestManager(storageManager.getTestList());
-        ccaManager = new CcaManager(storageManager.getCcaList());
+    public EventManager(EventParameter eventParameter) {
+        classManager = new ClassManager(eventParameter.getClasses());
+        testManager = new TestManager(eventParameter.getTests());
+        ccaManager = new CcaManager(eventParameter.getCcas());
     }
 
     public ClassManager getClassManager() {
