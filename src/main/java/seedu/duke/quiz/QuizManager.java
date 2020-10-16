@@ -70,12 +70,12 @@ public class QuizManager {
     }
 
     public void listQuiz() {
-        if (quiz.size() == 0) {
+        if (quizzes.size() == 0) {
             System.out.println("Quiz list is empty. Add some!");
         } else {
-            for (int i = 0; i < quiz.size(); i++) {
+            for (int i = 0; i < quizzes.size(); i++) {
                 System.out.println("Question " + i + 1 + ":");
-                System.out.println(quiz.get(i));
+                System.out.println(quizzes.get(i));
             }
         }
     }
