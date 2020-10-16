@@ -1,5 +1,7 @@
 package seedu.duke.storage;
 
+import seedu.duke.LogManager;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -9,7 +11,7 @@ public abstract class StorageManager {
     public static final String EMPTY_FILE_NAME = "";
     protected static String DIRECTORY_FOLDER_PATH = new File("data").getAbsolutePath();
     protected String fileName;
-    private static final Logger logger = Logger.getLogger("storage");
+    private static final Logger logger = LogManager.getLogger();
 
     public StorageManager(String fileName) {
         assert !fileName.equals(EMPTY_FILE_NAME);

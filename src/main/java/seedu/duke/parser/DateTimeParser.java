@@ -1,11 +1,11 @@
 package seedu.duke.parser;
 
-import java.time.DateTimeException;
+import seedu.duke.LogManager;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
-import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class DateTimeParser {
 
     private final String dateTime;
-    private static final Logger logger = Logger.getLogger("DateTime");
+    private static final Logger logger = LogManager.getLogger();
 
     public DateTimeParser(String dateTime) {
         this.dateTime = dateTime;

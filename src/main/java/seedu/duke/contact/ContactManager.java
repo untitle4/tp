@@ -1,5 +1,6 @@
 package seedu.duke.contact;
 
+import seedu.duke.LogManager;
 import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
 
@@ -9,7 +10,7 @@ import java.util.logging.Logger;
 
 public class ContactManager {
     private ArrayList<Contact> contacts = new ArrayList<>();
-    private static final Logger logger = Logger.getLogger("CONTACT");
+    private static final Logger logger = LogManager.getLogger();
 
     public ContactManager() {
 
