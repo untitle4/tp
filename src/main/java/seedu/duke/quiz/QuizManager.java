@@ -46,7 +46,7 @@ public class QuizManager {
         getQuizStatement();
     }
 
-    // format: add quiz /q question /o1 option1 /o2 option2 /o3 option3 /o4 options4 /a answer
+    // format: add quiz /q question /o1 option 1 /o2 option 2 /o3 option 3 /o4 option 4 /a answer /exp explanation
     public void addQuiz(String userInput) {
         if (!userInput.contains(" /q ")) {
             System.out.println("question not found");
