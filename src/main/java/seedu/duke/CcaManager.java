@@ -118,7 +118,7 @@ public class CcaManager {
     }
 
     private void getCcaStatement() {
-        String ccaStatement = getCcaListSize() == 1 ? " cca" : " ccas";
+        String ccaStatement = getCcaListSize() <= 1 ? " cca" : " ccas";
         System.out.println("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
     }
 }

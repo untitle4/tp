@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.contact.ContactManager;
 import seedu.duke.event.EventManager;
 import seedu.duke.event.EventParameter;
 import seedu.duke.parser.CommandParser;
@@ -21,6 +22,7 @@ public class Duke {
     private static QuizStorageManager quizStorageManager;
     private static EventManager eventManager;
     private static QuizManager quizManager;
+    private static ContactManager contactManager;
     private static boolean active = true;
 
     /**
@@ -33,6 +35,7 @@ public class Duke {
         EventParameter eventParameter = eventStorageManager.loadData();
         eventManager = new EventManager(eventParameter);
         quizManager = new QuizManager(quizStorageManager.loadData());
+        contactManager = new ContactManager();
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -49,7 +52,8 @@ public class Duke {
         while (active) {
             String line = in.nextLine();
             if (!line.trim().isEmpty()) {
-                CommandType commandType = new CommandParser(line, eventManager, quizManager).parseCommand();
+                CommandType commandType = new CommandParser(line, eventManager,
+                        quizManager, contactManager).parseCommand();
                 checkIfProgramEnds(commandType);
             }
             refreshEvents();
