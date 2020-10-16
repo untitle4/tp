@@ -1,9 +1,7 @@
 package seedu.duke.storage;
 
-import seedu.duke.Cca;
+import seedu.duke.*;
 import seedu.duke.Class;
-import seedu.duke.Event;
-import seedu.duke.Test;
 
 import java.util.ArrayList;
 
@@ -40,6 +38,15 @@ public class EventListEncoder {
                     + test.getDescription() + "|"
                     + test.getStart() + "|"
                     + test.getEnd();
+        } else if (event instanceof Tuition) {
+            Tuition newTuition = (Tuition) event;
+            assertValidTuition(newTuition);
+            result = Tuition.TUITION_ICON + "|"
+                    + newTuition.isDone() + "|"
+                    + newTuition.getDescription() + "|"
+                    + newTuition.getStart() + "|"
+                    + newTuition.getEnd() + "|"
+                    + newTuition.getLocation();
         } else if (event instanceof Class) {
             Class newClass = (Class) event;
             assertValidClass(newClass);
@@ -63,6 +70,12 @@ public class EventListEncoder {
 
     private void assertValidTest(Test test) {
         isValidParams(test.getDescription(), test.getStart(), test.getEnd());
+    }
+
+    private void assertValidTuition(Tuition tuition) {
+        isValidParams(tuition.getDescription(), tuition.getStart(), tuition.getEnd());
+        assert tuition.getLocation() != null;
+        assert !tuition.getLocation().equals("");
     }
 
     private void isValidParams(String description, String start, String end) {

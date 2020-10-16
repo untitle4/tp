@@ -20,9 +20,11 @@ public class Tuition extends Class {
 
     @Override
     public String toString() {
-        return TUITION_ICON + " " + super.toString() + "from " + start
-                + " to " + end
-                + " location " + location;
+        return TUITION_ICON + " " + super.getStatus()
+                + " " + getDescription()
+                + " from " + getStart()
+                + " to " + getEnd()
+                + " at " + getLocation();
     }
 
     @Override

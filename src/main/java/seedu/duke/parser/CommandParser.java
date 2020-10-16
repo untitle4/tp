@@ -133,10 +133,11 @@ public class CommandParser {
             try {
                 eventManager.getTuitionManager().addTuition(userInput);
             } catch (InvalidTuitionInputException e) {
-                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' suffixes!");
+                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e', '/l' suffixes!");
             } catch (EmptyTuitionInputException e) {
-                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
+                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e', '/l' inputs!");
             }
+            break;
         case DELETE_CLASS:
             try {
                 eventManager.getClassManager().deleteClass(separatedInputs);

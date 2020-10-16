@@ -15,7 +15,7 @@ public class EventManager {
         classManager = new ClassManager(eventParameter.getClasses());
         testManager = new TestManager(eventParameter.getTests());
         ccaManager = new CcaManager(eventParameter.getCcas());
-        tuitionManager = new TuitionManager(new ArrayList<>());
+        tuitionManager = new TuitionManager(eventParameter.getTuitions());
     }
 
     public ClassManager getClassManager() {
