@@ -1,11 +1,13 @@
 package seedu.duke.quiz;
 
+import seedu.duke.LogManager;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
 public class QuizManager {
     private final ArrayList<Quiz> quizzes;
-    private static final Logger logger = Logger.getLogger("QUIZ");
+    private static final Logger logger = LogManager.getLogger();
 
     public QuizManager(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;

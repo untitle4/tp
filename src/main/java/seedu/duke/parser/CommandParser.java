@@ -1,5 +1,6 @@
 package seedu.duke.parser;
 
+import seedu.duke.LogManager;
 import seedu.duke.contact.ContactManager;
 import seedu.duke.event.EventManager;
 import seedu.duke.exception.CcaEmptyStringException;
@@ -42,7 +43,7 @@ public class CommandParser {
 
     private CommandType commandType;
 
-    private static final Logger logger = Logger.getLogger("Help");
+    private static final Logger logger = LogManager.getLogger();
 
     public CommandParser(String userInput, EventManager eventManager,
                          QuizManager quizManager, ContactManager contactManager) {

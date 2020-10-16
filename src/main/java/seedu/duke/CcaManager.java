@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class CcaManager {
     private final ArrayList<Event> cca;
-    private static final Logger logger = Logger.getLogger("CCA");
+    private static final Logger logger = LogManager.getLogger();
 
     public CcaManager(ArrayList<Event> inputList) {
         cca = inputList;

@@ -30,6 +30,7 @@ public class Duke {
      */
 
     public static void main(String[] args) {
+        new LogManager();
         eventStorageManager = new EventStorageManager(EVENT_FILE_NAME);
         quizStorageManager = new QuizStorageManager(QUIZ_FILE_NAME);
         EventParameter eventParameter = eventStorageManager.loadData();

@@ -1,10 +1,11 @@
 package seedu.duke.storage;
 
-import seedu.duke.Cca;
-import seedu.duke.Class;
 import seedu.duke.Event;
-import seedu.duke.Test;
+import seedu.duke.LogManager;
+import seedu.duke.Class;
+import seedu.duke.Cca;
 import seedu.duke.Tuition;
+import seedu.duke.Test;
 import seedu.duke.event.EventParameter;
 
 import java.io.File;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 public class EventStorageManager extends StorageManager {
     private final EventListEncoder eventListEncoder;
     private final EventListDecoder eventListDecoder;
-    private static final Logger logger = Logger.getLogger("storage");
+    private static final Logger logger = LogManager.getLogger();
 
     public EventStorageManager(String fileName) {
         super(fileName);

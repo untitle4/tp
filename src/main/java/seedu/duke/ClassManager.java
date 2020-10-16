@@ -32,7 +32,7 @@ public class ClassManager {
     private final ArrayList<Event> classes;
 
     // Initialising Logger with name "Class"
-    private static final Logger logger = Logger.getLogger("Class");
+    private static final Logger logger = LogManager.getLogger();
 
     public ClassManager(ArrayList<Event> classes) {
         this.classes = classes;

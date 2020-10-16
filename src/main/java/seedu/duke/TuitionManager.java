@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class TuitionManager {
     private ArrayList<Event> tuitionList;
-    private static Logger logger = Logger.getLogger("tuition");
+    private static final Logger logger = LogManager.getLogger();
 
     public TuitionManager(ArrayList<Event> tuitionList) {
         this.tuitionList = tuitionList;

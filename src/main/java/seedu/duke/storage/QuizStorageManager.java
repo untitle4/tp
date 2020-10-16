@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.LogManager;
 import seedu.duke.quiz.Quiz;
 
 import java.io.IOException;
@@ -8,26 +9,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class QuizStorageManager extends StorageManager {
     private final QuizListEncoder quizListEncoder;
     private final QuizListDecoder quizListDecoder;
-    private static final Logger logger = Logger.getLogger("storage");
+    private static final Logger logger = LogManager.getLogger();
 
     public QuizStorageManager(String fileName) {
         super(fileName);
         this.quizListEncoder = new QuizListEncoder();
         this.quizListDecoder = new QuizListDecoder();
-        try {
-            FileHandler fileHandler = new FileHandler("./data/debog.txt");
-            logger.setUseParentHandlers(false);
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public ArrayList<Quiz> loadData() {
