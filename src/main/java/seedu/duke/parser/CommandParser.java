@@ -1,14 +1,17 @@
 package seedu.duke.parser;
 
+import seedu.duke.contact.ContactManager;
 import seedu.duke.event.EventManager;
-import seedu.duke.quiz.QuizManager;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.ContactEmptyStringException;
+import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
+import seedu.duke.quiz.QuizManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +27,7 @@ public class CommandParser {
     public static final String INPUT_SCHEDULE_CCA = "cca";
     public static final String INPUT_HELP = "help";
     public static final String INPUT_QUIZ = "quiz";
+    public static final String INPUT_CONTACT = "contact";
     public static final int MAIN_COMMAND_INDEX = 0;
     public static final int SUB_COMMAND_INDEX = 1;
 
@@ -31,15 +35,18 @@ public class CommandParser {
     private final String userInput;
     private final EventManager eventManager;
     private final QuizManager quizManager;
+    private final ContactManager contactManager;
 
     private CommandType commandType;
 
     private static final Logger logger = Logger.getLogger("Help");
 
-    public CommandParser(String userInput, EventManager eventManager, QuizManager quizManager) {
+    public CommandParser(String userInput, EventManager eventManager,
+                         QuizManager quizManager, ContactManager contactManager) {
         this.userInput = userInput;
         this.eventManager = eventManager;
         this.quizManager = quizManager;
+        this.contactManager = contactManager;
         separatedInputs = userInput.split(" ");
         commandType = null;
     }
@@ -68,6 +75,9 @@ public class CommandParser {
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CCA)) {
             commandType = CommandType.ADD_CCA;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_CONTACT)) {
+            commandType = CommandType.ADD_CONTACT;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CLASS)) {
             commandType = CommandType.DELETE_CLASS;
@@ -80,10 +90,17 @@ public class CommandParser {
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_QUIZ)) {
             commandType = CommandType.DELETE_QUIZ;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_CONTACT)) {
+            commandType = CommandType.DELETE_CONTACT;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)
                 && separatedInputs.length > 1
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_QUIZ)) {
             commandType = CommandType.LIST_QUIZ;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)
+                && separatedInputs.length > 1
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_CONTACT)) {
+            commandType = CommandType.LIST_CONTACT;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)) {
             commandType = CommandType.LIST;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_BYE)) {
@@ -131,6 +148,13 @@ public class CommandParser {
                 System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
             }
             break;
+        case ADD_CONTACT:
+            try {
+                contactManager.addContact(userInput);
+            } catch (ContactEmptyStringException | ContactParamException e) {
+                System.out.println("☹ OOPS!!! Remember to include ALL '/s', '/n', '/p', '/e' inputs!");
+            }
+            break;
         case DELETE_CLASS:
             try {
                 eventManager.getClassManager().deleteClass(separatedInputs);
@@ -157,6 +181,13 @@ public class CommandParser {
                 quizManager.deleteQuiz(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid quiz index!");
+            }
+            break;
+        case DELETE_CONTACT:
+            try {
+                contactManager.deleteContact(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("☹ OOPS!!! Please indicate a valid contact index!");
             }
             break;
         case DONE_CLASS:
@@ -188,6 +219,9 @@ public class CommandParser {
             break;
         case LIST_QUIZ:
             quizManager.listQuiz();
+            break;
+        case LIST_CONTACT:
+            contactManager.listContacts();
             break;
         case BYE:
             break;
