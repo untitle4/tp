@@ -10,7 +10,7 @@ public class LogManager {
 
     public LogManager() {
         try {
-            FileHandler fileHandler = new FileHandler("./data/logfile.txt");
+            FileHandler fileHandler = new FileHandler("./logfile.txt");
             fileHandler.setFormatter(new SimpleFormatter());
             LOGGER.setUseParentHandlers(false);
             LOGGER.addHandler(fileHandler);
