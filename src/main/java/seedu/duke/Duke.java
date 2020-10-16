@@ -72,6 +72,7 @@ public class Duke {
         events.addAll(eventManager.getCcaManager().getCcaList());
         events.addAll(eventManager.getTestManager().getTestList());
         events.addAll(eventManager.getClassManager().getClasses());
+        events.addAll(eventManager.getTuitionManager().getTuitions());
 
         try {
             eventStorageManager.saveData(events);
@@ -81,7 +82,6 @@ public class Duke {
     }
 
     private static void refreshQuizzes() {
-
         ArrayList<Quiz> quizzes = quizManager.getQuizList();
 
         try {

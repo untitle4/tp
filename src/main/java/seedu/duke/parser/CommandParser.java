@@ -1,14 +1,16 @@
 package seedu.duke.parser;
 
 import seedu.duke.event.EventManager;
-import seedu.duke.quiz.QuizManager;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.EmptyTuitionInputException;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
+import seedu.duke.exception.InvalidTuitionInputException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
+import seedu.duke.quiz.QuizManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,7 @@ public class CommandParser {
     public static final String INPUT_SCHEDULE_CLASS = "class";
     public static final String INPUT_SCHEDULE_TEST = "test";
     public static final String INPUT_SCHEDULE_CCA = "cca";
+    public static final String INPUT_SCHEDULE_TUITION = "tuition";
     public static final String INPUT_HELP = "help";
     public static final String INPUT_QUIZ = "quiz";
     public static final int MAIN_COMMAND_INDEX = 0;
@@ -68,6 +71,9 @@ public class CommandParser {
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CCA)) {
             commandType = CommandType.ADD_CCA;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_TUITION)) {
+            commandType = CommandType.ADD_TUITION;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CLASS)) {
             commandType = CommandType.DELETE_CLASS;
@@ -129,6 +135,15 @@ public class CommandParser {
                 eventManager.getTestManager().addTest(userInput);
             } catch (TestEmptyStringException | TestParamException e) {
                 System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
+            }
+            break;
+        case ADD_TUITION:
+            try {
+                eventManager.getTuitionManager().addTuition(userInput);
+            } catch (InvalidTuitionInputException e) {
+                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e', '/l' suffixes!");
+            } catch (EmptyTuitionInputException e) {
+                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e', '/l' inputs!");
             }
             break;
         case DELETE_CLASS:
