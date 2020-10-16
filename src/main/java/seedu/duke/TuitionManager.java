@@ -28,33 +28,33 @@ public class TuitionManager {
 
     public void addTuition(String userInput) throws InvalidTuitionInputException, EmptyTuitionInputException {
         logger.log(Level.INFO, "Initializing adding of a tuition");
-        final String DESCRIPTION_PREFIX = "/n";
-        final String START_PREFIX = "/s";
-        final String END_PREFIX = "/e";
-        final String LOCATION_PREFIX = "/l";
+        final String descriptionPrefix = "/n";
+        final String startPrefix = "/s";
+        final String endPrefix = "/e";
+        final String locationPrefix = "/l";
 
-        if ((!userInput.contains(DESCRIPTION_PREFIX)) || (!userInput.contains(START_PREFIX))
-                || (!userInput.contains(END_PREFIX)) || (!userInput.contains(LOCATION_PREFIX))) {
+        if ((!userInput.contains(descriptionPrefix)) || (!userInput.contains(startPrefix))
+                || (!userInput.contains(endPrefix)) || (!userInput.contains(locationPrefix))) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
                     + " missing");
             throw new InvalidTuitionInputException();
         }
 
-        final int indexOfDescriptionPrefix = userInput.indexOf(DESCRIPTION_PREFIX);
-        final int indexOfStartPrefix = userInput.indexOf(START_PREFIX);
-        final int indexOfEndPrefix = userInput.indexOf(END_PREFIX);
-        final int indexOfLocationPrefix = userInput.indexOf(LOCATION_PREFIX);
+        final int indexOfDescriptionPrefix = userInput.indexOf(descriptionPrefix);
+        final int indexOfStartPrefix = userInput.indexOf(startPrefix);
+        final int indexOfEndPrefix = userInput.indexOf(endPrefix);
+        final int indexOfLocationPrefix = userInput.indexOf(locationPrefix);
 
         String description = userInput.substring(indexOfDescriptionPrefix, indexOfStartPrefix)
-                .replace(DESCRIPTION_PREFIX, "").trim();
+                .replace(descriptionPrefix, "").trim();
         String start = userInput.substring(indexOfStartPrefix, indexOfEndPrefix)
-                .replace(START_PREFIX, "").trim();
+                .replace(startPrefix, "").trim();
         String end = userInput.substring(indexOfEndPrefix, indexOfLocationPrefix)
-                .replace(END_PREFIX, "").trim();
+                .replace(endPrefix, "").trim();
         String location = userInput.substring(indexOfLocationPrefix)
-                .replace(LOCATION_PREFIX, "").trim();
+                .replace(locationPrefix, "").trim();
 
-        if(isEmptyString(description) || isEmptyString(start) || isEmptyString(end) || isEmptyString(location)) {
+        if (isEmptyString(description) || isEmptyString(start) || isEmptyString(end) || isEmptyString(location)) {
             throw new EmptyTuitionInputException();
         }
 
@@ -144,7 +144,7 @@ public class TuitionManager {
         return string.equals("");
     }
 
-    private LocalDateTime parseLocalDateTime (String localDateTimeString) {
+    private LocalDateTime parseLocalDateTime(String localDateTimeString) {
         return LocalDateTime.parse(localDateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 }

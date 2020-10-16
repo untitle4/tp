@@ -1,7 +1,11 @@
 package seedu.duke.storage;
 
-import seedu.duke.*;
+import seedu.duke.Cca;
 import seedu.duke.Class;
+import seedu.duke.Class;
+import seedu.duke.Event;
+import seedu.duke.Test;
+import seedu.duke.Tuition;
 
 import java.util.ArrayList;
 

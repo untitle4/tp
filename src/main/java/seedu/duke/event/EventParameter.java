@@ -18,7 +18,8 @@ public class EventParameter {
         tuitions = new ArrayList<>();
     }
 
-    public EventParameter(ArrayList<Event> ccas, ArrayList<Event> tests, ArrayList<Event> classes, ArrayList<Event> tuitions) {
+    public EventParameter(ArrayList<Event> ccas, ArrayList<Event> tests,
+                          ArrayList<Event> classes, ArrayList<Event> tuitions) {
         this.ccas = ccas;
         this.tests = tests;
         this.classes = classes;
@@ -37,5 +38,7 @@ public class EventParameter {
         return classes;
     }
 
-    public ArrayList<Event> getTuitions() { return tuitions; }
+    public ArrayList<Event> getTuitions() {
+        return tuitions;
+    }
 }

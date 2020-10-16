@@ -13,7 +13,8 @@ public class ListSchedule {
     private final ArrayList<Event> tuitions;
     private static final Logger logger = Logger.getLogger("List");
 
-    public ListSchedule(ArrayList<Event> classes, ArrayList<Event> ccas, ArrayList<Event> tests, ArrayList<Event> tuitions) {
+    public ListSchedule(ArrayList<Event> classes, ArrayList<Event> ccas,
+                        ArrayList<Event> tests, ArrayList<Event> tuitions) {
         this.classes = classes;
         this.ccas = ccas;
         this.tests = tests;
@@ -71,7 +72,9 @@ public class ListSchedule {
         return tests.size() != 0;
     }
 
-    private boolean haveTuitions() { return tuitions.size() != 0; }
+    private boolean haveTuitions() {
+        return tuitions.size() != 0;
+    }
 
     private boolean hasNoSchedule() {
         return (!haveClasses() && !haveCcas() && !haveTests() && !haveTuitions());
