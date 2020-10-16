@@ -69,6 +69,17 @@ public class QuizManager {
         System.out.println("Quiz question added!");
     }
 
+    public void listQuiz() {
+        if (quizzes.size() == 0) {
+            System.out.println("Quiz list is empty. Add some!");
+        } else {
+            for (int i = 0; i < quizzes.size(); i++) {
+                System.out.println("Question " + (i + 1) + ":");
+                System.out.println(quizzes.get(i));
+            }
+        }
+    }
+
     private void getQuizStatement() {
         String quizStatement = getQuizListSize() == 1 ? " quiz" : " quizzes";
         System.out.println("Now you have " + getQuizListSize() + quizStatement + " in the quiz list.");
