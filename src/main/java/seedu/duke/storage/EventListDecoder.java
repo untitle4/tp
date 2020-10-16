@@ -2,8 +2,10 @@ package seedu.duke.storage;
 
 import seedu.duke.Cca;
 import seedu.duke.Class;
+import seedu.duke.Class;
 import seedu.duke.Event;
 import seedu.duke.Test;
+import seedu.duke.Tuition;
 
 import java.util.ArrayList;
 
@@ -29,6 +31,8 @@ public class EventListDecoder {
             return parseClass(data);
         case Test.TEST_ICON:
             return parseTest(data);
+        case Tuition.TUITION_ICON:
+            return parseTuition(data);
         default:
             return null;
         }
@@ -76,6 +80,21 @@ public class EventListDecoder {
         return new Test(description, isDone, start, end);
     }
 
+    private Tuition parseTuition(String[] data) {
+        boolean isDone;
+        String description;
+        isDone = Boolean.parseBoolean(data[1]);
+        String[] eventInfo = data[2].trim().split("\\|", 4);
+        description = eventInfo[0];
+        String start = eventInfo[1];
+        String end = eventInfo[2];
+        String location = eventInfo[3];
+
+        isValidTuition(description, start, end, location);
+
+        return new Tuition(description, isDone, start, end, location);
+    }
+
     private void isValidParams(String description, String start, String end) {
         assert description != null;
         assert !description.equals("");
@@ -83,5 +102,11 @@ public class EventListDecoder {
         assert !start.equals("");
         assert end != null;
         assert !end.equals("");
+    }
+
+    private void isValidTuition(String description, String start, String end, String location) {
+        isValidParams(description, start, end);
+        assert location != null;
+        assert !location.equals("");
     }
 }

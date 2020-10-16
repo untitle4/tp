@@ -4,6 +4,7 @@ import seedu.duke.Cca;
 import seedu.duke.Class;
 import seedu.duke.Event;
 import seedu.duke.Test;
+import seedu.duke.Tuition;
 import seedu.duke.event.EventParameter;
 
 import java.io.File;
@@ -62,15 +63,18 @@ public class EventStorageManager extends StorageManager {
         ArrayList<Event> ccas = new ArrayList<>();
         ArrayList<Event> classes = new ArrayList<>();
         ArrayList<Event> tests = new ArrayList<>();
+        ArrayList<Event> tuitions = new ArrayList<>();
         for (Event event : events) {
             if (event instanceof Cca) {
                 ccas.add(event);
+            } else if (event instanceof Tuition) {
+                tuitions.add(event);
             } else if (event instanceof Class) {
                 classes.add(event);
             } else if (event instanceof Test) {
                 tests.add(event);
             }
         }
-        return new EventParameter(ccas, tests, classes);
+        return new EventParameter(ccas, tests, classes, tuitions);
     }
 }

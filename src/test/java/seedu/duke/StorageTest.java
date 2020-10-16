@@ -39,6 +39,10 @@ public class StorageTest {
         events.add(new seedu.duke.Test("CS2113T Finals ",
                 "2020-12-04 1500 ",
                 "2020-12-04 1600"));
+        events.add(new Tuition("English",
+                "2020-12-05 1600",
+                "2020-12-05 1800",
+                "home"));
 
         return events;
     }
