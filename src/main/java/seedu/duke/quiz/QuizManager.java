@@ -74,7 +74,7 @@ public class QuizManager {
             System.out.println("Quiz list is empty. Add some!");
         } else {
             for (int i = 0; i < quizzes.size(); i++) {
-                System.out.println("Question " + i + 1 + ":");
+                System.out.println("Question " + (i + 1) + ":");
                 System.out.println(quizzes.get(i));
             }
         }
