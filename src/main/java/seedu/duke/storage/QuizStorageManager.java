@@ -1,6 +1,8 @@
 package seedu.duke.storage;
 
 import seedu.duke.LogManager;
+import seedu.duke.Messages;
+import seedu.duke.UserInterface;
 import seedu.duke.quiz.Quiz;
 
 import java.io.IOException;
@@ -16,11 +18,13 @@ public class QuizStorageManager extends StorageManager {
     private final QuizListEncoder quizListEncoder;
     private final QuizListDecoder quizListDecoder;
     private static final Logger logger = LogManager.getLogger();
+    private UserInterface userInterface;
 
     public QuizStorageManager(String fileName) {
         super(fileName);
         this.quizListEncoder = new QuizListEncoder();
         this.quizListDecoder = new QuizListDecoder();
+        this.userInterface = UserInterface.getInstance();
     }
 
     public ArrayList<Quiz> loadData() {
@@ -43,7 +47,7 @@ public class QuizStorageManager extends StorageManager {
                 logger.log(Level.INFO, "Data file not found, initializing data file...");
             }
         } catch (IOException e) {
-            System.out.println("There was an error loading your files.");
+            userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
         }
         return new ArrayList<>();
