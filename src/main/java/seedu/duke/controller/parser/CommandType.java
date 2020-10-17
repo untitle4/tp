@@ -1,4 +1,4 @@
-package seedu.duke.parser;
+package seedu.duke.controller.parser;
 
 /**
  * Represents all possible commands available to the user.

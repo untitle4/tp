@@ -1,4 +1,4 @@
-package seedu.duke.parser;
+package seedu.duke.controller.parser;
 
 import seedu.duke.LogManager;
 
