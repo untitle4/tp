@@ -3,7 +3,7 @@ package seedu.duke;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
-import seedu.duke.parser.DateTimeParser;
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;

@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 import seedu.duke.common.Messages;
 import seedu.duke.exception.InvalidClassInputException;
-import seedu.duke.parser.DateTimeParser;
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.ui.UserInterface;
 
 /**
