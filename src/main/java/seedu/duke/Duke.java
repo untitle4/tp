@@ -11,6 +11,8 @@ import seedu.duke.storage.QuizStorageManager;
 import seedu.duke.storage.EventStorageManager;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -23,6 +25,7 @@ public class Duke {
     private static EventManager eventManager;
     private static QuizManager quizManager;
     private static ContactManager contactManager;
+    private static UserInterface userInterface;
     private static boolean active = true;
 
     /**
@@ -37,21 +40,12 @@ public class Duke {
         eventManager = new EventManager(eventParameter);
         quizManager = new QuizManager(quizStorageManager.loadData());
         contactManager = new ContactManager();
+        userInterface = UserInterface.getInstance();
 
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What is your name?");
-
-        Scanner in = new Scanner(System.in);
-        System.out.println("Hello " + in.nextLine());
-        System.out.println("What can we do for you? (Enter 'help' for the list of available commands!)");
+        userInterface.showWelcomeMessage();
 
         while (active) {
-            String line = in.nextLine();
+            String line = userInterface.getUserCommand();
             if (!line.trim().isEmpty()) {
                 CommandType commandType = new CommandParser(line, eventManager,
                         quizManager, contactManager).parseCommand();
@@ -61,8 +55,8 @@ public class Duke {
             refreshQuizzes();
         }
 
-        //Exit Message
-        System.out.println("BYE BYE! SEE YOU NEXT TIME! :3");
+        // Exit Message
+        userInterface.showToUser(Messages.MESSAGE_BYE);
     }
 
     private static void checkIfProgramEnds(CommandType commandType) {
@@ -82,7 +76,7 @@ public class Duke {
         try {
             eventStorageManager.saveData(events);
         } catch (IOException e) {
-            System.out.println("STORAGE: There was an error");
+            userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
         }
     }
 
@@ -92,7 +86,7 @@ public class Duke {
         try {
             quizStorageManager.saveData(quizzes, QUIZ_FILE_NAME);
         } catch (IOException e) {
-            System.out.println("STORAGE: There was an error");
+            userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
         }
     }
 }
