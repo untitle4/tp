@@ -1,12 +1,17 @@
 package seedu.duke.quiz;
 
 import seedu.duke.LogManager;
-
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class QuizManager {
     private final ArrayList<Quiz> quizzes;
+
+    // Add 10 default questions - users can delete if they want
+    //TODO
+
     private static final Logger logger = LogManager.getLogger();
 
     public QuizManager(ArrayList<Quiz> quizzes) {
@@ -24,18 +29,32 @@ public class QuizManager {
 
     public void takeQuiz(String[] separatedInputs) {
         int noOfQues = Integer.parseInt(separatedInputs[1]);
-        //TODO: handle "quiz", "quiz 2"
+        //TODO: handle cases: "quiz", "quiz 2"
 
         if (noOfQues <= getQuizListSize()) {
-            System.out.println("test enough qns");
+            List<Integer> quizIndexes = new ArrayList<>();
+            for (int i = 0; i < quizzes.size(); i++) {
+                quizIndexes.add(i);
+            }
+            Collections.shuffle(quizIndexes);
+
+            StringBuilder selectedQuestions = new StringBuilder();
+
+            for (int j = 0; j < noOfQues; j++) {
+                selectedQuestions.append(quizzes.get(j) + "\n");
+                System.out.println(toString());
+            }
+
+            System.out.print(selectedQuestions);
+
         } else if ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10)) {
             System.out.println("OOPS! You wanted to take a quiz with " + noOfQues + " questions, but your current quiz "
                     + "only has " + getQuizListSize() + " question(s).\nPlease add more questions to your quiz "
-                    + "via the 'add quiz' command!");
+                    + "via the 'add quiz' command!\n");
         } else {
             System.out.println("OOPS! You wanted to quiz a test with " + noOfQues + " questions, but your current quiz "
                     + "only has " + getQuizListSize() + " question(s).\nPlease either add more questions to your quiz "
-                    + "via the 'add quiz' command, or take a quiz with a suitable number of questions!");
+                    + "via the 'add quiz' command, or take a quiz with a suitable number of questions!\n");
         }
     }
 

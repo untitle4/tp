@@ -110,10 +110,7 @@ public class CommandParser {
             commandType = CommandType.LIST_CONTACT;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)) {
             commandType = CommandType.LIST;
-        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_QUIZ)
-                && (separatedInputs[SUB_COMMAND_INDEX].equals("10") ||
-                separatedInputs[SUB_COMMAND_INDEX].equals("20") ||
-                separatedInputs[SUB_COMMAND_INDEX].equals("30"))){
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_QUIZ)) {
             commandType = CommandType.QUIZ;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_BYE)) {
             commandType = CommandType.BYE;
@@ -233,7 +230,18 @@ public class CommandParser {
             }
             break;
         case QUIZ:
-            quizManager.takeQuiz(separatedInputs);
+             try {
+                 int noOfQues = Integer.parseInt(separatedInputs[SUB_COMMAND_INDEX]);
+                 if ((!(noOfQues == 10) ||  (noOfQues == 20) || (noOfQues == 30))) {
+                     System.out.println("OOPS! You're only allowed to try quizzes in sets of 10, 20 or 30 questions!\n");
+                     break;
+                 }
+                 quizManager.takeQuiz(separatedInputs);
+             } catch (ArrayIndexOutOfBoundsException e) {
+                 System.out.println("OOPS! You seem to be missing the number of questions you'd like to try!\n");
+             } catch (NumberFormatException e) {
+                 System.out.println("OOPS! Please enter a NUMERICAL number of questions to try (10, 20 or 30)!\n");
+             }
             break;
         case ADD_QUIZ:
             quizManager.addQuiz(userInput);
