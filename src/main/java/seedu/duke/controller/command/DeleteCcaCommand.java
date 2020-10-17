@@ -1,6 +1,6 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.Model;
+import seedu.duke.model.Model;
 
 public class DeleteCcaCommand extends Command {
     public DeleteCcaCommand(String userInput) {

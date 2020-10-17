@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.duke.model.event.classlesson;
+
+import seedu.duke.Event;
 
 /**
  * <h2>Class class</h2>

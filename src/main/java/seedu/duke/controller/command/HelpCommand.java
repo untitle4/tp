@@ -1,7 +1,7 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.LogManager;
-import seedu.duke.Model;
+import seedu.duke.common.LogManager;
+import seedu.duke.model.Model;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.ui.UserInterface;

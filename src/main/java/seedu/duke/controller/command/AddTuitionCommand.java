@@ -1,6 +1,6 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.Model;
+import seedu.duke.model.Model;
 import seedu.duke.exception.EmptyTuitionInputException;
 import seedu.duke.exception.InvalidTuitionInputException;
 

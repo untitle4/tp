@@ -1,6 +1,6 @@
 package seedu.duke.controller;
 
-import seedu.duke.Model;
+import seedu.duke.model.Model;
 import seedu.duke.controller.command.Command;
 import seedu.duke.controller.command.CommandFactory;
 import seedu.duke.controller.parser.CommandParser;

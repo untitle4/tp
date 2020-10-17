@@ -1,6 +1,6 @@
 package seedu.duke.storage;
 
-import seedu.duke.LogManager;
+import seedu.duke.common.LogManager;
 
 import java.io.File;
 import java.io.IOException;

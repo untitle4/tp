@@ -1,5 +1,7 @@
-package seedu.duke;
+package seedu.duke.model.event.test;
 
+import seedu.duke.Event;
+import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;

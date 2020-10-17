@@ -2,6 +2,7 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.InvalidClassInputException;
+import seedu.duke.model.event.classlesson.ClassManager;
 
 import java.util.ArrayList;
 

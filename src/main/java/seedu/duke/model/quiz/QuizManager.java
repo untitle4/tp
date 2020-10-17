@@ -1,6 +1,6 @@
-package seedu.duke.quiz;
+package seedu.duke.model.quiz;
 
-import seedu.duke.LogManager;
+import seedu.duke.common.LogManager;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;

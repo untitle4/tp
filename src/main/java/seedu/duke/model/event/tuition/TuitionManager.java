@@ -1,5 +1,7 @@
-package seedu.duke;
+package seedu.duke.model.event.tuition;
 
+import seedu.duke.Event;
+import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyTuitionInputException;
 import seedu.duke.exception.InvalidTuitionInputException;

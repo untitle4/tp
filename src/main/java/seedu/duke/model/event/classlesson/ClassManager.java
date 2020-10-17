@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.model.event.classlesson;
 
 import java.text.ParseException;
 import java.time.format.DateTimeParseException;
@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.Event;
+import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.controller.parser.DateTimeParser;

@@ -1,6 +1,6 @@
 package seedu.duke.controller.parser;
 
-import seedu.duke.LogManager;
+import seedu.duke.common.LogManager;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
