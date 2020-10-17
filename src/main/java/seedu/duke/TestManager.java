@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class TestManager {
     private final ArrayList<Event> test;
-    private static final Logger logger = Logger.getLogger("Test");
+    private static final Logger logger = LogManager.getLogger();
 
     public TestManager(ArrayList<Event> inputList) {
         test = inputList;

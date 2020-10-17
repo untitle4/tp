@@ -1,5 +1,12 @@
 package seedu.duke;
 
+/**
+ * <h2>Class class</h2>
+ * Contains constructors, getters, toString and equals methods.
+ *
+ * @see Class#toString()
+ * @see Class#equals(Object)
+ */
 public class Class extends Event {
     public static final String CLASS_ICON = "[CLASS]";
     protected String start;

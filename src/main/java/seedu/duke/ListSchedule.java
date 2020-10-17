@@ -10,12 +10,15 @@ public class ListSchedule {
     private final ArrayList<Event> classes;
     private final ArrayList<Event> ccas;
     private final ArrayList<Event> tests;
-    private static final Logger logger = Logger.getLogger("List");
+    private final ArrayList<Event> tuitions;
+    private static final Logger logger = LogManager.getLogger();
 
-    public ListSchedule(ArrayList<Event> classes, ArrayList<Event> ccas, ArrayList<Event> tests) {
+    public ListSchedule(ArrayList<Event> classes, ArrayList<Event> ccas,
+                        ArrayList<Event> tests, ArrayList<Event> tuitions) {
         this.classes = classes;
         this.ccas = ccas;
         this.tests = tests;
+        this.tuitions = tuitions;
     }
 
     /**
@@ -48,6 +51,11 @@ public class ListSchedule {
             printedEvents.add("Tests:");
             printArrayPaddedNumbers(printedEvents, tests);
         }
+        if (haveTuitions()) {
+            logger.log(Level.INFO, "converting tuition events");
+            printedEvents.add("Tuitions:");
+            printArrayPaddedNumbers(printedEvents, tuitions);
+        }
 
         return printedEvents;
     }
@@ -64,8 +72,12 @@ public class ListSchedule {
         return tests.size() != 0;
     }
 
+    private boolean haveTuitions() {
+        return tuitions.size() != 0;
+    }
+
     private boolean hasNoSchedule() {
-        return (!haveClasses() && !haveCcas() && !haveTests());
+        return (!haveClasses() && !haveCcas() && !haveTests() && !haveTuitions());
     }
 
     /**

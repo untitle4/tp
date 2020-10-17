@@ -1,10 +1,10 @@
 package seedu.duke.event;
 
-import seedu.duke.ClassManager;
-import seedu.duke.TestManager;
 import seedu.duke.CcaManager;
-import seedu.duke.storage.StorageManager;
+import seedu.duke.ClassManager;
 import seedu.duke.ListSchedule;
+import seedu.duke.TestManager;
+import seedu.duke.TuitionManager;
 import seedu.duke.exception.EmptyListException;
 
 import java.util.ArrayList;
@@ -13,11 +13,13 @@ public class EventManager {
     private static ClassManager classManager;
     private static TestManager testManager;
     private static CcaManager ccaManager;
+    private static TuitionManager tuitionManager;
 
-    public EventManager(StorageManager storageManager) {
-        classManager = new ClassManager(storageManager.getClassList());
-        testManager = new TestManager(storageManager.getTestList());
-        ccaManager = new CcaManager(storageManager.getCcaList());
+    public EventManager(EventParameter eventParameter) {
+        classManager = new ClassManager(eventParameter.getClasses());
+        testManager = new TestManager(eventParameter.getTests());
+        ccaManager = new CcaManager(eventParameter.getCcas());
+        tuitionManager = new TuitionManager(eventParameter.getTuitions());
     }
 
     public ClassManager getClassManager() {
@@ -32,10 +34,15 @@ public class EventManager {
         return ccaManager;
     }
 
+    public TuitionManager getTuitionManager() {
+        return tuitionManager;
+    }
+
     public void listSchedule() {
         try {
             ListSchedule listSchedule = new ListSchedule(
-                classManager.getClasses(), ccaManager.getCcaList(), testManager.getTestList());
+                classManager.getClasses(), ccaManager.getCcaList(),
+                testManager.getTestList(), tuitionManager.getTuitions());
             ArrayList<String> printedEvents = listSchedule.getAllEventsPrinted();
             printArray(printedEvents);
         } catch (EmptyListException e) {

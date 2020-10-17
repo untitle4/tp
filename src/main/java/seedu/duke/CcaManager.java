@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 public class CcaManager {
     private final ArrayList<Event> cca;
-    private static final Logger logger = Logger.getLogger("CCA");
+    private static final Logger logger = LogManager.getLogger();
 
     public CcaManager(ArrayList<Event> inputList) {
         cca = inputList;
@@ -36,7 +36,6 @@ public class CcaManager {
             throw new CcaParamException();
         }
 
-        userInput.replaceAll("\\s+", "");
         final String[] ccaDetails = userInput.trim().split("\\/");
 
         logger.log(Level.INFO, "splitting user input into description, start date and end date");
@@ -119,7 +118,7 @@ public class CcaManager {
     }
 
     private void getCcaStatement() {
-        String ccaStatement = getCcaListSize() == 1 ? " cca" : " ccas";
+        String ccaStatement = getCcaListSize() <= 1 ? " cca" : " ccas";
         System.out.println("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
     }
 }

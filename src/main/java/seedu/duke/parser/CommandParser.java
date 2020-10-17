@@ -1,13 +1,20 @@
 package seedu.duke.parser;
 
+import seedu.duke.LogManager;
+import seedu.duke.contact.ContactManager;
 import seedu.duke.event.EventManager;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.ContactEmptyStringException;
+import seedu.duke.exception.ContactParamException;
+import seedu.duke.exception.EmptyTuitionInputException;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
+import seedu.duke.exception.InvalidTuitionInputException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
+import seedu.duke.quiz.QuizManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,21 +28,29 @@ public class CommandParser {
     public static final String INPUT_SCHEDULE_CLASS = "class";
     public static final String INPUT_SCHEDULE_TEST = "test";
     public static final String INPUT_SCHEDULE_CCA = "cca";
+    public static final String INPUT_SCHEDULE_TUITION = "tuition";
+    public static final String INPUT_HELP = "help";
+    public static final String INPUT_QUIZ = "quiz";
+    public static final String INPUT_CONTACT = "contact";
     public static final int MAIN_COMMAND_INDEX = 0;
     public static final int SUB_COMMAND_INDEX = 1;
-    public static final String INPUT_HELP = "help";
 
     private final String[] separatedInputs;
     private final String userInput;
     private final EventManager eventManager;
+    private final QuizManager quizManager;
+    private final ContactManager contactManager;
 
     private CommandType commandType;
 
-    private static final Logger logger = Logger.getLogger("Help");
+    private static final Logger logger = LogManager.getLogger();
 
-    public CommandParser(String userInput, EventManager eventManager) {
+    public CommandParser(String userInput, EventManager eventManager,
+                         QuizManager quizManager, ContactManager contactManager) {
         this.userInput = userInput;
         this.eventManager = eventManager;
+        this.quizManager = quizManager;
+        this.contactManager = contactManager;
         separatedInputs = userInput.split(" ");
         commandType = null;
     }
@@ -64,6 +79,12 @@ public class CommandParser {
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CCA)) {
             commandType = CommandType.ADD_CCA;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_CONTACT)) {
+            commandType = CommandType.ADD_CONTACT;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_TUITION)) {
+            commandType = CommandType.ADD_TUITION;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CLASS)) {
             commandType = CommandType.DELETE_CLASS;
@@ -73,6 +94,20 @@ public class CommandParser {
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CCA)) {
             commandType = CommandType.DELETE_CCA;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_QUIZ)) {
+            commandType = CommandType.DELETE_QUIZ;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DELETE)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_CONTACT)) {
+            commandType = CommandType.DELETE_CONTACT;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)
+                && separatedInputs.length > 1
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_QUIZ)) {
+            commandType = CommandType.LIST_QUIZ;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)
+                && separatedInputs.length > 1
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_CONTACT)) {
+            commandType = CommandType.LIST_CONTACT;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)) {
             commandType = CommandType.LIST;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_BYE)) {
@@ -86,6 +121,9 @@ public class CommandParser {
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DONE)
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_SCHEDULE_CCA)) {
             commandType = CommandType.DONE_CCA;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_ADD)
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_QUIZ)) {
+            commandType = CommandType.ADD_QUIZ;
         } else {
             throw new InvalidCommandException();
         }
@@ -117,6 +155,22 @@ public class CommandParser {
                 System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
             }
             break;
+        case ADD_CONTACT:
+            try {
+                contactManager.addContact(userInput);
+            } catch (ContactEmptyStringException | ContactParamException e) {
+                System.out.println("☹ OOPS!!! Remember to include ALL '/s', '/n', '/p', '/e' inputs!");
+            }
+            break;
+        case ADD_TUITION:
+            try {
+                eventManager.getTuitionManager().addTuition(userInput);
+            } catch (InvalidTuitionInputException e) {
+                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e', '/l' suffixes!");
+            } catch (EmptyTuitionInputException e) {
+                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e', '/l' inputs!");
+            }
+            break;
         case DELETE_CLASS:
             try {
                 eventManager.getClassManager().deleteClass(separatedInputs);
@@ -136,6 +190,20 @@ public class CommandParser {
                 eventManager.getTestManager().deleteTest(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
+            }
+            break;
+        case DELETE_QUIZ:
+            try {
+                quizManager.deleteQuiz(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("☹ OOPS!!! Please indicate a valid quiz index!");
+            }
+            break;
+        case DELETE_CONTACT:
+            try {
+                contactManager.deleteContact(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("☹ OOPS!!! Please indicate a valid contact index!");
             }
             break;
         case DONE_CLASS:
@@ -159,8 +227,17 @@ public class CommandParser {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
             break;
+        case ADD_QUIZ:
+            quizManager.addQuiz(userInput);
+            break;
         case LIST:
             eventManager.listSchedule();
+            break;
+        case LIST_QUIZ:
+            quizManager.listQuiz();
+            break;
+        case LIST_CONTACT:
+            contactManager.listContacts();
             break;
         case BYE:
             break;
@@ -169,21 +246,45 @@ public class CommandParser {
         }
     }
 
+    /**
+     * <h2>handleHelp()</h2>
+     * Prints out all available features users can use.
+     * @param userInputs to check if user input for 'help' is in a valid format.
+     * @exception InvalidHelpCommandException to inform the user if their help input is invalid.
+     */
     private static void handleHelp(String[] userInputs) throws InvalidHelpCommandException {
         if (userInputs.length == 1) {
             logger.log(Level.INFO, "printing out all features users can use");
             System.out.println("Hello! Here is a list of commands you can try:\n\n"
-                    + "\t1. Add class: add class /n [name of class] /s [start date-time of class] /e"
-                    + " [end date-time of class]\n"
-                    + "\t2. Delete class: delete class /n [class number]\n"
-                    + "\t3. Add cca: add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]\n"
-                    + "\t4. Delete cca: type delete cca /n [cca number]\n"
-                    + "\t5. Add test: type add test /n [name of test] /s [start date-time of test] /e "
-                    + "[end date-time of test]\n"
-                    + "\t6. Delete test: type delete test /n [test number]\n"
-                    + "\t7. Delete all: delete all\n"
-                    + "\n\tPlease enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]\n"
-                    + "\te.g. 2020-08-19 1300\n\n");
+                    + "\t1. Add class: 'add class /n [name of class] /s [start date-time of class] /e"
+                    + " [end date-time of class]'\n"
+                    + "\t2. Delete class: 'delete class [class number]'\n\n"
+                    + "\t3. Add cca: 'add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]'\n"
+                    + "\t4. Delete cca: 'delete cca [cca number]'\n\n"
+                    + "\t5. Add test: 'add test /n [name of test] /s [start date-time of test] /e "
+                    + "[end date-time of test]'\n"
+                    + "\t6. Delete test: 'delete test [test number]'\n\n"
+                    + "\t7. Add tuition: 'add tuition /n [name of tuition] /s [start date-time of tuition] /e "
+                    + "start date-time of tuition] /l [location of tuition]'\n"
+                    + "\t8. Delete tuition: 'delete tuition [tuition number]'\n\n"
+                    + "\t9. List events (class, test, cca, tuition): 'list'\n\n"
+                    + "\t10. Set class as done: 'done class [class number]'\n"
+                    + "\t11. Set test as done: 'done test [test number]'\n"
+                    + "\t12. Set cca as done: 'done cca [cca number]'\n"
+                    + "\t13. Set tuition as done: 'done tuition [tuition number]'\n\n"
+                    + "\t14. Find relevant event(s): 'find [keyword(s)]'\n\n"
+                    + "\t15. Add contact: 'add contact /sub [subject] /n [name of contact person] /hp [phone number]"
+                    + " /e [email address]'\n"
+                    + "\t16. Delete contact: 'delete contact [contact number]'\n"
+                    + "\t17. List contact: 'list contact'\n\n"
+                    + "\t18. Take Mathematics quiz: 'quiz [no. of questions (10, 20 or 30)]'\n"
+                    + "\t19. List quiz questions: 'list quiz'\n"
+                    + "\t20. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
+                    + " /o4 [option 4] /a [option answer] /exp [explanation]'\n\n"
+                    + "\t21. Exit program: 'bye'\n\n"
+                    + "\n\tNOTE:\n\t1. Please enter the date-time in the following format: YYYY-MM-DD "
+                    + "[time in 24hr format]\n\te.g. 2020-08-19 1300\n\n"
+                    + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n");
         } else {
             logger.log(Level.WARNING, "invalid help command");
             throw new InvalidHelpCommandException();
