@@ -1,6 +1,6 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.Model;
+import seedu.duke.model.Model;
 
 public class DeleteClassCommand extends Command {
     public DeleteClassCommand(String userInput) {

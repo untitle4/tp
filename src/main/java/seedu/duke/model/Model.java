@@ -1,8 +1,8 @@
-package seedu.duke;
+package seedu.duke.model;
 
-import seedu.duke.contact.ContactManager;
-import seedu.duke.event.EventManager;
-import seedu.duke.quiz.QuizManager;
+import seedu.duke.model.contact.ContactManager;
+import seedu.duke.model.event.EventManager;
+import seedu.duke.model.quiz.QuizManager;
 
 public class Model {
     EventManager eventManager;

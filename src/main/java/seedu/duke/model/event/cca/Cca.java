@@ -1,17 +1,19 @@
-package seedu.duke;
+package seedu.duke.model.event.cca;
 
-public class Test extends Event {
-    public static final String TEST_ICON = "[TEST]";
+import seedu.duke.Event;
+
+public class Cca extends Event {
+    public static final String CCA_ICON = "[CCA]";
     protected String start;
     protected String end;
 
-    public Test(String description, String start, String end) {
+    public Cca(String description, String start, String end) {
         super(description);
         this.start = start;
         this.end = end;
     }
 
-    public Test(String description, boolean isDone, String start, String end) {
+    public Cca(String description, boolean isDone, String start, String end) {
         super(description, isDone);
         this.start = start;
         this.end = end;
@@ -27,16 +29,16 @@ public class Test extends Event {
 
     @Override
     public String toString() {
-        return TEST_ICON + " " + super.toString() + " from " + start
+        return CCA_ICON + " " + super.toString() + " from " + start
                 + " to " + end;
     }
 
     @Override
     public boolean equals(Object obj) {
-        Test otherTest = (Test) obj;
+        Cca otherCca = (Cca) obj;
 
         return super.equals(obj)
-                && this.start.equals(otherTest.getStart())
-                && this.end.equals(otherTest.getEnd());
+                && this.start.equals(otherCca.getStart())
+                && this.end.equals(otherCca.getEnd());
     }
 }

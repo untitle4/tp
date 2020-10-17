@@ -1,11 +1,10 @@
 package seedu.duke.storage;
 
-import seedu.duke.Cca;
-import seedu.duke.Class;
-import seedu.duke.Class;
+import seedu.duke.model.event.cca.Cca;
+import seedu.duke.model.event.classlesson.Class;
 import seedu.duke.Event;
-import seedu.duke.Test;
-import seedu.duke.Tuition;
+import seedu.duke.model.event.test.Test;
+import seedu.duke.model.event.tuition.Tuition;
 
 import java.util.ArrayList;
 

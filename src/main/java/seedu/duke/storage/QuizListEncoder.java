@@ -1,6 +1,6 @@
 package seedu.duke.storage;
 
-import seedu.duke.quiz.Quiz;
+import seedu.duke.model.quiz.Quiz;
 
 import java.util.ArrayList;
 

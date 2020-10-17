@@ -1,11 +1,11 @@
-package seedu.duke.event;
+package seedu.duke.model.event;
 
-import seedu.duke.CcaManager;
-import seedu.duke.ClassManager;
+import seedu.duke.model.event.cca.CcaManager;
+import seedu.duke.model.event.classlesson.ClassManager;
 import seedu.duke.ListSchedule;
 import seedu.duke.common.Messages;
-import seedu.duke.TestManager;
-import seedu.duke.TuitionManager;
+import seedu.duke.model.event.test.TestManager;
+import seedu.duke.model.event.tuition.TuitionManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.EmptyListException;
 

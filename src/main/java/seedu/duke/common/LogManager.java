@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.common;
 
 import seedu.duke.common.Messages;
 import seedu.duke.ui.UserInterface;
@@ -10,7 +10,7 @@ import java.util.logging.SimpleFormatter;
 
 public class LogManager {
     private static final Logger LOGGER = Logger.getLogger("log");
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
     public LogManager() {
         userInterface = UserInterface.getInstance();

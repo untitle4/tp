@@ -1,8 +1,9 @@
 package seedu.duke;
 
-import org.junit.jupiter.api.Test;
-import seedu.duke.exception.InvalidValueException;
-import seedu.duke.storage.EventStorageManager;
+import seedu.duke.model.event.cca.Cca;
+import seedu.duke.model.event.classlesson.Class;
+import seedu.duke.model.event.test.Test;
+import seedu.duke.model.event.tuition.Tuition;
 
 import java.util.ArrayList;
 
@@ -36,7 +37,7 @@ public class StorageTest {
         events.add(new Class("Math tuition ",
                 "2020-09-22 1400 ",
                 "2020-09-22-1600"));
-        events.add(new seedu.duke.Test("CS2113T Finals ",
+        events.add(new Test("CS2113T Finals ",
                 "2020-12-04 1500 ",
                 "2020-12-04 1600"));
         events.add(new Tuition("English",

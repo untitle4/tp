@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.common.LogManager;
 import seedu.duke.exception.EmptyListException;
 
 import java.util.ArrayList;

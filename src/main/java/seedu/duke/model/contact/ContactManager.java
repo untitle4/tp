@@ -1,6 +1,6 @@
-package seedu.duke.contact;
+package seedu.duke.model.contact;
 
-import seedu.duke.LogManager;
+import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.ContactEmptyStringException;
