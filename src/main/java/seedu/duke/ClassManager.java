@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.common.Messages;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.parser.DateTimeParser;
+import seedu.duke.ui.UserInterface;
 
 /**
  * <h2>ClassManager class</h2>
@@ -30,12 +32,14 @@ import seedu.duke.parser.DateTimeParser;
 public class ClassManager {
     // Initialising ArrayList to store classes
     private final ArrayList<Event> classes;
+    private UserInterface userInterface;
 
     // Initialising Logger with name "Class"
     private static final Logger logger = LogManager.getLogger();
 
     public ClassManager(ArrayList<Event> classes) {
         this.classes = classes;
+        userInterface = UserInterface.getInstance();
     }
 
     public ArrayList<Event> getClasses() {
@@ -95,12 +99,12 @@ public class ClassManager {
             logger.log(Level.INFO, "adding the new class to the ArrayList");
         } catch (DateTimeParseException | StringIndexOutOfBoundsException
                 | ArrayIndexOutOfBoundsException | ParseException e) {
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
+            userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
             return;
         }
 
-        System.out.println("Got it. I've added this class: ");
-        System.out.println(classes.get(getClassListSize() - 1));
+        userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
+                classes.get(getClassListSize() - 1).toString());
         getClassStatement();
     }
 
@@ -120,21 +124,21 @@ public class ClassManager {
             // Just to test if class index is valid - for exception use only
             classes.get(classIndex - 1);
 
-            System.out.println("Noted. I've removed this class: ");
-            System.out.println(classes.get(classIndex - 1));
+            userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_SUCCESS,
+                    classes.get(classIndex - 1).toString());
 
             // Deletes class from classes ArrayList
             classes.remove(classIndex - 1);
             logger.log(Level.INFO, "deletion of class from ArrayList");
             getClassStatement();
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS! Please indicate which class you'd like to delete");
+            userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NO_NUMBER_GIVEN);
             logger.log(Level.WARNING, "absence of class index for deletion");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS! Please indicate a valid class index!");
+            userInterface.showToUser(Messages.MESSAGE_INVALID_CLASS_INDEX);
             logger.log(Level.WARNING, "invalid class index entered for deletion");
         } catch (NumberFormatException e) {
-            System.out.println("☹ OOPS! Please indicate in NUMERALS, which class you'd like to delete!");
+            userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NON_NUMBER);
             logger.log(Level.WARNING, "non-integer class index entered for deletion");
         }
     }
@@ -145,7 +149,7 @@ public class ClassManager {
      */
     private void getClassStatement() {
         String classStatement = getClassListSize() == 1 ? " class" : " classes";
-        System.out.println("Now you have " + getClassListSize() + classStatement + " in the list.");
+        userInterface.showToUser("Now you have " + getClassListSize() + classStatement + " in the list.");
     }
 
     /**
@@ -164,10 +168,10 @@ public class ClassManager {
             classNumber = Integer.parseInt(userInput[2]);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
-            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which class you'd like to set as Done!");
+            userInterface.showToUser(Messages.MESSAGE_CLASS_DONE_ERROR_NON_NUMBER);
             return;
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! Please indicate which class you'd like to set as Done!");
+            userInterface.showToUser(Messages.MESSAGE_CLASS_DONE_ERROR_NO_NUMBER_GIVEN);
             return;
         }
 
@@ -181,8 +185,8 @@ public class ClassManager {
         classes.get(classNumber - 1).setDone();
         logger.log(Level.INFO, "set class as done from ArrayList");
 
-        System.out.println("Nice! I've marked this class as done:");
-        System.out.println("  " + classes.get(classNumber - 1));
+        userInterface.showToUser(Messages.MESSAGE_CLASS_DONE_SUCCESS,
+                "  " + classes.get(classNumber - 1));
 
         getClassStatement();
     }

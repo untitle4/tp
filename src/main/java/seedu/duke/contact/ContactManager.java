@@ -1,6 +1,8 @@
 package seedu.duke.contact;
 
 import seedu.duke.LogManager;
+import seedu.duke.common.Messages;
+import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
 
@@ -11,9 +13,10 @@ import java.util.logging.Logger;
 public class ContactManager {
     private ArrayList<Contact> contacts = new ArrayList<>();
     private static final Logger logger = LogManager.getLogger();
+    private UserInterface userInterface;
 
     public ContactManager() {
-
+        userInterface = UserInterface.getInstance();
     }
 
     public ArrayList<Contact> getContactList() {
@@ -27,16 +30,16 @@ public class ContactManager {
 
     public void addContact(String userInput) throws ContactEmptyStringException, ContactParamException {
         if (!userInput.contains("/s")) {
-            System.out.println("Subject not found");
+            userInterface.showToUser(Messages.MESSAGE_SUBJECT_NOT_FOUND);
             throw new ContactParamException();
         } else if (!userInput.contains("/n")) {
-            System.out.println("Name not found");
+            userInterface.showToUser(Messages.MESSAGE_NAME_NOT_FOUND);
             throw new ContactParamException();
         } else if (!userInput.contains("/p")) {
-            System.out.println("Phone number not found");
+            userInterface.showToUser(Messages.MESSAGE_PHONE_NUMBER_NOT_FOUND);
             throw new ContactParamException();
         } else if (!userInput.contains("/e")) {
-            System.out.println("Email address not found");
+            userInterface.showToUser(Messages.MESSAGE_EMAIL_ADDRESS_NOT_FOUND);
             throw new ContactParamException();
         }
 
@@ -57,8 +60,8 @@ public class ContactManager {
 
         contacts.add(new Contact(subject, name, phoneNumber, emailAddress));
 
-        System.out.println("Got it. I've added this contact: ");
-        System.out.println(contacts.get(getContactListSize() - 1));
+        userInterface.showToUser(Messages.MESSAGE_CONTACT_ADD_SUCCESS,
+                contacts.get(getContactListSize() - 1).toString());
         getContactStatement();
     }
 
@@ -68,10 +71,10 @@ public class ContactManager {
         try {
             contactIndex = Integer.parseInt(userInput[2]);
         } catch (NumberFormatException e) {
-            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which cca you'd like to delete!");
+            userInterface.showToUser(Messages.MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER);
             return;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! Please indicate which contact you'd like to delete!");
+            userInterface.showToUser(Messages.MESSAGE_CONTACT_DELETE_ERROR_NO_NUMBER_GIVEN);
             return;
         }
 
@@ -79,8 +82,8 @@ public class ContactManager {
             throw new IndexOutOfBoundsException();
         }
 
-        System.out.println("Noted. I've removed this contact: ");
-        System.out.println(contacts.get(contactIndex - 1));
+        userInterface.showToUser(Messages.MESSAGE_CONTACT_DELETE_SUCCESS,
+                contacts.get(contactIndex - 1).toString());
 
         contacts.remove(contactIndex - 1);
         getContactStatement();
@@ -88,17 +91,17 @@ public class ContactManager {
 
     public void listContacts() {
         if (contacts.size() == 0) {
-            System.out.println("Contact list is empty. Add some!!");
+            userInterface.showToUser(Messages.MESSAGE_EMPTY_CONTACT_LIST);
         } else {
             for (int i = 0; i < getContactListSize(); i++) {
-                System.out.println("Contact " + (i + 1) + ":");
-                System.out.println(contacts.get(i));
+                userInterface.showToUser("Contact " + (i + 1) + ":",
+                        contacts.get(i).toString());
             }
         }
     }
 
     private void getContactStatement() {
         String contactStatement = getContactListSize() <= 1 ? " contact" : " contacts";
-        System.out.println("Now you have " + getContactListSize() + contactStatement + " in your list.");
+        userInterface.showToUser("Now you have " + getContactListSize() + contactStatement + " in your list.");
     }
 }
