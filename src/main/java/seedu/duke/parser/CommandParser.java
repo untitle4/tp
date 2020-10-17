@@ -1,6 +1,8 @@
 package seedu.duke.parser;
 
 import seedu.duke.LogManager;
+import seedu.duke.Messages;
+import seedu.duke.UserInterface;
 import seedu.duke.contact.ContactManager;
 import seedu.duke.event.EventManager;
 import seedu.duke.exception.CcaEmptyStringException;
@@ -43,6 +45,8 @@ public class CommandParser {
 
     private CommandType commandType;
 
+    private UserInterface userInterface;
+
     private static final Logger logger = LogManager.getLogger();
 
     public CommandParser(String userInput, EventManager eventManager,
@@ -53,6 +57,7 @@ public class CommandParser {
         this.contactManager = contactManager;
         separatedInputs = userInput.split(" ");
         commandType = null;
+        userInterface = UserInterface.getInstance();
     }
 
     public CommandType parseCommand() {
@@ -138,93 +143,106 @@ public class CommandParser {
             try {
                 eventManager.getClassManager().addClass(userInput);
             } catch (InvalidClassInputException e) {
-                System.out.println("☹ OOPS! Remember to include ALL '/n', '/s' and '/e' inputs!");
+                userInterface.showToUser(Messages.MESSAGE_MISSING_PARAMETERS);
             }
             break;
         case ADD_CCA:
             try {
                 eventManager.getCcaManager().addCca(userInput);
             } catch (CcaEmptyStringException | CcaParamException e) {
-                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
+                userInterface.showToUser(Messages.MESSAGE_MISSING_PARAMETERS);
             }
             break;
         case ADD_TEST:
             try {
                 eventManager.getTestManager().addTest(userInput);
             } catch (TestEmptyStringException | TestParamException e) {
-                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
+                userInterface.showToUser(Messages.MESSAGE_MISSING_PARAMETERS);
             }
             break;
         case ADD_CONTACT:
             try {
                 contactManager.addContact(userInput);
             } catch (ContactEmptyStringException | ContactParamException e) {
-                System.out.println("☹ OOPS!!! Remember to include ALL '/s', '/n', '/p', '/e' inputs!");
+                userInterface.showToUser(Messages.MESSAGE_MISSING_PARAMETERS);
             }
             break;
         case ADD_TUITION:
             try {
                 eventManager.getTuitionManager().addTuition(userInput);
             } catch (InvalidTuitionInputException e) {
-                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e', '/l' suffixes!");
+                userInterface.showToUser(Messages.MESSAGE_MISSING_TUITION_SUFFIX);
             } catch (EmptyTuitionInputException e) {
-                System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e', '/l' inputs!");
+                userInterface.showToUser(Messages.MESSAGE_MISSING_TUITION_INPUT);
             }
             break;
         case DELETE_CLASS:
             try {
                 eventManager.getClassManager().deleteClass(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("☹ OOPS!!! Please indicate a valid class index!");
+                userInterface.showToUser(Messages.MESSAGE_INVALID_CLASS_INDEX);
             }
             break;
         case DELETE_CCA:
             try {
                 eventManager.getCcaManager().deleteCca(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("☹ OOPS!!! Please indicate a valid cca index!");
+                userInterface.showToUser(Messages.MESSAGE_INVALID_CCA_INDEX);
             }
             break;
         case DELETE_TEST:
             try {
                 eventManager.getTestManager().deleteTest(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("☹ OOPS!!! Please indicate a valid test index!");
+                userInterface.showToUser(Messages.MESSAGE_INVALID_TEST_INDEX);
             }
             break;
         case DELETE_QUIZ:
             try {
                 quizManager.deleteQuiz(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("☹ OOPS!!! Please indicate a valid quiz index!");
+                userInterface.showToUser(Messages.MESSAGE_INVALID_QUIZ_INDEX);
             }
             break;
+        case DELETE_TUITION:
+            try {
+                eventManager.getTuitionManager().deleteTuition(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                userInterface.showToUser(Messages.MESSAGE_INVALID_TUITION_INDEX);
+            }
         case DELETE_CONTACT:
             try {
                 contactManager.deleteContact(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("☹ OOPS!!! Please indicate a valid contact index!");
+                userInterface.showToUser(Messages.MESSAGE_INVALID_CONTACT_INDEX);
             }
             break;
         case DONE_CLASS:
             try {
                 eventManager.getClassManager().setClassDone(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("☹ OOPS!!! Please indicate a valid class index!");
+                userInterface.showToUser(Messages.MESSAGE_INVALID_CLASS_INDEX);
             }
             break;
         case DONE_TEST:
             try {
                 eventManager.getTestManager().setTestDone(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("☹ OOPS!!! Please indicate a valid test index!");
+                userInterface.showToUser(Messages.MESSAGE_INVALID_TEST_INDEX);
             }
             break;
         case DONE_CCA:
             try {
                 eventManager.getCcaManager().setCcaDone(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("☹ OOPS!!! Please indicate a valid test index!");
+                userInterface.showToUser(Messages.MESSAGE_INVALID_CCA_INDEX);
+            }
+            break;
+        case DONE_TUITION:
+            try {
+                eventManager.getTuitionManager().setTuitionDone(separatedInputs);
+            } catch (IndexOutOfBoundsException e) {
+                userInterface.showToUser(Messages.MESSAGE_INVALID_TUITION_INDEX);
             }
             break;
         case ADD_QUIZ:
@@ -252,39 +270,10 @@ public class CommandParser {
      * @param userInputs to check if user input for 'help' is in a valid format.
      * @exception InvalidHelpCommandException to inform the user if their help input is invalid.
      */
-    private static void handleHelp(String[] userInputs) throws InvalidHelpCommandException {
+    private void handleHelp(String[] userInputs) throws InvalidHelpCommandException {
         if (userInputs.length == 1) {
             logger.log(Level.INFO, "printing out all features users can use");
-            System.out.println("Hello! Here is a list of commands you can try:\n\n"
-                    + "\t1. Add class: 'add class /n [name of class] /s [start date-time of class] /e"
-                    + " [end date-time of class]'\n"
-                    + "\t2. Delete class: 'delete class [class number]'\n\n"
-                    + "\t3. Add cca: 'add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]'\n"
-                    + "\t4. Delete cca: 'delete cca [cca number]'\n\n"
-                    + "\t5. Add test: 'add test /n [name of test] /s [start date-time of test] /e "
-                    + "[end date-time of test]'\n"
-                    + "\t6. Delete test: 'delete test [test number]'\n\n"
-                    + "\t7. Add tuition: 'add tuition /n [name of tuition] /s [start date-time of tuition] /e "
-                    + "start date-time of tuition] /l [location of tuition]'\n"
-                    + "\t8. Delete tuition: 'delete tuition [tuition number]'\n\n"
-                    + "\t9. List events (class, test, cca, tuition): 'list'\n\n"
-                    + "\t10. Set class as done: 'done class [class number]'\n"
-                    + "\t11. Set test as done: 'done test [test number]'\n"
-                    + "\t12. Set cca as done: 'done cca [cca number]'\n"
-                    + "\t13. Set tuition as done: 'done tuition [tuition number]'\n\n"
-                    + "\t14. Find relevant event(s): 'find [keyword(s)]'\n\n"
-                    + "\t15. Add contact: 'add contact /sub [subject] /n [name of contact person] /hp [phone number]"
-                    + " /e [email address]'\n"
-                    + "\t16. Delete contact: 'delete contact [contact number]'\n"
-                    + "\t17. List contact: 'list contact'\n\n"
-                    + "\t18. Take Mathematics quiz: 'quiz [no. of questions (10, 20 or 30)]'\n"
-                    + "\t19. List quiz questions: 'list quiz'\n"
-                    + "\t20. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
-                    + " /o4 [option 4] /a [option answer] /exp [explanation]'\n\n"
-                    + "\t21. Exit program: 'bye'\n\n"
-                    + "\n\tNOTE:\n\t1. Please enter the date-time in the following format: YYYY-MM-DD "
-                    + "[time in 24hr format]\n\te.g. 2020-08-19 1300\n\n"
-                    + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n");
+            userInterface.showToUser(Messages.MESSAGE_HELP);
         } else {
             logger.log(Level.WARNING, "invalid help command");
             throw new InvalidHelpCommandException();
