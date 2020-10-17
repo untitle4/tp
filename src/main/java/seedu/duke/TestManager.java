@@ -13,9 +13,11 @@ import java.util.logging.Logger;
 public class TestManager {
     private final ArrayList<Event> test;
     private static final Logger logger = LogManager.getLogger();
+    private UserInterface userInterface;
 
     public TestManager(ArrayList<Event> inputList) {
         test = inputList;
+        userInterface = UserInterface.getInstance();
     }
 
     public ArrayList<Event> getTestList() {
@@ -58,13 +60,13 @@ public class TestManager {
         } catch (DateTimeParseException | StringIndexOutOfBoundsException
                 | ArrayIndexOutOfBoundsException | ParseException e) {
             logger.log(Level.WARNING, "date&time is not valid or in wrong format");
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
+            userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
             return;
         }
         logger.log(Level.INFO, "added test to ArrayList");
 
-        System.out.println("Got it. I've added this test:");
-        System.out.println("  " + test.get(getTestListSize() - 1));
+        userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
+                "  " + test.get(getTestListSize() - 1));
         getTaskStatement();
     }
 
@@ -76,10 +78,10 @@ public class TestManager {
             testNumber = Integer.parseInt(userInput[2]);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
-            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which test you'd like to delete!");
+            userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NON_NUMBER);
             return;
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! Please indicate which test you'd like to delete!");
+            userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NO_NUMBER_GIVEN);
             return;
         }
 
@@ -88,8 +90,8 @@ public class TestManager {
             throw new IndexOutOfBoundsException();
         }
 
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + test.get(testNumber - 1));
+        userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_SUCCESS,
+                "  " + test.get(testNumber - 1));
 
         test.remove(testNumber - 1);
         logger.log(Level.INFO, "deleted test from ArrayList");
@@ -99,9 +101,9 @@ public class TestManager {
 
     private void getTaskStatement() {
         if ((getTestListSize() - 1 == 0) || (getTestListSize() == 0)) {
-            System.out.println("Now you have " + getTestListSize() + " task in the list.");
+            userInterface.showToUser("Now you have " + getTestListSize() + " task in the list.");
         } else {
-            System.out.println("Now you have " + getTestListSize() + " tasks in the list.");
+            userInterface.showToUser("Now you have " + getTestListSize() + " tasks in the list.");
         }
     }
 
@@ -113,10 +115,10 @@ public class TestManager {
             testNumber = Integer.parseInt(userInput[2]);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
-            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which test you'd like to set as Done!");
+            userInterface.showToUser(Messages.MESSAGE_TEST_DONE_ERROR_NON_NUMBER);
             return;
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! Please indicate which test you'd like to set as Done!");
+            userInterface.showToUser(Messages.MESSAGE_TEST_DONE_ERROR_NO_NUMBER_GIVEN);
             return;
         }
 
@@ -128,8 +130,8 @@ public class TestManager {
         test.get(testNumber - 1).setDone();
         logger.log(Level.INFO, "set test as done from ArrayList");
 
-        System.out.println("Nice! I've marked this test as done:");
-        System.out.println("  " + test.get(testNumber - 1));
+        userInterface.showToUser(Messages.MESSAGE_TEST_DONE_SUCCESS,
+                "  " + test.get(testNumber - 1));
 
         getTaskStatement();
     }
