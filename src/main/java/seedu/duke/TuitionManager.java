@@ -1,7 +1,9 @@
 package seedu.duke;
 
+import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyTuitionInputException;
 import seedu.duke.exception.InvalidTuitionInputException;
+import seedu.duke.ui.UserInterface;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -1,5 +1,8 @@
 package seedu.duke;
 
+import seedu.duke.common.Messages;
+import seedu.duke.ui.UserInterface;
+
 import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;

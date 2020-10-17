@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.common.Messages;
 import seedu.duke.contact.ContactManager;
 import seedu.duke.event.EventManager;
 import seedu.duke.event.EventParameter;
@@ -9,12 +10,10 @@ import seedu.duke.quiz.Quiz;
 import seedu.duke.quiz.QuizManager;
 import seedu.duke.storage.QuizStorageManager;
 import seedu.duke.storage.EventStorageManager;
+import seedu.duke.ui.UserInterface;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Duke {
     public static final String EVENT_FILE_NAME = "/events.txt";

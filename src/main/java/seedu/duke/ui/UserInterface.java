@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.duke.ui;
+
+import seedu.duke.common.Messages;
 
 import java.io.PrintStream;
 import java.util.ArrayList;

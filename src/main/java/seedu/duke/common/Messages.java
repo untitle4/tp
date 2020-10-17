@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.common;
 
 public class Messages {
     // Intro related messages

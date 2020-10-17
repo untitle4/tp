@@ -1,8 +1,8 @@
 package seedu.duke.parser;
 
 import seedu.duke.LogManager;
-import seedu.duke.Messages;
-import seedu.duke.UserInterface;
+import seedu.duke.common.Messages;
+import seedu.duke.ui.UserInterface;
 import seedu.duke.contact.ContactManager;
 import seedu.duke.event.EventManager;
 import seedu.duke.exception.CcaEmptyStringException;

@@ -3,10 +3,10 @@ package seedu.duke.event;
 import seedu.duke.CcaManager;
 import seedu.duke.ClassManager;
 import seedu.duke.ListSchedule;
-import seedu.duke.Messages;
+import seedu.duke.common.Messages;
 import seedu.duke.TestManager;
 import seedu.duke.TuitionManager;
-import seedu.duke.UserInterface;
+import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.EmptyListException;
 
 import java.util.ArrayList;

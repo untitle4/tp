@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.common.Messages;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.parser.DateTimeParser;
+import seedu.duke.ui.UserInterface;
 
 /**
  * <h2>ClassManager class</h2>

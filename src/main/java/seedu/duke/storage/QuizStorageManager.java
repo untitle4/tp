@@ -1,8 +1,8 @@
 package seedu.duke.storage;
 
 import seedu.duke.LogManager;
-import seedu.duke.Messages;
-import seedu.duke.UserInterface;
+import seedu.duke.common.Messages;
+import seedu.duke.ui.UserInterface;
 import seedu.duke.quiz.Quiz;
 
 import java.io.IOException;
