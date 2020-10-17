@@ -22,6 +22,23 @@ public class QuizManager {
         return quizzes.size();
     }
 
+    public void takeQuiz(String[] separatedInputs) {
+        int noOfQues = Integer.parseInt(separatedInputs[1]);
+        //TODO: handle "quiz", "quiz 2"
+
+        if (noOfQues <= getQuizListSize()) {
+            System.out.println("test enough qns");
+        } else if ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10)) {
+            System.out.println("OOPS! You wanted to take a quiz with " + noOfQues + " questions, but your current quiz "
+                    + "only has " + getQuizListSize() + " question(s).\nPlease add more questions to your quiz "
+                    + "via the 'add quiz' command!");
+        } else {
+            System.out.println("OOPS! You wanted to quiz a test with " + noOfQues + " questions, but your current quiz "
+                    + "only has " + getQuizListSize() + " question(s).\nPlease either add more questions to your quiz "
+                    + "via the 'add quiz' command, or take a quiz with a suitable number of questions!");
+        }
+    }
+
     public void deleteQuiz(String[] userInput) throws IndexOutOfBoundsException {
         int quizIndex;
 
@@ -83,7 +100,7 @@ public class QuizManager {
     }
 
     private void getQuizStatement() {
-        String quizStatement = getQuizListSize() == 1 ? " quiz" : " quizzes";
-        System.out.println("Now you have " + getQuizListSize() + quizStatement + " in the quiz list.");
+        String quizStatement = getQuizListSize() == 1 ? " question" : " questions";
+        System.out.println("Now you have " + getQuizListSize() + quizStatement + " in your quiz.");
     }
 }

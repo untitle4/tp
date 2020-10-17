@@ -110,6 +110,11 @@ public class CommandParser {
             commandType = CommandType.LIST_CONTACT;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)) {
             commandType = CommandType.LIST;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_QUIZ)
+                && (separatedInputs[SUB_COMMAND_INDEX].equals("10") ||
+                separatedInputs[SUB_COMMAND_INDEX].equals("20") ||
+                separatedInputs[SUB_COMMAND_INDEX].equals("30"))){
+            commandType = CommandType.QUIZ;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_BYE)) {
             commandType = CommandType.BYE;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_DONE)
@@ -226,6 +231,9 @@ public class CommandParser {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
+            break;
+        case QUIZ:
+            quizManager.takeQuiz(separatedInputs);
             break;
         case ADD_QUIZ:
             quizManager.addQuiz(userInput);
