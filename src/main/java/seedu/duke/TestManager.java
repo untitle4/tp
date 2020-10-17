@@ -36,7 +36,7 @@ public class TestManager {
             throw new TestParamException();
         }
 
-        userInput.replaceAll("\\s+","");
+        //userInput.replaceAll("\\s+","");
         final String[] testDetails = userInput.trim().split("\\/");
 
         logger.log(Level.INFO, "splitting user input into description, start date and end date");
