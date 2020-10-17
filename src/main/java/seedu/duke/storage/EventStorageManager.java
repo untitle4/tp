@@ -1,7 +1,13 @@
 package seedu.duke.storage;
 
-import seedu.duke.*;
+import seedu.duke.Cca;
 import seedu.duke.Class;
+import seedu.duke.Event;
+import seedu.duke.LogManager;
+import seedu.duke.Messages;
+import seedu.duke.Test;
+import seedu.duke.Tuition;
+import seedu.duke.UserInterface;
 import seedu.duke.event.EventParameter;
 
 import java.io.File;

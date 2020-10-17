@@ -7,21 +7,22 @@ public class Messages {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    public static final String MESSAGE_HELLO_FROM_DUKE = "Hello from\n" + Messages.MESSAGE_LOGO;
+    public static final String MESSAGE_HELLO_FROM_DUKE = "Hello from\n"
+            + Messages.MESSAGE_LOGO;
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
     public static final String MESSAGE_HELLO = "Hello ";
-    public static final String MESSAGE_PROMPT_COMMAND = "What can we do for you? " +
-            "(Enter 'help' for the list of available commands!)";
+    public static final String MESSAGE_PROMPT_COMMAND = "What can we do for you? "
+            + "(Enter 'help' for the list of available commands!)";
     public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is empty. Add some!";
 
     // General error messages
     public static final String MESSAGE_STORAGE_READ_ERROR = "There was an error loading your files.";
     public static final String MESSAGE_STORAGE_INITIALIZATION_ERROR = "STORAGE: There was an error";
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
-    public static final String MESSAGE_MISSING_PARAMETERS = "☹ OOPS!!! " +
-            "Remember to include ALL '/n', '/s' and '/e' inputs!";
-    public static final String MESSAGE_INVALID_DATE = "☹ OOPS!!! " +
-            "Please enter valid date and time in format yyyy-mm-dd HHMM!";
+    public static final String MESSAGE_MISSING_PARAMETERS = "☹ OOPS!!! "
+            + "Remember to include ALL '/n', '/s' and '/e' inputs!";
+    public static final String MESSAGE_INVALID_DATE = "☹ OOPS!!! "
+            + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
 
     // Messages from Contact related classes
     public static final String MESSAGE_SUBJECT_NOT_FOUND = "Subject not found";
@@ -30,71 +31,71 @@ public class Messages {
     public static final String MESSAGE_EMAIL_ADDRESS_NOT_FOUND = "Email address not found";
     public static final String MESSAGE_CONTACT_ADD_SUCCESS = "Got it. I've added this contact: ";
     public static final String MESSAGE_CONTACT_DELETE_SUCCESS = "Noted. I've removed this contact: ";
-    public static final String MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! " +
-            "Please indicate in NUMERALS, which contact you'd like to delete!";
-    public static final String MESSAGE_CONTACT_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! " +
-            "Please indicate which contact you'd like to delete!";
+    public static final String MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! "
+            + "Please indicate in NUMERALS, which contact you'd like to delete!";
+    public static final String MESSAGE_CONTACT_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! "
+            + "Please indicate which contact you'd like to delete!";
     public static final String MESSAGE_INVALID_CONTACT_INDEX = "☹ OOPS!!! Please indicate a valid contact index!";
     public static final String MESSAGE_EMPTY_CONTACT_LIST = "Contact list is empty. Add some!!";
 
     // Messages from Class related classes
     public static final String MESSAGE_CLASS_ADD_SUCCESS = "Got it. I've added this class: ";
     public static final String MESSAGE_CLASS_DELETE_SUCCESS = "Noted. I've removed this class: ";
-    public static final String MESSAGE_CLASS_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! " +
-            "Please indicate in NUMERALS, which class you'd like to delete!";
-    public static final String MESSAGE_CLASS_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! " +
-            "Please indicate which class you'd like to delete!";
+    public static final String MESSAGE_CLASS_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! "
+            + "Please indicate in NUMERALS, which class you'd like to delete!";
+    public static final String MESSAGE_CLASS_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! "
+            + "Please indicate which class you'd like to delete!";
     public static final String MESSAGE_CLASS_DONE_SUCCESS = "Nice! I've marked this class as done:";
-    public static final String MESSAGE_CLASS_DONE_ERROR_NON_NUMBER = "☹ OOPS!!! " +
-            "Please indicate in NUMERALS, which class you'd like to set as Done!";
-    public static final String MESSAGE_CLASS_DONE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! " +
-            "Please indicate which class you'd like to set as Done!";
+    public static final String MESSAGE_CLASS_DONE_ERROR_NON_NUMBER = "☹ OOPS!!! "
+            + "Please indicate in NUMERALS, which class you'd like to set as Done!";
+    public static final String MESSAGE_CLASS_DONE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! "
+            + "Please indicate which class you'd like to set as Done!";
     public static final String MESSAGE_INVALID_CLASS_INDEX = "☹ OOPS!!! Please indicate a valid class index!";
 
     // Messages from Cca related classes
     public static final String MESSAGE_CCA_ADD_SUCCESS = "Got it. I've added this cca: ";
     public static final String MESSAGE_CCA_DELETE_SUCCESS = "Noted. I've removed this cca: ";
-    public static final String MESSAGE_CCA_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! " +
-            "Please indicate in NUMERALS, which cca you'd like to delete!";
-    public static final String MESSAGE_CCA_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! " +
-            "Please indicate which cca you'd like to delete!";
+    public static final String MESSAGE_CCA_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! "
+            + "Please indicate in NUMERALS, which cca you'd like to delete!";
+    public static final String MESSAGE_CCA_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! "
+            + "Please indicate which cca you'd like to delete!";
     public static final String MESSAGE_CCA_DONE_SUCCESS = "Nice! I've marked this cca as done:";
-    public static final String MESSAGE_CCA_DONE_ERROR_NON_NUMBER = "☹ OOPS!!! " +
-            "Please indicate in NUMERALS, which cca you'd like to set as Done!";
-    public static final String MESSAGE_CCA_DONE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! " +
-            "Please indicate which cca you'd like to set as Done!";
+    public static final String MESSAGE_CCA_DONE_ERROR_NON_NUMBER = "☹ OOPS!!! "
+            + "Please indicate in NUMERALS, which cca you'd like to set as Done!";
+    public static final String MESSAGE_CCA_DONE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! "
+            + "Please indicate which cca you'd like to set as Done!";
     public static final String MESSAGE_INVALID_CCA_INDEX = "☹ OOPS!!! Please indicate a valid cca index!";
 
     // Messages from Test related classes
     public static final String MESSAGE_TEST_ADD_SUCCESS = "Got it. I've added this test: ";
     public static final String MESSAGE_TEST_DELETE_SUCCESS = "Noted. I've removed this test: ";
-    public static final String MESSAGE_TEST_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! " +
-            "Please indicate in NUMERALS, which test you'd like to delete!";
-    public static final String MESSAGE_TEST_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! " +
-            "Please indicate which test you'd like to delete!";
+    public static final String MESSAGE_TEST_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! "
+            + "Please indicate in NUMERALS, which test you'd like to delete!";
+    public static final String MESSAGE_TEST_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! "
+            + "Please indicate which test you'd like to delete!";
     public static final String MESSAGE_TEST_DONE_SUCCESS = "Nice! I've marked this test as done:";
-    public static final String MESSAGE_TEST_DONE_ERROR_NON_NUMBER = "☹ OOPS!!! " +
-            "Please indicate in NUMERALS, which test you'd like to set as Done!";
-    public static final String MESSAGE_TEST_DONE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! " +
-            "Please indicate which test you'd like to set as Done!";
+    public static final String MESSAGE_TEST_DONE_ERROR_NON_NUMBER = "☹ OOPS!!! "
+            + "Please indicate in NUMERALS, which test you'd like to set as Done!";
+    public static final String MESSAGE_TEST_DONE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! "
+            + "Please indicate which test you'd like to set as Done!";
     public static final String MESSAGE_INVALID_TEST_INDEX = "☹ OOPS!!! Please indicate a valid test index!";
 
     // Messages from Tuition related classes
-    public static final String MESSAGE_MISSING_TUITION_SUFFIX = "☹ OOPS!!! " +
-            "Remember to include ALL '/n', '/s', '/e', '/l' suffixes!";
-    public static final String MESSAGE_MISSING_TUITION_INPUT = "☹ OOPS!!! " +
-            "Remember to include ALL '/n', '/s', '/e', '/l' inputs!";
+    public static final String MESSAGE_MISSING_TUITION_SUFFIX = "☹ OOPS!!! "
+            + "Remember to include ALL '/n', '/s', '/e', '/l' suffixes!";
+    public static final String MESSAGE_MISSING_TUITION_INPUT = "☹ OOPS!!! "
+            + "Remember to include ALL '/n', '/s', '/e', '/l' inputs!";
     public static final String MESSAGE_TUITION_ADD_SUCCESS = "Got it. I've added this tuition: ";
     public static final String MESSAGE_TUITION_DELETE_SUCCESS = "Noted. I've removed this tuition: ";
-    public static final String MESSAGE_TUITION_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! " +
-            "Please indicate in NUMERALS, which tuition you'd like to delete!";
-    public static final String MESSAGE_TUITION_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! " +
-            "Please indicate which tuition you'd like to delete!";
+    public static final String MESSAGE_TUITION_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! "
+            + "Please indicate in NUMERALS, which tuition you'd like to delete!";
+    public static final String MESSAGE_TUITION_DELETE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! "
+            + "Please indicate which tuition you'd like to delete!";
     public static final String MESSAGE_TUITION_DONE_SUCCESS = "Nice! I've marked this tuition as done:";
-    public static final String MESSAGE_TUITION_DONE_ERROR_NON_NUMBER = "☹ OOPS!!! " +
-            "Please indicate in NUMERALS, which tuition you'd like to set as Done!";
-    public static final String MESSAGE_TUITION_DONE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! " +
-            "Please indicate which tuition you'd like to set as Done!";
+    public static final String MESSAGE_TUITION_DONE_ERROR_NON_NUMBER = "☹ OOPS!!! "
+            + "Please indicate in NUMERALS, which tuition you'd like to set as Done!";
+    public static final String MESSAGE_TUITION_DONE_ERROR_NO_NUMBER_GIVEN = "☹ OOPS!!! "
+            + "Please indicate which tuition you'd like to set as Done!";
     public static final String MESSAGE_INVALID_TUITION_INDEX = "☹ OOPS!!! Please indicate a valid tuition index!";
 
     // Messages from Quiz related classes

@@ -16,7 +16,7 @@ public class UserInterface {
 
     public static UserInterface getInstance() {
         if (userInterface == null) {
-           userInterface = new UserInterface();
+            userInterface = new UserInterface();
         }
 
         return userInterface;

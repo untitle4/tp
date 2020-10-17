@@ -210,6 +210,7 @@ public class CommandParser {
             } catch (IndexOutOfBoundsException e) {
                 userInterface.showToUser(Messages.MESSAGE_INVALID_TUITION_INDEX);
             }
+            break;
         case DELETE_CONTACT:
             try {
                 contactManager.deleteContact(separatedInputs);
