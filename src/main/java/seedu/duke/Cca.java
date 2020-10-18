@@ -1,34 +1,31 @@
 package seedu.duke;
 
+import seedu.duke.parser.DateTimeParser;
+
+import java.text.ParseException;
+import java.time.format.DateTimeParseException;
+
 public class Cca extends Event {
     public static final String CCA_ICON = "[CCA]";
-    protected String start;
-    protected String end;
 
     public Cca(String description, String start, String end) {
-        super(description);
-        this.start = start;
-        this.end = end;
+        super(description, start, end);
     }
 
     public Cca(String description, boolean isDone, String start, String end) {
-        super(description, isDone);
-        this.start = start;
-        this.end = end;
-    }
-
-    public String getStart() {
-        return start;
-    }
-
-    public String getEnd() {
-        return end;
+        super(description, start, end, isDone);
     }
 
     @Override
     public String toString() {
-        return CCA_ICON + " " + super.toString() + " from " + start
-                + " to " + end;
+        String result = "";
+        try {
+            result = CCA_ICON + " " + super.toString() + " from " + new DateTimeParser().changeDateTime(super.getStart())
+                    + " to " + new DateTimeParser().changeDateTime(super.getEnd());
+        } catch (ParseException parseException) {
+            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
+        }
+        return result;
     }
 
     @Override
@@ -36,7 +33,7 @@ public class Cca extends Event {
         Cca otherCca = (Cca) obj;
 
         return super.equals(obj)
-                && this.start.equals(otherCca.getStart())
-                && this.end.equals(otherCca.getEnd());
+                && this.getStart().equals(otherCca.getStart())
+                && this.getEnd().equals(otherCca.getEnd());
     }
 }

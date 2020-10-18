@@ -1,34 +1,30 @@
 package seedu.duke;
+import seedu.duke.parser.DateTimeParser;
+
+import java.text.ParseException;
+import java.time.format.DateTimeParseException;
 
 public class Test extends Event {
     public static final String TEST_ICON = "[TEST]";
-    protected String start;
-    protected String end;
 
     public Test(String description, String start, String end) {
-        super(description);
-        this.start = start;
-        this.end = end;
+        super(description, start, end);
     }
 
     public Test(String description, boolean isDone, String start, String end) {
-        super(description, isDone);
-        this.start = start;
-        this.end = end;
-    }
-
-    public String getStart() {
-        return start;
-    }
-
-    public String getEnd() {
-        return end;
+        super(description, start, end, isDone);
     }
 
     @Override
     public String toString() {
-        return TEST_ICON + " " + super.toString() + " from " + start
-                + " to " + end;
+        String result = "";
+        try {
+            result = TEST_ICON + " " + super.toString() + " from " + new DateTimeParser().changeDateTime(super.getStart())
+                    + " to " + new DateTimeParser().changeDateTime(super.getEnd());
+        } catch (ParseException e) {
+            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
+        }
+        return result;
     }
 
     @Override
@@ -36,7 +32,7 @@ public class Test extends Event {
         Test otherTest = (Test) obj;
 
         return super.equals(obj)
-                && this.start.equals(otherTest.getStart())
-                && this.end.equals(otherTest.getEnd());
+                && this.getStart().equals(otherTest.getStart())
+                && this.getEnd().equals(otherTest.getEnd());
     }
 }

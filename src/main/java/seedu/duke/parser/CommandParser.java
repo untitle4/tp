@@ -32,6 +32,7 @@ public class CommandParser {
     public static final String INPUT_HELP = "help";
     public static final String INPUT_QUIZ = "quiz";
     public static final String INPUT_CONTACT = "contact";
+    public static final String INPUT_DATE = "date";
     public static final int MAIN_COMMAND_INDEX = 0;
     public static final int SUB_COMMAND_INDEX = 1;
 
@@ -108,7 +109,12 @@ public class CommandParser {
                 && separatedInputs.length > 1
                 && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_CONTACT)) {
             commandType = CommandType.LIST_CONTACT;
-        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)) {
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)
+                && separatedInputs.length > 1
+                && separatedInputs[SUB_COMMAND_INDEX].equals(INPUT_DATE)) {
+            commandType = CommandType.LIST_DATE;
+        } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_LIST)
+                && separatedInputs.length == 1) {
             commandType = CommandType.LIST;
         } else if (separatedInputs[MAIN_COMMAND_INDEX].equals(INPUT_BYE)) {
             commandType = CommandType.BYE;
@@ -238,6 +244,9 @@ public class CommandParser {
             break;
         case LIST_CONTACT:
             contactManager.listContacts();
+            break;
+        case LIST_DATE:
+            eventManager.listDate(separatedInputs);
             break;
         case BYE:
             break;

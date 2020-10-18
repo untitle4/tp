@@ -5,6 +5,8 @@ import seedu.duke.exception.CcaParamException;
 import seedu.duke.parser.DateTimeParser;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -50,12 +52,10 @@ public class CcaManager {
         }
 
         try {
-            String changedCcaStartDate = new DateTimeParser(ccaStartDate).changeDateTime();
-            String changedCcaEndDate = new DateTimeParser(ccaEndDate).changeDateTime();
-
-            cca.add(new Cca(ccaDescription, changedCcaStartDate, changedCcaEndDate));
-        } catch (DateTimeParseException | StringIndexOutOfBoundsException
-                | ArrayIndexOutOfBoundsException | ParseException e) {
+            LocalDateTime.parse(ccaStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            LocalDateTime.parse(ccaEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            cca.add(new Cca(ccaDescription, ccaStartDate, ccaEndDate));
+        } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
             return;

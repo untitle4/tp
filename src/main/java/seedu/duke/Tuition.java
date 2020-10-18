@@ -1,5 +1,10 @@
 package seedu.duke;
 
+import seedu.duke.parser.DateTimeParser;
+
+import java.text.ParseException;
+import java.time.format.DateTimeParseException;
+
 public class Tuition extends Class {
     public static final String TUITION_ICON = "[TUITION]";
     private String location;
@@ -20,11 +25,14 @@ public class Tuition extends Class {
 
     @Override
     public String toString() {
-        return TUITION_ICON + " " + super.getStatus()
-                + " " + getDescription()
-                + " from " + getStart()
-                + " to " + getEnd()
-                + " at " + getLocation();
+        String result = "";
+        try {
+            result = TUITION_ICON + " " + super.toString() + " from " + new DateTimeParser().changeDateTime(super.getStart())
+                    + " to " + new DateTimeParser().changeDateTime(super.getEnd()) + " at " + getLocation();
+        } catch (ParseException e) {
+            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
+        }
+        return result;
     }
 
     @Override
@@ -32,8 +40,8 @@ public class Tuition extends Class {
         Tuition otherTuition = (Tuition) obj;
 
         return super.equals(obj)
-                && this.start.equals(otherTuition.getStart())
-                && this.end.equals(otherTuition.getEnd())
+                && this.getStart().equals(otherTuition.getStart())
+                && this.getEnd().equals(otherTuition.getEnd())
                 && this.location.equals(otherTuition.getLocation());
     }
 }

@@ -1,6 +1,8 @@
 package seedu.duke;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -88,13 +90,11 @@ public class ClassManager {
 
         // Checking and converting user's date-time input into format of expected output
         try {
-            String changedClassStartDate = new DateTimeParser(classStartDate).changeDateTime();
-            String changedClassEndDate = new DateTimeParser(classEndDate).changeDateTime();
-
-            classes.add(new Class(classDescription, changedClassStartDate, changedClassEndDate));
+            LocalDateTime.parse(classStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            LocalDateTime.parse(classEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            classes.add(new Class(classDescription, classStartDate, classEndDate));
             logger.log(Level.INFO, "adding the new class to the ArrayList");
-        } catch (DateTimeParseException | StringIndexOutOfBoundsException
-                | ArrayIndexOutOfBoundsException | ParseException e) {
+        } catch (DateTimeParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
             return;
         }

@@ -5,8 +5,11 @@ import seedu.duke.exception.TestParamException;
 import seedu.duke.parser.DateTimeParser;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,11 +39,11 @@ public class TestManager {
             throw new TestParamException();
         }
 
-        //userInput.replaceAll("\\s+","");
+        userInput.replaceAll("\\s+","");
         final String[] testDetails = userInput.trim().split("\\/");
 
         logger.log(Level.INFO, "splitting user input into description, start date and end date");
-        String testDescription = testDetails[1].substring(1).trim();
+        String testDescription = testDetails[1].substring(1).trim().replaceAll("\\s+"," ");
         String testStartDate = testDetails[2].substring(1).trim();
         String testEndDate = testDetails[3].substring(1).trim();
 
@@ -50,13 +53,12 @@ public class TestManager {
             throw new TestEmptyStringException();
         }
 
-        try {
-            String changedTestStartDate = new DateTimeParser(testStartDate).changeDateTime();
-            String changedTestEndDate = new DateTimeParser(testEndDate).changeDateTime();
 
-            test.add(new Test(testDescription, changedTestStartDate, changedTestEndDate));
-        } catch (DateTimeParseException | StringIndexOutOfBoundsException
-                | ArrayIndexOutOfBoundsException | ParseException e) {
+        try {
+            LocalDateTime.parse(testStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            LocalDateTime.parse(testEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            test.add(new Test(testDescription, testStartDate, testEndDate));
+        } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
             return;

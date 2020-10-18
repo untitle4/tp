@@ -3,9 +3,13 @@ package seedu.duke.parser;
 import seedu.duke.LogManager;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
 import java.text.DateFormat;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -16,14 +20,13 @@ import java.util.logging.Logger;
  */
 public class DateTimeParser {
 
-    private final String dateTime;
     private static final Logger logger = LogManager.getLogger();
 
-    public DateTimeParser(String dateTime) {
-        this.dateTime = dateTime;
+    public DateTimeParser() {
+
     }
 
-    public String changeDateTime() throws ParseException {
+    public String changeDateTime(String dateTime) throws ParseException {
         logger.log(Level.INFO, "initialising changing of date and time to new format");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM yyyy");
         int divider = dateTime.indexOf(" ");
@@ -76,6 +79,19 @@ public class DateTimeParser {
         default:
             return "th";
         }
+    }
+
+    public boolean isDateEqual(String listInput, String userInput) throws DateTimeParseException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        int listDay = LocalDate.parse(listInput, formatter).getDayOfMonth();
+        int userDay = LocalDate.parse(userInput, formatter).getDayOfMonth();
+        int listYear = LocalDate.parse(listInput, formatter).getYear();
+        int userYear = LocalDate.parse(userInput, formatter).getYear();
+        Month listMonth = LocalDate.parse(listInput, formatter).getMonth();
+        Month userMonth = LocalDate.parse(userInput, formatter).getMonth();
+        return ((listDay == userDay)
+                && (listMonth.equals(userMonth))
+                && (listYear == userYear));
     }
 }
 

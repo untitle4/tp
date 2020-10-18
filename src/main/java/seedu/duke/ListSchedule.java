@@ -1,7 +1,10 @@
 package seedu.duke;
 
 import seedu.duke.exception.EmptyListException;
+import seedu.duke.parser.DateTimeParser;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,6 +14,7 @@ public class ListSchedule {
     private final ArrayList<Event> ccas;
     private final ArrayList<Event> tests;
     private final ArrayList<Event> tuitions;
+    private DateTimeParser dateTimeParser = new DateTimeParser();
     private static final Logger logger = LogManager.getLogger();
 
     public ListSchedule(ArrayList<Event> classes, ArrayList<Event> ccas,
@@ -60,6 +64,47 @@ public class ListSchedule {
         return printedEvents;
     }
 
+    public ArrayList<String> getAllEventsPrintedDate(String userInput) throws EmptyListException {
+        ArrayList<String> printedEvents = new ArrayList<>();
+        ArrayList<String> printedClasses = new ArrayList<>();
+        ArrayList<String> printedTests = new ArrayList<>();
+        ArrayList<String> printedCcas = new ArrayList<>();
+        ArrayList<String> printedTuitions = new ArrayList<>();
+        String CATEGORY_TUITIONS = "Tuitions: ";
+        String CATEGORY_CLASSES = "Classes: ";
+        String CATEGORY_TESTS = "Tests: ";
+        String CATEGORY_CCAS = "CCAs: ";
+        logger.log(Level.INFO, "starting to convert events instance to strings");
+
+        if (hasNoSchedule()) {
+            logger.log(Level.WARNING, "schedule is empty");
+            throw new EmptyListException();
+        }
+
+        if (haveClasses()) {
+            logger.log(Level.INFO, "converting class events");
+            printArrayPaddedNumbersDate(printedClasses, classes, userInput);
+            ListNotEmpty(printedClasses, printedEvents, CATEGORY_CLASSES);
+        }
+        if (haveCcas()) {
+            logger.log(Level.INFO, "converting CCA events");
+            printArrayPaddedNumbersDate(printedCcas, ccas, userInput);
+            ListNotEmpty(printedCcas, printedEvents, CATEGORY_CCAS);
+        }
+        if (haveTests()) {
+            logger.log(Level.INFO, "converting test events");
+            printArrayPaddedNumbersDate(printedTests, tests, userInput);
+            ListNotEmpty(printedTests, printedEvents, CATEGORY_TESTS);
+        }
+        if (haveTuitions()) {
+            logger.log(Level.INFO, "converting tuition events");
+            printArrayPaddedNumbersDate(printedTuitions, tuitions, userInput);
+            ListNotEmpty(printedTuitions, printedEvents, CATEGORY_TUITIONS);
+        }
+
+        return printedEvents;
+    }
+
     private boolean haveClasses() {
         return classes.size() != 0;
     }
@@ -94,6 +139,28 @@ public class ListSchedule {
         assert eventArr.size() != 0;
         for (int i = 0; i < eventArr.size(); i++) {
             printedEvents.add(i + 1 + ". " + eventArr.get(i));
+        }
+    }
+
+
+    private void printArrayPaddedNumbersDate(ArrayList<String> printedEvents, ArrayList<Event> eventArr, String userInput) {
+        assert printedEvents != null;
+        assert eventArr != null;
+        assert eventArr.size() != 0;
+        for (int i = 0; i < eventArr.size(); i++) {
+            String[] listDate = eventArr.get(i).getStart().split(" ");
+            if (dateTimeParser.isDateEqual(listDate[0], userInput)) {
+                printedEvents.add(i + 1 + ". " + eventArr.get(i));
+            }
+        }
+    }
+
+    private void ListNotEmpty(ArrayList<String> printedList, ArrayList<String> printedEvents, String CategoryName) {
+        if (printedList.size() > 0) {
+            printedEvents.add(CategoryName);
+            for (int i = 0; i < printedList.size(); i++) {
+                printedEvents.add(printedList.get(i));
+            }
         }
     }
 }
