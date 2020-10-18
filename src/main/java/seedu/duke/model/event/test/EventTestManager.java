@@ -5,22 +5,22 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
-import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
-import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TestManager extends EventDataManager {
+public class EventTestManager extends EventDataManager {
     private final ArrayList<Event> test;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
 
-    public TestManager(ArrayList<Event> inputList) {
+    public EventTestManager(ArrayList<Event> inputList) {
         test = inputList;
         userInterface = UserInterface.getInstance();
     }
@@ -48,7 +48,7 @@ public class TestManager extends EventDataManager {
         final String[] testDetails = userInput.trim().split("\\/");
 
         logger.log(Level.INFO, "splitting user input into description, start date and end date");
-        String testDescription = testDetails[1].substring(1).trim();
+        String testDescription = testDetails[1].substring(1).trim().replaceAll("\\s+"," ");
         String testStartDate = testDetails[2].substring(1).trim();
         String testEndDate = testDetails[3].substring(1).trim();
 
@@ -58,13 +58,12 @@ public class TestManager extends EventDataManager {
             throw new TestEmptyStringException();
         }
 
-        try {
-            String changedTestStartDate = new DateTimeParser(testStartDate).changeDateTime();
-            String changedTestEndDate = new DateTimeParser(testEndDate).changeDateTime();
 
-            test.add(new Test(testDescription, changedTestStartDate, changedTestEndDate));
-        } catch (DateTimeParseException | StringIndexOutOfBoundsException
-                | ArrayIndexOutOfBoundsException | ParseException e) {
+        try {
+            LocalDateTime.parse(testStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            LocalDateTime.parse(testEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            test.add(new EventTest(testDescription, testStartDate, testEndDate));
+        } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
             return;

@@ -5,15 +5,29 @@ public class Event {
     public static final String NOT_DONE_STATUS = "[NOT DONE]";
     protected String description;
     protected boolean isDone;
+    private String start;
+    private String end;
 
-    public Event(String description) {
+    public Event(String description, String start, String end) {
         this.description = description;
+        this.start = start;
+        this.end = end;
         isDone = false;
     }
 
-    public Event(String description, boolean isDone) {
+    public Event(String description, String start, String end, boolean isDone) {
         this.description = description;
+        this.start = start;
+        this.end = end;
         this.isDone = isDone;
+    }
+
+    public String getStart() {
+        return start;
+    }
+
+    public String getEnd() {
+        return end;
     }
 
     public void setDone() {

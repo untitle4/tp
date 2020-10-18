@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TuitionManager extends EventDataManager {
+public class EventTuitionManager extends EventDataManager {
     private ArrayList<Event> tuitionList;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
 
-    public TuitionManager(ArrayList<Event> tuitionList) {
+    public EventTuitionManager(ArrayList<Event> tuitionList) {
         this.tuitionList = tuitionList;
         userInterface = UserInterface.getInstance();
     }
@@ -70,11 +70,11 @@ public class TuitionManager extends EventDataManager {
             parseLocalDateTime(start);
             parseLocalDateTime(end);
 
-            Tuition tuition = new Tuition(description, start, end, location);
-            tuitionList.add(tuition);
+            EventTuition eventTuition = new EventTuition(description, start, end, location);
+            tuitionList.add(eventTuition);
             logger.log(Level.INFO, "Tuition added successfully");
             userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
-                    tuition.toString(),
+                    eventTuition.toString(),
                     getTuitionStatement());
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);

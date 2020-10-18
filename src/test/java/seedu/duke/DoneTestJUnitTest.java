@@ -3,7 +3,7 @@ package seedu.duke;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
-import seedu.duke.model.event.test.TestManager;
+import seedu.duke.model.event.test.EventTestManager;
 
 import java.util.ArrayList;
 
@@ -14,17 +14,17 @@ class DoneTestJUnitTest {
     @Test
     void setTestDoneFromList() throws TestParamException, TestEmptyStringException {
         ArrayList<Event> test = new ArrayList<>();
-        TestManager testManager = new TestManager(test);
+        EventTestManager eventTestManager = new EventTestManager(test);
 
-        testManager.add("add test /n Math test "
+        eventTestManager.add("add test /n Math test "
                 + "/s 2020-09-26 1400 /e 2020-09-26 1500");
-        testManager.add("add test /n Science test "
+        eventTestManager.add("add test /n Science test "
                 + "/s 2020-09-23 1600 /e 2020-09-23 1800");
 
         String [] userInput = "done test 1".trim().split(" ");
 
         try {
-            testManager.setDone(userInput);
+            eventTestManager.setDone(userInput);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
