@@ -2,7 +2,7 @@ package seedu.duke;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.exception.EmptyListException;
-import seedu.duke.parser.DateTimeParser;
+import seedu.duke.controller.parser.DateTimeParser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,7 +20,6 @@ public class ListSchedule {
     private static final String CATEGORY_TESTS = "Tests: ";
     private static final String CATEGORY_CCAS = "CCAs: ";
     private DateTimeParser dateTimeParser = new DateTimeParser();
-    private static final Logger logger = LogManager.getLogger();
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
     public ListSchedule(ArrayList<Event> classes, ArrayList<Event> ccas,

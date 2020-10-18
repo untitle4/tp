@@ -29,10 +29,10 @@ import seedu.duke.ui.UserInterface;
  * </ul>
  *
  * @see ClassManager#getClassListSize()
- * @see ClassManager#addClass(String)
- * @see ClassManager#deleteClass(String[])
+ * @see ClassManager#add(String)
+ * @see ClassManager#delete(String[])
  * @see ClassManager#getClassStatement()
- * @see ClassManager#setClassDone(String[])
+ * @see ClassManager#setDone(String[])
  */
 public class ClassManager extends EventDataManager {
     // Initialising ArrayList to store classes
@@ -103,9 +103,6 @@ public class ClassManager extends EventDataManager {
             classes.add(new Class(classDescription, classStartDate, classEndDate));
             logger.log(Level.INFO, "adding the new class to the ArrayList");
         } catch (DateTimeParseException e) {
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
-        } catch (DateTimeParseException | StringIndexOutOfBoundsException
-                | ArrayIndexOutOfBoundsException | ParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
             return;
         }

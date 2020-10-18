@@ -8,7 +8,7 @@ import seedu.duke.model.event.test.TestManager;
 import seedu.duke.model.event.tuition.TuitionManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.EmptyListException;
-import seedu.duke.parser.DateTimeParser;
+import seedu.duke.controller.parser.DateTimeParser;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -54,7 +54,7 @@ public class EventManager {
             ArrayList<String> printedEvents = listSchedule.getAllEventsPrinted();
             userInterface.printArray(printedEvents);
         } catch (EmptyListException e) {
-            System.out.println("Schedule is empty. Add some!");
+            userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         }
     }
 
@@ -82,7 +82,7 @@ public class EventManager {
                 System.out.println("No events are due.");
             }
         } catch (EmptyListException e) {
-            System.out.println("Schedule is empty. Add some!");
+            userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         } catch (DateTimeParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM or today!");
         }
@@ -92,7 +92,6 @@ public class EventManager {
         assert printedEvents != null;
         for (String line : printedEvents) {
             System.out.println(line);
-            userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         }
     }
 }

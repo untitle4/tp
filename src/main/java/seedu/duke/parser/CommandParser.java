@@ -1,8 +1,6 @@
 package seedu.duke.parser;
 
-import seedu.duke.LogManager;
-import seedu.duke.contact.ContactManager;
-import seedu.duke.event.EventManager;
+import seedu.duke.common.LogManager;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
 import seedu.duke.exception.ContactEmptyStringException;
@@ -12,9 +10,12 @@ import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidTuitionInputException;
+import seedu.duke.exception.QuizParamException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
-import seedu.duke.quiz.QuizManager;
+import seedu.duke.model.contact.ContactManager;
+import seedu.duke.model.event.EventManager;
+import seedu.duke.model.quiz.QuizManager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +45,7 @@ public class CommandParser {
 
     private CommandType commandType;
 
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
     public CommandParser(String userInput, EventManager eventManager,
                          QuizManager quizManager, ContactManager contactManager) {
@@ -142,35 +143,35 @@ public class CommandParser {
             break;
         case ADD_CLASS:
             try {
-                eventManager.getClassManager().addClass(userInput);
+                eventManager.getClassManager().add(userInput);
             } catch (InvalidClassInputException e) {
                 System.out.println("☹ OOPS! Remember to include ALL '/n', '/s' and '/e' inputs!");
             }
             break;
         case ADD_CCA:
             try {
-                eventManager.getCcaManager().addCca(userInput);
+                eventManager.getCcaManager().add(userInput);
             } catch (CcaEmptyStringException | CcaParamException e) {
                 System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
             }
             break;
         case ADD_TEST:
             try {
-                eventManager.getTestManager().addTest(userInput);
+                eventManager.getTestManager().add(userInput);
             } catch (TestEmptyStringException | TestParamException e) {
                 System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e' inputs!");
             }
             break;
         case ADD_CONTACT:
             try {
-                contactManager.addContact(userInput);
+                contactManager.add(userInput);
             } catch (ContactEmptyStringException | ContactParamException e) {
                 System.out.println("☹ OOPS!!! Remember to include ALL '/s', '/n', '/p', '/e' inputs!");
             }
             break;
         case ADD_TUITION:
             try {
-                eventManager.getTuitionManager().addTuition(userInput);
+                eventManager.getTuitionManager().add(userInput);
             } catch (InvalidTuitionInputException e) {
                 System.out.println("☹ OOPS!!! Remember to include ALL '/n', '/s', '/e', '/l' suffixes!");
             } catch (EmptyTuitionInputException e) {
@@ -179,62 +180,66 @@ public class CommandParser {
             break;
         case DELETE_CLASS:
             try {
-                eventManager.getClassManager().deleteClass(separatedInputs);
+                eventManager.getClassManager().delete(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid class index!");
             }
             break;
         case DELETE_CCA:
             try {
-                eventManager.getCcaManager().deleteCca(separatedInputs);
+                eventManager.getCcaManager().delete(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid cca index!");
             }
             break;
         case DELETE_TEST:
             try {
-                eventManager.getTestManager().deleteTest(separatedInputs);
+                eventManager.getTestManager().delete(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
             break;
         case DELETE_QUIZ:
             try {
-                quizManager.deleteQuiz(separatedInputs);
+                quizManager.delete(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid quiz index!");
             }
             break;
         case DELETE_CONTACT:
             try {
-                contactManager.deleteContact(separatedInputs);
+                contactManager.delete(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid contact index!");
             }
             break;
         case DONE_CLASS:
             try {
-                eventManager.getClassManager().setClassDone(separatedInputs);
+                eventManager.getClassManager().setDone(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid class index!");
             }
             break;
         case DONE_TEST:
             try {
-                eventManager.getTestManager().setTestDone(separatedInputs);
+                eventManager.getTestManager().setDone(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
             break;
         case DONE_CCA:
             try {
-                eventManager.getCcaManager().setCcaDone(separatedInputs);
+                eventManager.getCcaManager().setDone(separatedInputs);
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("☹ OOPS!!! Please indicate a valid test index!");
             }
             break;
         case ADD_QUIZ:
-            quizManager.addQuiz(userInput);
+            try {
+                quizManager.add(userInput);
+            } catch (QuizParamException e) {
+                e.printStackTrace();
+            }
             break;
         case LIST:
             eventManager.listSchedule();

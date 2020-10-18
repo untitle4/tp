@@ -2,7 +2,7 @@ package seedu.duke.model.event.test;
 
 import seedu.duke.Event;
 
-import seedu.duke.parser.DateTimeParser;
+import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
 import java.time.format.DateTimeParseException;

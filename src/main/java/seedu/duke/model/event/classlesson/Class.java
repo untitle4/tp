@@ -2,7 +2,7 @@ package seedu.duke.model.event.classlesson;
 
 import seedu.duke.Event;
 
-import seedu.duke.parser.DateTimeParser;
+import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
 

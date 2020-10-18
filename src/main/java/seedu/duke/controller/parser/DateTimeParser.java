@@ -20,12 +20,7 @@ import java.util.logging.Logger;
  */
 public class DateTimeParser {
 
-    private final String dateTime;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
-
-    public DateTimeParser() {
-
-    }
 
     public String changeDateTime(String dateTime) throws ParseException {
         logger.log(Level.INFO, "initialising changing of date and time to new format");
