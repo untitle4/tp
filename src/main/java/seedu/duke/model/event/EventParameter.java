@@ -1,7 +1,6 @@
-package seedu.duke.event;
+package seedu.duke.model.event;
 
 import seedu.duke.Event;
-import seedu.duke.Tuition;
 
 import java.util.ArrayList;
 

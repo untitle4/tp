@@ -1,12 +1,14 @@
 package seedu.duke.storage;
 
+import seedu.duke.model.event.cca.Cca;
+import seedu.duke.model.event.classlesson.Class;
 import seedu.duke.Event;
-import seedu.duke.LogManager;
-import seedu.duke.Class;
-import seedu.duke.Cca;
-import seedu.duke.Tuition;
-import seedu.duke.Test;
-import seedu.duke.event.EventParameter;
+import seedu.duke.common.LogManager;
+import seedu.duke.common.Messages;
+import seedu.duke.model.event.test.Test;
+import seedu.duke.model.event.tuition.Tuition;
+import seedu.duke.ui.UserInterface;
+import seedu.duke.model.event.EventParameter;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,12 +22,14 @@ import java.util.logging.Logger;
 public class EventStorageManager extends StorageManager {
     private final EventListEncoder eventListEncoder;
     private final EventListDecoder eventListDecoder;
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private UserInterface userInterface;
 
     public EventStorageManager(String fileName) {
         super(fileName);
         this.eventListEncoder = new EventListEncoder();
         this.eventListDecoder = new EventListDecoder();
+        userInterface = UserInterface.getInstance();
     }
 
     public void saveData(ArrayList<Event> eventList) throws IOException {
@@ -54,7 +58,7 @@ public class EventStorageManager extends StorageManager {
                 logger.log(Level.INFO, "Data file not found, initializing data file...");
             }
         } catch (IOException e) {
-            System.out.println("There was an error loading your files.");
+            userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
         }
         return new EventParameter();

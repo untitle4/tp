@@ -1,4 +1,6 @@
-package seedu.duke;
+package seedu.duke.model.event.tuition;
+
+import seedu.duke.model.event.classlesson.Class;
 
 public class Tuition extends Class {
     public static final String TUITION_ICON = "[TUITION]";

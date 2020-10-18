@@ -1,4 +1,4 @@
-package seedu.duke.contact;
+package seedu.duke.model.contact;
 
 public class Contact {
     private final String subject;

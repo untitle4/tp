@@ -1,4 +1,4 @@
-package seedu.duke.quiz;
+package seedu.duke.model.quiz;
 
 public class Quiz {
     private final String question;
