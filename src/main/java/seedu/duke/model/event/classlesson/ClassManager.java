@@ -85,9 +85,9 @@ public class ClassManager extends EventDataManager {
 
         logger.log(Level.INFO, "splitting the user input into class description, start date-time and end "
                 + "date-time");
-        String classDescription = classDetails[1].substring(2);
-        String classStartDate = classDetails[2].substring(2);
-        String classEndDate = classDetails[3].substring(2);
+        String classDescription = classDetails[1].substring(1).trim().replaceAll("\\s+"," ");
+        String classStartDate = classDetails[2].substring(1).trim();
+        String classEndDate = classDetails[3].substring(1).trim();
 
         // Checking if any of the 3 required parameters are empty
         if (classDescription.equals("") || classStartDate.equals("") || classEndDate.equals("")) {
