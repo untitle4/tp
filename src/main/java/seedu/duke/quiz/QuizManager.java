@@ -31,27 +31,32 @@ public class QuizManager {
         int noOfQues = Integer.parseInt(separatedInputs[1]);
         //TODO: handle cases: "quiz", "quiz 2"
 
+        // If user wants to try a valid number of questions
         if (noOfQues <= getQuizListSize()) {
+
+            // Create a new list of the question indexes
             List<Integer> quizIndexes = new ArrayList<>();
             for (int i = 0; i < quizzes.size(); i++) {
                 quizIndexes.add(i);
             }
+
+            // Shuffle the question indexes
             Collections.shuffle(quizIndexes);
 
             StringBuilder selectedQuestions = new StringBuilder();
 
+            // Assign random order of indexes, of given no. of questions, to new StringBuilder, selectedQuestions
             for (int j = 0; j < noOfQues; j++) {
                 selectedQuestions.append(quizzes.get(j) + "\n");
-                System.out.println(toString());
+                System.out.println(selectedQuestions);
             }
-
-            System.out.print(selectedQuestions);
-
         } else if ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10)) {
+            // If user wants to try more questions than he/she has in the current quiz (and has less than 10 questions)
             System.out.println("OOPS! You wanted to take a quiz with " + noOfQues + " questions, but your current quiz "
                     + "only has " + getQuizListSize() + " question(s).\nPlease add more questions to your quiz "
                     + "via the 'add quiz' command!\n");
         } else {
+            // If user wants to try more questions than he/she has in the current quiz (but has at least 10 questions)
             System.out.println("OOPS! You wanted to quiz a test with " + noOfQues + " questions, but your current quiz "
                     + "only has " + getQuizListSize() + " question(s).\nPlease either add more questions to your quiz "
                     + "via the 'add quiz' command, or take a quiz with a suitable number of questions!\n");
@@ -109,7 +114,7 @@ public class QuizManager {
 
     public void listQuiz() {
         if (quizzes.size() == 0) {
-            System.out.println("Quiz list is empty. Add some!");
+            System.out.println("Quiz list is empty. Add a question!");
         } else {
             for (int i = 0; i < quizzes.size(); i++) {
                 System.out.println("Question " + (i + 1) + ":");
