@@ -5,6 +5,7 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyTuitionInputException;
 import seedu.duke.exception.InvalidTuitionInputException;
+import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
 import java.time.LocalDateTime;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TuitionManager {
+public class TuitionManager extends EventDataManager {
     private ArrayList<Event> tuitionList;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
@@ -32,7 +33,8 @@ public class TuitionManager {
         return tuitionList.size();
     }
 
-    public void addTuition(String userInput) throws InvalidTuitionInputException, EmptyTuitionInputException {
+    @Override
+    public void add(String userInput) throws InvalidTuitionInputException, EmptyTuitionInputException {
         logger.log(Level.INFO, "Initializing adding of a tuition");
         final String descriptionPrefix = "/n";
         final String startPrefix = "/s";
@@ -79,10 +81,11 @@ public class TuitionManager {
         }
     }
 
-    public void deleteTuition(String[] userInput) {
+    @Override
+    public void delete(String[] userInputs) {
         try {
             // Tries to convert classIndex user input into an integer
-            int tuitionIndex = Integer.parseInt(userInput[2]);
+            int tuitionIndex = Integer.parseInt(userInputs[2]);
 
             // Assertion to test assumption that classIndex should be a positive integer
             assert tuitionIndex > 0 : "tuitionIndex should be a positive integer";
@@ -106,13 +109,14 @@ public class TuitionManager {
         }
     }
 
-    public void setTuitionDone(String[] userInput) throws IndexOutOfBoundsException {
+    @Override
+    public void setDone(String[] userInputs) throws IndexOutOfBoundsException {
         int tuitionNumber;
         logger.log(Level.INFO, "Initialising setting tuition as done");
 
         try {
             // Trying to convert user's input into an integer
-            tuitionNumber = Integer.parseInt(userInput[2]);
+            tuitionNumber = Integer.parseInt(userInputs[2]);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "Wrong number format entered");
             userInterface.showToUser(Messages.MESSAGE_TUITION_DONE_ERROR_NON_NUMBER);

@@ -1,6 +1,6 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.model.Model;
+import seedu.duke.model.DataManager;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
 import seedu.duke.exception.ContactEmptyStringException;
@@ -23,7 +23,7 @@ public abstract class Command {
         this.userInput = userInput;
     }
 
-    public abstract void execute(Model model) throws InvalidClassInputException, TestParamException,
+    public abstract void execute(DataManager dataModel) throws InvalidClassInputException, TestParamException,
             TestEmptyStringException, CcaParamException, CcaEmptyStringException, EmptyTuitionInputException,
             InvalidTuitionInputException, ContactParamException, ContactEmptyStringException,
             InvalidHelpCommandException;

@@ -1,11 +1,12 @@
 package seedu.duke.model.quiz;
 
 import seedu.duke.common.LogManager;
+import seedu.duke.model.DataManager;
 
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-public class QuizManager {
+public class QuizManager extends DataManager {
     private final ArrayList<Quiz> quizzes;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
@@ -22,11 +23,12 @@ public class QuizManager {
         return quizzes.size();
     }
 
-    public void deleteQuiz(String[] userInput) throws IndexOutOfBoundsException {
+    @Override
+    public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int quizIndex;
 
         try {
-            quizIndex = Integer.parseInt(userInput[2]);
+            quizIndex = Integer.parseInt(userInputs[2]);
         } catch (NumberFormatException e) {
             System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which cca you'd like to delete!");
             return;
@@ -47,7 +49,8 @@ public class QuizManager {
     }
 
     // format: add quiz /q question /o1 option 1 /o2 option 2 /o3 option 3 /o4 option 4 /a answer /exp explanation
-    public void addQuiz(String userInput) {
+    @Override
+    public void add(String userInput) {
         if (!userInput.contains(" /q ")) {
             System.out.println("question not found");
         }
@@ -60,6 +63,7 @@ public class QuizManager {
         }
         String[] separatedInputs = userInput.split(" ");
 
+        //todo add exceptions here (index out of bounds)
         String question = separatedInputs[3];
         String option1 = separatedInputs[5];
         String option2 = separatedInputs[7];

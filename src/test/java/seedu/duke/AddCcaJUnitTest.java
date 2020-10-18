@@ -15,7 +15,7 @@ public class AddCcaJUnitTest {
     void addCcaToList() throws CcaEmptyStringException, CcaParamException {
         ArrayList<Event> cca = new ArrayList<>();
         CcaManager ccaManager = new CcaManager(cca);
-        ccaManager.addCca("add cca /n basketball camp "
+        ccaManager.add("add cca /n basketball camp "
                 + "/s 2020-10-13 1500 /e 2020-10-13 1500");
         String actualOutputs = cca.get(0).description;
         String expectedOutputs = "basketball camp";

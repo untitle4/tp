@@ -1,5 +1,9 @@
 package seedu.duke.controller;
 
+import seedu.duke.controller.command.ListCommand;
+import seedu.duke.controller.parser.ModelParser;
+import seedu.duke.exception.InvalidModelException;
+import seedu.duke.model.DataManager;
 import seedu.duke.model.Model;
 import seedu.duke.controller.command.Command;
 import seedu.duke.controller.command.CommandFactory;
@@ -16,6 +20,7 @@ import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidTuitionInputException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
+import seedu.duke.model.ModelType;
 
 public class ControlManager {
     private final String userInput;
@@ -28,13 +33,21 @@ public class ControlManager {
 
     public CommandType runLogic() {
         CommandType commandType = null;
+        ModelType modelType;
         try {
             commandType = new CommandParser(userInput).extractCommand();
             Command actionableCommand = new CommandFactory(commandType, userInput).generateActionableCommand();
             if (commandType == CommandType.BYE) {
                 return commandType;
             }
-            actionableCommand.execute(model);
+            modelType = new ModelParser(userInput).extractModel();
+            DataManager dataModel = new ModelExtractor(model, modelType).retrieveModel();
+
+            if (modelType == ModelType.EVENT) {
+                new ListCommand().execute(model.getEventManager());
+            } else {
+                actionableCommand.execute(dataModel);
+            }
         } catch (InvalidClassInputException e) {
             e.printStackTrace();
         } catch (TestParamException e) {
@@ -57,6 +70,8 @@ public class ControlManager {
             e.printStackTrace();
         } catch (InvalidCommandException e) {
             System.out.println("☹ Oops! I did not recognize that command! Enter 'help' if needed!");
+        } catch (InvalidModelException e) {
+            System.out.println("No such model");
         }
 
         return commandType;

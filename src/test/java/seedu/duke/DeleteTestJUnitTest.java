@@ -16,15 +16,15 @@ public class DeleteTestJUnitTest {
         ArrayList<Event> test = new ArrayList<>();
         TestManager testManager = new TestManager(test);
 
-        testManager.addTest("add test /n Math test "
+        testManager.add("add test /n Math test "
                 + "/s 2020-09-26 1400 /e 2020-09-26 1500");
-        testManager.addTest("add test /n Science test "
+        testManager.add("add test /n Science test "
                 + "/s 2020-09-23 1600 /e 2020-09-23 1800");
 
         String [] userInput = "delete test 1".trim().split(" ");
 
         try {
-            testManager.deleteTest(userInput);
+            testManager.delete(userInput);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
