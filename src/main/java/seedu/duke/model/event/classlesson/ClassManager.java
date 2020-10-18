@@ -37,7 +37,7 @@ public class ClassManager {
     private UserInterface userInterface;
 
     // Initialising Logger with name "Class"
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
     public ClassManager(ArrayList<Event> classes) {
         this.classes = classes;

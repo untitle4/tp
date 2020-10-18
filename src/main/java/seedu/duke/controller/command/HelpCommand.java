@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class HelpCommand extends Command {
     private final UserInterface userInterface = UserInterface.getInstance();
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
     public HelpCommand(String userInput) {
         super(userInput);

@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class CcaManager {
     private final ArrayList<Event> cca;
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
 
     public CcaManager(ArrayList<Event> inputList) {

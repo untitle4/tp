@@ -12,7 +12,7 @@ public class ListSchedule {
     private final ArrayList<Event> ccas;
     private final ArrayList<Event> tests;
     private final ArrayList<Event> tuitions;
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
     public ListSchedule(ArrayList<Event> classes, ArrayList<Event> ccas,
                         ArrayList<Event> tests, ArrayList<Event> tuitions) {
