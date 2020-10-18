@@ -1,6 +1,7 @@
 package seedu.duke.model.quiz;
 
 import seedu.duke.common.LogManager;
+import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
 
 import java.util.ArrayList;
@@ -50,16 +51,19 @@ public class QuizManager extends DataManager {
 
     // format: add quiz /q question /o1 option 1 /o2 option 2 /o3 option 3 /o4 option 4 /a answer /exp explanation
     @Override
-    public void add(String userInput) {
+    public void add(String userInput) throws QuizParamException {
         if (!userInput.contains(" /q ")) {
             System.out.println("question not found");
+            throw new QuizParamException();
         }
         if (!userInput.contains(" /a ")) {
             System.out.println("answer not found");
+            throw new QuizParamException();
         }
         if (!userInput.contains(" /o1 ") && !userInput.contains(" /o2 ")
                 && !userInput.contains(" /o3 ") && !userInput.contains(" /o4 ")) {
             System.out.println("options not provided");
+            throw new QuizParamException();
         }
         String[] separatedInputs = userInput.trim().split("/");
 

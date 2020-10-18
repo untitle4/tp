@@ -2,13 +2,6 @@ package seedu.duke.controller;
 
 import seedu.duke.controller.command.ListCommand;
 import seedu.duke.controller.parser.ModelParser;
-import seedu.duke.exception.InvalidModelException;
-import seedu.duke.model.DataManager;
-import seedu.duke.model.Model;
-import seedu.duke.controller.command.Command;
-import seedu.duke.controller.command.CommandFactory;
-import seedu.duke.controller.parser.CommandParser;
-import seedu.duke.controller.parser.CommandType;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
 import seedu.duke.exception.ContactEmptyStringException;
@@ -17,9 +10,17 @@ import seedu.duke.exception.EmptyTuitionInputException;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
+import seedu.duke.exception.InvalidModelException;
 import seedu.duke.exception.InvalidTuitionInputException;
+import seedu.duke.exception.QuizParamException;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
+import seedu.duke.model.DataManager;
+import seedu.duke.model.Model;
+import seedu.duke.controller.command.Command;
+import seedu.duke.controller.command.CommandFactory;
+import seedu.duke.controller.parser.CommandParser;
+import seedu.duke.controller.parser.CommandType;
 import seedu.duke.model.ModelType;
 
 public class ControlManager {
@@ -67,6 +68,8 @@ public class ControlManager {
         } catch (InvalidHelpCommandException e) {
             e.printStackTrace();
         } catch (ContactParamException e) {
+            e.printStackTrace();
+        } catch (QuizParamException e) {
             e.printStackTrace();
         } catch (InvalidCommandException e) {
             System.out.println("☹ Oops! I did not recognize that command! Enter 'help' if needed!");
