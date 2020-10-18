@@ -6,6 +6,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
 import seedu.duke.controller.parser.DateTimeParser;
+import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CcaManager {
+public class CcaManager extends EventDataManager {
     private final ArrayList<Event> cca;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
@@ -33,7 +34,8 @@ public class CcaManager {
         return cca.size();
     }
 
-    public void addCca(String userInput) throws CcaEmptyStringException, CcaParamException {
+    @Override
+    public void add(String userInput) throws CcaEmptyStringException, CcaParamException {
         logger.log(Level.INFO, "initialising adding of a cca");
 
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
@@ -74,11 +76,12 @@ public class CcaManager {
         getCcaStatement();
     }
 
-    public void deleteCca(String[] userInput) throws IndexOutOfBoundsException {
+    @Override
+    public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int ccaIndex = 0;
 
         try {
-            ccaIndex = Integer.parseInt(userInput[2]);
+            ccaIndex = Integer.parseInt(userInputs[2]);
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NON_NUMBER);
             return;
@@ -98,12 +101,13 @@ public class CcaManager {
         getCcaStatement();
     }
 
-    public void setCcaDone(String[] userInput) {
+    @Override
+    public void setDone(String[] userInputs) {
         int ccaIndex = 0;
         logger.log(Level.INFO, "initialising setting cca as done");
 
         try {
-            ccaIndex = Integer.parseInt(userInput[2]);
+            ccaIndex = Integer.parseInt(userInputs[2]);
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_CCA_DONE_ERROR_NON_NUMBER);
             return;

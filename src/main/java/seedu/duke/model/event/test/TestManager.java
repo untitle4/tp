@@ -6,6 +6,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.exception.TestEmptyStringException;
 import seedu.duke.exception.TestParamException;
 import seedu.duke.controller.parser.DateTimeParser;
+import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TestManager {
+public class TestManager extends EventDataManager {
     private final ArrayList<Event> test;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
@@ -33,7 +34,8 @@ public class TestManager {
         return test.size();
     }
 
-    public void addTest(String userInput) throws TestEmptyStringException, TestParamException {
+    @Override
+    public void add(String userInput) throws TestEmptyStringException, TestParamException {
         logger.log(Level.INFO, "initialising adding of a test");
 
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
@@ -74,12 +76,13 @@ public class TestManager {
         getTaskStatement();
     }
 
-    public void deleteTest(String[] userInput) throws IndexOutOfBoundsException {
+    @Override
+    public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int testNumber = 0;
         logger.log(Level.INFO, "initialising deleting of a test");
 
         try {
-            testNumber = Integer.parseInt(userInput[2]);
+            testNumber = Integer.parseInt(userInputs[2]);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NON_NUMBER);
@@ -111,12 +114,13 @@ public class TestManager {
         }
     }
 
-    public void setTestDone(String[] userInput) throws IndexOutOfBoundsException {
+    @Override
+    public void setDone(String[] userInputs) throws IndexOutOfBoundsException {
         int testNumber = 0;
         logger.log(Level.INFO, "initialising setting test as done");
 
         try {
-            testNumber = Integer.parseInt(userInput[2]);
+            testNumber = Integer.parseInt(userInputs[2]);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
             userInterface.showToUser(Messages.MESSAGE_TEST_DONE_ERROR_NON_NUMBER);

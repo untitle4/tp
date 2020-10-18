@@ -11,6 +11,7 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.controller.parser.DateTimeParser;
+import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
 /**
@@ -31,7 +32,7 @@ import seedu.duke.ui.UserInterface;
  * @see ClassManager#getClassStatement()
  * @see ClassManager#setClassDone(String[])
  */
-public class ClassManager {
+public class ClassManager extends EventDataManager {
     // Initialising ArrayList to store classes
     private final ArrayList<Event> classes;
     private UserInterface userInterface;
@@ -66,7 +67,8 @@ public class ClassManager {
      * @exception InvalidClassInputException if user input does not meet the requirements.
      * @see ClassManager#getClassStatement()
      */
-    public void addClass(String userInput) throws InvalidClassInputException {
+    @Override
+    public void add(String userInput) throws InvalidClassInputException {
         logger.log(Level.INFO, "initialising adding of a class");
 
         // Checks if user input contains the 3 required parameters (/n, /s and /e)
@@ -113,12 +115,13 @@ public class ClassManager {
     /**
      * <h2>deleteClass()</h2>
      * Deletes a class from the classes ArrayList.
-     * @param userInput To take in the class index of the class to be deleted.
+     * @param userInputs To take in the class index of the class to be deleted.
      */
-    public void deleteClass(String[] userInput) {
+    @Override
+    public void delete(String[] userInputs) {
         try {
             // Tries to convert classIndex user input into an integer
-            int classIndex = Integer.parseInt(userInput[2]);
+            int classIndex = Integer.parseInt(userInputs[2]);
 
             // Assertion to test assumption that classIndex should be a positive integer
             assert classIndex > 0 : "classIndex should be a positive integer";
@@ -157,17 +160,18 @@ public class ClassManager {
     /**
      * <h2>setClassDone()</h2>
      * Sets class as done.
-     * @param userInput To take in the class index of the class to be set as done.
+     * @param userInputs To take in the class index of the class to be set as done.
      * @exception IndexOutOfBoundsException when user input is an invalid class index integer.
      * @see ClassManager#getClassStatement()
      */
-    public void setClassDone(String[] userInput) throws IndexOutOfBoundsException {
+    @Override
+    public void setDone(String[] userInputs) throws IndexOutOfBoundsException {
         int classNumber;
         logger.log(Level.INFO, "initialising setting class as done");
 
         try {
             // Trying to convert user's input into an integer
-            classNumber = Integer.parseInt(userInput[2]);
+            classNumber = Integer.parseInt(userInputs[2]);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
             userInterface.showToUser(Messages.MESSAGE_CLASS_DONE_ERROR_NON_NUMBER);

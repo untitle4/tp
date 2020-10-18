@@ -2,6 +2,8 @@ package seedu.duke.model.contact;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
+import seedu.duke.model.DataManager;
+import seedu.duke.model.Interactable;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ContactManager {
+public class ContactManager extends DataManager {
     private ArrayList<Contact> contacts = new ArrayList<>();
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
@@ -28,7 +30,8 @@ public class ContactManager {
         return contacts.size();
     }
 
-    public void addContact(String userInput) throws ContactEmptyStringException, ContactParamException {
+    @Override
+    public void add(String userInput) throws ContactEmptyStringException, ContactParamException {
         if (!userInput.contains("/s")) {
             userInterface.showToUser(Messages.MESSAGE_SUBJECT_NOT_FOUND);
             throw new ContactParamException();
@@ -65,7 +68,8 @@ public class ContactManager {
         getContactStatement();
     }
 
-    public void deleteContact(String[] userInput) throws IndexOutOfBoundsException {
+    @Override
+    public void delete(String[] userInput) throws IndexOutOfBoundsException {
         int contactIndex = 0;
 
         try {
