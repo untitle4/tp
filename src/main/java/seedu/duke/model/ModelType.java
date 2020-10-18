@@ -1,5 +1,5 @@
 package seedu.duke.model;
 
 public enum ModelType {
-    CLASS, CCA, TEST, TUITION, QUIZ, CONTACT
+    CLASS, CCA, TEST, TUITION, QUIZ, CONTACT, EVENT;
 }

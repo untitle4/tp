@@ -29,23 +29,35 @@ public class CommandParser {
         logger.log(Level.INFO, "Extracting command now...");
 
         switch (separatedInputs[MAIN_COMMAND_INDEX]) {
-        case INPUT_HELP:
-            commandType = CommandType.HELP;
-            break;
         case INPUT_ADD:
+            if (separatedInputs.length == 1) {
+                throw new InvalidCommandException();
+            }
             commandType = CommandType.ADD;
             break;
         case INPUT_DELETE:
+            if (separatedInputs.length == 1) {
+                throw new InvalidCommandException();
+            }
             commandType = CommandType.DELETE;
             break;
+        case INPUT_DONE:
+            if (separatedInputs.length == 1) {
+                throw new InvalidCommandException();
+            }
+            commandType = CommandType.DONE;
+            break;
         case INPUT_LIST:
+            if (separatedInputs.length != 2) {
+                throw new InvalidCommandException();
+            }
             commandType = CommandType.LIST;
             break;
         case INPUT_BYE:
             commandType = CommandType.BYE;
             break;
-        case INPUT_DONE:
-            commandType = CommandType.DONE;
+        case INPUT_HELP:
+            commandType = CommandType.HELP;
             break;
         default:
             throw new InvalidCommandException();

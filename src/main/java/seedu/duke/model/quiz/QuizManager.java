@@ -63,6 +63,7 @@ public class QuizManager extends DataManager {
         }
         String[] separatedInputs = userInput.split(" ");
 
+        //todo add exceptions here (index out of bounds)
         String question = separatedInputs[3];
         String option1 = separatedInputs[5];
         String option2 = separatedInputs[7];

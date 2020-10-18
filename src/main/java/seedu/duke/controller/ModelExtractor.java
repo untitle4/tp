@@ -13,7 +13,6 @@ public class ModelExtractor {
         this.modelType = modelType;
     }
 
-
     public DataManager retrieveModel() {
         if (modelType == null) {
             return null;
