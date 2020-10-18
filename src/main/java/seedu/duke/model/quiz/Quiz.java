@@ -18,7 +18,8 @@ public class Quiz {
         this.answer = answer;
     }
 
-    public Quiz(String question, String option1, String option2, String option3, String option4, String answer, String explanation) {
+    public Quiz(String question, String option1, String option2, String option3, String option4,
+                String answer, String explanation) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
@@ -58,7 +59,8 @@ public class Quiz {
 
     public String convertToData() {
         if (explanation.equals("")) {
-            return question + "|" + option1 + "|" + option2 + "|" + option3 + "|" + option4 + "|" + answer;
+            return question + "|" + option1 + "|" + option2 + "|" + option3 + "|"
+                    + option4 + "|" + answer;
         } else {
             return question + "|" + option1 + "|" + option2 + "|" + option3 + "|" + option4
                     + "|" + answer + "|" + explanation;
