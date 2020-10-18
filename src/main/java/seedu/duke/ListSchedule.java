@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.common.LogManager;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.parser.DateTimeParser;
 
@@ -20,6 +21,7 @@ public class ListSchedule {
     private static final String CATEGORY_CCAS = "CCAs: ";
     private DateTimeParser dateTimeParser = new DateTimeParser();
     private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
     public ListSchedule(ArrayList<Event> classes, ArrayList<Event> ccas,
                         ArrayList<Event> tests, ArrayList<Event> tuitions) {

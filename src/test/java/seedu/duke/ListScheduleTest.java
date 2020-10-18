@@ -2,6 +2,7 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.EmptyListException;
+import seedu.duke.model.event.classlesson.Class;
 
 import java.util.ArrayList;
 import java.util.List;
