@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class QuizManager {
     private final ArrayList<Quiz> quizzes;
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
     public QuizManager(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;

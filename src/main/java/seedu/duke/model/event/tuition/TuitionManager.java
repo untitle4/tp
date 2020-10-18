@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 public class TuitionManager {
     private ArrayList<Event> tuitionList;
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
 
     public TuitionManager(ArrayList<Event> tuitionList) {

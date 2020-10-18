@@ -1,6 +1,5 @@
 package seedu.duke;
 
-import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.Model;
 import seedu.duke.model.contact.ContactManager;
@@ -21,17 +20,14 @@ public class Duke {
     public static final String EVENT_FILE_NAME = "/events.txt";
     public static final String QUIZ_FILE_NAME = "/quiz.txt";
 
-    private static EventStorageManager eventStorageManager;
-    private static QuizStorageManager quizStorageManager;
-    private static UserInterface userInterface;
-    private static boolean active = true;
-    private static Model model;
+    private final EventStorageManager eventStorageManager;
+    private final QuizStorageManager quizStorageManager;
+    private final UserInterface userInterface;
+    private final Model model;
 
-    /**
-     * Main entry-point for the java.duke.Duke application.
-     */
-    public static void main(String[] args) {
-        new LogManager();
+    private boolean active;
+
+    public Duke() {
         eventStorageManager = new EventStorageManager(EVENT_FILE_NAME);
         quizStorageManager = new QuizStorageManager(QUIZ_FILE_NAME);
         EventParameter eventParameter = eventStorageManager.loadData();
@@ -39,8 +35,18 @@ public class Duke {
         QuizManager quizManager = new QuizManager(quizStorageManager.loadData());
         ContactManager contactManager = new ContactManager();
         userInterface = UserInterface.getInstance();
+        active = true;
         model = new Model(eventManager, contactManager, quizManager);
+    }
 
+    /**
+     * Main entry-point for the java.duke.Duke application.
+     */
+    public static void main(String[] args) {
+        new Duke().run();
+    }
+
+    public void run() {
         userInterface.showWelcomeMessage();
 
         while (active) {
@@ -58,13 +64,13 @@ public class Duke {
         userInterface.showToUser(Messages.MESSAGE_BYE);
     }
 
-    private static void checkIfProgramEnds(CommandType commandType) {
+    private void checkIfProgramEnds(CommandType commandType) {
         if (commandType == CommandType.BYE) {
             active = false;
         }
     }
 
-    private static void refreshEvents() {
+    private void refreshEvents() {
         ArrayList<Event> events = new ArrayList<>();
 
         events.addAll(model.getEventManager().getCcaManager().getCcaList());
@@ -79,7 +85,7 @@ public class Duke {
         }
     }
 
-    private static void refreshQuizzes() {
+    private void refreshQuizzes() {
         ArrayList<Quiz> quizzes = model.getQuizManager().getQuizList();
 
         try {

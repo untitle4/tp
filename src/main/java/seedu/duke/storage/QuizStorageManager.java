@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class QuizStorageManager extends StorageManager {
     private final QuizListEncoder quizListEncoder;
     private final QuizListDecoder quizListDecoder;
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
 
     public QuizStorageManager(String fileName) {

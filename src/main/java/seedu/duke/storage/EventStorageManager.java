@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class EventStorageManager extends StorageManager {
     private final EventListEncoder eventListEncoder;
     private final EventListDecoder eventListDecoder;
-    private static final Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
 
     public EventStorageManager(String fileName) {
