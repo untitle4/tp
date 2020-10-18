@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class QuizListDecoder {
     public ArrayList<Quiz> decodeQuizList(ArrayList<String> encodedQuizList) {
-        final ArrayList<Quiz> decodedQuizs = new ArrayList<>();
+        final ArrayList<Quiz> decodedQuizzes = new ArrayList<>();
         for (String encodedQuiz : encodedQuizList) {
-            decodedQuizs.add(decodeQuizFromString(encodedQuiz));
+            decodedQuizzes.add(decodeQuizFromString(encodedQuiz));
         }
 
-        return decodedQuizs;
+        return decodedQuizzes;
     }
 
     private Quiz decodeQuizFromString(String encodedQuiz) {
