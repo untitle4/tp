@@ -1,10 +1,10 @@
 package seedu.duke.storage;
 
-import seedu.duke.model.event.cca.Cca;
-import seedu.duke.model.event.classlesson.Class;
+import seedu.duke.model.event.cca.EventCca;
+import seedu.duke.model.event.classlesson.EventClass;
 import seedu.duke.Event;
-import seedu.duke.model.event.test.Test;
-import seedu.duke.model.event.tuition.Tuition;
+import seedu.duke.model.event.test.EventTest;
+import seedu.duke.model.event.tuition.EventTuition;
 
 import java.util.ArrayList;
 
@@ -24,20 +24,20 @@ public class EventListDecoder {
         final String[] data = encodedEvent.trim().split("\\|", 3);
 
         switch (data[0]) {
-        case Cca.CCA_ICON:
+        case EventCca.CCA_ICON:
             return parseCca(data);
-        case Class.CLASS_ICON:
+        case EventClass.CLASS_ICON:
             return parseClass(data);
-        case Test.TEST_ICON:
+        case EventTest.TEST_ICON:
             return parseTest(data);
-        case Tuition.TUITION_ICON:
+        case EventTuition.TUITION_ICON:
             return parseTuition(data);
         default:
             return null;
         }
     }
 
-    private Cca parseCca(String[] data) {
+    private EventCca parseCca(String[] data) {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -48,10 +48,10 @@ public class EventListDecoder {
 
         isValidParams(description, start, end);
 
-        return new Cca(description, isDone, start, end);
+        return new EventCca(description, isDone, start, end);
     }
 
-    private Class parseClass(String[] data) {
+    private EventClass parseClass(String[] data) {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -62,10 +62,10 @@ public class EventListDecoder {
 
         isValidParams(description, start, end);
 
-        return new Class(description, isDone, start, end);
+        return new EventClass(description, isDone, start, end);
     }
 
-    private Test parseTest(String[] data) {
+    private EventTest parseTest(String[] data) {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -76,10 +76,10 @@ public class EventListDecoder {
 
         isValidParams(description, start, end);
 
-        return new Test(description, isDone, start, end);
+        return new EventTest(description, isDone, start, end);
     }
 
-    private Tuition parseTuition(String[] data) {
+    private EventTuition parseTuition(String[] data) {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -91,7 +91,7 @@ public class EventListDecoder {
 
         isValidTuition(description, start, end, location);
 
-        return new Tuition(description, isDone, start, end, location);
+        return new EventTuition(description, isDone, start, end, location);
     }
 
     private void isValidParams(String description, String start, String end) {

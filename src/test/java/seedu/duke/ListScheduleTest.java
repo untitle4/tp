@@ -2,7 +2,7 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.EmptyListException;
-import seedu.duke.model.event.classlesson.Class;
+import seedu.duke.model.event.classlesson.EventClass;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ class ListScheduleTest {
     @Test
     void getAllEventsPrinted_classSchedule_classList() throws EmptyListException {
         ArrayList<Event> classes = new ArrayList<>();
-        classes.add(new Class("Math", "2019-02-26 1400", "2019-02-27 1500"));
+        classes.add(new EventClass("Math", "2019-02-26 1400", "2019-02-27 1500"));
         ListSchedule listSchedule = new ListSchedule(classes, new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>());
         ArrayList<String> actualOutputs = listSchedule.getAllEventsPrinted();

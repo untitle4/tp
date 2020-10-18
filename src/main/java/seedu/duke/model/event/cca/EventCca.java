@@ -1,20 +1,19 @@
-package seedu.duke.model.event.test;
+package seedu.duke.model.event.cca;
 
 import seedu.duke.Event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
-import java.time.format.DateTimeParseException;
 
-public class Test extends Event {
-    public static final String TEST_ICON = "[TEST]";
+public class EventCca extends Event {
+    public static final String CCA_ICON = "[CCA]";
 
-    public Test(String description, String start, String end) {
+    public EventCca(String description, String start, String end) {
         super(description, start, end);
     }
 
-    public Test(String description, boolean isDone, String start, String end) {
+    public EventCca(String description, boolean isDone, String start, String end) {
         super(description, start, end, isDone);
     }
 
@@ -22,10 +21,10 @@ public class Test extends Event {
     public String toString() {
         String result = "";
         try {
-            result = TEST_ICON + " " + super.toString() + " from "
+            result = CCA_ICON + " " + super.toString() + " from "
                     + new DateTimeParser().changeDateTime(super.getStart())
                     + " to " + new DateTimeParser().changeDateTime(super.getEnd());
-        } catch (ParseException e) {
+        } catch (ParseException parseException) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
         }
         return result;
@@ -33,10 +32,10 @@ public class Test extends Event {
 
     @Override
     public boolean equals(Object obj) {
-        Test otherTest = (Test) obj;
+        EventCca otherEventCca = (EventCca) obj;
 
         return super.equals(obj)
-                && this.getStart().equals(otherTest.getStart())
-                && this.getEnd().equals(otherTest.getEnd());
+                && this.getStart().equals(otherEventCca.getStart())
+                && this.getEnd().equals(otherEventCca.getEnd());
     }
 }

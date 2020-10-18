@@ -1,6 +1,5 @@
 package seedu.duke.model.event.classlesson;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,7 +11,6 @@ import seedu.duke.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.InvalidClassInputException;
-import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
@@ -28,13 +26,13 @@ import seedu.duke.ui.UserInterface;
  *     <li>Setting class as {@code DONE}</li>
  * </ul>
  *
- * @see ClassManager#getClassListSize()
- * @see ClassManager#add(String)
- * @see ClassManager#delete(String[])
- * @see ClassManager#getClassStatement()
- * @see ClassManager#setDone(String[])
+ * @see EventClassManager#getClassListSize()
+ * @see EventClassManager#add(String)
+ * @see EventClassManager#delete(String[])
+ * @see EventClassManager#getClassStatement()
+ * @see EventClassManager#setDone(String[])
  */
-public class ClassManager extends EventDataManager {
+public class EventClassManager extends EventDataManager {
     // Initialising ArrayList to store classes
     private final ArrayList<Event> classes;
     private UserInterface userInterface;
@@ -42,7 +40,7 @@ public class ClassManager extends EventDataManager {
     // Initialising Logger with name "Class"
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
-    public ClassManager(ArrayList<Event> classes) {
+    public EventClassManager(ArrayList<Event> classes) {
         this.classes = classes;
         userInterface = UserInterface.getInstance();
     }
@@ -67,7 +65,7 @@ public class ClassManager extends EventDataManager {
      * Adds new class to classes ArrayList.
      * @param userInput To take in the String consisting of the class name, start date-time and end date-time.
      * @exception InvalidClassInputException if user input does not meet the requirements.
-     * @see ClassManager#getClassStatement()
+     * @see EventClassManager#getClassStatement()
      */
     @Override
     public void add(String userInput) throws InvalidClassInputException {
@@ -100,7 +98,7 @@ public class ClassManager extends EventDataManager {
         try {
             LocalDateTime.parse(classStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             LocalDateTime.parse(classEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            classes.add(new Class(classDescription, classStartDate, classEndDate));
+            classes.add(new EventClass(classDescription, classStartDate, classEndDate));
             logger.log(Level.INFO, "adding the new class to the ArrayList");
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
@@ -162,7 +160,7 @@ public class ClassManager extends EventDataManager {
      * Sets class as done.
      * @param userInputs To take in the class index of the class to be set as done.
      * @exception IndexOutOfBoundsException when user input is an invalid class index integer.
-     * @see ClassManager#getClassStatement()
+     * @see EventClassManager#getClassStatement()
      */
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {

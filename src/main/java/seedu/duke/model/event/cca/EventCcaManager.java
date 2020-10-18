@@ -5,11 +5,9 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
-import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
-import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -17,12 +15,12 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CcaManager extends EventDataManager {
+public class EventCcaManager extends EventDataManager {
     private final ArrayList<Event> cca;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private UserInterface userInterface;
 
-    public CcaManager(ArrayList<Event> inputList) {
+    public EventCcaManager(ArrayList<Event> inputList) {
         cca = inputList;
         userInterface = UserInterface.getInstance();
     }
@@ -62,7 +60,7 @@ public class CcaManager extends EventDataManager {
         try {
             LocalDateTime.parse(ccaStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             LocalDateTime.parse(ccaEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            cca.add(new Cca(ccaDescription, ccaStartDate, ccaEndDate));
+            cca.add(new EventCca(ccaDescription, ccaStartDate, ccaEndDate));
         } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);

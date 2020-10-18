@@ -1,22 +1,21 @@
 package seedu.duke.model.event.tuition;
 
-import seedu.duke.model.event.classlesson.Class;
+import seedu.duke.model.event.classlesson.EventClass;
 
 import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
-import java.time.format.DateTimeParseException;
 
-public class Tuition extends Class {
+public class EventTuition extends EventClass {
     public static final String TUITION_ICON = "[TUITION]";
     private String location;
 
-    public Tuition(String description, String start, String end, String location) {
+    public EventTuition(String description, String start, String end, String location) {
         super(description, start, end);
         this.location = location;
     }
 
-    public Tuition(String description, boolean isDone, String start, String end, String location) {
+    public EventTuition(String description, boolean isDone, String start, String end, String location) {
         super(description, isDone, start, end);
         this.location = location;
     }
@@ -40,11 +39,11 @@ public class Tuition extends Class {
 
     @Override
     public boolean equals(Object obj) {
-        Tuition otherTuition = (Tuition) obj;
+        EventTuition otherEventTuition = (EventTuition) obj;
 
         return super.equals(obj)
-                && this.getStart().equals(otherTuition.getStart())
-                && this.getEnd().equals(otherTuition.getEnd())
-                && this.location.equals(otherTuition.getLocation());
+                && this.getStart().equals(otherEventTuition.getStart())
+                && this.getEnd().equals(otherEventTuition.getEnd())
+                && this.location.equals(otherEventTuition.getLocation());
     }
 }

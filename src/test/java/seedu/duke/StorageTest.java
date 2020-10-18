@@ -1,9 +1,9 @@
 package seedu.duke;
 
-import seedu.duke.model.event.cca.Cca;
-import seedu.duke.model.event.classlesson.Class;
-import seedu.duke.model.event.test.Test;
-import seedu.duke.model.event.tuition.Tuition;
+import seedu.duke.model.event.cca.EventCca;
+import seedu.duke.model.event.classlesson.EventClass;
+import seedu.duke.model.event.test.EventTest;
+import seedu.duke.model.event.tuition.EventTuition;
 
 import java.util.ArrayList;
 
@@ -31,16 +31,16 @@ public class StorageTest {
 
     private ArrayList<Event> getEventList() {
         ArrayList<Event> events = new ArrayList<>();
-        events.add(new Cca("Basketball training ",
+        events.add(new EventCca("Basketball training ",
                 "2020-09-21 1800 ",
                 "2020-09-21 1900"));
-        events.add(new Class("Math tuition ",
+        events.add(new EventClass("Math tuition ",
                 "2020-09-22 1400 ",
                 "2020-09-22-1600"));
-        events.add(new Test("CS2113T Finals ",
+        events.add(new EventTest("CS2113T Finals ",
                 "2020-12-04 1500 ",
                 "2020-12-04 1600"));
-        events.add(new Tuition("English",
+        events.add(new EventTuition("English",
                 "2020-12-05 1600",
                 "2020-12-05 1800",
                 "home"));

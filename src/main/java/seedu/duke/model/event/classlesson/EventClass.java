@@ -10,17 +10,17 @@ import java.text.ParseException;
  * <h2>Class class</h2>
  * Contains constructors, getters, toString and equals methods.
  *
- * @see Class#toString()
- * @see Class#equals(Object)
+ * @see EventClass#toString()
+ * @see EventClass#equals(Object)
  */
-public class Class extends Event {
+public class EventClass extends Event {
     public static final String CLASS_ICON = "[CLASS]";
 
-    public Class(String description, String start, String end) {
+    public EventClass(String description, String start, String end) {
         super(description, start, end);
     }
 
-    public Class(String description, boolean isDone, String start, String end) {
+    public EventClass(String description, boolean isDone, String start, String end) {
         super(description, start, end, isDone);
     }
 
@@ -39,10 +39,10 @@ public class Class extends Event {
 
     @Override
     public boolean equals(Object obj) {
-        Class otherClass = (Class) obj;
+        EventClass otherEventClass = (EventClass) obj;
 
         return super.equals(obj)
-                && this.getStart().equals(otherClass.getStart())
-                && this.getEnd().equals(otherClass.getEnd());
+                && this.getStart().equals(otherEventClass.getStart())
+                && this.getEnd().equals(otherEventClass.getEnd());
     }
 }
