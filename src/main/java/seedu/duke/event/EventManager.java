@@ -1,7 +1,11 @@
 package seedu.duke.event;
 
-import seedu.duke.*;
+import seedu.duke.CcaManager;
 import seedu.duke.Class;
+import seedu.duke.ClassManager;
+import seedu.duke.ListSchedule;
+import seedu.duke.TestManager;
+import seedu.duke.TuitionManager;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.parser.DateTimeParser;
 
@@ -15,7 +19,6 @@ public class EventManager {
     private static TestManager testManager;
     private static CcaManager ccaManager;
     private static TuitionManager tuitionManager;
-    private static DateTimeParser dateTimeParser;
 
     public EventManager(EventParameter eventParameter) {
         classManager = new ClassManager(eventParameter.getClasses());

@@ -26,7 +26,8 @@ public class Class extends Event {
     public String toString() {
         String result = "";
         try {
-            result = CLASS_ICON + " " + super.toString() + " from " + new DateTimeParser().changeDateTime(super.getStart())
+            result = CLASS_ICON + " " + super.toString() + " from "
+                    + new DateTimeParser().changeDateTime(super.getStart())
                     + " to " + new DateTimeParser().changeDateTime(super.getEnd());
         } catch (ParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");

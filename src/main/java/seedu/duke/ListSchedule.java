@@ -14,6 +14,10 @@ public class ListSchedule {
     private final ArrayList<Event> ccas;
     private final ArrayList<Event> tests;
     private final ArrayList<Event> tuitions;
+    private static final String CATEGORY_TUITIONS = "Tuitions: ";
+    private static final String CATEGORY_CLASSES = "Classes: ";
+    private static final String CATEGORY_TESTS = "Tests: ";
+    private static final String CATEGORY_CCAS = "CCAs: ";
     private DateTimeParser dateTimeParser = new DateTimeParser();
     private static final Logger logger = LogManager.getLogger();
 
@@ -70,10 +74,6 @@ public class ListSchedule {
         ArrayList<String> printedTests = new ArrayList<>();
         ArrayList<String> printedCcas = new ArrayList<>();
         ArrayList<String> printedTuitions = new ArrayList<>();
-        String CATEGORY_TUITIONS = "Tuitions: ";
-        String CATEGORY_CLASSES = "Classes: ";
-        String CATEGORY_TESTS = "Tests: ";
-        String CATEGORY_CCAS = "CCAs: ";
         logger.log(Level.INFO, "starting to convert events instance to strings");
 
         if (hasNoSchedule()) {
@@ -84,22 +84,22 @@ public class ListSchedule {
         if (haveClasses()) {
             logger.log(Level.INFO, "converting class events");
             printArrayPaddedNumbersDate(printedClasses, classes, userInput);
-            ListNotEmpty(printedClasses, printedEvents, CATEGORY_CLASSES);
+            listNotEmpty(printedClasses, printedEvents, CATEGORY_CLASSES);
         }
         if (haveCcas()) {
             logger.log(Level.INFO, "converting CCA events");
             printArrayPaddedNumbersDate(printedCcas, ccas, userInput);
-            ListNotEmpty(printedCcas, printedEvents, CATEGORY_CCAS);
+            listNotEmpty(printedCcas, printedEvents, CATEGORY_CCAS);
         }
         if (haveTests()) {
             logger.log(Level.INFO, "converting test events");
             printArrayPaddedNumbersDate(printedTests, tests, userInput);
-            ListNotEmpty(printedTests, printedEvents, CATEGORY_TESTS);
+            listNotEmpty(printedTests, printedEvents, CATEGORY_TESTS);
         }
         if (haveTuitions()) {
             logger.log(Level.INFO, "converting tuition events");
             printArrayPaddedNumbersDate(printedTuitions, tuitions, userInput);
-            ListNotEmpty(printedTuitions, printedEvents, CATEGORY_TUITIONS);
+            listNotEmpty(printedTuitions, printedEvents, CATEGORY_TUITIONS);
         }
 
         return printedEvents;
@@ -143,7 +143,8 @@ public class ListSchedule {
     }
 
 
-    private void printArrayPaddedNumbersDate(ArrayList<String> printedEvents, ArrayList<Event> eventArr, String userInput) {
+    private void printArrayPaddedNumbersDate(ArrayList<String> printedEvents, ArrayList<Event> eventArr,
+                                             String userInput) {
         assert printedEvents != null;
         assert eventArr != null;
         assert eventArr.size() != 0;
@@ -155,9 +156,9 @@ public class ListSchedule {
         }
     }
 
-    private void ListNotEmpty(ArrayList<String> printedList, ArrayList<String> printedEvents, String CategoryName) {
+    private void listNotEmpty(ArrayList<String> printedList, ArrayList<String> printedEvents, String categoryName) {
         if (printedList.size() > 0) {
-            printedEvents.add(CategoryName);
+            printedEvents.add(categoryName);
             for (int i = 0; i < printedList.size(); i++) {
                 printedEvents.add(printedList.get(i));
             }

@@ -20,7 +20,8 @@ public class Cca extends Event {
     public String toString() {
         String result = "";
         try {
-            result = CCA_ICON + " " + super.toString() + " from " + new DateTimeParser().changeDateTime(super.getStart())
+            result = CCA_ICON + " " + super.toString() + " from "
+                    + new DateTimeParser().changeDateTime(super.getStart())
                     + " to " + new DateTimeParser().changeDateTime(super.getEnd());
         } catch (ParseException parseException) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");

@@ -1,4 +1,5 @@
 package seedu.duke;
+
 import seedu.duke.parser.DateTimeParser;
 
 import java.text.ParseException;
@@ -19,7 +20,8 @@ public class Test extends Event {
     public String toString() {
         String result = "";
         try {
-            result = TEST_ICON + " " + super.toString() + " from " + new DateTimeParser().changeDateTime(super.getStart())
+            result = TEST_ICON + " " + super.toString() + " from "
+                    + new DateTimeParser().changeDateTime(super.getStart())
                     + " to " + new DateTimeParser().changeDateTime(super.getEnd());
         } catch (ParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");

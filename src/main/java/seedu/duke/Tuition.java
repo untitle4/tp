@@ -27,7 +27,8 @@ public class Tuition extends Class {
     public String toString() {
         String result = "";
         try {
-            result = TUITION_ICON + " " + super.toString() + " from " + new DateTimeParser().changeDateTime(super.getStart())
+            result = TUITION_ICON + " " + super.toString() + " from "
+                    + new DateTimeParser().changeDateTime(super.getStart())
                     + " to " + new DateTimeParser().changeDateTime(super.getEnd()) + " at " + getLocation();
         } catch (ParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
