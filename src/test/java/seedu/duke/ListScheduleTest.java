@@ -28,7 +28,7 @@ class ListScheduleTest {
         ArrayList<String> actualOutputs = listSchedule.getAllEventsPrinted();
         ArrayList<String> expectedOutputs = new ArrayList<>(
                 List.of("Classes:", "1. [CLASS] [NOT DONE] Math from 26th Feb 2019 , "
-                        + "02:00 pm to 27th Feb 2019 , 03:00 pm"));
+                        + "02:00 PM to 27th Feb 2019 , 03:00 PM"));
         assertEquals(actualOutputs, expectedOutputs);
     }
 }
