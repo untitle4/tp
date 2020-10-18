@@ -15,7 +15,7 @@ class AddTestJUnitTest {
     void addTestToList() throws TestEmptyStringException, TestParamException {
         ArrayList<Event> test = new ArrayList<>();
         TestManager testManager = new TestManager(test);
-        testManager.addTest("add test /n Math test "
+        testManager.add("add test /n Math test "
                 + "/s 2020-09-26 1400 /e 2020-09-26 1500");
         int actualOutputs = testManager.getTestListSize();
         int expectedOutputs = 1;
