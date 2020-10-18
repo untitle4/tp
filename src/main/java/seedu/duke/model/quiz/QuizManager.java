@@ -61,15 +61,15 @@ public class QuizManager extends DataManager {
                 && !userInput.contains(" /o3 ") && !userInput.contains(" /o4 ")) {
             System.out.println("options not provided");
         }
-        String[] separatedInputs = userInput.split(" ");
+        String[] separatedInputs = userInput.trim().split("/");
 
         //todo add exceptions here (index out of bounds)
-        String question = separatedInputs[3];
-        String option1 = separatedInputs[5];
-        String option2 = separatedInputs[7];
-        String option3 = separatedInputs[9];
-        String option4 = separatedInputs[11];
-        String answer = separatedInputs[13];
+        String question = separatedInputs[1].substring(1);
+        String option1 = separatedInputs[2].substring(2);
+        String option2 = separatedInputs[3].substring(2);
+        String option3 = separatedInputs[4].substring(2);
+        String option4 = separatedInputs[5].substring(2);
+        String answer = separatedInputs[6].substring(1);
 
         quizzes.add(new Quiz(question, option1, option2, option3, option4, answer));
         System.out.println("Quiz question added!");
