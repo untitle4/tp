@@ -1,6 +1,5 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.InvalidHelpCommandException;
@@ -19,6 +18,6 @@ public abstract class Command {
         this.userInput = userInput;
     }
 
-    public abstract void execute(DataManager dataModel) throws ContactParamException, ContactEmptyStringException,
-            InvalidHelpCommandException, QuizParamException, EmptyParameterException, MissingParameterException;
+    public abstract void execute(DataManager dataModel) throws ContactParamException, InvalidHelpCommandException,
+            QuizParamException, EmptyParameterException, MissingParameterException;
 }

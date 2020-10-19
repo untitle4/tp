@@ -3,10 +3,11 @@ package seedu.duke.model.event;
 public class Event {
     public static final String DONE_STATUS = "[DONE]";
     public static final String NOT_DONE_STATUS = "[NOT DONE]";
+
     protected String description;
     protected boolean isDone;
-    private String start;
-    private String end;
+    protected String start;
+    protected String end;
 
     public Event(String description, String start, String end) {
         this.description = description;
@@ -30,16 +31,16 @@ public class Event {
         return end;
     }
 
+    public boolean isDone() {
+        return isDone;
+    }
+
     public void setDone() {
         this.isDone = true;
     }
 
     public String getStatus() {
         return (isDone ? DONE_STATUS : NOT_DONE_STATUS);
-    }
-
-    public boolean isDone() {
-        return isDone;
     }
 
     public String getDescription() {

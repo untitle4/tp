@@ -1,8 +1,8 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exception.TestEmptyStringException;
-import seedu.duke.exception.TestParamException;
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.event.test.EventTestManager;
 
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DoneTestJUnitTest {
 
     @Test
-    void setTestDoneFromList() throws TestParamException, TestEmptyStringException {
+    void setTestDoneFromList() throws MissingParameterException, EmptyParameterException {
         ArrayList<Event> test = new ArrayList<>();
         EventTestManager eventTestManager = new EventTestManager(test);
 

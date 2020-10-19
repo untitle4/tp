@@ -10,5 +10,6 @@ public interface Interactable {
             MissingParameterException, EmptyParameterException;
 
     void delete(String[] userInputs);
+
     void list();
 }

@@ -1,14 +1,14 @@
 package seedu.duke.model.event.tuition;
 
-import seedu.duke.model.event.classlesson.EventClass;
+import seedu.duke.model.event.Event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
 
-public class EventTuition extends EventClass {
+public class EventTuition extends Event {
     public static final String TUITION_ICON = "[TUITION]";
-    private String location;
+    private final String location;
 
     public EventTuition(String description, String start, String end, String location) {
         super(description, start, end);
@@ -16,7 +16,7 @@ public class EventTuition extends EventClass {
     }
 
     public EventTuition(String description, boolean isDone, String start, String end, String location) {
-        super(description, isDone, start, end);
+        super(description, start, end, isDone);
         this.location = location;
     }
 

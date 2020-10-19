@@ -1,8 +1,8 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exception.CcaEmptyStringException;
-import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.event.cca.EventCcaManager;
 
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DoneEventCcaJUnitTest {
 
     @Test
-    void setCcaDone() throws CcaEmptyStringException, CcaParamException {
+    void setCcaDone() throws EmptyParameterException, MissingParameterException {
         ArrayList<Event> cca = new ArrayList<>();
         EventCcaManager eventCcaManager = new EventCcaManager(cca);
 
@@ -28,7 +28,7 @@ public class DoneEventCcaJUnitTest {
             e.printStackTrace();
         }
 
-        boolean actualOutputs = cca.get(0).isDone;
+        boolean actualOutputs = cca.get(0).isDone();
         boolean expectedOutputs = true;
 
         assertEquals(actualOutputs, expectedOutputs);

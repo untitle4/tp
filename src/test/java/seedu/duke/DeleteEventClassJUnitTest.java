@@ -1,7 +1,8 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exception.InvalidClassInputException;
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.event.classlesson.EventClassManager;
 
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DeleteEventClassJUnitTest {
 
     @Test
-    void addClassToList() throws InvalidClassInputException {
+    void addClassToList() throws EmptyParameterException, MissingParameterException {
         ArrayList<Event> classes = new ArrayList<>();
         EventClassManager eventClassManager = new EventClassManager(classes);
 
