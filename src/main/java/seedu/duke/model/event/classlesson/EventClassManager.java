@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.duke.Event;
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
+import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
-import seedu.duke.exception.InvalidClassInputException;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
@@ -35,7 +36,7 @@ import seedu.duke.ui.UserInterface;
 public class EventClassManager extends EventDataManager {
     // Initialising ArrayList to store classes
     private final ArrayList<Event> classes;
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
     // Initialising Logger with name "Class"
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
@@ -64,18 +65,18 @@ public class EventClassManager extends EventDataManager {
      * <h2>addClass()</h2>
      * Adds new class to classes ArrayList.
      * @param userInput To take in the String consisting of the class name, start date-time and end date-time.
-     * @exception InvalidClassInputException if user input does not meet the requirements.
+     * @exception MissingParameterException if user input does not meet the requirements.
      * @see EventClassManager#getClassStatement()
      */
     @Override
-    public void add(String userInput) throws InvalidClassInputException {
+    public void add(String userInput) throws MissingParameterException, EmptyParameterException {
         logger.log(Level.INFO, "initialising adding of a class");
 
         // Checks if user input contains the 3 required parameters (/n, /s and /e)
         if ((!userInput.contains("/n")) || (!userInput.contains("/s")) || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
                     + " missing");
-            throw new InvalidClassInputException();
+            throw new MissingParameterException();
         }
 
         // Splitting /n, /s and /e info. via a String array called classDetails
@@ -91,7 +92,7 @@ public class EventClassManager extends EventDataManager {
         if (classDescription.equals("") || classStartDate.equals("") || classEndDate.equals("")) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time is"
                     + " missing");
-            throw new InvalidClassInputException();
+            throw new EmptyParameterException();
         }
 
         // Checking and converting user's date-time input into format of expected output
@@ -144,6 +145,11 @@ public class EventClassManager extends EventDataManager {
             userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NON_NUMBER);
             logger.log(Level.WARNING, "non-integer class index entered for deletion");
         }
+    }
+
+    @Override
+    public void list() {
+
     }
 
     /**

@@ -2,7 +2,7 @@ package seedu.duke.storage;
 
 import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
-import seedu.duke.Event;
+import seedu.duke.model.event.Event;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
 

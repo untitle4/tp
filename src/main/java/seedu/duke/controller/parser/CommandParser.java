@@ -48,9 +48,6 @@ public class CommandParser {
             commandType = CommandType.DONE;
             break;
         case INPUT_LIST:
-            if (separatedInputs.length != 2) {
-                throw new InvalidCommandException();
-            }
             commandType = CommandType.LIST;
             break;
         case INPUT_BYE:

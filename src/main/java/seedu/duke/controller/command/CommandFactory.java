@@ -23,10 +23,6 @@ public class CommandFactory {
             return new DoneCommand(userInput);
         case LIST:
             return new ListCommand();
-        //        case LIST_QUIZ:
-        //            return new ListQuizCommand();
-        //        case LIST_CONTACT:
-        //            return new ListContactCommand();
         case BYE:
             // fall through
         default:

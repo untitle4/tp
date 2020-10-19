@@ -1,7 +1,5 @@
 package seedu.duke.model.event;
 
-import seedu.duke.Event;
-
 import java.util.ArrayList;
 
 public class EventParameter {

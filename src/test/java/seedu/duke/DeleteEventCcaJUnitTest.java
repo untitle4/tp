@@ -1,8 +1,9 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.exception.CcaEmptyStringException;
-import seedu.duke.exception.CcaParamException;
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
+import seedu.duke.model.event.Event;
 import seedu.duke.model.event.cca.EventCcaManager;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class DeleteEventCcaJUnitTest {
 
     @Test
-    void deleteCcaInList() throws CcaEmptyStringException, CcaParamException {
+    void deleteCcaInList() throws EmptyParameterException, MissingParameterException {
         ArrayList<Event> cca = new ArrayList<>();
         EventCcaManager eventCcaManager = new EventCcaManager(cca);
 
