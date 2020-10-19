@@ -1,10 +1,10 @@
 package seedu.duke.model.event.tuition;
 
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
-import seedu.duke.exception.EmptyTuitionInputException;
-import seedu.duke.exception.InvalidTuitionInputException;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
@@ -34,7 +34,7 @@ public class EventTuitionManager extends EventDataManager {
     }
 
     @Override
-    public void add(String userInput) throws InvalidTuitionInputException, EmptyTuitionInputException {
+    public void add(String userInput) throws MissingParameterException, EmptyParameterException {
         logger.log(Level.INFO, "Initializing adding of a tuition");
         final String descriptionPrefix = "/n";
         final String startPrefix = "/s";
@@ -45,7 +45,7 @@ public class EventTuitionManager extends EventDataManager {
                 || (!userInput.contains(endPrefix)) || (!userInput.contains(locationPrefix))) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
                     + " missing");
-            throw new InvalidTuitionInputException();
+            throw new MissingParameterException();
         }
 
         final int indexOfDescriptionPrefix = userInput.indexOf(descriptionPrefix);
@@ -63,7 +63,7 @@ public class EventTuitionManager extends EventDataManager {
                 .replace(locationPrefix, "").trim();
 
         if (isEmptyString(description) || isEmptyString(start) || isEmptyString(end) || isEmptyString(location)) {
-            throw new EmptyTuitionInputException();
+            throw new EmptyParameterException();
         }
 
         try {

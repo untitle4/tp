@@ -1,10 +1,10 @@
 package seedu.duke.model.event.cca;
 
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
-import seedu.duke.exception.CcaEmptyStringException;
-import seedu.duke.exception.CcaParamException;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
@@ -35,13 +35,13 @@ public class EventCcaManager extends EventDataManager {
     }
 
     @Override
-    public void add(String userInput) throws CcaEmptyStringException, CcaParamException {
+    public void add(String userInput) throws MissingParameterException, EmptyParameterException {
         logger.log(Level.INFO, "initialising adding of a cca");
 
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
                 || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "no param is entered");
-            throw new CcaParamException();
+            throw new MissingParameterException();
         }
 
         final String[] ccaDetails = userInput.trim().split("\\/");
@@ -54,7 +54,7 @@ public class EventCcaManager extends EventDataManager {
         if (ccaDescription.equals("") || ccaStartDate.equals("")
                 || ccaEndDate.equals("")) {
             logger.log(Level.WARNING, "description/start date/end date is empty");
-            throw new CcaEmptyStringException();
+            throw new EmptyParameterException();
         }
 
         try {

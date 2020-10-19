@@ -1,20 +1,14 @@
 package seedu.duke.model;
 
-import seedu.duke.exception.CcaEmptyStringException;
-import seedu.duke.exception.CcaParamException;
 import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
-import seedu.duke.exception.EmptyTuitionInputException;
-import seedu.duke.exception.InvalidClassInputException;
-import seedu.duke.exception.InvalidTuitionInputException;
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
-import seedu.duke.exception.TestEmptyStringException;
-import seedu.duke.exception.TestParamException;
 
 public interface Interactable {
-    void add(String userInput) throws InvalidTuitionInputException, EmptyTuitionInputException,
-            CcaEmptyStringException, CcaParamException, InvalidClassInputException, TestEmptyStringException,
-            TestParamException, ContactEmptyStringException, ContactParamException, QuizParamException;
+    void add(String userInput) throws ContactEmptyStringException, ContactParamException,
+            QuizParamException, MissingParameterException, EmptyParameterException;
 
     void delete(String[] userInputs);
     void list();

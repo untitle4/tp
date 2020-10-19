@@ -1,10 +1,10 @@
 package seedu.duke.model.event.test;
 
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
-import seedu.duke.exception.TestEmptyStringException;
-import seedu.duke.exception.TestParamException;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
@@ -35,13 +35,13 @@ public class EventTestManager extends EventDataManager {
     }
 
     @Override
-    public void add(String userInput) throws TestEmptyStringException, TestParamException {
+    public void add(String userInput) throws EmptyParameterException, MissingParameterException {
         logger.log(Level.INFO, "initialising adding of a test");
 
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
                 || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "no param is entered");
-            throw new TestParamException();
+            throw new MissingParameterException();
         }
 
         userInput.replaceAll("\\s+","");
@@ -55,7 +55,7 @@ public class EventTestManager extends EventDataManager {
         if (testDescription.equals("") || testStartDate.equals("")
                 || testEndDate.equals("")) {
             logger.log(Level.WARNING, "description/start date/end date is empty");
-            throw new TestEmptyStringException();
+            throw new EmptyParameterException();
         }
 
 
