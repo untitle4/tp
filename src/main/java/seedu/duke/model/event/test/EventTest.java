@@ -1,6 +1,6 @@
 package seedu.duke.model.event.test;
 
-import seedu.duke.Event;
+import seedu.duke.model.event.Event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 

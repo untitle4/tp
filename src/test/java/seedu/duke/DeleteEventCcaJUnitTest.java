@@ -3,6 +3,7 @@ package seedu.duke;
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.CcaEmptyStringException;
 import seedu.duke.exception.CcaParamException;
+import seedu.duke.model.event.Event;
 import seedu.duke.model.event.cca.EventCcaManager;
 
 import java.util.ArrayList;

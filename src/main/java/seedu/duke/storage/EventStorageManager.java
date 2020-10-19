@@ -2,7 +2,7 @@ package seedu.duke.storage;
 
 import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
-import seedu.duke.Event;
+import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.test.EventTest;

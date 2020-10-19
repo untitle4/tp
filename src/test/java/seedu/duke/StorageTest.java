@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.model.event.Event;
 import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
 import seedu.duke.model.event.test.EventTest;

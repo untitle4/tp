@@ -2,6 +2,8 @@ package seedu.duke;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.EmptyListException;
+import seedu.duke.model.event.Event;
+import seedu.duke.model.event.ListSchedule;
 import seedu.duke.model.event.classlesson.EventClass;
 
 import java.util.ArrayList;

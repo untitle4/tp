@@ -1,6 +1,6 @@
 package seedu.duke.model.event.cca;
 
-import seedu.duke.Event;
+import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.CcaEmptyStringException;

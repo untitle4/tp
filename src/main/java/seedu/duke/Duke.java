@@ -4,6 +4,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.model.Model;
 import seedu.duke.model.contact.ContactManager;
 import seedu.duke.controller.ControlManager;
+import seedu.duke.model.event.Event;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
 import seedu.duke.controller.parser.CommandType;

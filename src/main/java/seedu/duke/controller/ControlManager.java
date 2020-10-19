@@ -45,7 +45,7 @@ public class ControlManager {
             DataManager dataModel = new ModelExtractor(model, modelType).retrieveModel();
 
             if (modelType == ModelType.EVENT) {
-                new ListCommand().execute(model.getEventManager());
+                new ListCommand(userInput).execute(model.getEventManager());
             } else {
                 actionableCommand.execute(dataModel);
             }

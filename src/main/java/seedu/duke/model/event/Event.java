@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.model.event;
 
 public class Event {
     public static final String DONE_STATUS = "[DONE]";
