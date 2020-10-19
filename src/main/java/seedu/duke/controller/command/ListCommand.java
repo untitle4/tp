@@ -19,6 +19,6 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(DataManager dataModel) {
-    //        dataModel.list();
+        dataModel.list();
     }
 }

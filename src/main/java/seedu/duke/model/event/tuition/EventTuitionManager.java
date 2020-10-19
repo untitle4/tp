@@ -16,21 +16,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EventTuitionManager extends EventDataManager {
-    private ArrayList<Event> tuitionList;
+    private final ArrayList<Event> tuitions;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
-    public EventTuitionManager(ArrayList<Event> tuitionList) {
-        this.tuitionList = tuitionList;
+    public EventTuitionManager(ArrayList<Event> tuitions) {
+        this.tuitions = tuitions;
         userInterface = UserInterface.getInstance();
     }
 
     public ArrayList<Event> getTuitions() {
-        return tuitionList;
+        return tuitions;
     }
 
     public int getTuitionListSize() {
-        return tuitionList.size();
+        return tuitions.size();
     }
 
     @Override
@@ -71,7 +71,7 @@ public class EventTuitionManager extends EventDataManager {
             parseLocalDateTime(end);
 
             EventTuition eventTuition = new EventTuition(description, start, end, location);
-            tuitionList.add(eventTuition);
+            tuitions.add(eventTuition);
             logger.log(Level.INFO, "Tuition added successfully");
             userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
                     eventTuition.toString(),
@@ -91,13 +91,13 @@ public class EventTuitionManager extends EventDataManager {
             assert tuitionIndex > 0 : "tuitionIndex should be a positive integer";
 
             // Just to test if class index is valid - for exception use only
-            tuitionList.get(tuitionIndex - 1);
+            tuitions.get(tuitionIndex - 1);
 
             userInterface.showToUser("Noted. I've removed this tuition class: ",
-                    tuitionList.get(tuitionIndex - 1).toString());
+                    tuitions.get(tuitionIndex - 1).toString());
 
             // Deletes class from classes ArrayList
-            tuitionList.remove(tuitionIndex - 1);
+            tuitions.remove(tuitionIndex - 1);
             logger.log(Level.INFO, "Deletion of tuition class from ArrayList");
             userInterface.showToUser(getTuitionStatement());
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -107,6 +107,11 @@ public class EventTuitionManager extends EventDataManager {
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_TUITION_DELETE_ERROR_NON_NUMBER);
         }
+    }
+
+    @Override
+    public void list() {
+
     }
 
     @Override
@@ -133,11 +138,11 @@ public class EventTuitionManager extends EventDataManager {
         }
 
         // Sets class as done
-        tuitionList.get(tuitionNumber - 1).setDone();
+        tuitions.get(tuitionNumber - 1).setDone();
         logger.log(Level.INFO, "set class as done from ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TUITION_DONE_SUCCESS,
-                "  " + tuitionList.get(tuitionNumber - 1),
+                "  " + tuitions.get(tuitionNumber - 1),
                 getTuitionStatement());
     }
 

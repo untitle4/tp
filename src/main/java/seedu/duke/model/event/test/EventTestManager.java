@@ -16,22 +16,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EventTestManager extends EventDataManager {
-    private final ArrayList<Event> test;
+    private final ArrayList<Event> tests;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
     public EventTestManager(ArrayList<Event> inputList) {
-        test = inputList;
+        tests = inputList;
         userInterface = UserInterface.getInstance();
     }
 
-    public ArrayList<Event> getTestList() {
-        return test;
+    public ArrayList<Event> getTests() {
+        return tests;
     }
 
     public int getTestListSize() {
-        assert test != null;
-        return test.size();
+        assert tests != null;
+        return tests.size();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class EventTestManager extends EventDataManager {
         try {
             LocalDateTime.parse(testStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             LocalDateTime.parse(testEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            test.add(new EventTest(testDescription, testStartDate, testEndDate));
+            tests.add(new EventTest(testDescription, testStartDate, testEndDate));
         } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
@@ -71,7 +71,7 @@ public class EventTestManager extends EventDataManager {
         logger.log(Level.INFO, "added test to ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
-                "  " + test.get(getTestListSize() - 1));
+                "  " + tests.get(getTestListSize() - 1));
         getTaskStatement();
     }
 
@@ -97,12 +97,17 @@ public class EventTestManager extends EventDataManager {
         }
 
         userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_SUCCESS,
-                "  " + test.get(testNumber - 1));
+                "  " + tests.get(testNumber - 1));
 
-        test.remove(testNumber - 1);
+        tests.remove(testNumber - 1);
         logger.log(Level.INFO, "deleted test from ArrayList");
 
         getTaskStatement();
+    }
+
+    @Override
+    public void list() {
+
     }
 
     private void getTaskStatement() {
@@ -134,11 +139,11 @@ public class EventTestManager extends EventDataManager {
             throw new IndexOutOfBoundsException();
         }
 
-        test.get(testNumber - 1).setDone();
+        tests.get(testNumber - 1).setDone();
         logger.log(Level.INFO, "set test as done from ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TEST_DONE_SUCCESS,
-                "  " + test.get(testNumber - 1));
+                "  " + tests.get(testNumber - 1));
 
         getTaskStatement();
     }

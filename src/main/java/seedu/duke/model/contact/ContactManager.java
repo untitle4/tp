@@ -3,7 +3,6 @@ package seedu.duke.model.contact;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.DataManager;
-import seedu.duke.model.Interactable;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
@@ -93,7 +92,8 @@ public class ContactManager extends DataManager {
         getContactStatement();
     }
 
-    public void listContacts() {
+    @Override
+    public void list() {
         if (contacts.size() == 0) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_CONTACT_LIST);
         } else {

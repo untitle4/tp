@@ -74,8 +74,8 @@ public class Duke {
     private void refreshEvents() {
         ArrayList<Event> events = new ArrayList<>();
 
-        events.addAll(model.getEventManager().getCcaManager().getCcaList());
-        events.addAll(model.getEventManager().getTestManager().getTestList());
+        events.addAll(model.getEventManager().getCcaManager().getCcas());
+        events.addAll(model.getEventManager().getTestManager().getTests());
         events.addAll(model.getEventManager().getClassManager().getClasses());
         events.addAll(model.getEventManager().getTuitionManager().getTuitions());
 

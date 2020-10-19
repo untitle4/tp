@@ -46,7 +46,7 @@ public class EventManager {
         try {
             String dateParam = userInput.split(" ").length == 2 ? null : userInput.split(" ")[2];
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
-                    eventCcaManager.getCcaList(), eventTestManager.getTestList(), eventTuitionManager.getTuitions());
+                    eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
             ArrayList<String> printedEvents = listSchedule.getPrintableEvents();
             userInterface.printArray(printedEvents);
         } catch (EmptyListException e) {

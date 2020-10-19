@@ -16,22 +16,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EventCcaManager extends EventDataManager {
-    private final ArrayList<Event> cca;
+    private final ArrayList<Event> ccas;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
     public EventCcaManager(ArrayList<Event> inputList) {
-        cca = inputList;
+        ccas = inputList;
         userInterface = UserInterface.getInstance();
     }
 
-    public ArrayList<Event> getCcaList() {
-        return cca;
+    public ArrayList<Event> getCcas() {
+        return ccas;
     }
 
     public int getCcaListSize() {
-        assert cca != null;
-        return cca.size();
+        assert ccas != null;
+        return ccas.size();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class EventCcaManager extends EventDataManager {
         try {
             LocalDateTime.parse(ccaStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             LocalDateTime.parse(ccaEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            cca.add(new EventCca(ccaDescription, ccaStartDate, ccaEndDate));
+            ccas.add(new EventCca(ccaDescription, ccaStartDate, ccaEndDate));
         } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
@@ -70,7 +70,7 @@ public class EventCcaManager extends EventDataManager {
 
 
         userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
-                cca.get(getCcaListSize() - 1).toString());
+                ccas.get(getCcaListSize() - 1).toString());
         getCcaStatement();
     }
 
@@ -93,10 +93,15 @@ public class EventCcaManager extends EventDataManager {
         }
 
         userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_SUCCESS,
-                cca.get(ccaIndex - 1).toString());
+                ccas.get(ccaIndex - 1).toString());
 
-        cca.remove(ccaIndex - 1);
+        ccas.remove(ccaIndex - 1);
         getCcaStatement();
+    }
+
+    @Override
+    public void list() {
+
     }
 
     @Override
@@ -119,11 +124,11 @@ public class EventCcaManager extends EventDataManager {
             throw new IndexOutOfBoundsException();
         }
 
-        cca.get(ccaIndex - 1).setDone();
+        ccas.get(ccaIndex - 1).setDone();
         logger.log(Level.INFO, "set cca as done from Arraylist");
 
         userInterface.showToUser(Messages.MESSAGE_CCA_DONE_SUCCESS,
-                cca.get(ccaIndex - 1).toString());
+                ccas.get(ccaIndex - 1).toString());
     }
 
     private void getCcaStatement() {

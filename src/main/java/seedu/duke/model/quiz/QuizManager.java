@@ -85,7 +85,8 @@ public class QuizManager extends DataManager {
         System.out.println("Quiz question added!");
     }
 
-    public void listQuiz() {
+    @Override
+    public void list() {
         if (quizzes.size() == 0) {
             System.out.println("Quiz list is empty. Add some!");
         } else {

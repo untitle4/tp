@@ -17,4 +17,5 @@ public interface Interactable {
             TestParamException, ContactEmptyStringException, ContactParamException, QuizParamException;
 
     void delete(String[] userInputs);
+    void list();
 }

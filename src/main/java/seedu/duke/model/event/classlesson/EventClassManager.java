@@ -35,7 +35,7 @@ import seedu.duke.ui.UserInterface;
 public class EventClassManager extends EventDataManager {
     // Initialising ArrayList to store classes
     private final ArrayList<Event> classes;
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
     // Initialising Logger with name "Class"
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
@@ -144,6 +144,11 @@ public class EventClassManager extends EventDataManager {
             userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NON_NUMBER);
             logger.log(Level.WARNING, "non-integer class index entered for deletion");
         }
+    }
+
+    @Override
+    public void list() {
+
     }
 
     /**
