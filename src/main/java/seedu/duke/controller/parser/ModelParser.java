@@ -15,7 +15,6 @@ public class ModelParser {
     public static final String INPUT_QUIZ = "quiz";
     public static final String INPUT_CONTACT = "contact";
     public static final String INPUT_EVENT = "event";
-    public static final int MAIN_COMMAND_INDEX = 0;
     public static final int SUB_COMMAND_INDEX = 1;
 
     private final String[] separatedInputs;

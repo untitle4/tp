@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ListScheduleTest {
-
     @Test
     void getPrintableEvents_emptySchedule_expectException() {
         ListSchedule listSchedule = new ListSchedule(null, new ArrayList<>(), new ArrayList<>(),

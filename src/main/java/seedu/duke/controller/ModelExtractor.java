@@ -1,5 +1,6 @@
 package seedu.duke.controller;
 
+import seedu.duke.exception.InvalidModelException;
 import seedu.duke.model.DataManager;
 import seedu.duke.model.Model;
 import seedu.duke.model.ModelType;
@@ -13,7 +14,7 @@ public class ModelExtractor {
         this.modelType = modelType;
     }
 
-    public DataManager retrieveModel() {
+    public DataManager retrieveModel() throws InvalidModelException {
         if (modelType == null) {
             return null;
         }
@@ -32,8 +33,7 @@ public class ModelExtractor {
         case CONTACT:
             return model.getContactManager();
         default:
-            // null
+            throw new InvalidModelException();
         }
-        return null;
     }
 }
