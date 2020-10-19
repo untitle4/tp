@@ -1,10 +1,12 @@
 package seedu.duke.model.quiz;
 
 import seedu.duke.common.LogManager;
+import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class QuizManager extends DataManager {
@@ -51,7 +53,7 @@ public class QuizManager extends DataManager {
 
     // format: add quiz /q question /o1 option 1 /o2 option 2 /o3 option 3 /o4 option 4 /a answer /exp explanation
     @Override
-    public void add(String userInput) throws QuizParamException {
+    public void add(String userInput) throws QuizParamException, EmptyParameterException {
         if (!userInput.contains(" /q ")) {
             System.out.println("question not found");
             throw new QuizParamException();
@@ -67,20 +69,25 @@ public class QuizManager extends DataManager {
         }
         String[] separatedInputs = userInput.trim().split("/");
 
-        //todo add exceptions here (index out of bounds)
         String question = separatedInputs[1].substring(1).trim();
         String option1 = separatedInputs[2].substring(2).trim();
         String option2 = separatedInputs[3].substring(2).trim();
         String option3 = separatedInputs[4].substring(2).trim();
         String option4 = separatedInputs[5].substring(2).trim();
         String answer = separatedInputs[6].substring(1).trim();
+
+        if (question.equals(" ") || option1.equals(" ") || option2.equals(" ")
+                || option3.equals(" ") || option4.equals(" ") || answer.equals(" ")) {
+            logger.log(Level.WARNING, "question or options or answer is empty");
+            throw new EmptyParameterException();
+        }
+
         if (separatedInputs.length > 7) {
             String explanation = separatedInputs[7].substring(3).trim();
             quizzes.add(new Quiz(question, option1, option2, option3, option4, answer, explanation));
         } else {
             quizzes.add(new Quiz(question, option1, option2, option3, option4, answer));
         }
-
 
         System.out.println("Quiz question added!");
     }

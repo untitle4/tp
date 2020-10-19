@@ -3,7 +3,6 @@ package seedu.duke.controller;
 import seedu.duke.common.Messages;
 import seedu.duke.controller.command.ListCommand;
 import seedu.duke.controller.parser.ModelParser;
-import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.InvalidCommandException;
@@ -48,8 +47,6 @@ public class ControlManager {
             } else {
                 actionableCommand.execute(dataModel);
             }
-        } catch (ContactEmptyStringException e) {
-            e.printStackTrace();
         } catch (InvalidHelpCommandException e) {
             e.printStackTrace();
         } catch (ContactParamException e) {

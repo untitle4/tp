@@ -2,9 +2,9 @@ package seedu.duke.model.contact;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
+import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.model.DataManager;
 import seedu.duke.ui.UserInterface;
-import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
 
 import java.util.ArrayList;
@@ -12,25 +12,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ContactManager extends DataManager {
-    private ArrayList<Contact> contacts = new ArrayList<>();
+    private final ArrayList<Contact> contacts = new ArrayList<>();
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
     public ContactManager() {
         userInterface = UserInterface.getInstance();
     }
 
-    public ArrayList<Contact> getContactList() {
-        return contacts;
-    }
-
     public int getContactListSize() {
-        assert contacts != null;
         return contacts.size();
     }
 
     @Override
-    public void add(String userInput) throws ContactEmptyStringException, ContactParamException {
+    public void add(String userInput) throws ContactParamException, EmptyParameterException {
         if (!userInput.contains("/s")) {
             userInterface.showToUser(Messages.MESSAGE_SUBJECT_NOT_FOUND);
             throw new ContactParamException();
@@ -45,7 +40,7 @@ public class ContactManager extends DataManager {
             throw new ContactParamException();
         }
 
-        String[] seperatedInputs = userInput.trim().split("\\/");
+        String[] seperatedInputs = userInput.trim().split("/");
 
         logger.log(Level.INFO, "splitting user input into subject, name, phone number"
                 + "and email address.");
@@ -57,7 +52,7 @@ public class ContactManager extends DataManager {
         if (subject.equals("") || name.equals("")
                 || phoneNumber.equals("") || emailAddress.equals("")) {
             logger.log(Level.WARNING, "subject/name/phone number/email address is empty");
-            throw new ContactEmptyStringException();
+            throw new EmptyParameterException();
         }
 
         contacts.add(new Contact(subject, name, phoneNumber, emailAddress));

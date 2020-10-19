@@ -1,6 +1,5 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
@@ -13,8 +12,8 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(DataManager dataModel) throws ContactEmptyStringException, ContactParamException,
-            QuizParamException, EmptyParameterException, MissingParameterException {
+    public void execute(DataManager dataModel) throws ContactParamException, QuizParamException,
+            EmptyParameterException, MissingParameterException {
         dataModel.add(userInput);
     }
 }
