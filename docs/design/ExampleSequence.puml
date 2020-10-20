@@ -1,11 +1,12 @@
 @startuml
 User -> UI: "add test /n CS2113T Finals /s 2020-12-01 1300 /e 2020-12-01 1400
-UI -> Logic: runLogic()
-Logic -> Model: add(userInput)
-Logic -> Storage: refreshEvents()
-Storage -> Storage: save()
+UI -> Controller: runLogic()
+Controller -> Model: add(userInput)
+Model --> Controller
+Controller -> Storage: refreshEvents()
+Storage -> Storage: saveData()
 Storage --> Storage
-Storage --> Logic
-Logic --> UI
+Storage --> Controller
+Controller --> UI
 UI --> User
 @enduml
