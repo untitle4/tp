@@ -1,16 +1,17 @@
 package seedu.duke.model.event.classlesson;
 
-import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import seedu.duke.Event;
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
+import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
-import seedu.duke.exception.InvalidClassInputException;
-import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
@@ -26,21 +27,21 @@ import seedu.duke.ui.UserInterface;
  *     <li>Setting class as {@code DONE}</li>
  * </ul>
  *
- * @see ClassManager#getClassListSize()
- * @see ClassManager#addClass(String)
- * @see ClassManager#deleteClass(String[])
- * @see ClassManager#getClassStatement()
- * @see ClassManager#setClassDone(String[])
+ * @see EventClassManager#getClassListSize()
+ * @see EventClassManager#add(String)
+ * @see EventClassManager#delete(String[])
+ * @see EventClassManager#getClassStatement()
+ * @see EventClassManager#setDone(String[])
  */
-public class ClassManager extends EventDataManager {
+public class EventClassManager extends EventDataManager {
     // Initialising ArrayList to store classes
     private final ArrayList<Event> classes;
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
     // Initialising Logger with name "Class"
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
 
-    public ClassManager(ArrayList<Event> classes) {
+    public EventClassManager(ArrayList<Event> classes) {
         this.classes = classes;
         userInterface = UserInterface.getInstance();
     }
@@ -64,18 +65,18 @@ public class ClassManager extends EventDataManager {
      * <h2>addClass()</h2>
      * Adds new class to classes ArrayList.
      * @param userInput To take in the String consisting of the class name, start date-time and end date-time.
-     * @exception InvalidClassInputException if user input does not meet the requirements.
-     * @see ClassManager#getClassStatement()
+     * @exception MissingParameterException if user input does not meet the requirements.
+     * @see EventClassManager#getClassStatement()
      */
     @Override
-    public void add(String userInput) throws InvalidClassInputException {
+    public void add(String userInput) throws MissingParameterException, EmptyParameterException {
         logger.log(Level.INFO, "initialising adding of a class");
 
         // Checks if user input contains the 3 required parameters (/n, /s and /e)
         if ((!userInput.contains("/n")) || (!userInput.contains("/s")) || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
                     + " missing");
-            throw new InvalidClassInputException();
+            throw new MissingParameterException();
         }
 
         // Splitting /n, /s and /e info. via a String array called classDetails
@@ -83,26 +84,24 @@ public class ClassManager extends EventDataManager {
 
         logger.log(Level.INFO, "splitting the user input into class description, start date-time and end "
                 + "date-time");
-        String classDescription = classDetails[1].substring(2);
-        String classStartDate = classDetails[2].substring(2);
-        String classEndDate = classDetails[3].substring(2);
+        String classDescription = classDetails[1].substring(1).trim().replaceAll("\\s+"," ");
+        String classStartDate = classDetails[2].substring(1).trim();
+        String classEndDate = classDetails[3].substring(1).trim();
 
         // Checking if any of the 3 required parameters are empty
         if (classDescription.equals("") || classStartDate.equals("") || classEndDate.equals("")) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time is"
                     + " missing");
-            throw new InvalidClassInputException();
+            throw new EmptyParameterException();
         }
 
         // Checking and converting user's date-time input into format of expected output
         try {
-            String changedClassStartDate = new DateTimeParser(classStartDate).changeDateTime();
-            String changedClassEndDate = new DateTimeParser(classEndDate).changeDateTime();
-
-            classes.add(new Class(classDescription, changedClassStartDate, changedClassEndDate));
+            LocalDateTime.parse(classStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            LocalDateTime.parse(classEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            classes.add(new EventClass(classDescription, classStartDate, classEndDate));
             logger.log(Level.INFO, "adding the new class to the ArrayList");
-        } catch (DateTimeParseException | StringIndexOutOfBoundsException
-                | ArrayIndexOutOfBoundsException | ParseException e) {
+        } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
             return;
         }
@@ -148,6 +147,11 @@ public class ClassManager extends EventDataManager {
         }
     }
 
+    @Override
+    public void list() {
+
+    }
+
     /**
      * <h2>getClassStatement()</h2>
      * Prints statement to update the user once class has been added or deleted.
@@ -162,7 +166,7 @@ public class ClassManager extends EventDataManager {
      * Sets class as done.
      * @param userInputs To take in the class index of the class to be set as done.
      * @exception IndexOutOfBoundsException when user input is an invalid class index integer.
-     * @see ClassManager#getClassStatement()
+     * @see EventClassManager#getClassStatement()
      */
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {

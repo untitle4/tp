@@ -1,10 +1,10 @@
 package seedu.duke.storage;
 
-import seedu.duke.model.event.cca.Cca;
-import seedu.duke.model.event.classlesson.Class;
-import seedu.duke.Event;
-import seedu.duke.model.event.test.Test;
-import seedu.duke.model.event.tuition.Tuition;
+import seedu.duke.model.event.cca.EventCca;
+import seedu.duke.model.event.classlesson.EventClass;
+import seedu.duke.model.event.Event;
+import seedu.duke.model.event.test.EventTest;
+import seedu.duke.model.event.tuition.EventTuition;
 
 import java.util.ArrayList;
 
@@ -25,60 +25,60 @@ public class EventListEncoder {
     private String encodeEventToString(Event event) {
         String result = "";
 
-        if (event instanceof Cca) {
-            Cca cca = (Cca) event;
-            assertValidCca(cca);
-            result = Cca.CCA_ICON + "|"
-                    + cca.isDone() + "|"
-                    + cca.getDescription() + "|"
-                    + cca.getStart() + "|"
-                    + cca.getEnd();
-        } else if (event instanceof Test) {
-            Test test = (Test) event;
-            assertValidTest(test);
-            result = Test.TEST_ICON + "|"
-                    + test.isDone() + "|"
-                    + test.getDescription() + "|"
-                    + test.getStart() + "|"
-                    + test.getEnd();
-        } else if (event instanceof Tuition) {
-            Tuition newTuition = (Tuition) event;
-            assertValidTuition(newTuition);
-            result = Tuition.TUITION_ICON + "|"
-                    + newTuition.isDone() + "|"
-                    + newTuition.getDescription() + "|"
-                    + newTuition.getStart() + "|"
-                    + newTuition.getEnd() + "|"
-                    + newTuition.getLocation();
-        } else if (event instanceof Class) {
-            Class newClass = (Class) event;
-            assertValidClass(newClass);
-            result = Class.CLASS_ICON + "|"
-                    + newClass.isDone() + "|"
-                    + newClass.getDescription() + "|"
-                    + newClass.getStart() + "|"
-                    + newClass.getEnd();
+        if (event instanceof EventCca) {
+            EventCca eventCca = (EventCca) event;
+            assertValidCca(eventCca);
+            result = EventCca.CCA_ICON + "|"
+                    + eventCca.isDone() + "|"
+                    + eventCca.getDescription() + "|"
+                    + eventCca.getStart() + "|"
+                    + eventCca.getEnd();
+        } else if (event instanceof EventTest) {
+            EventTest eventTest = (EventTest) event;
+            assertValidTest(eventTest);
+            result = EventTest.TEST_ICON + "|"
+                    + eventTest.isDone() + "|"
+                    + eventTest.getDescription() + "|"
+                    + eventTest.getStart() + "|"
+                    + eventTest.getEnd();
+        } else if (event instanceof EventTuition) {
+            EventTuition newEventTuition = (EventTuition) event;
+            assertValidTuition(newEventTuition);
+            result = EventTuition.TUITION_ICON + "|"
+                    + newEventTuition.isDone() + "|"
+                    + newEventTuition.getDescription() + "|"
+                    + newEventTuition.getStart() + "|"
+                    + newEventTuition.getEnd() + "|"
+                    + newEventTuition.getLocation();
+        } else if (event instanceof EventClass) {
+            EventClass newEventClass = (EventClass) event;
+            assertValidClass(newEventClass);
+            result = EventClass.CLASS_ICON + "|"
+                    + newEventClass.isDone() + "|"
+                    + newEventClass.getDescription() + "|"
+                    + newEventClass.getStart() + "|"
+                    + newEventClass.getEnd();
         }
 
         return result;
     }
 
-    private void assertValidCca(Cca cca) {
-        isValidParams(cca.getDescription(), cca.getStart(), cca.getEnd());
+    private void assertValidCca(EventCca eventCca) {
+        isValidParams(eventCca.getDescription(), eventCca.getStart(), eventCca.getEnd());
     }
 
-    private void assertValidClass(Class inputClass) {
-        isValidParams(inputClass.getDescription(), inputClass.getStart(), inputClass.getEnd());
+    private void assertValidClass(EventClass inputEventClass) {
+        isValidParams(inputEventClass.getDescription(), inputEventClass.getStart(), inputEventClass.getEnd());
     }
 
-    private void assertValidTest(Test test) {
-        isValidParams(test.getDescription(), test.getStart(), test.getEnd());
+    private void assertValidTest(EventTest eventTest) {
+        isValidParams(eventTest.getDescription(), eventTest.getStart(), eventTest.getEnd());
     }
 
-    private void assertValidTuition(Tuition tuition) {
-        isValidParams(tuition.getDescription(), tuition.getStart(), tuition.getEnd());
-        assert tuition.getLocation() != null;
-        assert !tuition.getLocation().equals("");
+    private void assertValidTuition(EventTuition eventTuition) {
+        isValidParams(eventTuition.getDescription(), eventTuition.getStart(), eventTuition.getEnd());
+        assert eventTuition.getLocation() != null;
+        assert !eventTuition.getLocation().equals("");
     }
 
     private void isValidParams(String description, String start, String end) {

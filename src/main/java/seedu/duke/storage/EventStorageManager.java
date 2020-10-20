@@ -1,12 +1,12 @@
 package seedu.duke.storage;
 
-import seedu.duke.model.event.cca.Cca;
-import seedu.duke.model.event.classlesson.Class;
-import seedu.duke.Event;
+import seedu.duke.model.event.cca.EventCca;
+import seedu.duke.model.event.classlesson.EventClass;
+import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
-import seedu.duke.model.event.test.Test;
-import seedu.duke.model.event.tuition.Tuition;
+import seedu.duke.model.event.test.EventTest;
+import seedu.duke.model.event.tuition.EventTuition;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.model.event.EventParameter;
 
@@ -70,13 +70,13 @@ public class EventStorageManager extends StorageManager {
         ArrayList<Event> tests = new ArrayList<>();
         ArrayList<Event> tuitions = new ArrayList<>();
         for (Event event : events) {
-            if (event instanceof Cca) {
+            if (event instanceof EventCca) {
                 ccas.add(event);
-            } else if (event instanceof Tuition) {
+            } else if (event instanceof EventTuition) {
                 tuitions.add(event);
-            } else if (event instanceof Class) {
+            } else if (event instanceof EventClass) {
                 classes.add(event);
-            } else if (event instanceof Test) {
+            } else if (event instanceof EventTest) {
                 tests.add(event);
             }
         }

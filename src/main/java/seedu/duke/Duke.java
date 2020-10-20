@@ -4,6 +4,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.model.Model;
 import seedu.duke.model.contact.ContactManager;
 import seedu.duke.controller.ControlManager;
+import seedu.duke.model.event.Event;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
 import seedu.duke.controller.parser.CommandType;
@@ -73,8 +74,8 @@ public class Duke {
     private void refreshEvents() {
         ArrayList<Event> events = new ArrayList<>();
 
-        events.addAll(model.getEventManager().getCcaManager().getCcaList());
-        events.addAll(model.getEventManager().getTestManager().getTestList());
+        events.addAll(model.getEventManager().getCcaManager().getCcas());
+        events.addAll(model.getEventManager().getTestManager().getTests());
         events.addAll(model.getEventManager().getClassManager().getClasses());
         events.addAll(model.getEventManager().getTuitionManager().getTuitions());
 

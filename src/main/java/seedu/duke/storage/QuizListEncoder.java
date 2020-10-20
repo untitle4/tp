@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class QuizListEncoder {
 
     public ArrayList<String> encodeQuizList(ArrayList<Quiz> quizList) {
-        ArrayList<String> encodedQuizs = new ArrayList<>();
+        ArrayList<String> encodedQuizzes = new ArrayList<>();
 
         for (Quiz quiz: quizList) {
-            encodedQuizs.add(quiz.convertToData());
+            encodedQuizzes.add(quiz.convertToData());
         }
 
-        return encodedQuizs;
+        return encodedQuizzes;
     }
 }

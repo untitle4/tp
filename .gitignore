@@ -13,8 +13,8 @@ src/main/resources/docs/
 *.iml
 bin/
 
-/text-ui-test/ACTUAL.txt
-text-ui-test/EXPECTED-UNIX.TXT
+/text-ui-eventTest/ACTUAL.txt
+text-ui-eventTest/EXPECTED-UNIX.TXT
 
 /data/
 logfile.txt

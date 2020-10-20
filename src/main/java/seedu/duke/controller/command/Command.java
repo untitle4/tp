@@ -1,16 +1,11 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.model.DataManager;
-import seedu.duke.exception.CcaEmptyStringException;
-import seedu.duke.exception.CcaParamException;
-import seedu.duke.exception.ContactEmptyStringException;
 import seedu.duke.exception.ContactParamException;
-import seedu.duke.exception.EmptyTuitionInputException;
-import seedu.duke.exception.InvalidClassInputException;
+import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.InvalidHelpCommandException;
-import seedu.duke.exception.InvalidTuitionInputException;
-import seedu.duke.exception.TestEmptyStringException;
-import seedu.duke.exception.TestParamException;
+import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.QuizParamException;
+import seedu.duke.model.DataManager;
 
 public abstract class Command {
     protected final String userInput;
@@ -23,8 +18,6 @@ public abstract class Command {
         this.userInput = userInput;
     }
 
-    public abstract void execute(DataManager dataModel) throws InvalidClassInputException, TestParamException,
-            TestEmptyStringException, CcaParamException, CcaEmptyStringException, EmptyTuitionInputException,
-            InvalidTuitionInputException, ContactParamException, ContactEmptyStringException,
-            InvalidHelpCommandException;
+    public abstract void execute(DataManager dataModel) throws ContactParamException, InvalidHelpCommandException,
+            QuizParamException, EmptyParameterException, MissingParameterException;
 }

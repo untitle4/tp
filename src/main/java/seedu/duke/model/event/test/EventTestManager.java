@@ -1,70 +1,69 @@
 package seedu.duke.model.event.test;
 
-import seedu.duke.Event;
+import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
+import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
-import seedu.duke.exception.TestEmptyStringException;
-import seedu.duke.exception.TestParamException;
-import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
-import java.text.ParseException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TestManager extends EventDataManager {
-    private final ArrayList<Event> test;
+public class EventTestManager extends EventDataManager {
+    private final ArrayList<Event> tests;
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
-    private UserInterface userInterface;
+    private final UserInterface userInterface;
 
-    public TestManager(ArrayList<Event> inputList) {
-        test = inputList;
+    public EventTestManager(ArrayList<Event> inputList) {
+        tests = inputList;
         userInterface = UserInterface.getInstance();
     }
 
-    public ArrayList<Event> getTestList() {
-        return test;
+    public ArrayList<Event> getTests() {
+        return tests;
     }
 
     public int getTestListSize() {
-        assert test != null;
-        return test.size();
+        assert tests != null;
+        return tests.size();
     }
 
     @Override
-    public void add(String userInput) throws TestEmptyStringException, TestParamException {
+    public void add(String userInput) throws EmptyParameterException, MissingParameterException {
         logger.log(Level.INFO, "initialising adding of a test");
 
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
                 || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "no param is entered");
-            throw new TestParamException();
+            throw new MissingParameterException();
         }
 
         userInput.replaceAll("\\s+","");
         final String[] testDetails = userInput.trim().split("\\/");
 
         logger.log(Level.INFO, "splitting user input into description, start date and end date");
-        String testDescription = testDetails[1].substring(1).trim();
+        String testDescription = testDetails[1].substring(1).trim().replaceAll("\\s+"," ");
         String testStartDate = testDetails[2].substring(1).trim();
         String testEndDate = testDetails[3].substring(1).trim();
 
         if (testDescription.equals("") || testStartDate.equals("")
                 || testEndDate.equals("")) {
             logger.log(Level.WARNING, "description/start date/end date is empty");
-            throw new TestEmptyStringException();
+            throw new EmptyParameterException();
         }
 
-        try {
-            String changedTestStartDate = new DateTimeParser(testStartDate).changeDateTime();
-            String changedTestEndDate = new DateTimeParser(testEndDate).changeDateTime();
 
-            test.add(new Test(testDescription, changedTestStartDate, changedTestEndDate));
-        } catch (DateTimeParseException | StringIndexOutOfBoundsException
-                | ArrayIndexOutOfBoundsException | ParseException e) {
+        try {
+            LocalDateTime.parse(testStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            LocalDateTime.parse(testEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+            tests.add(new EventTest(testDescription, testStartDate, testEndDate));
+        } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
             return;
@@ -72,7 +71,7 @@ public class TestManager extends EventDataManager {
         logger.log(Level.INFO, "added test to ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
-                "  " + test.get(getTestListSize() - 1));
+                "  " + tests.get(getTestListSize() - 1));
         getTaskStatement();
     }
 
@@ -98,12 +97,17 @@ public class TestManager extends EventDataManager {
         }
 
         userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_SUCCESS,
-                "  " + test.get(testNumber - 1));
+                "  " + tests.get(testNumber - 1));
 
-        test.remove(testNumber - 1);
+        tests.remove(testNumber - 1);
         logger.log(Level.INFO, "deleted test from ArrayList");
 
         getTaskStatement();
+    }
+
+    @Override
+    public void list() {
+
     }
 
     private void getTaskStatement() {
@@ -135,11 +139,11 @@ public class TestManager extends EventDataManager {
             throw new IndexOutOfBoundsException();
         }
 
-        test.get(testNumber - 1).setDone();
+        tests.get(testNumber - 1).setDone();
         logger.log(Level.INFO, "set test as done from ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TEST_DONE_SUCCESS,
-                "  " + test.get(testNumber - 1));
+                "  " + tests.get(testNumber - 1));
 
         getTaskStatement();
     }
