@@ -3,11 +3,9 @@ package seedu.duke;
 import seedu.duke.common.Messages;
 import seedu.duke.model.Model;
 import seedu.duke.model.contact.ContactManager;
-import seedu.duke.controller.ControlManager;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
-import seedu.duke.controller.parser.CommandType;
 import seedu.duke.model.quiz.Quiz;
 import seedu.duke.model.quiz.QuizManager;
 import seedu.duke.storage.QuizStorageManager;
@@ -51,24 +49,13 @@ public class Duke {
         userInterface.showWelcomeMessage();
 
         while (active) {
-            String line = userInterface.getUserCommand();
-            if (!line.trim().isEmpty()) {
-                ControlManager controlManager = new ControlManager(line, model);
-                CommandType commandType = controlManager.runLogic();
-                checkIfProgramEnds(commandType);
-            }
+            active = userInterface.runUI(model);
             refreshEvents();
             refreshQuizzes();
         }
 
         // Exit Message
         userInterface.showToUser(Messages.MESSAGE_BYE);
-    }
-
-    private void checkIfProgramEnds(CommandType commandType) {
-        if (commandType == CommandType.BYE) {
-            active = false;
-        }
     }
 
     private void refreshEvents() {

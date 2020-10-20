@@ -15,7 +15,7 @@ public class ModelExtractor {
     }
 
     public DataManager retrieveModel() throws InvalidModelException {
-        if (modelType == null) {
+        if (modelType == null || modelType == ModelType.EVENT) {
             return null;
         }
 
@@ -32,6 +32,8 @@ public class ModelExtractor {
             return model.getQuizManager();
         case CONTACT:
             return model.getContactManager();
+//        case EVENT:
+//            return model.getEventManager();
         default:
             throw new InvalidModelException();
         }
