@@ -1,0 +1,12 @@
+@startuml
+class UserInterface {
+    + getInstance():UserInterface
+    + showWelcomeMessage()
+    + printArray(:ArrayList<String>)
+    + runUI(:Model):boolean
+    + checkIfProgramEnds(:CommandType):boolean
+    - getUserCommand():String
+}
+
+UserInterface --> Controller
+@enduml
