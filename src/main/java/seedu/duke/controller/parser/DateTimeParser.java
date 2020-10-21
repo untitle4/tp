@@ -96,34 +96,36 @@ public class DateTimeParser {
         Calendar calendar = Calendar.getInstance();
 
         switch (calendar.get(Calendar.DAY_OF_WEEK)) {
-            case Calendar.MONDAY:
-                calendar.add(Calendar.DAY_OF_MONTH, 0);
-                break;
-            case Calendar.TUESDAY:
-                calendar.add(Calendar.DAY_OF_MONTH, -1);
-                break;
-            case Calendar.WEDNESDAY:
-                calendar.add(Calendar.DAY_OF_MONTH, -2);
-                break;
-            case Calendar.THURSDAY:
-                calendar.add(Calendar.DAY_OF_MONTH, -3);
-                break;
-            case Calendar.FRIDAY:
-                calendar.add(Calendar.DAY_OF_MONTH, -4);
-                break;
-            case Calendar.SATURDAY:
-                calendar.add(Calendar.DAY_OF_MONTH, -5);
-                break;
-            case Calendar.SUNDAY:
-                calendar.add(Calendar.DAY_OF_MONTH, -6);
-                break;
+        case Calendar.MONDAY:
+            calendar.add(Calendar.DAY_OF_MONTH, 0);
+            break;
+        case Calendar.TUESDAY:
+            calendar.add(Calendar.DAY_OF_MONTH, -1);
+            break;
+        case Calendar.WEDNESDAY:
+            calendar.add(Calendar.DAY_OF_MONTH, -2);
+            break;
+        case Calendar.THURSDAY:
+            calendar.add(Calendar.DAY_OF_MONTH, -3);
+            break;
+        case Calendar.FRIDAY:
+            calendar.add(Calendar.DAY_OF_MONTH, -4);
+            break;
+        case Calendar.SATURDAY:
+            calendar.add(Calendar.DAY_OF_MONTH, -5);
+            break;
+        case Calendar.SUNDAY:
+            calendar.add(Calendar.DAY_OF_MONTH, -6);
+            break;
+        default:
+            break;
         }
 
         for (int i = 0; i < 7; i++) {
             int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
             int month = calendar.get(Calendar.MONTH);
             int year = calendar.get(Calendar.YEAR);
-            String date = year + "-" + month + "-" + dayOfMonth;
+            String date = year + "-" + (month + 1) + "-" + dayOfMonth;
             dateStrings.add(date);
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }

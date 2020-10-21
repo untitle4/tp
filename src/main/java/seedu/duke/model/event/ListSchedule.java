@@ -76,26 +76,25 @@ public class ListSchedule {
 
     public ArrayList<String> getPrintableEventsWeek() throws EmptyListException {
         logger.log(Level.INFO, "starting to convert events instance to strings");
-        ArrayList<String> printedEvents = new ArrayList<>();
         ArrayList<Event> masterList = new ArrayList<>();
 
         checkAndConvertToday();
 
         if (haveClasses()) {
             logger.log(Level.INFO, "adding class events");
-            masterList = getMasterList(classes);
+            masterList.addAll(getMasterList(classes));
         }
         if (haveCcas()) {
             logger.log(Level.INFO, "adding CCA events");
-            masterList = getMasterList(ccas);
+            masterList.addAll(getMasterList(ccas));
         }
         if (haveTests()) {
             logger.log(Level.INFO, "adding test events");
-            masterList = getMasterList(tests);
+            masterList.addAll(getMasterList(tests));
         }
         if (haveTuitions()) {
             logger.log(Level.INFO, "adding tuition events");
-            masterList = getMasterList(tuitions);
+            masterList.addAll(getMasterList(tuitions));
         }
 
         if (hasNoSchedule() || masterList.size() == 0) {
@@ -103,7 +102,7 @@ public class ListSchedule {
             throw new EmptyListException();
         }
 
-        printedEvents = getListWeek(masterList);
+        ArrayList<String> printedEvents = getListWeek(masterList);
 
         return printedEvents;
 
@@ -115,9 +114,9 @@ public class ListSchedule {
 
         daysOfTheWeek = dateTimeParser.getDaysOfWeek();
 
-        for(int i = 0; i < daysOfTheWeek.size(); i++) {
+        for (int i = 0; i < daysOfTheWeek.size(); i++) {
             int counter = 1;
-            switch(i) {
+            switch (i) {
             case 0:
                 dateArrayList.add("MONDAY:");
                 break;
@@ -139,13 +138,26 @@ public class ListSchedule {
             case 6:
                 dateArrayList.add("SUNDAY:");
                 break;
+            default:
+                break;
             }
-            for(int j = 0; j < masterList.size(); j++){
-                if(dateTimeParser.isDateEqual(daysOfTheWeek.get(i), masterList.get(j).getStart())) {
-                    dateArrayList.add(counter + ". " + masterList.get(i));
-                    counter ++;
+
+            for (int j = 0; j < masterList.size(); j++) {
+                String[] listDate = masterList.get(j).getStart().split(" ");
+                if (dateTimeParser.isDateEqual(daysOfTheWeek.get(i), listDate[0])) {
+                    dateArrayList.add(counter + ". " + masterList.get(j));
+                    counter++;
                 }
             }
+
+            dateArrayList = checkCounter(counter, dateArrayList);
+        }
+        return dateArrayList;
+    }
+
+    private ArrayList<String> checkCounter(int counter, ArrayList<String> dateArrayList) {
+        if (counter == 1) {
+            dateArrayList.remove(dateArrayList.size() - 1);
         }
         return dateArrayList;
     }

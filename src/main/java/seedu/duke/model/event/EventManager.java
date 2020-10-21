@@ -45,11 +45,11 @@ public class EventManager {
     public void listSchedule(String userInput) {
         ArrayList<String> printedEvents;
         try {
-            String dateParam = userInput.split(" ").length >= 2 ? null : userInput.split(" ")[2];
+            String dateParam = userInput.split(" ").length == 2 ? null : userInput.split(" ")[2];
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
 
-            if (userInput.split(" ").length > 2) {
+            if (userInput.contains("week")) {
                 printedEvents = listSchedule.getPrintableEventsWeek();
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
