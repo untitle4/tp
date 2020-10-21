@@ -15,7 +15,7 @@ public class ModelExtractor {
     }
 
     public DataManager retrieveModel() throws InvalidModelException {
-        if (modelType == null) {
+        if (modelType == null || modelType == ModelType.EVENT) {
             return null;
         }
 

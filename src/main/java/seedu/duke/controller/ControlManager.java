@@ -33,30 +33,34 @@ public class ControlManager {
 
     public CommandType runLogic() {
         CommandType commandType = null;
-        ModelType modelType;
+        ModelType modelType = null;
+        DataManager dataModel = null;
+
         try {
             commandType = new CommandParser(userInput).extractCommand();
             Command actionableCommand = new CommandFactory(commandType, userInput).generateActionableCommand();
             if (commandType == CommandType.BYE) {
                 return commandType;
-            } else if (commandType == CommandType.HELP) {
-                DataManager dataModel = new ModelExtractor(model, null).retrieveModel();
-                actionableCommand.execute(dataModel);
-            } else {
+            } 
+            if (doesRequireModel(commandType)) {
                 modelType = new ModelParser(userInput).extractModel();
-                DataManager dataModel = new ModelExtractor(model, modelType).retrieveModel();
-
-                if (commandType == CommandType.LIST) {
-                    if (modelType == ModelType.EVENT) {
-                        new ListCommand(userInput).execute(model.getEventManager());
-                    } else if (modelType == null) {
-                        throw new IncompleteListCommandException();
-                    }
-                } else {
-                    actionableCommand.execute(dataModel);
-                }
+                dataModel = new ModelExtractor(model, modelType).retrieveModel();
             }
-        } catch (InvalidHelpCommandException | QuizParamException | ContactParamException e) {
+
+            if (commandType == CommandType.LIST) {
+                if (modelType == ModelType.EVENT) {
+                    new ListCommand(userInput).execute(model.getEventManager());
+                } else if (modelType == null) {
+                    throw new IncompleteListCommandException();
+                }
+            } else {
+                actionableCommand.execute(dataModel);
+            }
+        } catch (InvalidHelpCommandException e) {
+            userInterface.showToUser(Messages.MESSAGE_EXTRA_HELP_PARAM);
+        } catch (ContactParamException e) {
+            e.printStackTrace();
+        } catch (QuizParamException e) {
             e.printStackTrace();
         } catch (InvalidCommandException e) {
             System.out.println("☹ Oops! I did not recognize that command! Enter 'help' if needed!");
@@ -71,5 +75,14 @@ public class ControlManager {
         }
 
         return commandType;
+    }
+
+    private boolean doesRequireModel(CommandType commandType) {
+        boolean isAdd = commandType == CommandType.ADD;
+        boolean isDelete = commandType == CommandType.DELETE;
+        boolean isDone = commandType == CommandType.DONE;
+        boolean isList = commandType == CommandType.LIST;
+
+        return isAdd || isDelete || isDone || isList;
     }
 }

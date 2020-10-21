@@ -137,4 +137,5 @@ public class Messages {
             + "[time in 24hr format]\n\te.g. 2020-08-19 1300\n\n"
             + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n";
     public static final String MESSAGE_BYE = "BYE BYE! SEE YOU NEXT TIME! :3";
+    public static final String MESSAGE_EXTRA_HELP_PARAM = "OOPS! Were you trying to ask for help? Just enter 'help'!";
 }
