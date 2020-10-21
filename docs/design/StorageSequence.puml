@@ -1,0 +1,28 @@
+@startuml
+
+Duke -> UserInterface : runUI()
+activate UserInterface
+UserInterface -> UserInterface : getUserCommand()
+activate UserInterface
+UserInterface --> UserInterface
+deactivate UserInterface
+UserInterface -> ControlManager : runLogic()
+activate ControlManager
+UserInterface -> UserInterface : checkIfProgramEnds(:CommandType)
+activate UserInterface
+UserInterface --> UserInterface
+deactivate UserInterface
+ControlManager --> UserInterface
+deactivate ControlManager
+UserInterface --> Duke
+deactivate UserInterface
+Duke -> Duke : refreshEvents()
+activate Duke
+Duke --> Duke
+deactivate Duke
+Duke -> Duke : refreshQuizzes()
+activate Duke
+Duke --> Duke
+deactivate Duke
+
+@enduml
