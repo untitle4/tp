@@ -33,6 +33,7 @@ public class QuizManager extends DataManager {
         return quizzes.size();
     }
 
+    //@@author elizabethcwt
     public void takeQuiz(String[] separatedInputs) {
         int noOfQues = Integer.parseInt(separatedInputs[1]);
         //TODO: handle cases: "quiz", "quiz 2"
