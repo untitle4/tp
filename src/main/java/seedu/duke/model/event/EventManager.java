@@ -43,11 +43,17 @@ public class EventManager {
     }
 
     public void listSchedule(String userInput) {
+        ArrayList<String> printedEvents;
         try {
             String dateParam = userInput.split(" ").length == 2 ? null : userInput.split(" ")[2];
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
-            ArrayList<String> printedEvents = listSchedule.getPrintableEvents();
+
+            if (userInput.contains("week")) {
+                printedEvents = listSchedule.getPrintableEventsWeek();
+            } else {
+                printedEvents = listSchedule.getPrintableEvents();
+            }
             userInterface.printArray(printedEvents);
         } catch (EmptyListException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);

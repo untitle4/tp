@@ -3,6 +3,7 @@ package seedu.duke.model.event;
 import seedu.duke.common.LogManager;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.controller.parser.DateTimeParser;
+import seedu.duke.model.event.classlesson.EventClass;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -73,6 +74,106 @@ public class ListSchedule {
         return printedEvents;
     }
 
+    public ArrayList<String> getPrintableEventsWeek() throws EmptyListException {
+        logger.log(Level.INFO, "starting to convert events instance to strings");
+        ArrayList<Event> masterList = new ArrayList<>();
+
+        checkAndConvertToday();
+
+        if (haveClasses()) {
+            logger.log(Level.INFO, "adding class events");
+            masterList.addAll(getMasterList(classes));
+        }
+        if (haveCcas()) {
+            logger.log(Level.INFO, "adding CCA events");
+            masterList.addAll(getMasterList(ccas));
+        }
+        if (haveTests()) {
+            logger.log(Level.INFO, "adding test events");
+            masterList.addAll(getMasterList(tests));
+        }
+        if (haveTuitions()) {
+            logger.log(Level.INFO, "adding tuition events");
+            masterList.addAll(getMasterList(tuitions));
+        }
+
+        if (hasNoSchedule() || masterList.size() == 0) {
+            logger.log(Level.WARNING, "schedule is empty");
+            throw new EmptyListException();
+        }
+
+        ArrayList<String> printedEvents = getListWeek(masterList);
+
+        return printedEvents;
+
+    }
+
+    private ArrayList<String> getListWeek(ArrayList<Event> masterList) {
+        ArrayList<String> daysOfTheWeek = new ArrayList<>();
+        ArrayList<String> dateArrayList = new ArrayList<>();
+
+        daysOfTheWeek = dateTimeParser.getDaysOfWeek();
+
+        for (int i = 0; i < daysOfTheWeek.size(); i++) {
+            int counter = 1;
+            switch (i) {
+            case 0:
+                dateArrayList.add("MONDAY:");
+                break;
+            case 1:
+                dateArrayList.add("TUESDAY:");
+                break;
+            case 2:
+                dateArrayList.add("WEDNESDAY:");
+                break;
+            case 3:
+                dateArrayList.add("THURSDAY:");
+                break;
+            case 4:
+                dateArrayList.add("FRIDAY:");
+                break;
+            case 5:
+                dateArrayList.add("SATURDAY:");
+                break;
+            case 6:
+                dateArrayList.add("SUNDAY:");
+                break;
+            default:
+                break;
+            }
+
+            for (int j = 0; j < masterList.size(); j++) {
+                String[] listDate = masterList.get(j).getStart().split(" ");
+                if (dateTimeParser.isDateEqual(daysOfTheWeek.get(i), listDate[0])) {
+                    dateArrayList.add(counter + ". " + masterList.get(j));
+                    counter++;
+                }
+            }
+
+            dateArrayList = checkCounter(counter, dateArrayList);
+        }
+        return dateArrayList;
+    }
+
+    private ArrayList<String> checkCounter(int counter, ArrayList<String> dateArrayList) {
+        if (counter == 1) {
+            dateArrayList.remove(dateArrayList.size() - 1);
+        }
+        return dateArrayList;
+    }
+
+    private ArrayList<Event> getMasterList(ArrayList<Event> eventArr) {
+        assert eventArr != null;
+        assert eventArr.size() != 0;
+        ArrayList<Event> masterList = new ArrayList<>();
+
+        for (int i = 0; i < eventArr.size(); i++) {
+            masterList.add(eventArr.get(i));
+        }
+
+        return masterList;
+    }
+
     private boolean haveClasses() {
         return classes.size() != 0;
     }
@@ -94,7 +195,7 @@ public class ListSchedule {
     }
 
     private void checkAndConvertToday() {
-        if (userInput != null && userInput.contains("today")) {
+        if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
             userInput = LocalDate.now().toString();
         }
     }
