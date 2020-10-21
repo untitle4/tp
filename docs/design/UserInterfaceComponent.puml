@@ -1,12 +1,25 @@
 @startuml
-class UserInterface {
-    + getInstance():UserInterface
-    + showWelcomeMessage()
-    + printArray(:ArrayList<String>)
-    + runUI(:Model):boolean
-    + checkIfProgramEnds(:CommandType):boolean
-    - getUserCommand():String
+package ui <<rectangle>> {
+    class UserInterface {
+        + getInstance():UserInterface
+        + showWelcomeMessage()
+        + printArray(:ArrayList<String>)
+        + runUI(:Model):boolean
+        + checkIfProgramEnds(:CommandType):boolean
+        - getUserCommand():String
+    }
 }
 
-UserInterface --> Controller
+package controller <<rectangle>> {
+
+}
+
+package model <<rectangle>> {
+
+}
+
+ui -> controller
+controller -> model
+model -[dotted]> ui
+
 @enduml
