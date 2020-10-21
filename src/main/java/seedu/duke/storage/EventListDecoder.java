@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.exception.StorageSeparatorException;
 import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
 import seedu.duke.model.event.Event;
@@ -12,7 +13,7 @@ public class EventListDecoder {
     public EventListDecoder() {
     }
 
-    public ArrayList<Event> decodeEventList(ArrayList<String> encodedEventList) {
+    public ArrayList<Event> decodeEventList(ArrayList<String> encodedEventList) throws StorageSeparatorException {
         final ArrayList<Event> decodedEvents = new ArrayList<>();
         for (String encodedEvent : encodedEventList) {
             decodedEvents.add(decodeEventFromString(encodedEvent));
@@ -20,7 +21,7 @@ public class EventListDecoder {
         return decodedEvents;
     }
 
-    private Event decodeEventFromString(String encodedEvent) {
+    private Event decodeEventFromString(String encodedEvent) throws StorageSeparatorException {
         final String[] data = encodedEvent.trim().split("\\|", 3);
 
         switch (data[0]) {
@@ -37,11 +38,16 @@ public class EventListDecoder {
         }
     }
 
-    private EventCca parseCca(String[] data) {
+    private EventCca parseCca(String[] data) throws StorageSeparatorException {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
         String[] eventInfo = data[2].trim().split("\\|", 3);
+
+        if (eventInfo.length != 3) {
+            throw new StorageSeparatorException();
+        }
+
         description = eventInfo[0];
         String start = eventInfo[1];
         String end = eventInfo[2];
@@ -51,11 +57,16 @@ public class EventListDecoder {
         return new EventCca(description, isDone, start, end);
     }
 
-    private EventClass parseClass(String[] data) {
+    private EventClass parseClass(String[] data) throws StorageSeparatorException {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
         String[] eventInfo = data[2].trim().split("\\|", 3);
+
+        if (eventInfo.length != 3) {
+            throw new StorageSeparatorException();
+        }
+
         description = eventInfo[0];
         String start = eventInfo[1];
         String end = eventInfo[2];
@@ -65,11 +76,16 @@ public class EventListDecoder {
         return new EventClass(description, isDone, start, end);
     }
 
-    private EventTest parseTest(String[] data) {
+    private EventTest parseTest(String[] data) throws StorageSeparatorException {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
         String[] eventInfo = data[2].trim().split("\\|", 3);
+
+        if (eventInfo.length != 3) {
+            throw new StorageSeparatorException();
+        }
+
         description = eventInfo[0];
         String start = eventInfo[1];
         String end = eventInfo[2];
@@ -79,11 +95,16 @@ public class EventListDecoder {
         return new EventTest(description, isDone, start, end);
     }
 
-    private EventTuition parseTuition(String[] data) {
+    private EventTuition parseTuition(String[] data) throws StorageSeparatorException {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
         String[] eventInfo = data[2].trim().split("\\|", 4);
+
+        if (eventInfo.length != 4) {
+            throw new StorageSeparatorException();
+        }
+
         description = eventInfo[0];
         String start = eventInfo[1];
         String end = eventInfo[2];

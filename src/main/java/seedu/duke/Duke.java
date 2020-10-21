@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.common.Messages;
+import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.Model;
 import seedu.duke.model.contact.ContactManager;
 import seedu.duke.model.event.Event;
@@ -21,20 +22,20 @@ public class Duke {
 
     private final EventStorageManager eventStorageManager;
     private final QuizStorageManager quizStorageManager;
-    private final UserInterface userInterface;
+    private static UserInterface userInterface;
     private final Model model;
 
     private boolean active;
 
-    public Duke() {
+    public Duke() throws StorageCorruptedException {
+        userInterface = UserInterface.getInstance();
         eventStorageManager = new EventStorageManager(EVENT_FILE_NAME);
         quizStorageManager = new QuizStorageManager(QUIZ_FILE_NAME);
+        active = true;
+        ContactManager contactManager = new ContactManager();
+        QuizManager quizManager = new QuizManager(quizStorageManager.loadData());
         EventParameter eventParameter = eventStorageManager.loadData();
         EventManager eventManager = new EventManager(eventParameter);
-        QuizManager quizManager = new QuizManager(quizStorageManager.loadData());
-        ContactManager contactManager = new ContactManager();
-        userInterface = UserInterface.getInstance();
-        active = true;
         model = new Model(eventManager, contactManager, quizManager);
     }
 
@@ -42,44 +43,21 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        new Duke().run();
+        try {
+            new Duke().run();
+        } catch (StorageCorruptedException e) {
+            userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
+        }
     }
 
     public void run() {
         userInterface.showWelcomeMessage();
 
         while (active) {
-            active = userInterface.runUI(model);
-            refreshEvents();
-            refreshQuizzes();
+            active = userInterface.runUI(model, eventStorageManager, quizStorageManager);
         }
 
         // Exit Message
         userInterface.showToUser(Messages.MESSAGE_BYE);
-    }
-
-    private void refreshEvents() {
-        ArrayList<Event> events = new ArrayList<>();
-
-        events.addAll(model.getEventManager().getCcaManager().getCcas());
-        events.addAll(model.getEventManager().getTestManager().getTests());
-        events.addAll(model.getEventManager().getClassManager().getClasses());
-        events.addAll(model.getEventManager().getTuitionManager().getTuitions());
-
-        try {
-            eventStorageManager.saveData(events);
-        } catch (IOException e) {
-            userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
-        }
-    }
-
-    private void refreshQuizzes() {
-        ArrayList<Quiz> quizzes = model.getQuizManager().getQuizList();
-
-        try {
-            quizStorageManager.saveData(quizzes, QUIZ_FILE_NAME);
-        } catch (IOException e) {
-            userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
-        }
     }
 }
