@@ -3,13 +3,7 @@ package seedu.duke.controller;
 import seedu.duke.common.Messages;
 import seedu.duke.controller.command.ListCommand;
 import seedu.duke.controller.parser.ModelParser;
-import seedu.duke.exception.ContactParamException;
-import seedu.duke.exception.EmptyParameterException;
-import seedu.duke.exception.InvalidCommandException;
-import seedu.duke.exception.InvalidHelpCommandException;
-import seedu.duke.exception.InvalidModelException;
-import seedu.duke.exception.MissingParameterException;
-import seedu.duke.exception.QuizParamException;
+import seedu.duke.exception.*;
 import seedu.duke.model.DataManager;
 import seedu.duke.model.Model;
 import seedu.duke.controller.command.Command;
@@ -38,20 +32,24 @@ public class ControlManager {
             Command actionableCommand = new CommandFactory(commandType, userInput).generateActionableCommand();
             if (commandType == CommandType.BYE) {
                 return commandType;
-            }
-            modelType = new ModelParser(userInput).extractModel();
-            DataManager dataModel = new ModelExtractor(model, modelType).retrieveModel();
-
-            if (modelType == ModelType.EVENT) {
-                new ListCommand(userInput).execute(model.getEventManager());
-            } else {
+            } else if (commandType == CommandType.HELP) {
+                DataManager dataModel = new ModelExtractor(model, null).retrieveModel();
                 actionableCommand.execute(dataModel);
+            } else {
+                modelType = new ModelParser(userInput).extractModel();
+                DataManager dataModel = new ModelExtractor(model, modelType).retrieveModel();
+
+                if (commandType == CommandType.LIST) {
+                    if (modelType == ModelType.EVENT) {
+                        new ListCommand(userInput).execute(model.getEventManager());
+                    } else if (modelType == null) {
+                        throw new IncompleteListCommandException();
+                    }
+                } else {
+                    actionableCommand.execute(dataModel);
+                }
             }
-        } catch (InvalidHelpCommandException e) {
-            e.printStackTrace();
-        } catch (ContactParamException e) {
-            e.printStackTrace();
-        } catch (QuizParamException e) {
+        } catch (InvalidHelpCommandException | QuizParamException | ContactParamException e) {
             e.printStackTrace();
         } catch (InvalidCommandException e) {
             System.out.println("☹ Oops! I did not recognize that command! Enter 'help' if needed!");
@@ -61,6 +59,8 @@ public class ControlManager {
             userInterface.showToUser(Messages.MESSAGE_MISSING_PARAMETERS);
         } catch (EmptyParameterException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_PARAMETERS);
+        } catch (IncompleteListCommandException e) {
+            userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_LIST_PARAMETERS);
         }
 
         return commandType;
