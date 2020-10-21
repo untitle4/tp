@@ -1,0 +1,20 @@
+@startuml
+UserInterface -> ControlManager: runLogic()
+ControlManager -> CommandParser: extractCommand()
+
+ControlManager <-- CommandParser: return command type
+
+ControlManager -> CommandFactory: generateActionableCommand()
+CommandFactory --> ControlManager: return actionable command
+
+ControlManager -> ModelParser: extractModel()
+ModelParser --> ControlManager: return model type
+
+ControlManager -> ModelExtractor: retrieveModel()
+ModelExtractor --> ControlManager: return model
+
+ControlManager -> AddCommand: execute()
+AddCommand -> DataManager: add()
+DataManager -> DataManager: getClassStatement()
+
+@enduml
