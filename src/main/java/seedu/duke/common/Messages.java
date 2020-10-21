@@ -101,6 +101,8 @@ public class Messages {
 
     // Messages from Quiz related classes
     public static final String MESSAGE_INVALID_QUIZ_INDEX = "☹ OOPS!!! Please indicate a valid quiz index!";
+    public static final String MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! Please indicate in NUMERALS, "
+            + "which quiz you'd like to delete!";
 
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"
             + "\t1. Add class: 'add class /n [name of class] /s [start date-time of class] /e"
