@@ -1,5 +1,7 @@
 package seedu.duke.storage;
 
+import seedu.duke.exception.StorageCorruptedException;
+import seedu.duke.exception.StorageSeparatorException;
 import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
 import seedu.duke.model.event.Event;
@@ -37,7 +39,7 @@ public class EventStorageManager extends StorageManager {
         Files.write(Path.of(DIRECTORY_FOLDER_PATH + fileName), encodedEventList);
     }
 
-    public EventParameter loadData() {
+    public EventParameter loadData() throws StorageCorruptedException {
         File eventFile = new File(DIRECTORY_FOLDER_PATH + fileName);
         ArrayList<String> data = new ArrayList<>();
         logger.log(Level.INFO, "Loading storage...");
@@ -60,6 +62,9 @@ public class EventStorageManager extends StorageManager {
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
+        } catch (StorageSeparatorException e) {
+            logger.log(Level.SEVERE, "Storage corrupted");
+            throw new StorageCorruptedException();
         }
         return new EventParameter();
     }
