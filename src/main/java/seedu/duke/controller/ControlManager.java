@@ -5,6 +5,7 @@ import seedu.duke.controller.command.ListCommand;
 import seedu.duke.controller.parser.ModelParser;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.IncompleteListCommandException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
@@ -40,14 +41,18 @@ public class ControlManager {
             Command actionableCommand = new CommandFactory(commandType, userInput).generateActionableCommand();
             if (commandType == CommandType.BYE) {
                 return commandType;
-            }
+            } 
             if (doesRequireModel(commandType)) {
                 modelType = new ModelParser(userInput).extractModel();
                 dataModel = new ModelExtractor(model, modelType).retrieveModel();
             }
 
-            if (modelType == ModelType.EVENT) {
-                new ListCommand(userInput).execute(model.getEventManager());
+            if (commandType == CommandType.LIST) {
+                if (modelType == ModelType.EVENT) {
+                    new ListCommand(userInput).execute(model.getEventManager());
+                } else if (modelType == null) {
+                    throw new IncompleteListCommandException();
+                }
             } else {
                 actionableCommand.execute(dataModel);
             }
@@ -65,6 +70,8 @@ public class ControlManager {
             userInterface.showToUser(Messages.MESSAGE_MISSING_PARAMETERS);
         } catch (EmptyParameterException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_PARAMETERS);
+        } catch (IncompleteListCommandException e) {
+            userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_LIST_PARAMETERS);
         }
 
         return commandType;
