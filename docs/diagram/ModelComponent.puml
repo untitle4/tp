@@ -1,0 +1,68 @@
+@startuml
+
+skinparam Shadowing false
+skinparam MinClassWidth 100
+skinparam classBackgroundColor YellowGreen
+skinparam packageStyle rectangle
+skinparam ArrowColor Salmon
+hide circle
+hide members
+
+package Model {
+
+    class "{abstract}\nDataManager"
+
+    class "<<interface>>\ninteractable"
+
+    class Model
+
+    Package Quiz {
+        class Quiz
+        class QuizManager
+    }
+
+    Package Event {
+        class "{abstract}\nEvent"
+        class EventManager
+        class ClassManager
+        class Class
+        class CcaManager
+        class Cca
+        class TestManager
+        class Test
+        class TuitionManager
+        class Tuition
+        class "{abstract}\nEventDataManager"
+    }
+
+    Package Contact {
+        class Contact
+        class ContactManager
+    }
+}
+
+"{abstract}\nDataManager" .up.|> "<<interface>>\ninteractable"
+"{abstract}\nEventDataManager" -up-|> "{abstract}\nDataManager"
+
+Model --> ContactManager
+Model --> EventManager
+Model --> QuizManager
+QuizManager --> Quiz
+ContactManager --> Contact
+EventManager --> ClassManager
+EventManager --> CcaManager
+EventManager --> TestManager
+EventManager --> TuitionManager
+ClassManager --> Class
+CcaManager --> Cca
+TestManager --> Test
+TuitionManager --> Tuition
+Class --|> "{abstract}\nEvent"
+Cca --|> "{abstract}\nEvent"
+Test --|> "{abstract}\nEvent"
+Tuition --|> "{abstract}\nEvent"
+ContactManager --|> "{abstract}\nDataManager"
+QuizManager --|> "{abstract}\nDataManager"
+EventManager --|> "{abstract}\nEventDataManager"
+
+@enduml
