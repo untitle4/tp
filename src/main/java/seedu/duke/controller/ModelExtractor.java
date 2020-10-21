@@ -32,6 +32,8 @@ public class ModelExtractor {
             return model.getQuizManager();
         case CONTACT:
             return model.getContactManager();
+        //case EVENT:
+            //return model.getEventManager();
         default:
             throw new InvalidModelException();
         }
