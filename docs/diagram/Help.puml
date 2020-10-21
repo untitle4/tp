@@ -1,0 +1,19 @@
+@startuml
+UserInterface -> ControlManager: runLogic()
+ControlManager -> CommandParser: extractCommand()
+
+CommandParser --> ControlManager: return command type
+
+ControlManager -> CommandFactory: generateActionableCommand()
+CommandFactory --> ControlManager: return actionable command
+
+
+ControlManager -> HelpCommand: execute()
+activate HelpCommand
+HelpCommand -> HelpCommand: handleHelp()
+activate HelpCommand
+deactivate HelpCommand
+HelpCommand -> UserInterface: showToUser()
+deactivate HelpCommand
+
+@enduml
