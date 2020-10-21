@@ -24,6 +24,8 @@ public class Messages {
     public static final String MESSAGE_EMPTY_PARAMETERS = "☹ OOPS!!! Ensure ALL parameters are filled up!";
     public static final String MESSAGE_INVALID_DATE = "☹ OOPS!!! "
             + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
+    public static final String MESSAGE_STORAGE_CORRUPTED = "): Storage file corrupted. "
+            + "Please delete your data directory and relaunch.";
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
             + "You can either 'list event' or 'list quiz'";
 
