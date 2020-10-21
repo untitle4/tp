@@ -24,6 +24,8 @@ public class Messages {
     public static final String MESSAGE_EMPTY_PARAMETERS = "☹ OOPS!!! Ensure ALL parameters are filled up!";
     public static final String MESSAGE_INVALID_DATE = "☹ OOPS!!! "
             + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
+    public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
+            + "You can either 'list event' or 'list quiz'";
 
     // Messages from Contact related classes
     public static final String MESSAGE_SUBJECT_NOT_FOUND = "Subject not found";
@@ -135,4 +137,5 @@ public class Messages {
             + "[time in 24hr format]\n\te.g. 2020-08-19 1300\n\n"
             + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n";
     public static final String MESSAGE_BYE = "BYE BYE! SEE YOU NEXT TIME! :3";
+    public static final String MESSAGE_EXTRA_HELP_PARAM = "OOPS! Were you trying to ask for help? Just enter 'help'!";
 }
