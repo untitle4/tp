@@ -32,15 +32,19 @@ public class ControlManager {
 
     public CommandType runLogic() {
         CommandType commandType = null;
-        ModelType modelType;
+        ModelType modelType = null;
+        DataManager dataModel = null;
+
         try {
             commandType = new CommandParser(userInput).extractCommand();
             Command actionableCommand = new CommandFactory(commandType, userInput).generateActionableCommand();
             if (commandType == CommandType.BYE) {
                 return commandType;
             }
-            modelType = new ModelParser(userInput).extractModel();
-            DataManager dataModel = new ModelExtractor(model, modelType).retrieveModel();
+            if (doesRequireModel(commandType)) {
+                modelType = new ModelParser(userInput).extractModel();
+                dataModel = new ModelExtractor(model, modelType).retrieveModel();
+            }
 
             if (modelType == ModelType.EVENT) {
                 new ListCommand(userInput).execute(model.getEventManager());
@@ -48,7 +52,7 @@ public class ControlManager {
                 actionableCommand.execute(dataModel);
             }
         } catch (InvalidHelpCommandException e) {
-            e.printStackTrace();
+            userInterface.showToUser(Messages.MESSAGE_EXTRA_HELP_PARAM);
         } catch (ContactParamException e) {
             e.printStackTrace();
         } catch (QuizParamException e) {
@@ -64,5 +68,14 @@ public class ControlManager {
         }
 
         return commandType;
+    }
+
+    private boolean doesRequireModel(CommandType commandType) {
+        boolean isAdd = commandType == CommandType.ADD;
+        boolean isDelete = commandType == CommandType.DELETE;
+        boolean isDone = commandType == CommandType.DONE;
+        boolean isList = commandType == CommandType.LIST;
+
+        return isAdd || isDelete || isDone || isList;
     }
 }
