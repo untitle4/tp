@@ -2,11 +2,14 @@ package seedu.duke.common;
 
 public class Messages {
     // Intro related messages
-    public static final String MESSAGE_LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+    public static final String MESSAGE_LOGO = " ------   -                          -----\n"
+            + "|   _  | | |                        | ____| \n"
+            + "|  | | | | |                        | |___     \n"
+            + "|  |_| | | |  -----     -----    &  |____ |  ------   -----   -----   -----\n"
+            + "|      | | | /  -  \\   |  _  |          | | | _____| /  -  \\ /  ___\\ /  == \\\n"
+            + "|  ----  | | | | | |   | | | |       ___| | | |      | | | | | /     | ___|\n"
+            + "| |      | | | |_|  \\  | | | |      |     | | |____  | |_| | | |     | |____\n"
+            + "|_|      |_| \\____/\\_\\ |_| |_|      |_____| |______| \\_____/ |_|     \\_____/";
     public static final String MESSAGE_HELLO_FROM_DUKE = "Hello from\n"
             + Messages.MESSAGE_LOGO;
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
