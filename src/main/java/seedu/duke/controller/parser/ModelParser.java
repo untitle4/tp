@@ -16,6 +16,7 @@ public class ModelParser {
     public static final String INPUT_CONTACT = "contact";
     public static final String INPUT_EVENT = "event";
     public static final int SUB_COMMAND_INDEX = 1;
+    public static final int MAIN_COMMAND_INDEX = 0;
 
     private final String[] separatedInputs;
 
@@ -32,6 +33,10 @@ public class ModelParser {
 
         if (separatedInputs.length <= 1) {
             return null;
+        }
+
+        if (separatedInputs[MAIN_COMMAND_INDEX].equals("quiz")) {
+            modelType = ModelType.QUIZ;
         }
 
         switch (separatedInputs[SUB_COMMAND_INDEX]) {

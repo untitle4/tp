@@ -3,6 +3,7 @@ package seedu.duke.controller;
 import seedu.duke.Duke;
 import seedu.duke.common.Messages;
 import seedu.duke.controller.command.ListCommand;
+import seedu.duke.controller.command.QuizCommand;
 import seedu.duke.controller.parser.ModelParser;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
@@ -60,6 +61,10 @@ public class ControlManager {
                 dataModel = new ModelExtractor(model, modelType).retrieveModel();
             }
 
+            if (commandType == CommandType.QUIZ) {
+                new QuizCommand(userInput).execute(model.getQuizManager());
+            }
+
             if (commandType == CommandType.LIST) {
                 if (modelType == ModelType.EVENT) {
                     new ListCommand(userInput).execute(model.getEventManager());
@@ -70,7 +75,7 @@ public class ControlManager {
                 actionableCommand.execute(dataModel);
             }
         } catch (InvalidHelpCommandException e) {
-            e.printStackTrace();
+            userInterface.showToUser(Messages.MESSAGE_EXTRA_HELP_PARAM);
         } catch (ContactParamException e) {
             e.printStackTrace();
         } catch (QuizParamException e) {
@@ -98,8 +103,9 @@ public class ControlManager {
         boolean isDelete = commandType == CommandType.DELETE;
         boolean isDone = commandType == CommandType.DONE;
         boolean isList = commandType == CommandType.LIST;
+        boolean isQuiz = commandType == CommandType.QUIZ;
 
-        return isAdd || isDelete || isDone || isList;
+        return isAdd || isDelete || isDone || isList || isQuiz;
     }
 
     private void refreshEvents() {
