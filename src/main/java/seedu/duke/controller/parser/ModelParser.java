@@ -7,6 +7,9 @@ import seedu.duke.model.ModelType;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Represents the process of extracting out the model to be performed on.
+ */
 public class ModelParser {
     public static final String INPUT_SCHEDULE_CLASS = "class";
     public static final String INPUT_SCHEDULE_TEST = "test";
@@ -16,6 +19,7 @@ public class ModelParser {
     public static final String INPUT_CONTACT = "contact";
     public static final String INPUT_EVENT = "event";
     public static final int SUB_COMMAND_INDEX = 1;
+    public static final String INPUT_SPACES = " ";
 
     private final String[] separatedInputs;
 
@@ -23,10 +27,17 @@ public class ModelParser {
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public ModelParser(String userInput) {
-        separatedInputs = userInput.split(" ");
+        separatedInputs = userInput.split(INPUT_SPACES);
         modelType = null;
     }
 
+    /**
+     * Checks if the second word in the input string matches any model word.
+     * If it contains any model word, returns the respective modelType.
+     *
+     * @return ModelType corresponding to the model.
+     * @throws InvalidModelException If the second word does not match any model word.
+     */
     public ModelType extractModel() throws InvalidModelException {
         logger.log(Level.INFO, "Extracting model now...");
 
