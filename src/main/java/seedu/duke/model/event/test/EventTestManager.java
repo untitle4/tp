@@ -110,6 +110,11 @@ public class EventTestManager extends EventDataManager {
 
     }
 
+    @Override
+    public void find(String userInput) throws MissingParameterException {
+
+    }
+
     private void getTaskStatement() {
         if ((getTestListSize() - 1 == 0) || (getTestListSize() == 0)) {
             userInterface.showToUser("Now you have " + getTestListSize() + " task in the list.");

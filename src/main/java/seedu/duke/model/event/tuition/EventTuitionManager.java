@@ -115,6 +115,11 @@ public class EventTuitionManager extends EventDataManager {
     }
 
     @Override
+    public void find(String userInput) throws MissingParameterException {
+
+    }
+
+    @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {
         int tuitionNumber;
         logger.log(Level.INFO, "Initialising setting tuition as done");

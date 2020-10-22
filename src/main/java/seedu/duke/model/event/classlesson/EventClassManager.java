@@ -152,6 +152,11 @@ public class EventClassManager extends EventDataManager {
 
     }
 
+    @Override
+    public void find(String userInput) throws MissingParameterException {
+
+    }
+
     /**
      * <h2>getClassStatement()</h2>
      * Prints statement to update the user once class has been added or deleted.

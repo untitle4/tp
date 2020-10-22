@@ -18,6 +18,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(DataManager dataModel) {
+    public void execute(DataManager dataModel) throws MissingParameterException {
+        dataModel.find(userInput);
     }
 }
