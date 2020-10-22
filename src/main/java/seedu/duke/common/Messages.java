@@ -12,7 +12,7 @@ public class Messages {
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
     public static final String MESSAGE_HELLO = "Hello ";
     public static final String MESSAGE_PROMPT_COMMAND = "What can we do for you? "
-            + "(Enter 'help' for the list of available commands!)";
+            + "(Enter 'help' for the list of available commands!)\n";
     public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is empty. Add some!";
 
     // General error messages
@@ -107,6 +107,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_QUIZ_INDEX = "☹ OOPS!!! Please indicate a valid quiz index!";
     public static final String MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! Please indicate in NUMERALS, "
             + "which quiz you'd like to delete!";
+    public static final String MESSAGE_INVALID_HELP_COMMAND = "☹ OOPS!!! Are you trying to take a quiz or add/delete a"
+    + " quiz question? Enter 'help' to check the correct format!\n";
 
     //@@author elizabethcwt
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"

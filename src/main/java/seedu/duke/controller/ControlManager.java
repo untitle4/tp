@@ -103,9 +103,9 @@ public class ControlManager {
         boolean isDelete = commandType == CommandType.DELETE;
         boolean isDone = commandType == CommandType.DONE;
         boolean isList = commandType == CommandType.LIST;
-        boolean isQuiz = commandType == CommandType.QUIZ;
+//        boolean isQuiz = commandType == CommandType.QUIZ;
 
-        return isAdd || isDelete || isDone || isList || isQuiz;
+        return isAdd || isDelete || isDone || isList;
     }
 
     private void refreshEvents() {

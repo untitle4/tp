@@ -39,38 +39,43 @@ public class QuizManager extends DataManager {
 
     //@@author elizabethcwt
     public void takeQuiz(String[] separatedInputs) {
-        int noOfQues = Integer.parseInt(separatedInputs[1]);
-        //TODO: handle cases: "quiz", "quiz 2"
+        try {
+            int noOfQues = Integer.parseInt(separatedInputs[1]);
 
-        // If user wants to try a valid number of questions
-        if (noOfQues <= getQuizListSize()) {
+            //TODO: handle cases: "quiz", "quiz 2"
 
-            // Create a new list of the question indexes
-            List<Integer> quizIndexes = new ArrayList<>();
-            for (int i = 0; i < quizzes.size(); i++) {
-                quizIndexes.add(i);
+            // If user wants to try a valid number of questions
+            if (noOfQues <= getQuizListSize()) {
+
+                // Create a new list of the question indexes
+                List<Integer> quizIndexes = new ArrayList<>();
+                for (int i = 0; i < quizzes.size(); i++) {
+                    quizIndexes.add(i);
+                }
+
+                // Shuffle the question indexes
+                Collections.shuffle(quizIndexes);
+
+                StringBuilder selectedQuestions = new StringBuilder();
+
+                // Assign random order of indexes, of given no. of questions, to new StringBuilder, selectedQuestions
+                for (int j = 0; j < noOfQues; j++) {
+                    selectedQuestions.append(quizzes.get(j) + "\n");
+                    System.out.println(selectedQuestions);
+                }
+            } else if ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10)) {
+                // If user wants to try more questions than he/she has in the current quiz (and has less than 10 questions)
+                System.out.println("OOPS! You wanted to take a quiz with " + noOfQues + " questions, but your current quiz "
+                        + "only has " + getQuizListSize() + " question(s).\nPlease add more questions to your quiz "
+                        + "via the 'add quiz' command!\n");
+            } else {
+                // If user wants to try more questions than he/she has in the current quiz (but has at least 10 questions)
+                System.out.println("OOPS! You wanted to quiz a test with " + noOfQues + " questions, but your current quiz "
+                        + "only has " + getQuizListSize() + " question(s).\nPlease either add more questions to your quiz "
+                        + "via the 'add quiz' command, or take a quiz with a suitable number of questions!\n");
             }
-
-            // Shuffle the question indexes
-            Collections.shuffle(quizIndexes);
-
-            StringBuilder selectedQuestions = new StringBuilder();
-
-            // Assign random order of indexes, of given no. of questions, to new StringBuilder, selectedQuestions
-            for (int j = 0; j < noOfQues; j++) {
-                selectedQuestions.append(quizzes.get(j) + "\n");
-                System.out.println(selectedQuestions);
-            }
-        } else if ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10)) {
-            // If user wants to try more questions than he/she has in the current quiz (and has less than 10 questions)
-            System.out.println("OOPS! You wanted to take a quiz with " + noOfQues + " questions, but your current quiz "
-                    + "only has " + getQuizListSize() + " question(s).\nPlease add more questions to your quiz "
-                    + "via the 'add quiz' command!\n");
-        } else {
-            // If user wants to try more questions than he/she has in the current quiz (but has at least 10 questions)
-            System.out.println("OOPS! You wanted to quiz a test with " + noOfQues + " questions, but your current quiz "
-                    + "only has " + getQuizListSize() + " question(s).\nPlease either add more questions to your quiz "
-                    + "via the 'add quiz' command, or take a quiz with a suitable number of questions!\n");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_INVALID_HELP_COMMAND);
         }
     }
 
