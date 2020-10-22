@@ -21,7 +21,7 @@ public class ListSchedule {
     private static final String CATEGORY_CCAS = "CCAs: ";
 
     private final DateTimeParser dateTimeParser = new DateTimeParser();
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     private String userInput;
 

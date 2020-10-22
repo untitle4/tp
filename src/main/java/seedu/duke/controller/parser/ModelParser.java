@@ -20,7 +20,7 @@ public class ModelParser {
     private final String[] separatedInputs;
 
     private ModelType modelType;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public ModelParser(String userInput) {
         separatedInputs = userInput.split(" ");

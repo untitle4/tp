@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class ContactManager extends DataManager {
     private final ArrayList<Contact> contacts = new ArrayList<>();
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
     public ContactManager() {

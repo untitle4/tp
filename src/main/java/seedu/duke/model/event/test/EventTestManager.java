@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class EventTestManager extends EventDataManager {
     private final ArrayList<Event> tests;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
     public EventTestManager(ArrayList<Event> inputList) {

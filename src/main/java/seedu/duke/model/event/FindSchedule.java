@@ -15,7 +15,7 @@ public class FindSchedule {
     private final ArrayList<Event> tests;
     private final ArrayList<Event> tuitions;
 
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final String userInput;
     private final ArrayList<String> filteredEvents;
 

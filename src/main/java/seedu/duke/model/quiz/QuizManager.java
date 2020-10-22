@@ -16,7 +16,7 @@ public class QuizManager extends DataManager {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 9;
     private final ArrayList<Quiz> quizzes;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
     public QuizManager(ArrayList<Quiz> quizzes) {

@@ -19,7 +19,7 @@ public class CommandParser {
     private final String[] separatedInputs;
 
     private CommandType commandType;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public CommandParser(String userInput) {
         separatedInputs = userInput.split(" ");

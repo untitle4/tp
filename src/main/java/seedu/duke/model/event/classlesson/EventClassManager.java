@@ -39,7 +39,7 @@ public class EventClassManager extends EventDataManager {
     private final UserInterface userInterface;
 
     // Initialising Logger with name "Class"
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public EventClassManager(ArrayList<Event> classes) {
         this.classes = classes;
