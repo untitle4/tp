@@ -75,7 +75,7 @@ class ListScheduleTest {
 
         String formattedDate = todayDate.format(DateTimeFormatter.ofPattern("MMM yyyy"));
         ArrayList<String> expectedOutputs = new ArrayList<>(
-                List.of("Classes: ", String.format("1. [CLASS] [NOT DONE] Math from %sth %s ,"
+                List.of("Classes: ", String.format("1. [CLASS] [NOT DONE] Math from %sst %s ,"
                         + " 02:00 PM to 27th Feb 2019 , 03:00 PM", todayDate.getDayOfMonth(), formattedDate)));
         assertEquals(expectedOutputs, actualOutputs);
     }

@@ -1,0 +1,21 @@
+@startuml
+ControlManager -> AddCommand: execute()
+activate ControlManager
+
+activate AddCommand
+AddCommand -> DataManager: add()
+activate DataManager
+DataManager -> DataManager: getClassStatement()
+activate DataManager
+DataManager -> UserInterface: showToUser()
+activate UserInterface
+UserInterface --> DataManager
+deactivate UserInterface
+DataManager --> AddCommand
+deactivate DataManager
+AddCommand --> ControlManager
+deactivate AddCommand
+deactivate DataManager
+
+deactivate ControlManager
+@enduml

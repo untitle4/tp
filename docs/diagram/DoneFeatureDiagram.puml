@@ -1,0 +1,23 @@
+@startuml
+ControlManager -> DoneCommand: execute()
+activate ControlManager
+activate DoneCommand
+DoneCommand -> DataManager: setDone()
+activate DataManager
+DataManager -> DataManager: getClassStatement()
+activate DataManager
+
+
+
+DataManager -> UserInterface: showToUser()
+activate UserInterface
+
+UserInterface --> DataManager
+deactivate DataManager
+deactivate UserInterface
+DataManager --> DoneCommand
+deactivate DataManager
+DoneCommand --> ControlManager
+deactivate DoneCommand
+deactivate ControlManager
+@enduml

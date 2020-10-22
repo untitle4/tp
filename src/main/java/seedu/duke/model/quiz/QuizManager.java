@@ -1,9 +1,11 @@
 package seedu.duke.model.quiz;
 
 import seedu.duke.common.LogManager;
+import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
+import seedu.duke.ui.UserInterface;
 import seedu.duke.model.quiz.Quiz;
 
 import java.util.ArrayList;
@@ -19,9 +21,11 @@ public class QuizManager extends DataManager {
     //TODO
 
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private final UserInterface userInterface;
 
     public QuizManager(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;
+        this.userInterface = UserInterface.getInstance();
     }
 
     public ArrayList<Quiz> getQuizList() {
@@ -77,10 +81,10 @@ public class QuizManager extends DataManager {
         try {
             quizIndex = Integer.parseInt(userInputs[2]);
         } catch (NumberFormatException e) {
-            System.out.println("☹ OOPS!!! Please indicate in NUMERALS, which cca you'd like to delete!");
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
             return;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("☹ OOPS!!! Please indicate which cca you'd like to delete!");
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
             return;
         }
 
@@ -88,8 +92,7 @@ public class QuizManager extends DataManager {
             throw new IndexOutOfBoundsException();
         }
 
-        System.out.println("Noted. I've removed this quiz: ");
-        System.out.println(quizzes.get(quizIndex - 1));
+        userInterface.showToUser("Noted. I've removed this quiz: \n" + quizzes.get(quizIndex - 1));
 
         quizzes.remove(quizIndex - 1);
         getQuizStatement();
@@ -99,16 +102,16 @@ public class QuizManager extends DataManager {
     @Override
     public void add(String userInput) throws QuizParamException, EmptyParameterException {
         if (!userInput.contains(" /q ")) {
-            System.out.println("question not found");
+            userInterface.showToUser("question not found");
             throw new QuizParamException();
         }
         if (!userInput.contains(" /a ")) {
-            System.out.println("answer not found");
+            userInterface.showToUser("answer not found");
             throw new QuizParamException();
         }
         if (!userInput.contains(" /o1 ") && !userInput.contains(" /o2 ")
                 && !userInput.contains(" /o3 ") && !userInput.contains(" /o4 ")) {
-            System.out.println("options not provided");
+            userInterface.showToUser("options not provided");
             throw new QuizParamException();
         }
         String[] separatedInputs = userInput.trim().split("/");
@@ -133,23 +136,23 @@ public class QuizManager extends DataManager {
             quizzes.add(new Quiz(question, option1, option2, option3, option4, answer));
         }
 
-        System.out.println("Quiz question added!");
+        userInterface.showToUser("Quiz question added!");
     }
 
     @Override
     public void list() {
         if (quizzes.size() == 0) {
             System.out.println("Quiz list is empty. Add a question!");
+            userInterface.showToUser("Quiz list is empty. Add some!");
         } else {
             for (int i = 0; i < quizzes.size(); i++) {
-                System.out.println("Question " + (i + 1) + ":");
-                System.out.println(quizzes.get(i));
+                userInterface.showToUser("Question " + (i + 1) + ":\n" + quizzes.get(i));
             }
         }
     }
 
     private void getQuizStatement() {
-        String quizStatement = getQuizListSize() == 1 ? " question" : " questions";
-        System.out.println("Now you have " + getQuizListSize() + quizStatement + " in your quiz.");
+        String quizStatement = getQuizListSize() == 1 ? " quiz" : " quizzes";
+        userInterface.showToUser("Now you have " + getQuizListSize() + quizStatement + " in the quiz list.");
     }
 }

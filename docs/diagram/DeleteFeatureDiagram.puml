@@ -1,0 +1,55 @@
+@startuml
+'activate UserInterface
+'UserInterface -> ControlManager: runLogic()
+'activate ControlManager
+
+'activate ControlManager
+'ControlManager -> CommandParser: extractCommand()
+'activate CommandParser
+'ControlManager <-- CommandParser: return command type
+'deactivate CommandParser
+'deactivate ControlManager
+'
+'ControlManager -> CommandFactory: generateActionableCommand()
+'activate ControlManager
+'activate CommandFactory
+'CommandFactory --> ControlManager: return actionable command
+'deactivate CommandFactory
+'deactivate ControlManager
+'
+'ControlManager -> ModelParser: extractModel()
+'activate ControlManager
+'activate ModelParser
+'ModelParser --> ControlManager: return model type
+'deactivate ModelParser
+'deactivate ControlManager
+'
+'ControlManager -> ModelExtractor: retrieveModel()
+'activate ControlManager
+'activate ModelExtractor
+'ModelExtractor --> ControlManager: return model
+'deactivate ControlManager
+'deactivate ModelExtractor
+
+ControlManager -> DeleteCommand: execute()
+activate ControlManager
+activate DeleteCommand
+DeleteCommand -> DataManager: delete()
+activate DataManager
+DataManager -> DataManager: getClassStatement()
+activate DataManager
+
+
+
+DataManager -> UserInterface: showToUser()
+activate UserInterface
+
+UserInterface --> DataManager
+deactivate DataManager
+deactivate UserInterface
+DataManager --> DeleteCommand
+deactivate DataManager
+DeleteCommand --> ControlManager
+deactivate DeleteCommand
+deactivate ControlManager
+@enduml

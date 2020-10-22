@@ -1,6 +1,11 @@
 package seedu.duke.ui;
 
 import seedu.duke.common.Messages;
+import seedu.duke.controller.ControlManager;
+import seedu.duke.controller.parser.CommandType;
+import seedu.duke.model.Model;
+import seedu.duke.storage.EventStorageManager;
+import seedu.duke.storage.QuizStorageManager;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -45,10 +50,31 @@ public class UserInterface {
         }
     }
 
+    // Note: Written by Andre
     public void printArray(ArrayList<String> stringArrayList) {
         assert stringArrayList != null;
         for (String line : stringArrayList) {
             System.out.println(line);
         }
+    }
+
+    // Note: Written by Andre
+    public boolean checkIfProgramEnds(CommandType commandType) {
+        return commandType != CommandType.BYE;
+    }
+
+    // Note: Written by Andre
+    public boolean runUI(Model model,
+                         EventStorageManager eventStorageManager,
+                         QuizStorageManager quizStorageManager) {
+        CommandType commandType = null;
+        String line = getUserCommand();
+
+        if (!line.trim().isEmpty()) {
+            ControlManager controlManager = new ControlManager(line, model, eventStorageManager, quizStorageManager);
+            commandType = controlManager.runLogic();
+        }
+
+        return checkIfProgramEnds(commandType);
     }
 }
