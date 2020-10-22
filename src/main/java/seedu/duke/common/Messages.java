@@ -140,4 +140,5 @@ public class Messages {
             + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n";
     public static final String MESSAGE_BYE = "BYE BYE! SEE YOU NEXT TIME! :3";
     public static final String MESSAGE_EXTRA_HELP_PARAM = "OOPS! Were you trying to ask for help? Just enter 'help'!";
+    public static final String MESSAGE_NO_EVENTS_FOUND = "Sorry but your searches yield no results!";
 }
