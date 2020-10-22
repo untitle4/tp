@@ -23,6 +23,8 @@ public class CommandFactory {
             return new DoneCommand(userInput);
         case LIST:
             return new ListCommand();
+        case FIND:
+            return new FindCommand(userInput);
         case BYE:
             // fall through
         default:

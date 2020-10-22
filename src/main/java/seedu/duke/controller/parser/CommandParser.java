@@ -14,6 +14,7 @@ public class CommandParser {
     public static final String INPUT_BYE = "bye";
     public static final String INPUT_HELP = "help";
     public static final int MAIN_COMMAND_INDEX = 0;
+    public static final String INPUT_FIND = "find";
 
     private final String[] separatedInputs;
 
@@ -55,6 +56,9 @@ public class CommandParser {
             break;
         case INPUT_HELP:
             commandType = CommandType.HELP;
+            break;
+        case INPUT_FIND:
+            commandType = CommandType.FIND;
             break;
         default:
             throw new InvalidCommandException();

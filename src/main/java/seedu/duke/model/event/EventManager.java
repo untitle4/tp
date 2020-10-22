@@ -1,5 +1,6 @@
 package seedu.duke.model.event;
 
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.cca.EventCcaManager;
 import seedu.duke.model.event.classlesson.EventClassManager;
 import seedu.duke.common.Messages;
@@ -11,7 +12,14 @@ import seedu.duke.exception.EmptyListException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Represents a handler that manages the four different event managers.
+ * This provides access to each individual event managers and
+ * also performs listing and searches for the entire events data set.
+ */
 public class EventManager {
+    public static final int EMPTY_SIZE = 0;
+    public static final int USER_INPUT_OFFSET = 10;
     private static EventClassManager eventClassManager;
     private static EventTestManager eventTestManager;
     private static EventCcaManager eventCcaManager;
@@ -60,5 +68,30 @@ public class EventManager {
         } catch (DateTimeParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
         }
+    }
+
+    /**
+     * Prints to user all the found events that matches with keyword provided.
+     *
+     * @param userInput Input supplied by the user that contains the keywords.
+     * @throws MissingParameterException If input supplied does not contain any keywords
+     */
+    public void findEvents(String userInput) throws MissingParameterException {
+        String param = userInput.substring(USER_INPUT_OFFSET).trim();
+
+        if (param.length() == EMPTY_SIZE) {
+            throw new MissingParameterException();
+        }
+
+        FindSchedule findSchedule = new FindSchedule(param, eventClassManager.getClasses(),
+                eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
+        ArrayList<String> filteredEvents = findSchedule.getFilteredEvents();
+
+        if (filteredEvents.size() == EMPTY_SIZE) {
+            userInterface.showToUser(Messages.MESSAGE_NO_EVENTS_FOUND);
+            return;
+        }
+
+        userInterface.printArray(filteredEvents);
     }
 }

@@ -2,6 +2,7 @@ package seedu.duke.controller;
 
 import seedu.duke.Duke;
 import seedu.duke.common.Messages;
+import seedu.duke.controller.command.FindCommand;
 import seedu.duke.controller.command.ListCommand;
 import seedu.duke.controller.parser.ModelParser;
 import seedu.duke.exception.ContactParamException;
@@ -66,6 +67,12 @@ public class ControlManager {
                 } else if (modelType == null) {
                     throw new IncompleteListCommandException();
                 }
+            } else if (commandType == CommandType.FIND) {
+                if (modelType == ModelType.EVENT) {
+                    new FindCommand(userInput).execute(model.getEventManager());
+                } else {
+                    throw new IncompleteListCommandException();
+                }
             } else {
                 actionableCommand.execute(dataModel);
             }
@@ -98,8 +105,9 @@ public class ControlManager {
         boolean isDelete = commandType == CommandType.DELETE;
         boolean isDone = commandType == CommandType.DONE;
         boolean isList = commandType == CommandType.LIST;
+        boolean isFind = commandType == CommandType.FIND;
 
-        return isAdd || isDelete || isDone || isList;
+        return isAdd || isDelete || isDone || isList || isFind;
     }
 
     private void refreshEvents() {
