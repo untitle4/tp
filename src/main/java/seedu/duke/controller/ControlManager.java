@@ -63,6 +63,8 @@ public class ControlManager {
             if (commandType == CommandType.LIST) {
                 if (modelType == ModelType.EVENT) {
                     new ListCommand(userInput).execute(model.getEventManager());
+                } else if (modelType == ModelType.QUIZ) {
+                    new ListCommand().execute(model.getQuizManager());
                 } else if (modelType == null) {
                     throw new IncompleteListCommandException();
                 }
