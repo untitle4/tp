@@ -3,7 +3,6 @@ package seedu.duke.model.event;
 import seedu.duke.common.LogManager;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.controller.parser.DateTimeParser;
-import seedu.duke.model.event.classlesson.EventClass;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

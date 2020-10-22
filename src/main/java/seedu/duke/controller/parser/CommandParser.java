@@ -58,6 +58,9 @@ public class CommandParser {
         case INPUT_HELP:
             commandType = CommandType.HELP;
             break;
+        case INPUT_FIND:
+            commandType = CommandType.FIND;
+            break;
         case INPUT_QUIZ:
             commandType = CommandType.QUIZ;
             break;
