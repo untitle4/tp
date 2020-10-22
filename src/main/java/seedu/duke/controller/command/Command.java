@@ -7,6 +7,9 @@ import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
 
+/**
+ * Represents the base of all command types.
+ */
 public abstract class Command {
     protected final String userInput;
 
@@ -14,6 +17,11 @@ public abstract class Command {
         userInput = null;
     }
 
+    /**
+     * Runs if the execution requires passing the user input to the model.
+     *
+     * @param userInput String given from the user.
+     */
     protected Command(String userInput) {
         this.userInput = userInput;
     }

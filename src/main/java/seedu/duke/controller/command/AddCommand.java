@@ -6,6 +6,9 @@ import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
 
+/**
+ * Represents the command for adding a class, cca, test, tuition, quiz and contact.
+ */
 public class AddCommand extends Command {
     public AddCommand(String userInput) {
         super(userInput);
