@@ -72,6 +72,8 @@ public class ControlManager {
             } else if (commandType == CommandType.FIND) {
                 if (modelType == ModelType.EVENT) {
                     new FindCommand(userInput).execute(model.getEventManager());
+                } else if (modelType == ModelType.QUIZ) {
+                    new FindCommand(userInput).execute(model.getQuizManager());
                 } else {
                     throw new IncompleteListCommandException();
                 }

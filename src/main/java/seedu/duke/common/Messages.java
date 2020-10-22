@@ -141,4 +141,5 @@ public class Messages {
     public static final String MESSAGE_BYE = "BYE BYE! SEE YOU NEXT TIME! :3";
     public static final String MESSAGE_EXTRA_HELP_PARAM = "OOPS! Were you trying to ask for help? Just enter 'help'!";
     public static final String MESSAGE_NO_EVENTS_FOUND = "Sorry but your searches yield no results!";
+    public static final String MESSAGE_NO_QUIZZES_FOUND = "Sorry but there is not such a quiz in your list!";
 }
