@@ -23,5 +23,7 @@ public class Model {
         return contactManager;
     }
 
-    public QuizManager getQuizManager() { return quizManager; }
+    public QuizManager getQuizManager() {
+        return quizManager;
+    }
 }

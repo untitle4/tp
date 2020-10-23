@@ -112,7 +112,7 @@ public class Messages {
     public static final String MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! Please indicate in NUMERALS, "
             + "which quiz you'd like to delete!\n";
     public static final String MESSAGE_INVALID_HELP_COMMAND = "☹ OOPS!!! Are you trying to take a quiz or add/delete a"
-    + " quiz question? Enter 'help' to check the correct format!\n";
+            + " quiz question? Enter 'help' to check the correct format!\n";
     public static final String MESSAGE_INVALID_NUM_OF_QUIZ_QUESTIONS = "☹ OOPS!!! You can only take quizzes in sets of"
             + " 10, 20 or 30 questions!\n";
     public static final String MESSAGE_INSUFFICIENT_QUES_LESS_THAN_10 = "OOPS! You wanted to take a quiz with "

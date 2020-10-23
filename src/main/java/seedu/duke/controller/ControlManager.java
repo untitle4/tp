@@ -2,7 +2,12 @@ package seedu.duke.controller;
 
 import seedu.duke.Duke;
 import seedu.duke.common.Messages;
-import seedu.duke.controller.command.*;
+
+import seedu.duke.controller.command.Command;
+import seedu.duke.controller.command.CommandFactory;
+import seedu.duke.controller.command.FindCommand;
+import seedu.duke.controller.command.ListCommand;
+import seedu.duke.controller.command.QuizCommand;
 import seedu.duke.controller.parser.ModelParser;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
@@ -110,7 +115,7 @@ public class ControlManager {
         boolean isDelete = commandType == CommandType.DELETE;
         boolean isDone = commandType == CommandType.DONE;
         boolean isList = commandType == CommandType.LIST;
-//        boolean isQuiz = commandType == CommandType.QUIZ;
+        boolean isQuiz = commandType == CommandType.QUIZ;
         boolean isFind = commandType == CommandType.FIND;
 
         return isAdd || isDelete || isDone || isList || isFind;

@@ -79,6 +79,7 @@ public class QuizManager extends DataManager {
                     // Shuffle the question indexes
                     Collections.shuffle(quizIndexes);
 
+                    // Print out each question
                     for (int j = 0; j < noOfQues; j++) {
                         System.out.println();
                         System.out.println("Question " + (j + 1) + ": ");

@@ -8,6 +8,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(DataManager dataModel) { dataModel.delete(userInput.split(" "));
+    public void execute(DataManager dataModel) {
+        dataModel.delete(userInput.split(" "));
     }
 }

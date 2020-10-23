@@ -10,7 +10,8 @@ public class QuizCommand extends Command {
 
     @Override
     //TODO edit this
-    public void execute(DataManager dataModel) { };
+    public void execute(DataManager dataModel) {
+    }
 
     public void execute(QuizManager quizManager) {
         String[] separatedInputs = userInput.trim().split(" ");
