@@ -9,7 +9,9 @@ import seedu.duke.model.DataManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.model.quiz.Quiz;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.Collections;
 import java.util.List;
@@ -35,6 +37,9 @@ public class QuizManager extends DataManager {
     public ArrayList<Quiz> getQuizList() {
         return quizzes;
     }
+
+    // Create an array to store user's quiz answers
+    ArrayList<Integer> userAnswers = new ArrayList<>();
 
     public int getQuizListSize() {
         assert quizzes != null;
@@ -74,13 +79,20 @@ public class QuizManager extends DataManager {
                     // Shuffle the question indexes
                     Collections.shuffle(quizIndexes);
 
-                    StringBuilder selectedQuestions = new StringBuilder();
-
-                    // Assign random order of indexes, of given no. of questions, to new StringBuilder, selectedQuestions
                     for (int j = 0; j < noOfQues; j++) {
-                        selectedQuestions.append(quizzes.get(j) + "\n");
-                        System.out.println(selectedQuestions);
+                        System.out.println();
+                        System.out.println("Question " + (j + 1) + ": ");
+                        System.out.println(quizzes.get(quizIndexes.get(j)).printQuizQuestion());
+
+                        // Create a Scanner object
+                        Scanner in = new Scanner(System.in);
+
+                        // Store user's quiz answers into ArrayList
+                        //TODO handle invalid user input
+                        userAnswers.add(Integer.parseInt(in.nextLine()));
                     }
+
+                    System.out.println(userAnswers);
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -106,7 +118,7 @@ public class QuizManager extends DataManager {
             throw new IndexOutOfBoundsException();
         }
 
-        userInterface.showToUser("Noted. I've removed this quiz: \n" + quizzes.get(quizIndex - 1));
+        userInterface.showToUser("Noted. I've removed this quiz question: \n" + quizzes.get(quizIndex - 1));
 
         quizzes.remove(quizIndex - 1);
         getQuizStatement();
@@ -150,7 +162,7 @@ public class QuizManager extends DataManager {
             quizzes.add(new Quiz(question, option1, option2, option3, option4, answer));
         }
 
-        userInterface.showToUser("Quiz question added!");
+        userInterface.showToUser("Quiz question added!\n");
     }
 
     @Override
@@ -175,7 +187,7 @@ public class QuizManager extends DataManager {
     @Override
     public void list() {
         if (quizzes.size() == EMPTY_SIZE) {
-            userInterface.showToUser("Quiz list is empty. Add some!");
+            userInterface.showToUser("Quiz list is empty. Add some!\n");
         } else {
             for (int i = 0; i < quizzes.size(); i++) {
                 userInterface.showToUser("Question " + (i + 1) + ":\n" + quizzes.get(i));

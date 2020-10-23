@@ -2,7 +2,7 @@ package seedu.duke.controller;
 
 import seedu.duke.Duke;
 import seedu.duke.common.Messages;
-import seedu.duke.controller.command.ListCommand;
+import seedu.duke.controller.command.*;
 import seedu.duke.controller.parser.ModelParser;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
@@ -14,8 +14,6 @@ import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
 import seedu.duke.model.Model;
-import seedu.duke.controller.command.Command;
-import seedu.duke.controller.command.CommandFactory;
 import seedu.duke.controller.parser.CommandParser;
 import seedu.duke.controller.parser.CommandType;
 import seedu.duke.model.ModelType;
