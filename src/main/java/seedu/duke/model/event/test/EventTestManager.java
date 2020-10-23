@@ -82,37 +82,22 @@ public class EventTestManager extends EventDataManager {
 
         try {
             testNumber = Integer.parseInt(userInputs[2]);
+
+            userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_SUCCESS,
+                    "  " + tests.get(testNumber - 1));
+
+            tests.remove(testNumber - 1);
+            logger.log(Level.INFO, "deleted test from ArrayList");
+
+            getTaskStatement();
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NON_NUMBER);
-            return;
         } catch (ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NO_NUMBER_GIVEN);
-            return;
+        } catch (IndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_INVALID_CLASS_INDEX);
         }
-
-        if ((testNumber <= 0) || (testNumber > getTestListSize())) {
-            logger.log(Level.WARNING, "index entered is out of bounds");
-            throw new IndexOutOfBoundsException();
-        }
-
-        userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_SUCCESS,
-                "  " + tests.get(testNumber - 1));
-
-        tests.remove(testNumber - 1);
-        logger.log(Level.INFO, "deleted test from ArrayList");
-
-        getTaskStatement();
-    }
-
-    @Override
-    public void list() {
-
-    }
-
-    @Override
-    public void find(String userInput) throws MissingParameterException {
-
     }
 
     private void getTaskStatement() {

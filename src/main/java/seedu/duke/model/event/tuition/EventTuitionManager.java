@@ -87,9 +87,6 @@ public class EventTuitionManager extends EventDataManager {
             // Tries to convert classIndex user input into an integer
             int tuitionIndex = Integer.parseInt(userInputs[2]);
 
-            // Assertion to test assumption that classIndex should be a positive integer
-            assert tuitionIndex > 0 : "tuitionIndex should be a positive integer";
-
             // Just to test if class index is valid - for exception use only
             tuitions.get(tuitionIndex - 1);
 
@@ -107,16 +104,6 @@ public class EventTuitionManager extends EventDataManager {
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_TUITION_DELETE_ERROR_NON_NUMBER);
         }
-    }
-
-    @Override
-    public void list() {
-
-    }
-
-    @Override
-    public void find(String userInput) throws MissingParameterException {
-
     }
 
     @Override
