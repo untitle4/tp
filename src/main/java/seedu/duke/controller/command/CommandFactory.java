@@ -25,6 +25,8 @@ public class CommandFactory {
             return new ListCommand();
         case FIND:
             return new FindCommand(userInput);
+        case QUIZ:
+            return new QuizCommand(userInput);
         case BYE:
             // fall through
         default:

@@ -7,15 +7,23 @@ import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
 import seedu.duke.ui.UserInterface;
+import seedu.duke.model.quiz.UserAnswerManager;
+import seedu.duke.model.quiz.Quiz;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class QuizManager extends DataManager {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 9;
     private final ArrayList<Quiz> quizzes;
+    public static int noOfQues;
+
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private final UserInterface userInterface;
 
@@ -28,9 +36,85 @@ public class QuizManager extends DataManager {
         return quizzes;
     }
 
+    UserAnswerManager userAnswerManager = new UserAnswerManager();
+
     public int getQuizListSize() {
         assert quizzes != null;
         return quizzes.size();
+    }
+
+    //@@author elizabethcwt
+    public void takeQuiz(String[] separatedInputs) {
+        try {
+            noOfQues = Integer.parseInt(separatedInputs[1]);
+
+            if (!((noOfQues == 10) || (noOfQues == 20) || (noOfQues == 30))) {
+                // If user inputs an invalid number of quiz questions (not 10, 20 or 30)
+                userInterface.showToUser(Messages.MESSAGE_INVALID_NUM_OF_QUIZ_QUESTIONS);
+
+                // If user inputs a valid number of quiz questions (either 10, 20 or 30)
+            } else if ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10)) {
+                // If user wants to try more questions than he/she has in the current quiz, and has less than 10
+                // questions
+                userInterface.showToUser(String.format(Messages.MESSAGE_INSUFFICIENT_QUES_LESS_THAN_10,
+                        getQuizListSize()));
+            } else if (noOfQues > getQuizListSize() && (getQuizListSize() >= 10)) {
+                // If user wants to try more questions than he/she has in the current quiz, but has at least 10
+                // questions
+                userInterface.showToUser(String.format(Messages.MESSAGE_INSUFFICIENT_QUES_MORE_THAN_10,
+                        getQuizListSize()));
+            } else {
+                // If user enters a valid number of questions
+                if (noOfQues <= getQuizListSize()) {
+
+                    // Create a new list of the question indexes
+                    List<Integer> quizIndexes = new ArrayList<>();
+                    for (int i = 0; i < quizzes.size(); i++) {
+                        quizIndexes.add(i);
+                    }
+
+                    // Shuffle the question indexes
+                    Collections.shuffle(quizIndexes);
+
+                    // Print out each question
+                    for (int j = 0; j < noOfQues; j++) {
+                        System.out.println();
+                        System.out.println("Question " + (j + 1) + ": ");
+                        System.out.println(quizzes.get(quizIndexes.get(j)).printQuizQuestion());
+
+                        // Create a Scanner object
+                        Scanner in = new Scanner(System.in);
+
+                        // Store user's quiz answers into ArrayList
+                        //TODO handle invalid answer input
+                        userAnswerManager.getUserAnswers().add(Integer.parseInt(in.nextLine()));
+                    }
+
+                    // Initialising counter for correctly answered questions
+                    int correctCounter = 0;
+                    // Compare and note if students' answers are correct
+                    for (int k = 0; k < noOfQues; k++) {
+                        if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt(quizzes.get(quizIndexes
+                                .get(k)).getAnswer()))) {
+                            userAnswerManager.getCorrectness().add(true);
+                            correctCounter++;
+                        } else {
+                            userAnswerManager.getCorrectness().add(false);
+                        }
+                    }
+
+                    // TODO Print results, questions, user's answers, correct answers and explanations
+                    System.out.println("\nYou scored " + correctCounter + " out of " + noOfQues + "!\n");
+
+
+                    // Empty userAnswers ArrayList and correctness ArrayList
+                    userAnswerManager.getUserAnswers().clear();
+                    userAnswerManager.getCorrectness().clear();
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_INVALID_HELP_COMMAND);
+        }
     }
 
     @Override
@@ -51,7 +135,7 @@ public class QuizManager extends DataManager {
             throw new IndexOutOfBoundsException();
         }
 
-        userInterface.showToUser("Noted. I've removed this quiz: \n" + quizzes.get(quizIndex - 1));
+        userInterface.showToUser("Noted. I've removed this quiz question: \n" + quizzes.get(quizIndex - 1));
 
         quizzes.remove(quizIndex - 1);
         getQuizStatement();
@@ -95,7 +179,7 @@ public class QuizManager extends DataManager {
             quizzes.add(new Quiz(question, option1, option2, option3, option4, answer));
         }
 
-        userInterface.showToUser("Quiz question added!");
+        userInterface.showToUser("Quiz question added!\n");
     }
 
     @Override
@@ -120,7 +204,7 @@ public class QuizManager extends DataManager {
     @Override
     public void list() {
         if (quizzes.size() == EMPTY_SIZE) {
-            userInterface.showToUser("Quiz list is empty. Add some!");
+            userInterface.showToUser("Quiz list is empty. Add some!\n");
         } else {
             for (int i = 0; i < quizzes.size(); i++) {
                 userInterface.showToUser("Question " + (i + 1) + ":\n" + quizzes.get(i));

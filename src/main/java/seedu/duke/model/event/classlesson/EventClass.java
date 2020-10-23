@@ -6,6 +6,7 @@ import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
 
+//@@author elizabethcwt
 /**
  * <h2>Class class</h2>
  * Contains constructors, getters, toString and equals methods.
