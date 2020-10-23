@@ -94,9 +94,8 @@ public class QuizManager extends DataManager {
                     int correctCounter = 0;
                     // Compare and note if students' answers are correct
                     for (int k = 0; k < noOfQues; k++) {
-                        if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt
-                                (quizzes.get(quizIndexes.get(k)).
-                                getAnswer()))) {
+                        if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt(quizzes.get(quizIndexes
+                                .get(k)).getAnswer()))) {
                             userAnswerManager.getCorrectness().add(true);
                             correctCounter++;
                         } else {
