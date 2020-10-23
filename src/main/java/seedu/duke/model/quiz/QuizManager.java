@@ -93,7 +93,7 @@ public class QuizManager extends DataManager {
                         userAnswers.add(Integer.parseInt(in.nextLine()));
                     }
 
-                    System.out.println(userAnswers);
+                    // Compare and check if students' answers are correct
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
