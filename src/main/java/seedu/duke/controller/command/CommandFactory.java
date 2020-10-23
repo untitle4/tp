@@ -34,7 +34,7 @@ public class CommandFactory {
         case DONE:
             return new DoneCommand(userInput);
         case LIST:
-            return new ListCommand();
+            return new ListCommand(userInput);
         case FIND:
             return new FindCommand(userInput);
         case QUIZ:

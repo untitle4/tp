@@ -1,9 +1,9 @@
 package seedu.duke.controller.command;
 
 import seedu.duke.common.LogManager;
-import seedu.duke.model.DataManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.InvalidHelpCommandException;
+import seedu.duke.model.ModelMain;
 import seedu.duke.ui.UserInterface;
 
 import java.util.logging.Level;
@@ -19,7 +19,7 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public void execute(DataManager dataModel) throws InvalidHelpCommandException {
+    public void execute(ModelMain modelMain) throws InvalidHelpCommandException {
         handleHelp();
     }
 

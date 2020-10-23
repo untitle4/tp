@@ -2,10 +2,11 @@ package seedu.duke.controller.command;
 
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.IncompleteListCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
-import seedu.duke.model.DataManager;
+import seedu.duke.model.ModelMain;
 
 //@@author AndreWongZH
 /**
@@ -13,10 +14,6 @@ import seedu.duke.model.DataManager;
  */
 public abstract class Command {
     protected final String userInput;
-
-    public Command() {
-        userInput = null;
-    }
 
     /**
      * Runs if the execution requires passing the user input to the model.
@@ -27,6 +24,6 @@ public abstract class Command {
         this.userInput = userInput;
     }
 
-    public abstract void execute(DataManager dataModel) throws ContactParamException, InvalidHelpCommandException,
-            QuizParamException, EmptyParameterException, MissingParameterException;
+    public abstract void execute(ModelMain modelMain) throws ContactParamException, InvalidHelpCommandException,
+            QuizParamException, EmptyParameterException, MissingParameterException, IncompleteListCommandException;
 }

@@ -1,5 +1,7 @@
 package seedu.duke.model.event;
 
-public interface EventInteractable {
+import seedu.duke.model.Interactable;
+
+public interface EventInteractable extends Interactable {
     void setDone(String[] userInputs);
 }

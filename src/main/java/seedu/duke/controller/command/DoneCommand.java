@@ -1,6 +1,6 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.model.DataManager;
+import seedu.duke.model.ModelMain;
 import seedu.duke.model.event.EventDataManager;
 
 //@@author AndreWongZH
@@ -13,8 +13,8 @@ public class DoneCommand extends Command {
     }
 
     @Override
-    public void execute(DataManager dataModel) {
-        EventDataManager eventDataModel = (EventDataManager) dataModel;
+    public void execute(ModelMain modelMain) {
+        EventDataManager eventDataModel = (EventDataManager) modelMain;
         eventDataModel.setDone(userInput.split(" "));
     }
 }

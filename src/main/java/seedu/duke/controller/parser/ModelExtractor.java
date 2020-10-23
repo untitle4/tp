@@ -1,8 +1,8 @@
 package seedu.duke.controller.parser;
 
 import seedu.duke.exception.InvalidModelException;
-import seedu.duke.model.DataManager;
 import seedu.duke.model.Model;
+import seedu.duke.model.ModelMain;
 
 //@@author AndreWongZH
 /**
@@ -25,8 +25,8 @@ public class ModelExtractor {
      * @return Model Manager to be read or modified.
      * @throws InvalidModelException If modelType does not match any of the Model Managers.
      */
-    public DataManager retrieveModel() throws InvalidModelException {
-        if (modelType == null || modelType == ModelType.EVENT) {
+    public ModelMain retrieveModel() throws InvalidModelException {
+        if (modelType == null) {
             return null;
         }
 
@@ -43,8 +43,8 @@ public class ModelExtractor {
             return model.getQuizManager();
         case CONTACT:
             return model.getContactManager();
-        //case EVENT:
-            //return model.getEventManager();
+        case EVENT:
+            return model.getEventManager();
         default:
             throw new InvalidModelException();
         }
