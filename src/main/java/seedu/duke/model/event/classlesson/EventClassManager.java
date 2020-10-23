@@ -35,7 +35,7 @@ import seedu.duke.ui.UserInterface;
  * @see EventClassManager#setDone(String[])
  */
 public class EventClassManager extends EventDataManager {
-    // Initialising ArrayList to store classes
+
     private final ArrayList<Event> classes;
     private final UserInterface userInterface;
 

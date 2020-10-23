@@ -7,6 +7,7 @@ import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
 import seedu.duke.ui.UserInterface;
+import seedu.duke.model.quiz.UserAnswerManager;
 import seedu.duke.model.quiz.Quiz;
 
 import java.lang.reflect.Array;
@@ -23,9 +24,6 @@ public class QuizManager extends DataManager {
     private final ArrayList<Quiz> quizzes;
     public static int noOfQues;
 
-    // Add 10 default questions - users can delete if they want
-    //TODO
-
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private final UserInterface userInterface;
 
@@ -38,8 +36,7 @@ public class QuizManager extends DataManager {
         return quizzes;
     }
 
-    // Create an array to store user's quiz answers
-    ArrayList<Integer> userAnswers = new ArrayList<>();
+    UserAnswerManager userAnswerManager = new UserAnswerManager();
 
     public int getQuizListSize() {
         assert quizzes != null;
@@ -89,11 +86,29 @@ public class QuizManager extends DataManager {
                         Scanner in = new Scanner(System.in);
 
                         // Store user's quiz answers into ArrayList
-                        //TODO handle invalid user input
-                        userAnswers.add(Integer.parseInt(in.nextLine()));
+                        //TODO handle invalid answer input
+                        userAnswerManager.getUserAnswers().add(Integer.parseInt(in.nextLine()));
                     }
 
-                    // Compare and check if students' answers are correct
+                    // Initialising counter for correctly answered questions
+                    int correctCounter = 0;
+                    // Compare and note if students' answers are correct
+                    for (int k = 0; k < noOfQues; k++) {
+                        if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt
+                                (quizzes.get(quizIndexes.get(k)).
+                                getAnswer()))) {
+                            userAnswerManager.getCorrectness().add(true);
+                            correctCounter++;
+                        } else {
+                            userAnswerManager.getCorrectness().add(false);
+                        }
+                    }
+
+                    // TODO Print results, questions, user's answers, correct answers and explanations
+                    System.out.println("\nYou scored " + correctCounter + " out of " + noOfQues + "!\n");
+
+
+                    // TODO Empty userAnswers ArrayList
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
