@@ -105,6 +105,11 @@ public class EventCcaManager extends EventDataManager {
     }
 
     @Override
+    public void find(String userInput) throws MissingParameterException {
+
+    }
+
+    @Override
     public void setDone(String[] userInputs) {
         int ccaIndex = 0;
         logger.log(Level.INFO, "initialising setting cca as done");

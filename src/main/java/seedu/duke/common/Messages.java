@@ -4,11 +4,14 @@ import seedu.duke.model.quiz.QuizManager;
 
 public class Messages {
     // Intro related messages
-    public static final String MESSAGE_LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+    public static final String MESSAGE_LOGO = " ------   -                          -----\n"
+            + "|   _  | | |                        | ____|\n"
+            + "|  | | | | |                        | |___\n"
+            + "|  |_| | | |  -----     -----    &  |____ |  ------   -----   -----   -----\n"
+            + "|      | | | /  -  \\   |  _  |          | | | _____| /  -  \\ /  ___\\ /  -- \\\n"
+            + "|  ----  | | | | | |   | | | |       ___| | | |      | | | | | /     |  ___|\n"
+            + "| |      | | | |_|  \\  | | | |      |     | | |____  | |_| | | |     | |____\n"
+            + "|_|      |_| \\____/\\_\\ |_| |_|      |_____| |______| \\_____/ |_|     \\_____/";
     public static final String MESSAGE_HELLO_FROM_DUKE = "Hello from\n"
             + Messages.MESSAGE_LOGO;
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
@@ -153,4 +156,5 @@ public class Messages {
     public static final String MESSAGE_BYE = "BYE BYE! SEE YOU NEXT TIME! :3";
     public static final String MESSAGE_EXTRA_HELP_PARAM = "OOPS! Were you trying to ask for help? Just enter 'help'!";
     public static final String MESSAGE_NO_EVENTS_FOUND = "Sorry but your searches yield no results!";
+    public static final String MESSAGE_NO_QUIZZES_FOUND = "Sorry but there is not such a quiz in your list!";
 }

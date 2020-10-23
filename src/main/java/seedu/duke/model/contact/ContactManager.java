@@ -3,6 +3,7 @@ package seedu.duke.model.contact;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.DataManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.ContactParamException;
@@ -97,6 +98,11 @@ public class ContactManager extends DataManager {
                         contacts.get(i).toString());
             }
         }
+    }
+
+    @Override
+    public void find(String userInput) throws MissingParameterException {
+
     }
 
     private void getContactStatement() {

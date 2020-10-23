@@ -3,6 +3,7 @@ package seedu.duke.model.quiz;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
 import seedu.duke.ui.UserInterface;
@@ -15,6 +16,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 public class QuizManager extends DataManager {
+    public static final int EMPTY_SIZE = 0;
+    public static final int USER_INPUT_OFFSET = 9;
     private final ArrayList<Quiz> quizzes;
     public static int noOfQues;
 
@@ -151,9 +154,27 @@ public class QuizManager extends DataManager {
     }
 
     @Override
+    public void find(String userInput) throws MissingParameterException {
+        String param = userInput.substring(USER_INPUT_OFFSET).trim();
+
+        if (param.length() == EMPTY_SIZE) {
+            throw new MissingParameterException();
+        }
+
+        FindQuiz findQuiz = new FindQuiz(param, quizzes);
+        ArrayList<String> filteredQuizzes = findQuiz.filterQuizzes();
+
+        if (filteredQuizzes.size() == EMPTY_SIZE) {
+            userInterface.showToUser(Messages.MESSAGE_NO_QUIZZES_FOUND);
+            return;
+        }
+
+        userInterface.printArray(filteredQuizzes);
+    }
+
+    @Override
     public void list() {
-        if (quizzes.size() == 0) {
-            System.out.println("Quiz list is empty. Add a question!");
+        if (quizzes.size() == EMPTY_SIZE) {
             userInterface.showToUser("Quiz list is empty. Add some!");
         } else {
             for (int i = 0; i < quizzes.size(); i++) {

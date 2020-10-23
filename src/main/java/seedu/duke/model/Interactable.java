@@ -12,4 +12,6 @@ public interface Interactable {
     void delete(String[] userInputs);
 
     void list();
+
+    void find(String userInput) throws MissingParameterException;
 }

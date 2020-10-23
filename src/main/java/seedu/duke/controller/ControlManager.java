@@ -67,12 +67,16 @@ public class ControlManager {
             if (commandType == CommandType.LIST) {
                 if (modelType == ModelType.EVENT) {
                     new ListCommand(userInput).execute(model.getEventManager());
+                } else if (modelType == ModelType.QUIZ) {
+                    new ListCommand().execute(model.getQuizManager());
                 } else if (modelType == null) {
                     throw new IncompleteListCommandException();
                 }
             } else if (commandType == CommandType.FIND) {
                 if (modelType == ModelType.EVENT) {
                     new FindCommand(userInput).execute(model.getEventManager());
+                } else if (modelType == ModelType.QUIZ) {
+                    new FindCommand(userInput).execute(model.getQuizManager());
                 } else {
                     throw new IncompleteListCommandException();
                 }
