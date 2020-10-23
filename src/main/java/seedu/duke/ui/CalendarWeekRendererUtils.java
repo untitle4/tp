@@ -34,7 +34,7 @@ public class CalendarWeekRendererUtils {
     }
 
     public String getDayLabel(int num) {
-        switch(num) {
+        switch (num) {
         case 0:
             return Messages.MESSAGE_MONDAY_LABEL;
         case 1:
@@ -49,8 +49,8 @@ public class CalendarWeekRendererUtils {
             return Messages.MESSAGE_SATURDAY_LABEL;
         case 6:
             return Messages.MESSAGE_SUNDAY_LABEL;
+        default:
+            return null;
         }
-
-        return null;
     }
 }

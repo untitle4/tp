@@ -81,7 +81,7 @@ public class CalendarWeekRenderer {
     private String getEventIcons(CalendarWeekRendererUtils utils, ArrayList<Event> events, int counterIndex) {
         StringBuilder eventIconsString = new StringBuilder();
 
-        if(utils.getCounter(counterIndex) != 0) {
+        if (utils.getCounter(counterIndex) != 0) {
             String indexString = eventCounters[counterIndex] + ".";
             String iconString = events.get(eventCounters[counterIndex] - 1).getIcon();
             eventIconsString.append(indexString);
@@ -97,7 +97,7 @@ public class CalendarWeekRenderer {
     private String getDescriptions(CalendarWeekRendererUtils utils, ArrayList<Event> events, int counterIndex) {
         StringBuilder descriptionsString = new StringBuilder();
 
-        if(utils.getCounter(counterIndex) != 0) {
+        if (utils.getCounter(counterIndex) != 0) {
             String indexString = eventCounters[counterIndex] + ".";
             int indexStringLength = indexString.length();
             descriptionsString.append(getSpaces(indexStringLength));
@@ -117,7 +117,7 @@ public class CalendarWeekRenderer {
     private String getStartEndTime(CalendarWeekRendererUtils utils, ArrayList<Event> events, int counterIndex) {
         StringBuilder startEndTimesString = new StringBuilder();
 
-        if(utils.getCounter(counterIndex) != 0) {
+        if (utils.getCounter(counterIndex) != 0) {
             String indexString = eventCounters[counterIndex] + ".";
             int indexStringLength = indexString.length();
             startEndTimesString.append(getSpaces(indexStringLength));
