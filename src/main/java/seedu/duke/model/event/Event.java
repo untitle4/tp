@@ -23,6 +23,10 @@ public class Event {
         this.isDone = isDone;
     }
 
+    public String getIcon() {
+        return null;
+    }
+
     public String getStart() {
         return start;
     }

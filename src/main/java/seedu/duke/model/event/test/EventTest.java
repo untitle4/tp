@@ -18,6 +18,11 @@ public class EventTest extends Event {
     }
 
     @Override
+    public String getIcon() {
+        return TEST_ICON;
+    }
+
+    @Override
     public String toString() {
         String result = "";
         try {

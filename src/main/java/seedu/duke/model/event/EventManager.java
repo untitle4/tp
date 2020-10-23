@@ -1,5 +1,6 @@
 package seedu.duke.model.event;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.cca.EventCcaManager;
 import seedu.duke.model.event.classlesson.EventClassManager;
@@ -9,8 +10,12 @@ import seedu.duke.model.event.tuition.EventTuitionManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.EmptyListException;
 
+import java.lang.reflect.Array;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Represents a handler that manages the four different event managers.
@@ -68,6 +73,47 @@ public class EventManager {
         } catch (DateTimeParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
         }
+    }
+
+    public ArrayList<ArrayList<Event>> getCurrentWeekEventMasterList() {
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        ArrayList<Event> eventMasterList = getEventMasterList();
+        ArrayList<String> daysOfWeek = dateTimeParser.getDaysOfWeek();
+        ArrayList<ArrayList<Event>> result = new ArrayList<>();
+
+        for (int i = 0; i < 7; i++) {
+            result.add(getDayEventList(eventMasterList, daysOfWeek.get(i)));
+        }
+
+        return result;
+    }
+
+    private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, String date) {
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        ArrayList<Event> result = new ArrayList<>();
+
+        for (Event event : masterList) {
+            String[] listDate = event.getStart().split(" ");
+            if (dateTimeParser.isDateEqual(date, listDate[0])) {
+                result.add(event);
+            }
+        }
+
+        return result;
+    }
+
+    public ArrayList<Event> getEventMasterList() {
+        ArrayList<Event> ccas = eventCcaManager.getCcas();
+        ArrayList<Event> tests = eventTestManager.getTests();
+        ArrayList<Event> classes = eventClassManager.getClasses();
+        ArrayList<Event> tuitions = eventTuitionManager.getTuitions();
+
+        ArrayList<Event> masterList = new ArrayList<>(ccas);
+        masterList.addAll(tests);
+        masterList.addAll(classes);
+        masterList.addAll(tuitions);
+
+        return masterList;
     }
 
     /**

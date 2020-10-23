@@ -18,6 +18,11 @@ public class EventCca extends Event {
     }
 
     @Override
+    public String getIcon() {
+        return CCA_ICON;
+    }
+
+    @Override
     public String toString() {
         String result = "";
         try {
