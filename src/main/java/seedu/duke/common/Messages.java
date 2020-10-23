@@ -34,6 +34,15 @@ public class Messages {
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
             + "You can either 'list event' or 'list quiz'";
 
+    // Messages from CalendarWeekRenderer
+    public static final String MESSAGE_MONDAY_LABEL = "[MON]";
+    public static final String MESSAGE_TUESDAY_LABEL = "[TUE]";
+    public static final String MESSAGE_WEDNESDAY_LABEL = "[WED]";
+    public static final String MESSAGE_THURSDAY_LABEL = "[THU]";
+    public static final String MESSAGE_FRIDAY_LABEL = "[FRI]";
+    public static final String MESSAGE_SATURDAY_LABEL = "[SAT]";
+    public static final String MESSAGE_SUNDAY_LABEL = "[SUN]";
+
     // Messages from Contact related classes
     public static final String MESSAGE_SUBJECT_NOT_FOUND = "Subject not found";
     public static final String MESSAGE_NAME_NOT_FOUND = "Name not found";

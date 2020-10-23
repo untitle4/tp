@@ -26,6 +26,11 @@ public class EventClass extends Event {
     }
 
     @Override
+    public String getIcon() {
+        return CLASS_ICON;
+    }
+
+    @Override
     public String toString() {
         String result = "";
         try {
