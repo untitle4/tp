@@ -6,6 +6,7 @@ import seedu.duke.exception.InvalidCommandException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author AndreWongZH
 /**
  * Represents the process of extracting out the commands.
  */

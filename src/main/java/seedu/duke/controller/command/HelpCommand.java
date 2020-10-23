@@ -9,6 +9,7 @@ import seedu.duke.ui.UserInterface;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author AndreWongZH
 public class HelpCommand extends Command {
     private final UserInterface userInterface = UserInterface.getInstance();
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
@@ -22,6 +23,7 @@ public class HelpCommand extends Command {
         handleHelp();
     }
 
+    //@@author elizabethcwt
     /**
      * <h2>handleHelp()</h2>
      * Prints out all available features users can use.

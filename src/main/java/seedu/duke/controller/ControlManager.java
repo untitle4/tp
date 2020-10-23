@@ -30,6 +30,7 @@ import seedu.duke.ui.UserInterface;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//@@author AndreWongZH
 public class ControlManager {
     private final String userInput;
     private final Model model;
@@ -115,6 +116,7 @@ public class ControlManager {
         return isAdd || isDelete || isDone || isList || isFind;
     }
 
+    //@@author
     private void refreshEvents() {
         ArrayList<Event> events = new ArrayList<>();
 

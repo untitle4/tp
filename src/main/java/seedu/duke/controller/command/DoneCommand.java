@@ -3,6 +3,7 @@ package seedu.duke.controller.command;
 import seedu.duke.model.DataManager;
 import seedu.duke.model.event.EventDataManager;
 
+//@@author AndreWongZH
 /**
  * Represents the command for setting class, cca, test and tuition to be done.
  */

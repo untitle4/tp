@@ -2,6 +2,7 @@ package seedu.duke.controller.command;
 
 import seedu.duke.model.DataManager;
 
+//@@author AndreWongZH
 /**
  * Represents the command for deleting a class, cca, test, tuition, quiz and contact.
  */

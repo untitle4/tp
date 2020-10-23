@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author AndreWongZH
 public class ListSchedule {
     private final ArrayList<Event> classes;
     private final ArrayList<Event> ccas;

@@ -6,6 +6,7 @@ import seedu.duke.exception.InvalidModelException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author AndreWongZH
 /**
  * Represents the process of extracting out the model to be performed on.
  */

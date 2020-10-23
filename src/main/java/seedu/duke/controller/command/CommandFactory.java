@@ -2,6 +2,7 @@ package seedu.duke.controller.command;
 
 import seedu.duke.controller.parser.CommandType;
 
+//@@author AndreWongZH
 /**
  * Represents a generator that returns the corresponding Command class
  * based on the commandType.

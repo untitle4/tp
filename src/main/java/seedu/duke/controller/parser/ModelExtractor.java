@@ -4,6 +4,7 @@ import seedu.duke.exception.InvalidModelException;
 import seedu.duke.model.DataManager;
 import seedu.duke.model.Model;
 
+//@@author AndreWongZH
 /**
  * Represents a extractor that returns the corresponding Model Manager
  * based on the modelType.

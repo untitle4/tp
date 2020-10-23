@@ -3,6 +3,7 @@ package seedu.duke.controller.command;
 import seedu.duke.model.DataManager;
 import seedu.duke.model.event.EventManager;
 
+//@@author AndreWongZH
 /**
  * Represents the command for listing events, quizzes and contacts.
  */

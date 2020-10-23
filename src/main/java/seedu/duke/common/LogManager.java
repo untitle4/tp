@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
+//@@author AndreWongZH
 /**
  * Represents the objects that logs all the processes of the program at each step.
  */
