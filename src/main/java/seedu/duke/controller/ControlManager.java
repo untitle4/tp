@@ -5,9 +5,7 @@ import seedu.duke.common.Messages;
 
 import seedu.duke.controller.command.Command;
 import seedu.duke.controller.command.CommandFactory;
-import seedu.duke.controller.command.FindCommand;
-import seedu.duke.controller.command.ListCommand;
-import seedu.duke.controller.command.QuizCommand;
+import seedu.duke.controller.parser.ModelExtractor;
 import seedu.duke.controller.parser.ModelParser;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
@@ -17,11 +15,11 @@ import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
-import seedu.duke.model.DataManager;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.CommandParser;
 import seedu.duke.controller.parser.CommandType;
-import seedu.duke.model.ModelType;
+import seedu.duke.controller.parser.ModelType;
+import seedu.duke.model.ModelMain;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.quiz.Quiz;
 import seedu.duke.storage.EventStorageManager;
@@ -31,6 +29,7 @@ import seedu.duke.ui.UserInterface;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//@@author AndreWongZH
 public class ControlManager {
     private final String userInput;
     private final Model model;
@@ -50,11 +49,11 @@ public class ControlManager {
     public CommandType runLogic() {
         CommandType commandType = null;
         ModelType modelType = null;
-        DataManager dataModel = null;
+        ModelMain dataModel = null;
 
         try {
             commandType = new CommandParser(userInput).extractCommand();
-            Command actionableCommand = new CommandFactory(commandType, userInput).generateActionableCommand();
+            final Command actionableCommand = new CommandFactory(commandType, userInput).generateActionableCommand();
             if (commandType == CommandType.BYE) {
                 return commandType;
             }
@@ -62,40 +61,17 @@ public class ControlManager {
                 modelType = new ModelParser(userInput).extractModel();
                 dataModel = new ModelExtractor(model, modelType).retrieveModel();
             }
+            checkInvalidModels(commandType, modelType);
 
-            if (commandType == CommandType.QUIZ) {
-                new QuizCommand(userInput).execute(model.getQuizManager());
-            }
-
-            if (commandType == CommandType.LIST) {
-                if (modelType == ModelType.EVENT) {
-                    new ListCommand(userInput).execute(model.getEventManager());
-                } else if (modelType == ModelType.QUIZ) {
-                    new ListCommand().execute(model.getQuizManager());
-                } else if (modelType == null) {
-                    throw new IncompleteListCommandException();
-                }
-            } else if (commandType == CommandType.FIND) {
-                if (modelType == ModelType.EVENT) {
-                    new FindCommand(userInput).execute(model.getEventManager());
-                } else if (modelType == ModelType.QUIZ) {
-                    new FindCommand(userInput).execute(model.getQuizManager());
-                } else {
-                    throw new IncompleteListCommandException();
-                }
-            } else {
-                actionableCommand.execute(dataModel);
-            }
+            actionableCommand.execute(dataModel);
         } catch (InvalidHelpCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_EXTRA_HELP_PARAM);
-        } catch (ContactParamException e) {
-            e.printStackTrace();
-        } catch (QuizParamException e) {
+        } catch (ContactParamException | QuizParamException e) {
             e.printStackTrace();
         } catch (InvalidCommandException e) {
             System.out.println("☹ Oops! I did not recognize that command! Enter 'help' if needed!");
         } catch (InvalidModelException e) {
-            System.out.println("No such model");
+            System.out.println("Invalid model");
         } catch (MissingParameterException e) {
             userInterface.showToUser(Messages.MESSAGE_MISSING_PARAMETERS);
         } catch (EmptyParameterException e) {
@@ -110,17 +86,24 @@ public class ControlManager {
         return commandType;
     }
 
+    private void checkInvalidModels(CommandType commandType, ModelType modelType) throws InvalidModelException {
+        if ((commandType == CommandType.ADD || commandType == CommandType.DELETE || commandType == CommandType.DONE)
+                && modelType == ModelType.EVENT) {
+            throw new InvalidModelException();
+        }
+    }
+
     private boolean doesRequireModel(CommandType commandType) {
         boolean isAdd = commandType == CommandType.ADD;
         boolean isDelete = commandType == CommandType.DELETE;
         boolean isDone = commandType == CommandType.DONE;
         boolean isList = commandType == CommandType.LIST;
-        boolean isQuiz = commandType == CommandType.QUIZ;
         boolean isFind = commandType == CommandType.FIND;
 
         return isAdd || isDelete || isDone || isList || isFind;
     }
 
+    //@@author
     private void refreshEvents() {
         ArrayList<Event> events = new ArrayList<>();
 

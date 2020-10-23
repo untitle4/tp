@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 public class EventCcaManager extends EventDataManager {
     private final ArrayList<Event> ccas;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
     public EventCcaManager(ArrayList<Event> inputList) {
@@ -76,37 +76,22 @@ public class EventCcaManager extends EventDataManager {
 
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
-        int ccaIndex = 0;
+        int ccaIndex;
 
         try {
             ccaIndex = Integer.parseInt(userInputs[2]);
+            userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_SUCCESS,
+                    ccas.get(ccaIndex - 1).toString());
+            ccas.remove(ccaIndex - 1);
+            getCcaStatement();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NO_NUMBER_GIVEN);
+            logger.log(Level.WARNING, "absence of class index for deletion");
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NON_NUMBER);
-            return;
         } catch (IndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NO_NUMBER_GIVEN);
-            return;
+            userInterface.showToUser(Messages.MESSAGE_INVALID_CLASS_INDEX);
         }
-
-        if ((ccaIndex <= 0) || (ccaIndex > getCcaListSize())) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_SUCCESS,
-                ccas.get(ccaIndex - 1).toString());
-
-        ccas.remove(ccaIndex - 1);
-        getCcaStatement();
-    }
-
-    @Override
-    public void list() {
-
-    }
-
-    @Override
-    public void find(String userInput) throws MissingParameterException {
-
     }
 
     @Override

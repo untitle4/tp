@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author AndreWongZH
 public class ListSchedule {
     private final ArrayList<Event> classes;
     private final ArrayList<Event> ccas;
@@ -21,7 +22,7 @@ public class ListSchedule {
     private static final String CATEGORY_CCAS = "CCAs: ";
 
     private final DateTimeParser dateTimeParser = new DateTimeParser();
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     private String userInput;
 

@@ -2,6 +2,7 @@ package seedu.duke.model.event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.model.ModelMain;
 import seedu.duke.model.event.cca.EventCcaManager;
 import seedu.duke.model.event.classlesson.EventClassManager;
 import seedu.duke.common.Messages;
@@ -22,7 +23,7 @@ import java.util.HashMap;
  * This provides access to each individual event managers and
  * also performs listing and searches for the entire events data set.
  */
-public class EventManager {
+public class EventManager extends ModelMain implements EventManagerInteractable {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 10;
     private static EventClassManager eventClassManager;
@@ -55,7 +56,8 @@ public class EventManager {
         return eventTuitionManager;
     }
 
-    public void listSchedule(String userInput) {
+    @Override
+    public void list(String userInput) {
         ArrayList<String> printedEvents;
         try {
             String dateParam = userInput.split(" ").length == 2 ? null : userInput.split(" ")[2];
@@ -122,7 +124,8 @@ public class EventManager {
      * @param userInput Input supplied by the user that contains the keywords.
      * @throws MissingParameterException If input supplied does not contain any keywords
      */
-    public void findEvents(String userInput) throws MissingParameterException {
+    @Override
+    public void find(String userInput) throws MissingParameterException {
         String param = userInput.substring(USER_INPUT_OFFSET).trim();
 
         if (param.length() == EMPTY_SIZE) {
