@@ -1,5 +1,7 @@
 package seedu.duke.common;
 
+import seedu.duke.model.quiz.QuizManager;
+
 public class Messages {
     // Intro related messages
     public static final String MESSAGE_LOGO = " ------   -                          -----\n"
@@ -15,7 +17,7 @@ public class Messages {
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
     public static final String MESSAGE_HELLO = "Hello ";
     public static final String MESSAGE_PROMPT_COMMAND = "What can we do for you? "
-            + "(Enter 'help' for the list of available commands!)";
+            + "(Enter 'help' for the list of available commands!)\n";
     public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is empty. Add some!";
 
     // General error messages
@@ -31,6 +33,15 @@ public class Messages {
             + "Please delete your data directory and relaunch.";
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
             + "You can either 'list event' or 'list quiz'";
+
+    // Messages from CalendarWeekRenderer
+    public static final String MESSAGE_MONDAY_LABEL = "[MON]";
+    public static final String MESSAGE_TUESDAY_LABEL = "[TUE]";
+    public static final String MESSAGE_WEDNESDAY_LABEL = "[WED]";
+    public static final String MESSAGE_THURSDAY_LABEL = "[THU]";
+    public static final String MESSAGE_FRIDAY_LABEL = "[FRI]";
+    public static final String MESSAGE_SATURDAY_LABEL = "[SAT]";
+    public static final String MESSAGE_SUNDAY_LABEL = "[SUN]";
 
     // Messages from Contact related classes
     public static final String MESSAGE_SUBJECT_NOT_FOUND = "Subject not found";
@@ -107,10 +118,20 @@ public class Messages {
     public static final String MESSAGE_INVALID_TUITION_INDEX = "☹ OOPS!!! Please indicate a valid tuition index!";
 
     // Messages from Quiz related classes
-    public static final String MESSAGE_INVALID_QUIZ_INDEX = "☹ OOPS!!! Please indicate a valid quiz index!";
     public static final String MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! Please indicate in NUMERALS, "
-            + "which quiz you'd like to delete!";
+            + "which quiz you'd like to delete!\n";
+    public static final String MESSAGE_INVALID_HELP_COMMAND = "☹ OOPS!!! Are you trying to take a quiz or add/delete a"
+            + " quiz question? Enter 'help' to check the correct format!\n";
+    public static final String MESSAGE_INVALID_NUM_OF_QUIZ_QUESTIONS = "☹ OOPS!!! You can only take quizzes in sets of"
+            + " 10, 20 or 30 questions!\n";
+    public static final String MESSAGE_INSUFFICIENT_QUES_LESS_THAN_10 = "OOPS! You wanted to take a quiz with "
+            + QuizManager.noOfQues + " questions, but your current quiz only has %s question(s).\nPlease add more"
+            + " questions to your quiz via the 'add quiz' command!\n";
+    public static final String MESSAGE_INSUFFICIENT_QUES_MORE_THAN_10 = "OOPS! You wanted to take a quiz with "
+            + QuizManager.noOfQues + " questions, but your current quiz only has %s question(s).\nPlease either add"
+            + "more questions to your quiz via the 'add quiz' command, or try a quiz with less questions!\n";
 
+    //@@author elizabethcwt
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"
             + "\t1. Add class: 'add class /n [name of class] /s [start date-time of class] /e"
             + " [end date-time of class]'\n"

@@ -15,6 +15,11 @@ public class EventTuition extends Event {
         this.location = location;
     }
 
+    @Override
+    public String getIcon() {
+        return TUITION_ICON;
+    }
+
     public EventTuition(String description, boolean isDone, String start, String end, String location) {
         super(description, start, end, isDone);
         this.location = location;

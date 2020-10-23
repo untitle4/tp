@@ -17,10 +17,11 @@ public class CommandParser {
     public static final String INPUT_LIST = "list";
     public static final String INPUT_BYE = "bye";
     public static final String INPUT_HELP = "help";
-    public static final int MAIN_COMMAND_INDEX = 0;
     public static final String INPUT_FIND = "find";
     public static final String INPUT_SPACES = " ";
     public static final int LENGTH_SINGLE_WORD = 1;
+    public static final String INPUT_QUIZ = "quiz";
+    public static final int MAIN_COMMAND_INDEX = 0;
 
     private final String[] separatedInputs;
 
@@ -72,6 +73,9 @@ public class CommandParser {
             break;
         case INPUT_FIND:
             commandType = CommandType.FIND;
+            break;
+        case INPUT_QUIZ:
+            commandType = CommandType.QUIZ;
             break;
         default:
             throw new InvalidCommandException();

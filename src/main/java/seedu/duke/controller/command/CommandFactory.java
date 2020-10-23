@@ -37,6 +37,8 @@ public class CommandFactory {
             return new ListCommand();
         case FIND:
             return new FindCommand(userInput);
+        case QUIZ:
+            return new QuizCommand(userInput);
         case BYE:
             // bye does not have a corresponding Command class
             break;

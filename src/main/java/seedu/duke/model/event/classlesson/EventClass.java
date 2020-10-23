@@ -6,6 +6,7 @@ import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
 
+//@@author elizabethcwt
 /**
  * <h2>Class class</h2>
  * Contains constructors, getters, toString and equals methods.
@@ -22,6 +23,11 @@ public class EventClass extends Event {
 
     public EventClass(String description, boolean isDone, String start, String end) {
         super(description, start, end, isDone);
+    }
+
+    @Override
+    public String getIcon() {
+        return CLASS_ICON;
     }
 
     @Override
