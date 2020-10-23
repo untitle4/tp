@@ -2,7 +2,6 @@ package seedu.duke.controller.parser;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.exception.InvalidModelException;
-import seedu.duke.model.ModelType;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

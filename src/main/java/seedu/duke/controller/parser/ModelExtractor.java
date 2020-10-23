@@ -1,9 +1,8 @@
-package seedu.duke.controller;
+package seedu.duke.controller.parser;
 
 import seedu.duke.exception.InvalidModelException;
 import seedu.duke.model.DataManager;
 import seedu.duke.model.Model;
-import seedu.duke.model.ModelType;
 
 public class ModelExtractor {
     private final Model model;
