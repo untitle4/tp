@@ -108,7 +108,9 @@ public class QuizManager extends DataManager {
                     System.out.println("\nYou scored " + correctCounter + " out of " + noOfQues + "!\n");
 
 
-                    // TODO Empty userAnswers ArrayList
+                    // Empty userAnswers ArrayList and correctness ArrayList
+                    userAnswerManager.getUserAnswers().clear();
+                    userAnswerManager.getCorrectness().clear();
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
