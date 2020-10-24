@@ -108,7 +108,7 @@ public class QuizManager extends DataManager {
 
                         // Assigning the correctness logo to be printed with questions post-quiz
                         if (userAnswerManager.getCorrectness().get(l).equals(true)) {
-                           correctOrWrongAnswer = " [CORRECT ☺︎]";
+                            correctOrWrongAnswer = " [CORRECT ☺︎]";
                         } else {
                             correctOrWrongAnswer = " [WRONG ☹︎]";
                         }
