@@ -38,6 +38,10 @@ public class Messages {
     public static final String MESSAGE_EMPTY_PARAMETERS = "☹ OOPS!!! Ensure ALL parameters are filled up!";
     public static final String MESSAGE_INVALID_DATE = "☹ OOPS!!! "
             + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
+    public static final String MESSAGE_INVALID_COMMAND = "☹ Oops! I did not recognize that command! "
+            + "Enter 'help' if needed!";
+    public static final String MESSAGE_INVALID_MODEL = "☹ Oops! I did not recognize that model type! "
+            + "Enter 'help' if needed!";
 
     //@@author durianpancakes
     // Messages from CalendarWeekRenderer
@@ -169,8 +173,9 @@ public class Messages {
             + "\t18. Take Mathematics quiz: 'quiz [no. of questions (10, 20 or 30)]'\n"
             + "\t19. List quiz questions: 'list quiz'\n"
             + "\t20. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
-            + " /o4 [option 4] /a [option answer] /exp [explanation]'\n\n"
-            + "\t21. Exit program: 'bye'\n\n"
+            + " /o4 [option 4] /a [option answer] /exp [explanation]'\n"
+            + "\t21. Delete quiz question: 'delete quiz [question number]'\n\n"
+            + "\t22. Exit program: 'bye'\n\n"
             + "\n\tNOTE:\n\t1. Please enter the date-time in the following format: YYYY-MM-DD "
             + "[time in 24hr format]\n\te.g. 2020-08-19 1300\n\n"
             + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n";
