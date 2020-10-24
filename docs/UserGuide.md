@@ -241,6 +241,33 @@ Plan&Score saves all data automatically after every command. There is no need to
 
 **A**: Shift the event.txt file to the same directory as the java file.
 
+## Troubleshooting
+
+**Q**: Plan&Score is unable to start. How can I fix this?
+
+**A**: Your data files might have been corrupted. To fix this, you can attempt the following steps:
+
+**We recommend adult supervision for this process.**
+
+1. Locate the `data` directory. It should be in the same directory as where Plan&Score is located
+1. Open the `events.txt` file.
+1. Check if any of the data are violating our decoding formats:
+    * For class/cca/test, the format should be: `[IDENTIFIER]|[true/false]|[DESCRIPTION]|[DATE IN YYYY-MM-DD HHMM]|[DATE IN YYYY-MM-DD HHMM]`
+    * For tuition, the format should be: `[IDENTIFIER]|[true/false]|[DESCRIPTION]|[DATE IN YYYY-MM-DD HHMM]|[DATE IN YYYY-MM-DD HHMM]|location`
+1. Edit the file to the correct formats shown above
+1. Launch Plan&Score
+1. Confirm that Plan&Score runs without any error
+
+In the unfortunate event where the error persists, please reset Plan&Score to factory settings.
+We recommend keeping a duplicate of the contents in `events.txt` to assist with the re-adding of events.
+1. Ensure you have duplicated `events.txt`
+1. Delete `events.txt`
+1. Launch Plan&Score
+1. Confirm that Plan&Score runs without any error
+1. `events.txt` should appear in the `data` directory
+1. Copy any unaffected events from the duplicated file in Step 1
+1. Re-add affected events through the command line interface
+
 ## Command Summary
 
 Action | Format | Examples
