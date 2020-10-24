@@ -3,7 +3,6 @@ package seedu.duke.controller.parser;
 import seedu.duke.common.LogManager;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
@@ -21,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class DateTimeParser {
 
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public String changeDateTime(String dateTime) throws ParseException {
         logger.log(Level.INFO, "initialising changing of date and time to new format");

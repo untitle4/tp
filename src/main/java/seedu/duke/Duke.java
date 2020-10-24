@@ -4,17 +4,12 @@ import seedu.duke.common.Messages;
 import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.Model;
 import seedu.duke.model.contact.ContactManager;
-import seedu.duke.model.event.Event;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
-import seedu.duke.model.quiz.Quiz;
 import seedu.duke.model.quiz.QuizManager;
 import seedu.duke.storage.QuizStorageManager;
 import seedu.duke.storage.EventStorageManager;
 import seedu.duke.ui.UserInterface;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 public class Duke {
     public static final String EVENT_FILE_NAME = "/events.txt";

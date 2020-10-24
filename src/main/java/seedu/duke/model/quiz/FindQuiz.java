@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 public class FindQuiz {
     private final ArrayList<Quiz> quizzes;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final String userInput;
     private final ArrayList<String> filteredQuizzes;
 

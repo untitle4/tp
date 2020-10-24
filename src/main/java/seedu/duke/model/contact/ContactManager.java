@@ -4,7 +4,7 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
-import seedu.duke.model.DataManager;
+import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.ContactParamException;
 
@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ContactManager extends DataManager {
+public class ContactManager extends ModelManager implements ContactInteractable {
     private final ArrayList<Contact> contacts = new ArrayList<>();
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
     public ContactManager() {

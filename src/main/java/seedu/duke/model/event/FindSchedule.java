@@ -6,16 +6,18 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author AndreWongZH
 /**
  * Represents a process dedicated to filter out events based on given keywords.
  */
 public class FindSchedule {
+    public static final String INPUT_SPACES = " ";
     private final ArrayList<Event> classes;
     private final ArrayList<Event> ccas;
     private final ArrayList<Event> tests;
     private final ArrayList<Event> tuitions;
 
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final String userInput;
     private final ArrayList<String> filteredEvents;
 
@@ -58,7 +60,7 @@ public class FindSchedule {
      */
     private void filterEvents(ArrayList<Event> events) {
         logger.log(Level.INFO, "loop through all the keywords to check if in event description");
-        String[] separatedInputs = userInput.split(" ");
+        String[] separatedInputs = userInput.split(INPUT_SPACES);
 
         for (Event event : events) {
             for (String keyword : separatedInputs) {
