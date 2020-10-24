@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//@@author durianpancakes
 public class UserInterface {
     private static UserInterface userInterface = null;
     private final Scanner in;
@@ -50,7 +51,7 @@ public class UserInterface {
         }
     }
 
-    // Note: Written by Andre
+    //@@author AndreWongZH
     public void printArray(ArrayList<String> stringArrayList) {
         assert stringArrayList != null;
         for (String line : stringArrayList) {
@@ -58,12 +59,12 @@ public class UserInterface {
         }
     }
 
-    // Note: Written by Andre
+    //@@author AndreWongZH
     public boolean checkIfProgramEnds(CommandType commandType) {
         return commandType != CommandType.BYE;
     }
 
-    // Note: Written by Andre
+    //@@author AndreWongZH
     public boolean runUI(Model model,
                          EventStorageManager eventStorageManager,
                          QuizStorageManager quizStorageManager) {

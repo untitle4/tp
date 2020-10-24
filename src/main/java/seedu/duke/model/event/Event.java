@@ -1,5 +1,6 @@
 package seedu.duke.model.event;
 
+//@@author elizabethcwt
 public class Event {
     public static final String DONE_STATUS = "[DONE]";
     public static final String NOT_DONE_STATUS = "[NOT DONE]";
@@ -16,6 +17,7 @@ public class Event {
         isDone = false;
     }
 
+    //@@author durianpancakes
     public Event(String description, String start, String end, boolean isDone) {
         this.description = description;
         this.start = start;
@@ -23,6 +25,7 @@ public class Event {
         this.isDone = isDone;
     }
 
+    //@@author
     public String getIcon() {
         return null;
     }
@@ -56,6 +59,7 @@ public class Event {
         return getStatus() + " " + description;
     }
 
+    //@@author durianpancakes
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

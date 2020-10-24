@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author durianpancakes
 public class EventTuitionManager extends EventDataManager {
     private final ArrayList<Event> tuitions;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
@@ -148,7 +149,7 @@ public class EventTuitionManager extends EventDataManager {
         return string.equals("");
     }
 
-    private LocalDateTime parseLocalDateTime(String localDateTimeString) {
-        return LocalDateTime.parse(localDateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+    private void parseLocalDateTime(String localDateTimeString) {
+        LocalDateTime.parse(localDateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 }

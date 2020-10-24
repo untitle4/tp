@@ -172,17 +172,14 @@ public class ListSchedule {
         return dateArrayList;
     }
 
+    
     private ArrayList<Event> getMasterList(ArrayList<Event> eventArr) {
         assert eventArr != null;
         assert eventArr.size() != 0;
-        ArrayList<Event> masterList = new ArrayList<>();
 
         logger.log(Level.WARNING, "adding to masterList");
-        for (int i = 0; i < eventArr.size(); i++) {
-            masterList.add(eventArr.get(i));
-        }
 
-        return masterList;
+        return new ArrayList<>(eventArr);
     }
 
     private boolean haveClasses() {
