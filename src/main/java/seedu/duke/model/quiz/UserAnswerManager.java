@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class UserAnswerManager {
     private final ArrayList<Integer> userAnswers;
     private final ArrayList<Boolean> correctness;
+//    private final String correctnessLogo;
 
     public UserAnswerManager() {
         this.userAnswers = new ArrayList<Integer>();
         this.correctness = new ArrayList<Boolean>();
+//        this.correctnessLogo = new String();
     }
 
     // Getters
@@ -20,7 +22,5 @@ public class UserAnswerManager {
         return correctness;
     }
 
-    //  public String printPostQuiz() {
-    //
-    //  }
+//    public String getCorrectnessLogo() { return correctnessLogo; }
 }

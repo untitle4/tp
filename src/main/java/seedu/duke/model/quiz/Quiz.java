@@ -70,26 +70,47 @@ public class Quiz {
     @Override
     public String toString() {
         if (explanation.equals("")) {
-            return question + "\n"
+            return question + "\n\n"
                     + "(1) " + option1 + "\n"
                     + "(2) " + option2 + "\n"
                     + "(3) " + option3 + "\n"
-                    + "(4) " + option4 + "\n";
+                    + "(4) " + option4 + "\n\n";
         } else {
-            return question + "\n"
+            return question + "\n\n"
                     + "(1) " + option1 + "\n"
                     + "(2) " + option2 + "\n"
                     + "(3) " + option3 + "\n"
-                    + "(4) " + option4 + "\n"
-                    + "Explanation: " + explanation + "\n";
+                    + "(4) " + option4 + "\n\n"
+                    + "Explanation: " + explanation + "\n\n";
         }
     }
 
     public String printQuizQuestion() {
-        return question + "\n"
+        return question + "\n\n"
                 + "(1) " + option1 + "\n"
                 + "(2) " + option2 + "\n"
                 + "(3) " + option3 + "\n"
-                + "(4) " + option4 + "\n";
+                + "(4) " + option4 + "\n\n";
+    }
+
+    public  String printPostQuizQuestion() {
+        if (explanation.equals("")) {
+            return question + QuizManager.correctOrWrongAnswer + "\n\n"
+                    + "(1) " + option1 + "\n"
+                    + "(2) " + option2 + "\n"
+                    + "(3) " + option3 + "\n"
+                    + "(4) " + option4 + "\n\n"
+                    + "Your answer: " + "Test user's answer" + "\n"
+                    + "Correct answer: " + answer + "\n\n";
+        } else {
+            return  question + QuizManager.correctOrWrongAnswer + "\n\n"
+                    + "(1) " + option1 + "\n"
+                    + "(2) " + option2 + "\n"
+                    + "(3) " + option3 + "\n"
+                    + "(4) " + option4 + "\n\n"
+                    + "Your answer: " + "Test user's answer" + "\n"
+                    + "Correct answer: " + answer + "\n"
+                    + "Explanation: " + explanation;
+        }
     }
 }

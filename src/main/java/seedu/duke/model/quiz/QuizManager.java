@@ -7,10 +7,7 @@ import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.DataManager;
 import seedu.duke.ui.UserInterface;
-import seedu.duke.model.quiz.UserAnswerManager;
-import seedu.duke.model.quiz.Quiz;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -23,6 +20,7 @@ public class QuizManager extends DataManager {
     public static final int USER_INPUT_OFFSET = 9;
     private final ArrayList<Quiz> quizzes;
     public static int noOfQues;
+    public static String correctOrWrongAnswer;
 
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private final UserInterface userInterface;
@@ -80,7 +78,7 @@ public class QuizManager extends DataManager {
                     for (int j = 0; j < noOfQues; j++) {
                         System.out.println();
                         System.out.println("Question " + (j + 1) + ": ");
-                        System.out.println(quizzes.get(quizIndexes.get(j)).printQuizQuestion());
+                        System.out.print(quizzes.get(quizIndexes.get(j)).printQuizQuestion());
 
                         // Create a Scanner object
                         Scanner in = new Scanner(System.in);
@@ -103,9 +101,22 @@ public class QuizManager extends DataManager {
                         }
                     }
 
-                    // TODO Print results, questions, user's answers, correct answers and explanations
+                    // Print out quiz score
                     System.out.println("\nYou scored " + correctCounter + " out of " + noOfQues + "!\n");
 
+                    for( int l = 0; l < noOfQues; l++) {
+
+                        // Assigning the correctness logo to be printed with questions post-quiz
+                        if (userAnswerManager.getCorrectness().get(l).equals(true)) {
+                           correctOrWrongAnswer = " [CORRECT ☺︎]";
+                        } else {
+                            correctOrWrongAnswer = " [WRONG ☹︎]";
+                        }
+
+                        // Print out all quiz questions, user's answers, correctness, correct answers and explanations
+                        System.out.println("Question " + (l + 1) + ": ");
+                        System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion());
+                    }
 
                     // Empty userAnswers ArrayList and correctness ArrayList
                     userAnswerManager.getUserAnswers().clear();
