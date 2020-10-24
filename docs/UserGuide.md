@@ -2,24 +2,40 @@
 
 ## Introduction
 
-Plan&Score is a Java command-line application that allows Primary 6 students 
-to plan and track their classes, CCAs and eventTest dates.
-This enables the students to remember their schedule, 
-so they can plan well in advance for their tests and score better.
+Plan&Score is a Java command-line application that does two main things:
+1.  Plan: Allows Primary 6 students to plan and track their:
+       - School classes
+       - CCAs
+       - Tests
+       - Tuition
+  
+2. Score: With the quiz feature, students can spend the time they have from productive scheduling, to hone their
+Mathematics for their upcoming PSLE.
+
+Plan&Score also has a third feature, allowing students to save the contact details of their teachers, cca coaches etc
+for convenient contact.
+
+As a whole, Plan&Score tackles not only the scheduling issue most students have, but also incorporates other features
+to ensure they are better able to ace their PSLE.
+
 
 - [1. Quick Start](#quick-start)
 - [2. Features](#list-of-features)
-    - [Help:](#viewing-help-help) `help`
-    - [Add a class:](#adding-a-class-add-class) `add class`
-    - [Delete a task:](#deleting-a-class-delete-class) `delete class`
-    - [Add a cca:](#adding-a-cca-add-cca) `add cca`
-    - [Delete a cca:](#deleting-a-cca-delete-cca) `delete cca`
-    - [Add a test:](#adding-a-test-add-test) `add test`
-    - [Delete a test:](#deleting-a-test-delete-test) `delete test`
-    - [Toogle task done:](#toggling-task-done-done) `done`
-    - [List schedule:](#list-out-schedule-list-event) `list event`
-    - [Find a task by keyword or date:](#find-tasks-find) `find`
-    - [Exit the programme:](#exits-programme-bye) `bye`
+  - [Help:](#viewing-help-help) `help`
+  - [Add a class:](#adding-a-class-add-class) `add class`
+  - [Delete a task:](#deleting-a-class-delete-class) `delete class`
+  - [Add a cca:](#adding-a-cca-add-cca) `add cca`
+  - [Delete a cca:](#deleting-a-cca-delete-cca) `delete cca`
+  - [Add a test:](#adding-a-test-add-test) `add test`
+  - [Delete a test:](#deleting-a-test-delete-test) `delete test`
+  - [Toggle task done:](#toggling-task-done-done) `done`
+  - [List schedule:](#list-out-schedule-list-event) `list event`
+  - [Take a quiz:](#taking-a-quiz)`quiz`
+  - [Add a quiz question:](#adding-a-quiz-question) `add quiz`
+  - [Delete a quiz question:](#deleting-a-quiz-question) `delete quiz`
+  - [List quiz questions:](#listing-out-all-quiz-questions) `list quiz`
+  - [Find a task by keyword or date:](#find-tasks-find) `find`
+  - [Exit the programme:](#exits-programme-bye) `bye`
 - [3. FAQ](#faq)
 - [4. Command Summary](#command-summary)
 
@@ -42,17 +58,44 @@ Example Output:
 ```
 Hello! Here is a list of commands you can try:
 
-   1. Add class: add class /n [name of class] /s [start date-time of class] /e [end date-time of class]
-   2. Delete class: delete class /n [class number]
-   3. Add eventCca: add eventCca /n [name of eventCca] /s [start date-time of eventCca] /e [end date-time of eventCca]
-   4. Delete eventCca: type delete eventCca /n [eventCca number]
-   5. Add eventTest: type add eventTest /n [name of eventTest] /s [start date-time of eventTest] /e [end date-time of eventTest]
-   6. Delete eventTest: type delete eventTest /n [eventTest number]
-   7. Delete all: delete all
+	1. Add class: 'add class /n [name of class] /s [start date-time of class] /e [end date-time of class]'
+	2. Delete class: 'delete class [class number]'
 
-    Please enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]
-    e.g. 2020-08-19 1300
+	3. Add cca: 'add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]'
+	4. Delete cca: 'delete cca [cca number]'
 
+	5. Add test: 'add test /n [name of test] /s [start date-time of test] /e [end date-time of test]'
+	6. Delete test: 'delete test [test number]'
+
+	7. Add tuition: 'add tuition /n [name of tuition] /s [start date-time of tuition] /e start date-time of tuition] /l [location of tuition]'
+	8. Delete tuition: 'delete tuition [tuition number]'
+
+	9. List events (class, test, cca, tuition): 'list'
+
+	10. Set class as done: 'done class [class number]'
+	11. Set test as done: 'done test [test number]'
+	12. Set cca as done: 'done cca [cca number]'
+	13. Set tuition as done: 'done tuition [tuition number]'
+
+	14. Find relevant event(s): 'find [keyword(s)]'
+
+	15. Add contact: 'add contact /sub [subject] /n [name of contact person] /hp [phone number] /e [email address]'
+	16. Delete contact: 'delete contact [contact number]'
+	17. List contact: 'list contact'
+
+	18. Take Mathematics quiz: 'quiz [no. of questions (10, 20 or 30)]'
+	19. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /exp [explanation]'
+	20. Delete quiz question: 'delete quiz [question number]'
+	21. List quiz questions: 'list quiz'
+
+	22. Exit program: 'bye'
+
+
+	NOTE:
+	1. Please enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]
+	e.g. 2020-08-19 1300
+
+	2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL
 ```
 
 ### Adding a class: `add class`
@@ -264,8 +307,71 @@ WEDNESDAY:
 1. [TEST] [NOT DONE] eng from 21st Oct 2020 , 02:00 pm to 21st Oct 2020 , 03:00 pm   
 ```
 
+<br>
+<br>
+
+### Taking a Quiz: `quiz`
+Taking a Mathematics quiz with 10, 20 or 30 questions as stated by the user.
+
+Format: `quiz <number of questions>`
+
+Examples: `quiz 10`
+
+Example Output: 
+
+```
+Question 1: What is 1 + 1?
+(1) 0
+(2) 1
+(3) 2
+(4) 3
+
+... 9 more questions in the same format once user enters their answer for each question ...
+```
+<br>
+<br>
+
+### Adding a Quiz Question: `add quiz`
+Adding a quiz question to the quiz list.
+
+Format: `'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] 
+/exp [optional explanation]`
+
+Examples: `add quiz /q What is 1+1? /o1 0 /o2 1 /o3 2 /o4 3 /a 3`
+
+Example Output: 
+
+```
+Quiz question added!
+```
+
 <br />
 <br />
+
+### Deleting a Quiz Question: `delete quiz`
+Deleting a quiz question from the quiz list.
+
+Format: `'delete quiz [quiz question]`
+
+Examples: `delete quiz 11`
+
+Example Output: 
+
+```
+Noted. I've removed this quiz question:
+What is 1+1?
+(1) 0
+(2) 1
+(3) 2
+(4) 3
+
+Now you have 10 quizzes in the quiz list.
+```
+
+<br />
+<br />
+
+### Listing out All Quiz Questions
 
 ### Exits Programme: `bye`
 Exits the programme once the user have finished
