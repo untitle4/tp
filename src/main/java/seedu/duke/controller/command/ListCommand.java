@@ -27,7 +27,7 @@ public class ListCommand extends Command {
             eventManager.list(userInput);
         } else if (modelMain instanceof QuizManager) {
             QuizManager quizManager = (QuizManager) modelMain;
-            quizManager.find(userInput);
+            quizManager.list();
         } else if (modelMain instanceof ContactManager) {
             ContactManager contactManager = (ContactManager) modelMain;
             contactManager.list();
