@@ -81,7 +81,7 @@ class ListScheduleTest {
         assertEquals(expectedOutputs, actualOutputs);
     }
 
-/*    @Test
+    /*    @Test
     void getPrintableEvents_classScheduleWeek() throws EmptyListException {
         ArrayList<Event> classes = new ArrayList<>();
         LocalDate todayDate = LocalDate.now();
