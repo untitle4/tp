@@ -42,12 +42,12 @@ public class ModelParser {
     public ModelType extractModel() throws InvalidModelException {
         logger.log(Level.INFO, "Extracting model now...");
 
-        if (separatedInputs.length <= 1) {
-            return null;
+        if (separatedInputs[MAIN_COMMAND_INDEX].equals("quiz")) {
+            return modelType = ModelType.QUIZ;
         }
 
-        if (separatedInputs[MAIN_COMMAND_INDEX].equals("quiz")) {
-            modelType = ModelType.QUIZ;
+        if (separatedInputs.length <= 1) {
+            return null;
         }
 
         switch (separatedInputs[SUB_COMMAND_INDEX]) {

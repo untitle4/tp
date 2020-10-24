@@ -33,6 +33,10 @@ public class Messages {
             + "Please delete your data directory and relaunch.";
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
             + "You can either 'list event' or 'list quiz'";
+    public static final String MESSAGE_INVALID_COMMAND = "☹ Oops! I did not recognize that command! "
+            + "Enter 'help' if needed!";
+    public static final String MESSAGE_INVALID_MODEL = "☹ Oops! I did not recognize that model type! "
+            + "Enter 'help' if needed!";
 
     // Messages from CalendarWeekRenderer
     public static final String MESSAGE_MONDAY_LABEL = "[MON]";
