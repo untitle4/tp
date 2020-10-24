@@ -9,28 +9,28 @@ import seedu.duke.model.quiz.QuizManager;
 
 //@@author AndreWongZH
 /**
- * Represents the command for listing events, quizzes and contacts.
+ * Represents the command for searching via event description.
  */
-public class ListCommand extends Command {
-    public ListCommand(String userInput) {
+public class FindCommand extends Command {
+    public FindCommand(String userInput) {
         super(userInput);
     }
 
     @Override
-    public void execute(ModelMain modelMain) throws IncompleteListCommandException, MissingParameterException {
+    public void execute(ModelMain modelMain) throws MissingParameterException, IncompleteListCommandException {
         if (modelMain == null) {
             throw new IncompleteListCommandException();
         }
 
         if (modelMain instanceof EventManager) {
             EventManager eventManager = (EventManager) modelMain;
-            eventManager.list(userInput);
+            eventManager.find(userInput);
         } else if (modelMain instanceof QuizManager) {
             QuizManager quizManager = (QuizManager) modelMain;
             quizManager.find(userInput);
         } else if (modelMain instanceof ContactManager) {
             ContactManager contactManager = (ContactManager) modelMain;
-            contactManager.list();
+            contactManager.find(userInput);
         }
     }
 }

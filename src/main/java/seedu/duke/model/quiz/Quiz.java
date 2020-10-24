@@ -84,4 +84,12 @@ public class Quiz {
                     + "Explanation: " + explanation + "\n";
         }
     }
+
+    public String printQuizQuestion() {
+        return question + "\n"
+                + "(1) " + option1 + "\n"
+                + "(2) " + option2 + "\n"
+                + "(3) " + option3 + "\n"
+                + "(4) " + option4 + "\n";
+    }
 }

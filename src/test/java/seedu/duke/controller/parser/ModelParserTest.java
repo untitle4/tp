@@ -2,7 +2,6 @@ package seedu.duke.controller.parser;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.InvalidModelException;
-import seedu.duke.model.ModelType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;

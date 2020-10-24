@@ -11,7 +11,7 @@ public abstract class StorageManager {
     public static final String EMPTY_FILE_NAME = "";
     protected static String DIRECTORY_FOLDER_PATH = new File("data").getAbsolutePath();
     protected String fileName;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public StorageManager(String fileName) {
         assert !fileName.equals(EMPTY_FILE_NAME);

@@ -15,6 +15,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.ui.UserInterface;
 
+//@@author elizabethcwt
 /**
  * <h2>ClassManager class</h2>
  * Stores user's classes in an ArrayList of Event class, named classes.
@@ -34,12 +35,12 @@ import seedu.duke.ui.UserInterface;
  * @see EventClassManager#setDone(String[])
  */
 public class EventClassManager extends EventDataManager {
-    // Initialising ArrayList to store classes
+
     private final ArrayList<Event> classes;
     private final UserInterface userInterface;
 
     // Initialising Logger with name "Class"
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public EventClassManager(ArrayList<Event> classes) {
         this.classes = classes;
@@ -122,9 +123,6 @@ public class EventClassManager extends EventDataManager {
             // Tries to convert classIndex user input into an integer
             int classIndex = Integer.parseInt(userInputs[2]);
 
-            // Assertion to test assumption that classIndex should be a positive integer
-            assert classIndex > 0 : "classIndex should be a positive integer";
-
             // Just to test if class index is valid - for exception use only
             classes.get(classIndex - 1);
 
@@ -145,11 +143,6 @@ public class EventClassManager extends EventDataManager {
             userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NON_NUMBER);
             logger.log(Level.WARNING, "non-integer class index entered for deletion");
         }
-    }
-
-    @Override
-    public void list() {
-
     }
 
     /**

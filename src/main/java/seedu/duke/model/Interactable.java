@@ -6,10 +6,8 @@ import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
 
 public interface Interactable {
-    void add(String userInput) throws ContactParamException, QuizParamException,
-            MissingParameterException, EmptyParameterException;
+    void add(String userInput) throws MissingParameterException, EmptyParameterException,
+            QuizParamException, ContactParamException;
 
     void delete(String[] userInputs);
-
-    void list();
 }

@@ -2,15 +2,27 @@ package seedu.duke.controller.command;
 
 import seedu.duke.controller.parser.CommandType;
 
+//@@author AndreWongZH
+/**
+ * Represents a generator that returns the corresponding Command class
+ * based on the commandType.
+ */
 public class CommandFactory {
     private final CommandType commandType;
     private final String userInput;
 
     public CommandFactory(CommandType commandType, String userInput) {
+        assert commandType != null : "commandType must not be null";
         this.commandType = commandType;
         this.userInput = userInput;
     }
 
+    /**
+     * Returns a Command class back to the ControlManager
+     * based on the commandType.
+     *
+     * @return Command class which is to be executed.
+     */
     public Command generateActionableCommand() {
         switch (commandType) {
         case HELP:
@@ -22,11 +34,16 @@ public class CommandFactory {
         case DONE:
             return new DoneCommand(userInput);
         case LIST:
-            return new ListCommand();
+            return new ListCommand(userInput);
+        case FIND:
+            return new FindCommand(userInput);
+        case QUIZ:
+            return new QuizCommand(userInput);
         case BYE:
-            // fall through
+            // bye does not have a corresponding Command class
+            break;
         default:
-            // do nothing
+            assert false : "all commandType should be handled";
         }
         return null;
     }
