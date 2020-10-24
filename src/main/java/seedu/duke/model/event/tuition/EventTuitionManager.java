@@ -6,12 +6,17 @@ import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -68,10 +73,11 @@ public class EventTuitionManager extends EventDataManager {
         }
 
         try {
-            parseLocalDateTime(start);
-            parseLocalDateTime(end);
+            Calendar startCalendar = parseLocalDateTime(start);
+            Calendar endCalendar = parseLocalDateTime(end);
 
-            EventTuition eventTuition = new EventTuition(description, start, end, location);
+            EventTuition eventTuition = new EventTuition(description, startCalendar,
+                    endCalendar, location);
             tuitions.add(eventTuition);
             logger.log(Level.INFO, "Tuition added successfully");
             userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
@@ -149,7 +155,16 @@ public class EventTuitionManager extends EventDataManager {
         return string.equals("");
     }
 
-    private void parseLocalDateTime(String localDateTimeString) {
+    private Calendar parseLocalDateTime(String localDateTimeString) {
         LocalDateTime.parse(localDateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        Calendar calendar = Calendar.getInstance();
+        try {
+            Date date = sdf.parse(localDateTimeString);
+            calendar.setTime(date);
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+        }
+        return calendar;
     }
 }

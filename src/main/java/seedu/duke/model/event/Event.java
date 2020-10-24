@@ -1,5 +1,7 @@
 package seedu.duke.model.event;
 
+import java.util.Calendar;
+
 //@@author elizabethcwt
 public class Event {
     public static final String DONE_STATUS = "[DONE]";
@@ -7,10 +9,10 @@ public class Event {
 
     protected String description;
     protected boolean isDone;
-    protected String start;
-    protected String end;
+    protected Calendar start;
+    protected Calendar end;
 
-    public Event(String description, String start, String end) {
+    public Event(String description, Calendar start, Calendar end) {
         this.description = description;
         this.start = start;
         this.end = end;
@@ -18,7 +20,7 @@ public class Event {
     }
 
     //@@author durianpancakes
-    public Event(String description, String start, String end, boolean isDone) {
+    public Event(String description, Calendar start, Calendar end, boolean isDone) {
         this.description = description;
         this.start = start;
         this.end = end;
@@ -30,11 +32,11 @@ public class Event {
         return null;
     }
 
-    public String getStart() {
+    public Calendar getStart() {
         return start;
     }
 
-    public String getEnd() {
+    public Calendar getEnd() {
         return end;
     }
 

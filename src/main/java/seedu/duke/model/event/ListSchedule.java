@@ -6,6 +6,7 @@ import seedu.duke.controller.parser.DateTimeParser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,6 +26,7 @@ public class ListSchedule {
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     private String userInput;
+    private Calendar inputCalendar;
 
     public ListSchedule(String userInput, ArrayList<Event> classes, ArrayList<Event> ccas,
                         ArrayList<Event> tests, ArrayList<Event> tuitions) {
@@ -43,7 +45,7 @@ public class ListSchedule {
         ArrayList<String> printedCcas;
         ArrayList<String> printedTuitions;
 
-        checkAndConvertToday();
+        inputCalendar = checkAndConvertToday();
 
         if (haveClasses()) {
             logger.log(Level.INFO, "converting class events");
@@ -74,7 +76,7 @@ public class ListSchedule {
         return printedEvents;
     }
 
-    public ArrayList<String> getPrintableEventsWeek() throws EmptyListException {
+    /*public ArrayList<String> getPrintableEventsWeek() throws EmptyListException {
         logger.log(Level.INFO, "starting to convert events instance to strings");
         ArrayList<Event> masterList = new ArrayList<>();
 
@@ -180,7 +182,7 @@ public class ListSchedule {
         logger.log(Level.WARNING, "adding to masterList");
 
         return new ArrayList<>(eventArr);
-    }
+    }*/
 
     private boolean haveClasses() {
         return classes.size() != 0;
@@ -202,10 +204,12 @@ public class ListSchedule {
         return (!haveClasses() && !haveCcas() && !haveTests() && !haveTuitions());
     }
 
-    private void checkAndConvertToday() {
+    private Calendar checkAndConvertToday() {
+        Calendar resultCalendar = null;
         if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
-            userInput = LocalDate.now().toString();
+            resultCalendar = Calendar.getInstance();
         }
+        return resultCalendar;
     }
 
     /**
@@ -222,8 +226,8 @@ public class ListSchedule {
 
         // todo might have a problem here
         for (int i = 0; i < eventArr.size(); i++) {
-            String[] listDate = eventArr.get(i).getStart().split(" ");
-            if (userInput == null || dateTimeParser.isDateEqual(listDate[0], userInput)) {
+            Calendar listDate = eventArr.get(i).getStart();
+            if (userInput == null || dateTimeParser.isDateEqual(listDate, inputCalendar)) {
                 printedEvents.add(i + 1 + ". " + eventArr.get(i));
             }
         }

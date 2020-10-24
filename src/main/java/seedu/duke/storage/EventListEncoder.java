@@ -6,7 +6,9 @@ import seedu.duke.model.event.Event;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 //@@author durianpancakes
 public class EventListEncoder {
@@ -25,40 +27,43 @@ public class EventListEncoder {
 
     private String encodeEventToString(Event event) {
         String result = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        String start = sdf.format(event.getStart().getTime());
+        String end = sdf.format(event.getEnd().getTime());
 
         if (event instanceof EventCca) {
             EventCca eventCca = (EventCca) event;
-            assertValidCca(eventCca);
+            //assertValidCca(eventCca);
             result = EventCca.CCA_ICON + "|"
                     + eventCca.isDone() + "|"
                     + eventCca.getDescription() + "|"
-                    + eventCca.getStart() + "|"
-                    + eventCca.getEnd();
+                    + start + "|"
+                    + end;
         } else if (event instanceof EventTest) {
             EventTest eventTest = (EventTest) event;
-            assertValidTest(eventTest);
+            //assertValidTest(eventTest);
             result = EventTest.TEST_ICON + "|"
                     + eventTest.isDone() + "|"
                     + eventTest.getDescription() + "|"
-                    + eventTest.getStart() + "|"
-                    + eventTest.getEnd();
+                    + start + "|"
+                    + end;
         } else if (event instanceof EventTuition) {
             EventTuition newEventTuition = (EventTuition) event;
-            assertValidTuition(newEventTuition);
+            //assertValidTuition(newEventTuition);
             result = EventTuition.TUITION_ICON + "|"
                     + newEventTuition.isDone() + "|"
                     + newEventTuition.getDescription() + "|"
-                    + newEventTuition.getStart() + "|"
-                    + newEventTuition.getEnd() + "|"
+                    + start + "|"
+                    + end + "|"
                     + newEventTuition.getLocation();
         } else if (event instanceof EventClass) {
             EventClass newEventClass = (EventClass) event;
-            assertValidClass(newEventClass);
+            //assertValidClass(newEventClass);
             result = EventClass.CLASS_ICON + "|"
                     + newEventClass.isDone() + "|"
                     + newEventClass.getDescription() + "|"
-                    + newEventClass.getStart() + "|"
-                    + newEventClass.getEnd();
+                    + start + "|"
+                    + end;
         }
 
         return result;
@@ -82,7 +87,7 @@ public class EventListEncoder {
         assert !eventTuition.getLocation().equals("");
     }
 
-    private void isValidParams(String description, String start, String end) {
+    private void isValidParams(String description, Calendar start, Calendar end) {
         assert description != null;
         assert !description.equals("");
         assert start != null;
