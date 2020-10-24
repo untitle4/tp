@@ -79,4 +79,21 @@ class ListScheduleTest {
                         + " 02:00 PM to 27th Feb 2019 , 03:00 PM", todayDate.getDayOfMonth(), formattedDate)));
         assertEquals(expectedOutputs, actualOutputs);
     }
+
+    @Test
+    void getPrintableEvents_classScheduleWeek() throws EmptyListException {
+        ArrayList<Event> classes = new ArrayList<>();
+        LocalDate todayDate = LocalDate.now();
+
+        classes.add(new EventClass("Math", todayDate.toString() + " 1400", "2019-02-27 1500"));
+        ListSchedule listSchedule = new ListSchedule("week", classes, new ArrayList<>(),
+                new ArrayList<>(), new ArrayList<>());
+        ArrayList<String> actualOutputs = listSchedule.getPrintableEvents();
+
+        String formattedDate = todayDate.format(DateTimeFormatter.ofPattern("MMM yyyy"));
+        ArrayList<String> expectedOutputs = new ArrayList<>(
+                List.of("Classes: ", String.format("1. [CLASS] [NOT DONE] Math from %sst %s ,"
+                        + " 02:00 PM to 27th Feb 2019 , 03:00 PM", todayDate.getDayOfMonth(), formattedDate)));
+        assertEquals(expectedOutputs, actualOutputs);
+    }
 }
