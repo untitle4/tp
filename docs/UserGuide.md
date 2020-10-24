@@ -232,7 +232,8 @@ Example Output:
     Test:
     1. Math eventTest from 26th Sep, 11am to 26th Sep, 1pm
 ```
-
+### Saving data
+Plan&Score saves all data automatically after every command. There is no need to save manually.
 
 ## FAQ
 
