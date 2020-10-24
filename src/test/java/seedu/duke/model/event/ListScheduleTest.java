@@ -10,6 +10,7 @@ import seedu.duke.model.event.tuition.EventTuition;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -80,4 +81,22 @@ class ListScheduleTest {
     //                        + " 02:00 PM to 27th Feb 2019 , 03:00 PM", todayDate.getDayOfMonth(), formattedDate)));
     //        assertEquals(expectedOutputs, actualOutputs);
     //    }
+
+    /*    @Test
+    void getPrintableEvents_classScheduleWeek() throws EmptyListException {
+        ArrayList<Event> classes = new ArrayList<>();
+        LocalDate todayDate = LocalDate.now();
+
+        classes.add(new EventClass("Math", todayDate.toString() + " 1400", "2019-02-27 1500"));
+        ListSchedule listSchedule = new ListSchedule("week", classes, new ArrayList<>(),
+                new ArrayList<>(), new ArrayList<>());
+        ArrayList<String> actualOutputs = listSchedule.getPrintableEvents();
+
+        String formattedDate = todayDate.format(DateTimeFormatter.ofPattern("MMM yyyy"));
+        String day = Calendar.DAY_OF_MONTH;
+        ArrayList<String> expectedOutputs = new ArrayList<>(
+                List.of(day, String.format("1. [CLASS] [NOT DONE] Math from %sst %s ,"
+                        + " 02:00 PM to 27th Feb 2019 , 03:00 PM", todayDate.getDayOfMonth(), formattedDate)));
+        assertEquals(expectedOutputs, actualOutputs);
+    }*/
 }
