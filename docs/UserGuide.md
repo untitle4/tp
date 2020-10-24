@@ -2,10 +2,21 @@
 
 ## Introduction
 
-Plan&Score is a Java command-line application that allows Primary 6 students 
-to plan and track their classes, CCAs and eventTest dates.
-This enables the students to remember their schedule, 
-so they can plan well in advance for their tests and score better.
+Plan&Score is a Java command-line application that does two main things:
+1.  Plan: Allows Primary 6 students to plan and track their:
+    - School classes
+    - CCAs
+    - Tests
+    - Tuitions
+    
+2. Score: With the quiz feature, students can spend the time they have from productive scheduling, to hone their
+Mathematics for their upcoming PSLE.
+
+Plan&Score also has a third feature, allowing students to save the contact details of their teachers, cca coaches etc 
+for convenient contact.
+
+As a whole, Plan&Score tackles not only the scheduling issue most students have, but also incorporates other features
+to ensure they are better able to ace their PSLE.
 
 - [1. Quick Start](#quick-start)
 - [2. Features](#list-of-features)
@@ -16,9 +27,13 @@ so they can plan well in advance for their tests and score better.
     - [Delete a cca:](#deleting-a-cca-delete-cca) `delete cca`
     - [Add a test:](#adding-a-test-add-test) `add test`
     - [Delete a test:](#deleting-a-test-delete-test) `delete test`
-    - [Toggle task done:](#setting-an-event-as-done-done-classccatest) `done`
-    - [List schedule:](#listing-out-schedule-list-event) `list event`
-    - [Find a task by keyword or date:](#finding-an-event-find-event) `find`
+    - [Toogle task done:](#toggling-task-done-done) `done`
+    - [List schedule:](#list-out-schedule-list-event) `list event`
+    - [Take a quiz:](#take-quiz)`quiz`
+    - [Add a quiz question:](#add-quiz-question) `add quiz`
+    - [Delete a quiz question:](#delete-quiz-question) `delete quiz`
+    - [List quiz questions:](#list-quiz-questions) `list quiz`
+    - [Find a task by keyword or date:](#find-tasks-find) `find`
     - [Exit the programme:](#exits-programme-bye) `bye`
 - [3. FAQ](#faq)
 - [4. Command Summary](#command-summary)
@@ -28,7 +43,7 @@ so they can plan well in advance for their tests and score better.
 1. Ensure that you have Java ```11``` or above installed.
 2. Down the latest version of `Plan&score` from [here](https://github.com/AY2021S1-CS2113T-W12-4/tp/releases).
 3. Run the program by entering `java -jar plan.jar` in a terminal.
-4. You can exit the program by running `bye`
+4. You can exit the program by running `bye`.
 
 ## List of Features 
 
@@ -77,7 +92,9 @@ Format: `add class /n [name of class] /s [start date-time of class] /e [end date
 
 * `[name of class]` can be in a natural language format and 
 cannot contain '/' .  
+
 * `[start date-time of class]` and `[end date-time of class]` must be in 
+
 yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
 Examples: `add class /n Math /s 2020-08-19 1300 /e 2020-08-19 1400`
@@ -120,7 +137,9 @@ Format: `add Cca /n [name of Cca] /s [start date-time of Cca] /e [end date-time 
 
 * `[name of Cca]` can be in a natural language format and 
 cannot contain '/' .  
+
 * `[start date-time of Cca]` and `[end date-time of Cca]` must be in 
+
 yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
 Examples: `add Cca /n Basketball training /s 2020-09-19 1900 /e 2020-09-19 2100`
@@ -164,7 +183,9 @@ Format: `add test /n [name of test] /s [start date-time of test] /e [end date-ti
 
 * `[name of test]` can be in a natural language format and 
 cannot contain '/' .  
+
 * `[start date-time of test]` and `[end date-time of test]` must be in 
+
 yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
 Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
@@ -229,7 +250,9 @@ Now you have 1 test in the list.
 <br />
 <br />
 
+
 ### Listing out schedule: `list event`
+
 List out the entire schedule for classes, ccas and tests.
 User can also choose to list today's schedule or schedule 
 for the week.
@@ -249,6 +272,7 @@ Example Output:
     
     Test:
     1. [TEST] [NOT DONE] Math from 26th Sep, 11:00 AM to 26th Sep, 12:00 PM
+
 ```
 <br />
 
@@ -330,6 +354,7 @@ Plan&Score saves all data automatically after every command. There is no need to
 
 **Q**: Plan&Score is unable to start. How can I fix this?
 
+
 **A**: Your data files might have been corrupted. To fix this, you can attempt the following steps:
 
 **We recommend adult supervision for this process.**
@@ -355,11 +380,14 @@ We recommend keeping a duplicate of the contents in `events.txt` to assist with 
 
 ## Command Summary
 
+
 Action | Format | Examples
 -------|--------|--------
 help|`help`
 add|`add <category> /n <description> /s <start-date-time> /e <end date-time>`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
 delete|`delete <category> <item number>`|`delete class 1`, `delete test 1`, `delete cca 1`
 done|`done <category> <item number>`|`done class 1`, `done test 1`, `done cca 1`
+
 list|`list event (<date/today/week>)`
+
 bye|`bye`
