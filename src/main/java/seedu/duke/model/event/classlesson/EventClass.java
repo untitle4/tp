@@ -5,6 +5,8 @@ import seedu.duke.model.event.Event;
 import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 //@@author elizabethcwt
 /**
@@ -17,11 +19,11 @@ import java.text.ParseException;
 public class EventClass extends Event {
     public static final String CLASS_ICON = "[CLASS]";
 
-    public EventClass(String description, String start, String end) {
+    public EventClass(String description, Calendar start, Calendar end) {
         super(description, start, end);
     }
 
-    public EventClass(String description, boolean isDone, String start, String end) {
+    public EventClass(String description, boolean isDone, Calendar start, Calendar end) {
         super(description, start, end, isDone);
     }
 
@@ -33,13 +35,10 @@ public class EventClass extends Event {
     @Override
     public String toString() {
         String result = "";
-        try {
-            result = CLASS_ICON + " " + super.toString() + " from "
-                    + new DateTimeParser().changeDateTime(super.getStart())
-                    + " to " + new DateTimeParser().changeDateTime(super.getEnd());
-        } catch (ParseException e) {
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
-        }
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+        result = CLASS_ICON + " " + super.toString() + " from "
+                + sdf.format(this.getStart().getTime())
+                + " to " + sdf.format(this.getEnd().getTime());
         return result;
     }
 

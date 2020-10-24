@@ -31,7 +31,7 @@ public class StorageTest {
     //        assertEquals(getEventList(), eventStorageManager.getEventList());
     //    }
 
-    private ArrayList<Event> getEventList() {
+   /* private ArrayList<Event> getEventList() {
         ArrayList<Event> events = new ArrayList<>();
         events.add(new EventCca("Basketball training ",
                 "2020-09-21 1800 ",
@@ -48,5 +48,5 @@ public class StorageTest {
                 "home"));
 
         return events;
-    }
+    }*/
 }

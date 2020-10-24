@@ -1,9 +1,13 @@
 package seedu.duke.model.event.classlesson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,6 +17,7 @@ import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 //@@author elizabethcwt
@@ -96,8 +101,20 @@ public class EventClassManager extends EventDataManager {
             throw new EmptyParameterException();
         }
 
-        // Checking and converting user's date-time input into format of expected output
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
         try {
+            Date startDate = sdf.parse(classStartDate);
+            Date endDate = sdf.parse(classEndDate);
+            Calendar startCalendar = Calendar.getInstance();
+            startCalendar.setTime(startDate);
+            Calendar endCalendar = Calendar.getInstance();
+            endCalendar.setTime(endDate);
+            classes.add(new EventClass(classDescription, startCalendar, endCalendar));
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+        }
+        // Checking and converting user's date-time input into format of expected output
+        /*try {
             LocalDateTime.parse(classStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             LocalDateTime.parse(classEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
             classes.add(new EventClass(classDescription, classStartDate, classEndDate));
@@ -105,7 +122,7 @@ public class EventClassManager extends EventDataManager {
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
             return;
-        }
+        }*/
 
         userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
                 classes.get(getClassListSize() - 1).toString());
@@ -115,7 +132,7 @@ public class EventClassManager extends EventDataManager {
     /**
      * <h2>deleteClass()</h2>
      * Deletes a class from the classes ArrayList.
-     * @param userInputs To take in the class index of the class to be deleted.
+     * @param userInputs To take in the class index of the classes to be deleted.
      */
     @Override
     public void delete(String[] userInputs) {

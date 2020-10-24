@@ -23,7 +23,7 @@ public class DateTimeParser {
 
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
-    public String changeDateTime(String dateTime) throws ParseException {
+    /*public String changeDateTime(Calendar dateTime) throws ParseException {
         logger.log(Level.INFO, "initialising changing of date and time to new format");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM yyyy");
         int divider = dateTime.indexOf(" ");
@@ -53,7 +53,7 @@ public class DateTimeParser {
         String dayString = String.valueOf(dayInteger);
 
         return dayString + dayNumberSuffix + " " + changedDate + " , " + changedTime;
-    }
+    }*/
 
     /*
     ref to: https://stackoverflow.com/questions/4011075/how-do-you-format-the-day
@@ -78,21 +78,27 @@ public class DateTimeParser {
         }
     }
 
-    public boolean isDateEqual(String listInput, String userInput) throws DateTimeParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public boolean isDateEqual(Calendar listInput, Calendar userInput) throws DateTimeParseException {
+        /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         int listDay = LocalDate.parse(listInput, formatter).getDayOfMonth();
         int userDay = LocalDate.parse(userInput, formatter).getDayOfMonth();
         int listYear = LocalDate.parse(listInput, formatter).getYear();
         int userYear = LocalDate.parse(userInput, formatter).getYear();
         Month listMonth = LocalDate.parse(listInput, formatter).getMonth();
-        Month userMonth = LocalDate.parse(userInput, formatter).getMonth();
-        return ((listDay == userDay)
-                && (listMonth.equals(userMonth))
-                && (listYear == userYear));
+        Month userMonth = LocalDate.parse(userInput, formatter).getMonth();*/
+        int listDay = listInput.get(Calendar.DAY_OF_MONTH);
+        int userDay = userInput.get(Calendar.DAY_OF_MONTH);
+        int listMonth = listInput.get(Calendar.MONTH);
+        int userMonth = userInput.get(Calendar.MONTH);
+        int listYear = listInput.get(Calendar.YEAR);
+        int userYear = userInput.get(Calendar.YEAR);
+        return (listDay == userDay)
+                && (listMonth == userMonth)
+                && (listYear == userYear);
     }
 
-    public ArrayList<String> getDaysOfWeek() {
-        ArrayList<String> dateStrings = new ArrayList<>();
+    public ArrayList<Calendar> getDaysOfWeek() {
+        ArrayList<Calendar> dateCalendars = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
 
         switch (calendar.get(Calendar.DAY_OF_WEEK)) {
@@ -122,14 +128,15 @@ public class DateTimeParser {
         }
 
         for (int i = 0; i < 7; i++) {
-            int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+            /* int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
             int month = calendar.get(Calendar.MONTH);
-            int year = calendar.get(Calendar.YEAR);
-            String date = year + "-" + (month + 1) + "-" + dayOfMonth;
-            dateStrings.add(date);
+            int year = calendar.get(Calendar.YEAR);*/
+            Calendar newCalendar = (Calendar) calendar.clone();
+            //String date = year + "-" + (month + 1) + "-" + dayOfMonth;
+            dateCalendars.add(newCalendar);
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
-        return dateStrings;
+        return dateCalendars;
     }
 }
 

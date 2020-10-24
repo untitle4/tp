@@ -8,15 +8,13 @@ import seedu.duke.model.event.classlesson.EventClassManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.test.EventTestManager;
 import seedu.duke.model.event.tuition.EventTuitionManager;
+import seedu.duke.ui.CalendarWeekRenderer;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.EmptyListException;
 
-import java.lang.reflect.Array;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
 
 //@@author AndreWongZH
 /**
@@ -93,11 +91,13 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
 
             if (userInput.contains("week")) {
-                printedEvents = listSchedule.getPrintableEventsWeek();
+                // printedEvents = listSchedule.getPrintableEventsWeek();
+                new CalendarWeekRenderer(this);
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
+                userInterface.printArray(printedEvents);
             }
-            userInterface.printArray(printedEvents);
+            // userInterface.printArray(printedEvents);
         } catch (EmptyListException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         } catch (DateTimeParseException e) {
@@ -109,7 +109,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public ArrayList<ArrayList<Event>> getCurrentWeekEventMasterList() {
         DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> eventMasterList = getEventMasterList();
-        ArrayList<String> daysOfWeek = dateTimeParser.getDaysOfWeek();
+        ArrayList<Calendar> daysOfWeek = dateTimeParser.getDaysOfWeek();
         ArrayList<ArrayList<Event>> result = new ArrayList<>();
 
         for (int i = 0; i < 7; i++) {
@@ -120,13 +120,14 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     }
 
     //@@author Aliciaho
-    private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, String date) {
+    private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, Calendar date) {
         DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> result = new ArrayList<>();
 
         for (Event event : masterList) {
-            String[] listDate = event.getStart().split(" ");
-            if (dateTimeParser.isDateEqual(date, listDate[0])) {
+            // String[] listDate = event.getStart().split(" ");
+            Calendar startCalendar = event.getStart();
+            if (dateTimeParser.isDateEqual(date, startCalendar)) {
                 result.add(event);
             }
         }
