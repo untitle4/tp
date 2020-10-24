@@ -16,9 +16,9 @@ so they can plan well in advance for their tests and score better.
     - [Delete a cca:](#deleting-a-cca-delete-cca) `delete cca`
     - [Add a test:](#adding-a-test-add-test) `add test`
     - [Delete a test:](#deleting-a-test-delete-test) `delete test`
-    - [Toogle task done:](#toggling-task-done-done) `done`
-    - [List schedule:](#list-out-schedule-list-event) `list event`
-    - [Find a task by keyword or date:](#find-tasks-find) `find`
+    - [Toggle task done:](#setting-an-event-as-done-done-classccatest) `done`
+    - [List schedule:](#listing-out-schedule-list-event) `list event`
+    - [Find a task by keyword or date:](#finding-an-event-find-event) `find`
     - [Exit the programme:](#exits-programme-bye) `bye`
 - [3. FAQ](#faq)
 - [4. Command Summary](#command-summary)
@@ -31,6 +31,21 @@ so they can plan well in advance for their tests and score better.
 4. You can exit the program by running `bye`
 
 ## List of Features 
+
+#### Command Format
+* Words encased in `[` and `]` are compulsory parameters to be given by the user.
+* Words encased in `(` and `)` are optional parameters.
+
+#### Model Types
+* Models are represented by one of these types:
+    1. `event`
+        1. `class`
+        1. `cca`
+        1. `test`
+        1. `tuition`
+    1. `contact`
+    1. `quiz`
+* The model type often follow after the command word (E.g `class` follows after `add` to form `add class`).
 
 ### Viewing help: `help`
 Shows all available commands to the user
@@ -62,7 +77,7 @@ Format: `add class /n [name of class] /s [start date-time of class] /e [end date
 
 * `[name of class]` can be in a natural language format and 
 cannot contain '/' .  
-* `[start date-time of class]`, `[end date-time of class]` must be in 
+* `[start date-time of class]` and `[end date-time of class]` must be in 
 yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
 Examples: `add class /n Math /s 2020-08-19 1300 /e 2020-08-19 1400`
@@ -105,7 +120,7 @@ Format: `add Cca /n [name of Cca] /s [start date-time of Cca] /e [end date-time 
 
 * `[name of Cca]` can be in a natural language format and 
 cannot contain '/' .  
-* `[start date-time of Cca]`, `[end date-time of Cca]` must be in 
+* `[start date-time of Cca]` and `[end date-time of Cca]` must be in 
 yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
 Examples: `add Cca /n Basketball training /s 2020-09-19 1900 /e 2020-09-19 2100`
@@ -149,7 +164,7 @@ Format: `add test /n [name of test] /s [start date-time of test] /e [end date-ti
 
 * `[name of test]` can be in a natural language format and 
 cannot contain '/' .  
-* `[start date-time of test]`, `[end date-time of test]` must be in 
+* `[start date-time of test]` and `[end date-time of test]` must be in 
 yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
 Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
@@ -214,7 +229,7 @@ Now you have 1 test in the list.
 <br />
 <br />
 
-### List out schedule: `list event`
+### Listing out schedule: `list event`
 List out the entire schedule for classes, ccas and tests.
 User can also choose to list today's schedule or schedule 
 for the week.
@@ -255,13 +270,33 @@ Example Output: For date, 2020-08-19
 
 Format: `list event week`
 
-Example Output: For week, 2020-10-19 to 2020-10-25
+Example Output: For a particular week, 2020-10-19 to 2020-10-25
 
 ```
 TUESDAY:
 1. [CCA] [NOT DONE] basketball from 20th Oct 2020 , 01:00 pm to 21st Oct 2020 , 02:00 pm
 WEDNESDAY:
 1. [TEST] [NOT DONE] eng from 21st Oct 2020 , 02:00 pm to 21st Oct 2020 , 03:00 pm   
+```
+
+<br />
+<br />
+
+### Finding an event: `find event`
+Look for classes, ccas and tests and tuitions that matches the given keyword.
+
+:exclamation: Note that searches are case-insensitive and user can provide multiple words to compare with
+
+Format: `find event [KEYWORDS]`
+
+Examples: `find event math`
+
+Example Output: 
+
+```
+    1. [CLASS] [NOT DONE] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM 
+    2. [CLASS] [NOT DONE] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM 
+    3. [TEST] [NOT DONE] Math from 26th Sep, 11:00 AM to 26th Sep, 12:00 PM
 ```
 
 <br />
@@ -279,6 +314,8 @@ Example Output:
 BYE BYE! SEE YOU NEXT TIME! :3
 ```
 
+<br />
+<br />
 
 ## FAQ
 
@@ -294,5 +331,5 @@ help|`help`
 add|`add <category> /n <description> /s <start-date-time> /e <end date-time>`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
 delete|`delete <category> <item number>`|`delete class 1`, `delete test 1`, `delete cca 1`
 done|`done <category> <item number>`|`done class 1`, `done test 1`, `done cca 1`
-list|`list event [optional] <today/week>`
+list|`list event (<date/today/week>)`
 bye|`bye`
