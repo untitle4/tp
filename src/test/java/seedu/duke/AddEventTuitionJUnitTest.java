@@ -21,10 +21,10 @@ public class AddEventTuitionJUnitTest {
                 + "/s 2020-10-13 1500 /e 2020-10-13 1700 "
                 + "/l home");
 
-        EventTuition eventTuition = new EventTuition("math tuition"
-                , "2020-10-13 1500"
-                , "2020-10-13 1700"
-                , "home");
+        EventTuition eventTuition = new EventTuition("math tuition",
+                "2020-10-13 1500",
+                "2020-10-13 1700",
+                "home");
         assertEquals(tuitions.get(0), eventTuition);
     }
 
