@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+//@@author AndreWongZH
 /**
  * Represents a handler that manages the four different event managers.
  * This provides access to each individual event managers and
@@ -56,6 +57,33 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return eventTuitionManager;
     }
 
+    /**
+     * Prints to user all the found events that matches with keyword provided.
+     *
+     * @param userInput Input supplied by the user that contains the keywords.
+     * @throws MissingParameterException If input supplied does not contain any keywords
+     */
+    @Override
+    public void find(String userInput) throws MissingParameterException {
+        String param = userInput.substring(USER_INPUT_OFFSET).trim();
+
+        if (param.length() == EMPTY_SIZE) {
+            throw new MissingParameterException();
+        }
+
+        FindSchedule findSchedule = new FindSchedule(param, eventClassManager.getClasses(),
+                eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
+        ArrayList<String> filteredEvents = findSchedule.getFilteredEvents();
+
+        if (filteredEvents.size() == EMPTY_SIZE) {
+            userInterface.showToUser(Messages.MESSAGE_NO_EVENTS_FOUND);
+            return;
+        }
+
+        userInterface.printArray(filteredEvents);
+    }
+
+    //@@author
     @Override
     public void list(String userInput) {
         ArrayList<String> printedEvents;
@@ -116,31 +144,5 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         masterList.addAll(tuitions);
 
         return masterList;
-    }
-
-    /**
-     * Prints to user all the found events that matches with keyword provided.
-     *
-     * @param userInput Input supplied by the user that contains the keywords.
-     * @throws MissingParameterException If input supplied does not contain any keywords
-     */
-    @Override
-    public void find(String userInput) throws MissingParameterException {
-        String param = userInput.substring(USER_INPUT_OFFSET).trim();
-
-        if (param.length() == EMPTY_SIZE) {
-            throw new MissingParameterException();
-        }
-
-        FindSchedule findSchedule = new FindSchedule(param, eventClassManager.getClasses(),
-                eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
-        ArrayList<String> filteredEvents = findSchedule.getFilteredEvents();
-
-        if (filteredEvents.size() == EMPTY_SIZE) {
-            userInterface.showToUser(Messages.MESSAGE_NO_EVENTS_FOUND);
-            return;
-        }
-
-        userInterface.printArray(filteredEvents);
     }
 }
