@@ -19,6 +19,7 @@ so they can plan well in advance for their tests and score better.
     - [Toogle task done:](#toggling-task-done-done) `done`
     - [List schedule:](#list-out-schedule-list-event) `list event`
     - [Find a task by keyword or date:](#find-tasks-find) `find`
+    - [Exit the programme:](#exits-programme-bye) `bye`
 - [3. FAQ](#faq)
 - [4. Command Summary](#command-summary)
 
@@ -62,7 +63,7 @@ Format: `add class /n [name of class] /s [start date-time of class] /e [end date
 * `[name of class]` can be in a natural language format and 
 cannot contain '/' .  
 * `[start date-time of class]`, `[end date-time of class]` must be in 
-yyyy-mm-dd HHMM format.
+yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
 Examples: `add class /n Math /s 2020-08-19 1300 /e 2020-08-19 1400`
 
@@ -105,7 +106,7 @@ Format: `add Cca /n [name of Cca] /s [start date-time of Cca] /e [end date-time 
 * `[name of Cca]` can be in a natural language format and 
 cannot contain '/' .  
 * `[start date-time of Cca]`, `[end date-time of Cca]` must be in 
-yyyy-mm-dd HHMM format.
+yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
 Examples: `add Cca /n Basketball training /s 2020-09-19 1900 /e 2020-09-19 2100`
 
@@ -149,7 +150,7 @@ Format: `add test /n [name of test] /s [start date-time of test] /e [end date-ti
 * `[name of test]` can be in a natural language format and 
 cannot contain '/' .  
 * `[start date-time of test]`, `[end date-time of test]` must be in 
-yyyy-mm-dd HHMM format.
+yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
 Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
 
@@ -160,7 +161,7 @@ Got it. I've added this test:
 
     [TEST] [NOT DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
-`Now you have 1 test in the list.`
+Now you have 1 test in the list.
 ```
 
 <br />
@@ -178,11 +179,11 @@ Examples: `delete test 1`
 Example Output: 
 
 ```
-`Noted. I've removed this test:`
+Noted. I've removed this test:
 
     [TEST] [NOT DONE] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
-`Now you have 0 tests in the list.`
+Now you have 0 tests in the list.
 ```
 
 <br />
@@ -214,23 +215,68 @@ Now you have 1 test in the list.
 <br />
 
 ### List out schedule: `list event`
-List out the entire schedule for classes, ccas and tests
+List out the entire schedule for classes, ccas and tests.
+User can also choose to list today's schedule or schedule 
+for the week.
 
-Format: `list`
+Format: `list event`
 
 Example Output: 
 
 ```
     Classes:
-    1. Math from 19th Aug, 1pm to 19th Aug , 2pm 
-    2. Science from 19th Aug, 3pm to 19th Aug , 4pm 
+    1. [CLASS] [NOT DONE] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM 
+    2. [CLASS] [NOT DONE] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM 
      
     CCA:
-    1. Basketball Camp from 21st Sep, 1pm to 22nd Sep, 3pm
-    2. Frisbee from 19th Sep, 1pm to 19th Sep, 3pm
+    1. [CCA] [NOT DONE] Frisbee from 19th Sep, 06:00 PM to 19th Sep, 07:00 PM
+    2. [CCA] [NOT DONE] Basketball Camp from 21st Sep, 01:00 PM to 22nd Sep, 03:00 PM
     
     Test:
-    1. Math eventTest from 26th Sep, 11am to 26th Sep, 1pm
+    1. [TEST] [NOT DONE] Math from 26th Sep, 11:00 AM to 26th Sep, 12:00 PM
+```
+<br />
+
+Format: `list event today`
+
+Example Output: For date, 2020-08-19
+
+```   Classes:
+        1. [CLASS] [NOT DONE] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM 
+        2. [CLASS] [NOT DONE] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM 
+         
+        CCA:
+        1. [CCA] [NOT DONE] Frisbee from 19th Aug, 06:00 PM to 19th Aug, 07:00 PM
+        
+        Test:
+        1. [TEST] [NOT DONE] Math from 19th Aug, 11:00 AM to 19th Aug, 12:00 PM
+```
+<br />
+
+Format: `list event week`
+
+Example Output: For week, 2020-10-19 to 2020-10-25
+
+```
+TUESDAY:
+1. [CCA] [NOT DONE] basketball from 20th Oct 2020 , 01:00 pm to 21st Oct 2020 , 02:00 pm
+WEDNESDAY:
+1. [TEST] [NOT DONE] eng from 21st Oct 2020 , 02:00 pm to 21st Oct 2020 , 03:00 pm   
+```
+
+<br />
+<br />
+
+### Exits Programme: `bye`
+Exits the programme once the user have finished
+using it.
+
+Format: `bye`
+
+Example Output:
+
+```
+BYE BYE! SEE YOU NEXT TIME! :3
 ```
 
 
@@ -248,4 +294,5 @@ help|`help`
 add|`add <category> /n <description> /s <start-date-time> /e <end date-time>`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
 delete|`delete <category> <item number>`|`delete class 1`, `delete test 1`, `delete cca 1`
 done|`done <category> <item number>`|`done class 1`, `done test 1`, `done cca 1`
-list|`list event`
+list|`list event [optional] <today/week>`
+bye|`bye`
