@@ -21,6 +21,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author durianpancakes
 public class EventStorageManager extends StorageManager {
     private final EventListEncoder eventListEncoder;
     private final EventListDecoder eventListDecoder;

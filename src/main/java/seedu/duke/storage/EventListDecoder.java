@@ -9,6 +9,7 @@ import seedu.duke.model.event.tuition.EventTuition;
 
 import java.util.ArrayList;
 
+//@@author durianpancakes
 public class EventListDecoder {
     public EventListDecoder() {
     }

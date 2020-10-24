@@ -6,6 +6,7 @@ import seedu.duke.model.event.EventManager;
 
 import java.util.ArrayList;
 
+//@@author durianpancakes
 public class CalendarWeekRenderer {
     private final EventManager eventManager;
     private final int [] eventCounters = {1, 1, 1, 1, 1, 1, 1};

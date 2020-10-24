@@ -5,6 +5,7 @@ import seedu.duke.model.event.Event;
 
 import java.util.ArrayList;
 
+//@@author durianpancakes
 public class CalendarWeekRendererUtils {
     private final int[] numEventsCounter;
 

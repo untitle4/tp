@@ -6,6 +6,7 @@ import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
 
+//@@author durianpancakes
 public class EventTuition extends Event {
     public static final String TUITION_ICON = "[TUITION]";
     private final String location;

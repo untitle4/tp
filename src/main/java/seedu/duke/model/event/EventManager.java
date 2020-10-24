@@ -77,6 +77,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         }
     }
 
+    //@@author durianpancakes
     public ArrayList<ArrayList<Event>> getCurrentWeekEventMasterList() {
         DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> eventMasterList = getEventMasterList();
@@ -90,6 +91,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
+    //@@author Aliciaho
     private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, String date) {
         DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> result = new ArrayList<>();
@@ -104,6 +106,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
+    //@@@author Aliciaho
     public ArrayList<Event> getEventMasterList() {
         ArrayList<Event> ccas = eventCcaManager.getCcas();
         ArrayList<Event> tests = eventTestManager.getTests();
@@ -118,6 +121,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return masterList;
     }
 
+    //@@author
     /**
      * Prints to user all the found events that matches with keyword provided.
      *
