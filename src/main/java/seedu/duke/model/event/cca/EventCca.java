@@ -6,6 +6,7 @@ import seedu.duke.controller.parser.DateTimeParser;
 
 import java.text.ParseException;
 
+//@@author untitle4
 public class EventCca extends Event {
     public static final String CCA_ICON = "[CCA]";
 

@@ -1,12 +1,14 @@
 package seedu.duke.model.event;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -65,19 +67,22 @@ class ListScheduleTest {
     }
 
     @Test
-    void getPrintableEvents_classScheduleToday_oneClass() throws EmptyListException {
+    void getPrintableEvents_classScheduleToday_oneClass() throws EmptyListException, ParseException {
         ArrayList<Event> classes = new ArrayList<>();
         LocalDate todayDate = LocalDate.now();
-
-        classes.add(new EventClass("Math", todayDate.toString() + " 1400", "2019-02-27 1500"));
+        String todayString = todayDate.toString() + " 1400";
+        classes.add(new EventClass("Math", todayString, "2019-02-27 1500"));
         ListSchedule listSchedule = new ListSchedule("today", classes, new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>());
         ArrayList<String> actualOutputs = listSchedule.getPrintableEvents();
 
-        String formattedDate = todayDate.format(DateTimeFormatter.ofPattern("MMM yyyy"));
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        String formattedDate = dateTimeParser.changeDateTime(todayString);
+
         ArrayList<String> expectedOutputs = new ArrayList<>(
-                List.of("Classes: ", String.format("1. [CLASS] [NOT DONE] Math from %sth %s ,"
-                        + " 02:00 PM to 27th Feb 2019 , 03:00 PM", todayDate.getDayOfMonth(), formattedDate)));
+                List.of("Classes: ", "1. [CLASS] [NOT DONE] Math from " + formattedDate
+                        + " to 27th Feb 2019 , 03:00 PM"));
+
         assertEquals(expectedOutputs, actualOutputs);
     }
 

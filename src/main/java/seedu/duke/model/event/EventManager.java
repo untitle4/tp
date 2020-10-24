@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
+//@@author AndreWongZH
 /**
  * Represents a handler that manages the four different event managers.
  * This provides access to each individual event managers and
@@ -56,68 +57,6 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return eventTuitionManager;
     }
 
-    @Override
-    public void list(String userInput) {
-        ArrayList<String> printedEvents;
-        try {
-            String dateParam = userInput.split(" ").length == 2 ? null : userInput.split(" ")[2];
-            ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
-                    eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
-
-            if (userInput.contains("week")) {
-                printedEvents = listSchedule.getPrintableEventsWeek();
-            } else {
-                printedEvents = listSchedule.getPrintableEvents();
-            }
-            userInterface.printArray(printedEvents);
-        } catch (EmptyListException e) {
-            userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
-        } catch (DateTimeParseException e) {
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
-        }
-    }
-
-    public ArrayList<ArrayList<Event>> getCurrentWeekEventMasterList() {
-        DateTimeParser dateTimeParser = new DateTimeParser();
-        ArrayList<Event> eventMasterList = getEventMasterList();
-        ArrayList<String> daysOfWeek = dateTimeParser.getDaysOfWeek();
-        ArrayList<ArrayList<Event>> result = new ArrayList<>();
-
-        for (int i = 0; i < 7; i++) {
-            result.add(getDayEventList(eventMasterList, daysOfWeek.get(i)));
-        }
-
-        return result;
-    }
-
-    private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, String date) {
-        DateTimeParser dateTimeParser = new DateTimeParser();
-        ArrayList<Event> result = new ArrayList<>();
-
-        for (Event event : masterList) {
-            String[] listDate = event.getStart().split(" ");
-            if (dateTimeParser.isDateEqual(date, listDate[0])) {
-                result.add(event);
-            }
-        }
-
-        return result;
-    }
-
-    public ArrayList<Event> getEventMasterList() {
-        ArrayList<Event> ccas = eventCcaManager.getCcas();
-        ArrayList<Event> tests = eventTestManager.getTests();
-        ArrayList<Event> classes = eventClassManager.getClasses();
-        ArrayList<Event> tuitions = eventTuitionManager.getTuitions();
-
-        ArrayList<Event> masterList = new ArrayList<>(ccas);
-        masterList.addAll(tests);
-        masterList.addAll(classes);
-        masterList.addAll(tuitions);
-
-        return masterList;
-    }
-
     /**
      * Prints to user all the found events that matches with keyword provided.
      *
@@ -142,5 +81,71 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         }
 
         userInterface.printArray(filteredEvents);
+    }
+
+    //@@author
+    @Override
+    public void list(String userInput) {
+        ArrayList<String> printedEvents;
+        try {
+            String dateParam = userInput.split(" ").length == 2 ? null : userInput.split(" ")[2];
+            ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
+                    eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
+
+            if (userInput.contains("week")) {
+                printedEvents = listSchedule.getPrintableEventsWeek();
+            } else {
+                printedEvents = listSchedule.getPrintableEvents();
+            }
+            userInterface.printArray(printedEvents);
+        } catch (EmptyListException e) {
+            userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
+        } catch (DateTimeParseException e) {
+            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
+        }
+    }
+
+    //@@author durianpancakes
+    public ArrayList<ArrayList<Event>> getCurrentWeekEventMasterList() {
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        ArrayList<Event> eventMasterList = getEventMasterList();
+        ArrayList<String> daysOfWeek = dateTimeParser.getDaysOfWeek();
+        ArrayList<ArrayList<Event>> result = new ArrayList<>();
+
+        for (int i = 0; i < 7; i++) {
+            result.add(getDayEventList(eventMasterList, daysOfWeek.get(i)));
+        }
+
+        return result;
+    }
+
+    //@@author Aliciaho
+    private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, String date) {
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        ArrayList<Event> result = new ArrayList<>();
+
+        for (Event event : masterList) {
+            String[] listDate = event.getStart().split(" ");
+            if (dateTimeParser.isDateEqual(date, listDate[0])) {
+                result.add(event);
+            }
+        }
+
+        return result;
+    }
+
+    //@@@author Aliciaho
+    public ArrayList<Event> getEventMasterList() {
+        ArrayList<Event> ccas = eventCcaManager.getCcas();
+        ArrayList<Event> tests = eventTestManager.getTests();
+        ArrayList<Event> classes = eventClassManager.getClasses();
+        ArrayList<Event> tuitions = eventTuitionManager.getTuitions();
+
+        ArrayList<Event> masterList = new ArrayList<>(ccas);
+        masterList.addAll(tests);
+        masterList.addAll(classes);
+        masterList.addAll(tuitions);
+
+        return masterList;
     }
 }
