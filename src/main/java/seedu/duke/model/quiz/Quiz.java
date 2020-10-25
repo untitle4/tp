@@ -95,7 +95,7 @@ public class Quiz {
 
     public String printPostQuizQuestion(int l, String correctnessLogo) {
         if (explanation.equals("")) {
-            return question + QuizManager.correctnessLogo + "\n\n"
+            return question + correctnessLogo + "\n\n"
                     + "(1) " + option1 + "\n"
                     + "(2) " + option2 + "\n"
                     + "(3) " + option3 + "\n"
@@ -103,7 +103,7 @@ public class Quiz {
                     + "Your answer: " + l + "\n"
                     + "Correct answer: " + answer + "\n\n";
         } else {
-            return question + QuizManager.correctnessLogo + "\n\n"
+            return question + correctnessLogo + "\n\n"
                     + "(1) " + option1 + "\n"
                     + "(2) " + option2 + "\n"
                     + "(3) " + option3 + "\n"
