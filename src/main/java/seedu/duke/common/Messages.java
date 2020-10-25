@@ -175,7 +175,8 @@ public class Messages {
             + " /o4 [option 4] /a [option answer] /exp [explanation]'\n"
             + "\t20. Delete quiz question: 'delete quiz [question number]'\n"
             + "\t21. List quiz questions: 'list quiz'\n\n"
-            + "\t22. Exit program: 'bye'\n\n"
+            + "\t22. Find quiz questions: 'find quiz [keyword(s)]'\n\n"
+            + "\t23. Exit program: 'bye'\n\n"
             + "\n\tNOTE:\n\t1. Please enter the date-time in the following format: YYYY-MM-DD "
             + "[time in 24hr format]\n\te.g. 2020-08-19 1300\n\n"
             + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n";
