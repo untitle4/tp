@@ -1,5 +1,6 @@
 package seedu.duke.model.event.cca;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
@@ -62,27 +63,14 @@ public class EventCcaManager extends EventDataManager {
             throw new EmptyParameterException();
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
         try {
-            Date startDate = sdf.parse(ccaStartDate);
-            Date endDate = sdf.parse(ccaEndDate);
-            Calendar startCalendar = Calendar.getInstance();
-            startCalendar.setTime(startDate);
-            Calendar endCalendar = Calendar.getInstance();
-            endCalendar.setTime(endDate);
+            DateTimeParser dateTimeParser = new DateTimeParser();
+            Calendar startCalendar = dateTimeParser.convertStringToCalendar(ccaStartDate);
+            Calendar endCalendar = dateTimeParser.convertStringToCalendar(ccaEndDate);
             ccas.add(new EventCca(ccaDescription, startCalendar, endCalendar));
-        } catch (ParseException parseException) {
-            parseException.printStackTrace();
-        }
-        /*try {
-            LocalDateTime.parse(ccaStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            LocalDateTime.parse(ccaEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            ccas.add(new EventCca(ccaDescription, ccaStartDate, ccaEndDate));
         } catch (DateTimeParseException e) {
-            logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
-            return;
-        }*/
+        }
         logger.log(Level.INFO, "added cca to ArrayList");
 
 

@@ -4,8 +4,6 @@ import seedu.duke.model.event.Event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 //@@author untitle4
@@ -28,10 +26,10 @@ public class EventCca extends Event {
     @Override
     public String toString() {
         String result = "";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm a");
+        DateTimeParser dateTimeParser = new DateTimeParser();
         result = CCA_ICON + " " + super.toString() + " from "
-                + sdf.format(this.getStart().getTime())
-                + " to " + sdf.format(this.getEnd().getTime());
+                + dateTimeParser.obtainFormattedDateTimeString(this.getStart())
+                + " to " + dateTimeParser.obtainFormattedDateTimeString(this.getEnd());
         return result;
     }
 

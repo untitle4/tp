@@ -126,9 +126,9 @@ public class CalendarWeekRenderer {
             startEndTimesString.append(getSpaces(indexStringLength));
             Calendar startCalendar = events.get(eventCounters[counterIndex] - 1).getStart();
             Calendar endCalendar = events.get(eventCounters[counterIndex] - 1).getEnd();
-            SimpleDateFormat sdf = new SimpleDateFormat("hh:mma");
-            String startString = sdf.format(startCalendar.getTime());
-            String endString = sdf.format(endCalendar.getTime());
+            DateTimeParser dateTimeParser = new DateTimeParser();
+            String startString = dateTimeParser.parseTime(startCalendar);
+            String endString = dateTimeParser.parseTime(endCalendar);
             String startEndString = startString + "-" + endString;
             startEndTimesString.append(startEndString);
             startEndTimesString.append(getSpaces(17 - startEndString.length() - indexStringLength));
@@ -147,7 +147,7 @@ public class CalendarWeekRenderer {
 
     private String getDateLabel(ArrayList<Calendar> daysOfWeek, int num) {
         Calendar calendar = daysOfWeek.get(num);
-        return "[" + calendar.get(Calendar.DAY_OF_MONTH) + "-"
-                + (calendar.get(Calendar.MONTH) + 1) + "]";
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        return "[" + dateTimeParser.parseTime(calendar) + "]";
     }
 }

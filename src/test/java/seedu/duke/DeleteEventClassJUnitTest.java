@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteEventClassJUnitTest {
 
-    //@Test
+    @Test
     void addClassToList() throws EmptyParameterException, MissingParameterException {
         ArrayList<Event> classes = new ArrayList<>();
         EventClassManager eventClassManager = new EventClassManager(classes);

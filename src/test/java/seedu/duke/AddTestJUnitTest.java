@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AddTestJUnitTest {
 
-    //@Test
+    @Test
     void addTestToList() throws MissingParameterException, EmptyParameterException {
         ArrayList<Event> test = new ArrayList<>();
         EventTestManager eventTestManager = new EventTestManager(test);

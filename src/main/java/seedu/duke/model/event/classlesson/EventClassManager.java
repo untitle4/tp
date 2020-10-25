@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
@@ -103,27 +104,13 @@ public class EventClassManager extends EventDataManager {
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
         try {
-            Date startDate = sdf.parse(classStartDate);
-            Date endDate = sdf.parse(classEndDate);
-            Calendar startCalendar = Calendar.getInstance();
-            startCalendar.setTime(startDate);
-            Calendar endCalendar = Calendar.getInstance();
-            endCalendar.setTime(endDate);
+            DateTimeParser dateTimeParser = new DateTimeParser();
+            Calendar startCalendar = dateTimeParser.convertStringToCalendar(classStartDate);
+            Calendar endCalendar = dateTimeParser.convertStringToCalendar(classEndDate);
             classes.add(new EventClass(classDescription, startCalendar, endCalendar));
-        } catch (ParseException parseException) {
-            parseException.printStackTrace();
-        }
-        // Checking and converting user's date-time input into format of expected output
-        /*try {
-            LocalDateTime.parse(classStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            LocalDateTime.parse(classEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            classes.add(new EventClass(classDescription, classStartDate, classEndDate));
-            logger.log(Level.INFO, "adding the new class to the ArrayList");
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
-            return;
-        }*/
-
+        }
         userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
                 classes.get(getClassListSize() - 1).toString());
         getClassStatement();

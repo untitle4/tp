@@ -1,5 +1,6 @@
 package seedu.duke.model.event.tuition;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
@@ -73,8 +74,9 @@ public class EventTuitionManager extends EventDataManager {
         }
 
         try {
-            Calendar startCalendar = parseLocalDateTime(start);
-            Calendar endCalendar = parseLocalDateTime(end);
+            DateTimeParser dateTimeParser = new DateTimeParser();
+            Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+            Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
             EventTuition eventTuition = new EventTuition(description, startCalendar,
                     endCalendar, location);
@@ -153,18 +155,5 @@ public class EventTuitionManager extends EventDataManager {
 
     private boolean isEmptyString(String string) {
         return string.equals("");
-    }
-
-    private Calendar parseLocalDateTime(String localDateTimeString) {
-        LocalDateTime.parse(localDateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        Calendar calendar = Calendar.getInstance();
-        try {
-            Date date = sdf.parse(localDateTimeString);
-            calendar.setTime(date);
-        } catch (ParseException parseException) {
-            parseException.printStackTrace();
-        }
-        return calendar;
     }
 }

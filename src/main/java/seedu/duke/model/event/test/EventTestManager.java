@@ -1,5 +1,6 @@
 package seedu.duke.model.event.test;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
@@ -76,27 +77,15 @@ public class EventTestManager extends EventDataManager {
             throw new EmptyParameterException();
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
         try {
-            Date startDate = sdf.parse(testStartDate);
-            Date endDate = sdf.parse(testEndDate);
-            Calendar startCalendar = Calendar.getInstance();
-            startCalendar.setTime(startDate);
-            Calendar endCalendar = Calendar.getInstance();
-            endCalendar.setTime(endDate);
+            DateTimeParser dateTimeParser = new DateTimeParser();
+            Calendar startCalendar = dateTimeParser.convertStringToCalendar(testStartDate);
+            Calendar endCalendar = dateTimeParser.convertStringToCalendar(testEndDate);
             tests.add(new EventTest(testDescription, startCalendar, endCalendar));
-        } catch (ParseException parseException) {
-            parseException.printStackTrace();
-        }
-        /*try {
-            LocalDateTime.parse(testStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            LocalDateTime.parse(testEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            tests.add(new EventTest(testDescription, testStartDate, testEndDate));
         } catch (DateTimeParseException e) {
-            logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
-            return;
-        }*/
+        }
+
         logger.log(Level.INFO, "added test to ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,

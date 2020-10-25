@@ -78,6 +78,49 @@ public class DateTimeParser {
         }
     }
 
+    public String parseTime(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mma");
+        return sdf.format(calendar.getTime());
+    }
+
+    public String parseDayAndMonth(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-yyyy");
+        return sdf.format(calendar.getTime());
+    }
+
+    public Calendar convertStringToCalendar(String string) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        Calendar calendar = Calendar.getInstance();
+        try {
+            Date date = sdf.parse(string);
+            calendar.setTime(date);
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+        }
+        return calendar;
+    }
+
+    public String convertCalendarToString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
+
+        return sdf.format(calendar.getTime());
+    }
+
+    public String obtainFormattedDateTimeString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM yyyy, hh:mma");
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        String dayOfMonthString = dayOfMonth + getDayNumberSuffix(dayOfMonth);
+        String monthAndYearString = sdf.format(calendar.getTime());
+
+        return dayOfMonthString + " " + monthAndYearString;
+    }
+
+    public String obtainFormattedDateString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy, hh:mma");
+
+        return sdf.format(calendar.getTime());
+    }
+
     public boolean isDateEqual(Calendar listInput, Calendar userInput) throws DateTimeParseException {
         /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         int listDay = LocalDate.parse(listInput, formatter).getDayOfMonth();
