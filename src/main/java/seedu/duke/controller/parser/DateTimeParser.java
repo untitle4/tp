@@ -89,6 +89,12 @@ public class DateTimeParser {
         return sdf.format(calendar.getTime());
     }
 
+    public String obtainFormattedDayAndMonthString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM");
+
+        return sdf.format(calendar.getTime());
+    }
+
     public boolean isDateEqual(Calendar listInput, Calendar userInput) throws DateTimeParseException {
         int listDay = listInput.get(Calendar.DAY_OF_MONTH);
         int userDay = userInput.get(Calendar.DAY_OF_MONTH);

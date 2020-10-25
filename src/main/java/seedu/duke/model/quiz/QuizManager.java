@@ -7,15 +7,11 @@ import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
-import seedu.duke.model.quiz.UserAnswerManager;
-import seedu.duke.model.quiz.Quiz;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.Collections;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class QuizManager extends ModelManager implements QuizInteractable {
@@ -24,6 +20,9 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     private final ArrayList<Quiz> quizzes;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     public static int noOfQues;
+    public static String correctnessLogo;
+    public static ArrayList<Integer> quizIndexes = new ArrayList<Integer>();
+
     private final UserInterface userInterface;
 
     public QuizManager(ArrayList<Quiz> quizzes) {
@@ -67,7 +66,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                 if (noOfQues <= getQuizListSize()) {
 
                     // Create a new list of the question indexes
-                    List<Integer> quizIndexes = new ArrayList<>();
+                    quizIndexes = new ArrayList<>();
                     for (int i = 0; i < quizzes.size(); i++) {
                         quizIndexes.add(i);
                     }
@@ -75,18 +74,11 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                     // Shuffle the question indexes
                     Collections.shuffle(quizIndexes);
 
-                    // Print out each question
-                    for (int j = 0; j < noOfQues; j++) {
-                        System.out.println();
-                        System.out.println("Question " + (j + 1) + ": ");
-                        System.out.println(quizzes.get(quizIndexes.get(j)).printQuizQuestion());
+                    //TODO handle input: "quiz abc"
 
-                        // Create a Scanner object
-                        Scanner in = new Scanner(System.in);
-
-                        // Store user's quiz answers into ArrayList
-                        //TODO handle invalid answer input
-                        userAnswerManager.getUserAnswers().add(Integer.parseInt(in.nextLine()));
+                    int questionCounter = 0;
+                    while (questionCounter < noOfQues) {
+                        questionCounter = testForValidInput(questionCounter);
                     }
 
                     // Initialising counter for correctly answered questions
@@ -102,9 +94,24 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                         }
                     }
 
-                    // TODO Print results, questions, user's answers, correct answers and explanations
-                    System.out.println("\nYou scored " + correctCounter + " out of " + noOfQues + "!\n");
+                    for (int l = 0; l < noOfQues; l++) {
 
+                        // Assigning the correctness logo to be printed with questions post-quiz
+                        if (userAnswerManager.getCorrectness().get(l).equals(true)) {
+                            correctnessLogo = " [CORRECT ☺︎]";
+                        } else {
+                            correctnessLogo = " [WRONG ☹︎]";
+                        }
+
+                        // Print out all quiz questions, user's answers, correctness, correct answers and explanations
+                        System.out.println("Question " + (l + 1) + ": ");
+                        System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
+                                .getUserAnswers().get(l), correctnessLogo));
+                    }
+
+                    // Print out quiz score
+                    System.out.println("You scored " + correctCounter + " out of " + noOfQues + "! "
+                            + "Scroll up to review your quiz.\n");
 
                     // Empty userAnswers ArrayList and correctness ArrayList
                     userAnswerManager.getUserAnswers().clear();
@@ -115,6 +122,35 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             userInterface.showToUser(Messages.MESSAGE_INVALID_HELP_COMMAND);
         }
     }
+
+    //@@author elizabethcwt
+    public int testForValidInput(int questionCounter) {
+        // Print out each question
+        System.out.println();
+        System.out.println("Question " + (questionCounter + 1) + ": ");
+        System.out.print(quizzes.get(quizIndexes.get(questionCounter)).printQuizQuestion());
+
+        // Create a Scanner object
+        Scanner in = new Scanner(System.in);
+        String userInput = in.nextLine();
+        userInput.replaceAll("\\s+", "");
+
+        if (userInput.equals("")) {
+            System.out.println("OOPS! Please enter your answer for the question above!\n");
+        } else if (userInput.equals("1") || userInput.equals("2") || userInput.equals("3") || userInput.equals("4")) {
+
+            // Store user's quiz answers into ArrayList
+            userAnswerManager.getUserAnswers().add(Integer.parseInt(userInput));
+
+
+            questionCounter++;
+            return questionCounter;
+        } else {
+            System.out.println("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
+        }
+        return questionCounter;
+    }
+
 
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
