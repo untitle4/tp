@@ -148,6 +148,6 @@ public class CalendarWeekRenderer {
     private String getDateLabel(ArrayList<Calendar> daysOfWeek, int num) {
         Calendar calendar = daysOfWeek.get(num);
         DateTimeParser dateTimeParser = new DateTimeParser();
-        return "[" + dateTimeParser.parseTime(calendar) + "]";
+        return "[" + dateTimeParser.obtainFormattedDayAndMonthString(calendar) + "]";
     }
 }
