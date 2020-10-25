@@ -1,5 +1,6 @@
 package seedu.duke.model.event;
 
+import seedu.duke.common.LogManager;
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelMain;
@@ -15,6 +16,8 @@ import seedu.duke.exception.EmptyListException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //@@author AndreWongZH
 /**
@@ -30,6 +33,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     private static EventCcaManager eventCcaManager;
     private static EventTuitionManager eventTuitionManager;
     private final UserInterface userInterface;
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public EventManager(EventParameter eventParameter) {
         eventClassManager = new EventClassManager(eventParameter.getClasses());
@@ -120,8 +124,17 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
-    //@@author Aliciaho
+    /**
+     * Adds the relevant events whose date correspond to the date inputted in an ArrayList</Event>.
+     *
+     * @param masterList ArrayList containing all the events
+     * @param date Date inputted to filter out the corresponding events
+     * @return result ArrayList contain the relevant events for that date
+     * //@@author Aliciaho
+    */
     private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, Calendar date) {
+        assert masterList.size() >= 0;
+        assert date != null;
         DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> result = new ArrayList<>();
 
@@ -135,13 +148,20 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
-    //@@author Aliciaho
+    /**
+     * Adds all the ccas, classes, tests and tuitions into one Master ArrayList.
+     *
+     * @return masterList ArrayList containing all the events
+     * //@@author Aliciaho
+     */
     public ArrayList<Event> getEventMasterList() {
+        logger.log(Level.INFO, "getting all ccas, classes, tests and tuitions");
         ArrayList<Event> ccas = eventCcaManager.getCcas();
         ArrayList<Event> tests = eventTestManager.getTests();
         ArrayList<Event> classes = eventClassManager.getClasses();
         ArrayList<Event> tuitions = eventTuitionManager.getTuitions();
 
+        logger.log(Level.INFO, "adding all ccas, classes, tests and tuitions");
         ArrayList<Event> masterList = new ArrayList<>(ccas);
         masterList.addAll(tests);
         masterList.addAll(classes);

@@ -7,7 +7,6 @@ import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
-import seedu.duke.model.event.classlesson.EventClassManager;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
@@ -21,6 +20,24 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * <h2>TestManager test</h2>
+ * Stores user's tests in an ArrayList of Event Test, named tests.
+ * <br><br>
+ * Contains methods which allow:
+ * <ul>
+ *     <li>Attaining test list size</li>
+ *     <li>Adding new tests into ArrayList</li>
+ *     <li>Deleting tests from ArrayList</li>
+ *     <li>Setting tests as {@code DONE}</li>
+ * </ul>
+ *
+ * @see EventTestManager#getTestListSize()
+ * @see EventTestManager#add(String)
+ * @see EventTestManager#delete(String[])
+ * @see EventTestManager#getTaskStatement()
+ * @see EventTestManager#setDone(String[])
+ */
 public class EventTestManager extends EventDataManager {
     private final ArrayList<Event> tests;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
@@ -83,6 +100,7 @@ public class EventTestManager extends EventDataManager {
             Calendar endCalendar = dateTimeParser.convertStringToCalendar(testEndDate);
             tests.add(new EventTest(testDescription, startCalendar, endCalendar));
         } catch (DateTimeParseException e) {
+            logger.log(Level.WARNING, "invalid date time inputted");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         }
         logger.log(Level.INFO, "added test to ArrayList");
@@ -120,8 +138,10 @@ public class EventTestManager extends EventDataManager {
             logger.log(Level.WARNING, "wrong number format entered");
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NON_NUMBER);
         } catch (ArrayIndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "no number was given");
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NO_NUMBER_GIVEN);
         } catch (IndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "wrong index inputted");
             userInterface.showToUser(Messages.MESSAGE_INVALID_TEST_INDEX);
         }
     }
@@ -159,6 +179,7 @@ public class EventTestManager extends EventDataManager {
             userInterface.showToUser(Messages.MESSAGE_TEST_DONE_ERROR_NON_NUMBER);
             return;
         } catch (ArrayIndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "no number was given");
             userInterface.showToUser(Messages.MESSAGE_TEST_DONE_ERROR_NO_NUMBER_GIVEN);
             return;
         }

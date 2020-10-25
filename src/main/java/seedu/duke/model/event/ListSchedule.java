@@ -96,7 +96,11 @@ public class ListSchedule {
         return (!haveClasses() && !haveCcas() && !haveTests() && !haveTuitions());
     }
 
-    //@@author Aliciaho
+    /**
+     * If the user input contains today/week, get the date for today
+     * @return resultCalender Calendar containing today's date
+     * //@@author Aliciaho
+    */
     private Calendar checkAndConvertToday() {
         Calendar resultCalendar = null;
         if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
@@ -111,6 +115,7 @@ public class ListSchedule {
      * EventArr cannot be empty or null.
      *
      * @param eventArr Array list of event instances to be converted.
+     * @return printedEvents Array list containing the relevant events in correct output format
      * //@@author Aliciaho
      */
     private ArrayList<String> parseEventWithNumberPad(ArrayList<Event> eventArr) {
