@@ -105,7 +105,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                         // Print out all quiz questions, user's answers, correctness, correct answers and explanations
                         System.out.println("Question " + (l + 1) + ": ");
                         System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
-                                .getUserAnswers().get(l)));
+                                .getUserAnswers().get(l), correctnessLogo));
                     }
 
                     // Print out quiz score
