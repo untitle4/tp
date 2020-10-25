@@ -22,6 +22,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 9;
     private final ArrayList<Quiz> quizzes;
+    private ArrayList<Quiz> lastIncorrectQuizzes = new ArrayList<>();
+    private ArrayList<Integer> lastIncorrectAnswers = new ArrayList<>();
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     public static int noOfQues;
     private final UserInterface userInterface;
@@ -91,6 +93,9 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
                     // Initialising counter for correctly answered questions
                     int correctCounter = 0;
+                    // Clear arraylist to store incorrect quizzes
+                    lastIncorrectQuizzes.clear();
+                    lastIncorrectAnswers.clear();
                     // Compare and note if students' answers are correct
                     for (int k = 0; k < noOfQues; k++) {
                         if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt(quizzes.get(quizIndexes
@@ -99,6 +104,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                             correctCounter++;
                         } else {
                             userAnswerManager.getCorrectness().add(false);
+                            lastIncorrectQuizzes.add(quizzes.get(quizIndexes.get(k)));
+                            lastIncorrectAnswers.add(userAnswerManager.getUserAnswers().get(k));
                         }
                     }
 
@@ -109,6 +116,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                     // Empty userAnswers ArrayList and correctness ArrayList
                     userAnswerManager.getUserAnswers().clear();
                     userAnswerManager.getCorrectness().clear();
+
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -116,6 +124,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
+    //@@author untitle4
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int quizIndex;
@@ -181,6 +190,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userInterface.showToUser("Quiz question added!\n");
     }
 
+    //@@author untitle4
     @Override
     public void find(String userInput) throws MissingParameterException {
         String param = userInput.substring(USER_INPUT_OFFSET).trim();
@@ -198,6 +208,23 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
 
         userInterface.printArray(filteredQuizzes);
+    }
+
+    public void recordedQuizzes() {
+        if (lastIncorrectQuizzes.size() == 0) {
+            userInterface.showToUser("Congratulations! You get full marks in your last attempt!");
+        } else {
+            userInterface.showToUser("Here are the incorrect quizzes in your last quiz attempt:\n");
+            for (int i = 0; i < lastIncorrectQuizzes.size(); i++) {
+                userInterface.showToUser(lastIncorrectQuizzes.get(i).printQuizQuestion());
+                userInterface.showToUser("Your answer: (" + lastIncorrectAnswers.get(i) + ")");
+                userInterface.showToUser("Correct answer: (" + lastIncorrectQuizzes.get(i).getAnswer() + ")\n");
+                if (!lastIncorrectQuizzes.get(i).getExplanation().equals("")) {
+                    userInterface.showToUser("Explanation: " + lastIncorrectQuizzes.get(i).getExplanation() + "\n");
+                }
+            }
+        }
+
     }
 
     @Override

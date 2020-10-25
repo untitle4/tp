@@ -16,6 +16,10 @@ public class QuizCommand extends Command {
         QuizManager quizManager = (QuizManager) modelMain;
         assert userInput != null;
         String[] separatedInputs = userInput.trim().split(INPUT_SPACE);
-        quizManager.takeQuiz(separatedInputs);
+        if (separatedInputs[1].equals("record")) {
+            quizManager.recordedQuizzes();
+        } else {
+            quizManager.takeQuiz(separatedInputs);
+        }
     }
 }
