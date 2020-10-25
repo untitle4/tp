@@ -19,8 +19,4 @@ public class UserAnswerManager {
     public ArrayList<Boolean> getCorrectness() {
         return correctness;
     }
-
-    //  public String printPostQuiz() {
-    //
-    //  }
 }
