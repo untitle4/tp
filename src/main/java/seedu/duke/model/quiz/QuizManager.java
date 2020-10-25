@@ -104,8 +104,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
                         // Print out all quiz questions, user's answers, correctness, correct answers and explanations
                         System.out.println("Question " + (l + 1) + ": ");
-                        System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager.
-                                getUserAnswers().get(l)));
+                        System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
+                                .getUserAnswers().get(l)));
                     }
 
                     // Print out quiz score
@@ -157,10 +157,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
         try {
             quizIndex = Integer.parseInt(userInputs[2]);
-        } catch (NumberFormatException e) {
-            userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
-            return;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
             return;
         }
