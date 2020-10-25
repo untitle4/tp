@@ -100,16 +100,16 @@ public class Quiz {
                     + "(2) " + option2 + "\n"
                     + "(3) " + option3 + "\n"
                     + "(4) " + option4 + "\n\n"
-                    + "Your answer: " + l + "\n"
-                    + "Correct answer: " + answer + "\n\n";
+                    + "Your answer: (" + l + ")\n"
+                    + "Correct answer: (" + answer + ")\n\n";
         } else {
             return question + correctnessLogo + "\n\n"
                     + "(1) " + option1 + "\n"
                     + "(2) " + option2 + "\n"
                     + "(3) " + option3 + "\n"
                     + "(4) " + option4 + "\n\n"
-                    + "Your answer: " + l + "\n"
-                    + "Correct answer: " + answer + "\n"
+                    + "Your answer: (" + l + ")\n"
+                    + "Correct answer: (" + answer + ")\n"
                     + "Explanation: " + explanation + "\n";
         }
     }

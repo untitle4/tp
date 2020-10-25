@@ -24,6 +24,11 @@ public class QuizListDecoder {
         String option4 = data[4];
         String answer = data[5];
 
+        if (data.length > 6) {
+            String explanation = data[6];
+            return new Quiz(question, option1, option2, option3, option4, answer, explanation);
+        }
+
         return new Quiz(question, option1, option2, option3, option4, answer);
     }
 }
