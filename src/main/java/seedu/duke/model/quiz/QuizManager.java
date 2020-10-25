@@ -20,8 +20,9 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     private final ArrayList<Quiz> quizzes;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     public static int noOfQues;
+    public static String correctnessLogo;
     public static ArrayList<Integer> quizIndexes = new ArrayList<Integer>();
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+
     private final UserInterface userInterface;
 
     public QuizManager(ArrayList<Quiz> quizzes) {
@@ -157,7 +158,10 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
         try {
             quizIndex = Integer.parseInt(userInputs[2]);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (NumberFormatException e) {
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
+            return;
+        } catch (IndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
             return;
         }
