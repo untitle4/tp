@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.StorageSeparatorException;
 import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
@@ -8,7 +9,10 @@ import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
+//@@author durianpancakes
 public class EventListDecoder {
     public EventListDecoder() {
     }
@@ -52,9 +56,11 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
-        isValidParams(description, start, end);
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
-        return new EventCca(description, isDone, start, end);
+        return new EventCca(description, isDone, startCalendar, endCalendar);
     }
 
     private EventClass parseClass(String[] data) throws StorageSeparatorException {
@@ -71,9 +77,11 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
-        isValidParams(description, start, end);
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
-        return new EventClass(description, isDone, start, end);
+        return new EventClass(description, isDone, startCalendar, endCalendar);
     }
 
     private EventTest parseTest(String[] data) throws StorageSeparatorException {
@@ -90,9 +98,11 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
-        isValidParams(description, start, end);
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
-        return new EventTest(description, isDone, start, end);
+        return new EventTest(description, isDone, startCalendar, endCalendar);
     }
 
     private EventTuition parseTuition(String[] data) throws StorageSeparatorException {
@@ -110,23 +120,11 @@ public class EventListDecoder {
         String end = eventInfo[2];
         String location = eventInfo[3];
 
-        isValidTuition(description, start, end, location);
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
-        return new EventTuition(description, isDone, start, end, location);
-    }
 
-    private void isValidParams(String description, String start, String end) {
-        assert description != null;
-        assert !description.equals("");
-        assert start != null;
-        assert !start.equals("");
-        assert end != null;
-        assert !end.equals("");
-    }
-
-    private void isValidTuition(String description, String start, String end, String location) {
-        isValidParams(description, start, end);
-        assert location != null;
-        assert !location.equals("");
+        return new EventTuition(description, isDone, startCalendar, endCalendar, location);
     }
 }

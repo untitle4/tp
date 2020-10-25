@@ -1,23 +1,29 @@
 package seedu.duke.model.event.cca;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class EventCcaManager extends EventDataManager {
     private final ArrayList<Event> ccas;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
     public EventCcaManager(ArrayList<Event> inputList) {
@@ -58,13 +64,12 @@ public class EventCcaManager extends EventDataManager {
         }
 
         try {
-            LocalDateTime.parse(ccaStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            LocalDateTime.parse(ccaEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            ccas.add(new EventCca(ccaDescription, ccaStartDate, ccaEndDate));
+            DateTimeParser dateTimeParser = new DateTimeParser();
+            Calendar startCalendar = dateTimeParser.convertStringToCalendar(ccaStartDate);
+            Calendar endCalendar = dateTimeParser.convertStringToCalendar(ccaEndDate);
+            ccas.add(new EventCca(ccaDescription, startCalendar, endCalendar));
         } catch (DateTimeParseException e) {
-            logger.log(Level.WARNING, "date&time is not valid or in wrong format");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
-            return;
         }
         logger.log(Level.INFO, "added cca to ArrayList");
 
@@ -76,37 +81,22 @@ public class EventCcaManager extends EventDataManager {
 
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
-        int ccaIndex = 0;
+        int ccaIndex;
 
         try {
             ccaIndex = Integer.parseInt(userInputs[2]);
+            userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_SUCCESS,
+                    ccas.get(ccaIndex - 1).toString());
+            ccas.remove(ccaIndex - 1);
+            getCcaStatement();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NO_NUMBER_GIVEN);
+            logger.log(Level.WARNING, "absence of class index for deletion");
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NON_NUMBER);
-            return;
         } catch (IndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NO_NUMBER_GIVEN);
-            return;
+            userInterface.showToUser(Messages.MESSAGE_INVALID_CLASS_INDEX);
         }
-
-        if ((ccaIndex <= 0) || (ccaIndex > getCcaListSize())) {
-            throw new IndexOutOfBoundsException();
-        }
-
-        userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_SUCCESS,
-                ccas.get(ccaIndex - 1).toString());
-
-        ccas.remove(ccaIndex - 1);
-        getCcaStatement();
-    }
-
-    @Override
-    public void list() {
-
-    }
-
-    @Override
-    public void find(String userInput) throws MissingParameterException {
-
     }
 
     @Override

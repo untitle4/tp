@@ -4,16 +4,17 @@ import seedu.duke.model.event.Event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 
-import java.text.ParseException;
+import java.util.Calendar;
 
+//@@author untitle4
 public class EventCca extends Event {
     public static final String CCA_ICON = "[CCA]";
 
-    public EventCca(String description, String start, String end) {
+    public EventCca(String description, Calendar start, Calendar end) {
         super(description, start, end);
     }
 
-    public EventCca(String description, boolean isDone, String start, String end) {
+    public EventCca(String description, boolean isDone, Calendar start, Calendar end) {
         super(description, start, end, isDone);
     }
 
@@ -25,13 +26,10 @@ public class EventCca extends Event {
     @Override
     public String toString() {
         String result = "";
-        try {
-            result = CCA_ICON + " " + super.toString() + " from "
-                    + new DateTimeParser().changeDateTime(super.getStart())
-                    + " to " + new DateTimeParser().changeDateTime(super.getEnd());
-        } catch (ParseException parseException) {
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
-        }
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        result = CCA_ICON + " " + super.toString() + " from "
+                + dateTimeParser.obtainFormattedDateTimeString(this.getStart())
+                + " to " + dateTimeParser.obtainFormattedDateTimeString(this.getEnd());
         return result;
     }
 

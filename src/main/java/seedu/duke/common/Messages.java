@@ -3,6 +3,7 @@ package seedu.duke.common;
 import seedu.duke.model.quiz.QuizManager;
 
 public class Messages {
+    //@@author durianpancakes
     // Intro related messages
     public static final String MESSAGE_LOGO = " ------   -                          -----\n"
             + "|   _  | | |                        | ____|\n"
@@ -12,6 +13,7 @@ public class Messages {
             + "|  ----  | | | | | |   | | | |       ___| | | |      | | | | | /     |  ___|\n"
             + "| |      | | | |_|  \\  | | | |      |     | | |____  | |_| | | |     | |____\n"
             + "|_|      |_| \\____/\\_\\ |_| |_|      |_____| |______| \\_____/ |_|     \\_____/";
+    //@@author
     public static final String MESSAGE_HELLO_FROM_DUKE = "Hello from\n"
             + Messages.MESSAGE_LOGO;
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
@@ -21,19 +23,27 @@ public class Messages {
     public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is empty. Add some!";
 
     // General error messages
+    //@@author durianpancakes
     public static final String MESSAGE_STORAGE_READ_ERROR = "There was an error loading your files.";
     public static final String MESSAGE_STORAGE_INITIALIZATION_ERROR = "STORAGE: There was an error";
+    public static final String MESSAGE_STORAGE_CORRUPTED = "): Storage file corrupted. "
+            + "Please delete your data directory and relaunch.";
+    public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
+            + "You can either 'list event' or 'list quiz'";
+    //@@author AndreWongZH
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
+    //@@author elizabethcwt
     public static final String MESSAGE_MISSING_PARAMETERS = "☹ OOPS!!! "
             + "Remember to include ALL '/n', '/s' and '/e' inputs!";
     public static final String MESSAGE_EMPTY_PARAMETERS = "☹ OOPS!!! Ensure ALL parameters are filled up!";
     public static final String MESSAGE_INVALID_DATE = "☹ OOPS!!! "
             + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
-    public static final String MESSAGE_STORAGE_CORRUPTED = "): Storage file corrupted. "
-            + "Please delete your data directory and relaunch.";
-    public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
-            + "You can either 'list event' or 'list quiz'";
+    public static final String MESSAGE_INVALID_COMMAND = "☹ Oops! I did not recognize that command! "
+            + "Enter 'help' if needed!";
+    public static final String MESSAGE_INVALID_MODEL = "☹ Oops! I did not recognize that model type! "
+            + "Enter 'help' if needed!";
 
+    //@@author durianpancakes
     // Messages from CalendarWeekRenderer
     public static final String MESSAGE_MONDAY_LABEL = "[MON]";
     public static final String MESSAGE_TUESDAY_LABEL = "[TUE]";
@@ -43,6 +53,7 @@ public class Messages {
     public static final String MESSAGE_SATURDAY_LABEL = "[SAT]";
     public static final String MESSAGE_SUNDAY_LABEL = "[SUN]";
 
+    //@@author untitle4
     // Messages from Contact related classes
     public static final String MESSAGE_SUBJECT_NOT_FOUND = "Subject not found";
     public static final String MESSAGE_NAME_NOT_FOUND = "Name not found";
@@ -57,6 +68,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_CONTACT_INDEX = "☹ OOPS!!! Please indicate a valid contact index!";
     public static final String MESSAGE_EMPTY_CONTACT_LIST = "Contact list is empty. Add some!!";
 
+    //@@author elizabethcwt
     // Messages from Class related classes
     public static final String MESSAGE_CLASS_ADD_SUCCESS = "Got it. I've added this class: ";
     public static final String MESSAGE_CLASS_DELETE_SUCCESS = "Noted. I've removed this class: ";
@@ -71,6 +83,7 @@ public class Messages {
             + "Please indicate which class you'd like to set as Done!";
     public static final String MESSAGE_INVALID_CLASS_INDEX = "☹ OOPS!!! Please indicate a valid class index!";
 
+    //@@author untitle4
     // Messages from Cca related classes
     public static final String MESSAGE_CCA_ADD_SUCCESS = "Got it. I've added this cca: ";
     public static final String MESSAGE_CCA_DELETE_SUCCESS = "Noted. I've removed this cca: ";
@@ -85,6 +98,7 @@ public class Messages {
             + "Please indicate which cca you'd like to set as Done!";
     public static final String MESSAGE_INVALID_CCA_INDEX = "☹ OOPS!!! Please indicate a valid cca index!";
 
+    //@@author Aliciaho
     // Messages from Test related classes
     public static final String MESSAGE_TEST_ADD_SUCCESS = "Got it. I've added this test: ";
     public static final String MESSAGE_TEST_DELETE_SUCCESS = "Noted. I've removed this test: ";
@@ -99,6 +113,7 @@ public class Messages {
             + "Please indicate which test you'd like to set as Done!";
     public static final String MESSAGE_INVALID_TEST_INDEX = "☹ OOPS!!! Please indicate a valid test index!";
 
+    //@@author durianpancakes
     // Messages from Tuition related classes
     public static final String MESSAGE_MISSING_TUITION_SUFFIX = "☹ OOPS!!! "
             + "Remember to include ALL '/n', '/s', '/e', '/l' suffixes!";
@@ -117,6 +132,7 @@ public class Messages {
             + "Please indicate which tuition you'd like to set as Done!";
     public static final String MESSAGE_INVALID_TUITION_INDEX = "☹ OOPS!!! Please indicate a valid tuition index!";
 
+    //@@author elizabethcwt
     // Messages from Quiz related classes
     public static final String MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! Please indicate in NUMERALS, "
             + "which quiz you'd like to delete!\n";
@@ -155,10 +171,11 @@ public class Messages {
             + "\t16. Delete contact: 'delete contact [contact number]'\n"
             + "\t17. List contact: 'list contact'\n\n"
             + "\t18. Take Mathematics quiz: 'quiz [no. of questions (10, 20 or 30)]'\n"
-            + "\t19. List quiz questions: 'list quiz'\n"
-            + "\t20. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
-            + " /o4 [option 4] /a [option answer] /exp [explanation]'\n\n"
-            + "\t21. Exit program: 'bye'\n\n"
+            + "\t19. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
+            + " /o4 [option 4] /a [option answer] /exp [explanation]'\n"
+            + "\t20. Delete quiz question: 'delete quiz [question number]'\n"
+            + "\t21. List quiz questions: 'list quiz'\n\n"
+            + "\t22. Exit program: 'bye'\n\n"
             + "\n\tNOTE:\n\t1. Please enter the date-time in the following format: YYYY-MM-DD "
             + "[time in 24hr format]\n\te.g. 2020-08-19 1300\n\n"
             + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n";

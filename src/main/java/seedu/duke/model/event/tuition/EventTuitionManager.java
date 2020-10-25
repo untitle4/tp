@@ -1,23 +1,30 @@
 package seedu.duke.model.event.tuition;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author durianpancakes
 public class EventTuitionManager extends EventDataManager {
     private final ArrayList<Event> tuitions;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
     public EventTuitionManager(ArrayList<Event> tuitions) {
@@ -67,10 +74,12 @@ public class EventTuitionManager extends EventDataManager {
         }
 
         try {
-            parseLocalDateTime(start);
-            parseLocalDateTime(end);
+            DateTimeParser dateTimeParser = new DateTimeParser();
+            Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+            Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
-            EventTuition eventTuition = new EventTuition(description, start, end, location);
+            EventTuition eventTuition = new EventTuition(description, startCalendar,
+                    endCalendar, location);
             tuitions.add(eventTuition);
             logger.log(Level.INFO, "Tuition added successfully");
             userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
@@ -86,9 +95,6 @@ public class EventTuitionManager extends EventDataManager {
         try {
             // Tries to convert classIndex user input into an integer
             int tuitionIndex = Integer.parseInt(userInputs[2]);
-
-            // Assertion to test assumption that classIndex should be a positive integer
-            assert tuitionIndex > 0 : "tuitionIndex should be a positive integer";
 
             // Just to test if class index is valid - for exception use only
             tuitions.get(tuitionIndex - 1);
@@ -107,16 +113,6 @@ public class EventTuitionManager extends EventDataManager {
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_TUITION_DELETE_ERROR_NON_NUMBER);
         }
-    }
-
-    @Override
-    public void list() {
-
-    }
-
-    @Override
-    public void find(String userInput) throws MissingParameterException {
-
     }
 
     @Override
@@ -159,9 +155,5 @@ public class EventTuitionManager extends EventDataManager {
 
     private boolean isEmptyString(String string) {
         return string.equals("");
-    }
-
-    private LocalDateTime parseLocalDateTime(String localDateTimeString) {
-        return LocalDateTime.parse(localDateTimeString, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 }

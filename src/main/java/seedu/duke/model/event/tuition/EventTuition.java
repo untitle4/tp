@@ -4,13 +4,14 @@ import seedu.duke.model.event.Event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 
-import java.text.ParseException;
+import java.util.Calendar;
 
+//@@author durianpancakes
 public class EventTuition extends Event {
     public static final String TUITION_ICON = "[TUITION]";
     private final String location;
 
-    public EventTuition(String description, String start, String end, String location) {
+    public EventTuition(String description, Calendar start, Calendar end, String location) {
         super(description, start, end);
         this.location = location;
     }
@@ -20,7 +21,7 @@ public class EventTuition extends Event {
         return TUITION_ICON;
     }
 
-    public EventTuition(String description, boolean isDone, String start, String end, String location) {
+    public EventTuition(String description, boolean isDone, Calendar start, Calendar end, String location) {
         super(description, start, end, isDone);
         this.location = location;
     }
@@ -32,13 +33,11 @@ public class EventTuition extends Event {
     @Override
     public String toString() {
         String result = "";
-        try {
-            result = TUITION_ICON + " " + super.toString() + " from "
-                    + new DateTimeParser().changeDateTime(super.getStart())
-                    + " to " + new DateTimeParser().changeDateTime(super.getEnd()) + " at " + getLocation();
-        } catch (ParseException e) {
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd HHMM!");
-        }
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        result = TUITION_ICON + " " + super.toString() + " from "
+                + dateTimeParser.obtainFormattedDateTimeString(this.getStart())
+                + " to " + dateTimeParser.obtainFormattedDateTimeString(this.getEnd())
+                + " at " + this.location;
         return result;
     }
 

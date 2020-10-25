@@ -6,9 +6,11 @@ import seedu.duke.controller.parser.DateTimeParser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author AndreWongZH
 public class ListSchedule {
     private final ArrayList<Event> classes;
     private final ArrayList<Event> ccas;
@@ -21,9 +23,10 @@ public class ListSchedule {
     private static final String CATEGORY_CCAS = "CCAs: ";
 
     private final DateTimeParser dateTimeParser = new DateTimeParser();
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
-    private String userInput;
+    private final String userInput;
+    private Calendar inputCalendar;
 
     public ListSchedule(String userInput, ArrayList<Event> classes, ArrayList<Event> ccas,
                         ArrayList<Event> tests, ArrayList<Event> tuitions) {
@@ -42,7 +45,7 @@ public class ListSchedule {
         ArrayList<String> printedCcas;
         ArrayList<String> printedTuitions;
 
-        checkAndConvertToday();
+        inputCalendar = checkAndConvertToday();
 
         if (haveClasses()) {
             logger.log(Level.INFO, "converting class events");
@@ -73,7 +76,7 @@ public class ListSchedule {
         return printedEvents;
     }
 
-    public ArrayList<String> getPrintableEventsWeek() throws EmptyListException {
+    /*public ArrayList<String> getPrintableEventsWeek() throws EmptyListException {
         logger.log(Level.INFO, "starting to convert events instance to strings");
         ArrayList<Event> masterList = new ArrayList<>();
 
@@ -108,38 +111,18 @@ public class ListSchedule {
     }
 
     private ArrayList<String> getListWeek(ArrayList<Event> masterList) {
+        logger.log(Level.WARNING, "initialising list week");
         ArrayList<String> daysOfTheWeek = new ArrayList<>();
         ArrayList<String> dateArrayList = new ArrayList<>();
 
+        logger.log(Level.WARNING, "getting days of the current week");
         daysOfTheWeek = dateTimeParser.getDaysOfWeek();
 
+        logger.log(Level.WARNING, "getting relevant events in masterList");
         for (int i = 0; i < daysOfTheWeek.size(); i++) {
             int counter = 1;
-            switch (i) {
-            case 0:
-                dateArrayList.add("MONDAY:");
-                break;
-            case 1:
-                dateArrayList.add("TUESDAY:");
-                break;
-            case 2:
-                dateArrayList.add("WEDNESDAY:");
-                break;
-            case 3:
-                dateArrayList.add("THURSDAY:");
-                break;
-            case 4:
-                dateArrayList.add("FRIDAY:");
-                break;
-            case 5:
-                dateArrayList.add("SATURDAY:");
-                break;
-            case 6:
-                dateArrayList.add("SUNDAY:");
-                break;
-            default:
-                break;
-            }
+
+            checkAndConvertDayOfWeek(dateArrayList, i);
 
             for (int j = 0; j < masterList.size(); j++) {
                 String[] listDate = masterList.get(j).getStart().split(" ");
@@ -149,29 +132,57 @@ public class ListSchedule {
                 }
             }
 
+            logger.log(Level.WARNING, "removing unneeded days");
             dateArrayList = checkCounter(counter, dateArrayList);
         }
         return dateArrayList;
     }
 
+    private void checkAndConvertDayOfWeek(ArrayList<String> dateArrayList, int i) {
+        switch (i) {
+        case 0:
+            dateArrayList.add("MONDAY:");
+            break;
+        case 1:
+            dateArrayList.add("TUESDAY:");
+            break;
+        case 2:
+            dateArrayList.add("WEDNESDAY:");
+            break;
+        case 3:
+            dateArrayList.add("THURSDAY:");
+            break;
+        case 4:
+            dateArrayList.add("FRIDAY:");
+            break;
+        case 5:
+            dateArrayList.add("SATURDAY:");
+            break;
+        case 6:
+            dateArrayList.add("SUNDAY:");
+            break;
+        default:
+            break;
+        }
+    }
+
     private ArrayList<String> checkCounter(int counter, ArrayList<String> dateArrayList) {
+        logger.log(Level.WARNING, "checking if the day is unneeded");
         if (counter == 1) {
             dateArrayList.remove(dateArrayList.size() - 1);
         }
         return dateArrayList;
     }
 
+    
     private ArrayList<Event> getMasterList(ArrayList<Event> eventArr) {
         assert eventArr != null;
         assert eventArr.size() != 0;
-        ArrayList<Event> masterList = new ArrayList<>();
 
-        for (int i = 0; i < eventArr.size(); i++) {
-            masterList.add(eventArr.get(i));
-        }
+        logger.log(Level.WARNING, "adding to masterList");
 
-        return masterList;
-    }
+        return new ArrayList<>(eventArr);
+    }*/
 
     private boolean haveClasses() {
         return classes.size() != 0;
@@ -193,10 +204,12 @@ public class ListSchedule {
         return (!haveClasses() && !haveCcas() && !haveTests() && !haveTuitions());
     }
 
-    private void checkAndConvertToday() {
+    private Calendar checkAndConvertToday() {
+        Calendar resultCalendar = null;
         if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
-            userInput = LocalDate.now().toString();
+            resultCalendar = Calendar.getInstance();
         }
+        return resultCalendar;
     }
 
     /**
@@ -213,8 +226,8 @@ public class ListSchedule {
 
         // todo might have a problem here
         for (int i = 0; i < eventArr.size(); i++) {
-            String[] listDate = eventArr.get(i).getStart().split(" ");
-            if (userInput == null || dateTimeParser.isDateEqual(listDate[0], userInput)) {
+            Calendar listDate = eventArr.get(i).getStart();
+            if (userInput == null || dateTimeParser.isDateEqual(listDate, inputCalendar)) {
                 printedEvents.add(i + 1 + ". " + eventArr.get(i));
             }
         }

@@ -8,16 +8,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public abstract class StorageManager {
+    //@@author durianpancakes
     public static final String EMPTY_FILE_NAME = "";
     protected static String DIRECTORY_FOLDER_PATH = new File("data").getAbsolutePath();
     protected String fileName;
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
+    //@@author AndreWongZH
     public StorageManager(String fileName) {
         assert !fileName.equals(EMPTY_FILE_NAME);
         this.fileName = fileName;
     }
 
+    //@@author durianpancakes
     protected boolean createDataFile() throws IOException {
         File file = new File(DIRECTORY_FOLDER_PATH);
         boolean isDirectoryCreated = file.mkdir();

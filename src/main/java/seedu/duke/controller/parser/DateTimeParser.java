@@ -3,7 +3,6 @@ package seedu.duke.controller.parser;
 import seedu.duke.common.LogManager;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
@@ -16,14 +15,15 @@ import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author Aliciaho
 /**
  * To configure the Date and Time of the events from yyyy-mm-dd HHMM format to dd suffix mm yyyy, hh:mm aa format.
  */
 public class DateTimeParser {
 
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
-    public String changeDateTime(String dateTime) throws ParseException {
+    /*public String changeDateTime(Calendar dateTime) throws ParseException {
         logger.log(Level.INFO, "initialising changing of date and time to new format");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM yyyy");
         int divider = dateTime.indexOf(" ");
@@ -53,7 +53,7 @@ public class DateTimeParser {
         String dayString = String.valueOf(dayInteger);
 
         return dayString + dayNumberSuffix + " " + changedDate + " , " + changedTime;
-    }
+    }*/
 
     /*
     ref to: https://stackoverflow.com/questions/4011075/how-do-you-format-the-day
@@ -78,21 +78,70 @@ public class DateTimeParser {
         }
     }
 
-    public boolean isDateEqual(String listInput, String userInput) throws DateTimeParseException {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public String parseTime(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("hh:mma");
+        return sdf.format(calendar.getTime());
+    }
+
+    public String parseDayAndMonth(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM-yyyy");
+        return sdf.format(calendar.getTime());
+    }
+
+    public Calendar convertStringToCalendar(String string) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        Calendar calendar = Calendar.getInstance();
+        try {
+            Date date = sdf.parse(string);
+            calendar.setTime(date);
+        } catch (ParseException parseException) {
+            parseException.printStackTrace();
+        }
+        return calendar;
+    }
+
+    public String convertCalendarToString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
+
+        return sdf.format(calendar.getTime());
+    }
+
+    public String obtainFormattedDateTimeString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM yyyy, hh:mma");
+        int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+        String dayOfMonthString = dayOfMonth + getDayNumberSuffix(dayOfMonth);
+        String monthAndYearString = sdf.format(calendar.getTime());
+
+        return dayOfMonthString + " " + monthAndYearString;
+    }
+
+    public String obtainFormattedDateString(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy, hh:mma");
+
+        return sdf.format(calendar.getTime());
+    }
+
+    public boolean isDateEqual(Calendar listInput, Calendar userInput) throws DateTimeParseException {
+        /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         int listDay = LocalDate.parse(listInput, formatter).getDayOfMonth();
         int userDay = LocalDate.parse(userInput, formatter).getDayOfMonth();
         int listYear = LocalDate.parse(listInput, formatter).getYear();
         int userYear = LocalDate.parse(userInput, formatter).getYear();
         Month listMonth = LocalDate.parse(listInput, formatter).getMonth();
-        Month userMonth = LocalDate.parse(userInput, formatter).getMonth();
-        return ((listDay == userDay)
-                && (listMonth.equals(userMonth))
-                && (listYear == userYear));
+        Month userMonth = LocalDate.parse(userInput, formatter).getMonth();*/
+        int listDay = listInput.get(Calendar.DAY_OF_MONTH);
+        int userDay = userInput.get(Calendar.DAY_OF_MONTH);
+        int listMonth = listInput.get(Calendar.MONTH);
+        int userMonth = userInput.get(Calendar.MONTH);
+        int listYear = listInput.get(Calendar.YEAR);
+        int userYear = userInput.get(Calendar.YEAR);
+        return (listDay == userDay)
+                && (listMonth == userMonth)
+                && (listYear == userYear);
     }
 
-    public ArrayList<String> getDaysOfWeek() {
-        ArrayList<String> dateStrings = new ArrayList<>();
+    public ArrayList<Calendar> getDaysOfWeek() {
+        ArrayList<Calendar> dateCalendars = new ArrayList<>();
         Calendar calendar = Calendar.getInstance();
 
         switch (calendar.get(Calendar.DAY_OF_WEEK)) {
@@ -122,14 +171,15 @@ public class DateTimeParser {
         }
 
         for (int i = 0; i < 7; i++) {
-            int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+            /* int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
             int month = calendar.get(Calendar.MONTH);
-            int year = calendar.get(Calendar.YEAR);
-            String date = year + "-" + (month + 1) + "-" + dayOfMonth;
-            dateStrings.add(date);
+            int year = calendar.get(Calendar.YEAR);*/
+            Calendar newCalendar = (Calendar) calendar.clone();
+            //String date = year + "-" + (month + 1) + "-" + dayOfMonth;
+            dateCalendars.add(newCalendar);
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
-        return dateStrings;
+        return dateCalendars;
     }
 }
 

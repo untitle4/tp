@@ -23,6 +23,21 @@ public class EventParameter {
         this.tuitions = tuitions;
     }
 
+    //@@author Aliciaho
+    public ArrayList<Event> getEventMasterList() {
+        ArrayList<Event> ccas = getCcas();
+        ArrayList<Event> tests = getTests();
+        ArrayList<Event> classes = getClasses();
+        ArrayList<Event> tuitions = getTuitions();
+
+        ArrayList<Event> masterList = new ArrayList<>(ccas);
+        masterList.addAll(tests);
+        masterList.addAll(classes);
+        masterList.addAll(tuitions);
+
+        return masterList;
+    }
+
     public ArrayList<Event> getCcas() {
         return ccas;
     }

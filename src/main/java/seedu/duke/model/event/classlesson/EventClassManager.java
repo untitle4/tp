@@ -1,18 +1,24 @@
 package seedu.duke.model.event.classlesson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 //@@author elizabethcwt
@@ -40,7 +46,7 @@ public class EventClassManager extends EventDataManager {
     private final UserInterface userInterface;
 
     // Initialising Logger with name "Class"
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public EventClassManager(ArrayList<Event> classes) {
         this.classes = classes;
@@ -96,17 +102,15 @@ public class EventClassManager extends EventDataManager {
             throw new EmptyParameterException();
         }
 
-        // Checking and converting user's date-time input into format of expected output
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
         try {
-            LocalDateTime.parse(classStartDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            LocalDateTime.parse(classEndDate, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
-            classes.add(new EventClass(classDescription, classStartDate, classEndDate));
-            logger.log(Level.INFO, "adding the new class to the ArrayList");
+            DateTimeParser dateTimeParser = new DateTimeParser();
+            Calendar startCalendar = dateTimeParser.convertStringToCalendar(classStartDate);
+            Calendar endCalendar = dateTimeParser.convertStringToCalendar(classEndDate);
+            classes.add(new EventClass(classDescription, startCalendar, endCalendar));
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
-            return;
         }
-
         userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
                 classes.get(getClassListSize() - 1).toString());
         getClassStatement();
@@ -115,16 +119,13 @@ public class EventClassManager extends EventDataManager {
     /**
      * <h2>deleteClass()</h2>
      * Deletes a class from the classes ArrayList.
-     * @param userInputs To take in the class index of the class to be deleted.
+     * @param userInputs To take in the class index of the classes to be deleted.
      */
     @Override
     public void delete(String[] userInputs) {
         try {
             // Tries to convert classIndex user input into an integer
             int classIndex = Integer.parseInt(userInputs[2]);
-
-            // Assertion to test assumption that classIndex should be a positive integer
-            assert classIndex > 0 : "classIndex should be a positive integer";
 
             // Just to test if class index is valid - for exception use only
             classes.get(classIndex - 1);
@@ -146,16 +147,6 @@ public class EventClassManager extends EventDataManager {
             userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NON_NUMBER);
             logger.log(Level.WARNING, "non-integer class index entered for deletion");
         }
-    }
-
-    @Override
-    public void list() {
-
-    }
-
-    @Override
-    public void find(String userInput) throws MissingParameterException {
-
     }
 
     /**

@@ -5,7 +5,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.exception.QuizParamException;
-import seedu.duke.model.DataManager;
+import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
 
 import java.util.ArrayList;
@@ -14,14 +14,13 @@ import java.util.logging.Level;
 import java.util.Collections;
 import java.util.logging.Logger;
 
-public class QuizManager extends DataManager {
+public class QuizManager extends ModelManager implements QuizInteractable {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 9;
     private final ArrayList<Quiz> quizzes;
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     public static int noOfQues;
-    public static String correctnessLogo;
     public static ArrayList<Integer> quizIndexes = new ArrayList<Integer>();
-
     private static final Logger logger = LogManager.getLoggerInstance().getLogger();
     private final UserInterface userInterface;
 

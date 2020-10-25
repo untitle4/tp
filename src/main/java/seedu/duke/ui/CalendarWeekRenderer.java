@@ -4,8 +4,11 @@ import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.event.EventManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+//@@author durianpancakes
 public class CalendarWeekRenderer {
     private final EventManager eventManager;
     private final int [] eventCounters = {1, 1, 1, 1, 1, 1, 1};
@@ -20,7 +23,7 @@ public class CalendarWeekRenderer {
     private void renderWeekSchedule() {
         ArrayList<ArrayList<Event>> weekMasterList = eventManager.getCurrentWeekEventMasterList();
         DateTimeParser dateTimeParser = new DateTimeParser();
-        ArrayList<String> daysOfWeek = dateTimeParser.getDaysOfWeek();
+        ArrayList<Calendar> daysOfWeek = dateTimeParser.getDaysOfWeek();
         CalendarWeekRendererUtils utils = new CalendarWeekRendererUtils(weekMasterList);
 
         // 17 spaces per day
@@ -121,11 +124,12 @@ public class CalendarWeekRenderer {
             String indexString = eventCounters[counterIndex] + ".";
             int indexStringLength = indexString.length();
             startEndTimesString.append(getSpaces(indexStringLength));
-            String startString = events.get(eventCounters[counterIndex] - 1).getStart();
-            String[] splitStartString = startString.split(" ");
-            String endString = events.get(eventCounters[counterIndex] - 1).getEnd();
-            String[] splitEndString = endString.split(" ");
-            String startEndString = splitStartString[1] + "-" + splitEndString[1];
+            Calendar startCalendar = events.get(eventCounters[counterIndex] - 1).getStart();
+            Calendar endCalendar = events.get(eventCounters[counterIndex] - 1).getEnd();
+            DateTimeParser dateTimeParser = new DateTimeParser();
+            String startString = dateTimeParser.parseTime(startCalendar);
+            String endString = dateTimeParser.parseTime(endCalendar);
+            String startEndString = startString + "-" + endString;
             startEndTimesString.append(startEndString);
             startEndTimesString.append(getSpaces(17 - startEndString.length() - indexStringLength));
             utils.reduceCounter(counterIndex);
@@ -141,7 +145,9 @@ public class CalendarWeekRenderer {
         return " ".repeat(Math.max(0, num));
     }
 
-    private String getDateLabel(ArrayList<String> daysOfWeek, int num) {
-        return "[" + daysOfWeek.get(num).substring(5) + "]";
+    private String getDateLabel(ArrayList<Calendar> daysOfWeek, int num) {
+        Calendar calendar = daysOfWeek.get(num);
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        return "[" + dateTimeParser.parseTime(calendar) + "]";
     }
 }

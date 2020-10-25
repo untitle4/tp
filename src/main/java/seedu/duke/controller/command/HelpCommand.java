@@ -1,27 +1,29 @@
 package seedu.duke.controller.command;
 
 import seedu.duke.common.LogManager;
-import seedu.duke.model.DataManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.InvalidHelpCommandException;
+import seedu.duke.model.ModelMain;
 import seedu.duke.ui.UserInterface;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author AndreWongZH
 public class HelpCommand extends Command {
     private final UserInterface userInterface = UserInterface.getInstance();
-    private static final Logger logger = LogManager.getLoggerInstance().getLogger();
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public HelpCommand(String userInput) {
         super(userInput);
     }
 
     @Override
-    public void execute(DataManager dataModel) throws InvalidHelpCommandException {
+    public void execute(ModelMain modelMain) throws InvalidHelpCommandException {
         handleHelp();
     }
 
+    //@@author elizabethcwt
     /**
      * <h2>handleHelp()</h2>
      * Prints out all available features users can use.
