@@ -1,5 +1,6 @@
 package seedu.duke.model.event;
 
+import seedu.duke.common.LogManager;
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelMain;
@@ -15,6 +16,8 @@ import seedu.duke.exception.EmptyListException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 //@@author AndreWongZH
 /**
@@ -30,6 +33,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     private static EventCcaManager eventCcaManager;
     private static EventTuitionManager eventTuitionManager;
     private final UserInterface userInterface;
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public EventManager(EventParameter eventParameter) {
         eventClassManager = new EventClassManager(eventParameter.getClasses());
@@ -58,8 +62,9 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     /**
      * Prints to user all the found events that matches with keyword provided.
      *
-     * @param userInput Input supplied by the user that contains the keywords.
+     * @param userInput Input supplied by the user that contains the keywords
      * @throws MissingParameterException If input supplied does not contain any keywords
+     * @author AndreWongZH
      */
     @Override
     public void find(String userInput) throws MissingParameterException {
@@ -81,7 +86,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         userInterface.printArray(filteredEvents);
     }
 
-    //@@author
+    //@@author AndreWongZH
     @Override
     public void list(String userInput) {
         ArrayList<String> printedEvents;
@@ -91,17 +96,17 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
 
             if (userInput.contains("week")) {
-                // printedEvents = listSchedule.getPrintableEventsWeek();
                 new CalendarWeekRenderer(this);
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
                 userInterface.printArray(printedEvents);
             }
-            // userInterface.printArray(printedEvents);
         } catch (EmptyListException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         } catch (DateTimeParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
+        } catch (NullPointerException e) {
+            System.out.println("☹ OOPS!!! We do not recognise that command. Do you mean list event week/today?");
         }
     }
 
@@ -119,13 +124,21 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
-    //@@author Aliciaho
+    /**
+     * Adds the relevant events whose date correspond to the date inputted in the masterList.
+     *
+     * @param masterList ArrayList containing all the events
+     * @param date Date inputted to filter out the corresponding events
+     * @return result ArrayList contain the relevant events for that date
+     * @author Aliciaho
+    */
     private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, Calendar date) {
+        assert masterList.size() >= 0;
+        assert date != null;
         DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> result = new ArrayList<>();
 
         for (Event event : masterList) {
-            // String[] listDate = event.getStart().split(" ");
             Calendar startCalendar = event.getStart();
             if (dateTimeParser.isDateEqual(date, startCalendar)) {
                 result.add(event);
@@ -135,8 +148,14 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
-    //@@author Aliciaho
+    /**
+     * Adds all the ccas, classes, tests and tuitions into one Master ArrayList.
+     *
+     * @return masterList ArrayList containing all the events
+     * @author Aliciaho
+     */
     public ArrayList<Event> getEventMasterList() {
+        logger.log(Level.INFO, "getting all ccas, classes, tests and tuitions");
         ArrayList<Event> ccas = eventCcaManager.getCcas();
         ArrayList<Event> tests = eventTestManager.getTests();
         ArrayList<Event> classes = eventClassManager.getClasses();
@@ -146,6 +165,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         masterList.addAll(tests);
         masterList.addAll(classes);
         masterList.addAll(tuitions);
+        logger.log(Level.INFO, "added all ccas, classes, tests and tuitions");
 
         return masterList;
     }
