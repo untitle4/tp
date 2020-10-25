@@ -24,12 +24,10 @@ public class DateTimeParser {
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     /**
-     * Get the suffix for each day
-     *
+     * Get the suffix for each day.
+     * ref to: https://stackoverflow.com/questions/4011075/how-do-you-format-the-day-of-the-month-to-say-11th-21st-or-23rd-ordinal
      * @param day day number of the month
      * @return respective suffix for the day inputted
-     * ref to: https://stackoverflow.com/questions/4011075/how-do-you-format-the-day
-     * -of-the-month-to-say-11th-21st-or-23rd-ordinal
      */
     private String getDayNumberSuffix(int day) {
         assert day > 0;
@@ -51,7 +49,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Convert time from HH:mm format to hh:mma format
+     * Convert time from HH:mm format to hh:mma format.
      *
      * @param calendar date time inputted
      * @return the time in hh:mma format
@@ -63,7 +61,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Convert day and month into MM-yyyy format
+     * Convert day and month into MM-yyyy format.
      *
      * @param calendar date time inputted
      * @return the date in MM-yyyy format
@@ -75,7 +73,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Convert a string input to date time format yyyy-MM-dd HHmm in Calendar form
+     * Convert a string input to date time format yyyy-MM-dd HHmm in Calendar form.
      *
      * @param string user input string
      * @return calendar date time in yyyy-MM-dd HHmm in Calendar form
@@ -96,7 +94,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Convert a Calendar form in date time format yyyy-MM-dd HHmm to String
+     * Convert a Calendar form in date time format yyyy-MM-dd HHmm to String.
      *
      * @param calendar date time input in Calendar form
      * @return calendar date time input in String form
@@ -109,7 +107,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Add day suffix to date time string
+     * Add day suffix to date time string.
      *
      * @param calendar date time in calendar form
      * @return date time string with day suffix
@@ -126,7 +124,8 @@ public class DateTimeParser {
     }
 
     /**
-     * Convert date time from Calendar form to dd-MM-yyyy, hh:mma format in String form
+     * Convert date time from Calendar form to dd-MM-yyyy, hh:mma format in String form.
+     *
      * @param calendar date time in Calendar form
      * @return dd-MM-yyyy, hh:mma format in String form
      */
@@ -138,7 +137,8 @@ public class DateTimeParser {
     }
 
     /**
-     * Convert date time in Calendar form to dd-MM in String form
+     * Convert date time in Calendar form to dd-MM in String form.
+     *
      * @param calendar date time in Calendar form
      * @return dd-MM in String form
      */
@@ -150,12 +150,12 @@ public class DateTimeParser {
     }
 
     /**
-     * Check if two dates are equal
+     * Check if two dates are equal.
      *
      * @param listInput date time input from List
      * @param userInput date time input by user
      * @return true if both dates are equal
-     * @throws DateTimeParseException
+     * @throws DateTimeParseException if valid datetime is not inputted
      */
     public boolean isDateEqual(Calendar listInput, Calendar userInput) throws DateTimeParseException {
         logger.log(Level.INFO, "checking if dates are equal");
@@ -171,7 +171,7 @@ public class DateTimeParser {
     }
 
     /**
-     * Get the dates for this week
+     * Get the dates for this week.
      *
      * @return dateCalendars ArrayList containing the dates for this week
      */

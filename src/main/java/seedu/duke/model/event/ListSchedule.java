@@ -97,9 +97,10 @@ public class ListSchedule {
     }
 
     /**
-     * If the user input contains today/week, get the date for today
+     * If the user input contains today/week, get the date for today.
+     *
      * @return resultCalender Calendar containing today's date
-     * //@@author Aliciaho
+     * @author Aliciaho
     */
     private Calendar checkAndConvertToday() {
         Calendar resultCalendar = null;
@@ -116,7 +117,7 @@ public class ListSchedule {
      *
      * @param eventArr Array list of event instances to be converted.
      * @return printedEvents Array list containing the relevant events in correct output format
-     * //@@author Aliciaho
+     * @author Aliciaho
      */
     private ArrayList<String> parseEventWithNumberPad(ArrayList<Event> eventArr) {
         assert eventArr != null;

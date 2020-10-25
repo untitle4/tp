@@ -62,9 +62,9 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     /**
      * Prints to user all the found events that matches with keyword provided.
      *
-     * @param userInput Input supplied by the user that contains the keywords.
+     * @param userInput Input supplied by the user that contains the keywords
      * @throws MissingParameterException If input supplied does not contain any keywords
-     * //@@author AndreWongZH
+     * @author AndreWongZH
      */
     @Override
     public void find(String userInput) throws MissingParameterException {
@@ -125,12 +125,12 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     }
 
     /**
-     * Adds the relevant events whose date correspond to the date inputted in an ArrayList</Event>.
+     * Adds the relevant events whose date correspond to the date inputted in the masterList.
      *
      * @param masterList ArrayList containing all the events
      * @param date Date inputted to filter out the corresponding events
      * @return result ArrayList contain the relevant events for that date
-     * //@@author Aliciaho
+     * @author Aliciaho
     */
     private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, Calendar date) {
         assert masterList.size() >= 0;
@@ -152,7 +152,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
      * Adds all the ccas, classes, tests and tuitions into one Master ArrayList.
      *
      * @return masterList ArrayList containing all the events
-     * //@@author Aliciaho
+     * @author Aliciaho
      */
     public ArrayList<Event> getEventMasterList() {
         logger.log(Level.INFO, "getting all ccas, classes, tests and tuitions");
@@ -161,11 +161,11 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         ArrayList<Event> classes = eventClassManager.getClasses();
         ArrayList<Event> tuitions = eventTuitionManager.getTuitions();
 
-        logger.log(Level.INFO, "adding all ccas, classes, tests and tuitions");
         ArrayList<Event> masterList = new ArrayList<>(ccas);
         masterList.addAll(tests);
         masterList.addAll(classes);
         masterList.addAll(tuitions);
+        logger.log(Level.INFO, "added all ccas, classes, tests and tuitions");
 
         return masterList;
     }
