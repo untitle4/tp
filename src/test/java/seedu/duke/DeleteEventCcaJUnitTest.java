@@ -11,8 +11,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteEventCcaJUnitTest {
-
-    //@Test
+    @Test
     void deleteCcaInList() throws EmptyParameterException, MissingParameterException {
         ArrayList<Event> cca = new ArrayList<>();
         EventCcaManager eventCcaManager = new EventCcaManager(cca);
