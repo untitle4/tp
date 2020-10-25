@@ -135,7 +135,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
-    //@@@author Aliciaho
+    //@@author Aliciaho
     public ArrayList<Event> getEventMasterList() {
         ArrayList<Event> ccas = eventCcaManager.getCcas();
         ArrayList<Event> tests = eventTestManager.getTests();

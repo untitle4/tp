@@ -25,7 +25,7 @@ public class ListSchedule {
     private final DateTimeParser dateTimeParser = new DateTimeParser();
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
-    private String userInput;
+    private final String userInput;
     private Calendar inputCalendar;
 
     public ListSchedule(String userInput, ArrayList<Event> classes, ArrayList<Event> ccas,

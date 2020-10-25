@@ -1,5 +1,6 @@
 package seedu.duke.storage;
 
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.StorageSeparatorException;
 import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
@@ -7,8 +8,6 @@ import seedu.duke.model.event.Event;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -57,18 +56,9 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
-        // isValidParams(description, start, end);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        Calendar startCalendar = Calendar.getInstance();
-        Calendar endCalendar = Calendar.getInstance();
-        try {
-            Date startDate = sdf.parse(start);
-            Date endDate = sdf.parse(end);
-            startCalendar.setTime(startDate);
-            endCalendar.setTime(endDate);
-        } catch (ParseException parseException) {
-            parseException.printStackTrace();
-        }
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
         return new EventCca(description, isDone, startCalendar, endCalendar);
     }
@@ -87,19 +77,9 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        Calendar startCalendar = Calendar.getInstance();
-        Calendar endCalendar = Calendar.getInstance();
-        try {
-            Date startDate = sdf.parse(start);
-            Date endDate = sdf.parse(end);
-            startCalendar.setTime(startDate);
-            endCalendar.setTime(endDate);
-        } catch (ParseException parseException) {
-            parseException.printStackTrace();
-        }
-
-        //isValidParams(description, start, end);
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
         return new EventClass(description, isDone, startCalendar, endCalendar);
     }
@@ -118,19 +98,9 @@ public class EventListDecoder {
         String start = eventInfo[1];
         String end = eventInfo[2];
 
-        //isValidParams(description, start, end);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        Calendar startCalendar = Calendar.getInstance();
-        Calendar endCalendar = Calendar.getInstance();
-        try {
-            Date startDate = sdf.parse(start);
-            Date endDate = sdf.parse(end);
-            startCalendar.setTime(startDate);
-            endCalendar.setTime(endDate);
-        } catch (ParseException parseException) {
-            parseException.printStackTrace();
-        }
-
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
         return new EventTest(description, isDone, startCalendar, endCalendar);
     }
@@ -150,35 +120,11 @@ public class EventListDecoder {
         String end = eventInfo[2];
         String location = eventInfo[3];
 
-        // isValidTuition(description, start, end, location);
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        Calendar startCalendar = Calendar.getInstance();
-        Calendar endCalendar = Calendar.getInstance();
-        try {
-            Date startDate = sdf.parse(start);
-            Date endDate = sdf.parse(end);
-            startCalendar.setTime(startDate);
-            endCalendar.setTime(endDate);
-        } catch (ParseException parseException) {
-            parseException.printStackTrace();
-        }
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
+        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
 
 
         return new EventTuition(description, isDone, startCalendar, endCalendar, location);
-    }
-
-    private void isValidParams(Calendar description, Calendar start, Calendar end) {
-        assert description != null;
-        assert !description.equals("");
-        assert start != null;
-        assert !start.equals("");
-        assert end != null;
-        assert !end.equals("");
-    }
-
-    private void isValidTuition(Calendar description, Calendar start, Calendar end, Calendar location) {
-        isValidParams(description, start, end);
-        assert location != null;
-        assert !location.equals("");
     }
 }
