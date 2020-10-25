@@ -23,38 +23,6 @@ public class DateTimeParser {
 
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
-    /*public String changeDateTime(Calendar dateTime) throws ParseException {
-        logger.log(Level.INFO, "initialising changing of date and time to new format");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM yyyy");
-        int divider = dateTime.indexOf(" ");
-
-        logger.log(Level.INFO, "split string into date and time");
-        String date = dateTime.substring(0, divider);
-
-        logger.log(Level.INFO, "generating day suffix");
-        final String[] dayInput = date.split("-");
-        int dayInteger = Integer.parseInt(dayInput[2]);
-        final String dayNumberSuffix = getDayNumberSuffix(dayInteger);
-
-        logger.log(Level.INFO, "changing date format");
-        LocalDate oldDate = LocalDate.parse(date);
-        final String changedDate = oldDate.format(formatter);
-
-        logger.log(Level.INFO, "changing time format");
-        String time = dateTime.substring(divider + 1);
-        DateFormat inputDateTimeFormat = new SimpleDateFormat("HHmm");
-        DateFormat outputDateTimeFormat = new SimpleDateFormat("hh:mm aa");
-        Date oldTime = null;
-        String changedTime = null;
-        oldTime = inputDateTimeFormat.parse(time);
-        changedTime = outputDateTimeFormat.format(oldTime);
-
-        logger.log(Level.INFO, "generating day");
-        String dayString = String.valueOf(dayInteger);
-
-        return dayString + dayNumberSuffix + " " + changedDate + " , " + changedTime;
-    }*/
-
     /*
     ref to: https://stackoverflow.com/questions/4011075/how-do-you-format-the-day
     -of-the-month-to-say-11th-21st-or-23rd-ordinal
@@ -122,13 +90,6 @@ public class DateTimeParser {
     }
 
     public boolean isDateEqual(Calendar listInput, Calendar userInput) throws DateTimeParseException {
-        /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        int listDay = LocalDate.parse(listInput, formatter).getDayOfMonth();
-        int userDay = LocalDate.parse(userInput, formatter).getDayOfMonth();
-        int listYear = LocalDate.parse(listInput, formatter).getYear();
-        int userYear = LocalDate.parse(userInput, formatter).getYear();
-        Month listMonth = LocalDate.parse(listInput, formatter).getMonth();
-        Month userMonth = LocalDate.parse(userInput, formatter).getMonth();*/
         int listDay = listInput.get(Calendar.DAY_OF_MONTH);
         int userDay = userInput.get(Calendar.DAY_OF_MONTH);
         int listMonth = listInput.get(Calendar.MONTH);
@@ -171,11 +132,7 @@ public class DateTimeParser {
         }
 
         for (int i = 0; i < 7; i++) {
-            /* int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-            int month = calendar.get(Calendar.MONTH);
-            int year = calendar.get(Calendar.YEAR);*/
             Calendar newCalendar = (Calendar) calendar.clone();
-            //String date = year + "-" + (month + 1) + "-" + dayOfMonth;
             dateCalendars.add(newCalendar);
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }

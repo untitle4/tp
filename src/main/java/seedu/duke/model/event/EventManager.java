@@ -60,6 +60,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
      *
      * @param userInput Input supplied by the user that contains the keywords.
      * @throws MissingParameterException If input supplied does not contain any keywords
+     * //@@author AndreWongZH
      */
     @Override
     public void find(String userInput) throws MissingParameterException {
@@ -81,7 +82,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         userInterface.printArray(filteredEvents);
     }
 
-    //@@author
+    //@@author AndreWongZH
     @Override
     public void list(String userInput) {
         ArrayList<String> printedEvents;
@@ -91,17 +92,17 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
 
             if (userInput.contains("week")) {
-                // printedEvents = listSchedule.getPrintableEventsWeek();
                 new CalendarWeekRenderer(this);
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
                 userInterface.printArray(printedEvents);
             }
-            // userInterface.printArray(printedEvents);
         } catch (EmptyListException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         } catch (DateTimeParseException e) {
             System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
+        } catch (NullPointerException e) {
+            System.out.println("☹ OOPS!!! We do not recognise that command. Do you mean list event week/today?");
         }
     }
 
@@ -125,7 +126,6 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         ArrayList<Event> result = new ArrayList<>();
 
         for (Event event : masterList) {
-            // String[] listDate = event.getStart().split(" ");
             Calendar startCalendar = event.getStart();
             if (dateTimeParser.isDateEqual(date, startCalendar)) {
                 result.add(event);

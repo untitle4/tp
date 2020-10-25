@@ -76,114 +76,6 @@ public class ListSchedule {
         return printedEvents;
     }
 
-    /*public ArrayList<String> getPrintableEventsWeek() throws EmptyListException {
-        logger.log(Level.INFO, "starting to convert events instance to strings");
-        ArrayList<Event> masterList = new ArrayList<>();
-
-        checkAndConvertToday();
-
-        if (haveClasses()) {
-            logger.log(Level.INFO, "adding class events");
-            masterList.addAll(getMasterList(classes));
-        }
-        if (haveCcas()) {
-            logger.log(Level.INFO, "adding CCA events");
-            masterList.addAll(getMasterList(ccas));
-        }
-        if (haveTests()) {
-            logger.log(Level.INFO, "adding test events");
-            masterList.addAll(getMasterList(tests));
-        }
-        if (haveTuitions()) {
-            logger.log(Level.INFO, "adding tuition events");
-            masterList.addAll(getMasterList(tuitions));
-        }
-
-        if (hasNoSchedule() || masterList.size() == 0) {
-            logger.log(Level.WARNING, "schedule is empty");
-            throw new EmptyListException();
-        }
-
-        ArrayList<String> printedEvents = getListWeek(masterList);
-
-        return printedEvents;
-
-    }
-
-    private ArrayList<String> getListWeek(ArrayList<Event> masterList) {
-        logger.log(Level.WARNING, "initialising list week");
-        ArrayList<String> daysOfTheWeek = new ArrayList<>();
-        ArrayList<String> dateArrayList = new ArrayList<>();
-
-        logger.log(Level.WARNING, "getting days of the current week");
-        daysOfTheWeek = dateTimeParser.getDaysOfWeek();
-
-        logger.log(Level.WARNING, "getting relevant events in masterList");
-        for (int i = 0; i < daysOfTheWeek.size(); i++) {
-            int counter = 1;
-
-            checkAndConvertDayOfWeek(dateArrayList, i);
-
-            for (int j = 0; j < masterList.size(); j++) {
-                String[] listDate = masterList.get(j).getStart().split(" ");
-                if (dateTimeParser.isDateEqual(daysOfTheWeek.get(i), listDate[0])) {
-                    dateArrayList.add(counter + ". " + masterList.get(j));
-                    counter++;
-                }
-            }
-
-            logger.log(Level.WARNING, "removing unneeded days");
-            dateArrayList = checkCounter(counter, dateArrayList);
-        }
-        return dateArrayList;
-    }
-
-    private void checkAndConvertDayOfWeek(ArrayList<String> dateArrayList, int i) {
-        switch (i) {
-        case 0:
-            dateArrayList.add("MONDAY:");
-            break;
-        case 1:
-            dateArrayList.add("TUESDAY:");
-            break;
-        case 2:
-            dateArrayList.add("WEDNESDAY:");
-            break;
-        case 3:
-            dateArrayList.add("THURSDAY:");
-            break;
-        case 4:
-            dateArrayList.add("FRIDAY:");
-            break;
-        case 5:
-            dateArrayList.add("SATURDAY:");
-            break;
-        case 6:
-            dateArrayList.add("SUNDAY:");
-            break;
-        default:
-            break;
-        }
-    }
-
-    private ArrayList<String> checkCounter(int counter, ArrayList<String> dateArrayList) {
-        logger.log(Level.WARNING, "checking if the day is unneeded");
-        if (counter == 1) {
-            dateArrayList.remove(dateArrayList.size() - 1);
-        }
-        return dateArrayList;
-    }
-
-    
-    private ArrayList<Event> getMasterList(ArrayList<Event> eventArr) {
-        assert eventArr != null;
-        assert eventArr.size() != 0;
-
-        logger.log(Level.WARNING, "adding to masterList");
-
-        return new ArrayList<>(eventArr);
-    }*/
-
     private boolean haveClasses() {
         return classes.size() != 0;
     }
@@ -204,6 +96,7 @@ public class ListSchedule {
         return (!haveClasses() && !haveCcas() && !haveTests() && !haveTuitions());
     }
 
+    //@@author Aliciaho
     private Calendar checkAndConvertToday() {
         Calendar resultCalendar = null;
         if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
@@ -218,6 +111,7 @@ public class ListSchedule {
      * EventArr cannot be empty or null.
      *
      * @param eventArr Array list of event instances to be converted.
+     * //@@author Aliciaho
      */
     private ArrayList<String> parseEventWithNumberPad(ArrayList<Event> eventArr) {
         assert eventArr != null;

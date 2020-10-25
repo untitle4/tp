@@ -85,7 +85,6 @@ public class EventTestManager extends EventDataManager {
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         }
-
         logger.log(Level.INFO, "added test to ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
