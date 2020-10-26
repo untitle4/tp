@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +43,7 @@ import java.util.logging.Logger;
  * @see EventTestManager#setDone(String[])
  */
 public class EventTestManager extends EventDataManager {
-    private final ArrayList<Event> tests;
+    private ArrayList<Event> tests;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
     private EventManager eventManager;
@@ -113,6 +114,9 @@ public class EventTestManager extends EventDataManager {
             if (clashedEvents.size() == 0) {
                 tests.add(eventTest);
                 logger.log(Level.INFO, "added test to ArrayList");
+
+                sort();
+                logger.log(Level.INFO, "sorted tests in ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
                         tests.get(getTestListSize() - 1).toString());
@@ -220,5 +224,9 @@ public class EventTestManager extends EventDataManager {
                 "  " + tests.get(testNumber - 1));
 
         getTaskStatement();
+    }
+
+    private void sort() {
+        Collections.sort(tests);
     }
 }

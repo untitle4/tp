@@ -18,10 +18,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -82,6 +79,9 @@ public class EventCcaManager extends EventDataManager {
             if (clashedEvents.size() == 0) {
                 ccas.add(cca);
                 logger.log(Level.INFO, "added cca to ArrayList");
+
+                sort();
+                logger.log(Level.INFO, "sorted CCA ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
                         ccas.get(getCcaListSize() - 1).toString());
@@ -152,5 +152,9 @@ public class EventCcaManager extends EventDataManager {
     private void getCcaStatement() {
         String ccaStatement = getCcaListSize() <= 1 ? " cca" : " ccas";
         userInterface.showToUser("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
+    }
+
+    private void sort() {
+        Collections.sort(ccas);
     }
 }

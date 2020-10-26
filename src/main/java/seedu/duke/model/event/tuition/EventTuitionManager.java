@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -92,6 +93,10 @@ public class EventTuitionManager extends EventDataManager {
             if (clashedEvents.size() == 0) {
                 tuitions.add(eventTuition);
                 logger.log(Level.INFO, "Tuition added successfully");
+
+                sort();
+                logger.log(Level.INFO, "sorted Tuition ArrayList");
+
                 userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
                         eventTuition.toString(),
                         getTuitionStatement());
@@ -176,5 +181,9 @@ public class EventTuitionManager extends EventDataManager {
 
     private boolean isEmptyString(String string) {
         return string.equals("");
+    }
+
+    private void sort() {
+        Collections.sort(tuitions);
     }
 }

@@ -111,16 +111,7 @@ public class ListSchedule {
         if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
             resultCalendar = Calendar.getInstance();
         } else if (userInput != null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            resultCalendar = Calendar.getInstance();
-            try {
-                Date date = sdf.parse(userInput);
-                resultCalendar.setTime(date);
-            } catch (ParseException parseException) {
-                logger.log(Level.WARNING, "valid datetime/today/week not inputted");
-                System.out.println("☹ OOPS!!! Please enter today/week/valid date "
-                        + "and time in format yyyy-mm-dd!");
-            }
+            resultCalendar = dateTimeParser.convertStringToCalendarByDate(userInput);
         }
         return resultCalendar;
     }
