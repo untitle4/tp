@@ -1,9 +1,31 @@
 @startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+participant User
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+box "Controller" #LightSalmon
+participant Controller
+end box
+
+box "Model" #YellowGreen
+participant Model
+end box
+
+box "Storage" #Tan
+participant Storage
+end box
+
 activate User
-User -> UI: "add test /n CS2113T Finals /s 2020-12-01 1300 /e 2020-12-01 1400
-activate UI
-UI -> Controller: runLogic()
-activate UI
+User -> UserInterface: "add test /n CS2113T Finals /s 2020-12-01 1300 /e 2020-12-01 1400
+activate UserInterface
+UserInterface -> Controller: runLogic()
+activate UserInterface
 activate Controller
 Controller -> Model: add(userInput)
 activate Controller
@@ -19,8 +41,8 @@ deactivate Storage
 Storage --> Controller
 deactivate Storage
 deactivate Controller
-Controller --> UI
+Controller --> UserInterface
 deactivate Controller
-UI --> User
-deactivate UI
+UserInterface --> User
+deactivate UserInterface
 @enduml
