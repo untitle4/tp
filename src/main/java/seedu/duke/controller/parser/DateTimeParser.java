@@ -79,17 +79,14 @@ public class DateTimeParser {
      * @return calendar date time in yyyy-MM-dd HHmm in Calendar form
      * @exception ParseException exception thrown when valid date and time is not inputted
      */
-    public Calendar convertStringToCalendar(String string) {
+    public Calendar convertStringToCalendar(String string) throws ParseException {
         logger.log(Level.INFO, "converting string to calendar");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
         Calendar calendar = Calendar.getInstance();
-        try {
-            Date date = sdf.parse(string);
-            calendar.setTime(date);
-        } catch (ParseException parseException) {
-            logger.log(Level.WARNING, "valid datetime not inputted");
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
-        }
+
+        Date date = sdf.parse(string);
+        calendar.setTime(date);
+
         return calendar;
     }
 

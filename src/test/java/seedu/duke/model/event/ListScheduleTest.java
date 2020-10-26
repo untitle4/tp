@@ -47,7 +47,7 @@ class ListScheduleTest {
     }
 
     @Test
-    void getPrintableEvents_allSchedule_allEvents() throws EmptyListException {
+    void getPrintableEvents_allSchedule_allEvents() throws EmptyListException, ParseException {
         ArrayList<Event> classes = new ArrayList<>();
         DateTimeParser dateTimeParser = new DateTimeParser();
         classes.add(new EventClass("Math", dateTimeParser.convertStringToCalendar("2019-02-26 1400"),
