@@ -103,8 +103,8 @@ public class DateTimeParser {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
 
-            Date date = sdf.parse(string);
-            calendar.setTime(date);
+        Date date = sdf.parse(string);
+        calendar.setTime(date);
 
         return calendar;
     }
