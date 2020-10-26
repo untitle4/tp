@@ -146,6 +146,9 @@ public class Messages {
     public static final String MESSAGE_INSUFFICIENT_QUES_MORE_THAN_10 = "OOPS! You wanted to take a quiz with "
             + QuizManager.noOfQues + " questions, but your current quiz only has %s question(s).\nPlease either add"
             + "more questions to your quiz via the 'add quiz' command, or try a quiz with less questions!\n";
+    public static final String MESSAGE_MISSING_QUIZ_PARAM = "Please indicate the command you want to do with quiz!";
+    public static final String MESSAGE_QUIZ_NON_NUMBER = "Please enter a valid number or "
+            + "enter 'quiz record' to see your incorrect questions in your previous quiz!";
 
     //@@author elizabethcwt
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"
