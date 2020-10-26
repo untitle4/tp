@@ -1,4 +1,7 @@
 @startuml
+skinparam Shadowing false
+skinparam classBackgroundColor Tan
+skinparam MinClassWidth 120
 
 package storage <<rectangle>> {
     abstract class StorageManager {

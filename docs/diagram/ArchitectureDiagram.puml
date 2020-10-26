@@ -28,7 +28,7 @@ rectangle #Azure {
     }
     class Main #Silver {
     }
-    class Storage #Peru {
+    class Storage #Tan {
     }
 }
 
@@ -44,5 +44,6 @@ Main -left[#Silver]> Controller
 Main -up[#Silver]> Model
 Main -right[#Silver]> Storage
 Storage ..[#Peru]> Data
+Controller -[bold,#LightSalmon]> Storage
 
 @enduml
