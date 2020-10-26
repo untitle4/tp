@@ -94,7 +94,7 @@ public class EventTuitionManager extends EventDataManager {
                 tuitions.add(eventTuition);
                 logger.log(Level.INFO, "Tuition added successfully");
 
-                sort();
+                sortList();
                 logger.log(Level.INFO, "sorted Tuition ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
@@ -183,7 +183,7 @@ public class EventTuitionManager extends EventDataManager {
         return string.equals("");
     }
 
-    private void sort() {
+    private void sortList() {
         Collections.sort(tuitions);
     }
 }

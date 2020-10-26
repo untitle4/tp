@@ -80,7 +80,7 @@ public class EventCcaManager extends EventDataManager {
                 ccas.add(cca);
                 logger.log(Level.INFO, "added cca to ArrayList");
 
-                sort();
+                sortList();
                 logger.log(Level.INFO, "sorted CCA ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
@@ -154,7 +154,7 @@ public class EventCcaManager extends EventDataManager {
         userInterface.showToUser("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
     }
 
-    private void sort() {
+    private void sortList() {
         Collections.sort(ccas);
     }
 }

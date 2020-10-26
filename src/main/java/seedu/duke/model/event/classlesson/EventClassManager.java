@@ -124,7 +124,7 @@ public class EventClassManager extends EventDataManager {
                 classes.add(eventClass);
                 logger.log(Level.INFO, "added class to ArrayList");
 
-                sort();
+                sortList();
                 logger.log(Level.INFO, "sorted classes ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
@@ -230,7 +230,7 @@ public class EventClassManager extends EventDataManager {
         getClassStatement();
     }
 
-    private void sort() {
+    private void sortList() {
         Collections.sort(classes);
     }
 }

@@ -115,7 +115,7 @@ public class EventTestManager extends EventDataManager {
                 tests.add(eventTest);
                 logger.log(Level.INFO, "added test to ArrayList");
 
-                sort();
+                sortList();
                 logger.log(Level.INFO, "sorted tests in ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
@@ -226,7 +226,7 @@ public class EventTestManager extends EventDataManager {
         getTaskStatement();
     }
 
-    private void sort() {
+    private void sortList() {
         Collections.sort(tests);
     }
 }
