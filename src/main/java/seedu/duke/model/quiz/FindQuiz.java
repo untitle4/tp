@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 //@@author untitle4
 /**
- * Provide a function to find quiz with certain keyword(s) input by the user
+ * Provide a function to find quiz with certain keyword(s) input by the user.
  */
 public class FindQuiz {
     private final ArrayList<Quiz> quizzes;

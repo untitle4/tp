@@ -6,8 +6,9 @@ import java.util.Date;
 
 //@@author untitle4
 /**
- * A class for quiz
+ * A class for quiz.
  */
+
 public class Quiz {
     private final String question;
     private final String option1;
