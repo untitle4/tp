@@ -98,7 +98,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
 
             if (userInput.contains("week")) {
-                new CalendarWeekRenderer(this);
+                userInterface.printWeekSchedule(this);
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
                 userInterface.printArray(printedEvents);
