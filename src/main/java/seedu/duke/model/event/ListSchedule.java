@@ -4,9 +4,12 @@ import seedu.duke.common.LogManager;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.controller.parser.DateTimeParser;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -98,14 +101,26 @@ public class ListSchedule {
 
     /**
      * If the user input contains today/week, get the date for today.
+     * Else if user input a date, convert the string date to calendar form
      *
-     * @return resultCalender Calendar containing today's date
+     * @return resultCalender Calendar containing the resulting output
      * @author Aliciaho
     */
     private Calendar checkAndConvertToday() {
         Calendar resultCalendar = null;
         if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
             resultCalendar = Calendar.getInstance();
+        } else if (userInput != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            resultCalendar = Calendar.getInstance();
+            try {
+                Date date = sdf.parse(userInput);
+                 resultCalendar.setTime(date);
+            } catch (ParseException parseException) {
+                logger.log(Level.WARNING, "valid datetime/today/week not inputted");
+                System.out.println("☹ OOPS!!! Please enter today/week/valid date " +
+                        "and time in format yyyy-mm-dd!");
+            }
         }
         return resultCalendar;
     }
