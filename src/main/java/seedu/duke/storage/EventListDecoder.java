@@ -19,7 +19,8 @@ public class EventListDecoder {
     public EventListDecoder() {
     }
 
-    public ArrayList<Event> decodeEventList(ArrayList<String> encodedEventList) throws StorageSeparatorException, StorageCorruptedException {
+    public ArrayList<Event> decodeEventList(ArrayList<String> encodedEventList) throws StorageSeparatorException,
+            StorageCorruptedException {
         final ArrayList<Event> decodedEvents = new ArrayList<>();
         for (String encodedEvent : encodedEventList) {
             decodedEvents.add(decodeEventFromString(encodedEvent));
@@ -27,7 +28,8 @@ public class EventListDecoder {
         return decodedEvents;
     }
 
-    private Event decodeEventFromString(String encodedEvent) throws StorageSeparatorException, StorageCorruptedException {
+    private Event decodeEventFromString(String encodedEvent) throws StorageSeparatorException,
+            StorageCorruptedException {
         final String[] data = encodedEvent.trim().split("\\|", 3);
 
         switch (data[0]) {
