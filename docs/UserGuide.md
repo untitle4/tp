@@ -363,9 +363,11 @@ Question 1: What is 1 + 1?
 Adding a quiz question to the quiz list.
 
 Format: `'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] 
-/exp [optional explanation]`
+/e (explanation)`
 
 Examples: `add quiz /q What is 1+1? /o1 0 /o2 1 /o3 2 /o4 3 /a 3`
+* `/a [option answer]` must be a number. 
+* Any input other than numbers between 1 and 4 will result in an error.
 
 Example Output: 
 
