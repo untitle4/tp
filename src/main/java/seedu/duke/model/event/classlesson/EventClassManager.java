@@ -22,6 +22,7 @@ import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 //@@author elizabethcwt
+
 /**
  * <h2>ClassManager class</h2>
  * Stores user's classes in an ArrayList of Event class, named classes.
@@ -60,6 +61,7 @@ public class EventClassManager extends EventDataManager {
     /**
      * <h2>getClassListSize()</h2>
      * Attains the size of the user's classes ArrayList.
+     *
      * @return int - Classes ArrayList size
      */
     public int getClassListSize() {
@@ -71,8 +73,9 @@ public class EventClassManager extends EventDataManager {
     /**
      * <h2>addClass()</h2>
      * Adds new class to classes ArrayList.
+     *
      * @param userInput To take in the String consisting of the class name, start date-time and end date-time.
-     * @exception MissingParameterException if user input does not meet the requirements.
+     * @throws MissingParameterException if user input does not meet the requirements.
      * @see EventClassManager#getClassStatement()
      */
     @Override
@@ -91,7 +94,7 @@ public class EventClassManager extends EventDataManager {
 
         logger.log(Level.INFO, "splitting the user input into class description, start date-time and end "
                 + "date-time");
-        String classDescription = classDetails[1].substring(1).trim().replaceAll("\\s+"," ");
+        String classDescription = classDetails[1].substring(1).trim().replaceAll("\\s+", " ");
         String classStartDate = classDetails[2].substring(1).trim();
         String classEndDate = classDetails[3].substring(1).trim();
 
@@ -119,6 +122,7 @@ public class EventClassManager extends EventDataManager {
     /**
      * <h2>deleteClass()</h2>
      * Deletes a class from the classes ArrayList.
+     *
      * @param userInputs To take in the class index of the classes to be deleted.
      */
     @Override
@@ -161,8 +165,9 @@ public class EventClassManager extends EventDataManager {
     /**
      * <h2>setClassDone()</h2>
      * Sets class as done.
+     *
      * @param userInputs To take in the class index of the class to be set as done.
-     * @exception IndexOutOfBoundsException when user input is an invalid class index integer.
+     * @throws IndexOutOfBoundsException when user input is an invalid class index integer.
      * @see EventClassManager#getClassStatement()
      */
     @Override
