@@ -22,6 +22,7 @@ import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author untitle4
 public class EventCcaManager extends EventDataManager {
     private final ArrayList<Event> ccas;
     private EventManager eventManager;
@@ -99,6 +100,9 @@ public class EventCcaManager extends EventDataManager {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
+        } catch (ParseException e) {
+            userInterface.showToUser("Please check the date time format you entered. "
+                    + "It has to be yyyy-MM-dd!");
         }
     }
 

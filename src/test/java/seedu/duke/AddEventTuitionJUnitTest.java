@@ -10,6 +10,7 @@ import seedu.duke.model.event.EventParameter;
 import seedu.duke.model.event.tuition.EventTuition;
 import seedu.duke.model.event.tuition.EventTuitionManager;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -19,7 +20,8 @@ public class AddEventTuitionJUnitTest {
     TestUtils testUtils = new TestUtils();
 
     @Test
-    void addEvent_validTuition_noException() throws EmptyParameterException, MissingParameterException {
+    void addEvent_validTuition_noException() throws EmptyParameterException,
+            MissingParameterException, ParseException {
         ArrayList<Event> tuitions = new ArrayList<>();
         EventTuitionManager eventTuitionManager = new EventTuitionManager(tuitions,
                 testUtils.getEmptyEventManager());

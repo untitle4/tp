@@ -210,6 +210,13 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+    /**
+     * Delete a quiz in the Arraylist of quizzes.
+     * Extract the index of the quiz that the user want to delete.
+     * @param userInputs The input entered by the user.
+     * @throws IndexOutOfBoundsException if the index is out of bounds.
+     */
+
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int quizIndex;
@@ -246,13 +253,16 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public void add(String userInput) throws EmptyParameterException {
         if (!userInput.contains(" /q ")) {
             userInterface.showToUser("question not found");
+            throw new EmptyParameterException();
         }
         if (!userInput.contains(" /a ")) {
             userInterface.showToUser("answer not found");
+            throw new EmptyParameterException();
         }
         if (!userInput.contains(" /o1 ") && !userInput.contains(" /o2 ")
                 && !userInput.contains(" /o3 ") && !userInput.contains(" /o4 ")) {
             userInterface.showToUser("options not provided");
+            throw new EmptyParameterException();
         }
         String[] separatedInputs = userInput.trim().split("/");
 
@@ -280,6 +290,12 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+    /**
+     * To find the quiz with certain keyword(s) in the Arraylist of quizzes.
+     * @param userInput The input entered by the user.
+     * @throws MissingParameterException if there is no keyword(s) provided.
+     */
+
     @Override
     public void find(String userInput) throws MissingParameterException {
         String param = userInput.substring(USER_INPUT_OFFSET).trim();
@@ -299,6 +315,10 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userInterface.printArray(filteredQuizzes);
     }
 
+    //@@author untitle4
+    /**
+     * Show the incorrect quizzes in the user's last attempt.
+     */
     public void recordedQuizzes() {
         if (lastIncorrectQuizzes.size() == 0) {
             userInterface.showToUser("Congratulations! You get full marks in your last attempt!");
@@ -316,11 +336,17 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     }
 
+    //@@author untitle4
+    /**
+     * List the Arraylist of quiz.
+     */
+
     @Override
     public void list() {
         if (quizzes.size() == EMPTY_SIZE) {
             userInterface.showToUser("Quiz list is empty. Add some!\n");
         } else {
+            userInterface.showToUser("Here are the questions in your quiz list:");
             for (int i = 0; i < quizzes.size(); i++) {
                 userInterface.showToUser("Question " + (i + 1) + ":\n" + quizzes.get(i));
             }

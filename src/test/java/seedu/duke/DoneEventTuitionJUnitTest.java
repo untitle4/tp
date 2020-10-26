@@ -9,6 +9,7 @@ import seedu.duke.model.event.test.EventTestManager;
 import seedu.duke.model.event.tuition.EventTuition;
 import seedu.duke.model.event.tuition.EventTuitionManager;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +19,7 @@ public class DoneEventTuitionJUnitTest {
     TestUtils testUtils = new TestUtils();
 
     @Test
-    void setValidTuitionDone() {
+    void setValidTuitionDone() throws ParseException {
         EventTuitionManager eventTuitionManager = new EventTuitionManager(testUtils.getTuitionList(),
                 testUtils.getEmptyEventManager());
 
@@ -37,7 +38,7 @@ public class DoneEventTuitionJUnitTest {
     }
 
     @Test
-    void setTuitionDone_invalidIndex_exceptionThrown() {
+    void setTuitionDone_invalidIndex_exceptionThrown() throws ParseException {
         EventTuitionManager eventTuitionManager = new EventTuitionManager(testUtils.getTuitionList(),
                 testUtils.getEmptyEventManager());
 
