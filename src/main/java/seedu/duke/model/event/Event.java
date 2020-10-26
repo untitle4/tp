@@ -58,7 +58,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return getStatus() + " " + description;
+        return description;
     }
 
     //@@author durianpancakes

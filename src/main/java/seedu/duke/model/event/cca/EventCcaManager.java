@@ -117,12 +117,12 @@ public class EventCcaManager extends EventDataManager {
             ccas.remove(ccaIndex - 1);
             getCcaStatement();
         } catch (ArrayIndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NO_NUMBER_GIVEN);
+            userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NO_NUMBER_GIVEN);
             logger.log(Level.WARNING, "absence of class index for deletion");
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NON_NUMBER);
         } catch (IndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_INVALID_CLASS_INDEX);
+            userInterface.showToUser(Messages.MESSAGE_INVALID_CCA_INDEX);
         }
     }
 
