@@ -1,5 +1,9 @@
 package seedu.duke.model.quiz;
 
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Quiz {
     private final String question;
     private final String option1;
@@ -7,16 +11,8 @@ public class Quiz {
     private final String option3;
     private final String option4;
     private final String answer;
-    private String explanation = "";
-
-    public Quiz(String question, String option1, String option2, String option3, String option4, String answer) {
-        this.question = question;
-        this.option1 = option1;
-        this.option2 = option2;
-        this.option3 = option3;
-        this.option4 = option4;
-        this.answer = answer;
-    }
+    private final String explanation;
+    private LocalDate lastAccessed;
 
     public Quiz(String question, String option1, String option2, String option3, String option4,
                 String answer, String explanation) {
@@ -27,26 +23,23 @@ public class Quiz {
         this.option4 = option4;
         this.answer = answer;
         this.explanation = explanation;
+        lastAccessed = LocalDate.now();
+    }
+
+    public Quiz(String question, String option1, String option2, String option3, String option4,
+                String answer, String explanation, LocalDate lastAccessed) {
+        this.question = question;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
+        this.answer = answer;
+        this.explanation = explanation;
+        this.lastAccessed = lastAccessed;
     }
 
     public String getQuestion() {
         return question;
-    }
-
-    public String getOption1() {
-        return option1;
-    }
-
-    public String getOption2() {
-        return option2;
-    }
-
-    public String getOption3() {
-        return option3;
-    }
-
-    public String getOption4() {
-        return option4;
     }
 
     public String getAnswer() {
@@ -57,14 +50,13 @@ public class Quiz {
         return explanation;
     }
 
+    public LocalDate getLastAccessed() {
+        return lastAccessed;
+    }
+
     public String convertToData() {
-        if (explanation.equals("")) {
-            return question + "|" + option1 + "|" + option2 + "|" + option3 + "|"
-                    + option4 + "|" + answer;
-        } else {
-            return question + "|" + option1 + "|" + option2 + "|" + option3 + "|" + option4
-                    + "|" + answer + "|" + explanation;
-        }
+        return question + "|" + option1 + "|" + option2 + "|" + option3 + "|" + option4
+                + "|" + answer + "|" + explanation + "|" + lastAccessed;
     }
 
     @Override
@@ -112,5 +104,13 @@ public class Quiz {
                     + "Correct answer: (" + answer + ")\n"
                     + "Explanation: " + explanation + "\n";
         }
+    }
+
+    //@@author AndreWongZH
+    /**
+     * Update quiz last accessed date to the current date.
+     */
+    public void updateLastAccessed() {
+        lastAccessed = LocalDate.now();
     }
 }

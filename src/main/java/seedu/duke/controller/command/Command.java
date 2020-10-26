@@ -5,7 +5,6 @@ import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.IncompleteListCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.MissingParameterException;
-import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.ModelMain;
 
 //@@author AndreWongZH
@@ -25,5 +24,5 @@ public abstract class Command {
     }
 
     public abstract void execute(ModelMain modelMain) throws ContactParamException, InvalidHelpCommandException,
-            QuizParamException, EmptyParameterException, MissingParameterException, IncompleteListCommandException;
+            EmptyParameterException, MissingParameterException, IncompleteListCommandException;
 }

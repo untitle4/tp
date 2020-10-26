@@ -3,7 +3,6 @@ package seedu.duke.controller.command;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
-import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.ModelManager;
 
@@ -17,7 +16,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(ModelMain modelMain) throws ContactParamException, QuizParamException,
+    public void execute(ModelMain modelMain) throws ContactParamException,
             EmptyParameterException, MissingParameterException {
         ModelManager modelManager = (ModelManager) modelMain;
         modelManager.add(userInput);

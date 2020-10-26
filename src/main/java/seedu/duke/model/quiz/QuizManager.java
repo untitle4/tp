@@ -4,7 +4,6 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
-import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.model.quiz.UserAnswerManager;
@@ -28,7 +27,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public static int noOfQues;
     private final UserInterface userInterface;
     public static String correctnessLogo;
-    public static ArrayList<Integer> quizIndexes = new ArrayList<Integer>();
+    public static ArrayList<Integer> quizIndexes = new ArrayList<>();
+    UserAnswerManager userAnswerManager = new UserAnswerManager();
 
     public QuizManager(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;
@@ -38,8 +38,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public ArrayList<Quiz> getQuizList() {
         return quizzes;
     }
-
-    UserAnswerManager userAnswerManager = new UserAnswerManager();
 
     public int getQuizListSize() {
         assert quizzes != null;
@@ -102,6 +100,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                             lastIncorrectQuizzes.add(quizzes.get(quizIndexes.get(k)));
                             lastIncorrectAnswers.add(userAnswerManager.getUserAnswers().get(k));
                         }
+                        quizzes.get(quizIndexes.get(k)).updateLastAccessed();
                     }
 
                     for (int l = 0; l < noOfQues; l++) {
@@ -187,21 +186,25 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         getQuizStatement();
     }
 
-    // format: add quiz /q question /o1 option 1 /o2 option 2 /o3 option 3 /o4 option 4 /a answer /exp explanation
+    //@@author AndreWongZH
+    /**
+     * Adds a quiz to the ArrayList of quizzes.
+     * Extracts the question, options, explanations if any before adding it as a quiz.
+     *
+     * @param userInput The input entered by the user.
+     * @throws EmptyParameterException If there are missing parameters after the prefix.
+     */
     @Override
-    public void add(String userInput) throws QuizParamException, EmptyParameterException {
+    public void add(String userInput) throws EmptyParameterException {
         if (!userInput.contains(" /q ")) {
             userInterface.showToUser("question not found");
-            throw new QuizParamException();
         }
         if (!userInput.contains(" /a ")) {
             userInterface.showToUser("answer not found");
-            throw new QuizParamException();
         }
         if (!userInput.contains(" /o1 ") && !userInput.contains(" /o2 ")
                 && !userInput.contains(" /o3 ") && !userInput.contains(" /o4 ")) {
             userInterface.showToUser("options not provided");
-            throw new QuizParamException();
         }
         String[] separatedInputs = userInput.trim().split("/");
 
@@ -211,6 +214,11 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         String option3 = separatedInputs[4].substring(2).trim();
         String option4 = separatedInputs[5].substring(2).trim();
         String answer = separatedInputs[6].substring(1).trim();
+        String explanation = "";
+
+        if (separatedInputs.length > 7) {
+            explanation = separatedInputs[7].substring(3).trim();
+        }
 
         if (question.equals(" ") || option1.equals(" ") || option2.equals(" ")
                 || option3.equals(" ") || option4.equals(" ") || answer.equals(" ")) {
@@ -218,12 +226,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             throw new EmptyParameterException();
         }
 
-        if (separatedInputs.length > 7) {
-            String explanation = separatedInputs[7].substring(3).trim();
-            quizzes.add(new Quiz(question, option1, option2, option3, option4, answer, explanation));
-        } else {
-            quizzes.add(new Quiz(question, option1, option2, option3, option4, answer));
-        }
+        quizzes.add(new Quiz(question, option1, option2, option3, option4, answer, explanation));
 
         userInterface.showToUser("Quiz question added!\n");
     }
