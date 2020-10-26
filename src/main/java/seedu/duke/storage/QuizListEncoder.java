@@ -4,6 +4,10 @@ import seedu.duke.model.quiz.Quiz;
 
 import java.util.ArrayList;
 
+//@@author untitle4
+/**
+ * To encode the String form of quizzes in the Arraylist and store them in a text file.
+ */
 public class QuizListEncoder {
 
     public ArrayList<String> encodeQuizList(ArrayList<Quiz> quizList) {

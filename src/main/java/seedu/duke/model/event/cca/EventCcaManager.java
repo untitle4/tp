@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author untitle4
 public class EventCcaManager extends EventDataManager {
     private final ArrayList<Event> ccas;
     private EventManager eventManager;
