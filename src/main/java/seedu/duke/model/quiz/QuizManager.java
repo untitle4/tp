@@ -210,6 +210,13 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+    /**
+     * Delete a quiz in the Arraylist of quizzes.
+     * Extract the index of the quiz that the user want to delete.
+     *
+     * @param userInputs The input entered by the user.
+     * @throws IndexOutOfBoundsException
+     */
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int quizIndex;
@@ -280,6 +287,12 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+    /**
+     * To find the quiz with certain keyword(s) in the Arraylist of quizzes.
+     *
+     * @param userInput The input entered by the user.
+     * @throws MissingParameterException
+     */
     @Override
     public void find(String userInput) throws MissingParameterException {
         String param = userInput.substring(USER_INPUT_OFFSET).trim();
@@ -299,6 +312,10 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userInterface.printArray(filteredQuizzes);
     }
 
+    //@@author untitle4
+    /**
+     * Show the incorrect quizzes in the user's last attempt.
+     */
     public void recordedQuizzes() {
         if (lastIncorrectQuizzes.size() == 0) {
             userInterface.showToUser("Congratulations! You get full marks in your last attempt!");
@@ -316,6 +333,10 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     }
 
+    //@@author untitle4
+    /**
+     * List the Arraylist of quiz
+     */
     @Override
     public void list() {
         if (quizzes.size() == EMPTY_SIZE) {

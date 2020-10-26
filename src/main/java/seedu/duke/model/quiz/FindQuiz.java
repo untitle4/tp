@@ -7,6 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author untitle4
+/**
+ * Provide a function to find quiz with certain keyword(s) input by the user
+ */
 public class FindQuiz {
     private final ArrayList<Quiz> quizzes;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();

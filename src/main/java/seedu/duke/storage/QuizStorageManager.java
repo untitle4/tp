@@ -14,6 +14,11 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author untitle4
+/**
+ * Help manage the storage of quizzes into a text file and load quizzes from the file
+ * when the program is executed.
+ */
 public class QuizStorageManager extends StorageManager {
     private final QuizListEncoder quizListEncoder;
     private final QuizListDecoder quizListDecoder;
@@ -27,6 +32,10 @@ public class QuizStorageManager extends StorageManager {
         this.userInterface = UserInterface.getInstance();
     }
 
+    /**
+     * Load the content of the quiz text file
+     * @return
+     */
     public ArrayList<Quiz> loadData() {
         File quizFile = new File(DIRECTORY_FOLDER_PATH + fileName);
         ArrayList<String> data = new ArrayList<>();

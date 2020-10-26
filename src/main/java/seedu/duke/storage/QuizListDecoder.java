@@ -8,7 +8,13 @@ import java.util.ArrayList;
 
 import static java.time.temporal.ChronoUnit.DAYS;
 
+//@@author untitle4
+/**
+ * To decode the content in the quizzes text file and add them in an Arraylist as quizzes
+ * to initialize the quiz list.
+ */
 public class QuizListDecoder {
+
     public ArrayList<Quiz> decodeQuizList(ArrayList<String> encodedQuizList) {
         final ArrayList<Quiz> decodedQuizzes = new ArrayList<>();
         for (String encodedQuiz : encodedQuizList) {
