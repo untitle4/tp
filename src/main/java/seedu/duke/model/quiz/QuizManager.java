@@ -27,7 +27,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public static int noOfQues;
     private final UserInterface userInterface;
     public static String correctnessLogo;
-    public static ArrayList<Integer> quizIndexes = new ArrayList<Integer>();
+    public static ArrayList<Integer> quizIndexes = new ArrayList<>();
+    UserAnswerManager userAnswerManager = new UserAnswerManager();
 
     public QuizManager(ArrayList<Quiz> quizzes) {
         this.quizzes = quizzes;
@@ -37,8 +38,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public ArrayList<Quiz> getQuizList() {
         return quizzes;
     }
-
-    UserAnswerManager userAnswerManager = new UserAnswerManager();
 
     public int getQuizListSize() {
         assert quizzes != null;

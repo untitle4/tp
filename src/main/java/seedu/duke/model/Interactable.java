@@ -3,7 +3,6 @@ package seedu.duke.model;
 import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
-import seedu.duke.exception.QuizParamException;
 
 //@@author AndreWongZH
 /**
@@ -17,11 +16,9 @@ public interface Interactable {
      * @param userInput The input entered by the user.
      * @throws MissingParameterException If command is missing parameters prefix.
      * @throws EmptyParameterException If no parameter inputs are found after the prefix.
-     * @throws QuizParamException Missing parameters when adding a quiz.
      * @throws ContactParamException Missing parameters when adding a contact.
      */
-    void add(String userInput) throws MissingParameterException, EmptyParameterException,
-            QuizParamException, ContactParamException;
+    void add(String userInput) throws MissingParameterException, EmptyParameterException, ContactParamException;
 
     /**
      * Deletes an object from a ModelManager.

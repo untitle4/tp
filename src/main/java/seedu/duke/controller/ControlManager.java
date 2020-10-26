@@ -15,7 +15,6 @@ import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
 import seedu.duke.exception.MissingParameterException;
-import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.CommandParser;
 import seedu.duke.controller.parser.CommandType;
@@ -87,7 +86,7 @@ public class ControlManager {
             actionableCommand.execute(dataModel);
         } catch (InvalidHelpCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_EXTRA_HELP_PARAM);
-        } catch (ContactParamException | QuizParamException e) {
+        } catch (ContactParamException e) {
             e.printStackTrace();
         } catch (InvalidCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_COMMAND);
