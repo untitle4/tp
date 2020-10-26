@@ -11,11 +11,12 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DoneTestJUnitTest {
+    TestUtils testUtils = new TestUtils();
 
     @Test
     void setTestDoneFromList() throws MissingParameterException, EmptyParameterException {
         ArrayList<Event> test = new ArrayList<>();
-        EventTestManager eventTestManager = new EventTestManager(test);
+        EventTestManager eventTestManager = new EventTestManager(test, testUtils.getEmptyEventManager());
 
         eventTestManager.add("add test /n Math test "
                 + "/s 2020-09-26 1400 /e 2020-09-26 1500");

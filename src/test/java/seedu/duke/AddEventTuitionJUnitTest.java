@@ -5,6 +5,8 @@ import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
+import seedu.duke.model.event.EventManager;
+import seedu.duke.model.event.EventParameter;
 import seedu.duke.model.event.tuition.EventTuition;
 import seedu.duke.model.event.tuition.EventTuitionManager;
 
@@ -14,10 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AddEventTuitionJUnitTest {
+    TestUtils testUtils = new TestUtils();
+
     @Test
     void addEvent_validTuition_noException() throws EmptyParameterException, MissingParameterException {
         ArrayList<Event> tuitions = new ArrayList<>();
-        EventTuitionManager eventTuitionManager = new EventTuitionManager(tuitions);
+        EventTuitionManager eventTuitionManager = new EventTuitionManager(tuitions,
+                testUtils.getEmptyEventManager());
         eventTuitionManager.add("add tuition /n math tuition "
                 + "/s 2020-10-13 1500 /e 2020-10-13 1700 "
                 + "/l home");
@@ -34,7 +39,8 @@ public class AddEventTuitionJUnitTest {
     @Test
     void addEvent_invalidTuition_exceptionThrown() {
         ArrayList<Event> tuitions = new ArrayList<>();
-        EventTuitionManager eventTuitionManager = new EventTuitionManager(tuitions);
+        EventTuitionManager eventTuitionManager = new EventTuitionManager(tuitions,
+                testUtils.getEmptyEventManager());
 
         assertThrows(EmptyParameterException.class, () -> eventTuitionManager.add("/n /s /e /l"));
         assertThrows(MissingParameterException.class, () -> eventTuitionManager.add("/n math tuition "

@@ -15,9 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DoneEventTuitionJUnitTest {
+    TestUtils testUtils = new TestUtils();
+
     @Test
     void setValidTuitionDone() {
-        EventTuitionManager eventTuitionManager = new EventTuitionManager(getTuitionList());
+        EventTuitionManager eventTuitionManager = new EventTuitionManager(testUtils.getTuitionList(),
+                testUtils.getEmptyEventManager());
 
         String [] userInput = "done tuition 1".trim().split(" ");
 
@@ -35,24 +38,13 @@ public class DoneEventTuitionJUnitTest {
 
     @Test
     void setTuitionDone_invalidIndex_exceptionThrown() {
-        EventTuitionManager eventTuitionManager = new EventTuitionManager(getTuitionList());
+        EventTuitionManager eventTuitionManager = new EventTuitionManager(testUtils.getTuitionList(),
+                testUtils.getEmptyEventManager());
 
         String [] userInputIndexTooLarge = "done tuition 5".trim().split(" ");
         String [] userInputIndexNegative = "done tuition -1".trim().split(" ");
 
         assertThrows(IndexOutOfBoundsException.class, () -> eventTuitionManager.setDone(userInputIndexTooLarge));
         assertThrows(IndexOutOfBoundsException.class, () -> eventTuitionManager.setDone(userInputIndexNegative));
-    }
-
-    private ArrayList<Event> getTuitionList() {
-        ArrayList<Event> tuitions = new ArrayList<>();
-        DateTimeParser dateTimeParser = new DateTimeParser();
-
-        tuitions.add(new EventTuition("math", dateTimeParser.convertStringToCalendar("2020-09-26 1400"),
-                dateTimeParser.convertStringToCalendar("2020-09-26 1500"), "home"));
-        tuitions.add(new EventTuition("english", dateTimeParser.convertStringToCalendar("2020-09-27 1400"),
-                dateTimeParser.convertStringToCalendar("2020-09-27 1500"), "tuition centre"));
-
-        return tuitions;
     }
 }
