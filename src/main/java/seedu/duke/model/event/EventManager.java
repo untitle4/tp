@@ -2,6 +2,8 @@ package seedu.duke.model.event;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.controller.parser.DateTimeParser;
+import seedu.duke.exception.InvalidDateException;
+import seedu.duke.exception.InvalidDateType;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.event.cca.EventCcaManager;
@@ -36,10 +38,10 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public EventManager(EventParameter eventParameter) {
-        eventClassManager = new EventClassManager(eventParameter.getClasses());
-        eventTestManager = new EventTestManager(eventParameter.getTests());
-        eventCcaManager = new EventCcaManager(eventParameter.getCcas());
-        eventTuitionManager = new EventTuitionManager(eventParameter.getTuitions());
+        eventClassManager = new EventClassManager(eventParameter.getClasses(), this);
+        eventTestManager = new EventTestManager(eventParameter.getTests(), this);
+        eventCcaManager = new EventCcaManager(eventParameter.getCcas(), this);
+        eventTuitionManager = new EventTuitionManager(eventParameter.getTuitions(), this);
         userInterface = UserInterface.getInstance();
     }
 
@@ -168,5 +170,73 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         logger.log(Level.INFO, "added all ccas, classes, tests and tuitions");
 
         return masterList;
+    }
+
+    public ArrayList<Event> checkEventClash(Event event) {
+        ArrayList<Event> relevantEvents = getDayEventList(getEventMasterList(), event.getStart());
+        ArrayList<Event> results = new ArrayList<>();
+
+        for (Event e : relevantEvents) {
+            if (isTimeClash(e, event)) {
+                results.add(e);
+            }
+        }
+
+        return results;
+    }
+
+    public void processInvalidDateException(InvalidDateType errorCode) {
+        switch (errorCode) {
+        case START_AFTER_END:
+            userInterface.showToUser("The start time given is later than the end time given!",
+                    "Please check your inputs again!");
+            break;
+        case START_EQUALS_END:
+            userInterface.showToUser("The start time given is the same as the end time given!",
+                    "Please check your inputs again!");
+            break;
+        default:
+            // No default cases needed here
+        }
+    }
+
+    // Check if start time given is before end time
+    public void checkValidTimeGiven(Event inputEvent) throws InvalidDateException {
+        Calendar startCalendar = inputEvent.getStart();
+        Calendar endCalendar = inputEvent.getEnd();
+
+        if (startCalendar.equals(endCalendar)) {
+            throw new InvalidDateException(InvalidDateType.START_EQUALS_END);
+        }
+
+        if (startCalendar.after(endCalendar)) {
+            throw new InvalidDateException(InvalidDateType.START_AFTER_END);
+        }
+    }
+
+    // Check if there are any clashes with other events
+    private boolean isTimeClash(Event referenceEvent, Event inputEvent) {
+        Calendar startInputCalendar = inputEvent.getStart();
+        Calendar endInputCalendar = inputEvent.getEnd();
+        Calendar startReferenceCalendar = referenceEvent.getStart();
+        Calendar endReferenceCalendar = referenceEvent.getEnd();
+
+        if (startInputCalendar.after(startReferenceCalendar)
+                && startInputCalendar.before(endReferenceCalendar)) {
+            return true;
+        }
+
+        if (endInputCalendar.after((startReferenceCalendar))
+                && endInputCalendar.before(endReferenceCalendar)) {
+            return true;
+        }
+
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        if (dateTimeParser.isDateEqual(startInputCalendar, startReferenceCalendar)
+                || dateTimeParser.isDateEqual(endInputCalendar, endReferenceCalendar)) {
+            return true;
+        }
+
+        return false;
     }
 }

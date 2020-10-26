@@ -2,11 +2,14 @@ package seedu.duke.model.event.cca;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
@@ -16,6 +19,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -23,11 +27,13 @@ import java.util.logging.Logger;
 
 public class EventCcaManager extends EventDataManager {
     private final ArrayList<Event> ccas;
+    private EventManager eventManager;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
-    public EventCcaManager(ArrayList<Event> inputList) {
+    public EventCcaManager(ArrayList<Event> inputList, EventManager eventManager) {
         ccas = inputList;
+        this.eventManager = eventManager;
         userInterface = UserInterface.getInstance();
     }
 
@@ -67,16 +73,33 @@ public class EventCcaManager extends EventDataManager {
             DateTimeParser dateTimeParser = new DateTimeParser();
             Calendar startCalendar = dateTimeParser.convertStringToCalendar(ccaStartDate);
             Calendar endCalendar = dateTimeParser.convertStringToCalendar(ccaEndDate);
-            ccas.add(new EventCca(ccaDescription, startCalendar, endCalendar));
+            EventCca cca = new EventCca(ccaDescription, startCalendar, endCalendar);
+
+            eventManager.checkValidTimeGiven(cca);
+
+            // Checking if there are any events that clashes
+            ArrayList<Event> clashedEvents = eventManager.checkEventClash(cca);
+            if (clashedEvents.size() == 0) {
+                ccas.add(cca);
+                logger.log(Level.INFO, "added cca to ArrayList");
+
+                userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
+                        ccas.get(getCcaListSize() - 1).toString());
+                getCcaStatement();
+            } else {
+                userInterface.showToUser("The cca you were trying to add",
+                        cca.toString(),
+                        "clashes with the following events in your list:");
+                for (Event clashedEvent : clashedEvents) {
+                    userInterface.showToUser(clashedEvent.toString());
+                }
+                userInterface.showToUser("Please check the start and end inputs again!");
+            }
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
+        } catch (InvalidDateException e) {
+            eventManager.processInvalidDateException(e.getErrorType());
         }
-        logger.log(Level.INFO, "added cca to ArrayList");
-
-
-        userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
-                ccas.get(getCcaListSize() - 1).toString());
-        getCcaStatement();
     }
 
     @Override

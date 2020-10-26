@@ -13,11 +13,13 @@ import java.util.logging.Logger;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
@@ -44,12 +46,14 @@ public class EventClassManager extends EventDataManager {
 
     private final ArrayList<Event> classes;
     private final UserInterface userInterface;
+    private EventManager eventManager;
 
     // Initialising Logger with name "Class"
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
-    public EventClassManager(ArrayList<Event> classes) {
+    public EventClassManager(ArrayList<Event> classes, EventManager eventManager) {
         this.classes = classes;
+        this.eventManager = eventManager;
         userInterface = UserInterface.getInstance();
     }
 
@@ -102,18 +106,37 @@ public class EventClassManager extends EventDataManager {
             throw new EmptyParameterException();
         }
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
         try {
             DateTimeParser dateTimeParser = new DateTimeParser();
             Calendar startCalendar = dateTimeParser.convertStringToCalendar(classStartDate);
             Calendar endCalendar = dateTimeParser.convertStringToCalendar(classEndDate);
-            classes.add(new EventClass(classDescription, startCalendar, endCalendar));
+            EventClass eventClass = new EventClass(classDescription, startCalendar, endCalendar);
+
+            eventManager.checkValidTimeGiven(eventClass);
+
+            // Checking if there are any events that clashes
+            ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventClass);
+            if (clashedEvents.size() == 0) {
+                classes.add(eventClass);
+                logger.log(Level.INFO, "added class to ArrayList");
+
+                userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
+                        classes.get(getClassListSize() - 1).toString());
+                getClassStatement();
+            } else {
+                userInterface.showToUser("The class you were trying to add",
+                        eventClass.toString(),
+                        "clashes with the following events in your list:");
+                for (Event clashedEvent : clashedEvents) {
+                    userInterface.showToUser(clashedEvent.toString());
+                }
+                userInterface.showToUser("Please check the start and end inputs again!");
+            }
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
+        } catch (InvalidDateException e) {
+            eventManager.processInvalidDateException(e.getErrorType());
         }
-        userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
-                classes.get(getClassListSize() - 1).toString());
-        getClassStatement();
     }
 
     /**
