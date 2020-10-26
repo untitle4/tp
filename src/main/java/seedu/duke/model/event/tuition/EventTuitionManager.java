@@ -108,6 +108,9 @@ public class EventTuitionManager extends EventDataManager {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
+        } catch (ParseException e) {
+            userInterface.showToUser("Please check the date time format you entered. "
+                    + "It has to be yyyy-MM-dd!");
         }
     }
 

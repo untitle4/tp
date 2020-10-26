@@ -1,6 +1,7 @@
 package seedu.duke.storage;
 
 import seedu.duke.controller.parser.DateTimeParser;
+import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.exception.StorageSeparatorException;
 import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
@@ -8,6 +9,7 @@ import seedu.duke.model.event.Event;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,7 +19,7 @@ public class EventListDecoder {
     public EventListDecoder() {
     }
 
-    public ArrayList<Event> decodeEventList(ArrayList<String> encodedEventList) throws StorageSeparatorException {
+    public ArrayList<Event> decodeEventList(ArrayList<String> encodedEventList) throws StorageSeparatorException, StorageCorruptedException {
         final ArrayList<Event> decodedEvents = new ArrayList<>();
         for (String encodedEvent : encodedEventList) {
             decodedEvents.add(decodeEventFromString(encodedEvent));
@@ -25,7 +27,7 @@ public class EventListDecoder {
         return decodedEvents;
     }
 
-    private Event decodeEventFromString(String encodedEvent) throws StorageSeparatorException {
+    private Event decodeEventFromString(String encodedEvent) throws StorageSeparatorException, StorageCorruptedException {
         final String[] data = encodedEvent.trim().split("\\|", 3);
 
         switch (data[0]) {
@@ -42,7 +44,7 @@ public class EventListDecoder {
         }
     }
 
-    private EventCca parseCca(String[] data) throws StorageSeparatorException {
+    private EventCca parseCca(String[] data) throws StorageSeparatorException, StorageCorruptedException {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -57,13 +59,19 @@ public class EventListDecoder {
         String end = eventInfo[2];
 
         DateTimeParser dateTimeParser = new DateTimeParser();
-        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
-        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
+        Calendar startCalendar;
+        Calendar endCalendar;
+        try {
+            startCalendar = dateTimeParser.convertStringToCalendar(start);
+            endCalendar = dateTimeParser.convertStringToCalendar(end);
+        } catch (ParseException e) {
+            throw new StorageCorruptedException();
+        }
 
         return new EventCca(description, isDone, startCalendar, endCalendar);
     }
 
-    private EventClass parseClass(String[] data) throws StorageSeparatorException {
+    private EventClass parseClass(String[] data) throws StorageSeparatorException, StorageCorruptedException {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -78,13 +86,19 @@ public class EventListDecoder {
         String end = eventInfo[2];
 
         DateTimeParser dateTimeParser = new DateTimeParser();
-        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
-        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
+        Calendar startCalendar;
+        Calendar endCalendar;
+        try {
+            startCalendar = dateTimeParser.convertStringToCalendar(start);
+            endCalendar = dateTimeParser.convertStringToCalendar(end);
+        } catch (ParseException e) {
+            throw new StorageCorruptedException();
+        }
 
         return new EventClass(description, isDone, startCalendar, endCalendar);
     }
 
-    private EventTest parseTest(String[] data) throws StorageSeparatorException {
+    private EventTest parseTest(String[] data) throws StorageSeparatorException, StorageCorruptedException {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -99,13 +113,19 @@ public class EventListDecoder {
         String end = eventInfo[2];
 
         DateTimeParser dateTimeParser = new DateTimeParser();
-        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
-        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
+        Calendar startCalendar;
+        Calendar endCalendar;
+        try {
+            startCalendar = dateTimeParser.convertStringToCalendar(start);
+            endCalendar = dateTimeParser.convertStringToCalendar(end);
+        } catch (ParseException e) {
+            throw new StorageCorruptedException();
+        }
 
         return new EventTest(description, isDone, startCalendar, endCalendar);
     }
 
-    private EventTuition parseTuition(String[] data) throws StorageSeparatorException {
+    private EventTuition parseTuition(String[] data) throws StorageSeparatorException, StorageCorruptedException {
         boolean isDone;
         String description;
         isDone = Boolean.parseBoolean(data[1]);
@@ -121,9 +141,14 @@ public class EventListDecoder {
         String location = eventInfo[3];
 
         DateTimeParser dateTimeParser = new DateTimeParser();
-        Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
-        Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
-
+        Calendar startCalendar;
+        Calendar endCalendar;
+        try {
+            startCalendar = dateTimeParser.convertStringToCalendar(start);
+            endCalendar = dateTimeParser.convertStringToCalendar(end);
+        } catch (ParseException e) {
+            throw new StorageCorruptedException();
+        }
 
         return new EventTuition(description, isDone, startCalendar, endCalendar, location);
     }
