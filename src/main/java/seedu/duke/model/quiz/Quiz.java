@@ -77,6 +77,7 @@ public class Quiz {
         }
     }
 
+    //@@author elizabethcwt
     public String printQuizQuestion() {
         return question + "\n\n"
                 + "(1) " + option1 + "\n"
@@ -85,6 +86,7 @@ public class Quiz {
                 + "(4) " + option4 + "\n\n";
     }
 
+    //@@author elizabethcwt
     public String printPostQuizQuestion(int l, String correctnessLogo) {
         if (explanation.equals("")) {
             return question + correctnessLogo + "\n\n"
