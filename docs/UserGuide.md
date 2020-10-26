@@ -48,8 +48,13 @@ to ensure they are better able to ace their PSLE.
 ## List of Features 
 
 #### Command Format
-* Words encased in `[` and `]` are compulsory parameters to be given by the user.
-* Words encased in `(` and `)` are optional parameters.
+* A command can contain multiple "fields"
+    * For example: A `test` contains a `description`, `start` and `end`
+    * `description`, `start` and `end` are "fields" that makes up a `test`
+* Words encased in `[` and `]` are compulsory fields to be provided by the user. Without these fields,
+Plan&Score cannot function properly.
+* Words encased in `(` and `)` are optional fields. These fields do
+not affect the operation of Plan&Score
 
 #### Model Types
 * Models are represented by one of these types:
