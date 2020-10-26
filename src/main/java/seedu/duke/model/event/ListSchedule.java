@@ -40,7 +40,7 @@ public class ListSchedule {
         this.tuitions = tuitions;
     }
 
-    public ArrayList<String> getPrintableEvents() throws EmptyListException {
+    public ArrayList<String> getPrintableEvents() throws EmptyListException, ParseException {
         logger.log(Level.INFO, "starting to convert events instance to strings");
         ArrayList<String> printedEvents = new ArrayList<>();
         ArrayList<String> printedClasses;
@@ -106,7 +106,7 @@ public class ListSchedule {
      * @return resultCalender Calendar containing the resulting output
      * @author Aliciaho
     */
-    private Calendar checkAndConvertToday() {
+    private Calendar checkAndConvertToday() throws ParseException {
         Calendar resultCalendar = null;
         if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
             resultCalendar = Calendar.getInstance();

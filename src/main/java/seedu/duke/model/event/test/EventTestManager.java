@@ -136,8 +136,8 @@ public class EventTestManager extends EventDataManager {
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
         } catch (ParseException e) {
-            userInterface.showToUser("Please check the date time format you entered. "
-                    + "It has to be yyyy-MM-dd!");
+            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
     }
 
