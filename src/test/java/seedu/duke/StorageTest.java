@@ -12,6 +12,7 @@ import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
 import seedu.duke.storage.EventStorageManager;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,8 +35,8 @@ public class StorageTest {
     }
 
     //@Test
-    public void load_validFormat() throws StorageCorruptedException {
-        EventStorageManager eventStorageManager = new EventStorageManager("test");
+    public void load_validFormat() throws StorageCorruptedException, ParseException {
+        EventStorageManager eventStorageManager = new EventStorageManager("/ValidData.txt");
         EventParameter eventParameter = eventStorageManager.loadData();
         eventParameter.getEventMasterList();
         assertEquals(testUtils.getEventList(), eventParameter.getEventMasterList());
