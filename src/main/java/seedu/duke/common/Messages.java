@@ -172,7 +172,7 @@ public class Messages {
             + "\t17. List contact: 'list contact'\n\n"
             + "\t18. Take Mathematics quiz: 'quiz [no. of questions (10, 20 or 30)]'\n"
             + "\t19. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
-            + " /o4 [option 4] /a [option answer] /exp [explanation]'\n"
+            + " /o4 [option 4] /a [option answer] /exp (explanation)'\n"
             + "\t20. Delete quiz question: 'delete quiz [question number]'\n"
             + "\t21. List quiz questions: 'list quiz'\n"
             + "\t22. Find quiz questions: 'find quiz [keyword(s)]'\n"

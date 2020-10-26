@@ -346,6 +346,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         if (quizzes.size() == EMPTY_SIZE) {
             userInterface.showToUser("Quiz list is empty. Add some!\n");
         } else {
+            userInterface.showToUser("Here are the questions in your quiz list:");
             for (int i = 0; i < quizzes.size(); i++) {
                 userInterface.showToUser("Question " + (i + 1) + ":\n" + quizzes.get(i));
             }
