@@ -15,6 +15,7 @@ import seedu.duke.ui.CalendarWeekRenderer;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.EmptyListException;
 
+import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -106,9 +107,15 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         } catch (EmptyListException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         } catch (DateTimeParseException e) {
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
+            System.out.println("☹ OOPS!!! Please enter today/week/valid date "
+                    + "and time in format yyyy-mm-dd!");
         } catch (NullPointerException e) {
-            System.out.println("☹ OOPS!!! We do not recognise that command. Do you mean list event week/today?");
+            System.out.println("☹ OOPS!!! We do not recognise that command. "
+                    + "Do you mean list event week/today/date?");
+        } catch (ParseException e) {
+            logger.log(Level.WARNING, "valid datetime not inputted");
+            System.out.println("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
     }
 
