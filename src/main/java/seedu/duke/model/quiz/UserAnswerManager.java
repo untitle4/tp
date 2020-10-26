@@ -2,13 +2,14 @@ package seedu.duke.model.quiz;
 
 import java.util.ArrayList;
 
+//@@author elizabethcwt
 public class UserAnswerManager {
     private final ArrayList<Integer> userAnswers;
     private final ArrayList<Boolean> correctness;
 
     public UserAnswerManager() {
-        this.userAnswers = new ArrayList<Integer>();
-        this.correctness = new ArrayList<Boolean>();
+        this.userAnswers = new ArrayList<>();
+        this.correctness = new ArrayList<>();
     }
 
     // Getters

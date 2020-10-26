@@ -50,25 +50,42 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public void takeQuiz(String[] separatedInputs) {
         try {
             noOfQues = Integer.parseInt(separatedInputs[1]);
+            assert noOfQues != 0 : "noOfQues should not be 0";
 
             if (!((noOfQues == 10) || (noOfQues == 20) || (noOfQues == 30))) {
+
+                // Assert that noOfQues is NOT one of the acceptable values
+                assert (!((noOfQues == 10) || (noOfQues == 20) || (noOfQues == 30)));
+
                 // If user inputs an invalid number of quiz questions (not 10, 20 or 30)
                 userInterface.showToUser(Messages.MESSAGE_INVALID_NUM_OF_QUIZ_QUESTIONS);
 
                 // If user inputs a valid number of quiz questions (either 10, 20 or 30)
             } else if ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10)) {
+
+                // Assert that noOfQues is more than the quiz size, and quiz size is less than 10
+                assert ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10));
+
                 // If user wants to try more questions than he/she has in the current quiz, and has less than 10
                 // questions
                 userInterface.showToUser(String.format(Messages.MESSAGE_INSUFFICIENT_QUES_LESS_THAN_10,
                         getQuizListSize()));
             } else if (noOfQues > getQuizListSize() && (getQuizListSize() >= 10)) {
+
+                // Assert that noOfQues is more than the quiz size, and quiz size is at least 10
+                assert ((noOfQues > getQuizListSize()) && (getQuizListSize() >= 10));
+
                 // If user wants to try more questions than he/she has in the current quiz, but has at least 10
                 // questions
                 userInterface.showToUser(String.format(Messages.MESSAGE_INSUFFICIENT_QUES_MORE_THAN_10,
                         getQuizListSize()));
             } else {
+
                 // If user enters a valid number of questions
                 if (noOfQues <= getQuizListSize()) {
+
+                    // Assert that noOfQues is valid
+                    assert (noOfQues <= getQuizListSize()) : "noOfQues is invalid";
 
                     // Create a new list of the question indexes
                     quizIndexes = new ArrayList<>();
@@ -83,14 +100,23 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
                     int questionCounter = 0;
                     while (questionCounter < noOfQues) {
+
+                        // Assert that questionCounter is less than noOfQues
+                        assert (questionCounter < noOfQues) : "questionCounter should not be more than noOfQues";
+
                         questionCounter = testForValidInput(questionCounter);
                     }
 
                     // Initialising counter for correctly answered questions
                     int correctCounter = 0;
+
+                    // Assert that correctCounter is 0 initially
+                    assert (correctCounter == 0) : "questionCounter should be 0 initially";
+
                     // Clear arraylist to store incorrect quizzes
                     lastIncorrectQuizzes.clear();
                     lastIncorrectAnswers.clear();
+
                     // Compare and note if students' answers are correct
                     for (int k = 0; k < noOfQues; k++) {
                         if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt(quizzes.get(quizIndexes
@@ -108,8 +134,18 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
                         // Assigning the correctness logo to be printed with questions post-quiz
                         if (userAnswerManager.getCorrectness().get(l).equals(true)) {
+
+                            // Assert that the correctness of the user's input is true in this if loop
+                            assert (userAnswerManager.getCorrectness().get(l).equals(true)) : "User's answer should be"
+                                    + " correct for this question";
+
                             correctnessLogo = " [CORRECT ☺︎]";
                         } else {
+
+                            // Assert that the correctness of the user's input is false in this else loop
+                            assert (userAnswerManager.getCorrectness().get(l).equals(false)) : "User's answer should be"
+                                    + " incorrect for this question";
+
                             correctnessLogo = " [WRONG ☹︎]";
                         }
 
@@ -147,17 +183,29 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userInput.replaceAll("\\s+", "");
 
         if (userInput.equals("")) {
+
+            // Assert that the user's input is ""
+            assert (userInput.equals(""));
+
             System.out.println("OOPS! Please enter your answer for the question above!\n");
-        } else if (userInput.equals("1") || userInput.equals("2") || userInput.equals("3") || userInput.equals("4")) {
-
-            // Store user's quiz answers into ArrayList
-            userAnswerManager.getUserAnswers().add(Integer.parseInt(userInput));
-
-
-            questionCounter++;
-            return questionCounter;
         } else {
-            System.out.println("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
+
+            boolean b = userInput.equals("1") || userInput.equals("2") || userInput.equals("3")
+                    || userInput.equals("4");
+
+            if (b) {
+
+                // Assert that the user's input is one of the valid options
+                assert (b) : "User's input should be one of the valid options (1, 2, 3 or 4)";
+
+                // Store user's quiz answers into ArrayList
+                userAnswerManager.getUserAnswers().add(Integer.parseInt(userInput));
+
+                questionCounter++;
+                return questionCounter;
+            } else {
+                System.out.println("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
+            }
         }
         return questionCounter;
     }
