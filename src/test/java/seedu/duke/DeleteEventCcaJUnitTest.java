@@ -11,10 +11,13 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteEventCcaJUnitTest {
+    TestUtils testUtils = new TestUtils();
+
     @Test
     void deleteCcaInList() throws EmptyParameterException, MissingParameterException {
         ArrayList<Event> cca = new ArrayList<>();
-        EventCcaManager eventCcaManager = new EventCcaManager(cca);
+        EventCcaManager eventCcaManager = new EventCcaManager(cca,
+                testUtils.getEmptyEventManager());
 
         eventCcaManager.add("add cca /n basketball "
                 + "/s 2020-10-13 1500 /e 2020-10-13 1700");

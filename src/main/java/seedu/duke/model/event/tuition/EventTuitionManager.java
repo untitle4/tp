@@ -2,11 +2,13 @@ package seedu.duke.model.event.tuition;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
@@ -26,9 +28,11 @@ public class EventTuitionManager extends EventDataManager {
     private final ArrayList<Event> tuitions;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
+    private EventManager eventManager;
 
-    public EventTuitionManager(ArrayList<Event> tuitions) {
+    public EventTuitionManager(ArrayList<Event> tuitions, EventManager eventManager) {
         this.tuitions = tuitions;
+        this.eventManager = eventManager;
         userInterface = UserInterface.getInstance();
     }
 
@@ -77,16 +81,33 @@ public class EventTuitionManager extends EventDataManager {
             DateTimeParser dateTimeParser = new DateTimeParser();
             Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
             Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
-
             EventTuition eventTuition = new EventTuition(description, startCalendar,
                     endCalendar, location);
-            tuitions.add(eventTuition);
-            logger.log(Level.INFO, "Tuition added successfully");
-            userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
-                    eventTuition.toString(),
-                    getTuitionStatement());
+
+            eventManager.checkValidTimeGiven(eventTuition);
+
+            // Checking if there are any events that clashes
+            ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventTuition);
+
+            if (clashedEvents.size() == 0) {
+                tuitions.add(eventTuition);
+                logger.log(Level.INFO, "Tuition added successfully");
+                userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
+                        eventTuition.toString(),
+                        getTuitionStatement());
+            } else {
+                userInterface.showToUser("The tuition you were trying to add",
+                        eventTuition.toString(),
+                        "clashes with the following events in your list:");
+                for (Event clashedEvent : clashedEvents) {
+                    userInterface.showToUser(clashedEvent.toString());
+                }
+                userInterface.showToUser("Please check the start and end inputs again!");
+            }
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
+        } catch (InvalidDateException e) {
+            eventManager.processInvalidDateException(e.getErrorType());
         }
     }
 

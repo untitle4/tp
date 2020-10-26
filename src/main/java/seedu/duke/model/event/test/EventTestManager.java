@@ -2,11 +2,14 @@ package seedu.duke.model.event.test;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.EventManager;
+import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
@@ -42,9 +45,11 @@ public class EventTestManager extends EventDataManager {
     private final ArrayList<Event> tests;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
+    private EventManager eventManager;
 
-    public EventTestManager(ArrayList<Event> inputList) {
+    public EventTestManager(ArrayList<Event> inputList, EventManager eventManager) {
         tests = inputList;
+        this.eventManager = eventManager;
         userInterface = UserInterface.getInstance();
     }
 
@@ -98,16 +103,35 @@ public class EventTestManager extends EventDataManager {
             DateTimeParser dateTimeParser = new DateTimeParser();
             Calendar startCalendar = dateTimeParser.convertStringToCalendar(testStartDate);
             Calendar endCalendar = dateTimeParser.convertStringToCalendar(testEndDate);
-            tests.add(new EventTest(testDescription, startCalendar, endCalendar));
+
+            EventTest eventTest = new EventTest(testDescription, startCalendar, endCalendar);
+
+            eventManager.checkValidTimeGiven(eventTest);
+
+            // Checking if there are any events that clashes
+            ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventTest);
+            if (clashedEvents.size() == 0) {
+                tests.add(eventTest);
+                logger.log(Level.INFO, "added test to ArrayList");
+
+                userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
+                        tests.get(getTestListSize() - 1).toString());
+                getTaskStatement();
+            } else {
+                userInterface.showToUser("The test you were trying to add",
+                        eventTest.toString(),
+                        "clashes with the following events in your list:");
+                for (Event clashedEvent : clashedEvents) {
+                    userInterface.showToUser(clashedEvent.toString());
+                }
+                userInterface.showToUser("Please check the start and end inputs again!");
+            }
         } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "invalid date time inputted");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
+        } catch (InvalidDateException e) {
+            eventManager.processInvalidDateException(e.getErrorType());
         }
-        logger.log(Level.INFO, "added test to ArrayList");
-
-        userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
-                "  " + tests.get(getTestListSize() - 1));
-        getTaskStatement();
     }
 
     /**
