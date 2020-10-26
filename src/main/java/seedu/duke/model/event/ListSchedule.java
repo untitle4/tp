@@ -115,11 +115,11 @@ public class ListSchedule {
             resultCalendar = Calendar.getInstance();
             try {
                 Date date = sdf.parse(userInput);
-                 resultCalendar.setTime(date);
+                resultCalendar.setTime(date);
             } catch (ParseException parseException) {
                 logger.log(Level.WARNING, "valid datetime/today/week not inputted");
-                System.out.println("☹ OOPS!!! Please enter today/week/valid date " +
-                        "and time in format yyyy-mm-dd!");
+                System.out.println("☹ OOPS!!! Please enter today/week/valid date "
+                        + "and time in format yyyy-mm-dd!");
             }
         }
         return resultCalendar;

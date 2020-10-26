@@ -104,11 +104,11 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         } catch (EmptyListException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         } catch (DateTimeParseException e) {
-            System.out.println("☹ OOPS!!! Please enter today/week/valid date " +
-                    "and time in format yyyy-mm-dd!");
+            System.out.println("☹ OOPS!!! Please enter today/week/valid date "
+                    + "and time in format yyyy-mm-dd!");
         } catch (NullPointerException e) {
-            System.out.println("☹ OOPS!!! We do not recognise that command. " +
-                    "Do you mean list event week/today/date?");
+            System.out.println("☹ OOPS!!! We do not recognise that command. "
+                    + "Do you mean list event week/today/date?");
         }
     }
 

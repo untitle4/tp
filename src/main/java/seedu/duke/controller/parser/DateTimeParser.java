@@ -88,8 +88,8 @@ public class DateTimeParser {
             calendar.setTime(date);
         } catch (ParseException parseException) {
             logger.log(Level.WARNING, "valid datetime not inputted");
-            System.out.println("☹ OOPS!!! Please enter today/week/valid date " +
-                    "and time in format yyyy-mm-dd!");
+            System.out.println("☹ OOPS!!! Please enter today/week/valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
         return calendar;
     }
