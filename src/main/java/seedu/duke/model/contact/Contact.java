@@ -1,5 +1,10 @@
 package seedu.duke.model.contact;
 
+//@@author untitle4
+/**
+ * <h2> Class class </h2>
+ * Contains details of contact.
+ */
 public class Contact {
     private final String subject;
     private final String name;

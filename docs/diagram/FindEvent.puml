@@ -1,0 +1,40 @@
+@startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+box "Controller" #LightSalmon
+participant FindCommand
+end box
+
+box "Model" #YellowGreen
+participant EventManager
+participant FindSchedule
+end box
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+FindCommand -> EventManager : execute()
+activate EventManager
+EventManager -> EventManager : findSchedule()
+activate EventManager #DarkSalmon
+EventManager -> FindSchedule ** : constructor()
+activate FindSchedule
+FindSchedule --> EventManager
+deactivate FindSchedule
+EventManager -> FindSchedule : getFilteredEvents()
+activate FindSchedule
+FindSchedule --> EventManager : filteredEvents
+deactivate FindSchedule
+destroy FindSchedule
+EventManager -> UserInterface : printArray()
+activate UserInterface
+UserInterface --> EventManager
+deactivate UserInterface
+deactivate EventManager
+EventManager --> FindCommand
+deactivate EventManager
+
+@enduml
