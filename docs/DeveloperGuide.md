@@ -1,5 +1,8 @@
 # Developer Guide
 
+* Table of Contents
+{:toc}
+
 ## Introduction
 
 ### Purpose
@@ -128,7 +131,7 @@ Figure 7. Sequence Diagram of the reading of data
 
 It returns a `String` to `EventStorageManager` for further writing. 
 
-![eventwritestorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageWriteSequence.png)
+![eventwritestorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageSaveSequence.png)
 Figure 8. Sequence Diagram of the writing of data
 
 ##### Quiz Storage
@@ -411,10 +414,10 @@ One-stop application for Primary 6 students to plan their schedule and do revisi
 
 ## Non-Functional Requirements
 
-Should work on any Windows, Mac and Linux operating system with Java 11 installed.
-Should update the storage every time a command changes the data.
-Users should be able to view the output of their command within 10 seconds
-Accessing and loading of data should take less than 5 seconds when we have less than 10000 data entries.
+* Should work on any Windows, Mac and Linux operating system with Java 11 installed.
+* Should update the storage every time a command changes the data.
+* Users should be able to view the output of their command within 10 seconds
+* Accessing and loading of data should take less than 5 seconds when we have less than 10000 data entries.
 
 ## Glossary
 
@@ -428,38 +431,38 @@ Data entries
 Given below are instructions to test the app manually
 
 ### Adding of CCAs
-Test case: `add`
-	Expected: User is informed that the model type is missing.
-Test case: `add cca`
-	Expected: User is informed to include all /n /s and /e inputs.
-Test case: `add cca /n abc /s date1 /e date 2`
-	Expected: User is informed to enter a valid date time format.
-Test case: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
-	Expected: User is informed that cca has been added. Running `list event` command will show the added cca inside.
-Test case: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1000`
-Expected: User is informed that start time is later than end time.
+1. Test case: `add`
+    * Expected: Inform the user that the model type is missing.
+1. Test case: `add cca`
+    * Expected: Inform the user to include all /n /s and /e inputs.
+1. Test case: `add cca /n abc /s date1 /e date 2`
+	* Expected: Inform the user to enter a valid date time format.
+1. Test case: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
+	* Expected: Inform the user that cca has been added. Running `list event` command will show the added cca inside.
+1. Test case: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1000`
+    * Expected: Inform the user that start time is later than end time.
 
 ### Listing of events
-Test case: `list`
-	Expected: User is informed to list either event, quiz or contact
-Test case: `list event`
-	Expected: A list of events are shown and categorized into its event type. If there are no events, inform the user that the schedule is empty.
-Test case: `list event 2020-10-3`
-	Expected: A list of events are shown that matches with the specified date. If no events that match, inform the user that the schedule is not found.
-Test case: `list event date`
-	Expected: User is informed to enter a valid date time format.
-Test case: `list event 2020-10-3 2pm`
-Expected: User is informed not to enter extra parameters.
+1. Test case: `list`
+	* Expected: Inform the user to list either event, quiz or contact
+1. Test case: `list event`
+	* Expected: Show a list of events and categorized into its event type. If there are no events, inform the user that the schedule is empty.
+1. Test case: `list event 2020-10-3`
+	* Expected: Show a  list of events that matches with the specified date. If no events that match, inform the user that the schedule is not found.
+1. Test case: `list event date`
+	* Expected: Inform the user to enter a valid date time format.
+1. Test case: `list event 2020-10-3 2pm`
+    * Expected: Inform the user not to enter extra parameters.
 
 ### Finding of contacts
-Test case: `find`
-	Expected: User is informed to find either event, quiz or contact
-Test case: `list contact math`
-	Expected: A list of contacts are shown that matches the keywords. If there are no contacts found , inform the user that the search has no result.
-Test case: `find event`
-	Expected: Remind the user to include the keyword in the command.
-Test case: `find testing`
-	Expected: Inform user that the model is not recognised.
+1. Test case: `find`
+	* Expected: Inform the user to find either event, quiz or contact
+1. Test case: `list contact math`
+	* Expected: Show a list of contacts that matches the keywords. If there are no contacts found , inform the user that the search has no result.
+1. Test case: `find event`
+	* Expected: Remind the user to include the keyword in the command.
+1. Test case: `find testing`
+	* Expected: Inform user that the program does not recognise the model.
 
 ### Saving data
 Dealing with missing data files
