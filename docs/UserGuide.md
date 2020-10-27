@@ -1,13 +1,13 @@
 # User Guide
 - [1. Introduction](#introduction)
 - [2. About this User Guide](#about-this-user-guide)
-- [3. How to user this User Guide](#how-to-use-this-user-guide)
+- [3. How to user this User Guide](#how-to-use-user-guide)
 - [4. Quick Start](#quick-start)
 - [5. Commands](#commands)
     - [Command Format](#command-format)
     - [Category Types](#category-types)
   - [Help:](#viewing-help-help) `help`
-  - [PLAN component of Plan&Score](#plan-component-of-planscore)
+  - [PLAN component of Plan&Score](#plan-component-of-plan&score)
     - [Class Category](#category-class)
       - [Add a class:](#adding-a-class-add-class) `add class`
       - [Delete a task:](#deleting-a-class-delete-class) `delete class`
@@ -17,14 +17,17 @@
     - [Test Category](#category-test)
       - [Add a test:](#adding-a-test-add-test) `add test`
       - [Delete a test:](#deleting-a-test-delete-test) `delete test`
-    - [List schedule:](#listing-out-schedule-list-event) `list event`
-    - [Find event:](#finding-an-event-find-event) `find event`
-  - [SCORE component of Plan&Score:](#score-component-of-planscore)
+    - [Tuition Category](#category-tuition)
+      - [Add a tuition:](#adding-a-tuition-add-tuition) `add tuition`
+      - [Delete a tuition:](#deleting-a-tuition-delete-tuition) `delete tuition`
+    - [List schedule:](#list-out-schedule-list-event) `list event`
+    - [Find event:](#finding-an-event-find-event) `list event`
+  - [SCORE component of Plan&Score:](#score-component-of-plan&score)
     - [Take a quiz:](#taking-a-quiz-quiz)`quiz`
     - [Add a quiz question:](#adding-a-quiz-question-add-quiz) `add quiz`
     - [Delete a quiz question:](#deleting-a-quiz-question-delete-quiz) `delete quiz`
     - [List quiz questions:](#listing-out-all-quiz-questions-list-quiz) `list quiz`
-    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find quiz`
+    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find`
     - [Search for former incorrect quiz questions:](#searching-for-former-incorrect-quiz-questions-quiz-record) `quiz record`
   - [Exit the programme:](#exits-programme-bye) `bye`
 - [6. Saving Data](#saving-data)
@@ -101,6 +104,8 @@ Shows all available commands that you can use
 Firstly, type ‘help’ in the command line as seen below, and press ‘Enter’ to execute it.
 
 
+
+
 The output containing all the different commands is seen in the console.
 
 
@@ -162,6 +167,14 @@ Tuitions
 ##### Adding a class: `add class`
 Allows you to add a new class with a name, date and time.
 
+Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the class. Afterwards, key in the description of the class as well as its start and end date and time. Press ‘Enter’ to execute it.
+
+
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+
+
 Format: `add class /n [name of class] /s [start date-time of class] /e [end date-time of class]`
 
 * `[name of class]` can be in a natural language format and
@@ -193,6 +206,13 @@ Allows you to delete a class based on its index in the list.
 
 
 
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the class. Afterwards, key in the corresponding index of the class you would like to delete. Press ‘Enter’ to execute it.
+
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+
+
 Format: `delete class [class number]`
 
 * `[class number]` must be written in numerals.
@@ -213,6 +233,8 @@ Example Output:
 ##### Adding a cca: `add cca`
 Allow you to add a new cca with a name, date and time.
 
+Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the description of the cca as well as its start and end date and time. Press ‘Enter’ to execute it.
+
 Format: `add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]`
 
 
@@ -232,6 +254,8 @@ Now you have 1 cca in the list.
 
 ##### Deleting a cca: `delete cca`
 Allows you to delete a cca based on its index in the list.
+
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the corresponding index of the cca you would like to delete. Press ‘Enter’ to execute it.
 
 
 
@@ -276,7 +300,7 @@ Now you have 1 test in the list.
 <br>
 
 ##### Deleting a test: `delete test`
-Allows you to delete a test date based on its index in the list.
+Allows you to delete a test event based on its index in the list.
 
 
 
@@ -294,6 +318,50 @@ Noted. I've removed this test:
    [TEST] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 
 Now you have 0 tests in the list.
+```
+
+<br>
+#### Category: Tuition
+##### Adding a tuition: `add tuition`
+Allows you to add a new test with a name, date, time, location.
+
+Format: `add tuition /n [name of tuition] /s [start date-time of test] /e [end date-time of test] /l [location of tuition]`
+
+
+
+Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400 /l home`
+
+Example Output:
+
+```
+Got it. I've added this test:
+
+   [TUITION] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
+
+Now you have 1 tuition in the list.
+```
+
+<br>
+
+##### Deleting a tuition: `delete tuition`
+Allows you to delete a tuition based on its index in the list.
+
+
+
+Format: `delete tuition [tuition number]`
+
+* `[tuition number]` must be written in numerals.
+
+Examples: `delete tuition 1`
+
+Example Output:
+
+```
+Noted. I've removed this tuition:
+
+   [TUITION] Math tuition from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
+
+Now you have 0 tuitions in the list.
 ```
 
 <br>
@@ -616,6 +684,7 @@ help|`help`
 add|`add <category> /n <description> /s <start-date-time> /e <end date-time>`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
 delete|`delete <category> <item number>`|`delete class 1`, `delete test 1`, `delete cca 1`
 quiz|`quiz <no of questions>`|`quiz 15`
-list|`list event (<date/today/week>)`
+list| `list <category>` `list event (date)`|`list event (<date/today/week>)`
+Find|`find <keyword>`|`find English`
 bye|`bye`
 
