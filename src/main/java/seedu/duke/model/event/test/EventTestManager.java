@@ -117,12 +117,14 @@ public class EventTestManager extends EventDataManager {
                 tests.add(eventTest);
                 logger.log(Level.INFO, "added test to ArrayList");
 
-                sortList();
-                logger.log(Level.INFO, "sorted tests in ArrayList");
+
 
                 userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
                         tests.get(getTestListSize() - 1).toString());
                 getTaskStatement();
+
+                sortList();
+                logger.log(Level.INFO, "sorted Test ArrayList");
 
             //If events clashed, show the corresponding error message
             } else if (clashedEvents.size() > 0) {
@@ -136,7 +138,7 @@ public class EventTestManager extends EventDataManager {
 
             //If the recommended time exceeded, show the corresponding error message
             } else if (eventManager.didTimeExceed(eventTest)) {
-                userInterface.showToUser("Recommended time exceeded! Test not added!");
+                userInterface.showToUser("Recommended time exceeded! Test is not added!");
             }
         } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "invalid date time inputted");
