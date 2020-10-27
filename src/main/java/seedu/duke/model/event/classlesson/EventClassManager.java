@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,6 @@ import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 //@@author elizabethcwt
-
 /**
  * <h2>ClassManager class</h2>
  * Stores user's classes in an ArrayList of Event class, named classes.
@@ -90,7 +90,7 @@ public class EventClassManager extends EventDataManager {
         if ((!userInput.contains("/n")) || (!userInput.contains("/s")) || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
                     + " missing");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
         // Splitting /n, /s and /e info. via a String array called classDetails
@@ -123,6 +123,9 @@ public class EventClassManager extends EventDataManager {
                 classes.add(eventClass);
                 logger.log(Level.INFO, "added class to ArrayList");
 
+                sortList();
+                logger.log(Level.INFO, "sorted classes ArrayList");
+
                 userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
                         classes.get(getClassListSize() - 1).toString());
                 getClassStatement();
@@ -140,8 +143,8 @@ public class EventClassManager extends EventDataManager {
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
         } catch (ParseException e) {
-            userInterface.showToUser("Please check the date time format you entered. "
-                    + "It has to be yyyy-MM-dd!");
+            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -227,6 +230,10 @@ public class EventClassManager extends EventDataManager {
                 "  " + classes.get(classNumber - 1));
 
         getClassStatement();
+    }
+
+    private void sortList() {
+        Collections.sort(classes);
     }
 }
 

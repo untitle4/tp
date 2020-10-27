@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +43,7 @@ import java.util.logging.Logger;
  * @see EventTestManager#setDone(String[])
  */
 public class EventTestManager extends EventDataManager {
-    private final ArrayList<Event> tests;
+    private ArrayList<Event> tests;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
     private EventManager eventManager;
@@ -82,7 +83,7 @@ public class EventTestManager extends EventDataManager {
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
                 || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "no param is entered");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
         userInput.replaceAll("\\s+","");
@@ -114,6 +115,9 @@ public class EventTestManager extends EventDataManager {
                 tests.add(eventTest);
                 logger.log(Level.INFO, "added test to ArrayList");
 
+                sortList();
+                logger.log(Level.INFO, "sorted tests in ArrayList");
+
                 userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
                         tests.get(getTestListSize() - 1).toString());
                 getTaskStatement();
@@ -132,8 +136,8 @@ public class EventTestManager extends EventDataManager {
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
         } catch (ParseException e) {
-            userInterface.showToUser("Please check the date time format you entered. "
-                    + "It has to be yyyy-MM-dd!");
+            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -223,5 +227,9 @@ public class EventTestManager extends EventDataManager {
                 "  " + tests.get(testNumber - 1));
 
         getTaskStatement();
+    }
+
+    private void sortList() {
+        Collections.sort(tests);
     }
 }

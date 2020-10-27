@@ -15,6 +15,7 @@ import seedu.duke.ui.CalendarWeekRenderer;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.exception.EmptyListException;
 
+import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +31,11 @@ import java.util.logging.Logger;
 public class EventManager extends ModelMain implements EventManagerInteractable {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 10;
+    public static final String INPUT_SPACE = " ";
+    public static final String INPUT_WEEK = "week";
+    public static final int INPUT_LENGTH_NO_PARAMS = 2;
+    public static final int INPUT_LENGTH_ONE_PARAM = 3;
+    public static final int DATE_PARAM_INDEX = 2;
     private static EventClassManager eventClassManager;
     private static EventTestManager eventTestManager;
     private static EventCcaManager eventCcaManager;
@@ -61,19 +67,19 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return eventTuitionManager;
     }
 
+    //@@author AndreWongZH
     /**
      * Prints to user all the found events that matches with keyword provided.
      *
-     * @param userInput Input supplied by the user that contains the keywords
-     * @throws MissingParameterException If input supplied does not contain any keywords
-     * @author AndreWongZH
+     * @param userInput Input supplied by the user that contains the keywords.
+     * @throws MissingParameterException If input supplied does not contain any keywords.
      */
     @Override
     public void find(String userInput) throws MissingParameterException {
         String param = userInput.substring(USER_INPUT_OFFSET).trim();
 
         if (param.length() == EMPTY_SIZE) {
-            throw new MissingParameterException();
+            throw new MissingParameterException("keywords as");
         }
 
         FindSchedule findSchedule = new FindSchedule(param, eventClassManager.getClasses(),
@@ -93,9 +99,21 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public void list(String userInput) {
         ArrayList<String> printedEvents;
         try {
-            String dateParam = userInput.split(" ").length == 2 ? null : userInput.split(" ")[2];
+            String[] separatedInputs = userInput.split(INPUT_SPACE);
+
+            // check if user entered extra parameters
+            if (separatedInputs.length > INPUT_LENGTH_ONE_PARAM) {
+                userInterface.showToUser(Messages.MESSAGE_LIST_EXTRA_PARAM);
+                return;
+            }
+
+            String dateParam =  separatedInputs.length == INPUT_LENGTH_NO_PARAMS
+                    ? null
+                    : separatedInputs[DATE_PARAM_INDEX];
+
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
+
 
             if (userInput.contains("week")) {
                 userInterface.printWeekSchedule(this);
@@ -106,9 +124,10 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         } catch (EmptyListException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         } catch (DateTimeParseException e) {
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
-        } catch (NullPointerException e) {
-            System.out.println("☹ OOPS!!! We do not recognise that command. Do you mean list event week/today?");
+            userInterface.showToUser(Messages.MESSAGE_LIST_INVALID_DATE);
+        } catch (ParseException e) {
+            logger.log(Level.WARNING, "valid datetime not inputted");
+            userInterface.showToUser(Messages.MESSAGE_LIST_INVALID_DATE);
         }
     }
 
@@ -126,13 +145,13 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
+    //@@author Aliciaho
     /**
      * Adds the relevant events whose date correspond to the date inputted in the masterList.
      *
      * @param masterList ArrayList containing all the events
      * @param date Date inputted to filter out the corresponding events
      * @return result ArrayList contain the relevant events for that date
-     * @author Aliciaho
     */
     private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, Calendar date) {
         assert masterList.size() >= 0;
@@ -150,11 +169,11 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
+    //@@author Aliciaho
     /**
      * Adds all the ccas, classes, tests and tuitions into one Master ArrayList.
      *
      * @return masterList ArrayList containing all the events
-     * @author Aliciaho
      */
     public ArrayList<Event> getEventMasterList() {
         logger.log(Level.INFO, "getting all ccas, classes, tests and tuitions");
@@ -231,9 +250,8 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
             return true;
         }
 
-        DateTimeParser dateTimeParser = new DateTimeParser();
-        if (dateTimeParser.isDateEqual(startInputCalendar, startReferenceCalendar)
-                || dateTimeParser.isDateEqual(endInputCalendar, endReferenceCalendar)) {
+        if (startInputCalendar.equals(startReferenceCalendar)
+                || endInputCalendar.equals(endReferenceCalendar)) {
             return true;
         }
 

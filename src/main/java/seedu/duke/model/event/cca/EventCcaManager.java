@@ -19,9 +19,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -54,7 +53,7 @@ public class EventCcaManager extends EventDataManager {
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
                 || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "no param is entered");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
         final String[] ccaDetails = userInput.trim().split("\\/");
@@ -84,6 +83,9 @@ public class EventCcaManager extends EventDataManager {
                 ccas.add(cca);
                 logger.log(Level.INFO, "added cca to ArrayList");
 
+                sortList();
+                logger.log(Level.INFO, "sorted CCA ArrayList");
+
                 userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
                         ccas.get(getCcaListSize() - 1).toString());
                 getCcaStatement();
@@ -101,8 +103,8 @@ public class EventCcaManager extends EventDataManager {
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
         } catch (ParseException e) {
-            userInterface.showToUser("Please check the date time format you entered. "
-                    + "It has to be yyyy-MM-dd!");
+            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -117,12 +119,12 @@ public class EventCcaManager extends EventDataManager {
             ccas.remove(ccaIndex - 1);
             getCcaStatement();
         } catch (ArrayIndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NO_NUMBER_GIVEN);
+            userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NO_NUMBER_GIVEN);
             logger.log(Level.WARNING, "absence of class index for deletion");
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NON_NUMBER);
         } catch (IndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_INVALID_CLASS_INDEX);
+            userInterface.showToUser(Messages.MESSAGE_INVALID_CCA_INDEX);
         }
     }
 
@@ -156,5 +158,9 @@ public class EventCcaManager extends EventDataManager {
     private void getCcaStatement() {
         String ccaStatement = getCcaListSize() <= 1 ? " cca" : " ccas";
         userInterface.showToUser("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
+    }
+
+    private void sortList() {
+        Collections.sort(ccas);
     }
 }

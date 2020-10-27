@@ -1,9 +1,10 @@
 package seedu.duke.model.event;
 
 import java.util.Calendar;
+import java.util.Comparator;
 
 //@@author elizabethcwt
-public class Event {
+public class Event implements Comparable<Event> {
     public static final String DONE_STATUS = "[DONE]";
     public static final String NOT_DONE_STATUS = "[NOT DONE]";
 
@@ -58,7 +59,7 @@ public class Event {
 
     @Override
     public String toString() {
-        return getStatus() + " " + description;
+        return description;
     }
 
     //@@author durianpancakes
@@ -75,5 +76,14 @@ public class Event {
         Event otherEvent = (Event) obj;
         return this.description.equals(otherEvent.description)
                 && this.isDone == otherEvent.isDone();
+    }
+
+    @Override
+    public int compareTo(Event otherEvent) {
+        if (this.getStart().before(otherEvent.start)) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 }

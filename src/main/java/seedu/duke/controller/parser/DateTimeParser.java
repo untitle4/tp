@@ -1,6 +1,7 @@
 package seedu.duke.controller.parser;
 
 import seedu.duke.common.LogManager;
+import seedu.duke.model.event.Event;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -82,6 +83,24 @@ public class DateTimeParser {
     public Calendar convertStringToCalendar(String string) throws ParseException {
         logger.log(Level.INFO, "converting string to calendar");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        Calendar calendar = Calendar.getInstance();
+
+        Date date = sdf.parse(string);
+        calendar.setTime(date);
+
+        return calendar;
+    }
+
+    /**
+     * Convert a string input to date time format yyyy-MM-dd in Calendar form.
+     *
+     * @param string user input string
+     * @return calendar date time in yyyy-MM-dd in Calendar form
+     * @exception ParseException exception thrown when valid date and time is not inputted
+     */
+    public Calendar convertStringToCalendarByDate(String string) throws ParseException {
+        logger.log(Level.INFO, "converting string to calendar");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar calendar = Calendar.getInstance();
 
         Date date = sdf.parse(string);

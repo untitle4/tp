@@ -4,9 +4,12 @@ import seedu.duke.common.LogManager;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.controller.parser.DateTimeParser;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,7 +40,7 @@ public class ListSchedule {
         this.tuitions = tuitions;
     }
 
-    public ArrayList<String> getPrintableEvents() throws EmptyListException {
+    public ArrayList<String> getPrintableEvents() throws EmptyListException, ParseException {
         logger.log(Level.INFO, "starting to convert events instance to strings");
         ArrayList<String> printedEvents = new ArrayList<>();
         ArrayList<String> printedClasses;
@@ -96,20 +99,24 @@ public class ListSchedule {
         return (!haveClasses() && !haveCcas() && !haveTests() && !haveTuitions());
     }
 
+    //@@author Aliciaho
     /**
      * If the user input contains today/week, get the date for today.
+     * Else if user input a date, convert the string date to calendar form
      *
-     * @return resultCalender Calendar containing today's date
-     * @author Aliciaho
+     * @return resultCalender Calendar containing the resulting output
     */
-    private Calendar checkAndConvertToday() {
+    private Calendar checkAndConvertToday() throws ParseException {
         Calendar resultCalendar = null;
         if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
             resultCalendar = Calendar.getInstance();
+        } else if (userInput != null) {
+            resultCalendar = dateTimeParser.convertStringToCalendarByDate(userInput);
         }
         return resultCalendar;
     }
 
+    //@@author Aliciaho
     /**
      * Converts event instances into strings representation padded with numbers.
      * PrintedEvents cannot be null.
@@ -117,7 +124,6 @@ public class ListSchedule {
      *
      * @param eventArr Array list of event instances to be converted.
      * @return printedEvents Array list containing the relevant events in correct output format
-     * @author Aliciaho
      */
     private ArrayList<String> parseEventWithNumberPad(ArrayList<Event> eventArr) {
         assert eventArr != null;

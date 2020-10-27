@@ -1,4 +1,10 @@
 @startuml
+skinparam Shadowing false
+skinparam MinClassWidth 100
+skinparam classBackgroundColor Tan
+hide circle
+hide members
+
 package ui <<rectangle>> {
     class UserInterface {
         + getInstance():UserInterface
