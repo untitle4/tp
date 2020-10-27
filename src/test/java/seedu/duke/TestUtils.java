@@ -15,7 +15,8 @@ import java.util.ArrayList;
 
 public class TestUtils {
     public EventManager getEmptyEventManager() {
-        return new EventManager(new EventParameter(), new ConfigParameter());
+        return new EventManager(new EventParameter(),
+                new ConfigParameter("me", 10, true));
     }
 
     public ArrayList<Event> getEventList() throws ParseException {
