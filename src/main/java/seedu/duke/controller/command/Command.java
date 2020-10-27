@@ -24,5 +24,6 @@ public abstract class Command {
     }
 
     public abstract void execute(ModelMain modelMain) throws InvalidHelpCommandException,
-            EmptyParameterException, MissingParameterException, IncompleteListCommandException, IncompleteFindCommandException;
+            EmptyParameterException, MissingParameterException,
+            IncompleteListCommandException, IncompleteFindCommandException;
 }
