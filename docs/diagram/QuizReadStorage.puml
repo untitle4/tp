@@ -1,0 +1,22 @@
+@startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+box "Controller" #LightSalmon
+participant ControlManager
+end box
+
+box "Storage" #YellowGreen
+participant QuizStorageManager
+participant QuizListEncoder
+end box
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+
+
+
+@enduml
