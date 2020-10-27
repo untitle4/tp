@@ -15,6 +15,7 @@ import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
 import seedu.duke.exception.MissingModelException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.CommandParser;
 import seedu.duke.controller.parser.CommandType;
