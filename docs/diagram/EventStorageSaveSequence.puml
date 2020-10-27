@@ -1,0 +1,18 @@
+@startuml
+
+-> EventStorageManager : saveData(:ArrayList<Event>)
+
+EventStorageManager -> EventListEncoder : encodeEventToString(:ArrayList<Event>)
+activate EventListEncoder
+
+loop number of events
+EventListEncoder -> EventListEncoder : encodeEventToString(:Event)
+activate EventListEncoder
+EventListEncoder --> EventListEncoder : :String
+deactivate EventListEncoder
+end loop
+
+EventListEncoder --> EventStorageManager
+deactivate EventListEncoder
+
+@enduml

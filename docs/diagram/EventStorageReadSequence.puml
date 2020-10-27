@@ -1,0 +1,38 @@
+@startuml
+
+-> EventStorageManager : loadData(:ArrayList<String>)
+
+EventStorageManager -> EventListDecoder : decodeEventList(:ArrayList<String>)
+activate EventListDecoder
+
+loop number of strings
+EventListDecoder -> EventListDecoder : decodeEventFromString(:String)
+activate EventListDecoder
+alt cca
+EventListDecoder -> EventListDecoder : parseCca(:String)
+activate EventListDecoder
+EventListDecoder --> EventListDecoder : :EventCca
+deactivate EventListDecoder
+else tuition
+EventListDecoder -> EventListDecoder : parseTuition(:String)
+activate EventListDecoder
+EventListDecoder --> EventListDecoder : :EventTuition
+deactivate EventListDecoder
+else class
+EventListDecoder -> EventListDecoder : parseClass(:String)
+activate EventListDecoder
+EventListDecoder --> EventListDecoder : :EventClass
+deactivate EventListDecoder
+else test
+EventListDecoder -> EventListDecoder : parseTest(:String)
+activate EventListDecoder
+EventListDecoder --> EventListDecoder : :EventTest
+deactivate EventListDecoder
+end alt
+end loop
+
+deactivate EventListDecoder
+EventListDecoder --> EventStorageManager : :ArrayList<Event>
+
+<-- EventStorageManager : :EventParameter
+@enduml
