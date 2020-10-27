@@ -321,6 +321,7 @@ Now you have 0 tests in the list.
 ```
 
 <br>
+
 #### Category: Tuition
 ##### Adding a tuition: `add tuition`
 Allows you to add a new test with a name, date, time, location.
