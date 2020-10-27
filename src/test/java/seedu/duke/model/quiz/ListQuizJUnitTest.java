@@ -16,15 +16,15 @@ public class ListQuizJUnitTest {
                 + "/o3 3 /o4 4 /a 2 /exp 1 plus 1 must be equal to 2!");
 
         String actualOutput = "Question " + (0 + 1) + ":\n" + quizzes.get(0);
-        String expectedOutput = "Question 1:\n" +
-                "What is 1+1?\n" +
-                "\n" +
-                "(1) 1\n" +
-                "(2) 2\n" +
-                "(3) 3\n" +
-                "(4) 4\n" +
-                "\n" +
-                "Explanation: 1 plus 1 must be equal to 2!\n\n";
+        String expectedOutput = "Question 1:\n"
+                + "What is 1+1?\n"
+                + "\n"
+                + "(1) 1\n"
+                + "(2) 2\n"
+                + "(3) 3\n"
+                + "(4) 4\n"
+                + "\n"
+                + "Explanation: 1 plus 1 must be equal to 2!\n\n";
         assertEquals(actualOutput, expectedOutput);
     }
 }

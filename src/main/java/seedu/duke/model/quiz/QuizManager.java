@@ -233,17 +233,17 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
         try {
             quizIndex = Integer.parseInt(userInputs[2]);
+            if ((quizIndex <= 0) || (quizIndex > getQuizListSize())) {
+                throw new IndexOutOfBoundsException();
+            }
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
             return;
         } catch (IndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_INDEX_OUT_OF_BOUND);
             return;
         }
 
-        if ((quizIndex <= 0) || (quizIndex > getQuizListSize())) {
-            throw new IndexOutOfBoundsException();
-        }
 
         userInterface.showToUser("Noted. I've removed this quiz question: \n" + quizzes.get(quizIndex - 1));
 
