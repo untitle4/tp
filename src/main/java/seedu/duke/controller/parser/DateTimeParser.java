@@ -233,9 +233,17 @@ public class DateTimeParser {
         return dateCalendars;
     }
 
-    public long getHours(Calendar startDateCalendar, Calendar endDateCalendar) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
-        long timeDurationInMinutes = Duration.between(startDateCalendar.toInstant(),
+    /**
+     * Get duration between two Calendar dates.
+     *
+     * @param startDateCalendar starting date
+     * @param endDateCalendar ending date
+     * @return duration between the two dates in minutes
+     */
+    public long getDuration(Calendar startDateCalendar, Calendar endDateCalendar) {
+        logger.log(Level.INFO, "getting duration between two dates");
+        long timeDurationInMinutes = 0;
+        timeDurationInMinutes = Duration.between(startDateCalendar.toInstant(),
                 endDateCalendar.toInstant()).toMinutes();
         return timeDurationInMinutes;
     }
