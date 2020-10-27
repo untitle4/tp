@@ -1,4 +1,19 @@
 @startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+box "Controller" #LightSalmon
+participant ControlManager
+participant CommandParser
+participant HelpCommand
+end box
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+
 ControlManager -> CommandParser: extractCommand()
 activate ControlManager
 activate CommandParser

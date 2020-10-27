@@ -1,7 +1,20 @@
 @startuml
 
-activate Duke
-Duke -> UserInterface : runUI()
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+participant Main
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+box "Controller" #LightSalmon
+participant ControlManager
+end box
+
+Main -> UserInterface : runUI()
+activate Main
 activate UserInterface
 UserInterface -> UserInterface : getUserCommand()
 activate UserInterface
@@ -24,8 +37,8 @@ activate UserInterface
 UserInterface --> UserInterface
 deactivate UserInterface
 deactivate ControlManager
-UserInterface --> Duke
+UserInterface --> Main
 deactivate UserInterface
-deactivate Duke
+deactivate Main
 
 @enduml

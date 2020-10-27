@@ -3,17 +3,17 @@
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
 
-'box "Controller" #LightSalmon
+box "Controller" #LightSalmon
 participant ListCommand
-'end box
+end box
 
-'box "Model" #YellowGreen
+box "Model" #YellowGreen
 participant QuizManager
-'end box
+end box
 
-'box "UserInterface" #skyblue
+box "UserInterface" #skyblue
 participant UserInterface
-'end box
+end box
 
 ListCommand -> QuizManager : execute()
 activate ListCommand
