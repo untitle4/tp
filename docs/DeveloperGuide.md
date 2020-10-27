@@ -93,6 +93,7 @@ The Model component,
 Figure 5. Class Diagram of the Storage component
 
 API: StorageManager.java
+
 The Storage component,
 * Creates the necessary data files for the operation of Plan&Score.
 * Reads encoded data from Plan&Score’s data files.
