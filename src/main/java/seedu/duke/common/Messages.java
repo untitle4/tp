@@ -151,6 +151,11 @@ public class Messages {
     public static final String MESSAGE_QUIZ_NON_NUMBER = "Please enter a valid number or "
             + "enter 'quiz record' to see your incorrect questions in your previous quiz!\n";
 
+    public static String print_quiz_score(int correctCounter, int noOfQues) {
+        return "You scored " + correctCounter + " out of " + noOfQues + "!\n"
+                + "Scroll up to review your quiz.\n\n";
+    }
+
 
     //@@author elizabethcwt
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"

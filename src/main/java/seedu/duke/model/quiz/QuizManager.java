@@ -79,14 +79,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         assert ((noOfQues > 0) && (noOfQues <= getQuizListSize())) : "noOfQues should be of a valid value, but"
                 + "it is invalid";
 
-        // Create a new list of the question indexes
-        quizIndexes = new ArrayList<>();
-        for (int i = 0; i < quizzes.size(); i++) {
-            quizIndexes.add(i);
-        }
-
-        // Shuffle the question indexes
-        Collections.shuffle(quizIndexes);
+        initialisingShufflingOfQuestions();
 
         int questionCounter = 0;
         while (questionCounter < noOfQues) {
@@ -108,6 +101,46 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         lastIncorrectAnswers.clear();
 
         // Compare and note if students' answers are correct
+        correctCounter = storeCorrectnessOfQuizAnswer(correctCounter);
+
+        for (int l = 0; l < noOfQues; l++) {
+
+            // Assigning the correctness logo to be printed with questions post-quiz
+            assignCorrectnessLogo(l);
+
+            // Print out all quiz questions, user's answers, correctness, correct answers and explanations
+            System.out.println("Question " + (l + 1) + ": ");
+            System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
+                    .getUserAnswers().get(l), correctnessLogo));
+        }
+
+        // Print out quiz score
+        userInterface.showToUser(Messages.print_quiz_score(correctCounter, noOfQues));
+
+        // Empty userAnswers ArrayList and correctness ArrayList
+        userAnswerManager.getUserAnswers().clear();
+        userAnswerManager.getCorrectness().clear();
+    }
+
+    private void assignCorrectnessLogo(int l) {
+        if (userAnswerManager.getCorrectness().get(l).equals(true)) {
+
+            // Assert that the correctness of the user's input is true in this if loop
+            assert (userAnswerManager.getCorrectness().get(l).equals(true)) : "User's answer should be"
+                    + " correct for this question";
+
+            correctnessLogo = " [CORRECT ☺︎]";
+        } else {
+
+            // Assert that the correctness of the user's input is false in this else loop
+            assert (userAnswerManager.getCorrectness().get(l).equals(false)) : "User's answer should be"
+                    + " incorrect for this question";
+
+            correctnessLogo = " [WRONG ☹︎]";
+        }
+    }
+
+    private int storeCorrectnessOfQuizAnswer(int correctCounter) {
         for (int k = 0; k < noOfQues; k++) {
             if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt(quizzes.get(quizIndexes
                     .get(k)).getAnswer()))) {
@@ -120,39 +153,18 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             }
             quizzes.get(quizIndexes.get(k)).updateLastAccessed();
         }
+        return correctCounter;
+    }
 
-        for (int l = 0; l < noOfQues; l++) {
-
-            // Assigning the correctness logo to be printed with questions post-quiz
-            if (userAnswerManager.getCorrectness().get(l).equals(true)) {
-
-                // Assert that the correctness of the user's input is true in this if loop
-                assert (userAnswerManager.getCorrectness().get(l).equals(true)) : "User's answer should be"
-                        + " correct for this question";
-
-                correctnessLogo = " [CORRECT ☺︎]";
-            } else {
-
-                // Assert that the correctness of the user's input is false in this else loop
-                assert (userAnswerManager.getCorrectness().get(l).equals(false)) : "User's answer should be"
-                        + " incorrect for this question";
-
-                correctnessLogo = " [WRONG ☹︎]";
-            }
-
-            // Print out all quiz questions, user's answers, correctness, correct answers and explanations
-            System.out.println("Question " + (l + 1) + ": ");
-            System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
-                    .getUserAnswers().get(l), correctnessLogo));
+    private void initialisingShufflingOfQuestions() {
+        // Create a new list of the question indexes
+        quizIndexes = new ArrayList<>();
+        for (int i = 0; i < quizzes.size(); i++) {
+            quizIndexes.add(i);
         }
 
-        // Print out quiz score
-        System.out.println("You scored " + correctCounter + " out of " + noOfQues + "! "
-                + "Scroll up to review your quiz.\n");
-
-        // Empty userAnswers ArrayList and correctness ArrayList
-        userAnswerManager.getUserAnswers().clear();
-        userAnswerManager.getCorrectness().clear();
+        // Shuffle the question indexes
+        Collections.shuffle(quizIndexes);
     }
 
     private void handleInvalidNumOfQuestions() {
