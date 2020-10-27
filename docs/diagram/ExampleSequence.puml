@@ -21,7 +21,7 @@ box "Storage" #Tan
 participant Storage
 end box
 
-activate User
+
 User -> UserInterface: "add test /n CS2113T Finals /s 2020-12-01 1300 /e 2020-12-01 1400
 activate UserInterface
 UserInterface -> Controller: runLogic()
@@ -43,6 +43,8 @@ deactivate Storage
 deactivate Controller
 Controller --> UserInterface
 deactivate Controller
+deactivate UserInterface
 UserInterface --> User
 deactivate UserInterface
+deactivate User
 @enduml

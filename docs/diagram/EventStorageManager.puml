@@ -1,0 +1,48 @@
+@startuml
+hide circles
+
+class StorageManager <<abstract>> #Tan {
+    - fileName:String
+    + StorageManager(:String)
+    - createDataFile():boolean
+}
+
+class EventStorageManager #Tan {
+    + EventStorageManager(:String)
+    + saveData(:EventParameter)
+    + loadData():EventParameter
+}
+
+StorageManager --|> EventStorageManager
+
+class EventListDecoder #Tan {
+    + EventListEncoder()
+    + encodeEventList(:ArrayList<Event> eventList)
+    - encodeEventToString(:Event)
+}
+
+EventStorageManager -> EventListDecoder
+
+class EventListEncoder #Tan {
+    + EventListDecoder()
+    - decodeEventFromString(:String)
+    - parseClass(:String[])
+    - parseCca(:Cca[])
+    - parseTest(:Test[])
+    - parseTuition(:Tuition[])
+}
+
+EventStorageManager -> EventListEncoder
+
+class EventParameter #YellowGreen {
+    + ccas:ArrayList<Event>
+    + classes:ArrayList<Event>
+    + tuitions:ArrayList<Event>
+    + tests:ArrayList<Event>
+    + EventParameter(ccas:ArrayList<Event>, classes:ArrayList<Event>,
+    tests:ArrayList<Event>, tuitions:ArrayList<Event>)
+}
+
+EventListDecoder --> EventParameter : creates
+
+@enduml
