@@ -57,7 +57,7 @@ public class UserInterface {
     public void printArray(ArrayList<String> stringArrayList) {
         assert stringArrayList != null;
         for (String line : stringArrayList) {
-            System.out.println(line);
+            showToUser(line);
         }
     }
 

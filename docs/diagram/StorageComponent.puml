@@ -57,6 +57,21 @@ package storage <<rectangle>> {
     QuizStorageManager --> QuizListDecoder
     QuizStorageManager --> QuizListEncoder
 
+
+    class ConfigStorageManager implements StorageManager {
+
+    }
+
+    class ConfigDecoder {
+
+    }
+
+    class ConfigEncoder {
+
+    }
+
+    ConfigStorageManager --> ConfigDecoder
+    ConfigStorageManager --> ConfigEncoder
 }
 
 hide circle
