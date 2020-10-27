@@ -32,6 +32,8 @@ public class Messages {
             + "You can either 'list event' or 'list quiz' or 'list contact'";
     //@@author AndreWongZH
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
+    public static final String MESSAGE_MISSING_MODEL = "☹ Oops! Model type is missing! "
+            + "Enter 'help' if needed!";
     //@@author elizabethcwt
     public static final String MESSAGE_MISSING_PARAMETERS = "☹ OOPS!!! "
             + "Remember to include ALL %s inputs!";

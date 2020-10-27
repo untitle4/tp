@@ -13,6 +13,7 @@ import seedu.duke.exception.IncompleteListCommandException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
+import seedu.duke.exception.MissingModelException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.CommandParser;
@@ -95,6 +96,8 @@ public class ControlManager {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_PARAMETERS);
         } catch (IncompleteListCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_LIST_PARAMETERS);
+        } catch (MissingModelException e) {
+            userInterface.showToUser(Messages.MESSAGE_MISSING_MODEL);
         } finally {
             refreshEvents();
             refreshQuizzes();
