@@ -17,7 +17,18 @@ class ConfigParameter {
 }
 
 class ConfigEncoder {
+    - name(:String)
+    - recommendedHours(:int)
+    - hasProgramRan(:boolean)
+}
+
+class ConfigDecoder {
+    - splitEncodedConfig(:StringArray)
+    - name(:String)
+    - recommendedHours(:int)
+    - hasProgramRan(:boolean)
 }
 
 StorageManager --> ConfigStorageManager
+ConfigEncoder --> ConfigParameter
 @enduml
