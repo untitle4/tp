@@ -1,0 +1,35 @@
+@startuml
+
+abstract class StorageManager {
+    + StorageManager(:String)
+    - createDataFile():boolean
+}
+
+class EventStorageManager {
+    + EventStorageManager(:String)
+    + saveData(:ConfigParameter)
+    + loadData():ConfigParameter
+}
+
+StorageManager --|> EventStorageManager
+
+class EventListDecoder {
+    + EventListEncoder()
+    + encodeEventList(:ArrayList<Event> eventList)
+    - encodeEventToString(:Event)
+}
+
+EventStorageManager -> EventListDecoder
+
+class EventListEncoder {
+    + EventListDecoder()
+    - decodeEventFromString(:String)
+    - parseClass(:String[])
+    - parseCca(:Cca[])
+    - parseTest(:Test[])
+    - parseTuition(:Tuition[])
+}
+
+EventStorageManager -> EventListEncoder
+
+@enduml
