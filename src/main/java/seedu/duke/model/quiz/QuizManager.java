@@ -6,15 +6,11 @@ import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
-import seedu.duke.model.quiz.UserAnswerManager;
-import seedu.duke.model.quiz.Quiz;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.Collections;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class QuizManager extends ModelManager implements QuizInteractable {
@@ -55,11 +51,11 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             if (!((noOfQues > 0) && (noOfQues <= getQuizListSize()))) {
 
                 // Assert that noOfQues is NOT an acceptable value
-                assert (!((noOfQues > 0) && (noOfQues <= getQuizListSize()))) : "noOfQues should not be of a valid value,"
-                        + "but it is";
+                assert (!((noOfQues > 0) && (noOfQues <= getQuizListSize()))) : "noOfQues should not be of a valid"
+                        + " value, but it is";
 
                 // If user inputs an invalid number of quiz questions (not within range of 1 to quiz size)
-                userInterface.showToUser(Messages.MESSAGE_INVALID_NUM_OF_QUIZ_QUESTIONS(quizzes.size()));
+                userInterface.showToUser(Messages.invalid_number_of_quiz_questions_message(quizzes.size()));
 
             } else {
                 // If user inputs a valid number of quiz questions (within range of 1 to quiz size)
