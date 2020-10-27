@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * Represents a process dedicated to filter out events based on given keywords.
  */
 public class FindSchedule {
-    public static final String INPUT_SPACES = " ";
+    public static final String INPUT_SPACE = " ";
     private final ArrayList<Event> classes;
     private final ArrayList<Event> ccas;
     private final ArrayList<Event> tests;
@@ -60,7 +60,7 @@ public class FindSchedule {
      */
     private void filterEvents(ArrayList<Event> events) {
         logger.log(Level.INFO, "loop through all the keywords to check if in event description");
-        String[] separatedInputs = userInput.split(INPUT_SPACES);
+        String[] separatedInputs = userInput.split(INPUT_SPACE);
 
         for (Event event : events) {
             for (String keyword : separatedInputs) {

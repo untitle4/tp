@@ -71,8 +71,8 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     /**
      * Prints to user all the found events that matches with keyword provided.
      *
-     * @param userInput Input supplied by the user that contains the keywords
-     * @throws MissingParameterException If input supplied does not contain any keywords
+     * @param userInput Input supplied by the user that contains the keywords.
+     * @throws MissingParameterException If input supplied does not contain any keywords.
      */
     @Override
     public void find(String userInput) throws MissingParameterException {
