@@ -251,7 +251,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> eventArrayList = getEventMasterList();
         long noOfMinutes = dateTimeParser.getHours(event.getStart(), event.getEnd());
-        System.out.println(noOfMinutes);
+        //System.out.println(noOfMinutes);
         for (int i = 0; i < eventArrayList.size(); i++) {
             if (dateTimeParser.isDateEqual(eventArrayList.get(i).getStart(),
                     event.getStart())) {
