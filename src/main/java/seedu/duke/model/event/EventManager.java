@@ -238,9 +238,8 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
             return true;
         }
 
-        DateTimeParser dateTimeParser = new DateTimeParser();
-        if (dateTimeParser.isDateEqual(startInputCalendar, startReferenceCalendar)
-                || dateTimeParser.isDateEqual(endInputCalendar, endReferenceCalendar)) {
+        if(startInputCalendar.equals(startReferenceCalendar)
+                || endInputCalendar.equals(endReferenceCalendar)) {
             return true;
         }
 
