@@ -113,7 +113,7 @@ Each `StorageManager` reads in their respective data files through a `decoder` a
 ##### Event Storage
 ![eventstorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageManager.png)
 
-<p style="text-align: center;"> Figure 6. Class Diagram of EventStorageManager </p>
+Figure 6. Class Diagram of EventStorageManager
 
 API: EventStorageManager.java
 `EventStorageManager` is responsible for the reading and writing of data from Plan&Score’s `events.txt` file, located in the `{root}/data` directory.
