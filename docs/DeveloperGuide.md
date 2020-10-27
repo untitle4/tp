@@ -74,6 +74,7 @@ The Controller component,
 #### Model component
 
 ![modelcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ModelComponent.png)
+
 Figure 4. Class Diagram of the Model component
 
 API: Model.java
@@ -249,7 +250,7 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 ### Add feature
 
 ![addcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Add.png)
-Figure 4. Sequence Diagram of the add feature
+Figure 13. Sequence Diagram of the add feature
 
 Firstly, when the user enters add .. /n .. /s .. /e .. , the input will be read in by the UI class.
 The UI class will then parse the user input into the ControlManager class where the command will be extracted and processed by the CommandParser class.
@@ -263,7 +264,7 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 ### Delete feature
 
 ![deletecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/DeleteFeatureDiagram.png)
-Figure 4. Sequence Diagram of the delete feature
+Figure 14. Sequence Diagram of the delete feature
 
 Firstly, when the user enters delete <event> <number>, the input will be read in by the UI class.
 The UI class will then parse the user input into the ControlManager class where the command will be extracted and processed by the CommandParser class. The result is passed into ModelExtractor Class.
@@ -277,7 +278,7 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 #### List contact / quiz
 
 ![listcontact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListContact.png)
-Figure x.x. Sequence diagram for listing quizzes
+Figure 15. Sequence diagram for listing quizzes
 
 The list command will invoke the `ContactManager` or `QuizManager` class’s list() method respectively.
 If the ArrayList is empty, it will inform the user that there is no data to display.
@@ -295,7 +296,7 @@ as its attributes.
 #### List event (<date> / today)
 
 ![listevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListEvent2.png)
-Figure x.x. Sequence diagram for listing out events.
+Figure 16. Sequence diagram for listing out events.
 
 Inside this `EventManager#listSchedule()`, we then call the `ListSchedule#getPrintableEvents()` and this will start
 to convert ArrayList of type Event into its corresponding `toString()` representation.
@@ -342,7 +343,7 @@ This is then passed to the `UserInterface#printArray()` to be printed out to the
 The diagram below shows the execution flow explained below.
 
 ![findevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindEvent.png)
-Figure x.x. Sequence diagram for finding events.
+Figure 17. Sequence diagram for finding events.
 
 #### Find quiz <keyword(s)>
 
@@ -355,7 +356,7 @@ This is then passed to the `UserInterface#printArray()` to be printed out to the
 The diagram below shows the execution flow explained below.
 
 ![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindQuiz.png)
-Figure x.x. Sequence diagram for finding quizzes.
+Figure 18. Sequence diagram for finding quizzes.
 
 ### Quiz feature
 
@@ -377,9 +378,6 @@ When each quiz question is printed, the user needs to input an answer to this qu
 The input answer will then be compared to the answer of that quiz question.
 If the answers are the same, the variable correctCounter in QuizManager() will be incremented by 1. 
 Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java to allow the continuous usage of the program.
-
-
-
 
 
 ## Product scope
@@ -461,6 +459,7 @@ Test case: `find event`
 	Expected: Remind the user to include the keyword in the command.
 Test case: `find testing`
 	Expected: Inform user that the model is not recognised.
+
 ### Saving data
 Dealing with missing data files
 
