@@ -140,6 +140,7 @@ public class Messages {
             + "which quiz you'd like to delete!\n";
     public static final String MESSAGE_INVALID_HELP_COMMAND = "☹ OOPS!!! Are you trying to take a quiz or add/delete a"
             + " quiz question? Enter 'help' to check the correct format!\n";
+    public static final String MESSAGE_EMPTY_QUIZ_LIST = "Quiz list is empty. Add some!";
 
     public static String invalid_number_of_quiz_questions_message(int size) {
         return "☹ OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")\n";
@@ -148,7 +149,7 @@ public class Messages {
     public static final String MESSAGE_MISSING_QUIZ_PARAM = "Please indicate the command you would like to apply on"
             + " quiz!";
     public static final String MESSAGE_QUIZ_NON_NUMBER = "Please enter a valid number or "
-            + "enter 'quiz record' to see your incorrect questions in your previous quiz!";
+            + "enter 'quiz record' to see your incorrect questions in your previous quiz!\n";
 
 
     //@@author elizabethcwt
