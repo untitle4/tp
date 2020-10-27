@@ -80,6 +80,7 @@ public class UserInterface {
         return checkIfProgramEnds(commandType);
     }
 
+    //@@author durianpancakes
     public void printWeekSchedule(EventManager eventManager) {
         new CalendarWeekRenderer(eventManager);
     }
