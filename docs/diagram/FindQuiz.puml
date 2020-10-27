@@ -17,6 +17,7 @@ participant UserInterface
 end box
 
 FindCommand -> QuizManager : execute()
+activate FindCommand
 activate QuizManager
 QuizManager -> QuizManager : findQuiz()
 activate QuizManager #DarkSalmon
@@ -34,7 +35,8 @@ activate UserInterface
 UserInterface --> QuizManager
 deactivate UserInterface
 deactivate QuizManager
-QuizManager --> FindQuiz
+QuizManager --> FindCommand
 deactivate QuizManager
+deactivate FindCommand
 
 @enduml

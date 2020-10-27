@@ -17,6 +17,7 @@ participant UserInterface
 end box
 
 FindCommand -> EventManager : execute()
+activate FindCommand
 activate EventManager
 EventManager -> EventManager : findSchedule()
 activate EventManager #DarkSalmon
@@ -36,5 +37,6 @@ deactivate UserInterface
 deactivate EventManager
 EventManager --> FindCommand
 deactivate EventManager
+deactivate FindCommand
 
 @enduml
