@@ -1,0 +1,32 @@
+@startuml
+skinparam Shadowing false
+skinparam MinClassWidth 100
+skinparam classBackgroundColor #SkyBlue
+skinparam packageStyle rectangle
+hide circle
+hide members
+
+package UserInterface {
+    class UserInterface <<singleton>>
+    class CalendarWeekRenderer
+    class CalendarWeekRendererUtils
+
+    UserInterface -[#SkyBlue]-> CalendarWeekRenderer : creates
+    CalendarWeekRenderer -[#SkyBlue][dotted]-> CalendarWeekRendererUtils : creates
+}
+
+package Model {
+
+}
+
+package Controller {
+
+}
+
+Model -[#YellowGreen]-> UserInterface
+UserInterface -[#SkyBlue]--> Controller
+Controller -[#Salmon]-> UserInterface
+
+
+
+@enduml
