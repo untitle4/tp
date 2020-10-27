@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.controller.parser.DateTimeParser;
+import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public class TestUtils {
     public EventManager getEmptyEventManager() {
-        return new EventManager(new EventParameter());
+        return new EventManager(new EventParameter(), new ConfigParameter());
     }
 
     public ArrayList<Event> getEventList() throws ParseException {

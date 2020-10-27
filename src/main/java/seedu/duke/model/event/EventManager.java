@@ -3,7 +3,10 @@ package seedu.duke.model.event;
 import seedu.duke.Duke;
 import seedu.duke.common.LogManager;
 import seedu.duke.controller.parser.DateTimeParser;
-import seedu.duke.exception.*;
+import seedu.duke.exception.EmptyListException;
+import seedu.duke.exception.InvalidDateException;
+import seedu.duke.exception.InvalidDateType;
+import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.event.cca.EventCcaManager;
@@ -278,6 +281,6 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                         eventArrayList.get(i).getEnd());
             }
         }
-        return noOfMinutes > (configParameter.getRecommendedHours()*60);
+        return noOfMinutes > (configParameter.getRecommendedHours() * 60);
     }
 }
