@@ -1,5 +1,6 @@
 package seedu.duke.common;
 
+import seedu.duke.model.quiz.Quiz;
 import seedu.duke.model.quiz.QuizManager;
 
 public class Messages {
@@ -29,19 +30,24 @@ public class Messages {
     public static final String MESSAGE_STORAGE_CORRUPTED = "): Storage file corrupted. "
             + "Please delete your data directory and relaunch.";
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
-            + "You can either 'list event' or 'list quiz'";
+            + "You can either 'list event' or 'list quiz' or 'list contact'";
     //@@author AndreWongZH
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
+    public static final String MESSAGE_MISSING_MODEL = "☹ Oops! Model type is missing! "
+            + "Enter 'help' if needed!";
     //@@author elizabethcwt
     public static final String MESSAGE_MISSING_PARAMETERS = "☹ OOPS!!! "
-            + "Remember to include ALL '/n', '/s' and '/e' inputs!";
+            + "Remember to include ALL %s inputs!";
     public static final String MESSAGE_EMPTY_PARAMETERS = "☹ OOPS!!! Ensure ALL parameters are filled up!";
+    public static final String MESSAGE_LIST_INVALID_DATE = "☹ OOPS!!! Please enter today/week/valid date"
+            + "and time in format yyyy-mm-dd!";
     public static final String MESSAGE_INVALID_DATE = "☹ OOPS!!! "
             + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
     public static final String MESSAGE_INVALID_COMMAND = "☹ Oops! I did not recognize that command! "
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INVALID_MODEL = "☹ Oops! I did not recognize that model type! "
             + "Enter 'help' if needed!";
+    public static final String MESSAGE_LIST_EXTRA_PARAM = "☹ OOPS!!! Please do not enter extra inputs";
 
     //@@author durianpancakes
     // Messages from CalendarWeekRenderer
@@ -55,10 +61,6 @@ public class Messages {
 
     //@@author untitle4
     // Messages from Contact related classes
-    public static final String MESSAGE_SUBJECT_NOT_FOUND = "Subject not found";
-    public static final String MESSAGE_NAME_NOT_FOUND = "Name not found";
-    public static final String MESSAGE_PHONE_NUMBER_NOT_FOUND = "Phone number not found";
-    public static final String MESSAGE_EMAIL_ADDRESS_NOT_FOUND = "Email address not found";
     public static final String MESSAGE_CONTACT_ADD_SUCCESS = "Got it. I've added this contact: ";
     public static final String MESSAGE_CONTACT_DELETE_SUCCESS = "Noted. I've removed this contact: ";
     public static final String MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! "
@@ -138,17 +140,23 @@ public class Messages {
             + "which quiz you'd like to delete!\n";
     public static final String MESSAGE_INVALID_HELP_COMMAND = "☹ OOPS!!! Are you trying to take a quiz or add/delete a"
             + " quiz question? Enter 'help' to check the correct format!\n";
-    public static final String MESSAGE_INVALID_NUM_OF_QUIZ_QUESTIONS = "☹ OOPS!!! You can only take quizzes in sets of"
-            + " 10, 20 or 30 questions!\n";
-    public static final String MESSAGE_INSUFFICIENT_QUES_LESS_THAN_10 = "OOPS! You wanted to take a quiz with "
-            + QuizManager.noOfQues + " questions, but your current quiz only has %s question(s).\nPlease add more"
-            + " questions to your quiz via the 'add quiz' command!\n";
-    public static final String MESSAGE_INSUFFICIENT_QUES_MORE_THAN_10 = "OOPS! You wanted to take a quiz with "
-            + QuizManager.noOfQues + " questions, but your current quiz only has %s question(s).\nPlease either add"
-            + "more questions to your quiz via the 'add quiz' command, or try a quiz with less questions!\n";
-    public static final String MESSAGE_MISSING_QUIZ_PARAM = "Please indicate the command you want to do with quiz!";
+    public static final String MESSAGE_EMPTY_QUIZ_LIST = "Quiz list is empty. Add some!";
+    public static final String MESSAGE_QUIZ_INDEX_OUT_OF_BOUND = "There is not such a question in your quiz list!";
+
+    public static String invalid_number_of_quiz_questions_message(int size) {
+        return "☹ OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")\n";
+    }
+
+    public static final String MESSAGE_MISSING_QUIZ_PARAM = "Please indicate the command you would like to apply on"
+            + " quiz!";
     public static final String MESSAGE_QUIZ_NON_NUMBER = "Please enter a valid number or "
-            + "enter 'quiz record' to see your incorrect questions in your previous quiz!";
+            + "enter 'quiz record' to see your incorrect questions in your previous quiz!\n";
+
+    public static String print_quiz_score(int correctCounter, int noOfQues) {
+        return "You scored " + correctCounter + " out of " + noOfQues + "!\n"
+                + "Scroll up to review your quiz.\n\n";
+    }
+
 
     //@@author elizabethcwt
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"

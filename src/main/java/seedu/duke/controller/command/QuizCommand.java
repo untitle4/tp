@@ -24,7 +24,7 @@ public class QuizCommand extends Command {
             if (separatedInputs[1].equals("record")) {
                 quizManager.recordedQuizzes();
             } else {
-                quizManager.takeQuiz(separatedInputs);
+                quizManager.checkQuizSizeValidity(separatedInputs);
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println(MESSAGE_MISSING_QUIZ_PARAM);

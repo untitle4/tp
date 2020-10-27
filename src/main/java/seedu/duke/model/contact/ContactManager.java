@@ -6,13 +6,15 @@ import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
-import seedu.duke.exception.ContactParamException;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ContactManager extends ModelManager implements ContactInteractable {
+    private static final int USER_INPUT_OFFSET = 12;
+    private static final int EMPTY_SIZE = 0;
+    private static final String INPUT_SPACE = " ";
     private final ArrayList<Contact> contacts = new ArrayList<>();
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
@@ -26,19 +28,10 @@ public class ContactManager extends ModelManager implements ContactInteractable 
     }
 
     @Override
-    public void add(String userInput) throws ContactParamException, EmptyParameterException {
-        if (!userInput.contains("/s")) {
-            userInterface.showToUser(Messages.MESSAGE_SUBJECT_NOT_FOUND);
-            throw new ContactParamException();
-        } else if (!userInput.contains("/n")) {
-            userInterface.showToUser(Messages.MESSAGE_NAME_NOT_FOUND);
-            throw new ContactParamException();
-        } else if (!userInput.contains("/p")) {
-            userInterface.showToUser(Messages.MESSAGE_PHONE_NUMBER_NOT_FOUND);
-            throw new ContactParamException();
-        } else if (!userInput.contains("/e")) {
-            userInterface.showToUser(Messages.MESSAGE_EMAIL_ADDRESS_NOT_FOUND);
-            throw new ContactParamException();
+    public void add(String userInput) throws EmptyParameterException, MissingParameterException {
+        if (!userInput.contains("/s") || !userInput.contains("/n")
+                || !userInput.contains("/p") || !userInput.contains("/e")) {
+            throw new MissingParameterException("'/s', '/n', '/p' and '/e'");
         }
 
         String[] seperatedInputs = userInput.trim().split("/");
@@ -100,9 +93,57 @@ public class ContactManager extends ModelManager implements ContactInteractable 
         }
     }
 
+    //@@author AndreWongZH
+    /**
+     * Prints to user all the found events that matches with keyword provided.
+     *
+     * @param userInput The input entered by the user.
+     * @throws MissingParameterException If input supplied does not contain any keywords.
+     */
     @Override
     public void find(String userInput) throws MissingParameterException {
+        String param = userInput.substring(USER_INPUT_OFFSET).trim();
 
+        if (param.length() == EMPTY_SIZE) {
+            throw new MissingParameterException("keywords as");
+        }
+
+        ArrayList<String> filteredContacts = filterContacts(userInput);
+
+        if (filteredContacts.size() == EMPTY_SIZE) {
+            userInterface.showToUser(Messages.MESSAGE_NO_EVENTS_FOUND);
+            return;
+        }
+
+        userInterface.printArray(filteredContacts);
+    }
+
+    //@@author AndreWongZH
+    /**
+     * Searches for a match in the contacts list against the keyword.
+     *
+     * @param userInput The input entered by the user.
+     * @return An ArrayList of contacts after filtering.
+     */
+    private ArrayList<String> filterContacts(String userInput) {
+        ArrayList<String> filteredContacts = new ArrayList<>();
+        String[] separatedInputs = userInput.split(INPUT_SPACE);
+
+        for (Contact contact : contacts) {
+            for (String keyword: separatedInputs) {
+                keyword = keyword.toLowerCase();
+                boolean matchName = contact.getName().toLowerCase().contains(keyword);
+                boolean matchEmail = contact.getEmail().toLowerCase().contains(keyword);
+                boolean matchSubject = contact.getSubject().toLowerCase().contains(keyword);
+                boolean matchPhoneNumber = contact.getPhoneNumber().toLowerCase().contains(keyword);
+                if (matchName || matchEmail || matchSubject || matchPhoneNumber) {
+                    filteredContacts.add(contact.toString());
+                    break;
+                }
+            }
+        }
+
+        return filteredContacts;
     }
 
     private void getContactStatement() {

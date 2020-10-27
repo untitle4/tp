@@ -57,7 +57,7 @@ public class EventTuitionManager extends EventDataManager {
                 || (!userInput.contains(endPrefix)) || (!userInput.contains(locationPrefix))) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
                     + " missing");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s', '/e' and '/l'");
         }
 
         final int indexOfDescriptionPrefix = userInput.indexOf(descriptionPrefix);
