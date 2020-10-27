@@ -39,7 +39,6 @@ public class ConfigStorageManager extends StorageManager {
 
     public ConfigParameter loadData() throws StorageCorruptedException {
         File eventFile = new File(DIRECTORY_FOLDER_PATH + fileName);
-        ArrayList<String> data = new ArrayList<>();
         logger.log(Level.INFO, "Loading storage...");
 
         try {
@@ -47,11 +46,8 @@ public class ConfigStorageManager extends StorageManager {
             if (!fileCreated) {
                 logger.log(Level.INFO, "Data file found, reading data file...");
                 Scanner sc = new Scanner(eventFile);
-                while (sc.hasNext()) {
-                    String dataString = sc.nextLine();
-                    data.add(dataString);
-                }
-                ConfigParameter configParameter = configDecoder.decodeConfig(data);
+                String dataString = sc.nextLine();
+                ConfigParameter configParameter = configDecoder.decodeConfig(dataString);
                 logger.log(Level.INFO, "Load successful");
                 return configParameter;
             } else {

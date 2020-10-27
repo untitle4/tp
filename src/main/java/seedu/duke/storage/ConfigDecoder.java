@@ -5,22 +5,12 @@ import seedu.duke.model.ConfigParameter;
 import java.util.ArrayList;
 
 public class ConfigDecoder {
-    public ConfigParameter decodeConfig(ArrayList<String> encodedConfig) {
-        ConfigParameter configParameter = new ConfigParameter();
+        public ConfigParameter decodeConfig(String encodedConfig) {
+            String[] splitEncodedConfig = encodedConfig.split("\\|", 3);
+            String userName = splitEncodedConfig[0];
+            int recommendedHours = Integer.parseInt(splitEncodedConfig[1]);
+            boolean hasProgramRan = Boolean.parseBoolean(splitEncodedConfig[2]);
 
-        for (String encodedString : encodedConfig) {
-            switch (encodedString) {
-            case "userName":
-                configParameter.setName(encodedString);
-                break;
-            case "recommendedHours":
-                configParameter.setRecommendedHours(Integer.parseInt(encodedString));
-                break;
-            default:
-                break;
-            }
+            return new ConfigParameter(userName, recommendedHours, hasProgramRan);
         }
-
-        return configParameter;
-    }
 }

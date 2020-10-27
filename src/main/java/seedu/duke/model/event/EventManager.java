@@ -1,19 +1,19 @@
 package seedu.duke.model.event;
 
+import seedu.duke.Duke;
 import seedu.duke.common.LogManager;
 import seedu.duke.controller.parser.DateTimeParser;
-import seedu.duke.exception.InvalidDateException;
-import seedu.duke.exception.InvalidDateType;
-import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.*;
+import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.event.cca.EventCcaManager;
 import seedu.duke.model.event.classlesson.EventClassManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.test.EventTestManager;
 import seedu.duke.model.event.tuition.EventTuitionManager;
+import seedu.duke.storage.ConfigStorageManager;
 import seedu.duke.ui.CalendarWeekRenderer;
 import seedu.duke.ui.UserInterface;
-import seedu.duke.exception.EmptyListException;
 
 import java.text.ParseException;
 import java.time.format.DateTimeParseException;
@@ -42,13 +42,16 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     private static EventTuitionManager eventTuitionManager;
     private final UserInterface userInterface;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
+    private final ConfigParameter configParameter;
+    DateTimeParser dateTimeParser = new DateTimeParser();
 
-    public EventManager(EventParameter eventParameter) {
+    public EventManager(EventParameter eventParameter, ConfigParameter configParameter) {
         eventClassManager = new EventClassManager(eventParameter.getClasses(), this);
         eventTestManager = new EventTestManager(eventParameter.getTests(), this);
         eventCcaManager = new EventCcaManager(eventParameter.getCcas(), this);
         eventTuitionManager = new EventTuitionManager(eventParameter.getTuitions(), this);
         userInterface = UserInterface.getInstance();
+        this.configParameter = configParameter;
     }
 
     public EventClassManager getClassManager() {
@@ -266,7 +269,6 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
      */
     public boolean didTimeExceed(Event event) {
         logger.log(Level.INFO, "checking if time exceeded");
-        DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> eventArrayList = getEventMasterList();
         long noOfMinutes = dateTimeParser.getDuration(event.getStart(), event.getEnd());
         for (int i = 0; i < eventArrayList.size(); i++) {
@@ -276,6 +278,6 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                         eventArrayList.get(i).getEnd());
             }
         }
-        return noOfMinutes > 600;
+        return noOfMinutes > (configParameter.getRecommendedHours()*60);
     }
 }

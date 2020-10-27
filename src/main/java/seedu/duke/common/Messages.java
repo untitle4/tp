@@ -18,6 +18,9 @@ public class Messages {
     public static final String MESSAGE_HELLO_FROM_DUKE = "Hello from\n"
             + Messages.MESSAGE_LOGO;
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
+    public static final String MESSAGE_PROMPT_HOURS = "Key in the number of hours you would like "
+            + "to study each day (not more than 12)?";
+    public static final String MESSAGE_SHOW_HOURS = "This is your recommended hours per day: ";
     public static final String MESSAGE_HELLO = "Hello ";
     public static final String MESSAGE_PROMPT_COMMAND = "What can we do for you? "
             + "(Enter 'help' for the list of available commands!)\n";
