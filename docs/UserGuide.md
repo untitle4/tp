@@ -29,7 +29,7 @@
     - [List quiz questions:](#listing-out-all-quiz-questions-list-quiz) `list quiz`
     - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find`
     - [Search for former incorrect quiz questions:](#searching-for-former-incorrect-quiz-questions-quiz-record) `quiz record`
-  - [Exit the programme:](#exits-programme-bye) `bye`
+  - [Exit the program:](#exits-program-bye) `bye`
 - [6. Saving Data](#saving-data)
 - [7. FAQ](#faq)
 - [8. Troubleshooting](#troubleshooting)
@@ -167,14 +167,6 @@ Tuitions
 ##### Adding a class: `add class`
 Allows you to add a new class with a name, date and time.
 
-Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the class. Afterwards, key in the description of the class as well as its start and end date and time. Press ‘Enter’ to execute it.
-
-
-
-The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
-
-
-
 Format: `add class /n [name of class] /s [start date-time of class] /e [end date-time of class]`
 
 * `[name of class]` can be in a natural language format and
@@ -183,9 +175,6 @@ cannot contain '/'.
 * `[start date-time of class]` and `[end date-time of class]` must be in
 
 yyyy-mm-dd HHMM format with HHMM in 24-hour format.
-
-
-
 
 Examples: `add class /n Math /s 2020-08-19 1300 /e 2020-08-19 1400`
 
@@ -203,15 +192,6 @@ Now you have 1 class in the list.
 
 ##### Deleting a class: `delete class`
 Allows you to delete a class based on its index in the list.
-
-
-
-Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the class. Afterwards, key in the corresponding index of the class you would like to delete. Press ‘Enter’ to execute it.
-
-
-The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
-
-
 
 Format: `delete class [class number]`
 
@@ -233,11 +213,7 @@ Example Output:
 ##### Adding a cca: `add cca`
 Allow you to add a new cca with a name, date and time.
 
-Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the description of the cca as well as its start and end date and time. Press ‘Enter’ to execute it.
-
 Format: `add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]`
-
-
 
 Examples: `add cca /n Basketball training /s 2020-09-19 1900 /e 2020-09-19 2100`
 
@@ -254,10 +230,6 @@ Now you have 1 cca in the list.
 
 ##### Deleting a cca: `delete cca`
 Allows you to delete a cca based on its index in the list.
-
-Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the corresponding index of the cca you would like to delete. Press ‘Enter’ to execute it.
-
-
 
 Format: `delete cca [cca number]`
 
@@ -283,8 +255,6 @@ Allows you to add a new test with a name, date and time.
 
 Format: `add test /n [name of test] /s [start date-time of test] /e [end date-time of test]`
 
-
-
 Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
 
 Example Output:
@@ -301,8 +271,6 @@ Now you have 1 test in the list.
 
 ##### Deleting a test: `delete test`
 Allows you to delete a test event based on its index in the list.
-
-
 
 Format: `delete test [test number]`
 
@@ -328,8 +296,6 @@ Allows you to add a new test with a name, date, time, location.
 
 Format: `add tuition /n [name of tuition] /s [start date-time of test] /e [end date-time of test] /l [location of tuition]`
 
-
-
 Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400 /l home`
 
 Example Output:
@@ -346,8 +312,6 @@ Now you have 1 tuition in the list.
 
 ##### Deleting a tuition: `delete tuition`
 Allows you to delete a tuition based on its index in the list.
-
-
 
 Format: `delete tuition [tuition number]`
 
@@ -440,22 +404,6 @@ Example Output: For date, 2020-08-19
 #### Finding an event: `find event`
 Allows you to look for classes, ccas and tests and tuitions that match your given keyphrase.
 
-In the case when you have many events in your schedule and you need to find a specific event to check the date. You can use the `find event` to look for the event you want by entering keywords related to it.
-
-Let's say we need to find out when my vocabulary test is on.
-We can first type `find event vocabulary` into the command box, and press Enter to execute it.
-
-
-
-The output can then be seen in the console.
-
-
-
-And we can find the date we are looking for over here.
-
-
-
-
 Format: `find event [KEYPHRASE]`
 
 Examples: `find event math`
@@ -477,8 +425,6 @@ The quiz feature enables you to spend the extra time resulting from your product
 Taking a Mathematics quiz with any number of questions you want, ranging from just 1 question to the total number of questions in the quiz list.
 
 Format: `quiz [number of questions]`
-
-
 
 Examples: `quiz 15`
 
@@ -503,15 +449,8 @@ Note that the `/e (explanation)` is an optional parameter. You can add a quiz qu
 Format: `'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer]
 /e (explanation)`
 
-
-[photo of error message]
-
-[photo of command]
-[photo of command output]
-
-
 Examples: `add quiz /q What is 1+1? /o1 0 /o2 1 /o3 2 /o4 3 /a 3`
-[photo 2]
+
 Example Output:
 
 ```
@@ -542,7 +481,7 @@ Now you have 10 quizzes in the quiz list.
 
 <br />
 
-#### Listing out All Quiz Questions: ‘list quiz’
+#### Listing out All Quiz Questions: `list quiz`
 Allows you to list out all the questions in the quiz list.
 
 Format: `list quiz`
@@ -627,8 +566,8 @@ Correct answer: (2)
 
 ```
 
-### Exits Programme: `bye`
-Exits the programme once you have finished using it.
+### Exits Program: `bye`
+Exits the program once you have finished using it.
 
 Format: `bye`
 
