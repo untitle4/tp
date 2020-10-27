@@ -1,0 +1,40 @@
+@startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+box "Controller" #LightSalmon
+participant FindCommand
+end box
+
+box "Model" #YellowGreen
+participant QuizManager
+participant FindQuiz
+end box
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+FindCommand -> QuizManager : execute()
+activate QuizManager
+QuizManager -> QuizManager : findQuiz()
+activate QuizManager #DarkSalmon
+QuizManager -> FindQuiz ** : constructor()
+activate FindQuiz
+FindQuiz --> QuizManager
+deactivate FindQuiz
+QuizManager -> FindQuiz : getFilteredQuizzes()
+activate FindQuiz
+FindQuiz --> QuizManager : filteredQuizzes
+deactivate FindQuiz
+destroy FindQuiz
+QuizManager -> UserInterface : printArray()
+activate UserInterface
+UserInterface --> QuizManager
+deactivate UserInterface
+deactivate QuizManager
+QuizManager --> FindQuiz
+deactivate QuizManager
+
+@enduml
