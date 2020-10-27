@@ -62,12 +62,12 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return eventTuitionManager;
     }
 
+    //@@author AndreWongZH
     /**
      * Prints to user all the found events that matches with keyword provided.
      *
      * @param userInput Input supplied by the user that contains the keywords
      * @throws MissingParameterException If input supplied does not contain any keywords
-     * @author AndreWongZH
      */
     @Override
     public void find(String userInput) throws MissingParameterException {
@@ -133,13 +133,13 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
+    //@@author Aliciaho
     /**
      * Adds the relevant events whose date correspond to the date inputted in the masterList.
      *
      * @param masterList ArrayList containing all the events
      * @param date Date inputted to filter out the corresponding events
      * @return result ArrayList contain the relevant events for that date
-     * @author Aliciaho
     */
     private ArrayList<Event> getDayEventList(ArrayList<Event> masterList, Calendar date) {
         assert masterList.size() >= 0;
@@ -157,11 +157,11 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return result;
     }
 
+    //@@author Aliciaho
     /**
      * Adds all the ccas, classes, tests and tuitions into one Master ArrayList.
      *
      * @return masterList ArrayList containing all the events
-     * @author Aliciaho
      */
     public ArrayList<Event> getEventMasterList() {
         logger.log(Level.INFO, "getting all ccas, classes, tests and tuitions");

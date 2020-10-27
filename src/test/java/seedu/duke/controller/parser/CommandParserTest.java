@@ -6,6 +6,7 @@ import seedu.duke.exception.InvalidCommandException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author AndreWongZH
 class CommandParserTest {
     @Test
     void extractCommand_deleteString_deleteCommandType() throws InvalidCommandException {

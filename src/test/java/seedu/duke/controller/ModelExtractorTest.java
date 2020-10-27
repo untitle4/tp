@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+//@@author AndreWongZH
 class ModelExtractorTest {
     @Test
     void retrieveModel_typeClass_eventClassManager() throws InvalidModelException {

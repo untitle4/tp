@@ -25,7 +25,6 @@ import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 //@@author elizabethcwt
-
 /**
  * <h2>ClassManager class</h2>
  * Stores user's classes in an ArrayList of Event class, named classes.
