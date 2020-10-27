@@ -295,13 +295,12 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      * @param userInput The input entered by the user.
      * @throws MissingParameterException if there is no keyword(s) provided.
      */
-
     @Override
     public void find(String userInput) throws MissingParameterException {
         String param = userInput.substring(USER_INPUT_OFFSET).trim();
 
         if (param.length() == EMPTY_SIZE) {
-            throw new MissingParameterException();
+            throw new MissingParameterException("keywords as");
         }
 
         FindQuiz findQuiz = new FindQuiz(param, quizzes);

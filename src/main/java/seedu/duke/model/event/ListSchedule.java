@@ -99,12 +99,12 @@ public class ListSchedule {
         return (!haveClasses() && !haveCcas() && !haveTests() && !haveTuitions());
     }
 
+    //@@author Aliciaho
     /**
      * If the user input contains today/week, get the date for today.
      * Else if user input a date, convert the string date to calendar form
      *
      * @return resultCalender Calendar containing the resulting output
-     * @author Aliciaho
     */
     private Calendar checkAndConvertToday() throws ParseException {
         Calendar resultCalendar = null;
@@ -116,6 +116,7 @@ public class ListSchedule {
         return resultCalendar;
     }
 
+    //@@author Aliciaho
     /**
      * Converts event instances into strings representation padded with numbers.
      * PrintedEvents cannot be null.
@@ -123,7 +124,6 @@ public class ListSchedule {
      *
      * @param eventArr Array list of event instances to be converted.
      * @return printedEvents Array list containing the relevant events in correct output format
-     * @author Aliciaho
      */
     private ArrayList<String> parseEventWithNumberPad(ArrayList<Event> eventArr) {
         assert eventArr != null;
