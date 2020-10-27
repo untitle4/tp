@@ -1,5 +1,8 @@
 # Developer Guide
 
+* Table of Contents
+{:toc}
+
 ## Introduction
 
 ### Purpose
@@ -127,7 +130,7 @@ Figure 7. Sequence Diagram of the reading of data
 
 It returns a `String` to `EventStorageManager` for further writing. 
 
-![eventwritestorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageWriteSequence.png)
+![eventwritestorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageSaveSequence.png)
 Figure 8. Sequence Diagram of the writing of data
 
 ##### Quiz Storage
