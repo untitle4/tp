@@ -91,7 +91,7 @@ public class EventClassManager extends EventDataManager {
         if ((!userInput.contains("/n")) || (!userInput.contains("/s")) || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
                     + " missing");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
         // Splitting /n, /s and /e info. via a String array called classDetails

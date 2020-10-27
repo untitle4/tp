@@ -53,7 +53,7 @@ public class EventCcaManager extends EventDataManager {
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
                 || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "no param is entered");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
         final String[] ccaDetails = userInput.trim().split("\\/");

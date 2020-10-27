@@ -74,7 +74,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         String param = userInput.substring(USER_INPUT_OFFSET).trim();
 
         if (param.length() == EMPTY_SIZE) {
-            throw new MissingParameterException();
+            throw new MissingParameterException("keywords as");
         }
 
         FindSchedule findSchedule = new FindSchedule(param, eventClassManager.getClasses(),

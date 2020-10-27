@@ -34,7 +34,7 @@ public class Messages {
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
     //@@author elizabethcwt
     public static final String MESSAGE_MISSING_PARAMETERS = "☹ OOPS!!! "
-            + "Remember to include ALL '/n', '/s' and '/e' inputs!";
+            + "Remember to include ALL %s inputs!";
     public static final String MESSAGE_EMPTY_PARAMETERS = "☹ OOPS!!! Ensure ALL parameters are filled up!";
     public static final String MESSAGE_INVALID_DATE = "☹ OOPS!!! "
             + "Please enter valid date and time in format yyyy-mm-dd HHMM!";

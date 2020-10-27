@@ -6,7 +6,6 @@ import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
-import seedu.duke.exception.ContactParamException;
 
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,19 +25,10 @@ public class ContactManager extends ModelManager implements ContactInteractable 
     }
 
     @Override
-    public void add(String userInput) throws ContactParamException, EmptyParameterException {
-        if (!userInput.contains("/s")) {
-            userInterface.showToUser(Messages.MESSAGE_SUBJECT_NOT_FOUND);
-            throw new ContactParamException();
-        } else if (!userInput.contains("/n")) {
-            userInterface.showToUser(Messages.MESSAGE_NAME_NOT_FOUND);
-            throw new ContactParamException();
-        } else if (!userInput.contains("/p")) {
-            userInterface.showToUser(Messages.MESSAGE_PHONE_NUMBER_NOT_FOUND);
-            throw new ContactParamException();
-        } else if (!userInput.contains("/e")) {
-            userInterface.showToUser(Messages.MESSAGE_EMAIL_ADDRESS_NOT_FOUND);
-            throw new ContactParamException();
+    public void add(String userInput) throws EmptyParameterException, MissingParameterException {
+        if (!userInput.contains("/s") || !userInput.contains("/n")
+                || !userInput.contains("/p") || !userInput.contains("/e")) {
+            throw new MissingParameterException("'/s', '/n', '/p' and '/e'");
         }
 
         String[] seperatedInputs = userInput.trim().split("/");
@@ -99,6 +89,7 @@ public class ContactManager extends ModelManager implements ContactInteractable 
             }
         }
     }
+
 
     @Override
     public void find(String userInput) throws MissingParameterException {
