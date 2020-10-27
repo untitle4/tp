@@ -18,5 +18,6 @@ deactivate UserInterface
 UserInterface --> EventManager
 deactivate EventManager
 EventManager --> ListCommand
+deactivate
 
 @enduml
