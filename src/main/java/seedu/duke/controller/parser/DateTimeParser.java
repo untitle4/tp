@@ -3,7 +3,9 @@ package seedu.duke.controller.parser;
 import seedu.duke.common.LogManager;
 import seedu.duke.model.event.Event;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
@@ -231,12 +233,11 @@ public class DateTimeParser {
         return dateCalendars;
     }
 
-    public Integer getHours(Calendar startDate, Calendar endDate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
-        int startHours = Integer.parseInt(sdf.format(startDate.getTime()));
-        int endHours = Integer.parseInt(sdf.format(startDate.getTime()));
-        int timeDuration = endHours - startHours;
-        return timeDuration;
+    public long getHours(Calendar startDateCalendar, Calendar endDateCalendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
+        long timeDurationInMinutes = Duration.between(startDateCalendar.toInstant(),
+                endDateCalendar.toInstant()).toMinutes();
+        return timeDurationInMinutes;
     }
 }
 

@@ -250,14 +250,15 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public boolean didTimeExceed(Event event) {
         DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> eventArrayList = getEventMasterList();
-        int noOfHours = dateTimeParser.getHours(event.getStart(), event.getEnd());
+        long noOfMinutes = dateTimeParser.getHours(event.getStart(), event.getEnd());
+        System.out.println(noOfMinutes);
         for (int i = 0; i < eventArrayList.size(); i++) {
             if (dateTimeParser.isDateEqual(eventArrayList.get(i).getStart(),
                     event.getStart())) {
-                noOfHours += dateTimeParser.getHours(eventArrayList.get(i).getStart(),
+                noOfMinutes += dateTimeParser.getHours(eventArrayList.get(i).getStart(),
                         eventArrayList.get(i).getEnd());
             }
         }
-       return noOfHours > 10;
+       return noOfMinutes > 600;
     }
 }
