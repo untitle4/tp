@@ -74,9 +74,10 @@ public class Duke {
             userInterface.showToUser(Messages.MESSAGE_PROMPT_NAME);
             String userName = userInterface.getUserCommand();
             configParameter.setName(userName);
+            userInterface.showToUser(Messages.MESSAGE_HELLO + userName, "");
             int recommendedHours;
             do {
-                userInterface.showToUser(Messages.MESSAGE_HELLO + userName, Messages.MESSAGE_PROMPT_HOURS);
+                userInterface.showToUser(Messages.MESSAGE_PROMPT_HOURS);
                 recommendedHours = Integer.parseInt(userInterface.getUserCommand());
             } while (recommendedHours <= 0 || recommendedHours > 12);
             configParameter.setRecommendedHours(recommendedHours);
