@@ -3,6 +3,7 @@ package seedu.duke.controller;
 import org.junit.jupiter.api.Test;
 import seedu.duke.controller.parser.ModelExtractor;
 import seedu.duke.exception.InvalidModelException;
+import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.ModelType;
 import seedu.duke.model.ModelMain;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+//@@author AndreWongZH
 class ModelExtractorTest {
     @Test
     void retrieveModel_typeClass_eventClassManager() throws InvalidModelException {
@@ -35,7 +37,7 @@ class ModelExtractorTest {
     }
 
     private Model initializeModel() {
-        return new Model(new EventManager(new EventParameter()), new ContactManager(),
+        return new Model(new EventManager(new EventParameter(), new ConfigParameter()), new ContactManager(),
                 new QuizManager(new ArrayList<>()));
     }
 }

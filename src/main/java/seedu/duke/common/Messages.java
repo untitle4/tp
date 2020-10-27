@@ -1,5 +1,6 @@
 package seedu.duke.common;
 
+import seedu.duke.model.quiz.Quiz;
 import seedu.duke.model.quiz.QuizManager;
 
 public class Messages {
@@ -17,10 +18,13 @@ public class Messages {
     public static final String MESSAGE_HELLO_FROM_DUKE = "Hello from\n"
             + Messages.MESSAGE_LOGO;
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
+    public static final String MESSAGE_PROMPT_HOURS = "Key in the number of hours you would like "
+            + "to study each day (not more than 12)?";
+    public static final String MESSAGE_SHOW_HOURS = "This is your recommended hours per day: ";
     public static final String MESSAGE_HELLO = "Hello ";
     public static final String MESSAGE_PROMPT_COMMAND = "What can we do for you? "
             + "(Enter 'help' for the list of available commands!)\n";
-    public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is empty. Add some!";
+    public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is %s. Add some!";
 
     // General error messages
     //@@author durianpancakes
@@ -29,19 +33,26 @@ public class Messages {
     public static final String MESSAGE_STORAGE_CORRUPTED = "): Storage file corrupted. "
             + "Please delete your data directory and relaunch.";
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
-            + "You can either 'list event' or 'list quiz'";
+            + "You can either 'list event' or 'list quiz' or 'list contact'";
     //@@author AndreWongZH
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
+    public static final String MESSAGE_MISSING_MODEL = "☹ Oops! Model type is missing! "
+            + "Enter 'help' if needed!";
+    public static final String MESSAGE_INCOMPLETE_FIND_PARAMETERS = "Please tell me what you want to be listed! "
+            + "You can either 'find event' or 'find quiz' or 'find contact'";
     //@@author elizabethcwt
     public static final String MESSAGE_MISSING_PARAMETERS = "☹ OOPS!!! "
-            + "Remember to include ALL '/n', '/s' and '/e' inputs!";
+            + "Remember to include ALL %s inputs!";
     public static final String MESSAGE_EMPTY_PARAMETERS = "☹ OOPS!!! Ensure ALL parameters are filled up!";
+    public static final String MESSAGE_LIST_INVALID_DATE = "☹ OOPS!!! Please enter today/week/valid date"
+            + "and time in format yyyy-mm-dd!";
     public static final String MESSAGE_INVALID_DATE = "☹ OOPS!!! "
             + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
     public static final String MESSAGE_INVALID_COMMAND = "☹ Oops! I did not recognize that command! "
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INVALID_MODEL = "☹ Oops! I did not recognize that model type! "
             + "Enter 'help' if needed!";
+    public static final String MESSAGE_LIST_EXTRA_PARAM = "☹ OOPS!!! Please do not enter extra inputs";
 
     //@@author durianpancakes
     // Messages from CalendarWeekRenderer
@@ -55,10 +66,6 @@ public class Messages {
 
     //@@author untitle4
     // Messages from Contact related classes
-    public static final String MESSAGE_SUBJECT_NOT_FOUND = "Subject not found";
-    public static final String MESSAGE_NAME_NOT_FOUND = "Name not found";
-    public static final String MESSAGE_PHONE_NUMBER_NOT_FOUND = "Phone number not found";
-    public static final String MESSAGE_EMAIL_ADDRESS_NOT_FOUND = "Email address not found";
     public static final String MESSAGE_CONTACT_ADD_SUCCESS = "Got it. I've added this contact: ";
     public static final String MESSAGE_CONTACT_DELETE_SUCCESS = "Noted. I've removed this contact: ";
     public static final String MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER = "☹ OOPS!!! "
@@ -138,14 +145,23 @@ public class Messages {
             + "which quiz you'd like to delete!\n";
     public static final String MESSAGE_INVALID_HELP_COMMAND = "☹ OOPS!!! Are you trying to take a quiz or add/delete a"
             + " quiz question? Enter 'help' to check the correct format!\n";
-    public static final String MESSAGE_INVALID_NUM_OF_QUIZ_QUESTIONS = "☹ OOPS!!! You can only take quizzes in sets of"
-            + " 10, 20 or 30 questions!\n";
-    public static final String MESSAGE_INSUFFICIENT_QUES_LESS_THAN_10 = "OOPS! You wanted to take a quiz with "
-            + QuizManager.noOfQues + " questions, but your current quiz only has %s question(s).\nPlease add more"
-            + " questions to your quiz via the 'add quiz' command!\n";
-    public static final String MESSAGE_INSUFFICIENT_QUES_MORE_THAN_10 = "OOPS! You wanted to take a quiz with "
-            + QuizManager.noOfQues + " questions, but your current quiz only has %s question(s).\nPlease either add"
-            + "more questions to your quiz via the 'add quiz' command, or try a quiz with less questions!\n";
+    public static final String MESSAGE_EMPTY_QUIZ_LIST = "Quiz list is empty. Add some!";
+    public static final String MESSAGE_QUIZ_INDEX_OUT_OF_BOUND = "There is not such a question in your quiz list!";
+
+    public static String invalid_number_of_quiz_questions_message(int size) {
+        return "☹ OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")\n";
+    }
+
+    public static final String MESSAGE_MISSING_QUIZ_PARAM = "Please indicate the command you would like to apply on"
+            + " quiz!";
+    public static final String MESSAGE_QUIZ_NON_NUMBER = "Please enter a valid number or "
+            + "enter 'quiz record' to see your incorrect questions in your previous quiz!\n";
+
+    public static String print_quiz_score(int correctCounter, int noOfQues) {
+        return "You scored " + correctCounter + " out of " + noOfQues + "!\n"
+                + "Scroll up to review your quiz.\n\n";
+    }
+
 
     //@@author elizabethcwt
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"
@@ -161,25 +177,23 @@ public class Messages {
             + "start date-time of tuition] /l [location of tuition]'\n"
             + "\t8. Delete tuition: 'delete tuition [tuition number]'\n\n"
             + "\t9. List events (class, test, cca, tuition): 'list'\n\n"
-            + "\t10. Set class as done: 'done class [class number]'\n"
-            + "\t11. Set test as done: 'done test [test number]'\n"
-            + "\t12. Set cca as done: 'done cca [cca number]'\n"
-            + "\t13. Set tuition as done: 'done tuition [tuition number]'\n\n"
-            + "\t14. Find relevant event(s): 'find [keyword(s)]'\n\n"
-            + "\t15. Add contact: 'add contact /sub [subject] /n [name of contact person] /hp [phone number]"
+            + "\t10. Find relevant event(s): 'find [keyword(s)]'\n\n"
+            + "\t11. Add contact: 'add contact /sub [subject] /n [name of contact person] /hp [phone number]"
             + " /e [email address]'\n"
-            + "\t16. Delete contact: 'delete contact [contact number]'\n"
-            + "\t17. List contact: 'list contact'\n\n"
-            + "\t18. Take Mathematics quiz: 'quiz [no. of questions (10, 20 or 30)]'\n"
-            + "\t19. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
-            + " /o4 [option 4] /a [option answer] /exp [explanation]'\n"
-            + "\t20. Delete quiz question: 'delete quiz [question number]'\n"
-            + "\t21. List quiz questions: 'list quiz'\n\n"
-            + "\t22. Find quiz questions: 'find quiz [keyword(s)]'\n\n"
-            + "\t23. Exit program: 'bye'\n\n"
+            + "\t12. Delete contact: 'delete contact [contact number]'\n"
+            + "\t13. List contact: 'list contact'\n\n"
+            + "\t14. Take Mathematics quiz: 'quiz [no. of questions]'\n"
+            + "\t15. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
+            + " /o4 [option 4] /a [option answer] /exp (explanation)'\n"
+            + "\t16. Delete quiz question: 'delete quiz [question number]'\n"
+            + "\t17. List quiz questions: 'list quiz'\n"
+            + "\t18. Find quiz questions: 'find quiz [keyword(s)]'\n"
+            + "\t19. Display former incorrect quiz question records: 'quiz record'\n\n"
+            + "\t20. Exit program: 'bye'\n\n"
             + "\n\tNOTE:\n\t1. Please enter the date-time in the following format: YYYY-MM-DD "
             + "[time in 24hr format]\n\te.g. 2020-08-19 1300\n\n"
             + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n";
+
     public static final String MESSAGE_BYE = "BYE BYE! SEE YOU NEXT TIME! :3";
     public static final String MESSAGE_EXTRA_HELP_PARAM = "OOPS! Were you trying to ask for help? Just enter 'help'!";
     public static final String MESSAGE_NO_EVENTS_FOUND = "Sorry but your searches yield no results!";

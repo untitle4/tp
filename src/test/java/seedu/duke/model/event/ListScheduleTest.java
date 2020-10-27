@@ -21,6 +21,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author AndreWongZH
 class ListScheduleTest {
     @Test
     void getPrintableEvents_emptySchedule_expectException() {
@@ -41,13 +42,13 @@ class ListScheduleTest {
                 new ArrayList<>(), new ArrayList<>());
         ArrayList<String> actualOutputs = listSchedule.getPrintableEvents();
         ArrayList<String> expectedOutputs = new ArrayList<>(
-                List.of("Classes: ", "1. [CLASS] [NOT DONE] Math from 26th Feb 2019, "
+                List.of("Classes: ", "1. [CLASS] Math from 26th Feb 2019, "
                         + "02:00PM to 27th Feb 2019, 03:00PM"));
         assertEquals(expectedOutputs, actualOutputs);
     }
 
     @Test
-    void getPrintableEvents_allSchedule_allEvents() throws EmptyListException {
+    void getPrintableEvents_allSchedule_allEvents() throws EmptyListException, ParseException {
         ArrayList<Event> classes = new ArrayList<>();
         DateTimeParser dateTimeParser = new DateTimeParser();
         classes.add(new EventClass("Math", dateTimeParser.convertStringToCalendar("2019-02-26 1400"),
@@ -67,13 +68,13 @@ class ListScheduleTest {
         ArrayList<String> actualOutputs = listSchedule.getPrintableEvents();
         ArrayList<String> expectedOutputs = new ArrayList<>(
                 List.of("Classes: ",
-                        "1. [CLASS] [NOT DONE] Math from 26th Feb 2019, 02:00PM to 27th Feb 2019, 03:00PM",
+                        "1. [CLASS] Math from 26th Feb 2019, 02:00PM to 27th Feb 2019, 03:00PM",
                         "CCAs: ",
-                        "1. [CCA] [NOT DONE] Basketball from 26th Feb 2019, 02:00PM to 27th Feb 2019, 03:00PM",
+                        "1. [CCA] Basketball from 26th Feb 2019, 02:00PM to 27th Feb 2019, 03:00PM",
                         "Tests: ",
-                        "1. [TEST] [NOT DONE] Science from 26th Feb 2019, 02:00PM to 27th Feb 2019, 03:00PM",
+                        "1. [TEST] Science from 26th Feb 2019, 02:00PM to 27th Feb 2019, 03:00PM",
                         "Tuitions: ",
-                        "1. [TUITION] [NOT DONE] English from 26th Feb 2019, 02:00PM to 27th Feb 2019, 03:00PM"
+                        "1. [TUITION] English from 26th Feb 2019, 02:00PM to 27th Feb 2019, 03:00PM"
                                 + " at Choa Chu Kang Avenue 5 Block 433"));
         assertEquals(expectedOutputs, actualOutputs);
     }
@@ -94,7 +95,7 @@ class ListScheduleTest {
         String formattedDate = dateTimeParser.obtainFormattedDateTimeString(calendar);
 
         ArrayList<String> expectedOutputs = new ArrayList<>(
-                List.of("Classes: ", "1. [CLASS] [NOT DONE] Math from " + formattedDate
+                List.of("Classes: ", "1. [CLASS] Math from " + formattedDate
                         + " to 27th Feb 2019, 03:00PM"));
 
         assertEquals(expectedOutputs, actualOutputs);

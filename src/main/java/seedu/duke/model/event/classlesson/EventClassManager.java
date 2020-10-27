@@ -7,6 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +25,6 @@ import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 //@@author elizabethcwt
-
 /**
  * <h2>ClassManager class</h2>
  * Stores user's classes in an ArrayList of Event class, named classes.
@@ -90,7 +90,7 @@ public class EventClassManager extends EventDataManager {
         if ((!userInput.contains("/n")) || (!userInput.contains("/s")) || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
                     + " missing");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
         // Splitting /n, /s and /e info. via a String array called classDetails
@@ -119,14 +119,21 @@ public class EventClassManager extends EventDataManager {
 
             // Checking if there are any events that clashes
             ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventClass);
-            if (clashedEvents.size() == 0) {
+
+            //If no events clash and the recommended time did not exceed, add class
+            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(eventClass)) {
                 classes.add(eventClass);
                 logger.log(Level.INFO, "added class to ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
                         classes.get(getClassListSize() - 1).toString());
                 getClassStatement();
-            } else {
+
+                sortList();
+                logger.log(Level.INFO, "sorted classes ArrayList");
+
+            //If events clashed, show the corresponding error message
+            } else if (clashedEvents.size() > 0) {
                 userInterface.showToUser("The class you were trying to add",
                         eventClass.toString(),
                         "clashes with the following events in your list:");
@@ -134,11 +141,18 @@ public class EventClassManager extends EventDataManager {
                     userInterface.showToUser(clashedEvent.toString());
                 }
                 userInterface.showToUser("Please check the start and end inputs again!");
+
+            //If the recommended time exceeded, show the corresponding error message
+            } else if (eventManager.didTimeExceed(eventClass)) {
+                userInterface.showToUser("Recommended time exceeded! Class is not added!");
             }
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
+        } catch (ParseException e) {
+            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -224,6 +238,10 @@ public class EventClassManager extends EventDataManager {
                 "  " + classes.get(classNumber - 1));
 
         getClassStatement();
+    }
+
+    private void sortList() {
+        Collections.sort(classes);
     }
 }
 

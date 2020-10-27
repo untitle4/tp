@@ -6,15 +6,11 @@ import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
-import seedu.duke.model.quiz.UserAnswerManager;
-import seedu.duke.model.quiz.Quiz;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.Collections;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class QuizManager extends ModelManager implements QuizInteractable {
@@ -45,128 +41,140 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author elizabethcwt
-    public void takeQuiz(String[] separatedInputs) {
+    public void checkQuizSizeValidity(String[] separatedInputs) {
+
+        if (getQuizListSize() == 0) {
+
+            // If user attempts to take a quiz, but the quiz list is empty
+            userInterface.showToUser(Messages.MESSAGE_EMPTY_QUIZ_LIST);
+        } else {
+
+            // If user attempts to take a quiz, and the quiz list has at least 1 quiz question
+            takeQuiz(separatedInputs);
+        }
+    }
+
+    private void takeQuiz(String[] separatedInputs) {
         try {
             noOfQues = Integer.parseInt(separatedInputs[1]);
             assert noOfQues != 0 : "noOfQues should not be 0";
 
-            if (!((noOfQues == 10) || (noOfQues == 20) || (noOfQues == 30))) {
+            if (!((noOfQues > 0) && (noOfQues <= getQuizListSize()))) {
 
-                // Assert that noOfQues is NOT one of the acceptable values
-                assert (!((noOfQues == 10) || (noOfQues == 20) || (noOfQues == 30)));
-
-                // If user inputs an invalid number of quiz questions (not 10, 20 or 30)
-                userInterface.showToUser(Messages.MESSAGE_INVALID_NUM_OF_QUIZ_QUESTIONS);
-
-                // If user inputs a valid number of quiz questions (either 10, 20 or 30)
-            } else if ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10)) {
-
-                // Assert that noOfQues is more than the quiz size, and quiz size is less than 10
-                assert ((noOfQues > getQuizListSize()) && (getQuizListSize() < 10));
-
-                // If user wants to try more questions than he/she has in the current quiz, and has less than 10
-                // questions
-                userInterface.showToUser(String.format(Messages.MESSAGE_INSUFFICIENT_QUES_LESS_THAN_10,
-                        getQuizListSize()));
-            } else if (noOfQues > getQuizListSize() && (getQuizListSize() >= 10)) {
-
-                // Assert that noOfQues is more than the quiz size, and quiz size is at least 10
-                assert ((noOfQues > getQuizListSize()) && (getQuizListSize() >= 10));
-
-                // If user wants to try more questions than he/she has in the current quiz, but has at least 10
-                // questions
-                userInterface.showToUser(String.format(Messages.MESSAGE_INSUFFICIENT_QUES_MORE_THAN_10,
-                        getQuizListSize()));
+                // If user inputs an invalid number of questions to be attempted (NOT within range of 1 to quiz size)
+                handleInvalidNumOfQuestions();
             } else {
 
-                // If user enters a valid number of questions
-                if (noOfQues <= getQuizListSize()) {
-
-                    // Assert that noOfQues is valid
-                    assert (noOfQues <= getQuizListSize()) : "noOfQues is invalid";
-
-                    // Create a new list of the question indexes
-                    quizIndexes = new ArrayList<>();
-                    for (int i = 0; i < quizzes.size(); i++) {
-                        quizIndexes.add(i);
-                    }
-
-                    // Shuffle the question indexes
-                    Collections.shuffle(quizIndexes);
-
-                    //TODO handle input: "quiz abc"
-
-                    int questionCounter = 0;
-                    while (questionCounter < noOfQues) {
-
-                        // Assert that questionCounter is less than noOfQues
-                        assert (questionCounter < noOfQues) : "questionCounter should not be more than noOfQues";
-
-                        questionCounter = testForValidInput(questionCounter);
-                    }
-
-                    // Initialising counter for correctly answered questions
-                    int correctCounter = 0;
-
-                    // Assert that correctCounter is 0 initially
-                    assert (correctCounter == 0) : "questionCounter should be 0 initially";
-
-                    // Clear arraylist to store incorrect quizzes
-                    lastIncorrectQuizzes.clear();
-                    lastIncorrectAnswers.clear();
-
-                    // Compare and note if students' answers are correct
-                    for (int k = 0; k < noOfQues; k++) {
-                        if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt(quizzes.get(quizIndexes
-                                .get(k)).getAnswer()))) {
-                            userAnswerManager.getCorrectness().add(true);
-                            correctCounter++;
-                        } else {
-                            userAnswerManager.getCorrectness().add(false);
-                            lastIncorrectQuizzes.add(quizzes.get(quizIndexes.get(k)));
-                            lastIncorrectAnswers.add(userAnswerManager.getUserAnswers().get(k));
-                        }
-                        quizzes.get(quizIndexes.get(k)).updateLastAccessed();
-                    }
-
-                    for (int l = 0; l < noOfQues; l++) {
-
-                        // Assigning the correctness logo to be printed with questions post-quiz
-                        if (userAnswerManager.getCorrectness().get(l).equals(true)) {
-
-                            // Assert that the correctness of the user's input is true in this if loop
-                            assert (userAnswerManager.getCorrectness().get(l).equals(true)) : "User's answer should be"
-                                    + " correct for this question";
-
-                            correctnessLogo = " [CORRECT ☺︎]";
-                        } else {
-
-                            // Assert that the correctness of the user's input is false in this else loop
-                            assert (userAnswerManager.getCorrectness().get(l).equals(false)) : "User's answer should be"
-                                    + " incorrect for this question";
-
-                            correctnessLogo = " [WRONG ☹︎]";
-                        }
-
-                        // Print out all quiz questions, user's answers, correctness, correct answers and explanations
-                        System.out.println("Question " + (l + 1) + ": ");
-                        System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
-                                .getUserAnswers().get(l), correctnessLogo));
-                    }
-
-                    // Print out quiz score
-                    System.out.println("You scored " + correctCounter + " out of " + noOfQues + "! "
-                            + "Scroll up to review your quiz.\n");
-
-                    // Empty userAnswers ArrayList and correctness ArrayList
-                    userAnswerManager.getUserAnswers().clear();
-                    userAnswerManager.getCorrectness().clear();
-
-                }
+                // If user inputs a valid number of quiz questions (within range of 1 to quiz size)
+                handleValidNumOfQuestions();
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_HELP_COMMAND);
         }
+    }
+
+    private void handleValidNumOfQuestions() {
+
+        // Assert that noOfQues is within a valid range
+        assert ((noOfQues > 0) && (noOfQues <= getQuizListSize())) : "noOfQues should be of a valid value, but"
+                + "it is invalid";
+
+        initialisingShufflingOfQuestions();
+
+        int questionCounter = 0;
+        while (questionCounter < noOfQues) {
+
+            // Assert that questionCounter is less than noOfQues
+            assert (questionCounter < noOfQues) : "questionCounter should not be more than noOfQues";
+
+            questionCounter = testForValidInput(questionCounter);
+        }
+
+        // Initialising counter for correctly answered questions
+        int correctCounter = 0;
+
+        // Assert that correctCounter is 0 initially
+        assert (correctCounter == 0) : "questionCounter should be 0 initially";
+
+        // Clear arraylist to store incorrect quizzes
+        lastIncorrectQuizzes.clear();
+        lastIncorrectAnswers.clear();
+
+        // Compare and note if students' answers are correct
+        correctCounter = storeCorrectnessOfQuizAnswer(correctCounter);
+
+        for (int l = 0; l < noOfQues; l++) {
+
+            // Assigning the correctness logo to be printed with questions post-quiz
+            assignCorrectnessLogo(l);
+
+            // Print out all quiz questions, user's answers, correctness, correct answers and explanations
+            System.out.println("Question " + (l + 1) + ": ");
+            System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
+                    .getUserAnswers().get(l), correctnessLogo));
+        }
+
+        // Print out quiz score
+        userInterface.showToUser(Messages.print_quiz_score(correctCounter, noOfQues));
+
+        // Empty userAnswers ArrayList and correctness ArrayList
+        userAnswerManager.getUserAnswers().clear();
+        userAnswerManager.getCorrectness().clear();
+    }
+
+    private void assignCorrectnessLogo(int l) {
+        if (userAnswerManager.getCorrectness().get(l).equals(true)) {
+
+            // Assert that the correctness of the user's input is true in this if loop
+            assert (userAnswerManager.getCorrectness().get(l).equals(true)) : "User's answer should be"
+                    + " correct for this question";
+
+            correctnessLogo = " [CORRECT ☺︎]";
+        } else {
+
+            // Assert that the correctness of the user's input is false in this else loop
+            assert (userAnswerManager.getCorrectness().get(l).equals(false)) : "User's answer should be"
+                    + " incorrect for this question";
+
+            correctnessLogo = " [WRONG ☹︎]";
+        }
+    }
+
+    private int storeCorrectnessOfQuizAnswer(int correctCounter) {
+        for (int k = 0; k < noOfQues; k++) {
+            if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt(quizzes.get(quizIndexes
+                    .get(k)).getAnswer()))) {
+                userAnswerManager.getCorrectness().add(true);
+                correctCounter++;
+            } else {
+                userAnswerManager.getCorrectness().add(false);
+                lastIncorrectQuizzes.add(quizzes.get(quizIndexes.get(k)));
+                lastIncorrectAnswers.add(userAnswerManager.getUserAnswers().get(k));
+            }
+            quizzes.get(quizIndexes.get(k)).updateLastAccessed();
+        }
+        return correctCounter;
+    }
+
+    private void initialisingShufflingOfQuestions() {
+        // Create a new list of the question indexes
+        quizIndexes = new ArrayList<>();
+        for (int i = 0; i < quizzes.size(); i++) {
+            quizIndexes.add(i);
+        }
+
+        // Shuffle the question indexes
+        Collections.shuffle(quizIndexes);
+    }
+
+    private void handleInvalidNumOfQuestions() {
+
+        // Assert that noOfQues is NOT an acceptable value
+        assert (!((noOfQues > 0) && (noOfQues <= getQuizListSize()))) : "noOfQues should not be of a valid"
+                + " value, but it is";
+
+        // If user inputs an invalid number of quiz questions (not within range of 1 to quiz size)
+        userInterface.showToUser(Messages.invalid_number_of_quiz_questions_message(quizzes.size()));
     }
 
     //@@author elizabethcwt
@@ -210,23 +218,32 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+
+    /**
+     * Delete a quiz in the Arraylist of quizzes.
+     * Extract the index of the quiz that the user want to delete.
+     *
+     * @param userInputs The input entered by the user.
+     * @throws IndexOutOfBoundsException if the index is out of bounds.
+     */
+
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int quizIndex;
 
         try {
             quizIndex = Integer.parseInt(userInputs[2]);
+            if ((quizIndex <= 0) || (quizIndex > getQuizListSize())) {
+                throw new IndexOutOfBoundsException();
+            }
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
             return;
         } catch (IndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER);
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_INDEX_OUT_OF_BOUND);
             return;
         }
 
-        if ((quizIndex <= 0) || (quizIndex > getQuizListSize())) {
-            throw new IndexOutOfBoundsException();
-        }
 
         userInterface.showToUser("Noted. I've removed this quiz question: \n" + quizzes.get(quizIndex - 1));
 
@@ -235,6 +252,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author AndreWongZH
+
     /**
      * Adds a quiz to the ArrayList of quizzes.
      * Extracts the question, options, explanations if any before adding it as a quiz.
@@ -246,13 +264,16 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public void add(String userInput) throws EmptyParameterException {
         if (!userInput.contains(" /q ")) {
             userInterface.showToUser("question not found");
+            throw new EmptyParameterException();
         }
         if (!userInput.contains(" /a ")) {
             userInterface.showToUser("answer not found");
+            throw new EmptyParameterException();
         }
         if (!userInput.contains(" /o1 ") && !userInput.contains(" /o2 ")
                 && !userInput.contains(" /o3 ") && !userInput.contains(" /o4 ")) {
             userInterface.showToUser("options not provided");
+            throw new EmptyParameterException();
         }
         String[] separatedInputs = userInput.trim().split("/");
 
@@ -280,12 +301,19 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+
+    /**
+     * To find the quiz with certain keyword(s) in the Arraylist of quizzes.
+     *
+     * @param userInput The input entered by the user.
+     * @throws MissingParameterException if there is no keyword(s) provided.
+     */
     @Override
     public void find(String userInput) throws MissingParameterException {
         String param = userInput.substring(USER_INPUT_OFFSET).trim();
 
         if (param.length() == EMPTY_SIZE) {
-            throw new MissingParameterException();
+            throw new MissingParameterException("keywords as");
         }
 
         FindQuiz findQuiz = new FindQuiz(param, quizzes);
@@ -299,6 +327,11 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userInterface.printArray(filteredQuizzes);
     }
 
+    //@@author untitle4
+
+    /**
+     * Show the incorrect quizzes in the user's last attempt.
+     */
     public void recordedQuizzes() {
         if (lastIncorrectQuizzes.size() == 0) {
             userInterface.showToUser("Congratulations! You get full marks in your last attempt!");
@@ -316,11 +349,18 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     }
 
+    //@@author untitle4
+
+    /**
+     * List the Arraylist of quiz.
+     */
+
     @Override
     public void list() {
         if (quizzes.size() == EMPTY_SIZE) {
             userInterface.showToUser("Quiz list is empty. Add some!\n");
         } else {
+            userInterface.showToUser("Here are the questions in your quiz list:");
             for (int i = 0; i < quizzes.size(); i++) {
                 userInterface.showToUser("Question " + (i + 1) + ":\n" + quizzes.get(i));
             }

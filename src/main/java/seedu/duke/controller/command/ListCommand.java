@@ -1,7 +1,6 @@
 package seedu.duke.controller.command;
 
 import seedu.duke.exception.IncompleteListCommandException;
-import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.contact.ContactManager;
 import seedu.duke.model.event.EventManager;
@@ -17,7 +16,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute(ModelMain modelMain) throws IncompleteListCommandException, MissingParameterException {
+    public void execute(ModelMain modelMain) throws IncompleteListCommandException {
         if (modelMain == null) {
             throw new IncompleteListCommandException();
         }

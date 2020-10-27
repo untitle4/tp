@@ -2,6 +2,7 @@ package seedu.duke.controller.parser;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.MissingModelException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,25 +41,25 @@ public class CommandParser {
      * @return CommandType corresponding to the command.
      * @throws InvalidCommandException If no command word matches the first word.
      */
-    public CommandType extractCommand() throws InvalidCommandException {
+    public CommandType extractCommand() throws InvalidCommandException, MissingModelException {
         logger.log(Level.INFO, "Extracting command now...");
 
         switch (separatedInputs[MAIN_COMMAND_INDEX]) {
         case INPUT_ADD:
             if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new InvalidCommandException();
+                throw new MissingModelException();
             }
             commandType = CommandType.ADD;
             break;
         case INPUT_DELETE:
             if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new InvalidCommandException();
+                throw new MissingModelException();
             }
             commandType = CommandType.DELETE;
             break;
         case INPUT_DONE:
             if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new InvalidCommandException();
+                throw new MissingModelException();
             }
             commandType = CommandType.DONE;
             break;

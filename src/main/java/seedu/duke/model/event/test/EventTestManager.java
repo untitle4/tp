@@ -19,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +43,7 @@ import java.util.logging.Logger;
  * @see EventTestManager#setDone(String[])
  */
 public class EventTestManager extends EventDataManager {
-    private final ArrayList<Event> tests;
+    private ArrayList<Event> tests;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
     private EventManager eventManager;
@@ -82,7 +83,7 @@ public class EventTestManager extends EventDataManager {
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
                 || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "no param is entered");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
         userInput.replaceAll("\\s+","");
@@ -110,14 +111,23 @@ public class EventTestManager extends EventDataManager {
 
             // Checking if there are any events that clashes
             ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventTest);
-            if (clashedEvents.size() == 0) {
+
+            //If no events clash and the recommended time did not exceed, add test
+            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(eventTest)) {
                 tests.add(eventTest);
                 logger.log(Level.INFO, "added test to ArrayList");
+
+
 
                 userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
                         tests.get(getTestListSize() - 1).toString());
                 getTaskStatement();
-            } else {
+
+                sortList();
+                logger.log(Level.INFO, "sorted Test ArrayList");
+
+            //If events clashed, show the corresponding error message
+            } else if (clashedEvents.size() > 0) {
                 userInterface.showToUser("The test you were trying to add",
                         eventTest.toString(),
                         "clashes with the following events in your list:");
@@ -125,12 +135,19 @@ public class EventTestManager extends EventDataManager {
                     userInterface.showToUser(clashedEvent.toString());
                 }
                 userInterface.showToUser("Please check the start and end inputs again!");
+
+            //If the recommended time exceeded, show the corresponding error message
+            } else if (eventManager.didTimeExceed(eventTest)) {
+                userInterface.showToUser("Recommended time exceeded! Test is not added!");
             }
         } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "invalid date time inputted");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
+        } catch (ParseException e) {
+            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -220,5 +237,9 @@ public class EventTestManager extends EventDataManager {
                 "  " + tests.get(testNumber - 1));
 
         getTaskStatement();
+    }
+
+    private void sortList() {
+        Collections.sort(tests);
     }
 }

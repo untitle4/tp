@@ -16,6 +16,11 @@ package Controller {
     }
 
     Package Parser {
+        class ModelExtractor {
+            model: Model
+            modelType: ModelType
+            retriveModel()
+        }
         class CommandParser {
             separatedInputs: String[]
             extractCommand() : CommandType
@@ -25,24 +30,24 @@ package Controller {
             extractModel() : ModelType
         }
 
-        enum "<<enum>>\nCommandType" {
-          ADD
-          DELETE
-          DONE
-          LIST
-          HELP
-          BYE
-        }
-
-        enum "<<enum>>\nModelType" {
-          EVENT
-          CLASS
-          CCA
-          TEST
-          TUITION
-          QUIZ
-          CONTACT
-        }
+'        enum "<<enum>>\nCommandType" {
+'          ADD
+'          DELETE
+'          DONE
+'          LIST
+'          HELP
+'          BYE
+'        }
+'
+'        enum "<<enum>>\nModelType" {
+'          EVENT
+'          CLASS
+'          CCA
+'          TEST
+'          TUITION
+'          QUIZ
+'          CONTACT
+'        }
     }
 
     Package Command {
@@ -56,11 +61,6 @@ package Controller {
             execute(DataManager) { abstract }
         }
     }
-    class ModelExtractor {
-        model: Model
-        modelType: ModelType
-        retriveModel()
-    }
 }
 
 Package Model {
@@ -69,14 +69,14 @@ Package Model {
 ControlManager .down> CommandParser
 ControlManager ..down> ModelParser
 ControlManager ..> CommandFactory
-ControlManager --> Model
+ControlManager ---> Model
 ControlManager .left> ModelExtractor
 CommandFactory .right> ChildCommand : creates >
 ControlManager .> "{abstract}\nCommand" : executes >
 ChildCommand -|> "{abstract}\nCommand"
 "{abstract}\nCommand" ..up> Model
-CommandParser -> "<<enum>>\nCommandType"
-ModelParser -left> "<<enum>>\nModelType"
-CommandFactory -> "<<enum>>\nCommandType"
+'CommandParser -> "<<enum>>\nCommandType"
+'ModelParser -left> "<<enum>>\nModelType"
+'CommandFactory -> "<<enum>>\nCommandType"
 
 @enduml

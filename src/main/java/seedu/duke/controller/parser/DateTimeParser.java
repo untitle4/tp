@@ -1,8 +1,11 @@
 package seedu.duke.controller.parser;
 
 import seedu.duke.common.LogManager;
+import seedu.duke.model.event.Event;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
@@ -79,17 +82,32 @@ public class DateTimeParser {
      * @return calendar date time in yyyy-MM-dd HHmm in Calendar form
      * @exception ParseException exception thrown when valid date and time is not inputted
      */
-    public Calendar convertStringToCalendar(String string) {
+    public Calendar convertStringToCalendar(String string) throws ParseException {
         logger.log(Level.INFO, "converting string to calendar");
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
         Calendar calendar = Calendar.getInstance();
-        try {
-            Date date = sdf.parse(string);
-            calendar.setTime(date);
-        } catch (ParseException parseException) {
-            logger.log(Level.WARNING, "valid datetime not inputted");
-            System.out.println("☹ OOPS!!! Please enter valid date and time in format yyyy-mm-dd or today!");
-        }
+
+        Date date = sdf.parse(string);
+        calendar.setTime(date);
+
+        return calendar;
+    }
+
+    /**
+     * Convert a string input to date time format yyyy-MM-dd in Calendar form.
+     *
+     * @param string user input string
+     * @return calendar date time in yyyy-MM-dd in Calendar form
+     * @exception ParseException exception thrown when valid date and time is not inputted
+     */
+    public Calendar convertStringToCalendarByDate(String string) throws ParseException {
+        logger.log(Level.INFO, "converting string to calendar");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+
+        Date date = sdf.parse(string);
+        calendar.setTime(date);
+
         return calendar;
     }
 
@@ -213,6 +231,21 @@ public class DateTimeParser {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
         return dateCalendars;
+    }
+
+    /**
+     * Get duration between two Calendar dates.
+     *
+     * @param startDateCalendar starting date
+     * @param endDateCalendar ending date
+     * @return duration between the two dates in minutes
+     */
+    public long getDuration(Calendar startDateCalendar, Calendar endDateCalendar) {
+        logger.log(Level.INFO, "getting duration between two dates");
+        long timeDurationInMinutes = 0;
+        timeDurationInMinutes = Duration.between(startDateCalendar.toInstant(),
+                endDateCalendar.toInstant()).toMinutes();
+        return timeDurationInMinutes;
     }
 }
 

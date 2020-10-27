@@ -8,13 +8,15 @@ import seedu.duke.controller.command.Command;
 import seedu.duke.controller.command.CommandFactory;
 import seedu.duke.controller.parser.ModelExtractor;
 import seedu.duke.controller.parser.ModelParser;
-import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.IncompleteFindCommandException;
 import seedu.duke.exception.IncompleteListCommandException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
+import seedu.duke.exception.MissingModelException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.CommandParser;
 import seedu.duke.controller.parser.CommandType;
@@ -86,18 +88,20 @@ public class ControlManager {
             actionableCommand.execute(dataModel);
         } catch (InvalidHelpCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_EXTRA_HELP_PARAM);
-        } catch (ContactParamException e) {
-            e.printStackTrace();
         } catch (InvalidCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_COMMAND);
         } catch (InvalidModelException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_MODEL);
         } catch (MissingParameterException e) {
-            userInterface.showToUser(Messages.MESSAGE_MISSING_PARAMETERS);
+            userInterface.showToUser(String.format(Messages.MESSAGE_MISSING_PARAMETERS, e.getMessage()));
         } catch (EmptyParameterException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_PARAMETERS);
         } catch (IncompleteListCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_LIST_PARAMETERS);
+        } catch (MissingModelException e) {
+            userInterface.showToUser(Messages.MESSAGE_MISSING_MODEL);
+        } catch (IncompleteFindCommandException e) {
+            userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_FIND_PARAMETERS);
         } finally {
             refreshEvents();
             refreshQuizzes();

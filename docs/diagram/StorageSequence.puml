@@ -1,0 +1,78 @@
+@startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+participant Main
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+box "Controller" #LightSalmon
+participant ControlManager
+end box
+
+box "Storage" #Tan
+participant EventStorageManager
+participant QuizStorageManager
+end box
+
+activate Main
+Main -> EventStorageManager** : constructor()
+activate EventStorageManager
+EventStorageManager --> Main
+deactivate EventStorageManager
+
+Main -> EventStorageManager : loadData()
+activate EventStorageManager
+EventStorageManager --> Main : :EventParameter
+deactivate EventStorageManager
+
+Main -> QuizStorageManager** : constructor()
+activate QuizStorageManager
+QuizStorageManager --> Main
+deactivate QuizStorageManager
+
+Main -> QuizStorageManager : loadData()
+activate QuizStorageManager
+QuizStorageManager --> Main : :ArrayList<Quiz>
+deactivate QuizStorageManager
+
+Main -> UserInterface : runUI()
+activate UserInterface
+UserInterface -> UserInterface : getUserCommand()
+activate UserInterface
+UserInterface --> UserInterface
+deactivate UserInterface
+UserInterface -> ControlManager : runLogic()
+activate ControlManager
+ControlManager -> ControlManager : refreshEvents()
+activate ControlManager
+ControlManager -> EventStorageManager : saveData()
+activate EventStorageManager
+EventStorageManager --> ControlManager
+deactivate EventStorageManager
+ControlManager --> ControlManager
+deactivate ControlManager
+ControlManager -> ControlManager : refreshQuizzes()
+activate ControlManager
+ControlManager --> ControlManager
+ControlManager -> QuizStorageManager : saveData()
+activate QuizStorageManager
+QuizStorageManager --> ControlManager
+deactivate QuizStorageManager
+deactivate ControlManager
+ControlManager --> UserInterface
+deactivate ControlManager
+deactivate ControlManager
+UserInterface -> UserInterface : checkIfProgramEnds(:CommandType)
+activate UserInterface
+UserInterface --> UserInterface
+deactivate UserInterface
+deactivate ControlManager
+UserInterface --> Main
+deactivate UserInterface
+deactivate Main
+
+@enduml

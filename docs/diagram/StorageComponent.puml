@@ -1,4 +1,7 @@
 @startuml
+skinparam Shadowing false
+skinparam classBackgroundColor Tan
+skinparam MinClassWidth 120
 
 package storage <<rectangle>> {
     abstract class StorageManager {
@@ -54,6 +57,21 @@ package storage <<rectangle>> {
     QuizStorageManager --> QuizListDecoder
     QuizStorageManager --> QuizListEncoder
 
+
+    class ConfigStorageManager implements StorageManager {
+
+    }
+
+    class ConfigDecoder {
+
+    }
+
+    class ConfigEncoder {
+
+    }
+
+    ConfigStorageManager --> ConfigDecoder
+    ConfigStorageManager --> ConfigEncoder
 }
 
 hide circle
