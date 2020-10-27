@@ -1,0 +1,23 @@
+@startuml
+abstract class StorageManager {
+    + StorageManager(:String)
+    - createDataFile():boolean
+}
+
+class ConfigStorageManager {
+    + ConfigStorageManager(:String)
+    + saveData(:ConfigParameter)
+    + loadData()(:ConfigParameter)
+}
+
+class ConfigParameter {
+    - name(:String)
+    - recommendedHours(:int)
+    - hasProgramRan(:boolean)
+}
+
+class ConfigEncoder {
+}
+
+StorageManager --> ConfigStorageManager
+@enduml
