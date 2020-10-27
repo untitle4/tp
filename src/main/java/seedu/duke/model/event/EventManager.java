@@ -257,4 +257,25 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
 
         return false;
     }
+
+    /**
+     * Checks if the recommended time for that day exceeded.
+     *
+     * @param event Event that user is trying to add
+     * @return true if the time did exceed, vice versa.
+     */
+    public boolean didTimeExceed(Event event) {
+        logger.log(Level.INFO, "checking if time exceeded");
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        ArrayList<Event> eventArrayList = getEventMasterList();
+        long noOfMinutes = dateTimeParser.getDuration(event.getStart(), event.getEnd());
+        for (int i = 0; i < eventArrayList.size(); i++) {
+            if (dateTimeParser.isDateEqual(eventArrayList.get(i).getStart(),
+                    event.getStart())) {
+                noOfMinutes += dateTimeParser.getDuration(eventArrayList.get(i).getStart(),
+                        eventArrayList.get(i).getEnd());
+            }
+        }
+        return noOfMinutes > 600;
+    }
 }

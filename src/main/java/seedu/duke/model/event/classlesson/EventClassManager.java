@@ -119,17 +119,21 @@ public class EventClassManager extends EventDataManager {
 
             // Checking if there are any events that clashes
             ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventClass);
-            if (clashedEvents.size() == 0) {
+
+            //If no events clash and the recommended time did not exceed, add class
+            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(eventClass)) {
                 classes.add(eventClass);
                 logger.log(Level.INFO, "added class to ArrayList");
-
-                sortList();
-                logger.log(Level.INFO, "sorted classes ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
                         classes.get(getClassListSize() - 1).toString());
                 getClassStatement();
-            } else {
+
+                sortList();
+                logger.log(Level.INFO, "sorted classes ArrayList");
+
+            //If events clashed, show the corresponding error message
+            } else if (clashedEvents.size() > 0) {
                 userInterface.showToUser("The class you were trying to add",
                         eventClass.toString(),
                         "clashes with the following events in your list:");
@@ -137,6 +141,10 @@ public class EventClassManager extends EventDataManager {
                     userInterface.showToUser(clashedEvent.toString());
                 }
                 userInterface.showToUser("Please check the start and end inputs again!");
+
+            //If the recommended time exceeded, show the corresponding error message
+            } else if (eventManager.didTimeExceed(eventClass)) {
+                userInterface.showToUser("Recommended time exceeded! Class is not added!");
             }
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);

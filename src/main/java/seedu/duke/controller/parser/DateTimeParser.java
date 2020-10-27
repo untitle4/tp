@@ -3,7 +3,9 @@ package seedu.duke.controller.parser;
 import seedu.duke.common.LogManager;
 import seedu.duke.model.event.Event;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
@@ -229,6 +231,21 @@ public class DateTimeParser {
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         }
         return dateCalendars;
+    }
+
+    /**
+     * Get duration between two Calendar dates.
+     *
+     * @param startDateCalendar starting date
+     * @param endDateCalendar ending date
+     * @return duration between the two dates in minutes
+     */
+    public long getDuration(Calendar startDateCalendar, Calendar endDateCalendar) {
+        logger.log(Level.INFO, "getting duration between two dates");
+        long timeDurationInMinutes = 0;
+        timeDurationInMinutes = Duration.between(startDateCalendar.toInstant(),
+                endDateCalendar.toInstant()).toMinutes();
+        return timeDurationInMinutes;
     }
 }
 

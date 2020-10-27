@@ -79,17 +79,21 @@ public class EventCcaManager extends EventDataManager {
 
             // Checking if there are any events that clashes
             ArrayList<Event> clashedEvents = eventManager.checkEventClash(cca);
-            if (clashedEvents.size() == 0) {
+
+            //If no events clash and the recommended time did not exceed, add cca
+            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(cca)) {
                 ccas.add(cca);
                 logger.log(Level.INFO, "added cca to ArrayList");
-
-                sortList();
-                logger.log(Level.INFO, "sorted CCA ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
                         ccas.get(getCcaListSize() - 1).toString());
                 getCcaStatement();
-            } else {
+
+                sortList();
+                logger.log(Level.INFO, "sorted CCA ArrayList");
+
+            //If events clashed, show the corresponding error message
+            } else if (clashedEvents.size() > 0) {
                 userInterface.showToUser("The cca you were trying to add",
                         cca.toString(),
                         "clashes with the following events in your list:");
@@ -97,6 +101,10 @@ public class EventCcaManager extends EventDataManager {
                     userInterface.showToUser(clashedEvent.toString());
                 }
                 userInterface.showToUser("Please check the start and end inputs again!");
+
+            //If the recommended time exceeded, show the corresponding error message
+            } else if (eventManager.didTimeExceed(cca)) {
+                userInterface.showToUser("Recommended time exceeded! CCA is not added!");
             }
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);

@@ -90,17 +90,20 @@ public class EventTuitionManager extends EventDataManager {
             // Checking if there are any events that clashes
             ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventTuition);
 
-            if (clashedEvents.size() == 0) {
+            //If no events clash and the recommended time did not exceed, add tuition
+            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(eventTuition)) {
                 tuitions.add(eventTuition);
                 logger.log(Level.INFO, "Tuition added successfully");
-
-                sortList();
-                logger.log(Level.INFO, "sorted Tuition ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
                         eventTuition.toString(),
                         getTuitionStatement());
-            } else {
+
+                sortList();
+                logger.log(Level.INFO, "sorted Tuition ArrayList");
+
+            //If events clashed, show the corresponding error message
+            } else if (clashedEvents.size() > 0) {
                 userInterface.showToUser("The tuition you were trying to add",
                         eventTuition.toString(),
                         "clashes with the following events in your list:");
@@ -108,6 +111,10 @@ public class EventTuitionManager extends EventDataManager {
                     userInterface.showToUser(clashedEvent.toString());
                 }
                 userInterface.showToUser("Please check the start and end inputs again!");
+
+            //If the recommended time exceeded, show the corresponding error message
+            } else if (eventManager.didTimeExceed(eventTuition)) {
+                userInterface.showToUser("Recommended time exceeded! Test is not added!");
             }
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
