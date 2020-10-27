@@ -17,6 +17,7 @@ The goal of this document is to cover the high-level system architecture and des
 ### Architecture
 
 ![diagram](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ArchitectureDiagram.png)
+
 Figure 1. Architecture Diagram
 
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
@@ -42,6 +43,7 @@ The sections below give more details of each component.
 #### UserInterface component
 
 ![userinterfacecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/UserInterfaceComponent.png)
+
 Figure 2. Class Diagram of the UserInterface component
 
 API: UserInterface.java
@@ -60,6 +62,7 @@ This component uses the singleton design, meaning that there is only an instance
 #### Controller component
 
 ![controllercomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ControllerComponent.png)
+
 Figure 3. Class Diagram of the Controller component
 
 API: ControlManager.java
@@ -93,6 +96,7 @@ The Model component,
 
 #### Storage component
 ![storagecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/StorageComponent.png)
+
 Figure 5. Class Diagram of the Storage component
 
 API: StorageManager.java
@@ -109,7 +113,8 @@ Each `StorageManager` reads in their respective data files through a `decoder` a
 
 ##### Event Storage
 ![eventstorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageManager.png)
-Figure 6. Class Diagram of EventStorageManager
+
+<p style="text-align: center;"> Figure 6. Class Diagram of EventStorageManager </p>
 
 API: EventStorageManager.java
 `EventStorageManager` is responsible for the reading and writing of data from Plan&Score’s `events.txt` file, located in the `{root}/data` directory.
@@ -123,6 +128,7 @@ It utilises a decoder (`EventListDecoder.java`) for the reading of data, and an 
 It returns an `EventParameter` to `EventStorageManager`. 
 
 ![eventreadstorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageReadSequence.png)
+
 Figure 7. Sequence Diagram of the reading of data
 
 ###### Writing events
@@ -132,15 +138,18 @@ Figure 7. Sequence Diagram of the reading of data
 It returns a `String` to `EventStorageManager` for further writing. 
 
 ![eventwritestorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageSaveSequence.png)
+
 Figure 8. Sequence Diagram of the writing of data
 
 ##### Quiz Storage
 API: QuizStorageManager.java
 
 ![quizwritestorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/QuizWriteStorage.png)
+
 Figure 9. Sequence Diagram of the writing of data
 
 ![quizreadstorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/QuizReadStorage.png)
+
 Figure 10. Sequence Diagram of the reading of data
 
 The Quiz Storage,
@@ -151,6 +160,7 @@ The Quiz Storage,
 ##### Config Storage
 API: ConfigStorageManager.java
 ![configstoragecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ConfigStorage.png)
+
 Figure 11. Class Diagram of the ConfigStorageManager
 
 The Config Storage,
@@ -238,6 +248,7 @@ public void printArray(ArrayList<String> stringArrayList) {
 ### Help feature
 
 ![helpcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Help.png)
+
 Figure 12. Sequence Diagram of the help feature
 
 When a user enters ‘help’, the input will be read in by the UI class.
@@ -254,6 +265,7 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 ### Add feature
 
 ![addcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Add.png)
+
 Figure 13. Sequence Diagram of the add feature
 
 Firstly, when the user enters add .. /n .. /s .. /e .. , the input will be read in by the UI class.
@@ -268,6 +280,7 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 ### Delete feature
 
 ![deletecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/DeleteFeatureDiagram.png)
+
 Figure 14. Sequence Diagram of the delete feature
 
 Firstly, when the user enters delete <event> <number>, the input will be read in by the UI class.
@@ -282,6 +295,7 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 #### List contact / quiz
 
 ![listcontact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListContact.png)
+
 Figure 15. Sequence diagram for listing quizzes
 
 The list command will invoke the `ContactManager` or `QuizManager` class’s list() method respectively.
@@ -299,7 +313,8 @@ as its attributes.
 
 #### List event (<date> / today)
 
-![listevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListEvent2.png)
+![listevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListEvent.png)
+
 Figure 16. Sequence diagram for listing out events.
 
 Inside this `EventManager#listSchedule()`, we then call the `ListSchedule#getPrintableEvents()` and this will start
@@ -360,6 +375,7 @@ This is then passed to the `UserInterface#printArray()` to be printed out to the
 The diagram below shows the execution flow explained below.
 
 ![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindQuiz.png)
+
 Figure 18. Sequence diagram for finding quizzes.
 
 ### Quiz feature
