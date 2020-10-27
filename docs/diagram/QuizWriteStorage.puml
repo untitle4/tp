@@ -1,0 +1,36 @@
+@startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+box "Controller" #LightSalmon
+participant ControlManager
+end box
+
+box "Storage" #YellowGreen
+participant QuizStorageManager
+participant QuizListEncoder
+end box
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+
+activate ControlManager
+ControlManager -> ControlManager : refreshQuizzes()
+ControlManager -> QuizStorageManager : saveData()
+activate QuizStorageManager
+QuizStorageManager -> QuizListEncoder : encodeQuizList()
+activate QuizListEncoder
+QuizListEncoder --> QuizStorageManager : encodedQuizzes
+deactivate QuizListEncoder
+QuizStorageManager --> ControlManager
+deactivate QuizStorageManager
+ControlManager -> UserInterface : showToUser()
+activate UserInterface
+UserInterface --> ControlManager
+deactivate UserInterface
+deactivate ControlManager
+
+@enduml
