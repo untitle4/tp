@@ -31,6 +31,11 @@ import java.util.logging.Logger;
 public class EventManager extends ModelMain implements EventManagerInteractable {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 10;
+    public static final String INPUT_SPACE = " ";
+    public static final String INPUT_WEEK = "week";
+    public static final int INPUT_LENGTH_NO_PARAMS = 2;
+    public static final int INPUT_LENGTH_ONE_PARAM = 3;
+    public static final int DATE_PARAM_INDEX = 2;
     private static EventClassManager eventClassManager;
     private static EventTestManager eventTestManager;
     private static EventCcaManager eventCcaManager;
@@ -94,11 +99,22 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public void list(String userInput) {
         ArrayList<String> printedEvents;
         try {
-            String dateParam = userInput.split(" ").length == 2 ? null : userInput.split(" ")[2];
+            String[] separatedInputs = userInput.split(INPUT_SPACE);
+
+            // check if user entered extra parameters
+            if (separatedInputs.length > INPUT_LENGTH_ONE_PARAM) {
+                userInterface.showToUser(Messages.MESSAGE_LIST_EXTRA_PARAM);
+                return;
+            }
+
+            String dateParam =  separatedInputs.length == INPUT_LENGTH_NO_PARAMS
+                    ? null
+                    : separatedInputs[DATE_PARAM_INDEX];
+
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
 
-            if (userInput.contains("week")) {
+            if (userInput.contains(INPUT_WEEK)) {
                 new CalendarWeekRenderer(this);
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
@@ -107,15 +123,10 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         } catch (EmptyListException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
         } catch (DateTimeParseException e) {
-            System.out.println("☹ OOPS!!! Please enter today/week/valid date "
-                    + "and time in format yyyy-mm-dd!");
-        } catch (NullPointerException e) {
-            System.out.println("☹ OOPS!!! We do not recognise that command. "
-                    + "Do you mean list event week/today/date?");
+            userInterface.showToUser(Messages.MESSAGE_LIST_INVALID_DATE);
         } catch (ParseException e) {
             logger.log(Level.WARNING, "valid datetime not inputted");
-            System.out.println("☹ OOPS!!! Please enter valid date "
-                    + "and time in format yyyy-mm-dd!");
+            userInterface.showToUser(Messages.MESSAGE_LIST_INVALID_DATE);
         }
     }
 
