@@ -1,5 +1,6 @@
 package seedu.duke.common;
 
+import seedu.duke.model.quiz.Quiz;
 import seedu.duke.model.quiz.QuizManager;
 
 public class Messages {
@@ -139,17 +140,16 @@ public class Messages {
             + "which quiz you'd like to delete!\n";
     public static final String MESSAGE_INVALID_HELP_COMMAND = "☹ OOPS!!! Are you trying to take a quiz or add/delete a"
             + " quiz question? Enter 'help' to check the correct format!\n";
-    public static final String MESSAGE_INVALID_NUM_OF_QUIZ_QUESTIONS = "☹ OOPS!!! You can only take quizzes in sets of"
-            + " 10, 20 or 30 questions!\n";
-    public static final String MESSAGE_INSUFFICIENT_QUES_LESS_THAN_10 = "OOPS! You wanted to take a quiz with "
-            + QuizManager.noOfQues + " questions, but your current quiz only has %s question(s).\nPlease add more"
-            + " questions to your quiz via the 'add quiz' command!\n";
-    public static final String MESSAGE_INSUFFICIENT_QUES_MORE_THAN_10 = "OOPS! You wanted to take a quiz with "
-            + QuizManager.noOfQues + " questions, but your current quiz only has %s question(s).\nPlease either add"
-            + "more questions to your quiz via the 'add quiz' command, or try a quiz with less questions!\n";
-    public static final String MESSAGE_MISSING_QUIZ_PARAM = "Please indicate the command you want to do with quiz!";
+
+    public static String invalid_number_of_quiz_questions_message(int size) {
+        return "☹ OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")\n";
+    }
+
+    public static final String MESSAGE_MISSING_QUIZ_PARAM = "Please indicate the command you would like to apply on"
+            + " quiz!";
     public static final String MESSAGE_QUIZ_NON_NUMBER = "Please enter a valid number or "
             + "enter 'quiz record' to see your incorrect questions in your previous quiz!";
+
 
     //@@author elizabethcwt
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"
