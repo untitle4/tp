@@ -1,4 +1,8 @@
 @startuml
+hide circles
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor Tan
+
 abstract class StorageManager {
     + StorageManager(:String)
     - createDataFile():boolean

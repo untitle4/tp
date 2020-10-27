@@ -1,5 +1,6 @@
 @startuml
 hide circles
+skinparam classAttributeIconSize 0
 
 class StorageManager <<abstract>> #Tan {
     - fileName:String
