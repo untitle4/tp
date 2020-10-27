@@ -230,5 +230,13 @@ public class DateTimeParser {
         }
         return dateCalendars;
     }
+
+    public Integer getHours(Calendar startDate, Calendar endDate) {
+        SimpleDateFormat sdf = new SimpleDateFormat("HHmm");
+        int startHours = Integer.parseInt(sdf.format(startDate.getTime()));
+        int endHours = Integer.parseInt(sdf.format(startDate.getTime()));
+        int timeDuration = endHours - startHours;
+        return timeDuration;
+    }
 }
 

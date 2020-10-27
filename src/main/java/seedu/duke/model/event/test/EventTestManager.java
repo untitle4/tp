@@ -111,7 +111,7 @@ public class EventTestManager extends EventDataManager {
 
             // Checking if there are any events that clashes
             ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventTest);
-            if (clashedEvents.size() == 0) {
+            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(eventTest)) {
                 tests.add(eventTest);
                 logger.log(Level.INFO, "added test to ArrayList");
 
@@ -121,7 +121,7 @@ public class EventTestManager extends EventDataManager {
                 userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
                         tests.get(getTestListSize() - 1).toString());
                 getTaskStatement();
-            } else {
+            } else if (clashedEvents.size() > 0) {
                 userInterface.showToUser("The test you were trying to add",
                         eventTest.toString(),
                         "clashes with the following events in your list:");
@@ -129,6 +129,8 @@ public class EventTestManager extends EventDataManager {
                     userInterface.showToUser(clashedEvent.toString());
                 }
                 userInterface.showToUser("Please check the start and end inputs again!");
+            } else if (eventManager.didTimeExceed(eventTest)) {
+                userInterface.showToUser("Recommended time exceeded! Test not added!");
             }
         } catch (DateTimeParseException e) {
             logger.log(Level.WARNING, "invalid date time inputted");
