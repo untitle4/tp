@@ -25,6 +25,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author untitle4
+
+/**
+ * A manager of cca that executes all the commands related to cca.
+ */
 public class EventCcaManager extends EventDataManager {
     private final ArrayList<Event> ccas;
     private EventManager eventManager;
@@ -46,6 +50,13 @@ public class EventCcaManager extends EventDataManager {
         return ccas.size();
     }
 
+    /**
+     * Add a cca from the user input.
+     * Convert the day-time format to system-recognized.
+     * @param userInput The input entered by the user.
+     * @throws MissingParameterException if symbols of params are missing.
+     * @throws EmptyParameterException if no parameters are provided.
+     */
     @Override
     public void add(String userInput) throws MissingParameterException, EmptyParameterException {
         logger.log(Level.INFO, "initialising adding of a cca");
@@ -116,6 +127,11 @@ public class EventCcaManager extends EventDataManager {
         }
     }
 
+    /**
+     * Deletes a cca with the input index in the event list.
+     * @param userInputs The input entered by the user.
+     * @throws IndexOutOfBoundsException if the index is out of bound of event list.
+     */
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int ccaIndex;

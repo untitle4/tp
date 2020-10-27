@@ -27,6 +27,13 @@ public class ContactManager extends ModelManager implements ContactInteractable 
         return contacts.size();
     }
 
+    //@@author untitle4
+    /**
+     * Adds a contact with provided details.
+     * @param userInput The input entered by the user.
+     * @throws EmptyParameterException if no parameter are provided for each section.
+     * @throws MissingParameterException if sections symbols are missing.
+     */
     @Override
     public void add(String userInput) throws EmptyParameterException, MissingParameterException {
         if (!userInput.contains("/s") || !userInput.contains("/n")
@@ -56,6 +63,12 @@ public class ContactManager extends ModelManager implements ContactInteractable 
         getContactStatement();
     }
 
+    //@@author untitle4
+    /**
+     * Delete a contact indicated by the user input.
+     * @param userInput the input provided by the user.
+     * @throws IndexOutOfBoundsException if there is not such a contact in the list.
+     */
     @Override
     public void delete(String[] userInput) throws IndexOutOfBoundsException {
         int contactIndex = 0;
@@ -81,6 +94,10 @@ public class ContactManager extends ModelManager implements ContactInteractable 
         getContactStatement();
     }
 
+    //@@author untitle4
+    /**
+     * Provide a list of contacts for the user.
+     */
     @Override
     public void list() {
         if (contacts.size() == 0) {
@@ -146,6 +163,10 @@ public class ContactManager extends ModelManager implements ContactInteractable 
         return filteredContacts;
     }
 
+    //@@author untitle4
+    /**
+     * A simple method to show contact(s) in the text box.
+     */
     private void getContactStatement() {
         String contactStatement = getContactListSize() <= 1 ? " contact" : " contacts";
         userInterface.showToUser("Now you have " + getContactListSize() + contactStatement + " in your list.");
