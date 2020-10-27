@@ -24,7 +24,7 @@ public class Messages {
     public static final String MESSAGE_HELLO = "Hello ";
     public static final String MESSAGE_PROMPT_COMMAND = "What can we do for you? "
             + "(Enter 'help' for the list of available commands!)\n";
-    public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is empty. Add some!";
+    public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is %s. Add some!";
 
     // General error messages
     //@@author durianpancakes
@@ -38,6 +38,8 @@ public class Messages {
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
     public static final String MESSAGE_MISSING_MODEL = "☹ Oops! Model type is missing! "
             + "Enter 'help' if needed!";
+    public static final String MESSAGE_INCOMPLETE_FIND_PARAMETERS = "Please tell me what you want to be listed! "
+            + "You can either 'find event' or 'find quiz' or 'find contact'";
     //@@author elizabethcwt
     public static final String MESSAGE_MISSING_PARAMETERS = "☹ OOPS!!! "
             + "Remember to include ALL %s inputs!";

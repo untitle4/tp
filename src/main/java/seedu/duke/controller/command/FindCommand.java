@@ -1,6 +1,6 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.exception.IncompleteListCommandException;
+import seedu.duke.exception.IncompleteFindCommandException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.contact.ContactManager;
@@ -17,9 +17,9 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(ModelMain modelMain) throws MissingParameterException, IncompleteListCommandException {
+    public void execute(ModelMain modelMain) throws MissingParameterException, IncompleteFindCommandException {
         if (modelMain == null) {
-            throw new IncompleteListCommandException();
+            throw new IncompleteFindCommandException();
         }
 
         if (modelMain instanceof EventManager) {

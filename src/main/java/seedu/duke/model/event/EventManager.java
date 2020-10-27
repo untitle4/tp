@@ -128,7 +128,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                 userInterface.printArray(printedEvents);
             }
         } catch (EmptyListException e) {
-            userInterface.showToUser(Messages.MESSAGE_EMPTY_SCHEDULE_LIST);
+            userInterface.showToUser(String.format(Messages.MESSAGE_EMPTY_SCHEDULE_LIST, e.getMessage()));
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_LIST_INVALID_DATE);
         } catch (ParseException e) {
