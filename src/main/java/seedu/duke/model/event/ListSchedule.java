@@ -73,7 +73,10 @@ public class ListSchedule {
 
         if (hasNoSchedule() || printedEvents.size() == 0) {
             logger.log(Level.WARNING, "schedule is empty");
-            throw new EmptyListException();
+            if (userInput == null) {
+                throw new EmptyListException("empty");
+            }
+            throw new EmptyListException("not found");
         }
 
         return printedEvents;
@@ -130,7 +133,6 @@ public class ListSchedule {
         assert eventArr.size() != 0;
         ArrayList<String> printedEvents = new ArrayList<>();
 
-        // todo might have a problem here
         for (int i = 0; i < eventArr.size(); i++) {
             Calendar listDate = eventArr.get(i).getStart();
             if (userInput == null || dateTimeParser.isDateEqual(listDate, inputCalendar)) {
