@@ -238,7 +238,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
             return true;
         }
 
-        if(startInputCalendar.equals(startReferenceCalendar)
+        if (startInputCalendar.equals(startReferenceCalendar)
                 || endInputCalendar.equals(endReferenceCalendar)) {
             return true;
         }
