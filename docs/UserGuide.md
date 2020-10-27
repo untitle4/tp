@@ -1,13 +1,13 @@
 # User Guide
 - [1. Introduction](#introduction)
 - [2. About this User Guide](#about-this-user-guide)
-- [3. How to user this User Guide](#how-to-use-user-guide)
+- [3. How to user this User Guide](#how-to-use-this-user-guide)
 - [4. Quick Start](#quick-start)
 - [5. Commands](#commands)
     - [Command Format](#command-format)
     - [Category Types](#category-types)
   - [Help:](#viewing-help-help) `help`
-  - [PLAN component of Plan&Score](#plan-component-of-plan&score)
+  - [PLAN component of Plan&Score](#plan-component-of-planscore)
     - [Class Category](#category-class)
       - [Add a class:](#adding-a-class-add-class) `add class`
       - [Delete a task:](#deleting-a-class-delete-class) `delete class`
@@ -17,14 +17,14 @@
     - [Test Category](#category-test)
       - [Add a test:](#adding-a-test-add-test) `add test`
       - [Delete a test:](#deleting-a-test-delete-test) `delete test`
-    - [List schedule:](#list-out-schedule-list-event) `list event`
-    - [Find event:](#finding-an-event-find-event) `list event`
-  - [SCORE component of Plan&Score:](#score-component-of-plan&score)
+    - [List schedule:](#listing-out-schedule-list-event) `list event`
+    - [Find event:](#finding-an-event-find-event) `find event`
+  - [SCORE component of Plan&Score:](#score-component-of-planscore)
     - [Take a quiz:](#taking-a-quiz-quiz)`quiz`
     - [Add a quiz question:](#adding-a-quiz-question-add-quiz) `add quiz`
     - [Delete a quiz question:](#deleting-a-quiz-question-delete-quiz) `delete quiz`
     - [List quiz questions:](#listing-out-all-quiz-questions-list-quiz) `list quiz`
-    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find`
+    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find quiz`
     - [Search for former incorrect quiz questions:](#searching-for-former-incorrect-quiz-questions-quiz-record) `quiz record`
   - [Exit the programme:](#exits-programme-bye) `bye`
 - [6. Saving Data](#saving-data)
