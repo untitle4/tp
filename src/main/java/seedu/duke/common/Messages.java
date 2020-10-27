@@ -141,6 +141,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_HELP_COMMAND = "☹ OOPS!!! Are you trying to take a quiz or add/delete a"
             + " quiz question? Enter 'help' to check the correct format!\n";
     public static final String MESSAGE_EMPTY_QUIZ_LIST = "Quiz list is empty. Add some!";
+    public static final String MESSAGE_QUIZ_INDEX_OUT_OF_BOUND = "There is not such a question in your quiz list!";
 
     public static String invalid_number_of_quiz_questions_message(int size) {
         return "☹ OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")\n";
