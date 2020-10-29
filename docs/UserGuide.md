@@ -63,9 +63,9 @@ To navigate to the contents of your desired feature, simply click on the hyperli
 
 The highlights and symbols used in this document are as follow:
 
-<<image information>>
+![information](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/information.png)
 
-<<image warning>>
+![warning](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/warning.png)
 
 `Add class`  A grey highlight is used to denote text to be entered into the  
            command line.
@@ -105,11 +105,11 @@ Shows all available commands that you can use
 
 Firstly, type ‘help’ in the command line as seen below, and press ‘Enter’ to execute it.
 
-
-
+![help1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help1.png)
 
 The output containing all the different commands is seen in the console.
 
+![help2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help2.png)
 
 Format: `help`
 
@@ -163,11 +163,19 @@ Cca
 Test
 Tuitions
 
-
+![indexinfo](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/indexinfo.png)
 
 #### Category: Class
 ##### Adding a class: `add class`
 Allows you to add a new class with a name, date and time.
+
+Firstly, type `add` in the command line as seen below, followed by the category type which is the class. Afterwards, key in the description of the class as well as its start and end date and time. Press `Enter` to execute it.
+
+![addclass1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/addclass1.png)
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+![addclass2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/addclass2.png)
 
 Format: `add class /n [name of class] /s [start date-time of class] /e [end date-time of class]`
 
@@ -177,6 +185,11 @@ cannot contain '/'.
 * `[start date-time of class]` and `[end date-time of class]` must be in
 
 yyyy-mm-dd HHMM format with HHMM in 24-hour format.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![invalid date](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_class_invalid_date_given.PNG)
+
 
 Examples: `add class /n Math /s 2020-08-19 1300 /e 2020-08-19 1400`
 
@@ -405,6 +418,26 @@ Example Output: For date, 2020-08-19
 
 #### Finding an event: `find event`
 Allows you to look for classes, ccas and tests and tuitions that match your given keyphrase.
+
+In the case when you have many events in your schedule and you need to find a specific event to check the date. You can use the `find event` command to look for the event you want by entering keywords related to it.
+
+Let's say we need to find out when my vocabulary test is on.
+We can first type `find event vocabulary` into the command box, and press Enter to execute it.
+
+![find1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find1.JPG)
+
+The output can then be seen in the console.
+
+![find2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find2.JPG)
+
+And we can find the date we are looking for over here.
+
+![find3](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find3.JPG)
+
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find%20note.jpg" width="500"  alt="findnote"/>
+
+<br/>
+<br/>
 
 Format: `find event [KEYPHRASE]`
 
