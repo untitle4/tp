@@ -39,18 +39,19 @@
 
 Plan&Score is an application consisting of 2 key components:
 
-Event scheduler
-Quiz component
+1. Event scheduler
+1. Quiz component
 
 and a sub-component:
 
-Contact list
+1. Contact list
 
 
 These components aim to tackle the issue of poor planning and revision most Primary 6 students in Singapore face.
 
 This application uses a command line interface, meaning that you operate the application by typing commands into a Command Box.
 
+![initialization](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/initialization.png)
 
 Figure 1. The graphical user interface for Plan&Score
 
@@ -62,10 +63,11 @@ To navigate to the contents of your desired feature, simply click on the hyperli
 
 The highlights and symbols used in this document are as follow:
 
+<<image information>>
 
+<<image warning>>
 
-
-Add class  A grey highlight is used to denote text to be entered into the  
+`Add class`  A grey highlight is used to denote text to be entered into the  
            command line.
 
 
@@ -89,10 +91,10 @@ For example:
 * Plan&Score has the following categories types: 
 
   1. `event`
-      1.1. `class`
-      1.2. `cca`
-      1.3. `test`
-      1.4. `tuition`
+      1. `class`
+      1. `cca`
+      1. `test`
+      1. `tuition`
 
   2. `contact`
   3. `quiz`
