@@ -3,41 +3,67 @@ package seedu.duke.ui;
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.event.EventManager;
+import seedu.duke.model.event.ListWeekCommand;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 //@@author durianpancakes
 public class CalendarWeekRenderer {
     private final EventManager eventManager;
     private final int [] eventCounters = {1, 1, 1, 1, 1, 1, 1};
     private final UserInterface userInterface;
+    private static final int DAYS_IN_WEEK = 7;
+    public static final String EMPTY_STRING = "";
 
-    public CalendarWeekRenderer(EventManager eventManager) {
+    public CalendarWeekRenderer(EventManager eventManager, ListWeekCommand listWeekCommand) {
         this.eventManager = eventManager;
         this.userInterface = UserInterface.getInstance();
-        renderWeekSchedule();
+        renderWeekSchedule(listWeekCommand);
     }
 
-    private void renderWeekSchedule() {
-        ArrayList<ArrayList<Event>> weekMasterList = eventManager.getCurrentWeekEventMasterList();
+    private void renderWeekSchedule(ListWeekCommand listWeekCommand) {
+        Calendar calendar = Calendar.getInstance();
+        ArrayList<ArrayList<Event>> weekMasterList = new ArrayList<>();
+        ArrayList<Calendar> daysOfWeek = null;
         DateTimeParser dateTimeParser = new DateTimeParser();
-        ArrayList<Calendar> daysOfWeek = dateTimeParser.getDaysOfWeek();
+
+        if (listWeekCommand == ListWeekCommand.CURRENT_WEEK) {
+            weekMasterList = eventManager.getCurrentWeekEventMasterList();
+            daysOfWeek = dateTimeParser.getDaysOfWeek(calendar);
+        } else if (listWeekCommand == ListWeekCommand.NEXT_WEEK) {
+            calendar.add(Calendar.DAY_OF_MONTH, 7);
+            weekMasterList = eventManager.getNextWeekEventMasterList();
+            daysOfWeek = dateTimeParser.getDaysOfWeek(calendar);
+        }
+
         CalendarWeekRendererUtils utils = new CalendarWeekRendererUtils(weekMasterList);
+
+        // Sort master list before proceeding
+        for (int i = 0; i < DAYS_IN_WEEK; i++) {
+            Collections.sort(weekMasterList.get(i));
+        }
 
         // 17 spaces per day
 
         // Printing DAY headers
         // 6 spaces before each DAY_LABEL
         StringBuilder dayLabelString = new StringBuilder();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < DAYS_IN_WEEK; i++) {
             dayLabelString.append(getSpaces(6));
             dayLabelString.append(utils.getDayLabel(i));
             dayLabelString.append(getSpaces(6));
         }
 
         userInterface.showToUser(dayLabelString.toString());
+
+        StringBuilder todayLabelString = new StringBuilder();
+        for (int i = 0; i < DAYS_IN_WEEK; i++) {
+            todayLabelString.append(utils.getIsToday(daysOfWeek.get(i)));
+        }
+        userInterface.showToUser(todayLabelString.toString());
 
         // Printing DATE headers
         StringBuilder dateHeaderString = new StringBuilder();
@@ -46,38 +72,45 @@ public class CalendarWeekRenderer {
             dateHeaderString.append(getDateLabel(daysOfWeek, i));
             dateHeaderString.append(getSpaces(5));
         }
-
         userInterface.showToUser(dateHeaderString.toString());
 
         while (!utils.isThereNothingLeftToPrint()) {
             // Print in order of ICON -> DESCRIPTION -> START-END TIMES
             // NOTE: DOES NOT SUPPORT TUITION LOCATION YET
-            StringBuilder eventParamsString = new StringBuilder();
+            StringBuilder eventIconString = new StringBuilder();
             for (int i = 0; i < 7; i++) {
                 // Count from Monday to Sunday
                 // One Event takes up 5 columns max, with one space between each column
-                eventParamsString.append(getEventIcons(utils, weekMasterList.get(i), i));
+                eventIconString.append(getEventIcons(utils, weekMasterList.get(i), i));
             }
 
-            userInterface.showToUser(eventParamsString.toString());
-
-            eventParamsString = new StringBuilder();
+            StringBuilder eventDescriptionString = new StringBuilder();
             for (int i = 0; i < 7; i++) {
                 // Count from Monday to Sunday
                 // One Event takes up 5 columns max, with one space between each column
-                eventParamsString.append(getDescriptions(utils, weekMasterList.get(i), i));
+                eventDescriptionString.append(getDescriptions(utils, weekMasterList.get(i), i));
             }
 
-            userInterface.showToUser(eventParamsString.toString());
-
-            eventParamsString = new StringBuilder();
+            StringBuilder eventStartEndString = new StringBuilder();
             for (int i = 0; i < 7; i++) {
                 // Count from Monday to Sunday
                 // One Event takes up 5 columns max, with one space between each column
-                eventParamsString.append(getStartEndTime(utils, weekMasterList.get(i), i));
+                eventStartEndString.append(getStartEndTime(utils, weekMasterList.get(i), i));
             }
 
-            userInterface.showToUser(eventParamsString.toString());
+            StringBuilder breakTimeString = new StringBuilder();
+            for (int i = 0; i < DAYS_IN_WEEK; i++) {
+                // Count from Monday to Sunday
+                // One Event takes up 5 columns max, with one space between each column
+                breakTimeString.append(getBreakTimeString(utils, weekMasterList.get(i), i));
+            }
+
+            userInterface.showToUser(eventIconString.toString(),
+                    eventDescriptionString.toString(),
+                    eventStartEndString.toString(),
+                    EMPTY_STRING,
+                    breakTimeString.toString(),
+                    EMPTY_STRING);
         }
     }
 
@@ -132,13 +165,33 @@ public class CalendarWeekRenderer {
             String startEndString = startString + "-" + endString;
             startEndTimesString.append(startEndString);
             startEndTimesString.append(getSpaces(17 - startEndString.length() - indexStringLength));
-            utils.reduceCounter(counterIndex);
-            eventCounters[counterIndex]++;
         } else {
             startEndTimesString.append(getSpaces(17));
         }
 
         return startEndTimesString.toString();
+    }
+
+    private String getBreakTimeString(CalendarWeekRendererUtils utils, ArrayList<Event> events, int counterIndex) {
+        StringBuilder breakTimeString = new StringBuilder();
+        if (utils.getCounter(counterIndex) != 0) {
+            if (utils.getCounter(counterIndex) != 1) {
+                String indexString = eventCounters[counterIndex] + ".";
+                int indexStringLength = indexString.length();
+                breakTimeString.append(getSpaces(indexStringLength));
+                Calendar thisEventEnd = events.get(eventCounters[counterIndex] - 1).getEnd();
+                Calendar nextEventStart = events.get(eventCounters[counterIndex]).getStart();
+                int hours = nextEventStart.get(Calendar.HOUR_OF_DAY) - thisEventEnd.get(Calendar.HOUR_OF_DAY);
+                int minutes = nextEventStart.get(Calendar.MINUTE) - thisEventEnd.get(Calendar.MINUTE);
+                breakTimeString.append(hours).append("h").append(minutes).append("m break");
+            }
+            utils.reduceCounter(counterIndex);
+            eventCounters[counterIndex]++;
+        } else {
+            breakTimeString.append(getSpaces(17));
+        }
+
+        return breakTimeString.toString();
     }
 
     private String getSpaces(int num) {
