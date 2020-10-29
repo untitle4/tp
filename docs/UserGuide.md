@@ -419,6 +419,26 @@ Example Output: For date, 2020-08-19
 #### Finding an event: `find event`
 Allows you to look for classes, ccas and tests and tuitions that match your given keyphrase.
 
+In the case when you have many events in your schedule and you need to find a specific event to check the date. You can use the `find event` command to look for the event you want by entering keywords related to it.
+
+Let's say we need to find out when my vocabulary test is on.
+We can first type `find event vocabulary` into the command box, and press Enter to execute it.
+
+![find1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find1.JPG)
+
+The output can then be seen in the console.
+
+![find2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find2.JPG)
+
+And we can find the date we are looking for over here.
+
+![find3](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find3.JPG)
+
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find%20note.jpg" width="500"  alt="findnote"/>
+
+<br/>
+<br/>
+
 Format: `find event [KEYPHRASE]`
 
 Examples: `find event math`
