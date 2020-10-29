@@ -1,9 +1,11 @@
 package seedu.duke.ui;
 
 import seedu.duke.common.Messages;
+import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.Event;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 //@@author durianpancakes
 public class CalendarWeekRendererUtils {
@@ -53,5 +55,26 @@ public class CalendarWeekRendererUtils {
         default:
             return null;
         }
+    }
+
+    public String getEventDuration(Calendar start, Calendar end) {
+        int hours = end.get(Calendar.HOUR_OF_DAY) - start.get(Calendar.HOUR_OF_DAY);
+        int minutes = end.get(Calendar.MINUTE) - end.get(Calendar.MINUTE);
+
+        return hours + "h" + minutes + "m";
+    }
+
+    public String getIsToday(Calendar compareCalendar) {
+        Calendar today = Calendar.getInstance();
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        if (dateTimeParser.isDateEqual(compareCalendar, today)) {
+            return getSpaces(5) + "[TODAY]" + getSpaces(5);
+        } else {
+            return getSpaces(17);
+        }
+    }
+
+    private String getSpaces(int num) {
+        return " ".repeat(Math.max(0, num));
     }
 }

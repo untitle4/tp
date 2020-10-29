@@ -193,10 +193,9 @@ public class DateTimeParser {
      *
      * @return dateCalendars ArrayList containing the dates for this week
      */
-    public ArrayList<Calendar> getDaysOfWeek() {
+    public ArrayList<Calendar> getDaysOfWeek(Calendar calendar) {
         logger.log(Level.INFO, "getting days of the week");
         ArrayList<Calendar> dateCalendars = new ArrayList<>();
-        Calendar calendar = Calendar.getInstance();
 
         switch (calendar.get(Calendar.DAY_OF_WEEK)) {
         case Calendar.MONDAY:
@@ -246,6 +245,17 @@ public class DateTimeParser {
         timeDurationInMinutes = Duration.between(startDateCalendar.toInstant(),
                 endDateCalendar.toInstant()).toMinutes();
         return timeDurationInMinutes;
+    }
+
+    public ArrayList<Calendar> getCurrentDaysOfWeek() {
+        Calendar calendar = Calendar.getInstance();
+        return getDaysOfWeek(calendar);
+    }
+
+    public ArrayList<Calendar> getNextDaysOfWeek() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, 7);
+        return getDaysOfWeek(calendar);
     }
 }
 

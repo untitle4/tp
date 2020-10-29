@@ -31,7 +31,7 @@ import java.util.logging.Logger;
  */
 public class EventCcaManager extends EventDataManager {
     private final ArrayList<Event> ccas;
-    private EventManager eventManager;
+    private final EventManager eventManager;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 

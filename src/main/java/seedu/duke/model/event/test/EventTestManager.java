@@ -43,10 +43,10 @@ import java.util.logging.Logger;
  * @see EventTestManager#setDone(String[])
  */
 public class EventTestManager extends EventDataManager {
-    private ArrayList<Event> tests;
+    private final ArrayList<Event> tests;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
-    private EventManager eventManager;
+    private final EventManager eventManager;
 
     public EventTestManager(ArrayList<Event> inputList, EventManager eventManager) {
         tests = inputList;
