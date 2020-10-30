@@ -27,8 +27,13 @@
     - [Add a quiz question:](#adding-a-quiz-question-add-quiz) `add quiz`
     - [Delete a quiz question:](#deleting-a-quiz-question-delete-quiz) `delete quiz`
     - [List quiz questions:](#listing-out-all-quiz-questions-list-quiz) `list quiz`
-    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find`
+    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find quiz`
     - [Search for former incorrect quiz questions:](#searching-for-former-incorrect-quiz-questions-quiz-record) `quiz record`
+  - [Contact component of Plan&Score:](#contact-component-of-planscore)
+    - [Add a contact:](#adding-a-contact-add-contact) `add contact`
+    - [Delete a contact:](#deleting-a-contact-delete-contact) `delete contact`
+    - [List a contact:](#listing-out-contacts-list-contact) `list contact`
+    - [Find a contact:](#finding-a-contact-find-contact) `find contact`
   - [Exit the program:](#exits-program-bye) `bye`
 - [6. Saving Data](#saving-data)
 - [7. FAQ](#faq)
