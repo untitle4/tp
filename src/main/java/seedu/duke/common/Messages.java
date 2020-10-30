@@ -181,18 +181,19 @@ public class Messages {
             + "\t11. Add contact: 'add contact /sub [subject] /n [name of contact person] /hp [phone number]"
             + " /e [email address]'\n"
             + "\t12. Delete contact: 'delete contact [contact number]'\n"
-            + "\t13. List contact: 'list contact'\n\n"
-            + "\t14. Take Mathematics quiz: 'quiz [no. of questions]'\n"
-            + "\t15. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
+            + "\t13. List contact: 'list contact'\n"
+            + "\t14. Find contact: 'find contact [keyword(s)]'\n\n"
+            + "\t15. Take Mathematics quiz: 'quiz [no. of questions]'\n"
+            + "\t16. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3]"
             + " /o4 [option 4] /a [option answer] /exp (explanation)'\n"
-            + "\t16. Delete quiz question: 'delete quiz [question number]'\n"
-            + "\t17. List quiz questions: 'list quiz'\n"
-            + "\t18. Find quiz questions: 'find quiz [keyword(s)]'\n"
-            + "\t19. Display former incorrect quiz question records: 'quiz record'\n\n"
-            + "\t20. Exit program: 'bye'\n\n"
+            + "\t17. Delete quiz question: 'delete quiz [question number]'\n"
+            + "\t18. List quiz questions: 'list quiz'\n"
+            + "\t19. Find quiz questions: 'find quiz [keyword(s)]'\n"
+            + "\t20. Display former incorrect quiz question records: 'quiz record'\n\n"
+            + "\t21. Exit program: 'bye'\n\n"
             + "\n\tNOTE:\n\t1. Please enter the date-time in the following format: YYYY-MM-DD "
             + "[time in 24hr format]\n\te.g. 2020-08-19 1300\n\n"
-            + "\t2. For command 20 (Add quiz question), the 'explanation' field is OPTIONAL\n\n";
+            + "\t2. For command 16 (Add quiz question), the 'explanation' field is OPTIONAL\n\n";
 
     public static final String MESSAGE_BYE = "BYE BYE! SEE YOU NEXT TIME! :3";
     public static final String MESSAGE_EXTRA_HELP_PARAM = "OOPS! Were you trying to ask for help? Just enter 'help'!";
