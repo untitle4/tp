@@ -175,7 +175,7 @@ public class CalendarWeekRenderer {
     private String getBreakTimeString(CalendarWeekRendererUtils utils, ArrayList<Event> events, int counterIndex) {
         StringBuilder breakTimeString = new StringBuilder();
         if (utils.getCounter(counterIndex) != 0) {
-            if (utils.getCounter(counterIndex) != 1) {
+            if (utils.getCounter(counterIndex) > 1) {
                 String indexString = eventCounters[counterIndex] + ".";
                 int indexStringLength = indexString.length();
                 breakTimeString.append(getSpaces(indexStringLength));
@@ -183,7 +183,11 @@ public class CalendarWeekRenderer {
                 Calendar nextEventStart = events.get(eventCounters[counterIndex]).getStart();
                 int hours = nextEventStart.get(Calendar.HOUR_OF_DAY) - thisEventEnd.get(Calendar.HOUR_OF_DAY);
                 int minutes = nextEventStart.get(Calendar.MINUTE) - thisEventEnd.get(Calendar.MINUTE);
-                breakTimeString.append(hours).append("h").append(minutes).append("m break");
+                String breakString = hours + "h" + minutes + "m break";
+                breakTimeString.append(breakString);
+                breakTimeString.append(getSpaces(17 - breakString.length() - indexStringLength));
+            } else {
+                breakTimeString.append(getSpaces(17));
             }
             utils.reduceCounter(counterIndex);
             eventCounters[counterIndex]++;
