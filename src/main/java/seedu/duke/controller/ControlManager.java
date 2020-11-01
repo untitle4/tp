@@ -26,6 +26,7 @@ import seedu.duke.model.event.Event;
 import seedu.duke.model.quiz.Quiz;
 import seedu.duke.storage.EventStorageManager;
 import seedu.duke.storage.QuizStorageManager;
+import seedu.duke.ui.ConfigManager;
 import seedu.duke.ui.UserInterface;
 
 import java.io.IOException;
@@ -139,8 +140,9 @@ public class ControlManager {
         boolean isList = commandType == CommandType.LIST;
         boolean isFind = commandType == CommandType.FIND;
         boolean isQuiz = commandType == CommandType.QUIZ;
+        boolean isSet = commandType == CommandType.SET;
 
-        return isAdd || isDelete || isDone || isList || isFind || isQuiz;
+        return isAdd || isDelete || isDone || isList || isFind || isQuiz || isSet;
     }
 
     //@@author

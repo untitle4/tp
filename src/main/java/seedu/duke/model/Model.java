@@ -3,6 +3,7 @@ package seedu.duke.model;
 import seedu.duke.model.contact.ContactManager;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.quiz.QuizManager;
+import seedu.duke.ui.ConfigManager;
 
 //@@author AndreWongZH
 /**
@@ -13,11 +14,14 @@ public class Model {
     EventManager eventManager;
     ContactManager contactManager;
     QuizManager quizManager;
+    ConfigManager configManager;
 
-    public Model(EventManager eventManager, ContactManager contactManager, QuizManager quizManager) {
+    public Model(EventManager eventManager, ContactManager contactManager,
+                 QuizManager quizManager, ConfigManager configManager) {
         this.eventManager = eventManager;
         this.contactManager = contactManager;
         this.quizManager = quizManager;
+        this.configManager = configManager;
     }
 
     public EventManager getEventManager() {
@@ -31,4 +35,6 @@ public class Model {
     public QuizManager getQuizManager() {
         return quizManager;
     }
+
+    public ConfigManager getConfigManager() {return configManager;}
 }
