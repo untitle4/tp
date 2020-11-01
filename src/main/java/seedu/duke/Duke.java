@@ -75,10 +75,14 @@ public class Duke {
             String userName = userInterface.getUserCommand();
             configParameter.setName(userName);
             userInterface.showToUser(Messages.MESSAGE_HELLO + userName, "");
-            int recommendedHours;
+            int recommendedHours = 0;
             do {
-                userInterface.showToUser(Messages.MESSAGE_PROMPT_HOURS);
-                recommendedHours = Integer.parseInt(userInterface.getUserCommand());
+                try {
+                    userInterface.showToUser(Messages.MESSAGE_PROMPT_HOURS);
+                    recommendedHours = Integer.parseInt(userInterface.getUserCommand());
+                } catch (NumberFormatException e) {
+                    userInterface.showToUser(Messages.MESSAGE_HOURS_ERROR_NON_NUMBER);
+                }
             } while (recommendedHours <= 0 || recommendedHours > 12);
             configParameter.setRecommendedHours(recommendedHours);
             configParameter.setHasProgramRan(true);
