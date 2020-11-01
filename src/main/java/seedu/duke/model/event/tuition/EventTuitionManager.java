@@ -29,7 +29,7 @@ public class EventTuitionManager extends EventDataManager {
     private final ArrayList<Event> tuitions;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
-    private EventManager eventManager;
+    private final EventManager eventManager;
 
     public EventTuitionManager(ArrayList<Event> tuitions, EventManager eventManager) {
         this.tuitions = tuitions;

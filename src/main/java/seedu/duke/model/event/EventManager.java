@@ -120,9 +120,10 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
 
-
-            if (userInput.contains("week")) {
-                userInterface.printWeekSchedule(this);
+            if (userInput.contains("nextweek")) {
+                userInterface.printWeekSchedule(this, ListWeekCommand.NEXT_WEEK);
+            } else if (userInput.contains("week")) {
+                userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK);
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
                 userInterface.printArray(printedEvents);
@@ -141,7 +142,20 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public ArrayList<ArrayList<Event>> getCurrentWeekEventMasterList() {
         DateTimeParser dateTimeParser = new DateTimeParser();
         ArrayList<Event> eventMasterList = getEventMasterList();
-        ArrayList<Calendar> daysOfWeek = dateTimeParser.getDaysOfWeek();
+        ArrayList<Calendar> daysOfWeek = dateTimeParser.getCurrentDaysOfWeek();
+        ArrayList<ArrayList<Event>> result = new ArrayList<>();
+
+        for (int i = 0; i < 7; i++) {
+            result.add(getDayEventList(eventMasterList, daysOfWeek.get(i)));
+        }
+
+        return result;
+    }
+
+    public ArrayList<ArrayList<Event>> getNextWeekEventMasterList() {
+        DateTimeParser dateTimeParser = new DateTimeParser();
+        ArrayList<Event> eventMasterList = getEventMasterList();
+        ArrayList<Calendar> daysOfWeek = dateTimeParser.getNextDaysOfWeek();
         ArrayList<ArrayList<Event>> result = new ArrayList<>();
 
         for (int i = 0; i < 7; i++) {

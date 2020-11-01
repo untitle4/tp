@@ -1,7 +1,7 @@
 package seedu.duke.exception;
 
 public class InvalidDateException extends Exception {
-    private InvalidDateType errorType;
+    private final InvalidDateType errorType;
 
     public InvalidDateException(InvalidDateType errorType) {
         this.errorType = errorType;

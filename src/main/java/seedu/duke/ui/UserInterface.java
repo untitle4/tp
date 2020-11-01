@@ -7,6 +7,7 @@ import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.Model;
 import seedu.duke.model.event.EventManager;
+import seedu.duke.model.event.ListWeekCommand;
 import seedu.duke.storage.ConfigStorageManager;
 import seedu.duke.storage.EventStorageManager;
 import seedu.duke.storage.QuizStorageManager;
@@ -83,7 +84,7 @@ public class UserInterface {
     }
 
     //@@author durianpancakes
-    public void printWeekSchedule(EventManager eventManager) {
-        new CalendarWeekRenderer(eventManager);
+    public void printWeekSchedule(EventManager eventManager, ListWeekCommand listWeekCommand) {
+        new CalendarWeekRenderer(eventManager, listWeekCommand);
     }
 }

@@ -27,8 +27,13 @@
     - [Add a quiz question:](#adding-a-quiz-question-add-quiz) `add quiz`
     - [Delete a quiz question:](#deleting-a-quiz-question-delete-quiz) `delete quiz`
     - [List quiz questions:](#listing-out-all-quiz-questions-list-quiz) `list quiz`
-    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find`
+    - [Find a quiz by keyword:](#finding-a-quiz-find-quiz) `find quiz`
     - [Search for former incorrect quiz questions:](#searching-for-former-incorrect-quiz-questions-quiz-record) `quiz record`
+  - [Contact component of Plan&Score:](#contact-component-of-planscore)
+    - [Add a contact:](#adding-a-contact-add-contact) `add contact`
+    - [Delete a contact:](#deleting-a-contact-delete-contact) `delete contact`
+    - [List a contact:](#listing-out-contacts-list-contact) `list contact`
+    - [Find a contact:](#finding-a-contact-find-contact) `find contact`
   - [Exit the program:](#exits-program-bye) `bye`
 - [6. Saving Data](#saving-data)
 - [7. FAQ](#faq)
@@ -39,18 +44,19 @@
 
 Plan&Score is an application consisting of 2 key components:
 
-Event scheduler
-Quiz component
+1. Event scheduler
+1. Quiz component
 
 and a sub-component:
 
-Contact list
+1. Contact list
 
 
 These components aim to tackle the issue of poor planning and revision most Primary 6 students in Singapore face.
 
 This application uses a command line interface, meaning that you operate the application by typing commands into a Command Box.
 
+![initialization](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/initialization.png)
 
 Figure 1. The graphical user interface for Plan&Score
 
@@ -62,10 +68,11 @@ To navigate to the contents of your desired feature, simply click on the hyperli
 
 The highlights and symbols used in this document are as follow:
 
+![information](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/information.png)
 
+![warning](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/warning.png)
 
-
-Add class  A grey highlight is used to denote text to be entered into the  
+`Add class`  A grey highlight is used to denote text to be entered into the  
            command line.
 
 
@@ -89,10 +96,10 @@ For example:
 * Plan&Score has the following categories types: 
 
   1. `event`
-      1.1. `class`
-      1.2. `cca`
-      1.3. `test`
-      1.4. `tuition`
+      1. `class`
+      1. `cca`
+      1. `test`
+      1. `tuition`
 
   2. `contact`
   3. `quiz`
@@ -103,11 +110,11 @@ Shows all available commands that you can use
 
 Firstly, type ‘help’ in the command line as seen below, and press ‘Enter’ to execute it.
 
-
-
+![help1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help1.png)
 
 The output containing all the different commands is seen in the console.
 
+![help2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help2.png)
 
 Format: `help`
 
@@ -132,25 +139,26 @@ Hello! Here is a list of commands you can try:
 
 	10. Find relevant event(s): 'find [keyword(s)]'
 
-	11. Add contact: 'add contact /sub [subject] /n [name of contact person] /hp [phone number] /e [email address]'
+	11. Add contact: 'add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]'
 	12. Delete contact: 'delete contact [contact number]'
 	13. List contact: 'list contact'
+    14. Find contact: 'find contact [keyword(s)]'
 
-	14. Take Mathematics quiz: 'quiz [no. of questions]'
-	15. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /exp (explanation)'
-	16. Delete quiz question: 'delete quiz [question number]'
-	17. List quiz questions: 'list quiz'
-	18. Find quiz questions: 'find quiz [keyword(s)]'
-	19. Display former incorrect quiz question records: 'quiz record'
+	15. Take Mathematics quiz: 'quiz [no. of questions]'
+	16. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /exp (explanation)'
+	17. Delete quiz question: 'delete quiz [question number]'
+	18. List quiz questions: 'list quiz'
+	19. Find quiz questions: 'find quiz [keyword(s)]'
+	20. Display former incorrect quiz question records: 'quiz record'
 
-	20. Exit program: 'bye'
+	21. Exit program: 'bye'
 
 
 	NOTE:
 	1. Please enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]
 	e.g. 2020-08-19 1300
 
-	2. For command 15 (Add quiz question), the 'explanation' field is OPTIONAL
+	2. For command 16 (Add quiz question), the 'explanation' field is OPTIONAL
 
 ```
 
@@ -161,11 +169,19 @@ Cca
 Test
 Tuitions
 
-
+![indexinfo](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/indexinfo.png)
 
 #### Category: Class
 ##### Adding a class: `add class`
 Allows you to add a new class with a name, date and time.
+
+Firstly, type `add` in the command line as seen below, followed by the category type which is the class. Afterwards, key in the description of the class as well as its start and end date and time. Press `Enter` to execute it.
+
+![addclass1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/addclass1.png)
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+![addclass2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/addclass2.png)
 
 Format: `add class /n [name of class] /s [start date-time of class] /e [end date-time of class]`
 
@@ -176,16 +192,21 @@ cannot contain '/'.
 
 yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![invalid date](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_class_invalid_date_given.PNG)
+
+
 Examples: `add class /n Math /s 2020-08-19 1300 /e 2020-08-19 1400`
 
 Example Output:
 
 ```
-Got it. I've added this class:
-
-   [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
-
-Now you have 1 class in the list.
+    Got it. I've added this class:
+    
+       [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
+    
+    Now you have 1 class in the list.
 ```
 
 <br>
@@ -200,12 +221,14 @@ Format: `delete class [class number]`
 Examples: `delete class 1`
 
 Example Output:
+```
+    Noted. I've removed this class:
+    
+       [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
+    
+    Now you have 0 classes in the list.
+```
 
-`Noted. I've removed this class:`
-
-   [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
-
-`Now you have 0 classes in the list.`
 
 <br>
 
@@ -404,6 +427,26 @@ Example Output: For date, 2020-08-19
 #### Finding an event: `find event`
 Allows you to look for classes, ccas and tests and tuitions that match your given keyphrase.
 
+In the case when you have many events in your schedule and you need to find a specific event to check the date. You can use the `find event` command to look for the event you want by entering keywords related to it.
+
+Let's say we need to find out when my vocabulary test is on.
+We can first type `find event vocabulary` into the command box, and press Enter to execute it.
+
+![find1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find1.JPG)
+
+The output can then be seen in the console.
+
+![find2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find2.JPG)
+
+And we can find the date we are looking for over here.
+
+![find3](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find3.JPG)
+
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find%20note.jpg" width="500"  alt="findnote"/>
+
+<br/>
+<br/>
+
 Format: `find event [KEYPHRASE]`
 
 Examples: `find event math`
@@ -431,13 +474,13 @@ Examples: `quiz 15`
 Example Output:
 
 ```
-Question 1: What is 1 + 1?
-(1) 0
-(2) 1
-(3) 2
-(4) 3
-
-... 14 more questions in the same format once you enter your answer for each question ...
+    Question 1: What is 1 + 1?
+    (1) 0
+    (2) 1
+    (3) 2
+    (4) 3
+    
+    ... 14 more questions in the same format once you enter your answer for each question ...
 ```
 <br>
 
@@ -446,7 +489,7 @@ Allows you to add a Mathematic multiple-choice quiz question to the quiz list.
 
 Note that the `/e (explanation)` is an optional parameter. You can add a quiz question with or without an explanation.
 
-Format: `'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer]
+Format: `add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer]
 /e (explanation)`
 
 Examples: `add quiz /q What is 1+1? /o1 0 /o2 1 /o3 2 /o4 3 /a 3`
@@ -454,7 +497,7 @@ Examples: `add quiz /q What is 1+1? /o1 0 /o2 1 /o3 2 /o4 3 /a 3`
 Example Output:
 
 ```
-Quiz question added!
+    Quiz question added!
 ```
 
 <br />
@@ -463,20 +506,20 @@ Quiz question added!
 #### Deleting a Quiz Question: `delete quiz`
 Allows you to delete a quiz question from the quiz list.
 
-Format: `'delete quiz [quiz question]`
+Format: `delete quiz [quiz question]`
 
 Examples: `delete quiz 11`
 
 Expected output:
 ```
-Noted. I've removed this quiz question:
-What is 1+1?
-(1) 0
-(2) 1
-(3) 2
-(4) 3
-
-Now you have 10 quizzes in the quiz list.
+    Noted. I've removed this quiz question:
+    What is 1+1?
+    (1) 0
+    (2) 1
+    (3) 2
+    (4) 3
+    
+    Now you have 10 quizzes in the quiz list.
 ```
 
 <br />
@@ -489,25 +532,25 @@ Format: `list quiz`
 Example Output:
 
 ```
-Here are the questions in your quiz list:
-Question 1:
-1+1=?
-
-(1) 1
-(2) 2
-(3) 3
-(4) 4
-
-Explanation: one plus one must be equal to two!
-
-
-Question 2:
-1+1=?
-
-(1) 1
-(2) 2
-(3) 3
-(4) 4
+    Here are the questions in your quiz list:
+    Question 1:
+    1+1=?
+    
+    (1) 1
+    (2) 2
+    (3) 3
+    (4) 4
+    
+    Explanation: one plus one must be equal to two!
+    
+    
+    Question 2:
+    1+1=?
+    
+    (1) 1
+    (2) 2
+    (3) 3
+    (4) 4
 
 ```
 
@@ -517,30 +560,30 @@ Look for quizzes that match the given keyword(s) that you want.
 
 Note that searches are case-insensitive and user can provide multiple words to compare with
 
-Format: `find quiz [KEYWORDS]`
+Format: `find quiz [keyword(s)]`
 
 Examples: `find quiz 1+1`
 
 Example Output:
 ```
-Question 1:
-1+1=?
-
-(1) 1
-(2) 2
-(3) 3
-(4) 4
-
-Explanation: one plus one must be equal to two!
-
-
-Question 2:
-1+1=?
-
-(1) 1
-(2) 2
-(3) 3
-(4) 4
+    Question 1:
+    1+1=?
+    
+    (1) 1
+    (2) 2
+    (3) 3
+    (4) 4
+    
+    Explanation: one plus one must be equal to two!
+    
+    
+    Question 2:
+    1+1=?
+    
+    (1) 1
+    (2) 2
+    (3) 3
+    (4) 4
 
 ```
 
@@ -551,20 +594,90 @@ Format: `record quiz`
 
 Example Output:
 ```
-Here are the incorrect quizzes in your last quiz attempt:
+    Here are the incorrect quizzes in your last quiz attempt:
+    
+    1+1=?
+    
+    (1) 1
+    (2) 2
+    (3) 3
+    (4) 4
+    
+    
+    Your answer: (1)
+    Correct answer: (2)
+```
 
-1+1=?
+### Contact component of Plan&Score
 
-(1) 1
-(2) 2
-(3) 3
-(4) 4
+Note that our current implementation of contact does not store the contact details in any file storage.
+This will come in version 2.1.
 
+#### Adding a contact `add contact`
+Allows you to add a teacher's contact details to the contact list.
 
-Your answer: (1)
-Correct answer: (2)
+Format: `add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]`
+
+Examples: `add contact /s math /n thomas /p 91779977 /e thomas@gmail.com`
+
+Example Output:
 
 ```
+    Got it. I've added this contact: 
+    math teacher: thomas
+    Phone number: 91779977
+    email address: thomas@gmail.com
+    
+    Now you have 1 contact in your list.
+```
+
+#### Deleting a contact `delete contact`
+Allows you to delete a contact from the contact list.
+
+Format: `delete contact [contact list number]`
+
+Examples: `delete contact 1`
+
+Example Output:
+
+```
+    Noted. I've removed this contact: 
+    math teacher: thomas
+    Phone number: 91779977
+    email address: thomas@gmail.com
+    
+    Now you have 0 contact in your list.
+```
+
+#### Listing out contacts `list contact`
+Allows you to list out all the contacts in the contact list
+
+Format: `list contact`
+
+Example Output:
+
+```
+    Contact 1:
+    math teacher: thomas
+    Phone number: 91779977
+    email address: thomas@gmail.com
+```
+
+#### Finding a contact `find contact`
+Look for contacts that match the given keywords you want.
+
+Format: `find contact [keyword(s)]`
+
+Examples: `find contact math`
+
+Example Output:
+
+```
+    math teacher: thomas
+    Phone number: 91779977
+    email address: thomas@gmail.com
+```
+
 
 ### Exits Program: `bye`
 Exits the program once you have finished using it.
@@ -621,10 +734,10 @@ We recommend keeping a duplicate of the contents in `events.txt` to assist with 
 Action | Format | Examples
 -------|--------|--------
 help|`help`
-add|`add <category> /n <description> /s <start-date-time> /e <end date-time>`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
-delete|`delete <category> <item number>`|`delete class 1`, `delete test 1`, `delete cca 1`
-quiz|`quiz <no of questions>`|`quiz 15`
-list| `list <category>` `list event (date)`|`list event (<date/today/week>)`
-Find|`find <keyword>`|`find English`
+add|`add [category] /n [description] /s [start-date-time] /e [end date-time]` `add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /e (explanation)` `add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
+delete|`delete [category] [item number]`|`delete class 1`, `delete test 1`, `delete cca 1`
+quiz|`quiz [no of questions]`|`quiz 15`
+list| `list quiz` `list event (date)` `list contact`|`list event (<date/today/week>)`
+Find|`find event [keyword(s)]` `find quiz [keyword(s)]` `find contact [keyword(s)]`|`find event English`
 bye|`bye`
 
