@@ -36,5 +36,7 @@ public class Model {
         return quizManager;
     }
 
-    public ConfigManager getConfigManager() {return configManager;}
+    public ConfigManager getConfigManager() {
+        return configManager;
+    }
 }

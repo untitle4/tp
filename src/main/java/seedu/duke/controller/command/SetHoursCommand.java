@@ -5,8 +5,9 @@ import seedu.duke.model.ModelMain;
 import seedu.duke.storage.ConfigStorageManager;
 import seedu.duke.ui.ConfigManager;
 
-public class SetHoursCommand extends Command{
+public class SetHoursCommand extends Command {
     private final ConfigManager configManager;
+
     /**
      * Runs if the execution requires passing the user input to the model.
      *
