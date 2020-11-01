@@ -45,6 +45,8 @@ public class ModelExtractor {
             return model.getContactManager();
         case EVENT:
             return model.getEventManager();
+        case HOURS:
+            return model.getConfigManager();
         default:
             throw new InvalidModelException();
         }

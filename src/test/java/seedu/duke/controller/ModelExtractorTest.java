@@ -12,6 +12,7 @@ import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
 import seedu.duke.model.event.classlesson.EventClassManager;
 import seedu.duke.model.quiz.QuizManager;
+import seedu.duke.ui.ConfigManager;
 
 import java.util.ArrayList;
 
@@ -38,6 +39,6 @@ class ModelExtractorTest {
 
     private Model initializeModel() {
         return new Model(new EventManager(new EventParameter(), new ConfigParameter()), new ContactManager(),
-                new QuizManager(new ArrayList<>()));
+                new QuizManager(new ArrayList<>()), ConfigManager.getInstance());
     }
 }

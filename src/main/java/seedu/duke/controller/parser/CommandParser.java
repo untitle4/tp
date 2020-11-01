@@ -23,6 +23,7 @@ public class CommandParser {
     public static final int LENGTH_SINGLE_WORD = 1;
     public static final String INPUT_QUIZ = "quiz";
     public static final int MAIN_COMMAND_INDEX = 0;
+    public static final String INPUT_SET = "set";
 
     private final String[] separatedInputs;
 
@@ -77,6 +78,9 @@ public class CommandParser {
             break;
         case INPUT_QUIZ:
             commandType = CommandType.QUIZ;
+            break;
+        case INPUT_SET:
+            commandType = CommandType.SET;
             break;
         default:
             throw new InvalidCommandException();

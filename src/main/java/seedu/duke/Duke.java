@@ -11,6 +11,7 @@ import seedu.duke.model.quiz.QuizManager;
 import seedu.duke.storage.ConfigStorageManager;
 import seedu.duke.storage.QuizStorageManager;
 import seedu.duke.storage.EventStorageManager;
+import seedu.duke.ui.ConfigManager;
 import seedu.duke.ui.UserInterface;
 
 import java.io.IOException;
@@ -22,8 +23,9 @@ public class Duke {
 
     private final EventStorageManager eventStorageManager;
     private final QuizStorageManager quizStorageManager;
-    private final ConfigStorageManager configStorageManager;
-    private final ConfigParameter configParameter;
+    //private final ConfigStorageManager configStorageManager;
+    //private final ConfigParameter configParameter;
+    private final ConfigManager configManager;
     private static UserInterface userInterface;
     private final Model model;
 
@@ -33,14 +35,13 @@ public class Duke {
         userInterface = UserInterface.getInstance();
         eventStorageManager = new EventStorageManager(EVENT_FILE_NAME);
         quizStorageManager = new QuizStorageManager(QUIZ_FILE_NAME);
-        configStorageManager = new ConfigStorageManager(CONFIG_FILE_NAME);
-        configParameter = configStorageManager.loadData();
+        configManager = ConfigManager.getInstance();
         active = true;
         ContactManager contactManager = new ContactManager();
         QuizManager quizManager = new QuizManager(quizStorageManager.loadData());
         EventParameter eventParameter = eventStorageManager.loadData();
-        EventManager eventManager = new EventManager(eventParameter, configParameter);
-        model = new Model(eventManager, contactManager, quizManager);
+        EventManager eventManager = new EventManager(eventParameter, configManager.getConfigParameter());
+        model = new Model(eventManager, contactManager, quizManager, configManager);
     }
 
     /**
@@ -57,9 +58,8 @@ public class Duke {
     }
 
     public void run() throws IOException {
-        getIntroductoryVariables(configParameter);
-        configStorageManager.saveData(configParameter);
-        userInterface.showWelcomeMessage(configParameter);
+        configManager.getIntroductoryVariables(configManager.getConfigParameter());
+        userInterface.showWelcomeMessage(configManager.getConfigParameter());
 
         while (active) {
             active = userInterface.runUI(model, eventStorageManager, quizStorageManager);
@@ -67,26 +67,5 @@ public class Duke {
 
         // Exit Message
         userInterface.showToUser(Messages.MESSAGE_BYE);
-    }
-
-    private ConfigParameter getIntroductoryVariables(ConfigParameter configParameter) {
-        if (configParameter.getHasProgramRan() == false) {
-            userInterface.showToUser(Messages.MESSAGE_PROMPT_NAME);
-            String userName = userInterface.getUserCommand();
-            configParameter.setName(userName);
-            userInterface.showToUser(Messages.MESSAGE_HELLO + userName, "");
-            int recommendedHours = 0;
-            do {
-                try {
-                    userInterface.showToUser(Messages.MESSAGE_PROMPT_HOURS);
-                    recommendedHours = Integer.parseInt(userInterface.getUserCommand());
-                } catch (NumberFormatException e) {
-                    userInterface.showToUser(Messages.MESSAGE_HOURS_ERROR_NON_NUMBER);
-                }
-            } while (recommendedHours <= 0 || recommendedHours > 12);
-            configParameter.setRecommendedHours(recommendedHours);
-            configParameter.setHasProgramRan(true);
-        }
-        return configParameter;
     }
 }
