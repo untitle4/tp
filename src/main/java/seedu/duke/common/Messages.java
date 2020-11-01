@@ -26,8 +26,8 @@ public class Messages {
             + "(Enter 'help' for the list of available commands!)\n";
     public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is %s. Add some!";
 
-    public static final String MESSAGE_HOURS_ERROR_NON_NUMBER = "Please indicate in NUMERALS, " +
-            "how many hours you would like to set!";
+    public static final String MESSAGE_HOURS_ERROR_NON_NUMBER = "Please indicate in NUMERALS, "
+            + "how many hours you would like to set!";
 
     // General error messages
     //@@author durianpancakes
