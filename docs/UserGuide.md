@@ -590,7 +590,7 @@ Example Output:
 #### Searching for former incorrect quiz questions: `quiz record`
 Allows you to list out the incorrect quizzes in your last quiz attempt.
 
-Format: `record quiz`
+Format: `quiz record`
 
 Example Output:
 ```
