@@ -39,6 +39,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public static final int INPUT_LENGTH_NO_PARAMS = 2;
     public static final int INPUT_LENGTH_ONE_PARAM = 3;
     public static final int DATE_PARAM_INDEX = 2;
+    public static final String INPUT_NEXTWEEK = "nextweek";
     private static EventClassManager eventClassManager;
     private static EventTestManager eventTestManager;
     private static EventCcaManager eventCcaManager;
@@ -120,9 +121,9 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
 
-            if (userInput.contains("nextweek")) {
+            if (separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXTWEEK)) {
                 userInterface.printWeekSchedule(this, ListWeekCommand.NEXT_WEEK);
-            } else if (userInput.contains("week")) {
+            } else if (separatedInputs[2].contentEquals(INPUT_WEEK)) {
                 userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK);
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
