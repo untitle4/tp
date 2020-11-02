@@ -101,8 +101,8 @@ For example:
       1. `test`
       1. `tuition`
 
-  2. `contact`
-  3. `quiz`
+  1. `contact`
+  1. `quiz`
 * The category type often follows after the command word (E.g `class` follows after `add` to form `add class`).
 
 ### Viewing help: `help`
