@@ -124,6 +124,11 @@ public class ControlManager {
                 && modelType == ModelType.EVENT) {
             throw new InvalidModelException();
         }
+
+        if ((commandType == CommandType.FIND || commandType == CommandType.LIST)
+                && (modelType != ModelType.EVENT && modelType != ModelType.CONTACT && modelType != ModelType.QUIZ)) {
+            throw new InvalidModelException();
+        }
     }
 
     /**
