@@ -121,9 +121,11 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
                     eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
 
-            if (separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXTWEEK)) {
+            if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
+                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXTWEEK)) {
                 userInterface.printWeekSchedule(this, ListWeekCommand.NEXT_WEEK);
-            } else if (separatedInputs[2].contentEquals(INPUT_WEEK)) {
+            } else if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
+                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_WEEK)) {
                 userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK);
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
