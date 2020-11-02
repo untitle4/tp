@@ -319,14 +319,14 @@ Allows you to add a new test with a name, date, time, location.
 
 Format: `add tuition /n [name of tuition] /s [start date-time of test] /e [end date-time of test] /l [location of tuition]`
 
-Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400 /l home`
+Examples: `add tuition /n Math /s 2020-10-3 1300 /e 2020-10-3 1400 /l home`
 
 Example Output:
 
 ```
-Got it. I've added this test:
+Got it. I've added this tuition:
 
-   [TUITION] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
+   [TUITION] Math from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
 
 Now you have 1 tuition in the list.
 ```
