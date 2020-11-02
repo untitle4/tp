@@ -111,7 +111,7 @@ public class ListSchedule {
     */
     private Calendar checkAndConvertToday() throws ParseException {
         Calendar resultCalendar = null;
-        if (userInput != null && (userInput.contains("today") || userInput.contains("week"))) {
+        if (userInput != null && (userInput.contentEquals("today") || userInput.contentEquals("week"))) {
             resultCalendar = Calendar.getInstance();
         } else if (userInput != null) {
             resultCalendar = dateTimeParser.convertStringToCalendarByDate(userInput);
