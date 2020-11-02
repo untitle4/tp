@@ -203,9 +203,7 @@ Example Output:
 
 ```
     Got it. I've added this class:
-    
-       [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
-    
+    [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
     Now you have 1 class in the list.
 ```
 
@@ -223,9 +221,7 @@ Examples: `delete class 1`
 Example Output:
 ```
     Noted. I've removed this class:
-    
-       [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
-    
+    [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
     Now you have 0 classes in the list.
 ```
 
@@ -242,11 +238,9 @@ Examples: `add cca /n Basketball training /s 2020-09-19 1900 /e 2020-09-19 2100`
 
 Example Output:
 ```
-Got it. I've added this cca:
-
-   [CCA] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
-
-Now you have 1 cca in the list.
+    Got it. I've added this cca:
+    [CCA] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
+    Now you have 1 cca in the list.
 ```
 
 <br>
@@ -264,9 +258,7 @@ Example Output:
 
 ```
 Noted. I've removed this cca:
-
-   [CCA] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
-
+[CCA] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
 Now you have 0 ccas in the list.
 ```
 
@@ -284,9 +276,7 @@ Example Output:
 
 ```
 Got it. I've added this test:
-
-   [TEST] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
-
+[TEST] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 Now you have 1 test in the list.
 ```
 
@@ -305,9 +295,7 @@ Example Output:
 
 ```
 Noted. I've removed this test:
-
-   [TEST] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
-
+[TEST] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
 Now you have 0 tests in the list.
 ```
 
@@ -325,9 +313,7 @@ Example Output:
 
 ```
 Got it. I've added this tuition:
-
-   [TUITION] Math from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
-
+[TUITION] Math from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
 Now you have 1 tuition in the list.
 ```
 
@@ -346,9 +332,7 @@ Example Output:
 
 ```
 Noted. I've removed this tuition:
-
-   [TUITION] Math tuition from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
-
+[TUITION] Math tuition from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
 Now you have 0 tuitions in the list.
 ```
 
@@ -368,14 +352,11 @@ Example Output:
    Classes:
    1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
    2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
-   
    CCA:
    1. [CCA] Frisbee from 19th Sep, 06:00 PM to 19th Sep, 07:00 PM
    2. [CCA] Basketball Camp from 21st Sep, 01:00 PM to 22nd Sep, 03:00 PM
-  
    Test:
    1. [TEST] Math from 26th Sep, 11:00 AM to 26th Sep, 12:00 PM
-
 ```
 <br />
 
@@ -383,15 +364,14 @@ Format: `list event today`
 
 Example Output: For date, 2020-08-19
 
-```   Classes:
-       1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
-       2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
-       
-       CCA:
-       1. [CCA] Frisbee from 19th Aug, 06:00 PM to 19th Aug, 07:00 PM
-      
-       Test:
-       1. [TEST] Math from 19th Aug, 11:00 AM to 19th Aug, 12:00 PM
+```   
+    Classes:
+    1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
+    2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
+    CCA:
+    1. [CCA] Frisbee from 19th Aug, 06:00 PM to 19th Aug, 07:00 PM
+    Test:
+    1. [TEST] Math from 19th Aug, 11:00 AM to 19th Aug, 12:00 PM
 ```
 <br />
 
@@ -400,10 +380,10 @@ Format: `list event week`
 Example Output: For a particular week, 2020-10-19 to 2020-10-25
 
 ```
-TUESDAY:
-1. [CCA] Basketball from 20th Oct 2020 , 01:00 pm to 21st Oct 2020 , 02:00 pm
-WEDNESDAY:
-1. [TEST] English from 21st Oct 2020 , 02:00 pm to 21st Oct 2020 , 03:00 pm  
+    TUESDAY:
+    1. [CCA] Basketball from 20th Oct 2020 , 01:00 pm to 21st Oct 2020 , 02:00 pm
+    WEDNESDAY:
+    1. [TEST] English from 21st Oct 2020 , 02:00 pm to 21st Oct 2020 , 03:00 pm  
 ```
 
 <br>
@@ -412,15 +392,14 @@ Format: `list event [date]`
 
 Example Output: For date, 2020-08-19
 
-```   Classes:
-       1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
-       2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
-       
-       CCA:
-       1. [CCA] Frisbee from 19th Aug, 06:00 PM to 19th Aug, 07:00 PM
-      
-       Test:
-       1. [TEST] Math from 19th Aug, 11:00 AM to 19th Aug, 12:00 PM
+```  
+    Classes:
+    1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
+    2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
+    CCA:
+    1. [CCA] Frisbee from 19th Aug, 06:00 PM to 19th Aug, 07:00 PM
+    Test:
+    1. [TEST] Math from 19th Aug, 11:00 AM to 19th Aug, 12:00 PM
 ```
 <br />
 
@@ -485,7 +464,7 @@ Example Output:
 <br>
 
 #### Adding a Quiz Question: `add quiz`
-Allows you to add a Mathematic multiple-choice quiz question to the quiz list.
+Allows you to add a Mathematics multiple-choice quiz question to the quiz list.
 
 Note that the `/e (explanation)` is an optional parameter. You can add a quiz question with or without an explanation.
 
@@ -687,7 +666,7 @@ Format: `bye`
 Example Output:
 
 ```
-BYE BYE! SEE YOU NEXT TIME! :3
+    BYE BYE! SEE YOU NEXT TIME! :3
 ```
 
 ## Saving Data
