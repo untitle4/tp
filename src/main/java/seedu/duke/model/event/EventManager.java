@@ -290,7 +290,8 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public boolean didTimeExceed(Event event) {
         logger.log(Level.INFO, "checking if time exceeded");
         ArrayList<Event> eventArrayList = getEventMasterList();
-        long noOfMinutes = getNoOfMinutes(event, eventArrayList);
+        long noOfMinutes = dateTimeParser.getDuration(event.getStart(),event.getEnd());
+        noOfMinutes += getNoOfMinutes(event, eventArrayList);
         return noOfMinutes > (configParameter.getRecommendedHours() * 60);
     }
 
