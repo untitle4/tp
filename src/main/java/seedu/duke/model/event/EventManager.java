@@ -290,7 +290,20 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public boolean didTimeExceed(Event event) {
         logger.log(Level.INFO, "checking if time exceeded");
         ArrayList<Event> eventArrayList = getEventMasterList();
-        long noOfMinutes = dateTimeParser.getDuration(event.getStart(), event.getEnd());
+        long noOfMinutes = dateTimeParser.getDuration(event.getStart(),event.getEnd());
+        noOfMinutes += getNoOfMinutes(event, eventArrayList);
+        return noOfMinutes > (configParameter.getRecommendedHours() * 60);
+    }
+
+    /**
+     * Get the total number of productive minutes for a particular day.
+     *
+     * @param event Event that user is trying to add
+     * @param eventArrayList Masterlist containing all the events
+     * @return total number of minutes for that day
+     */
+    private long getNoOfMinutes(Event event, ArrayList<Event> eventArrayList) {
+        long noOfMinutes = 0;
         for (int i = 0; i < eventArrayList.size(); i++) {
             if (dateTimeParser.isDateEqual(eventArrayList.get(i).getStart(),
                     event.getStart())) {
@@ -298,6 +311,22 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                         eventArrayList.get(i).getEnd());
             }
         }
-        return noOfMinutes > (configParameter.getRecommendedHours() * 60);
+        return noOfMinutes;
+    }
+
+    /**
+     * Get the time left for each day.
+     *
+     * @param event Event that user is trying to add
+     * @return string containing the time left for that particular day
+     */
+    public String getTimeLeft(Event event) {
+        logger.log(Level.INFO, "checking time left for that day");
+        ArrayList<Event> eventArrayList = getEventMasterList();
+        long noOfMinutes = getNoOfMinutes(event, eventArrayList);
+        long noOfMinutesLeft = (configParameter.getRecommendedHours() * 60) - noOfMinutes;
+        int hoursLeft = Math.toIntExact(noOfMinutesLeft / 60);
+        int actualNoOfMinutesLeft = Math.toIntExact(noOfMinutesLeft - (hoursLeft * 60));
+        return hoursLeft + "hr " + actualNoOfMinutesLeft + "mins";
     }
 }

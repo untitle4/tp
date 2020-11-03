@@ -97,7 +97,8 @@ public class EventTuitionManager extends EventDataManager {
 
                 userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
                         eventTuition.toString(),
-                        getTuitionStatement());
+                        getTuitionStatement(),
+                        "Time left for this day: " + eventManager.getTimeLeft(eventTuition));
 
                 sortList();
                 logger.log(Level.INFO, "sorted Tuition ArrayList");
@@ -139,9 +140,11 @@ public class EventTuitionManager extends EventDataManager {
                     tuitions.get(tuitionIndex - 1).toString());
 
             // Deletes class from classes ArrayList
+            Event eventTuition = tuitions.get(tuitionIndex - 1);
             tuitions.remove(tuitionIndex - 1);
             logger.log(Level.INFO, "Deletion of tuition class from ArrayList");
-            userInterface.showToUser(getTuitionStatement());
+            userInterface.showToUser(getTuitionStatement(),
+                    "Time left for this day: " + eventManager.getTimeLeft(eventTuition));
         } catch (ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_TUITION_DELETE_ERROR_NO_NUMBER_GIVEN);
         } catch (IndexOutOfBoundsException e) {
