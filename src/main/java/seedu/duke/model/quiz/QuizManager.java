@@ -212,7 +212,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                 questionCounter++;
                 return questionCounter;
             } else {
-                userInterface.showToUser("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
+                userInterface.showToUser("OOPS! Incorrect answer format! "
+                        + "Your answer can only be either 1, 2, 3 or 4!\n");
             }
         }
         return questionCounter;
