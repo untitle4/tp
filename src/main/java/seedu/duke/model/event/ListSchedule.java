@@ -3,6 +3,7 @@ package seedu.duke.model.event;
 import seedu.duke.common.LogManager;
 import seedu.duke.exception.EmptyListException;
 import seedu.duke.controller.parser.DateTimeParser;
+import seedu.duke.model.ConfigParameter;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,14 +31,17 @@ public class ListSchedule {
 
     private final String userInput;
     private Calendar inputCalendar;
+    private long totalDuration = 0;
+    private final ConfigParameter configParameter;
 
     public ListSchedule(String userInput, ArrayList<Event> classes, ArrayList<Event> ccas,
-                        ArrayList<Event> tests, ArrayList<Event> tuitions) {
+                        ArrayList<Event> tests, ArrayList<Event> tuitions, ConfigParameter configParameter) {
         this.userInput = userInput;
         this.classes = classes;
         this.ccas = ccas;
         this.tests = tests;
         this.tuitions = tuitions;
+        this.configParameter = configParameter;
     }
 
     public ArrayList<String> getPrintableEvents() throws EmptyListException, ParseException {
@@ -79,6 +83,12 @@ public class ListSchedule {
             throw new EmptyListException("not found");
         }
 
+        if (inputCalendar != null) {
+            long noOfMinutesLeft = (configParameter.getRecommendedHours() * 60) - totalDuration;
+            int hoursLeft = Math.toIntExact(noOfMinutesLeft / 60);
+            int minsLeft = Math.toIntExact(noOfMinutesLeft - (hoursLeft * 60));
+            printedEvents.add("Time left for this day: " + hoursLeft + "hr " + minsLeft + "mins");
+        }
         return printedEvents;
     }
 
@@ -135,7 +145,10 @@ public class ListSchedule {
 
         for (int i = 0; i < eventArr.size(); i++) {
             Calendar listDate = eventArr.get(i).getStart();
-            if (userInput == null || dateTimeParser.isDateEqual(listDate, inputCalendar)) {
+            if (userInput == null) {
+                printedEvents.add(i + 1 + ". " + eventArr.get(i));
+            } else if (dateTimeParser.isDateEqual(listDate, inputCalendar)) {
+                totalDuration += dateTimeParser.getDuration(listDate, eventArr.get(i).getEnd());
                 printedEvents.add(i + 1 + ". " + eventArr.get(i));
             }
         }

@@ -119,7 +119,8 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                     : separatedInputs[DATE_PARAM_INDEX];
 
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
-                    eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
+                    eventCcaManager.getCcas(), eventTestManager.getTests(),
+                    eventTuitionManager.getTuitions(), configParameter);
 
             if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
                     && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXTWEEK)) {
