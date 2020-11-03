@@ -110,7 +110,7 @@ public class ConfigManager extends ModelMain {
     }
 
     /**
-     * Save the new ConfigParam into ConfigStorageManager
+     * Save the new ConfigParam into ConfigStorageManager.
      *
      * @param configParameter configParam storing the new inputs
      * @exception IOException exception thrown when files are unable to be saved
@@ -124,7 +124,7 @@ public class ConfigManager extends ModelMain {
     }
 
     /**
-     * Prompt and edit hours according to user's new recommended hours
+     * Prompt and edit hours according to user's new recommended hours.
      */
     public void editHours() {
         logger.log(Level.INFO, "editing hours to take in new hours input");

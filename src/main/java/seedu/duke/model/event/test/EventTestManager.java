@@ -225,7 +225,7 @@ public class EventTestManager extends EventDataManager {
             throw new IndexOutOfBoundsException();
         }
 
-        Event eventTest = tests.get(testNumber - 1);
+        final Event eventTest = tests.get(testNumber - 1);
         tests.get(testNumber - 1).setDone();
         logger.log(Level.INFO, "set test as done from ArrayList");
 

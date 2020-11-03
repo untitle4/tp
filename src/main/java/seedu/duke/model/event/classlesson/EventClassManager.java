@@ -230,7 +230,7 @@ public class EventClassManager extends EventDataManager {
         }
 
         // Sets class as done
-        Event eventClass = classes.get(classNumber- 1);
+        final Event eventClass = classes.get(classNumber - 1);
         classes.get(classNumber - 1).setDone();
         logger.log(Level.INFO, "set class as done from ArrayList");
 

@@ -295,7 +295,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     }
 
     /**
-     * Get the total number of productive minutes for a particular day
+     * Get the total number of productive minutes for a particular day.
      *
      * @param event Event that user is trying to add
      * @param eventArrayList Masterlist containing all the events
@@ -314,7 +314,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     }
 
     /**
-     * Get the time left for each day
+     * Get the time left for each day.
      *
      * @param event Event that user is trying to add
      * @return string containing the time left for that particular day
@@ -326,6 +326,6 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         long noOfMinutesLeft = (configParameter.getRecommendedHours() * 60) - noOfMinutes;
         int hoursLeft = Math.toIntExact(noOfMinutesLeft / 60);
         int actualNoOfMinutesLeft = Math.toIntExact(noOfMinutesLeft - (hoursLeft * 60));
-        return hoursLeft + "hr " + actualNoOfMinutesLeft +"mins";
+        return hoursLeft + "hr " + actualNoOfMinutesLeft + "mins";
     }
 }
