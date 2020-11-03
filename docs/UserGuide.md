@@ -377,13 +377,54 @@ Example Output: For date, 2020-08-19
 
 Format: `list event week`
 
-Example Output: For a particular week, 2020-10-19 to 2020-10-25
+Example Output: For a particular week, 2020-11-02 to 2020-11-08
 
 ```
-    TUESDAY:
-    1. [CCA] Basketball from 20th Oct 2020 , 01:00 pm to 21st Oct 2020 , 02:00 pm
-    WEDNESDAY:
-    1. [TEST] English from 21st Oct 2020 , 02:00 pm to 21st Oct 2020 , 03:00 pm  
+              [MON]            [TUE]            [WED]            [THU]            [FRI]            [SAT]            [SUN]      
+                              [TODAY]                                                                                          
+             [02-11]          [03-11]          [04-11]          [05-11]          [06-11]          [07-11]          [08-11]     
+        1.[CLASS]        1.[TEST]         1.[TEST]         1.[CLASS]        1.[CCA]          1.[CLASS]                         
+          demo presen...   math             science          english          basketball       science                         
+          12:00PM-02:00PM  09:00AM-11:00AM  09:00AM-11:00AM  11:00AM-12:00PM  09:00AM-11:00AM  02:00PM-03:00PM                 
+        
+                           4h0m break                        6h0m break       0h0m break                                       
+        
+                         2.[CCA]                           2.[CCA]          2.[CLASS]                                          
+                           basketball                        basketball       math                                             
+                           03:00PM-05:00PM                   06:00PM-07:00PM  11:00AM-12:00PM                                  
+        
+                                                                              1h0m break                                       
+        
+                                                                            3.[CLASS]                                          
+                                                                              PE                                               
+                                                                              01:00PM-02:00PM
+```
+
+<br>
+
+Format: `list event nextweek`
+
+Example Output: For a particular week, 2020-11-02 to 2020-11-08
+
+```
+              [MON]            [TUE]            [WED]            [THU]            [FRI]            [SAT]            [SUN]      
+                              [TODAY]                                                                                          
+             [02-11]          [03-11]          [04-11]          [05-11]          [06-11]          [07-11]          [08-11]     
+        1.[CLASS]        1.[TEST]         1.[TEST]         1.[CLASS]        1.[CCA]          1.[CLASS]                         
+          demo presen...   math             science          english          basketball       science                         
+          12:00PM-02:00PM  09:00AM-11:00AM  09:00AM-11:00AM  11:00AM-12:00PM  09:00AM-11:00AM  02:00PM-03:00PM                 
+        
+                           4h0m break                        6h0m break       0h0m break                                       
+        
+                         2.[CCA]                           2.[CCA]          2.[CLASS]                                          
+                           basketball                        basketball       math                                             
+                           03:00PM-05:00PM                   06:00PM-07:00PM  11:00AM-12:00PM                                  
+        
+                                                                              1h0m break                                       
+        
+                                                                            3.[CLASS]                                          
+                                                                              PE                                               
+                                                                              01:00PM-02:00PM
 ```
 
 <br>
