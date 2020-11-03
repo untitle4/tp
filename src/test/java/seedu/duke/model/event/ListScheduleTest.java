@@ -94,6 +94,7 @@ class ListScheduleTest {
         ListSchedule listSchedule = new ListSchedule("today", classes, new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>(), configParameter);
         ArrayList<String> actualOutputs = listSchedule.getPrintableEvents();
+        actualOutputs.remove(2);
 
         String formattedDate = dateTimeParser.obtainFormattedDateTimeString(calendar);
 
