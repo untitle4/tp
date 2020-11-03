@@ -166,6 +166,9 @@ public class Messages {
                 + "Scroll up to review your quiz.\n\n";
     }
 
+    //@@author durianpancakes
+    public static final String MESSAGE_INVALID_QUIZ_CHECK_INPUTS = "Please check your quiz inputs again!";
+
 
     //@@author elizabethcwt
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"

@@ -3,6 +3,7 @@ package seedu.duke.model.quiz;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.InvalidInputException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
@@ -142,8 +143,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     private int storeCorrectnessOfQuizAnswer(int correctCounter) {
         for (int k = 0; k < noOfQues; k++) {
-            if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt(quizzes.get(quizIndexes
-                    .get(k)).getAnswer()))) {
+            if (userAnswerManager.getUserAnswers().get(k).equals(quizzes.get(quizIndexes
+                    .get(k)).getAnswer())) {
                 userAnswerManager.getCorrectness().add(true);
                 correctCounter++;
             } else {
@@ -211,7 +212,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                 questionCounter++;
                 return questionCounter;
             } else {
-                System.out.println("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
+                userInterface.showToUser("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
             }
         }
         return questionCounter;
@@ -277,12 +278,25 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
         String[] separatedInputs = userInput.trim().split("/");
 
+        try {
+            quizzes.add(parseQuizQuestion(separatedInputs));
+            userInterface.showToUser("Quiz question added!\n");
+        } catch (NumberFormatException e) {
+            userInterface.showToUser("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
+            throw new EmptyParameterException();
+        }
+    }
+
+    //@@author AndreWongZH
+    //Refactored by durianpancakes
+    private Quiz parseQuizQuestion(String[] separatedInputs) throws EmptyParameterException {
         String question = separatedInputs[1].substring(1).trim();
         String option1 = separatedInputs[2].substring(2).trim();
         String option2 = separatedInputs[3].substring(2).trim();
         String option3 = separatedInputs[4].substring(2).trim();
         String option4 = separatedInputs[5].substring(2).trim();
         String answer = separatedInputs[6].substring(1).trim();
+
         String explanation = "";
 
         if (separatedInputs.length > 7) {
@@ -295,9 +309,13 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             throw new EmptyParameterException();
         }
 
-        quizzes.add(new Quiz(question, option1, option2, option3, option4, answer, explanation));
+        int answerInInt = Integer.parseInt(answer);
 
-        userInterface.showToUser("Quiz question added!\n");
+        if (answerInInt > 4 || answerInInt < 1) {
+            throw new NumberFormatException();
+        }
+
+        return new Quiz(question, option1, option2, option3, option4, answerInInt, explanation);
     }
 
     //@@author untitle4

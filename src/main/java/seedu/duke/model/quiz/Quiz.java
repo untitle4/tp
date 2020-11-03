@@ -1,8 +1,6 @@
 package seedu.duke.model.quiz;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
 //@@author untitle4
 /**
@@ -15,12 +13,12 @@ public class Quiz {
     private final String option2;
     private final String option3;
     private final String option4;
-    private final String answer;
+    private final int answer;
     private final String explanation;
     private LocalDate lastAccessed;
 
     public Quiz(String question, String option1, String option2, String option3, String option4,
-                String answer, String explanation) {
+                int answer, String explanation) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
@@ -32,7 +30,7 @@ public class Quiz {
     }
 
     public Quiz(String question, String option1, String option2, String option3, String option4,
-                String answer, String explanation, LocalDate lastAccessed) {
+                int answer, String explanation, LocalDate lastAccessed) {
         this.question = question;
         this.option1 = option1;
         this.option2 = option2;
@@ -47,7 +45,7 @@ public class Quiz {
         return question;
     }
 
-    public String getAnswer() {
+    public int getAnswer() {
         return answer;
     }
 
