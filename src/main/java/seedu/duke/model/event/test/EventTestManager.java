@@ -39,7 +39,6 @@ import java.util.logging.Logger;
  * @see EventTestManager#getTestListSize()
  * @see EventTestManager#add(String)
  * @see EventTestManager#delete(String[])
- * @see EventTestManager#getTaskStatement()
  * @see EventTestManager#setDone(String[])
  */
 public class EventTestManager extends EventDataManager {
@@ -74,7 +73,6 @@ public class EventTestManager extends EventDataManager {
      * @param userInput To take in the String consisting of the test name, start date-time and end date-time.
      * @exception MissingParameterException exception thrown when parameter not entered
      * @exception EmptyParameterException exception thrown when description is empty
-     * @see EventTestManager#getTaskStatement()
      */
     @Override
     public void add(String userInput) throws EmptyParameterException, MissingParameterException {
@@ -117,11 +115,9 @@ public class EventTestManager extends EventDataManager {
                 tests.add(eventTest);
                 logger.log(Level.INFO, "added test to ArrayList");
 
-
-
                 userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
-                        tests.get(getTestListSize() - 1).toString());
-                getTaskStatement();
+                        "  " + tests.get(getTestListSize() - 1).toString());
+                getTaskStatement(eventTest);
 
                 sortList();
                 logger.log(Level.INFO, "sorted Test ArrayList");
@@ -158,7 +154,6 @@ public class EventTestManager extends EventDataManager {
      * @exception IndexOutOfBoundsException exception thrown for invalid index
      * @exception NumberFormatException exception thrown for wrong number format
      * @exception ArrayIndexOutOfBoundsException exception thrown for empty description
-     * @see EventTestManager#getTaskStatement()
      */
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
@@ -170,11 +165,11 @@ public class EventTestManager extends EventDataManager {
 
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_SUCCESS,
                     "  " + tests.get(testNumber - 1));
-
+            Event eventTest = tests.get(testNumber - 1);
             tests.remove(testNumber - 1);
             logger.log(Level.INFO, "deleted test from ArrayList");
 
-            getTaskStatement();
+            getTaskStatement(eventTest);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NON_NUMBER);
@@ -191,12 +186,13 @@ public class EventTestManager extends EventDataManager {
      * <h2>getTaskStatement()</h2>
      * Prints statement to update the user once test has been added or deleted.
      */
-    private void getTaskStatement() {
+    private void getTaskStatement(Event event) {
         if ((getTestListSize() - 1 == 0) || (getTestListSize() == 0)) {
             userInterface.showToUser("Now you have " + getTestListSize() + " test in the list.");
         } else {
             userInterface.showToUser("Now you have " + getTestListSize() + " tests in the list.");
         }
+        userInterface.showToUser("Time left for this day: " + eventManager.getTimeLeft(event));
     }
 
     /**
@@ -206,7 +202,6 @@ public class EventTestManager extends EventDataManager {
      * @exception IndexOutOfBoundsException when user input is an invalid test index integer.
      * @exception NumberFormatException exception thrown for wrong number format
      * @exception ArrayIndexOutOfBoundsException exception thrown for empty description
-     * @see EventTestManager#getTaskStatement()
      */
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {
@@ -230,13 +225,14 @@ public class EventTestManager extends EventDataManager {
             throw new IndexOutOfBoundsException();
         }
 
+        Event eventTest = tests.get(testNumber - 1);
         tests.get(testNumber - 1).setDone();
         logger.log(Level.INFO, "set test as done from ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TEST_DONE_SUCCESS,
                 "  " + tests.get(testNumber - 1));
 
-        getTaskStatement();
+        getTaskStatement(eventTest);
     }
 
     private void sortList() {

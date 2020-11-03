@@ -1,8 +1,6 @@
 package seedu.duke.controller.command;
 
-import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.ModelMain;
-import seedu.duke.storage.ConfigStorageManager;
 import seedu.duke.ui.ConfigManager;
 
 public class SetHoursCommand extends Command {
