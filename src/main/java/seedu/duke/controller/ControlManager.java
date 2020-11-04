@@ -33,13 +33,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //@@author AndreWongZH
 /**
  * Manages the parsing of commands and models and the execution of commands.
  */
 public class ControlManager {
-    private final String userInput;
+    private String userInput;
     private final Model model;
     private final UserInterface userInterface;
     private final EventStorageManager eventStorageManager;
@@ -68,6 +70,7 @@ public class ControlManager {
 
         try {
             logger.log(Level.INFO, "Running controller logic now");
+            trimWhitespace();
             logger.log(Level.INFO, "Extracting command");
             commandType = new CommandParser(userInput).extractCommand();
             final Command actionableCommand = new CommandFactory(commandType, userInput).generateActionableCommand();
@@ -109,6 +112,13 @@ public class ControlManager {
         }
 
         return commandType;
+    }
+
+    /**
+     * Replaces all multiple spaces with only a single space and trims spaces at the start and end.
+     */
+    private void trimWhitespace() {
+        userInput = userInput.trim().replaceAll(" +", " ");
     }
 
     /**
