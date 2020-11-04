@@ -3,7 +3,6 @@ package seedu.duke.model.quiz;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
-import seedu.duke.exception.InvalidInputException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
@@ -220,7 +219,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
-
     /**
      * Delete a quiz in the Arraylist of quizzes.
      * Extract the index of the quiz that the user want to delete.
@@ -228,7 +226,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      * @param userInputs The input entered by the user.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
-
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int quizIndex;
@@ -254,7 +251,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author AndreWongZH
-
     /**
      * Adds a quiz to the ArrayList of quizzes.
      * Extracts the question, options, explanations if any before adding it as a quiz.
@@ -278,6 +274,11 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             throw new EmptyParameterException();
         }
         String[] separatedInputs = userInput.trim().split("/");
+
+        if (separatedInputs.length > 6 && !userInput.contains(" /exp ")) {
+            userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
+            return;
+        }
 
         try {
             quizzes.add(parseQuizQuestion(separatedInputs));
@@ -320,7 +321,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
-
     /**
      * To find the quiz with certain keyword(s) in the Arraylist of quizzes.
      *
@@ -347,7 +347,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
-
     /**
      * Show the incorrect quizzes in the user's last attempt.
      */
@@ -369,11 +368,9 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
-
     /**
      * List the Arraylist of quiz.
      */
-
     @Override
     public void list() {
         if (quizzes.size() == EMPTY_SIZE) {

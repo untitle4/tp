@@ -9,6 +9,7 @@ import seedu.duke.controller.command.CommandFactory;
 import seedu.duke.controller.parser.ModelExtractor;
 import seedu.duke.controller.parser.ModelParser;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.ExtraParameterException;
 import seedu.duke.exception.IncompleteFindCommandException;
 import seedu.duke.exception.IncompleteListCommandException;
 import seedu.duke.exception.InvalidCommandException;
@@ -16,7 +17,6 @@ import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
 import seedu.duke.exception.MissingModelException;
 import seedu.duke.exception.MissingParameterException;
-import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.CommandParser;
 import seedu.duke.controller.parser.CommandType;
@@ -26,15 +26,12 @@ import seedu.duke.model.event.Event;
 import seedu.duke.model.quiz.Quiz;
 import seedu.duke.storage.EventStorageManager;
 import seedu.duke.storage.QuizStorageManager;
-import seedu.duke.ui.ConfigManager;
 import seedu.duke.ui.UserInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 //@@author AndreWongZH
 /**
@@ -106,6 +103,8 @@ public class ControlManager {
             userInterface.showToUser(Messages.MESSAGE_MISSING_MODEL);
         } catch (IncompleteFindCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_FIND_PARAMETERS);
+        } catch (ExtraParameterException e) {
+            userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
         } finally {
             refreshEvents();
             refreshQuizzes();

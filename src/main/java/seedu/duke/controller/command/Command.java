@@ -1,6 +1,7 @@
 package seedu.duke.controller.command;
 
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.ExtraParameterException;
 import seedu.duke.exception.IncompleteFindCommandException;
 import seedu.duke.exception.IncompleteListCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
@@ -25,5 +26,5 @@ public abstract class Command {
 
     public abstract void execute(ModelMain modelMain) throws InvalidHelpCommandException,
             EmptyParameterException, MissingParameterException,
-            IncompleteListCommandException, IncompleteFindCommandException;
+            IncompleteListCommandException, IncompleteFindCommandException, ExtraParameterException;
 }

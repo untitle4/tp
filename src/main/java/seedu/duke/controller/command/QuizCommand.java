@@ -1,5 +1,6 @@
 package seedu.duke.controller.command;
 
+import seedu.duke.exception.ExtraParameterException;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.quiz.QuizManager;
 
@@ -9,6 +10,8 @@ import static seedu.duke.common.Messages.MESSAGE_QUIZ_NON_NUMBER;
 public class QuizCommand extends Command {
 
     public static final String INPUT_SPACE = " ";
+    public static final int MAX_PARAM_SIZE = 2;
+    public static final String INPUT_RECORD = "record";
 
     public QuizCommand(String userInput) {
         super(userInput);
@@ -16,12 +19,16 @@ public class QuizCommand extends Command {
 
 
     @Override
-    public void execute(ModelMain modelMain) {
+    public void execute(ModelMain modelMain) throws ExtraParameterException {
         QuizManager quizManager = (QuizManager) modelMain;
         assert userInput != null;
         String[] separatedInputs = userInput.trim().split(INPUT_SPACE);
+        if (separatedInputs.length > MAX_PARAM_SIZE) {
+            throw new ExtraParameterException();
+        }
+
         try {
-            if (separatedInputs[1].equals("record")) {
+            if (separatedInputs[1].equals(INPUT_RECORD)) {
                 quizManager.recordedQuizzes();
             } else {
                 quizManager.checkQuizSizeValidity(separatedInputs);

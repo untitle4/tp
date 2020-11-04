@@ -1,5 +1,6 @@
 package seedu.duke.controller.command;
 
+import seedu.duke.exception.ExtraParameterException;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.ModelManager;
 
@@ -16,8 +17,13 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(ModelMain modelMain) {
+    public void execute(ModelMain modelMain) throws ExtraParameterException {
+        String[] separatedInputs = userInput.split(INPUT_SPACE);
+        if (separatedInputs.length > 3) {
+            throw new ExtraParameterException();
+        }
+
         ModelManager modelManager = (ModelManager) modelMain;
-        modelManager.delete(userInput.split(INPUT_SPACE));
+        modelManager.delete(separatedInputs);
     }
 }

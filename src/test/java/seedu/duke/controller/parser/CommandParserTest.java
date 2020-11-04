@@ -1,6 +1,7 @@
 package seedu.duke.controller.parser;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exception.ExtraParameterException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.MissingModelException;
 
@@ -10,7 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 //@@author AndreWongZH
 class CommandParserTest {
     @Test
-    void extractCommand_deleteString_deleteCommandType() throws InvalidCommandException, MissingModelException {
+    void extractCommand_deleteString_deleteCommandType() throws InvalidCommandException,
+            MissingModelException, ExtraParameterException {
         CommandType actualType = new CommandParser("delete 22").extractCommand();
         assertEquals(CommandType.DELETE, actualType);
     }
