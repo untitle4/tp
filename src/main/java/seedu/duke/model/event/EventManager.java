@@ -1,6 +1,5 @@
 package seedu.duke.model.event;
 
-import seedu.duke.Duke;
 import seedu.duke.common.LogManager;
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyListException;
@@ -14,8 +13,6 @@ import seedu.duke.model.event.classlesson.EventClassManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.test.EventTestManager;
 import seedu.duke.model.event.tuition.EventTuitionManager;
-import seedu.duke.storage.ConfigStorageManager;
-import seedu.duke.ui.CalendarWeekRenderer;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
@@ -110,7 +107,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
 
             // check if user entered extra parameters
             if (separatedInputs.length > INPUT_LENGTH_ONE_PARAM) {
-                userInterface.showToUser(Messages.MESSAGE_LIST_EXTRA_PARAM);
+                userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
                 return;
             }
 
