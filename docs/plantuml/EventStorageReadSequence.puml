@@ -30,11 +30,9 @@ activate ":EventListDecoder"
 deactivate ":EventListDecoder"
 end alt
 deactivate ":EventListDecoder"
-end loop
-
-
 ":EventListDecoder" --> ":EventStorageManager" : :ArrayList<Event>
 deactivate ":EventListDecoder"
+end loop
 <-- ":EventStorageManager" : :EventParameter
 deactivate ":EventStorageManager"
 @enduml
