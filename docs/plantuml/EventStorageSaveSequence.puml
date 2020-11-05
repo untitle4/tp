@@ -2,7 +2,7 @@
 
 -> ":EventStorageManager" : saveData(:ArrayList<Event>)
 activate ":EventStorageManager"
-":EventStorageManager" -> ":EventListEncoder" : encodeEventToString(:ArrayList<Event>)
+":EventStorageManager" -> ":EventListEncoder" : encodeEventList(:ArrayList<Event>)
 activate ":EventListEncoder"
 
 loop number of events
@@ -10,10 +10,9 @@ loop number of events
 activate ":EventListEncoder"
 ":EventListEncoder" --> ":EventListEncoder" : :String
 deactivate ":EventListEncoder"
-end loop
-
 ":EventListEncoder" --> ":EventStorageManager"
 deactivate ":EventListEncoder"
+end loop
 <-- ":EventStorageManager"
 deactivate ":EventStorageManager"
 
