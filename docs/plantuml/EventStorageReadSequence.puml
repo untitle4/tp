@@ -29,6 +29,7 @@ activate ":EventListDecoder"
 ":EventListDecoder" --> ":EventListDecoder" : :EventTest
 deactivate ":EventListDecoder"
 end alt
+":EventListDecoder" --> ":EventListDecoder"
 deactivate ":EventListDecoder"
 ":EventListDecoder" --> ":EventStorageManager" : :ArrayList<Event>
 deactivate ":EventListDecoder"
