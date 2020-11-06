@@ -8,14 +8,15 @@ import seedu.duke.controller.command.Command;
 import seedu.duke.controller.command.CommandFactory;
 import seedu.duke.controller.parser.ModelExtractor;
 import seedu.duke.controller.parser.ModelParser;
-import seedu.duke.exception.ContactParamException;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.ExtraParameterException;
+import seedu.duke.exception.IncompleteFindCommandException;
 import seedu.duke.exception.IncompleteListCommandException;
 import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
+import seedu.duke.exception.MissingModelException;
 import seedu.duke.exception.MissingParameterException;
-import seedu.duke.exception.QuizParamException;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.CommandParser;
 import seedu.duke.controller.parser.CommandType;
@@ -37,7 +38,7 @@ import java.util.logging.Logger;
  * Manages the parsing of commands and models and the execution of commands.
  */
 public class ControlManager {
-    private final String userInput;
+    private String userInput;
     private final Model model;
     private final UserInterface userInterface;
     private final EventStorageManager eventStorageManager;
@@ -66,6 +67,7 @@ public class ControlManager {
 
         try {
             logger.log(Level.INFO, "Running controller logic now");
+            trimWhitespace();
             logger.log(Level.INFO, "Extracting command");
             commandType = new CommandParser(userInput).extractCommand();
             final Command actionableCommand = new CommandFactory(commandType, userInput).generateActionableCommand();
@@ -87,24 +89,37 @@ public class ControlManager {
             actionableCommand.execute(dataModel);
         } catch (InvalidHelpCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_EXTRA_HELP_PARAM);
-        } catch (ContactParamException | QuizParamException e) {
-            e.printStackTrace();
         } catch (InvalidCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_COMMAND);
         } catch (InvalidModelException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_MODEL);
         } catch (MissingParameterException e) {
-            userInterface.showToUser(Messages.MESSAGE_MISSING_PARAMETERS);
+            userInterface.showToUser(String.format(Messages.MESSAGE_MISSING_PARAMETERS, e.getMessage()));
         } catch (EmptyParameterException e) {
             userInterface.showToUser(Messages.MESSAGE_EMPTY_PARAMETERS);
         } catch (IncompleteListCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_LIST_PARAMETERS);
+        } catch (MissingModelException e) {
+            userInterface.showToUser(Messages.MESSAGE_MISSING_MODEL);
+        } catch (IncompleteFindCommandException e) {
+            userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_FIND_PARAMETERS);
+        } catch (ExtraParameterException e) {
+            userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
+        } catch (IndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_CONTACT_INDEX_OUT_OF_BOUNDS);
         } finally {
             refreshEvents();
             refreshQuizzes();
         }
 
         return commandType;
+    }
+
+    /**
+     * Replaces all multiple spaces with only a single space and trims spaces at the start and end.
+     */
+    private void trimWhitespace() {
+        userInput = userInput.trim().replaceAll(" +", " ");
     }
 
     /**
@@ -118,6 +133,11 @@ public class ControlManager {
     private void checkInvalidModels(CommandType commandType, ModelType modelType) throws InvalidModelException {
         if ((commandType == CommandType.ADD || commandType == CommandType.DELETE || commandType == CommandType.DONE)
                 && modelType == ModelType.EVENT) {
+            throw new InvalidModelException();
+        }
+
+        if ((commandType == CommandType.FIND || commandType == CommandType.LIST)
+                && (modelType != ModelType.EVENT && modelType != ModelType.CONTACT && modelType != ModelType.QUIZ)) {
             throw new InvalidModelException();
         }
     }
@@ -136,8 +156,9 @@ public class ControlManager {
         boolean isList = commandType == CommandType.LIST;
         boolean isFind = commandType == CommandType.FIND;
         boolean isQuiz = commandType == CommandType.QUIZ;
+        boolean isSet = commandType == CommandType.SET;
 
-        return isAdd || isDelete || isDone || isList || isFind || isQuiz;
+        return isAdd || isDelete || isDone || isList || isFind || isQuiz || isSet;
     }
 
     //@@author

@@ -18,6 +18,7 @@ public class ModelParser {
     public static final String INPUT_QUIZ = "quiz";
     public static final String INPUT_CONTACT = "contact";
     public static final String INPUT_EVENT = "event";
+    public static final String INPUT_HOURS = "hours";
     public static final int SUB_COMMAND_INDEX = 1;
     public static final String INPUT_SPACES = " ";
     public static final int MAIN_COMMAND_INDEX = 0;
@@ -71,6 +72,9 @@ public class ModelParser {
             break;
         case INPUT_EVENT:
             modelType = ModelType.EVENT;
+            break;
+        case INPUT_HOURS:
+            modelType = ModelType.HOURS;
             break;
         default:
             throw new InvalidModelException();

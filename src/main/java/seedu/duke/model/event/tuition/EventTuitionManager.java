@@ -2,11 +2,13 @@ package seedu.duke.model.event.tuition;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
@@ -17,6 +19,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,9 +29,11 @@ public class EventTuitionManager extends EventDataManager {
     private final ArrayList<Event> tuitions;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
+    private final EventManager eventManager;
 
-    public EventTuitionManager(ArrayList<Event> tuitions) {
+    public EventTuitionManager(ArrayList<Event> tuitions, EventManager eventManager) {
         this.tuitions = tuitions;
+        this.eventManager = eventManager;
         userInterface = UserInterface.getInstance();
     }
 
@@ -52,7 +57,7 @@ public class EventTuitionManager extends EventDataManager {
                 || (!userInput.contains(endPrefix)) || (!userInput.contains(locationPrefix))) {
             logger.log(Level.WARNING, "either class description, start date-time or end date-time parameter is"
                     + " missing");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s', '/e' and '/l'");
         }
 
         final int indexOfDescriptionPrefix = userInput.indexOf(descriptionPrefix);
@@ -77,16 +82,48 @@ public class EventTuitionManager extends EventDataManager {
             DateTimeParser dateTimeParser = new DateTimeParser();
             Calendar startCalendar = dateTimeParser.convertStringToCalendar(start);
             Calendar endCalendar = dateTimeParser.convertStringToCalendar(end);
-
             EventTuition eventTuition = new EventTuition(description, startCalendar,
                     endCalendar, location);
-            tuitions.add(eventTuition);
-            logger.log(Level.INFO, "Tuition added successfully");
-            userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
-                    eventTuition.toString(),
-                    getTuitionStatement());
+
+            eventManager.checkValidTimeGiven(eventTuition);
+
+            // Checking if there are any events that clashes
+            ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventTuition);
+
+            //If no events clash and the recommended time did not exceed, add tuition
+            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(eventTuition)) {
+                tuitions.add(eventTuition);
+                logger.log(Level.INFO, "Tuition added successfully");
+
+                userInterface.showToUser(Messages.MESSAGE_TUITION_ADD_SUCCESS,
+                        eventTuition.toString(),
+                        getTuitionStatement(),
+                        "Time left for this day: " + eventManager.getTimeLeft(eventTuition));
+
+                sortList();
+                logger.log(Level.INFO, "sorted Tuition ArrayList");
+
+            //If events clashed, show the corresponding error message
+            } else if (clashedEvents.size() > 0) {
+                userInterface.showToUser("The tuition you were trying to add",
+                        eventTuition.toString(),
+                        "clashes with the following events in your list:");
+                for (Event clashedEvent : clashedEvents) {
+                    userInterface.showToUser(clashedEvent.toString());
+                }
+                userInterface.showToUser("Please check the start and end inputs again!");
+
+            //If the recommended time exceeded, show the corresponding error message
+            } else if (eventManager.didTimeExceed(eventTuition)) {
+                userInterface.showToUser("Recommended time exceeded! Tuition is not added!");
+            }
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
+        } catch (InvalidDateException e) {
+            eventManager.processInvalidDateException(e.getErrorType());
+        } catch (ParseException e) {
+            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -103,9 +140,11 @@ public class EventTuitionManager extends EventDataManager {
                     tuitions.get(tuitionIndex - 1).toString());
 
             // Deletes class from classes ArrayList
+            Event eventTuition = tuitions.get(tuitionIndex - 1);
             tuitions.remove(tuitionIndex - 1);
             logger.log(Level.INFO, "Deletion of tuition class from ArrayList");
-            userInterface.showToUser(getTuitionStatement());
+            userInterface.showToUser(getTuitionStatement(),
+                    "Time left for this day: " + eventManager.getTimeLeft(eventTuition));
         } catch (ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_TUITION_DELETE_ERROR_NO_NUMBER_GIVEN);
         } catch (IndexOutOfBoundsException e) {
@@ -155,5 +194,9 @@ public class EventTuitionManager extends EventDataManager {
 
     private boolean isEmptyString(String string) {
         return string.equals("");
+    }
+
+    private void sortList() {
+        Collections.sort(tuitions);
     }
 }

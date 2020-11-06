@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author untitle4
+/**
+ * Provide a function to find quiz with certain keyword(s) input by the user.
+ */
 public class FindQuiz {
     private final ArrayList<Quiz> quizzes;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
@@ -23,10 +27,11 @@ public class FindQuiz {
         logger.log(Level.INFO, "loop through all the keywords to check if in quiz description");
         String[] seperatedInputs = userInput.split(" ");
 
-        for (Quiz quiz : quizzes) {
+        for (int i = 0; i < quizzes.size(); i++) {
             for (String keyword: seperatedInputs) {
-                if (quiz.getQuestion().toLowerCase().contains(keyword.toLowerCase())) {
-                    filteredQuizzes.add(quiz.toString());
+                if (quizzes.get(i).getQuestion().toLowerCase().contains(keyword.toLowerCase())) {
+
+                    filteredQuizzes.add("Question " + (i + 1) + ":\n" + quizzes.get(i).toString());
                     break;
                 }
             }

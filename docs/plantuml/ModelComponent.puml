@@ -1,0 +1,73 @@
+@startuml
+
+skinparam Shadowing false
+skinparam MinClassWidth 100
+skinparam classBackgroundColor YellowGreen
+skinparam packageStyle rectangle
+skinparam ArrowColor Salmon
+hide circle
+hide members
+
+package Model {
+
+    class "{abstract}\nModelMain"
+    class "{abstract}\nModelManager"
+
+    class "<<interface>>\ninteractable"
+    class "<<interface>>\nEventManagerInteractable"
+
+    class Model
+
+    Package Quiz {
+'        class Quiz
+        class QuizManager
+    }
+
+    Package Event {
+'        class "{abstract}\nEvent"
+        class EventManager
+'        class ClassManager
+'        class Class
+'        class CcaManager
+'        class Cca
+'        class TestManager
+'        class Test
+'        class TuitionManager
+'        class Tuition
+        class "{abstract}\nEventDataManager"
+    }
+
+    Package Contact {
+'        class Contact
+        class ContactManager
+    }
+}
+
+"{abstract}\nModelManager" -up-|> "{abstract}\nModelMain"
+EventManager -up-|> "{abstract}\nModelMain"
+"{abstract}\nModelManager" .right.|> "<<interface>>\ninteractable"
+"{abstract}\nEventDataManager" -up-|> "{abstract}\nModelManager"
+
+Model ---> ContactManager
+Model ---> EventManager
+Model ---> QuizManager
+'QuizManager --> Quiz
+'ContactManager --> Contact
+'EventManager --> ClassManager
+'EventManager --> CcaManager
+'EventManager --> TestManager
+'EventManager --> TuitionManager
+'ClassManager --> Class
+'CcaManager --> Cca
+'TestManager --> Test
+'TuitionManager --> Tuition
+'Class --|> "{abstract}\nEvent"
+'Cca --|> "{abstract}\nEvent"
+'Test --|> "{abstract}\nEvent"
+'Tuition --|> "{abstract}\nEvent"
+ContactManager --|> "{abstract}\nModelManager"
+QuizManager --|> "{abstract}\nModelManager"
+EventManager --|> "{abstract}\nEventDataManager"
+EventManager --|> "<<interface>>\nEventManagerInteractable"
+
+@enduml

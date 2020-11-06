@@ -2,11 +2,14 @@ package seedu.duke.model.event.cca;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
+import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
@@ -17,17 +20,24 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author untitle4
+
+/**
+ * A manager of cca that executes all the commands related to cca.
+ */
 public class EventCcaManager extends EventDataManager {
     private final ArrayList<Event> ccas;
+    private final EventManager eventManager;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
-    public EventCcaManager(ArrayList<Event> inputList) {
+    public EventCcaManager(ArrayList<Event> inputList, EventManager eventManager) {
         ccas = inputList;
+        this.eventManager = eventManager;
         userInterface = UserInterface.getInstance();
     }
 
@@ -40,6 +50,13 @@ public class EventCcaManager extends EventDataManager {
         return ccas.size();
     }
 
+    /**
+     * Add a cca from the user input.
+     * Convert the day-time format to system-recognized.
+     * @param userInput The input entered by the user.
+     * @throws MissingParameterException if symbols of params are missing.
+     * @throws EmptyParameterException if no parameters are provided.
+     */
     @Override
     public void add(String userInput) throws MissingParameterException, EmptyParameterException {
         logger.log(Level.INFO, "initialising adding of a cca");
@@ -47,7 +64,7 @@ public class EventCcaManager extends EventDataManager {
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
                 || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "no param is entered");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
         final String[] ccaDetails = userInput.trim().split("\\/");
@@ -67,18 +84,54 @@ public class EventCcaManager extends EventDataManager {
             DateTimeParser dateTimeParser = new DateTimeParser();
             Calendar startCalendar = dateTimeParser.convertStringToCalendar(ccaStartDate);
             Calendar endCalendar = dateTimeParser.convertStringToCalendar(ccaEndDate);
-            ccas.add(new EventCca(ccaDescription, startCalendar, endCalendar));
+            EventCca cca = new EventCca(ccaDescription, startCalendar, endCalendar);
+
+            eventManager.checkValidTimeGiven(cca);
+
+            // Checking if there are any events that clashes
+            ArrayList<Event> clashedEvents = eventManager.checkEventClash(cca);
+
+            //If no events clash and the recommended time did not exceed, add cca
+            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(cca)) {
+                ccas.add(cca);
+                logger.log(Level.INFO, "added cca to ArrayList");
+
+                userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
+                        ccas.get(getCcaListSize() - 1).toString());
+                getCcaStatement(cca);
+
+                sortList();
+                logger.log(Level.INFO, "sorted CCA ArrayList");
+
+            //If events clashed, show the corresponding error message
+            } else if (clashedEvents.size() > 0) {
+                userInterface.showToUser("The cca you were trying to add",
+                        cca.toString(),
+                        "clashes with the following events in your list:");
+                for (Event clashedEvent : clashedEvents) {
+                    userInterface.showToUser(clashedEvent.toString());
+                }
+                userInterface.showToUser("Please check the start and end inputs again!");
+
+            //If the recommended time exceeded, show the corresponding error message
+            } else if (eventManager.didTimeExceed(cca)) {
+                userInterface.showToUser("Recommended time exceeded! CCA is not added!");
+            }
         } catch (DateTimeParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
+        } catch (InvalidDateException e) {
+            eventManager.processInvalidDateException(e.getErrorType());
+        } catch (ParseException e) {
+            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
-        logger.log(Level.INFO, "added cca to ArrayList");
-
-
-        userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
-                ccas.get(getCcaListSize() - 1).toString());
-        getCcaStatement();
     }
 
+    /**
+     * Deletes a cca with the input index in the event list.
+     * @param userInputs The input entered by the user.
+     * @throws IndexOutOfBoundsException if the index is out of bound of event list.
+     */
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int ccaIndex;
@@ -87,15 +140,16 @@ public class EventCcaManager extends EventDataManager {
             ccaIndex = Integer.parseInt(userInputs[2]);
             userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_SUCCESS,
                     ccas.get(ccaIndex - 1).toString());
+            Event eventCca = ccas.get(ccaIndex - 1);
             ccas.remove(ccaIndex - 1);
-            getCcaStatement();
+            getCcaStatement(eventCca);
         } catch (ArrayIndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NO_NUMBER_GIVEN);
+            userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NO_NUMBER_GIVEN);
             logger.log(Level.WARNING, "absence of class index for deletion");
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NON_NUMBER);
         } catch (IndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_INVALID_CLASS_INDEX);
+            userInterface.showToUser(Messages.MESSAGE_INVALID_CCA_INDEX);
         }
     }
 
@@ -126,8 +180,13 @@ public class EventCcaManager extends EventDataManager {
                 ccas.get(ccaIndex - 1).toString());
     }
 
-    private void getCcaStatement() {
+    private void getCcaStatement(Event event) {
         String ccaStatement = getCcaListSize() <= 1 ? " cca" : " ccas";
         userInterface.showToUser("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
+        userInterface.showToUser("Time left for this day: " + eventManager.getTimeLeft(event));
+    }
+
+    private void sortList() {
+        Collections.sort(ccas);
     }
 }

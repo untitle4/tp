@@ -2,12 +2,14 @@ package seedu.duke.model.event.test;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
-import seedu.duke.model.event.classlesson.EventClassManager;
+import seedu.duke.model.event.EventManager;
+import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
@@ -17,17 +19,37 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * <h2>TestManager test</h2>
+ * Stores user's tests in an ArrayList of Event Test, named tests.
+ * <br><br>
+ * Contains methods which allow:
+ * <ul>
+ *     <li>Attaining test list size</li>
+ *     <li>Adding new tests into ArrayList</li>
+ *     <li>Deleting tests from ArrayList</li>
+ *     <li>Setting tests as {@code DONE}</li>
+ * </ul>
+ *
+ * @see EventTestManager#getTestListSize()
+ * @see EventTestManager#add(String)
+ * @see EventTestManager#delete(String[])
+ * @see EventTestManager#setDone(String[])
+ */
 public class EventTestManager extends EventDataManager {
     private final ArrayList<Event> tests;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
+    private final EventManager eventManager;
 
-    public EventTestManager(ArrayList<Event> inputList) {
+    public EventTestManager(ArrayList<Event> inputList, EventManager eventManager) {
         tests = inputList;
+        this.eventManager = eventManager;
         userInterface = UserInterface.getInstance();
     }
 
@@ -51,7 +73,6 @@ public class EventTestManager extends EventDataManager {
      * @param userInput To take in the String consisting of the test name, start date-time and end date-time.
      * @exception MissingParameterException exception thrown when parameter not entered
      * @exception EmptyParameterException exception thrown when description is empty
-     * @see EventTestManager#getTaskStatement()
      */
     @Override
     public void add(String userInput) throws EmptyParameterException, MissingParameterException {
@@ -60,7 +81,7 @@ public class EventTestManager extends EventDataManager {
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
                 || (!userInput.contains("/e"))) {
             logger.log(Level.WARNING, "no param is entered");
-            throw new MissingParameterException();
+            throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
         userInput.replaceAll("\\s+","");
@@ -81,16 +102,49 @@ public class EventTestManager extends EventDataManager {
             DateTimeParser dateTimeParser = new DateTimeParser();
             Calendar startCalendar = dateTimeParser.convertStringToCalendar(testStartDate);
             Calendar endCalendar = dateTimeParser.convertStringToCalendar(testEndDate);
-            tests.add(new EventTest(testDescription, startCalendar, endCalendar));
+
+            EventTest eventTest = new EventTest(testDescription, startCalendar, endCalendar);
+
+            eventManager.checkValidTimeGiven(eventTest);
+
+            // Checking if there are any events that clashes
+            ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventTest);
+
+            //If no events clash and the recommended time did not exceed, add test
+            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(eventTest)) {
+                tests.add(eventTest);
+                logger.log(Level.INFO, "added test to ArrayList");
+
+                userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
+                        "  " + tests.get(getTestListSize() - 1).toString());
+                getTaskStatement(eventTest);
+
+                sortList();
+                logger.log(Level.INFO, "sorted Test ArrayList");
+
+            //If events clashed, show the corresponding error message
+            } else if (clashedEvents.size() > 0) {
+                userInterface.showToUser("The test you were trying to add",
+                        eventTest.toString(),
+                        "clashes with the following events in your list:");
+                for (Event clashedEvent : clashedEvents) {
+                    userInterface.showToUser(clashedEvent.toString());
+                }
+                userInterface.showToUser("Please check the start and end inputs again!");
+
+            //If the recommended time exceeded, show the corresponding error message
+            } else if (eventManager.didTimeExceed(eventTest)) {
+                userInterface.showToUser("Recommended time exceeded! Test is not added!");
+            }
         } catch (DateTimeParseException e) {
+            logger.log(Level.WARNING, "invalid date time inputted");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
+        } catch (InvalidDateException e) {
+            eventManager.processInvalidDateException(e.getErrorType());
+        } catch (ParseException e) {
+            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
+                    + "and time in format yyyy-mm-dd!");
         }
-
-        logger.log(Level.INFO, "added test to ArrayList");
-
-        userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
-                "  " + tests.get(getTestListSize() - 1));
-        getTaskStatement();
     }
 
     /**
@@ -100,7 +154,6 @@ public class EventTestManager extends EventDataManager {
      * @exception IndexOutOfBoundsException exception thrown for invalid index
      * @exception NumberFormatException exception thrown for wrong number format
      * @exception ArrayIndexOutOfBoundsException exception thrown for empty description
-     * @see EventTestManager#getTaskStatement()
      */
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
@@ -112,17 +165,19 @@ public class EventTestManager extends EventDataManager {
 
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_SUCCESS,
                     "  " + tests.get(testNumber - 1));
-
+            Event eventTest = tests.get(testNumber - 1);
             tests.remove(testNumber - 1);
             logger.log(Level.INFO, "deleted test from ArrayList");
 
-            getTaskStatement();
+            getTaskStatement(eventTest);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NON_NUMBER);
         } catch (ArrayIndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "no number was given");
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NO_NUMBER_GIVEN);
         } catch (IndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "wrong index inputted");
             userInterface.showToUser(Messages.MESSAGE_INVALID_TEST_INDEX);
         }
     }
@@ -131,12 +186,13 @@ public class EventTestManager extends EventDataManager {
      * <h2>getTaskStatement()</h2>
      * Prints statement to update the user once test has been added or deleted.
      */
-    private void getTaskStatement() {
+    private void getTaskStatement(Event event) {
         if ((getTestListSize() - 1 == 0) || (getTestListSize() == 0)) {
             userInterface.showToUser("Now you have " + getTestListSize() + " test in the list.");
         } else {
             userInterface.showToUser("Now you have " + getTestListSize() + " tests in the list.");
         }
+        userInterface.showToUser("Time left for this day: " + eventManager.getTimeLeft(event));
     }
 
     /**
@@ -146,7 +202,6 @@ public class EventTestManager extends EventDataManager {
      * @exception IndexOutOfBoundsException when user input is an invalid test index integer.
      * @exception NumberFormatException exception thrown for wrong number format
      * @exception ArrayIndexOutOfBoundsException exception thrown for empty description
-     * @see EventTestManager#getTaskStatement()
      */
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {
@@ -160,6 +215,7 @@ public class EventTestManager extends EventDataManager {
             userInterface.showToUser(Messages.MESSAGE_TEST_DONE_ERROR_NON_NUMBER);
             return;
         } catch (ArrayIndexOutOfBoundsException e) {
+            logger.log(Level.WARNING, "no number was given");
             userInterface.showToUser(Messages.MESSAGE_TEST_DONE_ERROR_NO_NUMBER_GIVEN);
             return;
         }
@@ -169,12 +225,17 @@ public class EventTestManager extends EventDataManager {
             throw new IndexOutOfBoundsException();
         }
 
+        final Event eventTest = tests.get(testNumber - 1);
         tests.get(testNumber - 1).setDone();
         logger.log(Level.INFO, "set test as done from ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TEST_DONE_SUCCESS,
                 "  " + tests.get(testNumber - 1));
 
-        getTaskStatement();
+        getTaskStatement(eventTest);
+    }
+
+    private void sortList() {
+        Collections.sort(tests);
     }
 }

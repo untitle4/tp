@@ -6,6 +6,7 @@ import seedu.duke.controller.parser.CommandType;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+//@@author AndreWongZH
 class CommandFactoryTest {
     @Test
     void generateActionableCommand_addType_addCommandClass() {

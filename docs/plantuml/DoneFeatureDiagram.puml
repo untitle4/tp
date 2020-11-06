@@ -1,0 +1,40 @@
+@startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+box "Controller" #LightSalmon
+participant ControlManager
+participant DoneCommand
+end box
+
+box "Model" #YellowGreen
+participant DataManager
+end box
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+ControlManager -> DoneCommand: execute()
+activate ControlManager
+activate DoneCommand
+DoneCommand -> DataManager: setDone()
+activate DataManager
+DataManager -> DataManager: getClassStatement()
+activate DataManager
+
+
+
+DataManager -> UserInterface: showToUser()
+activate UserInterface
+
+UserInterface --> DataManager
+deactivate DataManager
+deactivate UserInterface
+DataManager --> DoneCommand
+deactivate DataManager
+DoneCommand --> ControlManager
+deactivate DoneCommand
+deactivate ControlManager
+@enduml

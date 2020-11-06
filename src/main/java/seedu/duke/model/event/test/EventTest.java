@@ -7,6 +7,13 @@ import seedu.duke.controller.parser.DateTimeParser;
 import java.util.Calendar;
 
 //@@author Aliciaho
+/**
+ * <h2>Class EventTest</h2>
+ * Contains constructors, getters, toString and equals methods.
+ *
+ * @see EventTest#toString()
+ * @see EventTest#equals(Object)
+ */
 public class EventTest extends Event {
     public static final String TEST_ICON = "[TEST]";
 

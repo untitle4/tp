@@ -1,7 +1,9 @@
 package seedu.duke.controller.parser;
 
 import seedu.duke.common.LogManager;
+import seedu.duke.exception.ExtraParameterException;
 import seedu.duke.exception.InvalidCommandException;
+import seedu.duke.exception.MissingModelException;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,7 @@ public class CommandParser {
     public static final int LENGTH_SINGLE_WORD = 1;
     public static final String INPUT_QUIZ = "quiz";
     public static final int MAIN_COMMAND_INDEX = 0;
+    public static final String INPUT_SET = "set";
 
     private final String[] separatedInputs;
 
@@ -40,25 +43,25 @@ public class CommandParser {
      * @return CommandType corresponding to the command.
      * @throws InvalidCommandException If no command word matches the first word.
      */
-    public CommandType extractCommand() throws InvalidCommandException {
+    public CommandType extractCommand() throws InvalidCommandException, MissingModelException, ExtraParameterException {
         logger.log(Level.INFO, "Extracting command now...");
 
         switch (separatedInputs[MAIN_COMMAND_INDEX]) {
         case INPUT_ADD:
             if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new InvalidCommandException();
+                throw new MissingModelException();
             }
             commandType = CommandType.ADD;
             break;
         case INPUT_DELETE:
             if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new InvalidCommandException();
+                throw new MissingModelException();
             }
             commandType = CommandType.DELETE;
             break;
         case INPUT_DONE:
             if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new InvalidCommandException();
+                throw new MissingModelException();
             }
             commandType = CommandType.DONE;
             break;
@@ -66,6 +69,9 @@ public class CommandParser {
             commandType = CommandType.LIST;
             break;
         case INPUT_BYE:
+            if (separatedInputs.length > 1) {
+                throw new ExtraParameterException();
+            }
             commandType = CommandType.BYE;
             break;
         case INPUT_HELP:
@@ -76,6 +82,9 @@ public class CommandParser {
             break;
         case INPUT_QUIZ:
             commandType = CommandType.QUIZ;
+            break;
+        case INPUT_SET:
+            commandType = CommandType.SET;
             break;
         default:
             throw new InvalidCommandException();

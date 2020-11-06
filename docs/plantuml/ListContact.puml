@@ -1,0 +1,41 @@
+@startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+
+box "Controller" #LightSalmon
+participant ListCommand
+end box
+
+box "Model" #YellowGreen
+participant QuizManager
+end box
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+ListCommand -> QuizManager : execute()
+activate ListCommand
+activate QuizManager
+QuizManager -> QuizManager : list()
+activate QuizManager #DarkSalmon
+alt empty ArrayList
+    QuizManager -> UserInterface : printToUser()
+    activate UserInterface
+    UserInterface --> QuizManager
+    deactivate UserInterface
+    QuizManager --> ListCommand
+else else
+    loop until end of ArrayList
+        QuizManager -> UserInterface : printToUser()
+        activate UserInterface
+        UserInterface --> QuizManager
+        deactivate UserInterface
+    end
+    QuizManager --> ListCommand
+    deactivate QuizManager
+    deactivate QuizManager
+    deactivate ListCommand
+end
+@enduml

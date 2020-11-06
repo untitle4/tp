@@ -1,0 +1,38 @@
+@startuml
+hide circles
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor Tan
+
+abstract class StorageManager {
+    + StorageManager(:String)
+    - createDataFile():boolean
+}
+
+class ConfigStorageManager {
+    + ConfigStorageManager(:String)
+    + saveData(:ConfigParameter)
+    + loadData()(:ConfigParameter)
+}
+
+class ConfigParameter {
+    - name(:String)
+    - recommendedHours(:int)
+    - hasProgramRan(:boolean)
+}
+
+class ConfigEncoder {
+    - name(:String)
+    - recommendedHours(:int)
+    - hasProgramRan(:boolean)
+}
+
+class ConfigDecoder {
+    - splitEncodedConfig(:StringArray)
+    - name(:String)
+    - recommendedHours(:int)
+    - hasProgramRan(:boolean)
+}
+
+StorageManager --> ConfigStorageManager
+ConfigEncoder --> ConfigParameter
+@enduml
