@@ -78,6 +78,9 @@ public class ContactManager extends ModelManager implements ContactInteractable 
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER);
             return;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER);
+            return;
         } catch (IndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_CONTACT_DELETE_ERROR_NO_NUMBER_GIVEN);
             return;

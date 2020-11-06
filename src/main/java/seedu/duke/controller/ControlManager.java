@@ -105,6 +105,8 @@ public class ControlManager {
             userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_FIND_PARAMETERS);
         } catch (ExtraParameterException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
+        } catch (IndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_CONTACT_INDEX_OUT_OF_BOUNDS);
         } finally {
             refreshEvents();
             refreshQuizzes();
