@@ -2,7 +2,6 @@ package seedu.duke.model.event.cca;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
-import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
@@ -10,13 +9,9 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.model.event.EventManager;
-import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author untitle4
-
 /**
  * A manager of cca that executes all the commands related to cca.
  */

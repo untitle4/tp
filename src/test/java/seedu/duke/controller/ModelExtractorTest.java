@@ -38,7 +38,7 @@ class ModelExtractorTest {
     }
 
     private Model initializeModel() {
-        return new Model(new EventManager(new EventParameter(), new ConfigParameter()), new ContactManager(),
-                new QuizManager(new ArrayList<>()), ConfigManager.getInstance());
+        return new Model(new EventManager(new EventParameter(), new ConfigParameter()),
+                new ContactManager(new ArrayList<>()), new QuizManager(new ArrayList<>()), ConfigManager.getInstance());
     }
 }

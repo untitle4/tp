@@ -1,8 +1,5 @@
 package seedu.duke.common;
 
-import seedu.duke.model.quiz.Quiz;
-import seedu.duke.model.quiz.QuizManager;
-
 public class Messages {
     //@@author durianpancakes
     // Intro related messages

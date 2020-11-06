@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package seedu.duke.storage.quiz;
 
 import seedu.duke.model.quiz.Quiz;
 

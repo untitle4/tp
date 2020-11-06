@@ -24,8 +24,9 @@ import seedu.duke.controller.parser.ModelType;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.quiz.Quiz;
-import seedu.duke.storage.EventStorageManager;
-import seedu.duke.storage.QuizStorageManager;
+import seedu.duke.storage.contact.ContactStorageManager;
+import seedu.duke.storage.event.EventStorageManager;
+import seedu.duke.storage.quiz.QuizStorageManager;
 import seedu.duke.ui.UserInterface;
 
 import java.io.IOException;
@@ -43,16 +44,18 @@ public class ControlManager {
     private final UserInterface userInterface;
     private final EventStorageManager eventStorageManager;
     private final QuizStorageManager quizStorageManager;
+    private final ContactStorageManager contactStorageManager;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
-    public ControlManager(String userInput, Model model,
-                          EventStorageManager eventStorageManager, QuizStorageManager quizStorageManager) {
+    public ControlManager(String userInput, Model model, EventStorageManager eventStorageManager,
+                          QuizStorageManager quizStorageManager, ContactStorageManager contactStorageManager) {
         assert userInput != null : "ControlManager must not accept null userInput";
         this.userInput = userInput;
         this.model = model;
         userInterface = UserInterface.getInstance();
         this.eventStorageManager = eventStorageManager;
         this.quizStorageManager = quizStorageManager;
+        this.contactStorageManager = contactStorageManager;
     }
 
     /**
@@ -110,6 +113,7 @@ public class ControlManager {
         } finally {
             refreshEvents();
             refreshQuizzes();
+            refreshContacts();
         }
 
         return commandType;
@@ -159,6 +163,14 @@ public class ControlManager {
         boolean isSet = commandType == CommandType.SET;
 
         return isAdd || isDelete || isDone || isList || isFind || isQuiz || isSet;
+    }
+
+    private void refreshContacts() {
+        try {
+            contactStorageManager.saveData(model.getContactManager().getContacts(), Duke.CONTACT_FILE_NAME);
+        } catch (IOException e) {
+            userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
+        }
     }
 
     //@@author

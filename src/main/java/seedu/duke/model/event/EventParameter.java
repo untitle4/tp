@@ -2,6 +2,7 @@ package seedu.duke.model.event;
 
 import java.util.ArrayList;
 
+//@@author AndreWongZH
 public class EventParameter {
     private final ArrayList<Event> ccas;
     private final ArrayList<Event> tests;

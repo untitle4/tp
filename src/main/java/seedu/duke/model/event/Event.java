@@ -1,7 +1,6 @@
 package seedu.duke.model.event;
 
 import java.util.Calendar;
-import java.util.Comparator;
 
 //@@author elizabethcwt
 public class Event implements Comparable<Event> {

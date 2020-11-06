@@ -1,7 +1,8 @@
-package seedu.duke.storage;
+package seedu.duke.storage.quiz;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.model.quiz.Quiz;
 
@@ -36,7 +37,6 @@ public class QuizStorageManager extends StorageManager {
      * Load the content of the quiz text file.
      * @return
      */
-
     public ArrayList<Quiz> loadData() {
         File quizFile = new File(DIRECTORY_FOLDER_PATH + fileName);
         ArrayList<String> data = new ArrayList<>();

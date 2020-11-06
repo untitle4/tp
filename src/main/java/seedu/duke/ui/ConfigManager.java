@@ -5,7 +5,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.ModelMain;
-import seedu.duke.storage.ConfigStorageManager;
+import seedu.duke.storage.config.ConfigStorageManager;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -18,7 +18,7 @@ public class ConfigManager extends ModelMain {
     public static final String CONFIG_FILE_NAME = "/config.txt";
     private final ConfigStorageManager configStorageManager;
     private static UserInterface userInterface;
-    private ConfigParameter configParameter;
+    private final ConfigParameter configParameter;
     private static ConfigManager INSTANCE = null;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 

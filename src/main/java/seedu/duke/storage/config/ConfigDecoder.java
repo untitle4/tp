@@ -1,8 +1,6 @@
-package seedu.duke.storage;
+package seedu.duke.storage.config;
 
 import seedu.duke.model.ConfigParameter;
-
-import java.util.ArrayList;
 
 public class ConfigDecoder {
     public ConfigParameter decodeConfig(String encodedConfig) {
