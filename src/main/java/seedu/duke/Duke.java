@@ -12,8 +12,6 @@ import seedu.duke.storage.EventStorageManager;
 import seedu.duke.ui.ConfigManager;
 import seedu.duke.ui.UserInterface;
 
-import java.io.IOException;
-
 public class Duke {
     public static final String EVENT_FILE_NAME = "/events.txt";
     public static final String QUIZ_FILE_NAME = "/quiz.txt";
@@ -47,12 +45,10 @@ public class Duke {
             new Duke().run();
         } catch (StorageCorruptedException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
-        } catch (IOException e) {
-            userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
         }
     }
 
-    public void run() throws IOException {
+    public void run() {
         configManager.getIntroductoryVariables(configManager.getConfigParameter());
         userInterface.showWelcomeMessage(configManager.getConfigParameter());
 
