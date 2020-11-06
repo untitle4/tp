@@ -112,13 +112,14 @@ public class CalendarWeekRendererUtils {
             int indexStringLength = indexString.length();
             descriptionsString.append(getSpaces(indexStringLength));
             String descriptionString = events.get(eventIndexCounters[counterIndex] - 1).getDescription();
-            if (descriptionString.length() > 14) {
+            if (descriptionString.length() > DESCRIPTION_THRESHOLD) {
+                // Truncate the string as the description is too long
                 descriptionString = descriptionString.substring(0, 11) + "...";
             }
             descriptionsString.append(descriptionString);
-            descriptionsString.append(getSpaces(17 - descriptionString.length() - indexStringLength));
+            descriptionsString.append(getSpaces(COLUMN_SPACES - descriptionString.length() - indexStringLength));
         } else {
-            descriptionsString.append(getSpaces(17));
+            descriptionsString.append(getSpaces(COLUMN_SPACES));
         }
 
         return descriptionsString.toString();
@@ -138,9 +139,9 @@ public class CalendarWeekRendererUtils {
             String endString = dateTimeParser.parseTime(endCalendar);
             String startEndString = startString + "-" + endString;
             startEndTimesString.append(startEndString);
-            startEndTimesString.append(getSpaces(17 - startEndString.length() - indexStringLength));
+            startEndTimesString.append(getSpaces(COLUMN_SPACES - startEndString.length() - indexStringLength));
         } else {
-            startEndTimesString.append(getSpaces(17));
+            startEndTimesString.append(getSpaces(COLUMN_SPACES));
         }
 
         return startEndTimesString.toString();
@@ -159,14 +160,14 @@ public class CalendarWeekRendererUtils {
                 int minutes = nextEventStart.get(Calendar.MINUTE) - thisEventEnd.get(Calendar.MINUTE);
                 String breakString = hours + "h" + minutes + "m break";
                 breakTimeString.append(breakString);
-                breakTimeString.append(getSpaces(17 - breakString.length() - indexStringLength));
+                breakTimeString.append(getSpaces(COLUMN_SPACES - breakString.length() - indexStringLength));
             } else {
-                breakTimeString.append(getSpaces(17));
+                breakTimeString.append(getSpaces(COLUMN_SPACES));
             }
             reduceCounter(counterIndex);
             eventIndexCounters[counterIndex]++;
         } else {
-            breakTimeString.append(getSpaces(17));
+            breakTimeString.append(getSpaces(COLUMN_SPACES));
         }
 
         return breakTimeString.toString();
