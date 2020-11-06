@@ -12,7 +12,6 @@ import seedu.duke.model.event.tuition.EventTuition;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 //@@author durianpancakes
 public class EventListDecoder {

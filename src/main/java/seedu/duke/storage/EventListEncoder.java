@@ -7,9 +7,7 @@ import seedu.duke.model.event.Event;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 //@@author durianpancakes
 public class EventListEncoder {

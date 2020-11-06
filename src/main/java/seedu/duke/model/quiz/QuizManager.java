@@ -17,8 +17,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 9;
     private final ArrayList<Quiz> quizzes;
-    private ArrayList<Quiz> lastIncorrectQuizzes = new ArrayList<>();
-    private ArrayList<Integer> lastIncorrectAnswers = new ArrayList<>();
+    private final ArrayList<Quiz> lastIncorrectQuizzes = new ArrayList<>();
+    private final ArrayList<Integer> lastIncorrectAnswers = new ArrayList<>();
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     public static int noOfQues;
     private final UserInterface userInterface;

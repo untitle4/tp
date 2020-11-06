@@ -3,12 +3,10 @@ package seedu.duke.ui;
 import seedu.duke.common.Messages;
 import seedu.duke.controller.ControlManager;
 import seedu.duke.controller.parser.CommandType;
-import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.Model;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.ListWeekCommand;
-import seedu.duke.storage.ConfigStorageManager;
 import seedu.duke.storage.EventStorageManager;
 import seedu.duke.storage.QuizStorageManager;
 

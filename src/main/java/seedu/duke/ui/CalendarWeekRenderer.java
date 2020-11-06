@@ -5,7 +5,6 @@ import seedu.duke.model.event.Event;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.ListWeekCommand;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;

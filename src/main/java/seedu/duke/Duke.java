@@ -2,13 +2,11 @@ package seedu.duke;
 
 import seedu.duke.common.Messages;
 import seedu.duke.exception.StorageCorruptedException;
-import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.Model;
 import seedu.duke.model.contact.ContactManager;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
 import seedu.duke.model.quiz.QuizManager;
-import seedu.duke.storage.ConfigStorageManager;
 import seedu.duke.storage.QuizStorageManager;
 import seedu.duke.storage.EventStorageManager;
 import seedu.duke.ui.ConfigManager;

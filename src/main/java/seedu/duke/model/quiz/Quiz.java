@@ -6,7 +6,6 @@ import java.time.LocalDate;
 /**
  * A class for quiz.
  */
-
 public class Quiz {
     private final String question;
     private final String option1;

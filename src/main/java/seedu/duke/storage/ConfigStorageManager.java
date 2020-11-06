@@ -3,17 +3,13 @@ package seedu.duke.storage;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.StorageCorruptedException;
-import seedu.duke.exception.StorageSeparatorException;
 import seedu.duke.model.ConfigParameter;
-import seedu.duke.model.event.Event;
-import seedu.duke.model.event.EventParameter;
 import seedu.duke.ui.UserInterface;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 import java.util.logging.Level;

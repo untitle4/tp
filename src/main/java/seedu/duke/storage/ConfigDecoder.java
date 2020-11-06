@@ -2,8 +2,6 @@ package seedu.duke.storage;
 
 import seedu.duke.model.ConfigParameter;
 
-import java.util.ArrayList;
-
 public class ConfigDecoder {
     public ConfigParameter decodeConfig(String encodedConfig) {
         String[] splitEncodedConfig = encodedConfig.split("\\|", 3);

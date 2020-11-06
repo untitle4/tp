@@ -15,6 +15,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
  */
 public class QuizListDecoder {
 
+    //@@author AndreWongZH
     public ArrayList<Quiz> decodeQuizList(ArrayList<String> encodedQuizList) {
         final ArrayList<Quiz> decodedQuizzes = new ArrayList<>();
         for (String encodedQuiz : encodedQuizList) {

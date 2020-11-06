@@ -6,11 +6,8 @@ import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.ConfigParameter;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
