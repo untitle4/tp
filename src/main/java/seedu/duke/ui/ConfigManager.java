@@ -5,7 +5,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.ModelMain;
-import seedu.duke.storage.ConfigStorageManager;
+import seedu.duke.storage.config.ConfigStorageManager;
 
 import java.io.IOException;
 import java.util.logging.Level;

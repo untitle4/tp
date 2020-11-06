@@ -40,4 +40,8 @@ public class Contact {
                 + "\nPhone number: " + phoneNumber
                 + "\nemail address: " + email + "\n";
     }
+
+    public String convertToData() {
+        return subject + "|" + name + "|" + phoneNumber + "|" + email;
+    }
 }

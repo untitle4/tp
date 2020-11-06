@@ -1,7 +1,8 @@
-package seedu.duke.storage;
+package seedu.duke.storage.quiz;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.model.quiz.Quiz;
 

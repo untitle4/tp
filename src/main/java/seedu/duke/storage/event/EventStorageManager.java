@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package seedu.duke.storage.event;
 
 import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.exception.StorageSeparatorException;
@@ -9,6 +9,7 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.model.event.EventParameter;
 

@@ -7,17 +7,20 @@ import seedu.duke.model.contact.ContactManager;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
 import seedu.duke.model.quiz.QuizManager;
-import seedu.duke.storage.QuizStorageManager;
-import seedu.duke.storage.EventStorageManager;
+import seedu.duke.storage.contact.ContactStorageManager;
+import seedu.duke.storage.quiz.QuizStorageManager;
+import seedu.duke.storage.event.EventStorageManager;
 import seedu.duke.ui.ConfigManager;
 import seedu.duke.ui.UserInterface;
 
 public class Duke {
     public static final String EVENT_FILE_NAME = "/events.txt";
     public static final String QUIZ_FILE_NAME = "/quiz.txt";
+    public static final String CONTACT_FILE_NAME = "/contact.txt";
 
     private final EventStorageManager eventStorageManager;
     private final QuizStorageManager quizStorageManager;
+    private final ContactStorageManager contactStorageManager;
     private final ConfigManager configManager;
     private static UserInterface userInterface;
     private final Model model;
@@ -28,9 +31,10 @@ public class Duke {
         userInterface = UserInterface.getInstance();
         eventStorageManager = new EventStorageManager(EVENT_FILE_NAME);
         quizStorageManager = new QuizStorageManager(QUIZ_FILE_NAME);
+        contactStorageManager = new ContactStorageManager(CONTACT_FILE_NAME);
         configManager = ConfigManager.getInstance();
         active = true;
-        ContactManager contactManager = new ContactManager();
+        ContactManager contactManager = new ContactManager(contactStorageManager.loadData());
         QuizManager quizManager = new QuizManager(quizStorageManager.loadData());
         EventParameter eventParameter = eventStorageManager.loadData();
         EventManager eventManager = new EventManager(eventParameter, configManager.getConfigParameter());
@@ -53,7 +57,7 @@ public class Duke {
         userInterface.showWelcomeMessage(configManager.getConfigParameter());
 
         while (active) {
-            active = userInterface.runUI(model, eventStorageManager, quizStorageManager);
+            active = userInterface.runUI(model, eventStorageManager, quizStorageManager, contactStorageManager);
         }
 
         // Exit Message

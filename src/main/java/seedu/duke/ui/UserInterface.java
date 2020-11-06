@@ -7,8 +7,9 @@ import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.Model;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.ListWeekCommand;
-import seedu.duke.storage.EventStorageManager;
-import seedu.duke.storage.QuizStorageManager;
+import seedu.duke.storage.contact.ContactStorageManager;
+import seedu.duke.storage.event.EventStorageManager;
+import seedu.duke.storage.quiz.QuizStorageManager;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -88,13 +89,14 @@ public class UserInterface {
      */
     public boolean runUI(Model model,
                          EventStorageManager eventStorageManager,
-                         QuizStorageManager quizStorageManager) {
+                         QuizStorageManager quizStorageManager,
+                         ContactStorageManager contactStorageManager) {
         CommandType commandType = null;
         String line = getUserCommand();
 
         if (!line.trim().isEmpty()) {
             ControlManager controlManager = new ControlManager(line, model,
-                    eventStorageManager, quizStorageManager);
+                    eventStorageManager, quizStorageManager, contactStorageManager);
             commandType = controlManager.runLogic();
         }
 

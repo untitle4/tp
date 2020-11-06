@@ -1,9 +1,10 @@
-package seedu.duke.storage;
+package seedu.duke.storage.config;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
+import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.UserInterface;
 
 import java.io.File;

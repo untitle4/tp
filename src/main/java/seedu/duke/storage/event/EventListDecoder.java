@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package seedu.duke.storage.event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.StorageCorruptedException;
