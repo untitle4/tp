@@ -1,6 +1,5 @@
 package seedu.duke.model.event;
 
-import seedu.duke.Duke;
 import seedu.duke.common.LogManager;
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyListException;
@@ -14,8 +13,6 @@ import seedu.duke.model.event.classlesson.EventClassManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.test.EventTestManager;
 import seedu.duke.model.event.tuition.EventTuitionManager;
-import seedu.duke.storage.ConfigStorageManager;
-import seedu.duke.ui.CalendarWeekRenderer;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
@@ -39,6 +36,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public static final int INPUT_LENGTH_NO_PARAMS = 2;
     public static final int INPUT_LENGTH_ONE_PARAM = 3;
     public static final int DATE_PARAM_INDEX = 2;
+    public static final String INPUT_NEXTWEEK = "nextweek";
     private static EventClassManager eventClassManager;
     private static EventTestManager eventTestManager;
     private static EventCcaManager eventCcaManager;
@@ -109,7 +107,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
 
             // check if user entered extra parameters
             if (separatedInputs.length > INPUT_LENGTH_ONE_PARAM) {
-                userInterface.showToUser(Messages.MESSAGE_LIST_EXTRA_PARAM);
+                userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
                 return;
             }
 
@@ -118,11 +116,14 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                     : separatedInputs[DATE_PARAM_INDEX];
 
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
-                    eventCcaManager.getCcas(), eventTestManager.getTests(), eventTuitionManager.getTuitions());
+                    eventCcaManager.getCcas(), eventTestManager.getTests(),
+                    eventTuitionManager.getTuitions(), configParameter);
 
-            if (userInput.contains("nextweek")) {
+            if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
+                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXTWEEK)) {
                 userInterface.printWeekSchedule(this, ListWeekCommand.NEXT_WEEK);
-            } else if (userInput.contains("week")) {
+            } else if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
+                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_WEEK)) {
                 userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK);
             } else {
                 printedEvents = listSchedule.getPrintableEvents();
@@ -287,7 +288,20 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public boolean didTimeExceed(Event event) {
         logger.log(Level.INFO, "checking if time exceeded");
         ArrayList<Event> eventArrayList = getEventMasterList();
-        long noOfMinutes = dateTimeParser.getDuration(event.getStart(), event.getEnd());
+        long noOfMinutes = dateTimeParser.getDuration(event.getStart(),event.getEnd());
+        noOfMinutes += getNoOfMinutes(event, eventArrayList);
+        return noOfMinutes > (configParameter.getRecommendedHours() * 60);
+    }
+
+    /**
+     * Get the total number of productive minutes for a particular day.
+     *
+     * @param event Event that user is trying to add
+     * @param eventArrayList Masterlist containing all the events
+     * @return total number of minutes for that day
+     */
+    private long getNoOfMinutes(Event event, ArrayList<Event> eventArrayList) {
+        long noOfMinutes = 0;
         for (int i = 0; i < eventArrayList.size(); i++) {
             if (dateTimeParser.isDateEqual(eventArrayList.get(i).getStart(),
                     event.getStart())) {
@@ -295,6 +309,22 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                         eventArrayList.get(i).getEnd());
             }
         }
-        return noOfMinutes > (configParameter.getRecommendedHours() * 60);
+        return noOfMinutes;
+    }
+
+    /**
+     * Get the time left for each day.
+     *
+     * @param event Event that user is trying to add
+     * @return string containing the time left for that particular day
+     */
+    public String getTimeLeft(Event event) {
+        logger.log(Level.INFO, "checking time left for that day");
+        ArrayList<Event> eventArrayList = getEventMasterList();
+        long noOfMinutes = getNoOfMinutes(event, eventArrayList);
+        long noOfMinutesLeft = (configParameter.getRecommendedHours() * 60) - noOfMinutes;
+        int hoursLeft = Math.toIntExact(noOfMinutesLeft / 60);
+        int actualNoOfMinutesLeft = Math.toIntExact(noOfMinutesLeft - (hoursLeft * 60));
+        return hoursLeft + "hr " + actualNoOfMinutesLeft + "mins";
     }
 }

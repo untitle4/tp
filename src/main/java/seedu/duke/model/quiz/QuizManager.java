@@ -142,8 +142,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     private int storeCorrectnessOfQuizAnswer(int correctCounter) {
         for (int k = 0; k < noOfQues; k++) {
-            if (userAnswerManager.getUserAnswers().get(k).equals(Integer.parseInt(quizzes.get(quizIndexes
-                    .get(k)).getAnswer()))) {
+            if (userAnswerManager.getUserAnswers().get(k).equals(quizzes.get(quizIndexes
+                    .get(k)).getAnswer())) {
                 userAnswerManager.getCorrectness().add(true);
                 correctCounter++;
             } else {
@@ -211,14 +211,14 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                 questionCounter++;
                 return questionCounter;
             } else {
-                System.out.println("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
+                userInterface.showToUser("OOPS! Incorrect answer format! "
+                        + "Your answer can only be either 1, 2, 3 or 4!\n");
             }
         }
         return questionCounter;
     }
 
     //@@author untitle4
-
     /**
      * Delete a quiz in the Arraylist of quizzes.
      * Extract the index of the quiz that the user want to delete.
@@ -226,7 +226,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      * @param userInputs The input entered by the user.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
-
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
         int quizIndex;
@@ -252,7 +251,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author AndreWongZH
-
     /**
      * Adds a quiz to the ArrayList of quizzes.
      * Extracts the question, options, explanations if any before adding it as a quiz.
@@ -277,12 +275,30 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
         String[] separatedInputs = userInput.trim().split("/");
 
+        if (separatedInputs.length > 6 && !userInput.contains(" /exp ")) {
+            userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
+            return;
+        }
+
+        try {
+            quizzes.add(parseQuizQuestion(separatedInputs));
+            userInterface.showToUser("Quiz question added!\n");
+        } catch (NumberFormatException e) {
+            userInterface.showToUser("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
+            throw new EmptyParameterException();
+        }
+    }
+
+    //@@author AndreWongZH
+    //Refactored by durianpancakes
+    private Quiz parseQuizQuestion(String[] separatedInputs) throws EmptyParameterException {
         String question = separatedInputs[1].substring(1).trim();
         String option1 = separatedInputs[2].substring(2).trim();
         String option2 = separatedInputs[3].substring(2).trim();
         String option3 = separatedInputs[4].substring(2).trim();
         String option4 = separatedInputs[5].substring(2).trim();
         String answer = separatedInputs[6].substring(1).trim();
+
         String explanation = "";
 
         if (separatedInputs.length > 7) {
@@ -295,13 +311,16 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             throw new EmptyParameterException();
         }
 
-        quizzes.add(new Quiz(question, option1, option2, option3, option4, answer, explanation));
+        int answerInInt = Integer.parseInt(answer);
 
-        userInterface.showToUser("Quiz question added!\n");
+        if (answerInInt > 4 || answerInInt < 1) {
+            throw new NumberFormatException();
+        }
+
+        return new Quiz(question, option1, option2, option3, option4, answerInInt, explanation);
     }
 
     //@@author untitle4
-
     /**
      * To find the quiz with certain keyword(s) in the Arraylist of quizzes.
      *
@@ -328,7 +347,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
-
     /**
      * Show the incorrect quizzes in the user's last attempt.
      */
@@ -350,11 +368,9 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
-
     /**
      * List the Arraylist of quiz.
      */
-
     @Override
     public void list() {
         if (quizzes.size() == EMPTY_SIZE) {

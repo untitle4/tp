@@ -40,7 +40,6 @@ import seedu.duke.ui.UserInterface;
  * @see EventClassManager#getClassListSize()
  * @see EventClassManager#add(String)
  * @see EventClassManager#delete(String[])
- * @see EventClassManager#getClassStatement()
  * @see EventClassManager#setDone(String[])
  */
 public class EventClassManager extends EventDataManager {
@@ -80,7 +79,6 @@ public class EventClassManager extends EventDataManager {
      *
      * @param userInput To take in the String consisting of the class name, start date-time and end date-time.
      * @throws MissingParameterException if user input does not meet the requirements.
-     * @see EventClassManager#getClassStatement()
      */
     @Override
     public void add(String userInput) throws MissingParameterException, EmptyParameterException {
@@ -127,7 +125,7 @@ public class EventClassManager extends EventDataManager {
 
                 userInterface.showToUser(Messages.MESSAGE_CLASS_ADD_SUCCESS,
                         classes.get(getClassListSize() - 1).toString());
-                getClassStatement();
+                getClassStatement(eventClass);
 
                 sortList();
                 logger.log(Level.INFO, "sorted classes ArrayList");
@@ -175,9 +173,10 @@ public class EventClassManager extends EventDataManager {
                     classes.get(classIndex - 1).toString());
 
             // Deletes class from classes ArrayList
+            Event eventClass = classes.get(classIndex - 1);
             classes.remove(classIndex - 1);
             logger.log(Level.INFO, "deletion of class from ArrayList");
-            getClassStatement();
+            getClassStatement(eventClass);
         } catch (ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_CLASS_DELETE_ERROR_NO_NUMBER_GIVEN);
             logger.log(Level.WARNING, "absence of class index for deletion");
@@ -194,9 +193,10 @@ public class EventClassManager extends EventDataManager {
      * <h2>getClassStatement()</h2>
      * Prints statement to update the user once class has been added or deleted.
      */
-    private void getClassStatement() {
+    private void getClassStatement(Event event) {
         String classStatement = getClassListSize() == 1 ? " class" : " classes";
         userInterface.showToUser("Now you have " + getClassListSize() + classStatement + " in the list.");
+        userInterface.showToUser("Time left for this day: " + eventManager.getTimeLeft(event));
     }
 
     /**
@@ -205,7 +205,6 @@ public class EventClassManager extends EventDataManager {
      *
      * @param userInputs To take in the class index of the class to be set as done.
      * @throws IndexOutOfBoundsException when user input is an invalid class index integer.
-     * @see EventClassManager#getClassStatement()
      */
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {
@@ -231,13 +230,14 @@ public class EventClassManager extends EventDataManager {
         }
 
         // Sets class as done
+        final Event eventClass = classes.get(classNumber - 1);
         classes.get(classNumber - 1).setDone();
         logger.log(Level.INFO, "set class as done from ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_CLASS_DONE_SUCCESS,
                 "  " + classes.get(classNumber - 1));
 
-        getClassStatement();
+        getClassStatement(eventClass);
     }
 
     private void sortList() {

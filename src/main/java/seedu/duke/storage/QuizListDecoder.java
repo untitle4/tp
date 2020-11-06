@@ -44,7 +44,7 @@ public class QuizListDecoder {
         String option2 = data[2];
         String option3 = data[3];
         String option4 = data[4];
-        String answer = data[5];
+        int answer = Integer.parseInt(data[5]);
         String explanation = data[6];
         LocalDate lastAccessed = LocalDate.parse(data[7]);
 

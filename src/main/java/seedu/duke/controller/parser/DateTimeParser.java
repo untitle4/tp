@@ -17,6 +17,8 @@ import java.util.Date;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //@@author Aliciaho
 /**
@@ -84,6 +86,7 @@ public class DateTimeParser {
      */
     public Calendar convertStringToCalendar(String string) throws ParseException {
         logger.log(Level.INFO, "converting string to calendar");
+        checkDateTimeFormat(string);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HHmm");
         Calendar calendar = Calendar.getInstance();
 
@@ -93,6 +96,26 @@ public class DateTimeParser {
         return calendar;
     }
 
+    //@@author AndreWongZH
+    /**
+     * Validates if the datetime string is following the correct format (yyyy-MM-dd HHmm).
+     *
+     * @param string User input string.
+     * @throws ParseException If date is not according to the format.
+     */
+    private void checkDateTimeFormat(String string) throws ParseException {
+        Pattern pattern = Pattern.compile("^\\d\\d\\d\\d-\\d\\d-\\d\\d (\\d\\d\\d\\d)$");
+        Matcher matcher = pattern.matcher(string);
+        if (!matcher.find()) {
+            throw new ParseException("Invalid datetime", 0);
+        }
+        
+        if (Integer.parseInt(matcher.group(1)) >  2400) {
+            throw new ParseException("Invalid datetime", 0);
+        }
+    }
+
+    //@@author Aliciaho
     /**
      * Convert a string input to date time format yyyy-MM-dd in Calendar form.
      *

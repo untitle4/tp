@@ -56,7 +56,7 @@ public class Messages {
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INVALID_MODEL = ":( Oops! I did not recognize that model type! "
             + "Enter 'help' if needed!";
-    public static final String MESSAGE_LIST_EXTRA_PARAM = ":( OOPS!!! Please do not enter extra inputs";
+    public static final String MESSAGE_INVALID_EXTRA_PARAM = ":( OOPS!!! Please do not enter extra inputs";
 
     //@@author durianpancakes
     // Messages from CalendarWeekRenderer
@@ -166,6 +166,9 @@ public class Messages {
         return "You scored " + correctCounter + " out of " + noOfQues + "!\n"
                 + "Scroll up to review your quiz.\n\n";
     }
+
+    //@@author durianpancakes
+    public static final String MESSAGE_INVALID_QUIZ_CHECK_INPUTS = "Please check your quiz inputs again!";
 
 
     //@@author elizabethcwt

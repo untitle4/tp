@@ -20,7 +20,7 @@ class EventManagerTest {
         EventManager eventManager = new EventManager(new EventParameter(), new ConfigParameter("me",
                 10, true));
         eventManager.getTestManager().add("add test /n Math test "
-                + "/s 2020-09-26 1100 /e 2020-09-26 1500");
+                + "/s 2020-09-26 1000 /e 2020-09-26 1500");
         eventManager.getTestManager().add("add test /n Eng test "
                 + "/s 2020-09-26 1600 /e 2020-09-26 2300");
         int actualOutputs = eventManager.getTestManager().getTestListSize();

@@ -98,7 +98,7 @@ public class EventCcaManager extends EventDataManager {
 
                 userInterface.showToUser(Messages.MESSAGE_CCA_ADD_SUCCESS,
                         ccas.get(getCcaListSize() - 1).toString());
-                getCcaStatement();
+                getCcaStatement(cca);
 
                 sortList();
                 logger.log(Level.INFO, "sorted CCA ArrayList");
@@ -140,8 +140,9 @@ public class EventCcaManager extends EventDataManager {
             ccaIndex = Integer.parseInt(userInputs[2]);
             userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_SUCCESS,
                     ccas.get(ccaIndex - 1).toString());
+            Event eventCca = ccas.get(ccaIndex - 1);
             ccas.remove(ccaIndex - 1);
-            getCcaStatement();
+            getCcaStatement(eventCca);
         } catch (ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_CCA_DELETE_ERROR_NO_NUMBER_GIVEN);
             logger.log(Level.WARNING, "absence of class index for deletion");
@@ -179,9 +180,10 @@ public class EventCcaManager extends EventDataManager {
                 ccas.get(ccaIndex - 1).toString());
     }
 
-    private void getCcaStatement() {
+    private void getCcaStatement(Event event) {
         String ccaStatement = getCcaListSize() <= 1 ? " cca" : " ccas";
         userInterface.showToUser("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
+        userInterface.showToUser("Time left for this day: " + eventManager.getTimeLeft(event));
     }
 
     private void sortList() {

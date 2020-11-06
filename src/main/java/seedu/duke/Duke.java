@@ -19,12 +19,9 @@ import java.io.IOException;
 public class Duke {
     public static final String EVENT_FILE_NAME = "/events.txt";
     public static final String QUIZ_FILE_NAME = "/quiz.txt";
-    public static final String CONFIG_FILE_NAME = "/config.txt";
 
     private final EventStorageManager eventStorageManager;
     private final QuizStorageManager quizStorageManager;
-    //private final ConfigStorageManager configStorageManager;
-    //private final ConfigParameter configParameter;
     private final ConfigManager configManager;
     private static UserInterface userInterface;
     private final Model model;
