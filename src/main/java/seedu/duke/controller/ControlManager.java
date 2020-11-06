@@ -103,6 +103,8 @@ public class ControlManager {
             userInterface.showToUser(Messages.MESSAGE_MISSING_MODEL);
         } catch (IncompleteFindCommandException e) {
             userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_FIND_PARAMETERS);
+        } catch (IndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_CONTACT_INDEXOUTOFBOUNDS);
         } finally {
             refreshEvents();
             refreshQuizzes();

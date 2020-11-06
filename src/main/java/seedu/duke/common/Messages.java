@@ -78,6 +78,7 @@ public class Messages {
             + "Please indicate which contact you'd like to delete!";
     public static final String MESSAGE_INVALID_CONTACT_INDEX = ":( OOPS!!! Please indicate a valid contact index!";
     public static final String MESSAGE_EMPTY_CONTACT_LIST = "Contact list is empty. Add some!!";
+    public static final String MESSAGE_CONTACT_INDEXOUTOFBOUNDS = "There is not such a contact in your list!";
 
     //@@author elizabethcwt
     // Messages from Class related classes
