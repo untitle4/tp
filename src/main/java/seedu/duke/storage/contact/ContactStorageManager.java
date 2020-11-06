@@ -34,7 +34,7 @@ public class ContactStorageManager extends StorageManager {
     }
 
     /**
-     * Load the content of the contact text file.
+     * Loads the content of the contact text file.
      *
      * @return An array list of type Contact.
      */
