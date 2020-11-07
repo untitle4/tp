@@ -87,7 +87,7 @@ public class EventClassManager extends EventDataManager {
         }
 
         // Splitting /n, /s and /e info. via a String array called classDetails
-        final String[] classDetails = userInput.trim().split("\\/");
+        final String[] classDetails = userInput.trim().split("/");
 
         logger.log(Level.INFO, "splitting the user input into class description, start date-time and end "
                 + "date-time");

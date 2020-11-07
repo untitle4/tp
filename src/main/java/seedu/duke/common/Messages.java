@@ -200,7 +200,7 @@ public class Messages {
             + "\t8. Delete tuition: 'delete tuition [tuition number]'\n\n"
             + "\t9. List events (class, test, cca, tuition): 'list'\n\n"
             + "\t10. Find relevant event(s): 'find [keyword(s)]'\n\n"
-            + "\t11. Add contact: 'add contact /sub [subject] /n [name of contact person] /hp [phone number]"
+            + "\t11. Add contact: 'add contact /s [subject] /n [name of contact person] /p [phone number]"
             + " /e [email address]'\n"
             + "\t12. Delete contact: 'delete contact [contact number]'\n"
             + "\t13. List contact: 'list contact'\n"
