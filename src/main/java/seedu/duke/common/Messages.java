@@ -169,6 +169,7 @@ public class Messages {
     public static final String MESSAGE_QUIZ_LIST_HEADER = "Here are the questions in your quiz list:";
     public static final String MESSAGE_QUIZ_MISSING_ANSWER = ":( OOPS! Please enter your answer for the "
             + "question above!";
+    public static final String MESSAGE_NO_QUIZ_ATTEMPTS = "You have not taken a quiz yet!";
 
     public static String invalid_number_of_quiz_questions_message(int size) {
         return ":( OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")";
@@ -200,7 +201,7 @@ public class Messages {
             + "\t8. Delete tuition: 'delete tuition [tuition number]'\n\n"
             + "\t9. List events (class, test, cca, tuition): 'list'\n\n"
             + "\t10. Find relevant event(s): 'find [keyword(s)]'\n\n"
-            + "\t11. Add contact: 'add contact /sub [subject] /n [name of contact person] /hp [phone number]"
+            + "\t11. Add contact: 'add contact /s [subject] /n [name of contact person] /p [phone number]"
             + " /e [email address]'\n"
             + "\t12. Delete contact: 'delete contact [contact number]'\n"
             + "\t13. List contact: 'list contact'\n"

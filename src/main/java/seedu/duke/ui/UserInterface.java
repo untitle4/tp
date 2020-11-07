@@ -50,8 +50,7 @@ public class UserInterface {
      * @param configParameter ConfigParameter containing the recommended hours to be printed.
      */
     public void showWelcomeMessage(ConfigParameter configParameter) {
-        showToUser(Messages.MESSAGE_HELLO_FROM_DUKE,
-                Messages.MESSAGE_HELLO + configParameter.getName(),
+        showToUser(Messages.MESSAGE_HELLO + configParameter.getName(),
                 Messages.MESSAGE_SHOW_HOURS + configParameter.getRecommendedHours());
         out.print(Messages.MESSAGE_PROMPT_COMMAND);
     }

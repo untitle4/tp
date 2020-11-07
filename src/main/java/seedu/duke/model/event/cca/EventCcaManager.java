@@ -61,7 +61,7 @@ public class EventCcaManager extends EventDataManager {
             throw new MissingParameterException("'/n', '/s' and '/e'");
         }
 
-        final String[] ccaDetails = userInput.trim().split("\\/");
+        final String[] ccaDetails = userInput.trim().split("/");
 
         logger.log(Level.INFO, "splitting user input into description, start date and end date");
         String ccaDescription = ccaDetails[1].substring(1).trim();
@@ -146,7 +146,7 @@ public class EventCcaManager extends EventDataManager {
 
     @Override
     public void setDone(String[] userInputs) {
-        int ccaIndex = 0;
+        int ccaIndex;
         logger.log(Level.INFO, "initialising setting cca as done");
 
         try {
