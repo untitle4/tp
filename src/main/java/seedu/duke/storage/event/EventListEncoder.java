@@ -10,10 +10,19 @@ import seedu.duke.model.event.tuition.EventTuition;
 import java.util.ArrayList;
 
 //@@author durianpancakes
+
+/**
+ * Class responsible for the encoding of Events to String for writing to the data file
+ */
 public class EventListEncoder {
     public EventListEncoder() {
     }
 
+    /**
+     * Encodes an ArrayList of Events into an ArrayList of Strings
+     * @param eventList ArrayList of Events to be encoded
+     * @return ArrayList of encoded Strings to be written to data file
+     */
     public ArrayList<String> encodeEventList(ArrayList<Event> eventList) {
         ArrayList<String> encodedEvents = new ArrayList<>();
 
@@ -24,6 +33,12 @@ public class EventListEncoder {
         return encodedEvents;
     }
 
+    /**
+     * Encode an Event to String
+     *
+     * @param event Event to be encoded
+     * @return String containing the encoded Event
+     */
     private String encodeEventToString(Event event) {
         String result = "";
         DateTimeParser dateTimeParser = new DateTimeParser();
