@@ -13,7 +13,7 @@ import seedu.duke.storage.event.EventStorageManager;
 import seedu.duke.ui.ConfigManager;
 import seedu.duke.ui.UserInterface;
 
-public class Duke {
+public class Main {
     public static final String EVENT_FILE_NAME = "/events.txt";
     public static final String QUIZ_FILE_NAME = "/quiz.txt";
     public static final String CONTACT_FILE_NAME = "/contact.txt";
@@ -26,12 +26,12 @@ public class Duke {
     private ConfigManager configManager;
     private Model model;
 
-    private boolean active;
+    private boolean isActive;
 
-    public Duke() throws StorageCorruptedException {
+    public Main() throws StorageCorruptedException {
         userInterface = UserInterface.getInstance();
         initializeStorageManagers();
-        active = true;
+        isActive = true;
         loadModel();
     }
 
@@ -40,7 +40,7 @@ public class Duke {
      */
     public static void main(String[] args) {
         try {
-            new Duke().run();
+            new Main().run();
         } catch (StorageCorruptedException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
         }
@@ -51,8 +51,8 @@ public class Duke {
         configManager.getIntroductoryVariables(configManager.getConfigParameter());
         userInterface.showWelcomeMessage(configManager.getConfigParameter());
 
-        while (active) {
-            active = userInterface.runUI(model, eventStorageManager, quizStorageManager, contactStorageManager);
+        while (isActive) {
+            isActive = userInterface.runUi(model, eventStorageManager, quizStorageManager, contactStorageManager);
         }
 
         // Exit Message

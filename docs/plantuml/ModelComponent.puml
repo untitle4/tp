@@ -10,17 +10,17 @@ hide members
 
 package Model {
 
-    class "{abstract}\nModelMain"
-    class "{abstract}\nModelManager"
+'    class "{abstract}\nModelMain"
+'    class "{abstract}\nModelManager"
 
-    class "<<interface>>\ninteractable"
-    class "<<interface>>\nEventManagerInteractable"
+'    class "<<interface>>\ninteractable"
 
     class Model
 
     Package Quiz {
 '        class Quiz
         class QuizManager
+        class "<<interface>>\nQuizInteractable"
     }
 
     Package Event {
@@ -32,21 +32,26 @@ package Model {
 '        class Cca
 '        class TestManager
 '        class Test
-'        class TuitionManager
+        class IndividualManager
 '        class Tuition
-        class "{abstract}\nEventDataManager"
+'        class "{abstract}\nEventDataManager"
+        class "<<interface>>\nEventManagerInteractable"
+        class "<<interface>>\nEventInteractable"
     }
 
     Package Contact {
 '        class Contact
         class ContactManager
+        class "<<interface>>\nContactInteractable"
     }
 }
 
-"{abstract}\nModelManager" -up-|> "{abstract}\nModelMain"
-EventManager -up-|> "{abstract}\nModelMain"
-"{abstract}\nModelManager" .right.|> "<<interface>>\ninteractable"
-"{abstract}\nEventDataManager" -up-|> "{abstract}\nModelManager"
+'"{abstract}\nModelManager" -up-|> "{abstract}\nModelMain"
+'EventManager -up-|> "{abstract}\nModelMain"
+'"{abstract}\nModelManager" ..|> "<<interface>>\ninteractable"
+'"{abstract}\nEventDataManager" -up-|> "{abstract}\nModelManager"
+QuizManager ..|> "<<interface>>\nQuizInteractable"
+ContactManager ..|> "<<interface>>\nContactInteractable"
 
 Model ---> ContactManager
 Model ---> EventManager
@@ -56,7 +61,7 @@ Model ---> QuizManager
 'EventManager --> ClassManager
 'EventManager --> CcaManager
 'EventManager --> TestManager
-'EventManager --> TuitionManager
+EventManager --> IndividualManager
 'ClassManager --> Class
 'CcaManager --> Cca
 'TestManager --> Test
@@ -65,9 +70,11 @@ Model ---> QuizManager
 'Cca --|> "{abstract}\nEvent"
 'Test --|> "{abstract}\nEvent"
 'Tuition --|> "{abstract}\nEvent"
-ContactManager --|> "{abstract}\nModelManager"
-QuizManager --|> "{abstract}\nModelManager"
-EventManager --|> "{abstract}\nEventDataManager"
-EventManager --|> "<<interface>>\nEventManagerInteractable"
+'ContactManager --|> "{abstract}\nModelManager"
+'QuizManager --|> "{abstract}\nModelManager"
+'EventManager --|> "{abstract}\nEventDataManager"
+EventManager ..|> "<<interface>>\nEventManagerInteractable"
+IndividualManager ..|> "<<interface>>\nEventInteractable"
+note bottom of IndividualManager : IndividualManager can be either\nClass, CCA, Test or Tuition
 
 @enduml

@@ -33,6 +33,7 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 box "Controller" #LightSalmon
 participant ControlManager
@@ -53,14 +54,11 @@ activate DeleteCommand
 DeleteCommand -> DataManager: delete()
 activate DataManager
 DataManager -> DataManager: getClassStatement()
-activate DataManager
-
-
-
+activate DataManager #salmon
 DataManager -> UserInterface: showToUser()
 activate UserInterface
-
 UserInterface --> DataManager
+DataManager --> DataManager
 deactivate DataManager
 deactivate UserInterface
 DataManager --> DeleteCommand

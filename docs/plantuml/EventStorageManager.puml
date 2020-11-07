@@ -14,7 +14,7 @@ class EventStorageManager #Tan {
     + loadData():EventParameter
 }
 
-StorageManager --|> EventStorageManager
+EventStorageManager --|> StorageManager
 
 class EventListDecoder #Tan {
     + EventListEncoder()

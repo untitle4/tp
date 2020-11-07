@@ -2,6 +2,7 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 box "Controller" #LightSalmon
 participant ControlManager
@@ -16,9 +17,10 @@ box "UserInterface" #skyblue
 participant UserInterface
 end box
 
-
+-> ControlManager
 activate ControlManager
 ControlManager -> ControlManager : refreshQuizzes()
+activate ControlManager #salmon
 ControlManager -> QuizStorageManager : saveData()
 activate QuizStorageManager
 QuizStorageManager -> QuizListEncoder : encodeQuizList()
@@ -31,6 +33,9 @@ ControlManager -> UserInterface : showToUser()
 activate UserInterface
 UserInterface --> ControlManager
 deactivate UserInterface
+ControlManager --> ControlManager
+deactivate ControlManager
+<-- ControlManager
 deactivate ControlManager
 
 @enduml
