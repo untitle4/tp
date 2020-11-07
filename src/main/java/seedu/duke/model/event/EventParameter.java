@@ -3,6 +3,9 @@ package seedu.duke.model.event;
 import java.util.ArrayList;
 
 //@@author AndreWongZH
+/**
+ * Represents the data that is returned when EventStorageManager loads data.
+ */
 public class EventParameter {
     private final ArrayList<Event> ccas;
     private final ArrayList<Event> tests;
@@ -22,21 +25,6 @@ public class EventParameter {
         this.tests = tests;
         this.classes = classes;
         this.tuitions = tuitions;
-    }
-
-    //@@author Aliciaho
-    public ArrayList<Event> getEventMasterList() {
-        ArrayList<Event> ccas = getCcas();
-        ArrayList<Event> tests = getTests();
-        ArrayList<Event> classes = getClasses();
-        ArrayList<Event> tuitions = getTuitions();
-
-        ArrayList<Event> masterList = new ArrayList<>(ccas);
-        masterList.addAll(tests);
-        masterList.addAll(classes);
-        masterList.addAll(tuitions);
-
-        return masterList;
     }
 
     public ArrayList<Event> getCcas() {

@@ -1,6 +1,7 @@
 package seedu.duke.controller.command;
 
 import seedu.duke.controller.parser.CommandType;
+import seedu.duke.unused.DoneCommand;
 
 //@@author AndreWongZH
 /**

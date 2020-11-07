@@ -16,6 +16,20 @@ import java.util.logging.Logger;
 public class QuizManager extends ModelManager implements QuizInteractable {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 9;
+    public static final int INDEX_QUESTION = 1;
+    public static final int INDEX_OP1 = 2;
+    public static final int INDEX_OP2 = 3;
+    public static final int INDEX_OP3 = 4;
+    public static final int INDEX_OP4 = 5;
+    public static final int INDEX_ANS = 6;
+    public static final int INDEX_EXP = 7;
+    public static final int OFFSET_QUESTION = 1;
+    public static final int OFFSET_OPTION = 2;
+    public static final int OFFSET_ANS = 1;
+    public static final int OFFSET_EXP = 3;
+    public static final int ANS_MIN = 1;
+    public static final int ANS_MAX = 4;
+    public static final String EMPTY_STRING = " ";
     private final ArrayList<Quiz> quizzes;
     private final ArrayList<Quiz> lastIncorrectQuizzes = new ArrayList<>();
     private final ArrayList<Integer> lastIncorrectAnswers = new ArrayList<>();
@@ -254,12 +268,13 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     /**
      * Adds a quiz to the ArrayList of quizzes.
      * Extracts the question, options, explanations if any before adding it as a quiz.
+     * If user command contains extra parameters, inform the user and return.
      *
      * @param userInput The input entered by the user.
      * @throws EmptyParameterException If there are missing parameters after the prefix.
      */
     @Override
-    public void add(String userInput) throws EmptyParameterException {
+    public void add(String userInput) throws EmptyParameterException, NumberFormatException {
         if (!userInput.contains(" /q ")) {
             userInterface.showToUser("question not found");
             throw new EmptyParameterException();
@@ -291,29 +306,38 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     //@@author AndreWongZH
     //Refactored by durianpancakes
-    private Quiz parseQuizQuestion(String[] separatedInputs) throws EmptyParameterException {
-        String question = separatedInputs[1].substring(1).trim();
-        String option1 = separatedInputs[2].substring(2).trim();
-        String option2 = separatedInputs[3].substring(2).trim();
-        String option3 = separatedInputs[4].substring(2).trim();
-        String option4 = separatedInputs[5].substring(2).trim();
-        String answer = separatedInputs[6].substring(1).trim();
+    /**
+     * Extracts out the question, options, answers and explanation from user input.
+     * If there is no explanation given, explanation will be empty string by default.
+     *
+     * @param separatedInputs An array string of user's input.
+     * @return A Quiz object.
+     * @throws EmptyParameterException If parameters are empty spaces.
+     * @throws NumberFormatException If answer index is not between 1 and 4.
+     */
+    private Quiz parseQuizQuestion(String[] separatedInputs) throws EmptyParameterException, NumberFormatException {
+        String question = separatedInputs[INDEX_QUESTION].substring(OFFSET_QUESTION).trim();
+        String option1 = separatedInputs[INDEX_OP1].substring(OFFSET_OPTION).trim();
+        String option2 = separatedInputs[INDEX_OP2].substring(OFFSET_OPTION).trim();
+        String option3 = separatedInputs[INDEX_OP3].substring(OFFSET_OPTION).trim();
+        String option4 = separatedInputs[INDEX_OP4].substring(OFFSET_OPTION).trim();
+        String answer = separatedInputs[INDEX_ANS].substring(OFFSET_ANS).trim();
 
         String explanation = "";
 
-        if (separatedInputs.length > 7) {
-            explanation = separatedInputs[7].substring(3).trim();
+        if (separatedInputs.length > INDEX_EXP) {
+            explanation = separatedInputs[INDEX_EXP].substring(OFFSET_EXP).trim();
         }
 
-        if (question.equals(" ") || option1.equals(" ") || option2.equals(" ")
-                || option3.equals(" ") || option4.equals(" ") || answer.equals(" ")) {
+        if (question.equals(EMPTY_STRING) || option1.equals(EMPTY_STRING) || option2.equals(EMPTY_STRING)
+                || option3.equals(EMPTY_STRING) || option4.equals(EMPTY_STRING) || answer.equals(EMPTY_STRING)) {
             logger.log(Level.WARNING, "question or options or answer is empty");
             throw new EmptyParameterException();
         }
 
         int answerInInt = Integer.parseInt(answer);
 
-        if (answerInInt > 4 || answerInInt < 1) {
+        if (answerInInt > ANS_MAX || answerInInt < ANS_MIN) {
             throw new NumberFormatException();
         }
 

@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 public class DateTimeParser {
 
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
+    public static final int MAX_HHMM = 2400;
 
     /**
      * Get the suffix for each day.
@@ -104,7 +105,7 @@ public class DateTimeParser {
             throw new ParseException("Invalid datetime", 0);
         }
         
-        if (Integer.parseInt(matcher.group(1)) >  2400) {
+        if (Integer.parseInt(matcher.group(1)) > MAX_HHMM) {
             throw new ParseException("Invalid datetime", 0);
         }
     }

@@ -12,6 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author AndreWongZH
+/**
+ * Represents the process of filtering events by date and getting all the required events for listing.
+ */
 public class ListSchedule {
     private final ArrayList<Event> classes;
     private final ArrayList<Event> ccas;
@@ -41,6 +44,15 @@ public class ListSchedule {
         this.configParameter = configParameter;
     }
 
+    /**
+     * Returns an ArrayList of type string to be printed to user.
+     * If user input is null then get all events to be printed.
+     * If user input is not null then convert it into a calendar object before filtering by date.
+     *
+     * @return An ArrayList of string to be printed out.
+     * @throws EmptyListException If the array list to be returned is empty.
+     * @throws ParseException If user input cannot be able to covert into calendar object.
+     */
     public ArrayList<String> getPrintableEvents() throws EmptyListException, ParseException {
         logger.log(Level.INFO, "starting to convert events instance to strings");
         ArrayList<String> printedEvents = new ArrayList<>();

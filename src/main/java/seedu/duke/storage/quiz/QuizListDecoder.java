@@ -14,8 +14,16 @@ import static java.time.temporal.ChronoUnit.DAYS;
  * to initialize the quiz list.
  */
 public class QuizListDecoder {
+    public static final int NUM_OF_DAYS = -2;
 
     //@@author AndreWongZH
+    /**
+     * Reads and extracts out the information from quiz storage.
+     * Checks is any quizzes that have not been attempted since the last 2 days, notify user if so.
+     *
+     * @param encodedQuizList An array list of quizzes in string.
+     * @return An arraylist of type quiz stored in the text file.
+     */
     public ArrayList<Quiz> decodeQuizList(ArrayList<String> encodedQuizList) {
         final ArrayList<Quiz> decodedQuizzes = new ArrayList<>();
         for (String encodedQuiz : encodedQuizList) {
@@ -24,7 +32,7 @@ public class QuizListDecoder {
 
         for (Quiz quiz : decodedQuizzes) {
             long numDays = DAYS.between(LocalDate.now(), quiz.getLastAccessed());
-            if (numDays <= -2) {
+            if (numDays <= NUM_OF_DAYS) {
                 Notify.create()
                         .title("Plan&score Notification")
                         .text("you have outdated quizzes! Attempt them now!")
@@ -37,6 +45,7 @@ public class QuizListDecoder {
         return decodedQuizzes;
     }
 
+    //@@author untitle4
     private Quiz decodeQuizFromString(String encodedQuiz) {
         final String[] data = encodedQuiz.trim().split("\\|");
 

@@ -80,7 +80,7 @@ public class ControlManager {
                 return commandType;
             }
 
-            // Only extract model for certain commands(add, delete, list, find, quiz, done).
+            // Only extract model for certain commands(add, delete, list, find, quiz, done, set).
             if (doesRequireModel(commandType)) {
                 logger.log(Level.INFO, "Extracting model");
                 modelType = new ModelParser(userInput).extractModel();
@@ -165,6 +165,9 @@ public class ControlManager {
         return isAdd || isDelete || isDone || isList || isFind || isQuiz || isSet;
     }
 
+    /**
+     * Saves the contacts data in ContactManager into contact.txt
+     */
     private void refreshContacts() {
         try {
             contactStorageManager.saveData(model.getContactManager().getContacts(), Duke.CONTACT_FILE_NAME);
