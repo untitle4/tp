@@ -259,7 +259,7 @@ public class DateTimeParser {
      */
     public long getDuration(Calendar startDateCalendar, Calendar endDateCalendar) {
         logger.log(Level.INFO, "getting duration between two dates");
-        long timeDurationInMinutes = 0;
+        long timeDurationInMinutes;
         timeDurationInMinutes = Duration.between(startDateCalendar.toInstant(),
                 endDateCalendar.toInstant()).toMinutes();
         return timeDurationInMinutes;

@@ -81,7 +81,7 @@ public class EventTestManager extends EventDataManager {
         }
 
         userInput.replaceAll("\\s+","");
-        final String[] testDetails = userInput.trim().split("\\/");
+        final String[] testDetails = userInput.trim().split("/");
 
         logger.log(Level.INFO, "splitting user input into description, start date and end date");
         String testDescription = testDetails[1].substring(1).trim().replaceAll("\\s+"," ");
@@ -150,7 +150,7 @@ public class EventTestManager extends EventDataManager {
      */
     @Override
     public void delete(String[] userInputs) throws IndexOutOfBoundsException {
-        int testNumber = 0;
+        int testNumber;
         logger.log(Level.INFO, "initialising deleting of a test");
 
         try {
@@ -198,7 +198,7 @@ public class EventTestManager extends EventDataManager {
      */
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {
-        int testNumber = 0;
+        int testNumber;
         logger.log(Level.INFO, "initialising setting test as done");
 
         try {

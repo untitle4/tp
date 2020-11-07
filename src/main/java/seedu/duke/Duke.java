@@ -47,6 +47,7 @@ public class Duke {
     }
 
     public void run() {
+        userInterface.showToUser(Messages.MESSAGE_HELLO_FROM_DUKE);
         configManager.getIntroductoryVariables(configManager.getConfigParameter());
         userInterface.showWelcomeMessage(configManager.getConfigParameter());
 

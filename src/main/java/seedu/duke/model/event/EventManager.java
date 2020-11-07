@@ -36,7 +36,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public static final int INPUT_LENGTH_NO_PARAMS = 2;
     public static final int INPUT_LENGTH_ONE_PARAM = 3;
     public static final int DATE_PARAM_INDEX = 2;
-    public static final String INPUT_NEXTWEEK = "nextweek";
+    public static final String INPUT_NEXT_WEEK = "nextweek";
 
     private static EventClassManager eventClassManager;
     private static EventTestManager eventTestManager;
@@ -128,7 +128,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                     eventTuitionManager.getTuitions(), configParameter);
 
             if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
-                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXTWEEK)) {
+                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXT_WEEK)) {
                 userInterface.printWeekSchedule(this, ListWeekCommand.NEXT_WEEK);
             } else if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
                     && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_WEEK)) {
@@ -277,12 +277,8 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
             return true;
         }
 
-        if (startInputCalendar.equals(startReferenceCalendar)
-                || endInputCalendar.equals(endReferenceCalendar)) {
-            return true;
-        }
-
-        return false;
+        return startInputCalendar.equals(startReferenceCalendar)
+                || endInputCalendar.equals(endReferenceCalendar);
     }
 
     /**
@@ -303,16 +299,16 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
      * Get the total number of productive minutes for a particular day.
      *
      * @param event Event that user is trying to add
-     * @param eventArrayList Masterlist containing all the events
+     * @param eventArrayList Master List containing all the events
      * @return total number of minutes for that day
      */
     private long getNoOfMinutes(Event event, ArrayList<Event> eventArrayList) {
         long noOfMinutes = 0;
-        for (int i = 0; i < eventArrayList.size(); i++) {
-            if (dateTimeParser.isDateEqual(eventArrayList.get(i).getStart(),
+        for (Event value : eventArrayList) {
+            if (dateTimeParser.isDateEqual(value.getStart(),
                     event.getStart())) {
-                noOfMinutes += dateTimeParser.getDuration(eventArrayList.get(i).getStart(),
-                        eventArrayList.get(i).getEnd());
+                noOfMinutes += dateTimeParser.getDuration(value.getStart(),
+                        value.getEnd());
             }
         }
         return noOfMinutes;

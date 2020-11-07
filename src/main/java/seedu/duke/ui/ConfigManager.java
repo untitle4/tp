@@ -2,7 +2,6 @@ package seedu.duke.ui;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
-import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.ModelMain;
 import seedu.duke.storage.config.ConfigStorageManager;
@@ -36,14 +35,16 @@ public class ConfigManager extends ModelMain {
         return configParameter;
     }
 
+
+    /**
+     * Load date from configStorageManager to configParam.
+     *
+     * @return configParam containing data from configStorageManager
+     */
     private ConfigParameter getConfig() {
         ConfigParameter configParameter = null;
         assert configParameter == null;
-        try {
-            configParameter = configStorageManager.loadData();
-        } catch (StorageCorruptedException e) {
-            userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
-        }
+        configParameter = configStorageManager.loadData();
         return configParameter;
     }
 
@@ -53,8 +54,7 @@ public class ConfigManager extends ModelMain {
             userInterface.showToUser(Messages.MESSAGE_PROMPT_NAME);
             String userName = userInterface.getUserCommand();
             configParameter.setName(userName);
-            userInterface.showToUser(Messages.MESSAGE_HELLO + userName, "");
-            int recommendedHours = 0;
+            int recommendedHours;
             recommendedHours = getInputHours();
             configParameter.setRecommendedHours(recommendedHours);
             configParameter.setHasProgramRan(true);
@@ -76,6 +76,12 @@ public class ConfigManager extends ModelMain {
         return recommendedHours;
     }
 
+
+    /**
+     * Save the new ConfigParam into ConfigStorageManager.
+     *
+     * @param configParameter configParam storing the new inputs
+     */
     private void saveConfigParameter(ConfigParameter configParameter) {
         try {
             configStorageManager.saveData(configParameter);
