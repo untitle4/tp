@@ -5,10 +5,6 @@ activate ":ListCommand"
 activate ":EventManager"
 ":EventManager" -> ":EventManager" : listSchedule()
 activate ":EventManager"
-":EventManager" -> ":ListSchedule"** : constructor()
-activate ":ListSchedule"
-":ListSchedule" --> ":EventManager"
-deactivate ":ListSchedule"
 ":EventManager" -> ":UserInterface" : printWeekSchedule(this)
 activate ":UserInterface"
 ":UserInterface" -> ":CalendarWeekRenderer"** : constructor()
