@@ -169,6 +169,7 @@ public class Messages {
     public static final String MESSAGE_QUIZ_LIST_HEADER = "Here are the questions in your quiz list:";
     public static final String MESSAGE_QUIZ_MISSING_ANSWER = ":( OOPS! Please enter your answer for the "
             + "question above!";
+    public static final String MESSAGE_NO_QUIZ_ATTEMPTS = "You have not taken a quiz yet!";
 
     public static String invalid_number_of_quiz_questions_message(int size) {
         return ":( OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")";

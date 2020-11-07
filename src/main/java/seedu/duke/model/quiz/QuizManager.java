@@ -40,6 +40,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public static final String OPTION_THREE_PREFIX = " /o3 ";
     public static final String OPTION_FOUR_PREFIX = " /o4 ";
     public static final String EXPLANATION_PREFIX = " /exp ";
+    public static int QUIZ_ATTEMPTS = 0;
     private final ArrayList<Quiz> quizzes;
     private final ArrayList<Quiz> lastIncorrectQuizzes = new ArrayList<>();
     private final ArrayList<Integer> lastIncorrectAnswers = new ArrayList<>();
@@ -91,6 +92,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
                 // If user inputs a valid number of quiz questions (within range of 1 to quiz size)
                 handleValidNumOfQuestions();
+                QUIZ_ATTEMPTS++;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_HELP_COMMAND);
@@ -391,8 +393,10 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      * Show the incorrect quizzes in the user's last attempt.
      */
     public void recordedQuizzes() {
-        if (lastIncorrectQuizzes.size() == 0) {
+        if (lastIncorrectQuizzes.size() == 0 && QUIZ_ATTEMPTS != 0) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_FULL_MARKS);
+        } else if (QUIZ_ATTEMPTS == 0) {
+            userInterface.showToUser(Messages.MESSAGE_NO_QUIZ_ATTEMPTS);
         } else {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_WRONG_QUESTIONS_HEADER);
             for (int i = 0; i < lastIncorrectQuizzes.size(); i++) {

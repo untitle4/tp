@@ -74,7 +74,6 @@ public class ConfigManager extends ModelMain {
             userInterface.showToUser(Messages.MESSAGE_PROMPT_NAME);
             String userName = userInterface.getUserCommand();
             configParameter.setName(userName);
-            userInterface.showToUser(Messages.MESSAGE_HELLO + userName, "");
             int recommendedHours;
             recommendedHours = getInputHours();
             configParameter.setRecommendedHours(recommendedHours);
