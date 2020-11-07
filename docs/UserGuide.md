@@ -3,7 +3,8 @@
 - [2. About this User Guide](#about-this-user-guide)
 - [3. How to user this User Guide](#how-to-use-this-user-guide)
 - [4. Quick Start](#quick-start)
-- [5. Commands](#commands)
+- [5. Initialisation](#initialisation)
+- [6. Commands](#commands)
     - [Command Format](#command-format)
     - [Category Types](#category-types)
   - [Help:](#viewing-help-help) `help`
@@ -20,7 +21,7 @@
     - [Tuition Category](#category-tuition)
       - [Add a tuition:](#adding-a-tuition-add-tuition) `add tuition`
       - [Delete a tuition:](#deleting-a-tuition-delete-tuition) `delete tuition`
-    - [List schedule:](#listing-out-schedule-list-event) `list event`
+    - [List schedule:](#listing-out-schedule-list-event-<today/[date]/week/nextweek>) `list event <today/[date]/week/nextweek>`
     - [Find event:](#finding-an-event-find-event) `find event`
   - [SCORE component of Plan&Score:](#score-component-of-planscore)
     - [Take a quiz:](#taking-a-quiz-quiz)`quiz`
@@ -35,10 +36,10 @@
     - [List a contact:](#listing-out-contacts-list-contact) `list contact`
     - [Find a contact:](#finding-a-contact-find-contact) `find contact`
   - [Exit the program:](#exits-program-bye) `bye`
-- [6. Saving Data](#saving-data)
-- [7. FAQ](#faq)
-- [8. Troubleshooting](#troubleshooting)
-- [9. Command Summary](#command-summary)
+- [7. Saving Data](#saving-data)
+- [8. FAQ](#faq)
+- [9. Troubleshooting](#troubleshooting)
+- [10. Command Summary](#command-summary)
 
 ## Introduction
 
@@ -83,6 +84,27 @@ The highlights and symbols used in this document are as follow:
 3. Run the program by entering `java -jar plan.jar` in your terminal.
 4. You can exit the program by running `bye`.
 
+##Initialisation
+When you first open Plan&Score, you will be greeted by a welcome message as well as 
+a prompt asking for your name. This is as shown below.
+
+![introduction](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/intro_screen.png)
+
+Type in your name and press 'Enter' to proceed.
+
+![keyname](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/name.png)
+
+Afterwards, you will be prompt to enter the number of recommended hours that 
+you wish to accomplish per day. Key in your desired number of hours 
+and press 'Enter' to proceed. 
+
+![keyhours](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/hours.png)
+
+This is the end of the initialisation process. You can now enjoy the rest of Plan&Score's
+amazing features!
+
+![finishintro](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/finish_intro.png)
+
 ## Commands
 
 #### Command Format
@@ -114,51 +136,8 @@ Firstly, type ‘help’ in the command line as seen below, and press ‘Enter�
 
 The output containing all the different commands is seen in the console.
 
-![help2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help2.png)
-
-Example Output:
-
-```
-Hello! Here is a list of commands you can try:
-
-	1. Add class: 'add class /n [name of class] /s [start date-time of class] /e [end date-time of class]'
-	2. Delete class: 'delete class [class number]'
-
-	3. Add cca: 'add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]'
-	4. Delete cca: 'delete cca [cca number]'
-
-	5. Add test: 'add test /n [name of test] /s [start date-time of test] /e [end date-time of test]'
-	6. Delete test: 'delete test [test number]'
-
-	7. Add tuition: 'add tuition /n [name of tuition] /s [start date-time of tuition] /e start date-time of tuition] /l [location of tuition]'
-	8. Delete tuition: 'delete tuition [tuition number]'
-
-	9. List events (class, test, cca, tuition): 'list'
-
-	10. Find relevant event(s): 'find [keyword(s)]'
-
-	11. Add contact: 'add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]'
-	12. Delete contact: 'delete contact [contact number]'
-	13. List contact: 'list contact'
-    14. Find contact: 'find contact [keyword(s)]'
-
-	15. Take Mathematics quiz: 'quiz [no. of questions]'
-	16. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /exp (explanation)'
-	17. Delete quiz question: 'delete quiz [question number]'
-	18. List quiz questions: 'list quiz'
-	19. Find quiz questions: 'find quiz [keyword(s)]'
-	20. Display former incorrect quiz question records: 'quiz record'
-
-	21. Exit program: 'bye'
-
-
-	NOTE:
-	1. Please enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]
-	e.g. 2020-08-19 1300
-
-	2. For command 16 (Add quiz question), the 'explanation' field is OPTIONAL
-
-```
+![help2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help_command_1.png)
+![help2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help_command_2.png)
 
 ### Plan component of Plan&Score
 It allows you to plan and track the following category types:
@@ -179,11 +158,11 @@ Firstly, type `add` in the command line as seen below, followed by the category 
 
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-![addclass2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/addclass2.png)
+![addclass2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_class_2.png)
 
-<br>
+<br />
 WARNING:
-<br>
+<br />
 
 * `[name of class]` can be in a natural language format and
 cannot contain '/'. 
@@ -195,23 +174,29 @@ cannot contain '/'.
 
 ![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-![class_error](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/class_error.png)
+![addclasserror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/class_error.png)
 
 
-<br>
+<br />
 
 ##### Deleting a class: `delete class`
 Allows you to delete a class based on its index in the list.
 
 Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the class. Afterwards, key in the corresponding index of the class you would like to delete. Press ‘Enter’ to execute it.
+![deleteclass1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_class_1.png)
 
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+![deleteclass2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_class_2.png)
 
-<br>
+<br />
 WARNING:
-<br>
+<br />
 
 * `[class number]` must be written in numerals.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![deleteclasserror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_class_error.png)
 
 <br>
 
@@ -221,11 +206,15 @@ Allow you to add a new cca with a name, date and time.
 
 Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the description of the cca as well as its start and end date and time. Press ‘Enter’ to execute it.
 
+![addCca1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_cca_1.png)
+
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-<br>
+![addCca2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_cca_2.png)
+
+<br />
 WARNING:
-<br>
+<br />
 
 * `[name of cca]` can be in a natural language format and
 cannot contain '/'. 
@@ -234,23 +223,34 @@ cannot contain '/'.
 
 * Parameters `/n`, `/s`, `/e` cannot be swapped.
 
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-<br>
+![addccaerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_cca_error.png)
+
+<br />
 
 ##### Deleting a cca: `delete cca`
 Allows you to delete a cca based on its index in the list.
 
 Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the corresponding index of the cca you would like to delete. Press ‘Enter’ to execute it.
 
+![deleteCca1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_cca_1.png)
+
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-<br>
+![deleteCca2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_cca_2.png)
+
+<br />
 WARNING:
-<br>
+<br />
 
 * `[cca number]` must be written in numerals.
 
-<br>
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![deleteccaerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_cca_error.png)
+
+<br />
 
 #### Category: Test
 ##### Adding a test: `add test`
@@ -258,11 +258,15 @@ Allows you to add a new test with a name, date and time.
 
 Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the test. Afterwards, key in the description of the test as well as its start and end date and time. Press ‘Enter’ to execute it.
 
+![addtest1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_test_1.png)
+
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-<br>
+![addtest2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_test_2.png)
+
+<br />
 WARNING:
-<br>
+<br />
 
 * `[name of test]` can be in a natural language format and
 cannot contain '/'. 
@@ -271,22 +275,34 @@ cannot contain '/'.
 
 * Parameters `/n`, `/s`, `/e` cannot be swapped.
 
-<br>
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![addtesterror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_test_error.png)
+
+<br />
 
 ##### Deleting a test: `delete test`
 Allows you to delete a test event based on its index in the list.
 
 Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the test. Afterwards, key in the corresponding index of the test you would like to delete. Press ‘Enter’ to execute it.
 
+![deletetest1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_test_1.png)
+
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-<br>
+![deletetest2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_test_2.png)
+
+<br />
 WARNING:
-<br>
+<br />
 
 * `[test number]` must be written in numerals.
 
-<br>
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![deletetesterror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_test_error.png)
+
+<br />
 
 #### Category: Tuition
 ##### Adding a tuition: `add tuition`
@@ -294,11 +310,15 @@ Allows you to add a new test with a name, date, time, location.
 
 Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the description of the tuition, its start and end date and time as well as its location. Press ‘Enter’ to execute it.
 
+![addtuition1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_tuition_1.png)
+
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-<br>
+![addtuition2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_tuition_2.png)
+
+<br />
 WARNING:
-<br>
+<br />
 
 * `[name of tuition]` and `[location of tuition]` can be in a natural language format and
 cannot contain '/'. 
@@ -307,56 +327,97 @@ cannot contain '/'.
 
 * Parameters `/n`, `/s`, `/e`, `/l` cannot be swapped.
 
-<br>
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![addtuitionerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_tuition_error.png)
+
+<br />
 
 ##### Deleting a tuition: `delete tuition`
 Allows you to delete a tuition based on its index in the list.
 
 Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the corresponding index of the tuition you would like to delete. Press ‘Enter’ to execute it.
 
+![deletetuition1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_tuition_1.png)
+
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-<br>
+![deletetuition2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_tuition_2.png)
+
+<br />
 WARNING:
-<br>
+<br />
 
 * `[tuition number]` must be written in numerals.
 
-<br>
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-#### Listing out schedule: `list event`
+![deletetuitionerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_tuition_error.png)
+
+<br />
+
+#### Listing out schedule: `list event <today/[date]/week/nextweek>`
 
 Allows you to list out the entire schedule for classes, ccas and tests.
 You can also choose to list today's schedule, the schedule
 for the week or the schedule for a specific date.
 
+##### List event: `list event`
 Firstly, to list out all events, type ‘list event’ in the command line, as seen below. Press ‘Enter’ to execute it.
+
+![listevent1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_1.png)
 
 The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
+![listevent2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_2.png)
+
 <br />
+
+##### List event today: `list event today`
 
 Secondly, to list out all events today, type ‘list event today’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
+![listeventtoday1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_today_1.png)
+
 The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly. The index of the event is corresponding to its index in the entire list.
+
+![listeventtoday2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_today_2.png)
 
 <br />
 
+##### List event week: `list event week`
+
 Thirdly, to list out all events in the current week, type ‘list event week’ in the command line, as seen below. Press ‘Enter’ to execute it.
+
+![listeventweek1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_week_1.png)
 
 The output is seen in the console. It is displayed in a calendar format for easier readability. The events are listed according to time. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-<br>
+![listeventweek2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_week_2.png)
+
+<br />
+
+##### List event next week: `list event nextweek`
 
 Fourthly, to list out all events in the next week, type ‘list event nextweek’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
+![listeventnextweek1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_nextweek_1.png)
+
 The output is seen in the console. It is displayed in a calendar format for easier readability. The events are listed according to time. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-<br>
+![listeventnextweek2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_nextweek_2.png)
+
+<br />
+
+##### List event date: `list event [desired date]`
 
 Lastly, to list out all events on a particular date, type ‘list event [desired date]’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
+![listeventdate1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_date_1.png)
+
 The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly. The index of the event is corresponding to its index in the entire list.
+
+![listeventdate2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_date_2.png)
 
 <br />
 
@@ -618,13 +679,13 @@ Example Output:
 ### Exits Program: `bye`
 Exits the program once you have finished using it.
 
-Format: `bye`
+Type the command and press 'Enter' to execute it.
 
-Example Output:
+![bye1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/bye_1.png)
 
-```
-    BYE BYE! SEE YOU NEXT TIME! :3
-```
+The output is shown in the console. It contains a simple goodbye message.
+
+![bye2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/bye_2.png)
 
 ## Saving Data
 Plan&Score saves all your data automatically after every command. There is no need to save manually.
