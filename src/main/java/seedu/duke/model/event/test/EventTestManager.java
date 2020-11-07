@@ -112,7 +112,7 @@ public class EventTestManager extends EventDataManager {
                 logger.log(Level.INFO, "added test to ArrayList");
 
                 userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
-                        "  " + tests.get(getTestListSize() - 1).toString());
+                        tests.get(getTestListSize() - 1).toString());
                 getTaskStatement(eventTest);
 
                 sortList();
@@ -157,7 +157,7 @@ public class EventTestManager extends EventDataManager {
             testNumber = Integer.parseInt(userInputs[2]);
 
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_SUCCESS,
-                    "  " + tests.get(testNumber - 1));
+                    tests.get(testNumber - 1).toString());
             Event eventTest = tests.get(testNumber - 1);
             tests.remove(testNumber - 1);
             logger.log(Level.INFO, "deleted test from ArrayList");
