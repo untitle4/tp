@@ -1,23 +1,25 @@
 @startuml
 
-ListCommand -> EventManager : execute()
-activate EventManager
-EventManager -> EventManager : listSchedule()
-activate EventManager
-EventManager -> ListSchedule** : constructor()
-activate ListSchedule
-ListSchedule --> EventManager
-deactivate ListSchedule
-EventManager -> UserInterface : printWeekSchedule(this)
-activate UserInterface
-UserInterface -> CalendarWeekRenderer** : constructor()
-activate CalendarWeekRenderer
-CalendarWeekRenderer -> UserInterface
-destroy CalendarWeekRenderer
-deactivate UserInterface
-UserInterface --> EventManager
-deactivate EventManager
-EventManager --> ListCommand
+":ListCommand" -> ":EventManager" : execute()
+activate ":ListCommand"
+activate ":EventManager"
+":EventManager" -> ":EventManager" : listSchedule()
+activate ":EventManager"
+":EventManager" -> ":ListSchedule"** : constructor()
+activate ":ListSchedule"
+":ListSchedule" --> ":EventManager"
+deactivate ":ListSchedule"
+":EventManager" -> ":UserInterface" : printWeekSchedule(this)
+activate ":UserInterface"
+":UserInterface" -> ":CalendarWeekRenderer"** : constructor()
+activate ":CalendarWeekRenderer"
+":CalendarWeekRenderer" -> ":UserInterface"
+destroy ":CalendarWeekRenderer"
+":UserInterface" --> ":EventManager"
+deactivate ":UserInterface"
+deactivate ":EventManager"
+":EventManager" --> ":ListCommand"
 deactivate
+deactivate ":ListCommand"
 
 @enduml

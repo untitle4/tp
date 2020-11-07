@@ -15,16 +15,21 @@ public class ContactManager extends ModelManager implements ContactInteractable 
     private static final int USER_INPUT_OFFSET = 12;
     private static final int EMPTY_SIZE = 0;
     private static final String INPUT_SPACE = " ";
-    private final ArrayList<Contact> contacts = new ArrayList<>();
+    private final ArrayList<Contact> contacts;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
 
-    public ContactManager() {
+    public ContactManager(ArrayList<Contact> contacts) {
         userInterface = UserInterface.getInstance();
+        this.contacts = contacts;
     }
 
     public int getContactListSize() {
         return contacts.size();
+    }
+
+    public ArrayList<Contact> getContacts() {
+        return contacts;
     }
 
     //@@author untitle4
@@ -75,7 +80,7 @@ public class ContactManager extends ModelManager implements ContactInteractable 
 
         try {
             contactIndex = Integer.parseInt(userInput[2]);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER);
             return;
         } catch (IndexOutOfBoundsException e) {

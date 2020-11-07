@@ -7,7 +7,7 @@ hide circle
 hide members
 
 package UserInterface {
-    class UserInterface <<singleton>>
+    class UserInterface <singleton>
     class CalendarWeekRenderer
     class CalendarWeekRendererUtils
 

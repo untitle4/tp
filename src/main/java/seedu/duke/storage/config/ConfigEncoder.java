@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package seedu.duke.storage.config;
 
 import seedu.duke.model.ConfigParameter;
 

@@ -5,7 +5,7 @@ import seedu.duke.common.Messages;
 import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.ModelMain;
-import seedu.duke.storage.ConfigStorageManager;
+import seedu.duke.storage.config.ConfigStorageManager;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -18,7 +18,7 @@ public class ConfigManager extends ModelMain {
     public static final String CONFIG_FILE_NAME = "/config.txt";
     private final ConfigStorageManager configStorageManager;
     private static UserInterface userInterface;
-    private ConfigParameter configParameter;
+    private final ConfigParameter configParameter;
     private static ConfigManager INSTANCE = null;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
@@ -76,7 +76,7 @@ public class ConfigManager extends ModelMain {
      */
     public void getIntroductoryVariables(ConfigParameter configParameter) {
         logger.log(Level.INFO, "getting username and recommended hours from user");
-        if (configParameter.getHasProgramRan() == false) {
+        if (!configParameter.getHasProgramRan()) {
             userInterface.showToUser(Messages.MESSAGE_PROMPT_NAME);
             String userName = userInterface.getUserCommand();
             configParameter.setName(userName);

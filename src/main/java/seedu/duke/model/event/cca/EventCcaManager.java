@@ -2,7 +2,6 @@ package seedu.duke.model.event.cca;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
-import seedu.duke.exception.InvalidCommandException;
 import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
@@ -10,13 +9,9 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.model.event.EventManager;
-import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author untitle4
-
 /**
  * A manager of cca that executes all the commands related to cca.
  */
@@ -111,19 +105,16 @@ public class EventCcaManager extends EventDataManager {
                 for (Event clashedEvent : clashedEvents) {
                     userInterface.showToUser(clashedEvent.toString());
                 }
-                userInterface.showToUser("Please check the start and end inputs again!");
+                userInterface.showToUser(Messages.MESSAGE_PROMPT_CHECK_START_END_INPUTS);
 
             //If the recommended time exceeded, show the corresponding error message
             } else if (eventManager.didTimeExceed(cca)) {
-                userInterface.showToUser("Recommended time exceeded! CCA is not added!");
+                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED + " CCA is not added!");
             }
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | ParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
-        } catch (ParseException e) {
-            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
-                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -183,7 +174,7 @@ public class EventCcaManager extends EventDataManager {
     private void getCcaStatement(Event event) {
         String ccaStatement = getCcaListSize() <= 1 ? " cca" : " ccas";
         userInterface.showToUser("Now you have " + getCcaListSize() + ccaStatement + " in the list.");
-        userInterface.showToUser("Time left for this day: " + eventManager.getTimeLeft(event));
+        userInterface.showToUser(Messages.MESSAGE_TIME_LEFT_HEADER + eventManager.getTimeLeft(event));
     }
 
     private void sortList() {

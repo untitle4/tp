@@ -9,18 +9,13 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.model.event.EventManager;
-import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -111,19 +106,16 @@ public class EventTuitionManager extends EventDataManager {
                 for (Event clashedEvent : clashedEvents) {
                     userInterface.showToUser(clashedEvent.toString());
                 }
-                userInterface.showToUser("Please check the start and end inputs again!");
+                userInterface.showToUser(Messages.MESSAGE_PROMPT_CHECK_START_END_INPUTS);
 
             //If the recommended time exceeded, show the corresponding error message
             } else if (eventManager.didTimeExceed(eventTuition)) {
-                userInterface.showToUser("Recommended time exceeded! Tuition is not added!");
+                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED + " Tuition is not added!");
             }
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | ParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
-        } catch (ParseException e) {
-            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
-                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -136,7 +128,7 @@ public class EventTuitionManager extends EventDataManager {
             // Just to test if class index is valid - for exception use only
             tuitions.get(tuitionIndex - 1);
 
-            userInterface.showToUser("Noted. I've removed this tuition class: ",
+            userInterface.showToUser(Messages.MESSAGE_TUITION_DELETE_SUCCESS,
                     tuitions.get(tuitionIndex - 1).toString());
 
             // Deletes class from classes ArrayList
@@ -144,7 +136,7 @@ public class EventTuitionManager extends EventDataManager {
             tuitions.remove(tuitionIndex - 1);
             logger.log(Level.INFO, "Deletion of tuition class from ArrayList");
             userInterface.showToUser(getTuitionStatement(),
-                    "Time left for this day: " + eventManager.getTimeLeft(eventTuition));
+                    Messages.MESSAGE_TIME_LEFT_HEADER + eventManager.getTimeLeft(eventTuition));
         } catch (ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_TUITION_DELETE_ERROR_NO_NUMBER_GIVEN);
         } catch (IndexOutOfBoundsException e) {

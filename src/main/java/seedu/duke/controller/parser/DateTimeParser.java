@@ -1,15 +1,9 @@
 package seedu.duke.controller.parser;
 
 import seedu.duke.common.LogManager;
-import seedu.duke.model.event.Event;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
-import java.text.DateFormat;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;

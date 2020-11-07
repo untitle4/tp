@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package seedu.duke.storage.event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.cca.EventCca;
@@ -7,9 +7,7 @@ import seedu.duke.model.event.Event;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 
 //@@author durianpancakes
 public class EventListEncoder {

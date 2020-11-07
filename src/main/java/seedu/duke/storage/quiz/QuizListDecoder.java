@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package seedu.duke.storage.quiz;
 
 import dorkbox.notify.Notify;
 import seedu.duke.model.quiz.Quiz;
@@ -15,6 +15,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
  */
 public class QuizListDecoder {
 
+    //@@author AndreWongZH
     public ArrayList<Quiz> decodeQuizList(ArrayList<String> encodedQuizList) {
         final ArrayList<Quiz> decodedQuizzes = new ArrayList<>();
         for (String encodedQuiz : encodedQuizList) {

@@ -1,4 +1,4 @@
-package seedu.duke.storage;
+package seedu.duke.storage.event;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.StorageCorruptedException;
@@ -12,7 +12,6 @@ import seedu.duke.model.event.tuition.EventTuition;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 //@@author durianpancakes
 public class EventListDecoder {

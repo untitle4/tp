@@ -8,7 +8,7 @@ import seedu.duke.ui.ConfigManager;
 //@@author AndreWongZH
 /**
  * Represents a model object that stores volatile memory of the program data.
- * This consist of the eventManager, contactManager and quizManager.
+ * This consist of the eventManager, contactManager, quizManager and configManager.
  */
 public class Model {
     EventManager eventManager;

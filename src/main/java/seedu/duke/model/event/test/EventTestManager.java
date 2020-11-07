@@ -9,21 +9,17 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.model.event.EventManager;
-import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.ui.UserInterface;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+//@@author Aliciaho
 /**
  * <h2>TestManager test</h2>
  * Stores user's tests in an ArrayList of Event Test, named tests.
@@ -130,20 +126,17 @@ public class EventTestManager extends EventDataManager {
                 for (Event clashedEvent : clashedEvents) {
                     userInterface.showToUser(clashedEvent.toString());
                 }
-                userInterface.showToUser("Please check the start and end inputs again!");
+                userInterface.showToUser(Messages.MESSAGE_PROMPT_CHECK_START_END_INPUTS);
 
             //If the recommended time exceeded, show the corresponding error message
             } else if (eventManager.didTimeExceed(eventTest)) {
-                userInterface.showToUser("Recommended time exceeded! Test is not added!");
+                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED + " Test is not added!");
             }
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | ParseException e) {
             logger.log(Level.WARNING, "invalid date time inputted");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
-        } catch (ParseException e) {
-            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
-                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -192,7 +185,7 @@ public class EventTestManager extends EventDataManager {
         } else {
             userInterface.showToUser("Now you have " + getTestListSize() + " tests in the list.");
         }
-        userInterface.showToUser("Time left for this day: " + eventManager.getTimeLeft(event));
+        userInterface.showToUser(Messages.MESSAGE_TIME_LEFT_HEADER + eventManager.getTimeLeft(event));
     }
 
     /**
