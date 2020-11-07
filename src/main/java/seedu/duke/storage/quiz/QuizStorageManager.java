@@ -35,7 +35,7 @@ public class QuizStorageManager extends StorageManager {
 
     /**
      * Load the content of the quiz text file.
-     * @return
+     * @return An ArrayList of type quiz
      */
     public ArrayList<Quiz> loadData() {
         File quizFile = new File(DIRECTORY_FOLDER_PATH + fileName);

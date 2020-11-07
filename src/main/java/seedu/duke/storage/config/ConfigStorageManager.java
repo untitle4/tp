@@ -2,7 +2,6 @@ package seedu.duke.storage.config;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
-import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.UserInterface;
@@ -34,7 +33,7 @@ public class ConfigStorageManager extends StorageManager {
         Files.write(Path.of(DIRECTORY_FOLDER_PATH + fileName), Collections.singleton(encodedConfig));
     }
 
-    public ConfigParameter loadData() throws StorageCorruptedException {
+    public ConfigParameter loadData() {
         File eventFile = new File(DIRECTORY_FOLDER_PATH + fileName);
         logger.log(Level.INFO, "Loading storage...");
 
