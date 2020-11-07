@@ -7,7 +7,7 @@ quiz and contacts tracker. It is written in Java.
 ### Summary of Contributions
 * New Feature: Added the ability for Plan&Score to perform I/O operations with .txt files.
 * New Feature: Added the ability for Plan&Score to support Tuition events.
-* Code Contributed: https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=durianpancakes&tabRepo=AY2021S1-CS2113T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other
+* Code Contributed: [RepoSense link]https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=durianpancakes&tabRepo=AY2021S1-CS2113T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other
 * Enhancement to existing features: 
     * Added the ability for Plan&Score to display current and next week's events in a Week View format. 
         * What it does: Instead of listing events in a vertical list format, Plan&Score can list them in a 
