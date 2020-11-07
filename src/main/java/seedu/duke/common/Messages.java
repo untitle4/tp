@@ -158,17 +158,17 @@ public class Messages {
             + " quiz question? Enter 'help' to check the correct format!";
     public static final String MESSAGE_EMPTY_QUIZ_LIST = "Quiz list is empty. Add some!";
     public static final String MESSAGE_QUIZ_INDEX_OUT_OF_BOUND = "There is no such question in your quiz list!";
-    public static final String MESSAGE_QUIZ_QUESTION_NOT_FOUND = "Question not found";
-    public static final String MESSAGE_QUIZ_ANSWER_NOT_FOUND = "Answer not found";
+    public static final String MESSAGE_QUIZ_QUESTION_NOT_FOUND = "No question provided";
+    public static final String MESSAGE_QUIZ_ANSWER_NOT_FOUND = "No answer provided";
     public static final String MESSAGE_QUIZ_OPTIONS_NOT_FOUND = "Options not provided";
     public static final String MESSAGE_QUIZ_ADD_SUCCESSFUL = "Quiz question added!";
-    public static final String MESSAGE_QUIZ_INVALID_ANS_PROVIDED = "OOPS! Incorrect answer format! "
+    public static final String MESSAGE_QUIZ_INVALID_ANS_PROVIDED = ":( OOPS! Incorrect answer format! "
             + "Your answer can only be either 1, 2, 3 or 4!";
-    public static final String MESSAGE_QUIZ_FULL_MARKS = "Congratulations! You get full marks in your last attempt!";
+    public static final String MESSAGE_QUIZ_FULL_MARKS = "Congratulations! You got full marks in your last attempt!";
     public static final String MESSAGE_QUIZ_WRONG_QUESTIONS_HEADER = "Here are the incorrect questions "
             + "in your last quiz attempt:";
     public static final String MESSAGE_QUIZ_LIST_HEADER = "Here are the questions in your quiz list:";
-    public static final String MESSAGE_QUIZ_MISSING_ANSWER = "OOPS! Please enter your answer for the question above!";
+    public static final String MESSAGE_QUIZ_MISSING_ANSWER = ":( OOPS! Please enter your answer for the question above!";
 
     public static String invalid_number_of_quiz_questions_message(int size) {
         return ":( OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")";
