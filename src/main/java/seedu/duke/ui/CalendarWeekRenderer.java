@@ -9,7 +9,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
+import static seedu.duke.ui.CalendarWeekRendererUtils.*;
+
 //@@author durianpancakes
+
+/**
+ * Driver class for rendering the Week View of the `list event week` command
+ */
 public class CalendarWeekRenderer {
     private final EventManager eventManager;
     private final UserInterface userInterface;
@@ -17,12 +23,24 @@ public class CalendarWeekRenderer {
     public static final String EMPTY_STRING = "";
     private CalendarWeekRendererUtils utils;
 
+    /**
+     * Constructs a CalendarWeekRenderer instance.
+     * Automatically calls renderWeekSchedule() which produces the Week View
+     *
+     * @param eventManager EventManager instance for the usage of certain helper methods in the class
+     * @param listWeekCommand ListWeekCommand to identify if the current or next week is to be listed
+     */
     public CalendarWeekRenderer(EventManager eventManager, ListWeekCommand listWeekCommand) {
         this.eventManager = eventManager;
         this.userInterface = UserInterface.getInstance();
         renderWeekSchedule(listWeekCommand);
     }
 
+    /**
+     * Driver method to produce the Week View
+     *
+     * @param listWeekCommand ListWeekCommand to identify if the current or next week is to be listed
+     */
     private void renderWeekSchedule(ListWeekCommand listWeekCommand) {
         Calendar calendar = Calendar.getInstance();
         ArrayList<ArrayList<Event>> weekMasterList = new ArrayList<>();
@@ -51,9 +69,9 @@ public class CalendarWeekRenderer {
         // 6 spaces before each DAY_LABEL
         StringBuilder dayLabelString = new StringBuilder();
         for (int i = 0; i < DAYS_IN_WEEK; i++) {
-            dayLabelString.append(utils.getSpaces(6));
+            dayLabelString.append(utils.getSpaces(DAY_LABEL_SPACES_OFFSET));
             dayLabelString.append(utils.getDayLabel(i));
-            dayLabelString.append(utils.getSpaces(6));
+            dayLabelString.append(utils.getSpaces(DAY_LABEL_SPACES_OFFSET));
         }
 
         userInterface.showToUser(dayLabelString.toString());
@@ -67,9 +85,9 @@ public class CalendarWeekRenderer {
         // Printing DATE headers
         StringBuilder dateHeaderString = new StringBuilder();
         for (int i = 0; i < DAYS_IN_WEEK; i++) {
-            dateHeaderString.append(utils.getSpaces(5));
+            dateHeaderString.append(utils.getSpaces(DATE_LABEL_SPACES_OFFSET));
             dateHeaderString.append(utils.getDateLabel(daysOfWeek, i));
-            dateHeaderString.append(utils.getSpaces(5));
+            dateHeaderString.append(utils.getSpaces(DATE_LABEL_SPACES_OFFSET));
         }
         userInterface.showToUser(dateHeaderString.toString());
 
