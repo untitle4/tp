@@ -110,7 +110,7 @@ public class EventTuitionManager extends EventDataManager {
 
             //If the recommended time exceeded, show the corresponding error message
             } else if (eventManager.didTimeExceed(eventTuition)) {
-                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED + ", Tuition is not added!");
+                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED + " Tuition is not added!");
             }
         } catch (DateTimeParseException | ParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
