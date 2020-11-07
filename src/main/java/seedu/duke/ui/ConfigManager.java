@@ -58,7 +58,6 @@ public class ConfigManager extends ModelMain {
      */
     private ConfigParameter getConfig() {
         ConfigParameter configParameter = null;
-        assert configParameter == null;
         configParameter = configStorageManager.loadData();
         return configParameter;
     }
@@ -91,7 +90,6 @@ public class ConfigManager extends ModelMain {
      */
     private int getInputHours() {
         int recommendedHours = 0;
-        assert recommendedHours == 0;
         do {
             try {
                 userInterface.showToUser(Messages.MESSAGE_PROMPT_HOURS);

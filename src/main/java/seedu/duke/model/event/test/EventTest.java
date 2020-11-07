@@ -29,6 +29,11 @@ public class EventTest extends Event {
         return TEST_ICON;
     }
 
+    /**
+     * Convert event to readable format for user in form of icon + description + converted date time
+     *
+     * @return converted string
+     */
     @Override
     public String toString() {
         String result;

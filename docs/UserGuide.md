@@ -116,8 +116,6 @@ The output containing all the different commands is seen in the console.
 
 ![help2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help2.png)
 
-Format: `help`
-
 Example Output:
 
 ```
@@ -164,10 +162,10 @@ Hello! Here is a list of commands you can try:
 
 ### Plan component of Plan&Score
 It allows you to plan and track the following category types:
-Class
-Cca
-Test
-Tuitions
+* Class
+* Cca
+* Test
+* Tuitions
 
 ![indexinfo](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/indexinfo.png)
 
@@ -183,48 +181,37 @@ The output is seen in the console. The date and time is converted to a more read
 
 ![addclass2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/addclass2.png)
 
-Format: `add class /n [name of class] /s [start date-time of class] /e [end date-time of class]`
+<br>
+WARNING:
+<br>
 
 * `[name of class]` can be in a natural language format and
 cannot contain '/'. 
 
-* `[start date-time of class]` and `[end date-time of class]` must be in
+* `[start date-time of class]` and `[end date-time of class]` must be in yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
-yyyy-mm-dd HHMM format with HHMM in 24-hour format.
+* Parameters `/n`, `/s`, `/e` cannot be swapped.
+
 
 ![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-![invalid date](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_class_invalid_date_given.PNG)
+![class_error](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/class_error.png)
 
-
-Examples: `add class /n Math /s 2020-08-19 1300 /e 2020-08-19 1400`
-
-Example Output:
-
-```
-    Got it. I've added this class:
-    [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
-    Now you have 1 class in the list.
-```
 
 <br>
 
 ##### Deleting a class: `delete class`
 Allows you to delete a class based on its index in the list.
 
-Format: `delete class [class number]`
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the class. Afterwards, key in the corresponding index of the class you would like to delete. Press ‘Enter’ to execute it.
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+<br>
+WARNING:
+<br>
 
 * `[class number]` must be written in numerals.
-
-Examples: `delete class 1`
-
-Example Output:
-```
-    Noted. I've removed this class:
-    [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
-    Now you have 0 classes in the list.
-```
-
 
 <br>
 
@@ -232,35 +219,36 @@ Example Output:
 ##### Adding a cca: `add cca`
 Allow you to add a new cca with a name, date and time.
 
-Format: `add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]`
+Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the description of the cca as well as its start and end date and time. Press ‘Enter’ to execute it.
 
-Examples: `add cca /n Basketball training /s 2020-09-19 1900 /e 2020-09-19 2100`
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-Example Output:
-```
-    Got it. I've added this cca:
-    [CCA] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
-    Now you have 1 cca in the list.
-```
+<br>
+WARNING:
+<br>
+
+* `[name of cca]` can be in a natural language format and
+cannot contain '/'. 
+
+* `[start date-time of cca]` and `[end date-time of cca]` must be in yyyy-mm-dd HHMM format with HHMM in 24-hour format.
+
+* Parameters `/n`, `/s`, `/e` cannot be swapped.
+
 
 <br>
 
 ##### Deleting a cca: `delete cca`
 Allows you to delete a cca based on its index in the list.
 
-Format: `delete cca [cca number]`
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the corresponding index of the cca you would like to delete. Press ‘Enter’ to execute it.
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+<br>
+WARNING:
+<br>
 
 * `[cca number]` must be written in numerals.
-
-Examples: `delete cca 1`
-
-Example Output:
-
-```
-Noted. I've removed this cca:
-[CCA] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
-Now you have 0 ccas in the list.
-```
 
 <br>
 
@@ -268,36 +256,35 @@ Now you have 0 ccas in the list.
 ##### Adding a test: `add test`
 Allows you to add a new test with a name, date and time.
 
-Format: `add test /n [name of test] /s [start date-time of test] /e [end date-time of test]`
+Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the test. Afterwards, key in the description of the test as well as its start and end date and time. Press ‘Enter’ to execute it.
 
-Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-Example Output:
+<br>
+WARNING:
+<br>
 
-```
-Got it. I've added this test:
-[TEST] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
-Now you have 1 test in the list.
-```
+* `[name of test]` can be in a natural language format and
+cannot contain '/'. 
+
+* `[start date-time of test]` and `[end date-time of test]` must be in yyyy-mm-dd HHMM format with HHMM in 24-hour format.
+
+* Parameters `/n`, `/s`, `/e` cannot be swapped.
 
 <br>
 
 ##### Deleting a test: `delete test`
 Allows you to delete a test event based on its index in the list.
 
-Format: `delete test [test number]`
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the test. Afterwards, key in the corresponding index of the test you would like to delete. Press ‘Enter’ to execute it.
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+<br>
+WARNING:
+<br>
 
 * `[test number]` must be written in numerals.
-
-Examples: `delete test 1`
-
-Example Output:
-
-```
-Noted. I've removed this test:
-[TEST] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
-Now you have 0 tests in the list.
-```
 
 <br>
 
@@ -305,36 +292,35 @@ Now you have 0 tests in the list.
 ##### Adding a tuition: `add tuition`
 Allows you to add a new test with a name, date, time, location.
 
-Format: `add tuition /n [name of tuition] /s [start date-time of test] /e [end date-time of test] /l [location of tuition]`
+Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the description of the tuition, its start and end date and time as well as its location. Press ‘Enter’ to execute it.
 
-Examples: `add tuition /n Math /s 2020-10-3 1300 /e 2020-10-3 1400 /l home`
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-Example Output:
+<br>
+WARNING:
+<br>
 
-```
-Got it. I've added this tuition:
-[TUITION] Math from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
-Now you have 1 tuition in the list.
-```
+* `[name of tuition]` and `[location of tuition]` can be in a natural language format and
+cannot contain '/'. 
+
+* `[start date-time of tuition]` and `[end date-time of tuition]` must be in yyyy-mm-dd HHMM format with HHMM in 24-hour format.
+
+* Parameters `/n`, `/s`, `/e`, `/l` cannot be swapped.
 
 <br>
 
 ##### Deleting a tuition: `delete tuition`
 Allows you to delete a tuition based on its index in the list.
 
-Format: `delete tuition [tuition number]`
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the corresponding index of the tuition you would like to delete. Press ‘Enter’ to execute it.
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+<br>
+WARNING:
+<br>
 
 * `[tuition number]` must be written in numerals.
-
-Examples: `delete tuition 1`
-
-Example Output:
-
-```
-Noted. I've removed this tuition:
-[TUITION] Math tuition from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
-Now you have 0 tuitions in the list.
-```
 
 <br>
 
@@ -344,104 +330,34 @@ Allows you to list out the entire schedule for classes, ccas and tests.
 You can also choose to list today's schedule, the schedule
 for the week or the schedule for a specific date.
 
-Format: `list event`
+Firstly, to list out all events, type ‘list event’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
-Example Output:
+The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-```
-   Classes:
-   1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
-   2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
-   CCA:
-   1. [CCA] Frisbee from 19th Sep, 06:00 PM to 19th Sep, 07:00 PM
-   2. [CCA] Basketball Camp from 21st Sep, 01:00 PM to 22nd Sep, 03:00 PM
-   Test:
-   1. [TEST] Math from 26th Sep, 11:00 AM to 26th Sep, 12:00 PM
-```
 <br />
 
-Format: `list event today`
+Secondly, to list out all events today, type ‘list event today’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
-Example Output: For date, 2020-08-19
+The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly. The index of the event is corresponding to its index in the entire list.
 
-```   
-    Classes:
-    1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
-    2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
-    CCA:
-    1. [CCA] Frisbee from 19th Aug, 06:00 PM to 19th Aug, 07:00 PM
-    Test:
-    1. [TEST] Math from 19th Aug, 11:00 AM to 19th Aug, 12:00 PM
-```
 <br />
 
-Format: `list event week`
+Thirdly, to list out all events in the current week, type ‘list event week’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
-Example Output: For a particular week, 2020-11-02 to 2020-11-08
-
-```
-              [MON]            [TUE]            [WED]            [THU]            [FRI]            [SAT]            [SUN]      
-                              [TODAY]                                                                                          
-             [02-11]          [03-11]          [04-11]          [05-11]          [06-11]          [07-11]          [08-11]     
-        1.[CLASS]        1.[TEST]         1.[TEST]         1.[CLASS]        1.[CCA]          1.[CLASS]                         
-          demo presen...   math             science          english          basketball       science                         
-          12:00PM-02:00PM  09:00AM-11:00AM  09:00AM-11:00AM  11:00AM-12:00PM  09:00AM-11:00AM  02:00PM-03:00PM                 
-        
-                           4h0m break                        6h0m break       0h0m break                                       
-        
-                         2.[CCA]                           2.[CCA]          2.[CLASS]                                          
-                           basketball                        basketball       math                                             
-                           03:00PM-05:00PM                   06:00PM-07:00PM  11:00AM-12:00PM                                  
-        
-                                                                              1h0m break                                       
-        
-                                                                            3.[CLASS]                                          
-                                                                              PE                                               
-                                                                              01:00PM-02:00PM
-```
+The output is seen in the console. It is displayed in a calendar format for easier readability. The events are listed according to time. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
 <br>
 
-Format: `list event nextweek`
+Fourthly, to list out all events in the next week, type ‘list event nextweek’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
-Example Output: For a particular week, 2020-11-02 to 2020-11-08
-
-```
-              [MON]            [TUE]            [WED]            [THU]            [FRI]            [SAT]            [SUN]      
-                              [TODAY]                                                                                          
-             [02-11]          [03-11]          [04-11]          [05-11]          [06-11]          [07-11]          [08-11]     
-        1.[CLASS]        1.[TEST]         1.[TEST]         1.[CLASS]        1.[CCA]          1.[CLASS]                         
-          demo presen...   math             science          english          basketball       science                         
-          12:00PM-02:00PM  09:00AM-11:00AM  09:00AM-11:00AM  11:00AM-12:00PM  09:00AM-11:00AM  02:00PM-03:00PM                 
-        
-                           4h0m break                        6h0m break       0h0m break                                       
-        
-                         2.[CCA]                           2.[CCA]          2.[CLASS]                                          
-                           basketball                        basketball       math                                             
-                           03:00PM-05:00PM                   06:00PM-07:00PM  11:00AM-12:00PM                                  
-        
-                                                                              1h0m break                                       
-        
-                                                                            3.[CLASS]                                          
-                                                                              PE                                               
-                                                                              01:00PM-02:00PM
-```
+The output is seen in the console. It is displayed in a calendar format for easier readability. The events are listed according to time. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
 <br>
 
-Format: `list event [date]`
+Lastly, to list out all events on a particular date, type ‘list event [desired date]’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
-Example Output: For date, 2020-08-19
+The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly. The index of the event is corresponding to its index in the entire list.
 
-```  
-    Classes:
-    1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
-    2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
-    CCA:
-    1. [CCA] Frisbee from 19th Aug, 06:00 PM to 19th Aug, 07:00 PM
-    Test:
-    1. [TEST] Math from 19th Aug, 11:00 AM to 19th Aug, 12:00 PM
-```
 <br />
 
 #### Finding an event: `find event`
