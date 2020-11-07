@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 //@@author durianpancakes
+
+/**
+ * Singleton UserInterface class containing methods to obtain input from user, and prints output to use
+ */
 public class UserInterface {
     private static UserInterface userInterface = null;
     private final Scanner in;
@@ -27,6 +31,11 @@ public class UserInterface {
         this.out = System.out;
     }
 
+    /**
+     * Method to obtain the singleton instance of UserInterface
+     *
+     * @return UserInterface instance
+     */
     public static UserInterface getInstance() {
         if (userInterface == null) {
             userInterface = new UserInterface();
@@ -35,6 +44,11 @@ public class UserInterface {
         return userInterface;
     }
 
+    /**
+     * Displays the Welcome message to the user
+     *
+     * @param configParameter ConfigParameter containing the recommended hours to be printed
+     */
     public void showWelcomeMessage(ConfigParameter configParameter) {
         showToUser(Messages.MESSAGE_HELLO_FROM_DUKE,
                 Messages.MESSAGE_HELLO + configParameter.getName(),
@@ -42,6 +56,11 @@ public class UserInterface {
         out.print(Messages.MESSAGE_PROMPT_COMMAND);
     }
 
+    /**
+     * Obtains the user's command
+     *
+     * @return String containing the user's command
+     */
     public String getUserCommand() {
         // Adds an additional row space for better readability
         showEmptyLine();
@@ -51,10 +70,19 @@ public class UserInterface {
         return in.nextLine();
     }
 
+    /**
+     * Helper function to show an empty line
+     */
     private void showEmptyLine() {
         showToUser("");
     }
 
+    /**
+     * Method to display multiple Strings.
+     *
+     * @param message String containing message to be printed. Can be separated by "," to be printed on another
+     *                line
+     */
     public void showToUser(String... message) {
         for (String m : message) {
             out.println(m);
@@ -112,6 +140,13 @@ public class UserInterface {
     }
 
     //@@author durianpancakes
+
+    /**
+     * Method to print the week schedule of the user
+     * @param eventManager EventManager instance for CalendarWeekRenderer to access helper methods
+     * @param listWeekCommand ListWeekCommand to identify the week to be printed. CURRENT_WEEK for this week,
+     *                        NEXT_WEEK for the next week
+     */
     public void printWeekSchedule(EventManager eventManager, ListWeekCommand listWeekCommand) {
         new CalendarWeekRenderer(eventManager, listWeekCommand);
     }
