@@ -20,6 +20,7 @@ public class UserInterface {
     private static UserInterface userInterface = null;
     private final Scanner in;
     private final PrintStream out;
+    public static final String CURSOR = ">> ";
 
     private UserInterface() {
         this.in = new Scanner(System.in);
@@ -35,16 +36,23 @@ public class UserInterface {
     }
 
     public void showWelcomeMessage(ConfigParameter configParameter) {
-        showToUser(Messages.MESSAGE_HELLO_FROM_DUKE);
-
-        showToUser(Messages.MESSAGE_HELLO + configParameter.getName(),
+        showToUser(Messages.MESSAGE_HELLO_FROM_DUKE,
+                Messages.MESSAGE_HELLO + configParameter.getName(),
                 Messages.MESSAGE_SHOW_HOURS + configParameter.getRecommendedHours());
-
-        showToUser(Messages.MESSAGE_PROMPT_COMMAND);
+        out.print(Messages.MESSAGE_PROMPT_COMMAND);
     }
 
     public String getUserCommand() {
+        // Adds an additional row space for better readability
+        showEmptyLine();
+        // Indicator for user input:
+        out.print(CURSOR);
+
         return in.nextLine();
+    }
+
+    private void showEmptyLine() {
+        showToUser("");
     }
 
     public void showToUser(String... message) {

@@ -76,7 +76,7 @@ public class ConfigManager extends ModelMain {
      */
     public void getIntroductoryVariables(ConfigParameter configParameter) {
         logger.log(Level.INFO, "getting username and recommended hours from user");
-        if (configParameter.getHasProgramRan() == false) {
+        if (!configParameter.getHasProgramRan()) {
             userInterface.showToUser(Messages.MESSAGE_PROMPT_NAME);
             String userName = userInterface.getUserCommand();
             configParameter.setName(userName);
