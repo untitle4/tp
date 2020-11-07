@@ -80,10 +80,7 @@ public class ContactManager extends ModelManager implements ContactInteractable 
 
         try {
             contactIndex = Integer.parseInt(userInput[2]);
-        } catch (NumberFormatException e) {
-            userInterface.showToUser(Messages.MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER);
-            return;
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_CONTACT_DELETE_ERROR_NON_NUMBER);
             return;
         } catch (IndexOutOfBoundsException e) {
