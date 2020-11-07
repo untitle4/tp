@@ -37,6 +37,12 @@ public class Messages {
             + "You can either 'list event' or 'list quiz' or 'list contact'";
     public static final String MESSAGE_RECOMMENDED_TIME_EXCEEDED = "Recommended time exceeded!";
     public static final String MESSAGE_PROMPT_CHECK_START_END_INPUTS = "Please check the start and end inputs again!";
+    public static final String MESSAGE_ERROR_START_AFTER_END = "The start time given is later "
+            + "than the end time given!\n"
+            + "Please check your inputs again!";
+    public static final String MESSAGE_ERROR_EQUALS_END = "The start time given is the same as "
+            + "the end time given!\n"
+            + "Please check your inputs again!";
     //@@author AndreWongZH
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
     public static final String MESSAGE_MISSING_MODEL = ":( Oops! Model type is missing! "
