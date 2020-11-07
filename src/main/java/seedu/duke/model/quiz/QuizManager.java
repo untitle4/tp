@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 public class QuizManager extends ModelManager implements QuizInteractable {
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 9;
+    public static final int INDEX_OFFSET = 1;
     private final ArrayList<Quiz> quizzes;
     private final ArrayList<Quiz> lastIncorrectQuizzes = new ArrayList<>();
     private final ArrayList<Integer> lastIncorrectAnswers = new ArrayList<>();
@@ -109,7 +110,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             assignCorrectnessLogo(l);
 
             // Print out all quiz questions, user's answers, correctness, correct answers and explanations
-            userInterface.showToUser("Question " + (l + 1) + ": ",
+            userInterface.showToUser("Question " + (l + INDEX_OFFSET) + ": ",
                     quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
                             .getUserAnswers().get(l), correctnessLogo));
         }
@@ -181,7 +182,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public int testForValidInput(int questionCounter) {
         // Print out each question
         userInterface.showToUser("",
-                "Question " + (questionCounter + 1) + ": ",
+                "Question " + (questionCounter + INDEX_OFFSET) + ": ",
                 quizzes.get(quizIndexes.get(questionCounter)).printQuizQuestion());
 
         // Create a Scanner object
@@ -244,9 +245,9 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
 
         userInterface.showToUser("Noted. I've removed this quiz question:",
-                quizzes.get(quizIndex - 1).toString());
+                quizzes.get(quizIndex - INDEX_OFFSET).toString());
 
-        quizzes.remove(quizIndex - 1);
+        quizzes.remove(quizIndex - INDEX_OFFSET);
         getQuizStatement();
     }
 
@@ -386,7 +387,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         } else {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_LIST_HEADER);
             for (int i = 0; i < quizzes.size(); i++) {
-                userInterface.showToUser("Question " + (i + 1) + ":",
+                userInterface.showToUser("Question " + (i + INDEX_OFFSET) + ":",
                         quizzes.get(i).toString());
             }
         }
