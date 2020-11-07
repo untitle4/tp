@@ -109,9 +109,9 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             assignCorrectnessLogo(l);
 
             // Print out all quiz questions, user's answers, correctness, correct answers and explanations
-            System.out.println("Question " + (l + 1) + ": ");
-            System.out.println(quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
-                    .getUserAnswers().get(l), correctnessLogo));
+            userInterface.showToUser("Question " + (l + 1) + ": ",
+                    quizzes.get(quizIndexes.get(l)).printPostQuizQuestion(userAnswerManager
+                            .getUserAnswers().get(l), correctnessLogo));
         }
 
         // Print out quiz score
@@ -180,9 +180,9 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     //@@author elizabethcwt
     public int testForValidInput(int questionCounter) {
         // Print out each question
-        System.out.println();
-        System.out.println("Question " + (questionCounter + 1) + ": ");
-        System.out.print(quizzes.get(quizIndexes.get(questionCounter)).printQuizQuestion());
+        userInterface.showToUser("",
+                "Question " + (questionCounter + 1) + ": ",
+                quizzes.get(quizIndexes.get(questionCounter)).printQuizQuestion());
 
         // Create a Scanner object
         Scanner in = new Scanner(System.in);
@@ -194,7 +194,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             // Assert that the user's input is ""
             assert (userInput.equals(""));
 
-            System.out.println("OOPS! Please enter your answer for the question above!\n");
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_MISSING_ANSWER);
         } else {
 
             boolean b = userInput.equals("1") || userInput.equals("2") || userInput.equals("3")
@@ -211,10 +211,10 @@ public class QuizManager extends ModelManager implements QuizInteractable {
                 questionCounter++;
                 return questionCounter;
             } else {
-                userInterface.showToUser("OOPS! Incorrect answer format! "
-                        + "Your answer can only be either 1, 2, 3 or 4!\n");
+                userInterface.showToUser(Messages.MESSAGE_QUIZ_INVALID_ANS_PROVIDED);
             }
         }
+
         return questionCounter;
     }
 
@@ -243,8 +243,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             return;
         }
 
-
-        userInterface.showToUser("Noted. I've removed this quiz question: \n" + quizzes.get(quizIndex - 1));
+        userInterface.showToUser("Noted. I've removed this quiz question:",
+                quizzes.get(quizIndex - 1).toString());
 
         quizzes.remove(quizIndex - 1);
         getQuizStatement();
@@ -260,31 +260,39 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      */
     @Override
     public void add(String userInput) throws EmptyParameterException {
-        if (!userInput.contains(" /q ")) {
-            userInterface.showToUser("question not found");
+        final String questionPrefix = " /q ";
+        final String answerPrefix = " /a ";
+        final String optionOnePrefix = " /o1 ";
+        final String optionTwoPrefix = " /o2 ";
+        final String optionThreePrefix = " /o3 ";
+        final String optionFourPrefix = " /o4 ";
+        final String explanationPrefix = " /exp ";
+
+        if (!userInput.contains(questionPrefix)) {
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_QUESTION_NOT_FOUND);
             throw new EmptyParameterException();
         }
-        if (!userInput.contains(" /a ")) {
-            userInterface.showToUser("answer not found");
+        if (!userInput.contains(answerPrefix)) {
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_ANSWER_NOT_FOUND);
             throw new EmptyParameterException();
         }
-        if (!userInput.contains(" /o1 ") && !userInput.contains(" /o2 ")
-                && !userInput.contains(" /o3 ") && !userInput.contains(" /o4 ")) {
-            userInterface.showToUser("options not provided");
+        if (!userInput.contains(optionOnePrefix) && !userInput.contains(optionTwoPrefix)
+                && !userInput.contains(optionThreePrefix) && !userInput.contains(optionFourPrefix)) {
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_OPTIONS_NOT_FOUND);
             throw new EmptyParameterException();
         }
         String[] separatedInputs = userInput.trim().split("/");
 
-        if (separatedInputs.length > 6 && !userInput.contains(" /exp ")) {
+        if (separatedInputs.length > 6 && !userInput.contains(explanationPrefix)) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
             return;
         }
 
         try {
             quizzes.add(parseQuizQuestion(separatedInputs));
-            userInterface.showToUser("Quiz question added!\n");
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_ADD_SUCCESSFUL);
         } catch (NumberFormatException e) {
-            userInterface.showToUser("OOPS! Incorrect answer format! Your answer can only be either 1, 2, 3 or 4!\n");
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_INVALID_ANS_PROVIDED);
             throw new EmptyParameterException();
         }
     }
@@ -352,15 +360,15 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      */
     public void recordedQuizzes() {
         if (lastIncorrectQuizzes.size() == 0) {
-            userInterface.showToUser("Congratulations! You get full marks in your last attempt!");
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_FULL_MARKS);
         } else {
-            userInterface.showToUser("Here are the incorrect quizzes in your last quiz attempt:\n");
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_WRONG_QUESTIONS_HEADER);
             for (int i = 0; i < lastIncorrectQuizzes.size(); i++) {
                 userInterface.showToUser(lastIncorrectQuizzes.get(i).printQuizQuestion());
-                userInterface.showToUser("Your answer: (" + lastIncorrectAnswers.get(i) + ")");
-                userInterface.showToUser("Correct answer: (" + lastIncorrectQuizzes.get(i).getAnswer() + ")\n");
+                userInterface.showToUser("Your answer: (" + lastIncorrectAnswers.get(i) + ")",
+                        "Correct answer: (" + lastIncorrectQuizzes.get(i).getAnswer() + ")");
                 if (!lastIncorrectQuizzes.get(i).getExplanation().equals("")) {
-                    userInterface.showToUser("Explanation: " + lastIncorrectQuizzes.get(i).getExplanation() + "\n");
+                    userInterface.showToUser("Explanation: " + lastIncorrectQuizzes.get(i).getExplanation());
                 }
             }
         }
@@ -374,11 +382,12 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     @Override
     public void list() {
         if (quizzes.size() == EMPTY_SIZE) {
-            userInterface.showToUser("Quiz list is empty. Add some!\n");
+            userInterface.showToUser(Messages.MESSAGE_EMPTY_QUIZ_LIST);
         } else {
-            userInterface.showToUser("Here are the questions in your quiz list:");
+            userInterface.showToUser(Messages.MESSAGE_QUIZ_LIST_HEADER);
             for (int i = 0; i < quizzes.size(); i++) {
-                userInterface.showToUser("Question " + (i + 1) + ":\n" + quizzes.get(i));
+                userInterface.showToUser("Question " + (i + 1) + ":" ,
+                        quizzes.get(i).toString());
             }
         }
     }
