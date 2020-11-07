@@ -14,6 +14,13 @@ public class AddCommand extends Command {
         super(userInput);
     }
 
+    /**
+     * Runs add command on corresponding model type.
+     *
+     * @param modelMain A model type to be modified or read.
+     * @throws EmptyParameterException If command if has empty parameters
+     * @throws MissingParameterException If command is lacking prefixes.
+     */
     @Override
     public void execute(ModelMain modelMain) throws EmptyParameterException, MissingParameterException {
         ModelManager modelManager = (ModelManager) modelMain;

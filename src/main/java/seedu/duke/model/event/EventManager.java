@@ -37,13 +37,14 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public static final int INPUT_LENGTH_ONE_PARAM = 3;
     public static final int DATE_PARAM_INDEX = 2;
     public static final String INPUT_NEXTWEEK = "nextweek";
+
     private static EventClassManager eventClassManager;
     private static EventTestManager eventTestManager;
     private static EventCcaManager eventCcaManager;
     private static EventTuitionManager eventTuitionManager;
+    private final ConfigParameter configParameter;
     private final UserInterface userInterface;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
-    private final ConfigParameter configParameter;
     DateTimeParser dateTimeParser = new DateTimeParser();
 
     public EventManager(EventParameter eventParameter, ConfigParameter configParameter) {
@@ -99,6 +100,13 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     }
 
     //@@author AndreWongZH
+    /**
+     * Lists out user's events based on everything, date or week.
+     * Checks if there are any extra parameters and will inform user if there is.
+     * The dateParam here passed into listSchedule can be null to indicate list everything.
+     *
+     * @param userInput The input entered by the user.
+     */
     @Override
     public void list(String userInput) {
         ArrayList<String> printedEvents;

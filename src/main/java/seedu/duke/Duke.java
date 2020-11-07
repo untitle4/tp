@@ -18,27 +18,21 @@ public class Duke {
     public static final String QUIZ_FILE_NAME = "/quiz.txt";
     public static final String CONTACT_FILE_NAME = "/contact.txt";
 
-    private final EventStorageManager eventStorageManager;
-    private final QuizStorageManager quizStorageManager;
-    private final ContactStorageManager contactStorageManager;
-    private final ConfigManager configManager;
     private static UserInterface userInterface;
-    private final Model model;
+
+    private EventStorageManager eventStorageManager;
+    private QuizStorageManager quizStorageManager;
+    private ContactStorageManager contactStorageManager;
+    private ConfigManager configManager;
+    private Model model;
 
     private boolean active;
 
     public Duke() throws StorageCorruptedException {
         userInterface = UserInterface.getInstance();
-        eventStorageManager = new EventStorageManager(EVENT_FILE_NAME);
-        quizStorageManager = new QuizStorageManager(QUIZ_FILE_NAME);
-        contactStorageManager = new ContactStorageManager(CONTACT_FILE_NAME);
-        configManager = ConfigManager.getInstance();
+        initializeStorageManagers();
         active = true;
-        ContactManager contactManager = new ContactManager(contactStorageManager.loadData());
-        QuizManager quizManager = new QuizManager(quizStorageManager.loadData());
-        EventParameter eventParameter = eventStorageManager.loadData();
-        EventManager eventManager = new EventManager(eventParameter, configManager.getConfigParameter());
-        model = new Model(eventManager, contactManager, quizManager, configManager);
+        loadModel();
     }
 
     /**
@@ -62,5 +56,30 @@ public class Duke {
 
         // Exit Message
         userInterface.showToUser(Messages.MESSAGE_BYE);
+    }
+
+    //@@author AndreWongZH
+    /**
+     * Sets up the eventManager, quizManager, contactManager and configManager to be saved into model.
+     *
+     * @throws StorageCorruptedException If unable to load data correctly.
+     */
+    private void loadModel() throws StorageCorruptedException {
+        ContactManager contactManager = new ContactManager(contactStorageManager.loadData());
+        QuizManager quizManager = new QuizManager(quizStorageManager.loadData());
+        EventParameter eventParameter = eventStorageManager.loadData();
+        EventManager eventManager = new EventManager(eventParameter, configManager.getConfigParameter());
+        model = new Model(eventManager, contactManager, quizManager, configManager);
+    }
+
+    //@@author AndreWongZH
+    /**
+     * Sets up storage managers to get data from text file storage.
+     */
+    private void initializeStorageManagers() {
+        eventStorageManager = new EventStorageManager(EVENT_FILE_NAME);
+        quizStorageManager = new QuizStorageManager(QUIZ_FILE_NAME);
+        contactStorageManager = new ContactStorageManager(CONTACT_FILE_NAME);
+        configManager = ConfigManager.getInstance();
     }
 }

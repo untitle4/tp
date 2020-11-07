@@ -13,11 +13,19 @@ import seedu.duke.model.quiz.QuizManager;
  */
 public class ListCommand extends Command {
     public static final String INPUT_SPACE = " ";
+    public static final int INPUT_LENGTH_TWO = 2;
 
     public ListCommand(String userInput) {
         super(userInput);
     }
 
+    /**
+     * Runs list command on corresponding model type.
+     *
+     * @param modelMain A model type to be modified or read.
+     * @throws IncompleteListCommandException If model is missing.
+     * @throws ExtraParameterException If user adds extra parameters to list contacts or quiz.
+     */
     @Override
     public void execute(ModelMain modelMain) throws IncompleteListCommandException, ExtraParameterException {
         if (modelMain == null) {
@@ -29,10 +37,10 @@ public class ListCommand extends Command {
         if (modelMain instanceof EventManager) {
             EventManager eventManager = (EventManager) modelMain;
             eventManager.list(userInput);
-        } else if (modelMain instanceof QuizManager && separatedInputs.length == 2) {
+        } else if (modelMain instanceof QuizManager && separatedInputs.length == INPUT_LENGTH_TWO) {
             QuizManager quizManager = (QuizManager) modelMain;
             quizManager.list();
-        } else if (modelMain instanceof ContactManager && separatedInputs.length == 2) {
+        } else if (modelMain instanceof ContactManager && separatedInputs.length == INPUT_LENGTH_TWO) {
             ContactManager contactManager = (ContactManager) modelMain;
             contactManager.list();
         } else {

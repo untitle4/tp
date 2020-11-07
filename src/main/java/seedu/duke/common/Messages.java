@@ -22,8 +22,6 @@ public class Messages {
     public static final String MESSAGE_HELLO = "Hello ";
     public static final String MESSAGE_PROMPT_COMMAND = "What can we do for you? "
             + "(Enter 'help' for the list of available commands!)\n";
-    public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is %s. Add some!";
-
     public static final String MESSAGE_HOURS_ERROR_NON_NUMBER = "Please indicate in NUMERALS, "
             + "how many hours you would like to set!";
 
@@ -44,6 +42,7 @@ public class Messages {
             + "the end time given!\n"
             + "Please check your inputs again!";
     //@@author AndreWongZH
+    public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is %s. Add some!";
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
     public static final String MESSAGE_MISSING_MODEL = ":( Oops! Model type is missing! "
             + "Enter 'help' if needed!";

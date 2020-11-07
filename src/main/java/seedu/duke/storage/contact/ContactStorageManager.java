@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 //@@author AndreWongZH
 /**
- * Help manage the storage of contacts into a text file and load contacts from the file
+ * Helps to manage the storage of contacts into a text file and load contacts from the file
  * when the program is executed.
  */
 public class ContactStorageManager extends StorageManager {
@@ -64,6 +64,13 @@ public class ContactStorageManager extends StorageManager {
         return new ArrayList<>();
     }
 
+    /**
+     * Saves the array list of contacts to a text file after every command.
+     *
+     * @param contactList Arraylist of type contact to be saved to txt file.
+     * @param filePath Name of the txt file.
+     * @throws IOException If file writer fails to write to txt file.
+     */
     public void saveData(ArrayList<Contact> contactList, String filePath) throws IOException {
         ArrayList<String> encodedContactList = contactListEncoder.encodeContactList(contactList);
         Files.write(Path.of(DIRECTORY_FOLDER_PATH + filePath), encodedContactList);

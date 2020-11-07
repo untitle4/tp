@@ -21,5 +21,5 @@ public interface ContactInteractable extends Interactable {
      */
     void find(String userInput) throws MissingParameterException;
 
-    void delete(String[] userInputs) throws ArrayIndexOutOfBoundsException, IndexOutOfBoundsException;
+    void delete(String[] userInputs) throws IndexOutOfBoundsException;
 }
