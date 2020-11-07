@@ -228,12 +228,10 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public void processInvalidDateException(InvalidDateType errorCode) {
         switch (errorCode) {
         case START_AFTER_END:
-            userInterface.showToUser("The start time given is later than the end time given!",
-                    "Please check your inputs again!");
+            userInterface.showToUser(Messages.MESSAGE_ERROR_START_AFTER_END);
             break;
         case START_EQUALS_END:
-            userInterface.showToUser("The start time given is the same as the end time given!",
-                    "Please check your inputs again!");
+            userInterface.showToUser(Messages.MESSAGE_ERROR_EQUALS_END);
             break;
         default:
             // No default cases needed here

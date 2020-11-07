@@ -35,6 +35,14 @@ public class Messages {
             + "Please delete your data directory and relaunch.";
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
             + "You can either 'list event' or 'list quiz' or 'list contact'";
+    public static final String MESSAGE_RECOMMENDED_TIME_EXCEEDED = "Recommended time exceeded!";
+    public static final String MESSAGE_PROMPT_CHECK_START_END_INPUTS = "Please check the start and end inputs again!";
+    public static final String MESSAGE_ERROR_START_AFTER_END = "The start time given is later "
+            + "than the end time given!\n"
+            + "Please check your inputs again!";
+    public static final String MESSAGE_ERROR_EQUALS_END = "The start time given is the same as "
+            + "the end time given!\n"
+            + "Please check your inputs again!";
     //@@author AndreWongZH
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
     public static final String MESSAGE_MISSING_MODEL = ":( Oops! Model type is missing! "
@@ -121,6 +129,7 @@ public class Messages {
     public static final String MESSAGE_TEST_DONE_ERROR_NO_NUMBER_GIVEN = ":( OOPS!!! "
             + "Please indicate which test you'd like to set as Done!";
     public static final String MESSAGE_INVALID_TEST_INDEX = ":( OOPS!!! Please indicate a valid test index!";
+    public static final String MESSAGE_TIME_LEFT_HEADER = "Time left for this day: ";
 
     //@@author durianpancakes
     // Messages from Tuition related classes
@@ -146,27 +155,36 @@ public class Messages {
     public static final String MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER = ":( OOPS!!! Please indicate in NUMERALS, "
             + "which quiz you'd like to delete!\n";
     public static final String MESSAGE_INVALID_HELP_COMMAND = ":( OOPS!!! Are you trying to take a quiz or add/delete a"
-            + " quiz question? Enter 'help' to check the correct format!\n";
+            + " quiz question? Enter 'help' to check the correct format!";
     public static final String MESSAGE_EMPTY_QUIZ_LIST = "Quiz list is empty. Add some!";
-    public static final String MESSAGE_QUIZ_INDEX_OUT_OF_BOUND = "There is not such a question in your quiz list!";
+    public static final String MESSAGE_QUIZ_INDEX_OUT_OF_BOUND = "There is no such question in your quiz list!";
+    public static final String MESSAGE_QUIZ_QUESTION_NOT_FOUND = "No question provided";
+    public static final String MESSAGE_QUIZ_ANSWER_NOT_FOUND = "No answer provided";
+    public static final String MESSAGE_QUIZ_OPTIONS_NOT_FOUND = "Options not provided";
+    public static final String MESSAGE_QUIZ_ADD_SUCCESSFUL = "Quiz question added!";
+    public static final String MESSAGE_QUIZ_INVALID_ANS_PROVIDED = ":( OOPS! Incorrect answer format! "
+            + "Your answer can only be either 1, 2, 3 or 4!";
+    public static final String MESSAGE_QUIZ_FULL_MARKS = "Congratulations! You got full marks in your last attempt!";
+    public static final String MESSAGE_QUIZ_WRONG_QUESTIONS_HEADER = "Here are the incorrect questions "
+            + "in your last quiz attempt:";
+    public static final String MESSAGE_QUIZ_LIST_HEADER = "Here are the questions in your quiz list:";
+    public static final String MESSAGE_QUIZ_MISSING_ANSWER = ":( OOPS! Please enter your answer for the "
+            + "question above!";
 
     public static String invalid_number_of_quiz_questions_message(int size) {
-        return ":( OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")\n";
+        return ":( OOPS!!! Please enter a valid number of quiz questions to attempt! (1~" + size + ")";
     }
 
     public static final String MESSAGE_MISSING_QUIZ_PARAM = "Please indicate the command you would like to apply on"
             + " quiz!";
+
     public static final String MESSAGE_QUIZ_NON_NUMBER = "Please enter a valid number or "
-            + "enter 'quiz record' to see your incorrect questions in your previous quiz!\n";
+            + "enter 'quiz record' to see your incorrect questions in your previous quiz!";
 
     public static String print_quiz_score(int correctCounter, int noOfQues) {
-        return "You scored " + correctCounter + " out of " + noOfQues + "!\n"
-                + "Scroll up to review your quiz.\n\n";
+        return "You scored " + correctCounter + " out of " + noOfQues + "!"
+                + "Scroll up to review your quiz.";
     }
-
-    //@@author durianpancakes
-    public static final String MESSAGE_INVALID_QUIZ_CHECK_INPUTS = "Please check your quiz inputs again!";
-
 
     //@@author elizabethcwt
     public static final String MESSAGE_HELP = "Hello! Here is a list of commands you can try:\n\n"
