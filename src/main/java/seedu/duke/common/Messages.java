@@ -52,15 +52,17 @@ public class Messages {
     public static final String MESSAGE_MISSING_PARAMETERS = ":( OOPS!!! "
             + "Remember to include ALL %s inputs!";
     public static final String MESSAGE_EMPTY_PARAMETERS = ":( OOPS!!! Ensure ALL parameters are filled up!";
-    public static final String MESSAGE_LIST_INVALID_DATE = ":( OOPS!!! Please enter today/week/valid date"
-            + "and time in format yyyy-mm-dd!";
-    public static final String MESSAGE_INVALID_DATE = ":( OOPS!!! "
-            + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
     public static final String MESSAGE_INVALID_COMMAND = ":( Oops! I did not recognize that command! "
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INVALID_MODEL = ":( Oops! I did not recognize that model type! "
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INVALID_EXTRA_PARAM = ":( OOPS!!! Please do not enter extra inputs";
+    //@@author Aliciaho
+    //Messages for date time
+    public static final String MESSAGE_LIST_INVALID_DATE = ":( OOPS!!! Please enter today/week/valid date"
+            + "and time in format yyyy-mm-dd!";
+    public static final String MESSAGE_INVALID_DATE = ":( OOPS!!! "
+            + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
 
     //@@author durianpancakes
     // Messages from CalendarWeekRenderer
