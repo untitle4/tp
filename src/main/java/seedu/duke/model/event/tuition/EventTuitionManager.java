@@ -22,15 +22,16 @@ import java.util.logging.Logger;
 //@@author durianpancakes
 
 /**
- * Manager class to manage EventTuition
+ * Manager class to manage EventTuition.
  *
+ * <p>
  * Contain methods which allow:
  * <ul>
  *     <li>Obtaining EventTuition list size</li>
  *     <li>Adding new EventTuition into ArrayList</li>
  *     <li>Deleting EventTuition from ArrayList</li>
  * </ul>
- *
+ * </p>
  */
 public class EventTuitionManager extends EventDataManager {
     private final ArrayList<Event> tuitions;
@@ -43,10 +44,10 @@ public class EventTuitionManager extends EventDataManager {
     public static final int DELETE_INDEX = 1;
 
     /**
-     * Constructs an EventTuitionManager
+     * Constructs an EventTuitionManager.
      *
-     * @param tuitions Contains a list of Event that are classified as EventTuition
-     * @param eventManager EventManager instance
+     * @param tuitions Contains a list of Event that are classified as EventTuition.
+     * @param eventManager EventManager instance.
      */
     public EventTuitionManager(ArrayList<Event> tuitions, EventManager eventManager) {
         this.tuitions = tuitions;
@@ -55,30 +56,30 @@ public class EventTuitionManager extends EventDataManager {
     }
 
     /**
-     * Obtain the EventTuition list
+     * Obtain the EventTuition list.
      *
-     * @return the list of EventTuition
+     * @return the list of EventTuition.
      */
     public ArrayList<Event> getTuitions() {
         return tuitions;
     }
 
     /**
-     * Obtain the number of tuition in the list of EventTuition
+     * Obtain the number of tuition in the list of EventTuition.
      *
-     * @return the number of EventTuition in the list
+     * @return the number of EventTuition in the list.
      */
     public int getTuitionListSize() {
         return tuitions.size();
     }
 
     /**
-     * Method to add an EventTuition into the list of EventTuition
+     * Method to add an EventTuition into the list of EventTuition.
      *
      * @param userInput The input entered by the user.
      * @throws MissingParameterException when any of the following prefixes are missing in the userInput:
-     * '/n', '/s', '/e', '/l'
-     * @throws EmptyParameterException when any of the following parameters are empty: '/n', '/s', '/e', '/l'
+     *     '/n', '/s', '/e', '/l'.
+     * @throws EmptyParameterException when any of the following parameters are empty: '/n', '/s', '/e', '/l'.
      */
     @Override
     public void add(String userInput) throws MissingParameterException, EmptyParameterException {
@@ -160,7 +161,7 @@ public class EventTuitionManager extends EventDataManager {
     }
 
     /**
-     * Method to delete an EventTuition from the list of EventTuition based on the index given by the user
+     * Method to delete an EventTuition from the list of EventTuition based on the index given by the user.
      *
      * @param userInputs The input entered by the user.
      */
@@ -192,11 +193,11 @@ public class EventTuitionManager extends EventDataManager {
     }
 
     /**
-     * Method to set an EventTuition to be DONE
+     * Method to set an EventTuition to be DONE.
      *
      * @param userInputs The input entered by the user.
      * @throws IndexOutOfBoundsException when user gives an index that is smaller than or equals to 0, or
-     * when index is greater than the number of EventTuition in the list
+     *     when index is greater than the number of EventTuition in the list.
      */
     @Deprecated
     @Override
@@ -238,17 +239,17 @@ public class EventTuitionManager extends EventDataManager {
     }
 
     /**
-     * Helper function to check if a string is empty
+     * Helper function to check if a string is empty.
      *
-     * @param string String to be checked
-     * @return boolean, true if empty, false if not empty
+     * @param string String to be checked.
+     * @return boolean, true if empty, false if not empty.
      */
     private boolean isEmptyString(String string) {
         return string.equals("");
     }
 
     /**
-     * Sorts the list of EventTuition based on the start time of the Event
+     * Sorts the list of EventTuition based on the start time of the Event.
      */
     private void sortList() {
         Collections.sort(tuitions);

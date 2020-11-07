@@ -18,7 +18,7 @@ import java.util.Scanner;
 //@@author durianpancakes
 
 /**
- * Singleton UserInterface class containing methods to obtain input from user, and prints output to use
+ * Singleton UserInterface class containing methods to obtain input from user, and prints output to use.
  */
 public class UserInterface {
     private static UserInterface userInterface = null;
@@ -32,9 +32,9 @@ public class UserInterface {
     }
 
     /**
-     * Method to obtain the singleton instance of UserInterface
+     * Method to obtain the singleton instance of UserInterface.
      *
-     * @return UserInterface instance
+     * @return UserInterface instance.
      */
     public static UserInterface getInstance() {
         if (userInterface == null) {
@@ -45,9 +45,9 @@ public class UserInterface {
     }
 
     /**
-     * Displays the Welcome message to the user
+     * Displays the Welcome message to the user.
      *
-     * @param configParameter ConfigParameter containing the recommended hours to be printed
+     * @param configParameter ConfigParameter containing the recommended hours to be printed.
      */
     public void showWelcomeMessage(ConfigParameter configParameter) {
         showToUser(Messages.MESSAGE_HELLO_FROM_DUKE,
@@ -57,9 +57,9 @@ public class UserInterface {
     }
 
     /**
-     * Obtains the user's command
+     * Obtains the user's command.
      *
-     * @return String containing the user's command
+     * @return String containing the user's command.
      */
     public String getUserCommand() {
         // Adds an additional row space for better readability
@@ -71,7 +71,7 @@ public class UserInterface {
     }
 
     /**
-     * Helper function to show an empty line
+     * Helper function to show an empty line.
      */
     private void showEmptyLine() {
         showToUser("");
@@ -142,10 +142,10 @@ public class UserInterface {
     //@@author durianpancakes
 
     /**
-     * Method to print the week schedule of the user
-     * @param eventManager EventManager instance for CalendarWeekRenderer to access helper methods
+     * Method to print the week schedule of the user.
+     * @param eventManager EventManager instance for CalendarWeekRenderer to access helper methods.
      * @param listWeekCommand ListWeekCommand to identify the week to be printed. CURRENT_WEEK for this week,
-     *                        NEXT_WEEK for the next week
+     *                        NEXT_WEEK for the next week.
      */
     public void printWeekSchedule(EventManager eventManager, ListWeekCommand listWeekCommand) {
         new CalendarWeekRenderer(eventManager, listWeekCommand);

@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 //@@author durianpancakes
 
 /**
- * Manages the reading and writing operations of Event Storage
+ * Manages the reading and writing operations of Event Storage.
  */
 public class EventStorageManager extends StorageManager {
     private final EventListEncoder eventListEncoder;
@@ -34,9 +34,9 @@ public class EventStorageManager extends StorageManager {
     private final UserInterface userInterface;
 
     /**
-     * Constructs an EventStorageManager with the given fileName
+     * Constructs an EventStorageManager with the given fileName.
      *
-     * @param fileName String containing the fileName to be created/read from
+     * @param fileName String containing the fileName to be created/read from.
      */
     public EventStorageManager(String fileName) {
         super(fileName);
@@ -46,10 +46,10 @@ public class EventStorageManager extends StorageManager {
     }
 
     /**
-     * Saves Events to the data file
+     * Saves Events to the data file.
      *
-     * @param eventList ArrayList of Events to be saved
-     * @throws IOException when there is an error writing to the data file
+     * @param eventList ArrayList of Events to be saved.
+     * @throws IOException when there is an error writing to the data file.
      */
     public void saveData(ArrayList<Event> eventList) throws IOException {
         ArrayList<String> encodedEventList = eventListEncoder.encodeEventList(eventList);
@@ -57,10 +57,10 @@ public class EventStorageManager extends StorageManager {
     }
 
     /**
-     * Loads Events from the data file
+     * Loads Events from the data file.
      *
-     * @return ArrayList of Events loaded from the data file
-     * @throws StorageCorruptedException when the contents of the data file cannot be read by EventListDecoder
+     * @return ArrayList of Events loaded from the data file.
+     * @throws StorageCorruptedException when the contents of the data file cannot be read by EventListDecoder.
      */
     public EventParameter loadData() throws StorageCorruptedException {
         File eventFile = new File(DIRECTORY_FOLDER_PATH + fileName);
@@ -94,10 +94,10 @@ public class EventStorageManager extends StorageManager {
 
     /**
      * Separates the master list of events into separate Event subclasses (i.e EventCca, EventClass, EventTest,
-     * EventTuition)
+     * EventTuition).
      *
-     * @param events ArrayList of Events containing all events read from the storage
-     * @return EventParameter containing ArrayLists of Event subclasses
+     * @param events ArrayList of Events containing all events read from the storage.
+     * @return EventParameter containing ArrayLists of Event subclasses.
      */
     private EventParameter separateEventsIntoList(ArrayList<Event> events) {
         ArrayList<Event> ccas = new ArrayList<>();

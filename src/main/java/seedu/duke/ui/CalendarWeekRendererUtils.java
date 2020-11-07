@@ -11,7 +11,7 @@ import java.util.Calendar;
 //@@author durianpancakes
 
 /**
- * Utility class containing methods to assist CalendarWeekRenderer to produce the Week View
+ * Utility class containing methods to assist CalendarWeekRenderer to produce the Week View.
  */
 public class CalendarWeekRendererUtils {
     private final int[] eventNumberCounter;
@@ -34,9 +34,9 @@ public class CalendarWeekRendererUtils {
     public static final int SUNDAY = 6;
 
     /**
-     * Constructs a CalendarWeekRendererUtils instance
+     * Constructs a CalendarWeekRendererUtils instance.
      *
-     * @param weekMasterList ArrayList of ArrayList of Events containing all events in the week
+     * @param weekMasterList ArrayList of ArrayList of Events containing all events in the week.
      */
     public CalendarWeekRendererUtils(ArrayList<ArrayList<Event>> weekMasterList) {
         eventNumberCounter = new int[7];
@@ -50,9 +50,9 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Reduces the count of a particular eventNumberCounter by 1
+     * Reduces the count of a particular eventNumberCounter by 1.
      *
-     * @param counterIndex int containing the counter to be reduced
+     * @param counterIndex int containing the counter to be reduced.
      */
     private void reduceCounter(int counterIndex) {
         eventNumberCounter[counterIndex]--;
@@ -63,9 +63,9 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Helper function to check if there are any Events left to be printed
+     * Helper function to check if there are any Events left to be printed.
      *
-     * @return boolean, true if there is something left to print; false if there is nothing left to print
+     * @return boolean, true if there is something left to print; false if there is nothing left to print.
      */
     public boolean isThereNothingLeftToPrint() {
         return eventNumberCounter[MONDAY] == NO_EVENTS && eventNumberCounter[TUESDAY] == NO_EVENTS
@@ -75,10 +75,10 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the day label of a given day
+     * Obtain the day label of a given day.
      *
-     * @param num int containing the day number based on the Calendar API
-     * @return String containing the day label based on the day number provided
+     * @param num int containing the day number based on the Calendar API.
+     * @return String containing the day label based on the day number provided.
      */
     public String getDayLabel(int num) {
         switch (num) {
@@ -102,11 +102,11 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the Event's duration in NUM "h" NUM "m" format
+     * Obtain the Event's duration in NUM "h" NUM "m" format.
      *
-     * @param start Calendar containing the start time of the Event
-     * @param end Calendar containing the end time of the Event
-     * @return String containing the Event's duration formatted in " h m"
+     * @param start Calendar containing the start time of the Event.
+     * @param end Calendar containing the end time of the Event.
+     * @return String containing the Event's duration formatted in " h m".
      */
     public String getEventDuration(Calendar start, Calendar end) {
         int hours = end.get(Calendar.HOUR_OF_DAY) - start.get(Calendar.HOUR_OF_DAY);
@@ -116,11 +116,11 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Checks if the date given is today and obtains the Today label if needed
+     * Checks if the date given is today and obtains the Today label if needed.
      *
-     * @param compareCalendar Calendar containing the Date of the day to be checked
-     * @return String containing the TODAY_LABEL if the given Calendar has the same day, month and year, else, returns
-     * a string containing COLUMN_GAP number of whitespaces
+     * @param compareCalendar Calendar containing the Date of the day to be checked.
+     * @return String containing the TODAY_LABEL if the given Calendar has the same day, month and year, else, return
+     *     a string containing COLUMN_GAP number of whitespaces.
      */
     public String getIsToday(Calendar compareCalendar) {
         Calendar today = Calendar.getInstance();
@@ -133,21 +133,21 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Helper method to obtain a String containing a given number of whitespaces
+     * Helper method to obtain a String containing a given number of whitespaces.
      *
-     * @param num int containing the number of spaces in the String to be returned
-     * @return String containing the number of spaces required
+     * @param num int containing the number of spaces in the String to be returned.
+     * @return String containing the number of spaces required.
      */
     public String getSpaces(int num) {
         return " ".repeat(Math.max(0, num));
     }
 
     /**
-     * Obtain the Date label of a given day in the week
+     * Obtain the Date label of a given day in the week.
      *
-     * @param daysOfWeek ArrayList containing the Calendars of a week
-     * @param num int containing the Day number (0 for Monday, 6 for Sunday)
-     * @return String containing the Day label formatted in [DD-MM]
+     * @param daysOfWeek ArrayList containing the Calendars of a week.
+     * @param num int containing the Day number (0 for Monday, 6 for Sunday).
+     * @return String containing the Day label formatted in [DD-MM].
      */
     public String getDateLabel(ArrayList<Calendar> daysOfWeek, int num) {
         Calendar calendar = daysOfWeek.get(num);
@@ -156,12 +156,12 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the Event Icon of Event to be rendered
+     * Obtain the Event Icon of Event to be rendered.
      *
-     * @param events ArrayList containing Events of the week
-     * @param counterIndex int containing the day's event to be printed
+     * @param events ArrayList containing Events of the week.
+     * @param counterIndex int containing the day's event to be printed.
      * @return String containing the Event's Icon, if any. Else, returns a string containing COLUMN_GAP number of
-     * whitespaces
+     *     whitespaces.
      */
     public String getEventIcons(ArrayList<Event> events, int counterIndex) {
         StringBuilder eventIconsString = new StringBuilder();
@@ -180,12 +180,12 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the Event's description to be rendered
+     * Obtain the Event's description to be rendered.
      *
-     * @param events ArrayList containing Events of the week
-     * @param counterIndex int containing the day's event to be printed, if any
+     * @param events ArrayList containing Events of the week.
+     * @param counterIndex int containing the day's event to be printed, if any.
      * @return String containing the Event's description, if any. Else, returns a string containing COLUMN_GAP number of
-     * whitespaces
+     *     whitespaces.
      */
     public String getDescriptions(ArrayList<Event> events, int counterIndex) {
         StringBuilder descriptionsString = new StringBuilder();
@@ -209,12 +209,12 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the Event's start end time to be rendered
+     * Obtain the Event's start end time to be rendered.
      *
-     * @param events ArrayList containing Events of the week
-     * @param counterIndex int containing the day's event to be printed, if any
+     * @param events ArrayList containing Events of the week.
+     * @param counterIndex int containing the day's event to be printed, if any.
      * @return String containing the Event's start end time, if any. Else, returns a string containing COLUMN_GAP
-     * number of whitespaces
+     *     number of whitespaces.
      */
     public String getStartEndTime(ArrayList<Event> events, int counterIndex) {
         StringBuilder startEndTimesString = new StringBuilder();
@@ -239,12 +239,12 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the break time between each events to be rendered
+     * Obtain the break time between each events to be rendered.
      *
-     * @param events ArrayList containing Events of the week
-     * @param counterIndex int containing the day's event to be printed, if any
+     * @param events ArrayList containing Events of the week.
+     * @param counterIndex int containing the day's event to be printed, if any.
      * @return String containing the Event's break time before another event, if any. Else, returns a string
-     * containing COLUMN_GAP number of whitespaces
+     *     containing COLUMN_GAP number of whitespaces.
      */
     public String getBreakTimeString(ArrayList<Event> events, int counterIndex) {
         StringBuilder breakTimeString = new StringBuilder();

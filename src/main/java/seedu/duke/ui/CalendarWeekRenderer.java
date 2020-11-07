@@ -9,12 +9,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 
-import static seedu.duke.ui.CalendarWeekRendererUtils.*;
+import static seedu.duke.ui.CalendarWeekRendererUtils.DATE_LABEL_SPACES_OFFSET;
+import static seedu.duke.ui.CalendarWeekRendererUtils.DAY_LABEL_SPACES_OFFSET;
 
 //@@author durianpancakes
 
 /**
- * Driver class for rendering the Week View of the `list event week` command
+ * Driver class for rendering the Week View of the `list event week` command.
  */
 public class CalendarWeekRenderer {
     private final EventManager eventManager;
@@ -25,10 +26,10 @@ public class CalendarWeekRenderer {
 
     /**
      * Constructs a CalendarWeekRenderer instance.
-     * Automatically calls renderWeekSchedule() which produces the Week View
+     * Automatically calls renderWeekSchedule() which produces the Week View.
      *
-     * @param eventManager EventManager instance for the usage of certain helper methods in the class
-     * @param listWeekCommand ListWeekCommand to identify if the current or next week is to be listed
+     * @param eventManager EventManager instance for the usage of certain helper methods in the class.
+     * @param listWeekCommand ListWeekCommand to identify if the current or next week is to be listed.
      */
     public CalendarWeekRenderer(EventManager eventManager, ListWeekCommand listWeekCommand) {
         this.eventManager = eventManager;
@@ -37,9 +38,9 @@ public class CalendarWeekRenderer {
     }
 
     /**
-     * Driver method to produce the Week View
+     * Driver method to produce the Week View.
      *
-     * @param listWeekCommand ListWeekCommand to identify if the current or next week is to be listed
+     * @param listWeekCommand ListWeekCommand to identify if the current or next week is to be listed.
      */
     private void renderWeekSchedule(ListWeekCommand listWeekCommand) {
         Calendar calendar = Calendar.getInstance();

@@ -9,7 +9,7 @@ import java.util.Calendar;
 //@@author durianpancakes
 
 /**
- * Class EventTuition
+ * Class EventTuition.
  * Contains constructors, getters, toString and equals methods.
  */
 public class EventTuition extends Event {
@@ -17,12 +17,12 @@ public class EventTuition extends Event {
     private final String location;
 
     /**
-     * Constructs a EventTuition with a default NOT DONE status
+     * Constructs a EventTuition with a default NOT DONE status.
      *
-     * @param description String containing description of the EventTuition
-     * @param start Calendar containing the start time of the EventTuition
-     * @param end Calendar containing the end time of the EventTuition
-     * @param location String containing the location of the EventTuition
+     * @param description String containing description of the EventTuition.
+     * @param start Calendar containing the start time of the EventTuition.
+     * @param end Calendar containing the end time of the EventTuition.
+     * @param location String containing the location of the EventTuition.
      */
     public EventTuition(String description, Calendar start, Calendar end, String location) {
         super(description, start, end);
@@ -30,13 +30,13 @@ public class EventTuition extends Event {
     }
 
     /**
-     * Constructs a EventTuition with a given NOT DONE/DONE status
+     * Constructs a EventTuition with a given NOT DONE/DONE status.
      *
-     * @param description String containing description of the EventTuition
-     * @param isDone boolean containing the done status of the EventTuition
-     * @param start Calendar containing the start time of the EventTuition
-     * @param end Calendar containing the end time of the EventTuition
-     * @param location String containing the location of the EventTuition
+     * @param description String containing description of the EventTuition.
+     * @param isDone boolean containing the done status of the EventTuition.
+     * @param start Calendar containing the start time of the EventTuition.
+     * @param end Calendar containing the end time of the EventTuition.
+     * @param location String containing the location of the EventTuition.
      */
     public EventTuition(String description, boolean isDone, Calendar start, Calendar end, String location) {
         super(description, start, end, isDone);

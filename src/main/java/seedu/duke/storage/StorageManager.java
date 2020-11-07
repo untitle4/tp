@@ -8,7 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Abstract StorageManager class containing the basic methods to create a data file
+ * Abstract StorageManager class containing the basic methods to create a data file.
  */
 public abstract class StorageManager {
     //@@author durianpancakes
