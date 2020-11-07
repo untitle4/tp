@@ -29,8 +29,17 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public static final int OFFSET_EXP = 3;
     public static final int ANS_MIN = 1;
     public static final int ANS_MAX = 4;
-    public static final String EMPTY_STRING = " ";
+    public static final String EMPTY_STRING = "";
     public static final int INDEX_OFFSET = 1;
+    public static final int MAX_INPUT_LENGTH_NO_EXP = 7;
+    public static final int MAX_INPUT_LENGTH_WITH_EXP = 8;
+    public static final String QUESTION_PREFIX = " /q ";
+    public static final String ANSWER_PREFIX = " /a ";
+    public static final String OPTION_ONE_PREFIX = " /o1 ";
+    public static final String OPTION_TWO_PREFIX = " /o2 ";
+    public static final String OPTION_THREE_PREFIX = " /o3 ";
+    public static final String OPTION_FOUR_PREFIX = " /o4 ";
+    public static final String EXPLANATION_PREFIX = " /exp ";
     private final ArrayList<Quiz> quizzes;
     private final ArrayList<Quiz> lastIncorrectQuizzes = new ArrayList<>();
     private final ArrayList<Integer> lastIncorrectAnswers = new ArrayList<>();
@@ -276,30 +285,29 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      */
     @Override
     public void add(String userInput) throws EmptyParameterException {
-        final String questionPrefix = " /q ";
-        final String answerPrefix = " /a ";
-        final String optionOnePrefix = " /o1 ";
-        final String optionTwoPrefix = " /o2 ";
-        final String optionThreePrefix = " /o3 ";
-        final String optionFourPrefix = " /o4 ";
-        final String explanationPrefix = " /exp ";
-
-        if (!userInput.contains(questionPrefix)) {
+        if (!userInput.contains(QUESTION_PREFIX)) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_QUESTION_NOT_FOUND);
-            throw new EmptyParameterException();
+            return;
         }
-        if (!userInput.contains(answerPrefix)) {
+
+        if (!userInput.contains(ANSWER_PREFIX)) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_ANSWER_NOT_FOUND);
-            throw new EmptyParameterException();
+            return;
         }
-        if (!userInput.contains(optionOnePrefix) && !userInput.contains(optionTwoPrefix)
-                && !userInput.contains(optionThreePrefix) && !userInput.contains(optionFourPrefix)) {
+
+        if (!userInput.contains(OPTION_ONE_PREFIX) || !userInput.contains(OPTION_TWO_PREFIX)
+                || !userInput.contains(OPTION_THREE_PREFIX) || !userInput.contains(OPTION_FOUR_PREFIX)) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_OPTIONS_NOT_FOUND);
-            throw new EmptyParameterException();
+            return;
         }
         String[] separatedInputs = userInput.trim().split("/");
 
-        if (separatedInputs.length > 6 && !userInput.contains(explanationPrefix)) {
+        if (separatedInputs.length > MAX_INPUT_LENGTH_NO_EXP && !userInput.contains(EXPLANATION_PREFIX)) {
+            userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
+            return;
+        }
+
+        if (separatedInputs.length > MAX_INPUT_LENGTH_WITH_EXP) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
             return;
         }
@@ -309,7 +317,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_ADD_SUCCESSFUL);
         } catch (NumberFormatException e) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_INVALID_ANS_PROVIDED);
-            throw new EmptyParameterException();
         }
     }
 
