@@ -30,7 +30,7 @@ public class EventTest extends Event {
     }
 
     /**
-     * Convert event to readable format for user in form of icon + description + converted date time
+     * Convert event to readable format for user in form of icon + description + converted date time.
      *
      * @return converted string
      */
