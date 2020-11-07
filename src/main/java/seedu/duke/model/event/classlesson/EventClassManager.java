@@ -137,7 +137,7 @@ public class EventClassManager extends EventDataManager {
 
             //If the recommended time exceeded, show the corresponding error message
             } else if (eventManager.didTimeExceed(eventClass)) {
-                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED, " Class is not added!");
+                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED + " Class is not added!");
             }
         } catch (DateTimeParseException | ParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);

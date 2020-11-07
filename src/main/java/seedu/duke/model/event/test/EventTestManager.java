@@ -130,12 +130,12 @@ public class EventTestManager extends EventDataManager {
 
             //If the recommended time exceeded, show the corresponding error message
             } else if (eventManager.didTimeExceed(eventTest)) {
-                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED, " Test is not added!");
+                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED + " Test is not added!");
             }
         } catch (DateTimeParseException | ParseException e) {
             logger.log(Level.WARNING, "invalid date time inputted");
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
-        } catch (InvalidDateException e){
+        } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
         }
     }

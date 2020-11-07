@@ -386,7 +386,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         } else {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_LIST_HEADER);
             for (int i = 0; i < quizzes.size(); i++) {
-                userInterface.showToUser("Question " + (i + 1) + ":" ,
+                userInterface.showToUser("Question " + (i + 1) + ":",
                         quizzes.get(i).toString());
             }
         }

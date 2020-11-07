@@ -35,15 +35,18 @@ public class UserInterface {
     }
 
     public void showWelcomeMessage(ConfigParameter configParameter) {
-        showToUser(Messages.MESSAGE_HELLO_FROM_DUKE);
-
-        showToUser(Messages.MESSAGE_HELLO + configParameter.getName(),
+        showToUser(Messages.MESSAGE_HELLO_FROM_DUKE,
+                Messages.MESSAGE_HELLO + configParameter.getName(),
                 Messages.MESSAGE_SHOW_HOURS + configParameter.getRecommendedHours());
-
-        showToUser(Messages.MESSAGE_PROMPT_COMMAND);
+        out.print(Messages.MESSAGE_PROMPT_COMMAND);
     }
 
     public String getUserCommand() {
+        // Adds an additional row space for better readability
+        showToUser("");
+        // Indicator for user input:
+        out.print(">> ");
+
         return in.nextLine();
     }
 
