@@ -20,6 +20,7 @@ public class UserInterface {
     private static UserInterface userInterface = null;
     private final Scanner in;
     private final PrintStream out;
+    public static final String CURSOR = ">> ";
 
     private UserInterface() {
         this.in = new Scanner(System.in);
@@ -43,11 +44,15 @@ public class UserInterface {
 
     public String getUserCommand() {
         // Adds an additional row space for better readability
-        showToUser("");
+        showEmptyLine();
         // Indicator for user input:
-        out.print(">> ");
+        out.print(CURSOR);
 
         return in.nextLine();
+    }
+
+    private void showEmptyLine() {
+        showToUser("");
     }
 
     public void showToUser(String... message) {
