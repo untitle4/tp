@@ -35,6 +35,8 @@ public class Messages {
             + "Please delete your data directory and relaunch.";
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
             + "You can either 'list event' or 'list quiz' or 'list contact'";
+    public static final String MESSAGE_RECOMMENDED_TIME_EXCEEDED = "Recommended time exceeded!";
+    public static final String MESSAGE_PROMPT_CHECK_START_END_INPUTS = "Please check the start and end inputs again!";
     //@@author AndreWongZH
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
     public static final String MESSAGE_MISSING_MODEL = ":( Oops! Model type is missing! "
@@ -121,6 +123,7 @@ public class Messages {
     public static final String MESSAGE_TEST_DONE_ERROR_NO_NUMBER_GIVEN = ":( OOPS!!! "
             + "Please indicate which test you'd like to set as Done!";
     public static final String MESSAGE_INVALID_TEST_INDEX = ":( OOPS!!! Please indicate a valid test index!";
+    public static final String MESSAGE_TIME_LEFT_HEADER = "Time left for this day: ";
 
     //@@author durianpancakes
     // Messages from Tuition related classes
