@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.storage;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.ConfigParameter;
