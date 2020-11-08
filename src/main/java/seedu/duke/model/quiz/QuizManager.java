@@ -79,6 +79,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
+    //@@author elizabethcwt
     private void takeQuiz(String[] separatedInputs) {
         try {
             noOfQues = Integer.parseInt(separatedInputs[1]);
@@ -99,6 +100,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
+    //@@author elizabethcwt
     private void handleValidNumOfQuestions() {
 
         // Assert that noOfQues is within a valid range
@@ -146,6 +148,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userAnswerManager.getCorrectness().clear();
     }
 
+    //@@author elizabethcwt
     private void assignCorrectnessLogo(int l) {
 
         // Assert that the correctness of the user's input is true in this if loop
@@ -166,6 +169,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
+    //@@author elizabethcwt
     private int storeCorrectnessOfQuizAnswer(int correctCounter) {
         for (int k = 0; k < noOfQues; k++) {
             if (userAnswerManager.getUserAnswers().get(k).equals(quizzes.get(quizIndexes
@@ -182,6 +186,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         return correctCounter;
     }
 
+    //@@author elizabethcwt
     private void initialisingShufflingOfQuestions() {
         // Create a new list of the question indexes
         quizIndexes = new ArrayList<>();
@@ -193,6 +198,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         Collections.shuffle(quizIndexes);
     }
 
+    //@@author elizabethcwt
     private void handleInvalidNumOfQuestions() {
 
         // Assert that noOfQues is NOT an acceptable value
