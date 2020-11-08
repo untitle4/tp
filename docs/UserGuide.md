@@ -575,15 +575,8 @@ Format: `add contact /s [subject] /n [name of contact person] /p [phone number] 
 Examples: `add contact /s math /n thomas /p 91779977 /e thomas@gmail.com`
 
 Example Output:
-
-```
-    Got it. I've added this contact: 
-    math teacher: thomas
-    Phone number: 91779977
-    email address: thomas@gmail.com
-    
-    Now you have 1 contact in your list.
-```
+<br>
+![AddContact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/AddContact.png)
 
 #### Deleting a contact `delete contact`
 Allows you to delete a contact from the contact list.
@@ -593,15 +586,8 @@ Format: `delete contact [contact list number]`
 Examples: `delete contact 1`
 
 Example Output:
-
-```
-    Noted. I've removed this contact: 
-    math teacher: thomas
-    Phone number: 91779977
-    email address: thomas@gmail.com
-    
-    Now you have 0 contact in your list.
-```
+<br>
+![DeleteContact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/DeleteContact.png)
 
 #### Listing out contacts `list contact`
 Allows you to list out all the contacts in the contact list
@@ -609,13 +595,8 @@ Allows you to list out all the contacts in the contact list
 Format: `list contact`
 
 Example Output:
-
-```
-    Contact 1:
-    math teacher: thomas
-    Phone number: 91779977
-    email address: thomas@gmail.com
-```
+<br>
+![ListContact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/ListContact.png)
 
 #### Finding a contact `find contact`
 Look for contacts that match the given keywords you want.
@@ -625,12 +606,8 @@ Format: `find contact [keyword(s)]`
 Examples: `find contact math`
 
 Example Output:
-
-```
-    math teacher: thomas
-    Phone number: 91779977
-    email address: thomas@gmail.com
-```
+<br>
+![FindContact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/FindContact.png)
 
 
 ### Exits Program: `bye`
