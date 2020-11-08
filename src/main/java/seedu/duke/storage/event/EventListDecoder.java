@@ -50,6 +50,8 @@ public class EventListDecoder {
             StorageCorruptedException {
         final String[] data = encodedEvent.trim().split("\\|", 3);
 
+        assert data.length > 1;
+
         switch (data[0]) {
         case EventCca.CCA_ICON:
             return parseCca(data);
