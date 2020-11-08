@@ -32,7 +32,7 @@ public class CommandParser {
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public CommandParser(String userInput) {
-        separatedInputs = userInput.split(INPUT_SPACES);
+        separatedInputs = userInput.toLowerCase().split(INPUT_SPACES);
         commandType = null;
     }
 
