@@ -67,6 +67,7 @@ Given below are my contributions to the project.
     * Wrote documentation for `list event today`
     * Wrote documentation for `list event [date]`
     * Wrote documentation for `bye`
+    * Wrote documentation for Initialisation
     * Did diagrams for `help`, `add class`, `delete class`, `add cca`, 
     `delete cca`, `add test`, `delete test`, `add tuition`, `delete tuition`,
     `list event`, `list event today`, `list event [date]`
@@ -78,3 +79,4 @@ Given below are my contributions to the project.
     * Wrote documentation for `help` feature
     * Did UML for `add` and `delete` feature
     * Wrote documentation for `product scope`
+    * Wrote documentation for set hours
