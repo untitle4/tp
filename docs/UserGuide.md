@@ -12,7 +12,7 @@
     - [Set Recommended Hours](#set-recommended-hours-set-hours) `set hours`
     - [Class Category](#category-class)
       - [Add a class:](#adding-a-class-add-class) `add class`
-      - [Delete a task:](#deleting-a-class-delete-class) `delete class`
+      - [Delete a class:](#deleting-a-class-delete-class) `delete class`
     - [Cca Category](#category-cca)
       - [Add a cca:](#adding-a-cca-add-cca) `add cca`
       - [Delete a cca:](#deleting-a-cca-delete-cca) `delete cca`

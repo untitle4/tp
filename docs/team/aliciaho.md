@@ -1,3 +1,4 @@
+# Alicia Ho Shimin - Project Portfolio Page
 ## Project: Plan&Score
 
 Plan&Score is a Java command-line application that allows Primary 6 students to plan and track their classes, CCAs and test dates. This enables the students to remember their schedule, so they can plan well in advance for their tests and score better.
@@ -70,7 +71,7 @@ Given below are my contributions to the project.
     * Help to enhance documentation for `help`, `add class`, `delete class`, `add cca`, 
     `delete cca`, `add test`, `delete test`, `add tuition`, `delete tuition`,
     `list event`, `list event today`, `list event [date]`
-    * Wrote documentation for Initialisation
+    * Wrote documentation and did diagrams for Initialisation
     * Did diagrams for `help`, `add class`, `delete class`, `add cca`, 
     `delete cca`, `add test`, `delete test`, `add tuition`, `delete tuition`,
     `list event`, `list event today`, `list event [date]`

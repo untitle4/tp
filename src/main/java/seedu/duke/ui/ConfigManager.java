@@ -37,7 +37,7 @@ public class ConfigManager extends ModelMain {
 
 
     /**
-     * Load date from configStorageManager to configParam.
+     * Load data from configStorageManager to configParam.
      *
      * @return configParam containing data from configStorageManager
      */

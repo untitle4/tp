@@ -1,0 +1,40 @@
+@startuml
+
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+hide footbox
+
+box "Controller" #LightSalmon
+participant ControlManager
+participant SetHoursCommand
+end box
+
+box "Model" #YellowGreen
+participant ConfigManager
+end box
+
+box "UserInterface" #skyblue
+participant UserInterface
+end box
+
+ControlManager -> SetHoursCommand: execute()
+activate ControlManager
+
+activate SetHoursCommand
+SetHoursCommand -> ConfigManager: editHours()
+activate ConfigManager
+ConfigManager -> ConfigManager: getInputHours()
+activate ConfigManager #salmon
+ConfigManager -> UserInterface: showToUser()
+activate UserInterface
+UserInterface --> ConfigManager
+deactivate UserInterface
+ConfigManager --> ConfigManager
+deactivate ConfigManager
+ConfigManager --> SetHoursCommand
+deactivate ConfigManager
+SetHoursCommand --> ControlManager
+deactivate SetHoursCommand
+
+deactivate ControlManager
+@enduml
