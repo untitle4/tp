@@ -3,11 +3,13 @@ package seedu.duke;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.StorageCorruptedException;
+import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.Model;
 import seedu.duke.model.contact.ContactManager;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
 import seedu.duke.model.quiz.QuizManager;
+import seedu.duke.storage.config.ConfigStorageManager;
 import seedu.duke.storage.contact.ContactStorageManager;
 import seedu.duke.storage.quiz.QuizStorageManager;
 import seedu.duke.storage.event.EventStorageManager;
@@ -91,11 +93,13 @@ public class Main {
         QuizStorageManager quizStorageManager = new QuizStorageManager(QUIZ_FILE_NAME);
         EventStorageManager eventStorageManager = new EventStorageManager(EVENT_FILE_NAME);
         ContactStorageManager contactStorageManager = new ContactStorageManager(CONTACT_FILE_NAME);
+        ConfigStorageManager configStorageManager = new ConfigStorageManager(ConfigManager.CONFIG_FILE_NAME);
 
         try {
             quizStorageManager.saveData(new ArrayList<>(), QUIZ_FILE_NAME);
             eventStorageManager.saveData(new ArrayList<>());
             contactStorageManager.saveData(new ArrayList<>(), CONTACT_FILE_NAME);
+            configStorageManager.saveData(new ConfigParameter());
 
             return true;
         } catch (IOException e) {
@@ -105,17 +109,17 @@ public class Main {
         }
     }
 
-    public void run() {
+    public void run() throws StorageCorruptedException {
         try {
             userInterface.showToUser(Messages.MESSAGE_HELLO_FROM_DUKE);
-            configManager.getIntroductoryVariables(configManager.getConfigParameter());
-            userInterface.showWelcomeMessage(configManager.getConfigParameter());
+            configManager.getIntroductoryVariables(configManager.getConfig());
+            userInterface.showWelcomeMessage(configManager.getConfig());
 
             while (isActive) {
                 isActive = userInterface.runUi(model, eventStorageManager, quizStorageManager, contactStorageManager);
             }
         } catch (NoSuchElementException e) {
-            logger.log(Level.SEVERE, "Program ended undexpectedly");
+            logger.log(Level.SEVERE, "Program ended unexpectedly");
         }
 
         // Exit Message
@@ -132,7 +136,7 @@ public class Main {
         ContactManager contactManager = new ContactManager(contactStorageManager.loadData());
         QuizManager quizManager = new QuizManager(quizStorageManager.loadData());
         EventParameter eventParameter = eventStorageManager.loadData();
-        EventManager eventManager = new EventManager(eventParameter, configManager.getConfigParameter());
+        EventManager eventManager = new EventManager(eventParameter, configManager.getConfig());
         model = new Model(eventManager, contactManager, quizManager, configManager);
     }
 
