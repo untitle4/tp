@@ -29,6 +29,7 @@ public class Main {
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     private static UserInterface userInterface;
+    private static boolean isRunning = true;
 
     private EventStorageManager eventStorageManager;
     private QuizStorageManager quizStorageManager;
@@ -49,11 +50,13 @@ public class Main {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        try {
-            new Main().run();
-        } catch (StorageCorruptedException e) {
-            userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
-            handleCorruptedStorage();
+        while(isRunning) {
+            try {
+                new Main().run();
+            } catch (StorageCorruptedException e) {
+                userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
+                handleCorruptedStorage();
+            }
         }
     }
 
@@ -76,15 +79,14 @@ public class Main {
             case "n":
                 userInterface.showToUser();
                 validInput = true;
+                isRunning = false;
                 break;
             default:
                 userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_INVALID_INPUT_PROMPT);
             }
         }
 
-        if (resetSuccessful) {
-            userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_SUCCESSFUL);
-        } else {
+        if (!resetSuccessful) {
             userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_FAILED_OR_CANCELLED);
         }
     }
@@ -117,6 +119,7 @@ public class Main {
 
             while (isActive) {
                 isActive = userInterface.runUi(model, eventStorageManager, quizStorageManager, contactStorageManager);
+                isRunning = isActive;
             }
         } catch (NoSuchElementException e) {
             logger.log(Level.SEVERE, "Program ended unexpectedly");
