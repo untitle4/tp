@@ -6,6 +6,7 @@ package seedu.duke.model;
  *
  * @see seedu.duke.model.event.EventManager
  * @see ModelManager
+ * @see seedu.duke.ui.ConfigManager
  */
 public abstract class ModelMain {
 }
