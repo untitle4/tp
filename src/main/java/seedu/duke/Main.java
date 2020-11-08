@@ -13,6 +13,9 @@ import seedu.duke.storage.event.EventStorageManager;
 import seedu.duke.ui.ConfigManager;
 import seedu.duke.ui.UserInterface;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class Main {
     public static final String EVENT_FILE_NAME = "/events.txt";
     public static final String QUIZ_FILE_NAME = "/quiz.txt";
@@ -43,6 +46,57 @@ public class Main {
             new Main().run();
         } catch (StorageCorruptedException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
+            handleCorruptedStorage();
+        }
+    }
+
+    private static void handleCorruptedStorage() {
+        // Valid input is defined to be y or n
+        boolean validInput = false;
+        boolean resetSuccessful = false;
+
+        userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_PROMPT,
+                Messages.MESSAGE_MANUAL_TROUBLESHOOT_PROMPT);
+
+        while (!validInput) {
+            String userInput = userInterface.getUserCommand();
+
+            switch (userInput) {
+            case "y":
+                resetSuccessful = factoryReset();
+                validInput = true;
+                break;
+            case "n":
+                userInterface.showToUser();
+                validInput = true;
+                break;
+            default:
+                userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_INVALID_INPUT_PROMPT);
+            }
+        }
+
+        if (resetSuccessful) {
+            userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_SUCCESSFUL);
+        } else {
+            userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_FAILED_OR_CANCELLED);
+        }
+    }
+
+    private static boolean factoryReset() {
+        QuizStorageManager quizStorageManager = new QuizStorageManager(QUIZ_FILE_NAME);
+        EventStorageManager eventStorageManager = new EventStorageManager(EVENT_FILE_NAME);
+        ContactStorageManager contactStorageManager = new ContactStorageManager(CONTACT_FILE_NAME);
+
+        try {
+            quizStorageManager.saveData(new ArrayList<>(), QUIZ_FILE_NAME);
+            eventStorageManager.saveData(new ArrayList<>());
+            contactStorageManager.saveData(new ArrayList<>(), CONTACT_FILE_NAME);
+
+            return true;
+        } catch (IOException e) {
+            userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
+
+            return false;
         }
     }
 
