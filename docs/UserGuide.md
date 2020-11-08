@@ -576,7 +576,7 @@ Examples: `add contact /s math /n thomas /p 91779977 /e thomas@gmail.com`
 
 Example Output:
 <br>
-![AddContact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/AddContact.png)
+![add_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact.png)
 
 #### Deleting a contact `delete contact`
 Allows you to delete a contact from the contact list.
@@ -587,7 +587,7 @@ Examples: `delete contact 1`
 
 Example Output:
 <br>
-![DeleteContact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/DeleteContact.png)
+![delete_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact.png)
 
 #### Listing out contacts `list contact`
 Allows you to list out all the contacts in the contact list
@@ -596,7 +596,7 @@ Format: `list contact`
 
 Example Output:
 <br>
-![ListContact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/ListContact.png)
+![list_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_contact.png)
 
 #### Finding a contact `find contact`
 Look for contacts that match the given keywords you want.
@@ -607,7 +607,7 @@ Examples: `find contact math`
 
 Example Output:
 <br>
-![FindContact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/FindContact.png)
+![find_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find_contact.png)
 
 
 ### Exits Program: `bye`
