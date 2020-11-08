@@ -12,7 +12,7 @@ import seedu.duke.storage.StorageExceptionHandler;
 import seedu.duke.storage.contact.ContactStorageManager;
 import seedu.duke.storage.quiz.QuizStorageManager;
 import seedu.duke.storage.event.EventStorageManager;
-import seedu.duke.ui.ConfigManager;
+import seedu.duke.model.config.ConfigManager;
 import seedu.duke.ui.UserInterface;
 
 import java.util.NoSuchElementException;

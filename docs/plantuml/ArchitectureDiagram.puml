@@ -39,9 +39,9 @@ user ..down> UserInterface
 UserInterface -down[bold,#SkyBlue]-> Controller
 Controller -[Bold,#LightSalmon]-> Model : manipulate data
 Model --[bold,#YellowGreen]> UserInterface : update view
-UserInterface <-[#Silver] Main
-Main -up[#Silver]> Model
-Main -right[#Silver]> Storage
+UserInterface <-[#Silver] Main : initialize
+Main -up[#Silver]> Model : initialize
+Main -right[#Silver]> Storage : initialize
 Storage ..[#Peru]> Data
 Controller -[bold,#LightSalmon]> Storage
 

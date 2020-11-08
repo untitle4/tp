@@ -2,7 +2,7 @@ package seedu.duke.controller.command;
 
 import seedu.duke.exception.ExtraParameterException;
 import seedu.duke.model.ModelMain;
-import seedu.duke.ui.ConfigManager;
+import seedu.duke.model.config.ConfigManager;
 
 //@@author Aliciaho
 public class SetHoursCommand extends Command {
