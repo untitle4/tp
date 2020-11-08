@@ -46,7 +46,7 @@ public class EventStorageManager extends StorageManager {
         userInterface = UserInterface.getInstance();
     }
 
-   /**
+    /**
      * Constructs an EventStorageManager with the given fileName.
      *
      * @param fileName String containing the fileName to be created/read from.

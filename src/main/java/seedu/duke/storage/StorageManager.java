@@ -37,7 +37,7 @@ public abstract class StorageManager {
         this.fileName = fileName;
     }
   
-     /**
+    /**
      * Creates the 'data' directory if it does not exist. Creates the data file .txt if it does not exist.
      *
      * @return boolean. true if data file is created, false if data file already exists
