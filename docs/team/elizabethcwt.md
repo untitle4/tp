@@ -13,7 +13,7 @@ Allows students to plan and track their:
         <li>Tuition
     </ul>
 
-      This inculcates effective scheduling habits in these students from a young age, which they will carry with them as they grow older.
+    This inculcates effective scheduling habits in these students from a young age, which they will carry with them as they grow older.
 
 2. Score
 <br>
