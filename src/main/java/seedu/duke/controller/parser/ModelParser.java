@@ -29,7 +29,7 @@ public class ModelParser {
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public ModelParser(String userInput) {
-        separatedInputs = userInput.split(INPUT_SPACES);
+        separatedInputs = userInput.toLowerCase().split(INPUT_SPACES);
         modelType = null;
     }
 

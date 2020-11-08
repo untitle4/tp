@@ -4,6 +4,7 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
 
@@ -14,6 +15,8 @@ import java.util.Collections;
 import java.util.logging.Logger;
 
 public class QuizManager extends ModelManager implements QuizInteractable {
+    public static final int BEGIN_INDEX = 0;
+    public static final int END_INDEX = 1;
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 9;
     public static final int INDEX_QUESTION = 1;
@@ -40,6 +43,12 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public static final String OPTION_THREE_PREFIX = " /o3 ";
     public static final String OPTION_FOUR_PREFIX = " /o4 ";
     public static final String EXPLANATION_PREFIX = " /exp ";
+    public static final int END_DOUBLE_INDEX = 2;
+    public static final int END_TRIPLE_INDEX = 3;
+    public static final int SLASH_INDEX = 2;
+    public static final int OFFSET_1 = 3;
+    public static final int OFFSET_2 = 4;
+    public static final int OFFSET_3 = 5;
     public static int QUIZ_ATTEMPTS = 0;
     private final ArrayList<Quiz> quizzes;
     private final ArrayList<Quiz> lastIncorrectQuizzes = new ArrayList<>();
@@ -249,7 +258,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
-
     /**
      * Delete a quiz in the Arraylist of quizzes.
      * Extract the index of the quiz that the user want to delete.
@@ -282,7 +290,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author AndreWongZH
-
     /**
      * Adds a quiz to the ArrayList of quizzes.
      * Extracts the question, options, explanations if any before adding it as a quiz.
@@ -292,7 +299,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      * @throws EmptyParameterException If there are missing parameters after the prefix.
      */
     @Override
-    public void add(String userInput) throws EmptyParameterException {
+    public void add(String userInput) throws EmptyParameterException, SwappedParameterException {
         if (!userInput.contains(QUESTION_PREFIX)) {
             userInterface.showToUser(Messages.MESSAGE_QUIZ_QUESTION_NOT_FOUND);
             return;
@@ -309,6 +316,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             return;
         }
         String[] separatedInputs = userInput.trim().split("/");
+
+        validateSwappedParameters(separatedInputs);
 
         if (separatedInputs.length > MAX_INPUT_LENGTH_NO_EXP && !userInput.contains(EXPLANATION_PREFIX)) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
@@ -330,7 +339,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     //@@author AndreWongZH
     //Refactored by durianpancakes
-
     /**
      * Extracts out the question, options, answers and explanation from user input.
      * If there is no explanation given, explanation will be empty string by default.
@@ -369,8 +377,39 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         return new Quiz(question, option1, option2, option3, option4, answerInInt, explanation);
     }
 
-    //@@author untitle4
+    //@@author AndreWongZH
+    /**
+     * Validates if the parameters are swapped.
+     *
+     * @param userInputs An arraylist of type string of the user input.
+     * @throws SwappedParameterException If letter does not match up with the required prefix.
+     */
+    protected void validateSwappedParameters(String[] userInputs) throws SwappedParameterException {
+        boolean hasQ = userInputs[INDEX_QUESTION].substring(BEGIN_INDEX, END_INDEX)
+                .contentEquals(QUESTION_PREFIX.substring(SLASH_INDEX, OFFSET_1));
+        boolean hasO1 = userInputs[INDEX_OP1].substring(BEGIN_INDEX, END_DOUBLE_INDEX)
+                .contentEquals(OPTION_ONE_PREFIX.substring(SLASH_INDEX,OFFSET_2));
+        boolean hasO2 = userInputs[INDEX_OP2].substring(BEGIN_INDEX, END_DOUBLE_INDEX)
+                .contentEquals(OPTION_TWO_PREFIX.substring(SLASH_INDEX,OFFSET_2));
+        boolean hasO3 = userInputs[INDEX_OP3].substring(BEGIN_INDEX, END_DOUBLE_INDEX)
+                .contentEquals(OPTION_THREE_PREFIX.substring(SLASH_INDEX, OFFSET_2));
+        boolean hasO4 = userInputs[INDEX_OP4].substring(BEGIN_INDEX, END_DOUBLE_INDEX)
+                .contentEquals(OPTION_FOUR_PREFIX.substring(SLASH_INDEX, OFFSET_2));
+        boolean hasA = userInputs[INDEX_ANS].substring(BEGIN_INDEX, END_INDEX)
+                .contentEquals(ANSWER_PREFIX.substring(SLASH_INDEX, OFFSET_1));
+        boolean hasE = true;
 
+        if (userInputs.length == MAX_INPUT_LENGTH_WITH_EXP) {
+            hasE = userInputs[INDEX_EXP].substring(BEGIN_INDEX, END_TRIPLE_INDEX)
+                    .contentEquals(EXPLANATION_PREFIX.substring(SLASH_INDEX, OFFSET_3));
+        }
+
+        if (!hasQ || !hasO1 || !hasO2 || !hasO3 || !hasO4 || !hasA || !hasE) {
+            throw new SwappedParameterException();
+        }
+    }
+
+    //@@author untitle4
     /**
      * To find the quiz with certain keyword(s) in the Arraylist of quizzes.
      *
@@ -397,7 +436,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
-
     /**
      * Show the incorrect quizzes in the user's last attempt.
      */
@@ -421,7 +459,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
-
     /**
      * List the Arraylist of quiz.
      */

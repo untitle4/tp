@@ -28,7 +28,7 @@ public class QuizCommand extends Command {
         }
 
         try {
-            if (separatedInputs[1].equals(INPUT_RECORD)) {
+            if (separatedInputs[1].toLowerCase().equals(INPUT_RECORD)) {
                 quizManager.recordedQuizzes();
             } else {
                 quizManager.checkQuizSizeValidity(separatedInputs);

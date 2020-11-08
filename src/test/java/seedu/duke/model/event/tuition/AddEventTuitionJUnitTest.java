@@ -1,6 +1,7 @@
 package seedu.duke.model.event.tuition;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.storage.TestUtils;
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
@@ -18,7 +19,7 @@ public class AddEventTuitionJUnitTest {
 
     @Test
     void addEvent_validTuition_noException() throws EmptyParameterException,
-            MissingParameterException, ParseException {
+            MissingParameterException, ParseException, SwappedParameterException {
         ArrayList<Event> tuitions = new ArrayList<>();
         EventTuitionManager eventTuitionManager = new EventTuitionManager(tuitions,
                 testUtils.getEmptyEventManager());
