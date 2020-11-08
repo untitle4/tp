@@ -462,7 +462,7 @@ Allows you to look for classes, ccas and tests and tuitions that match your give
 In the case when you have many events in your schedule and you need to find a specific event to check the date. You can use the `find event` command to look for the event you want by entering keywords related to it.
 
 Let's say we need to find out when my vocabulary test is on.
-We can first type `find event vocabulary` into the command box, and press Enter to execute it.
+We can first type `find event vocabulary` into the command box, and press 'Enter' to execute it.
 
 ![find1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find1.JPG)
 
