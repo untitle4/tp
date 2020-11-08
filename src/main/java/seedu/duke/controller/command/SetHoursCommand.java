@@ -1,10 +1,12 @@
 package seedu.duke.controller.command;
 
+import seedu.duke.exception.ExtraParameterException;
 import seedu.duke.model.ModelMain;
 import seedu.duke.ui.ConfigManager;
 
+//@@author Aliciaho
 public class SetHoursCommand extends Command {
-    private final ConfigManager configManager;
+    public static final String INPUT_SPACE = " ";
 
     /**
      * Runs if the execution requires passing the user input to the model.
@@ -13,11 +15,14 @@ public class SetHoursCommand extends Command {
      */
     protected SetHoursCommand(String userInput) {
         super(userInput);
-        configManager = ConfigManager.getInstance();
     }
 
     @Override
-    public void execute(ModelMain modelMain) throws NumberFormatException {
+    public void execute(ModelMain modelMain) throws NumberFormatException, ExtraParameterException {
+        if (userInput.split(INPUT_SPACE).length > 2) {
+            throw new ExtraParameterException();
+        }
+        ConfigManager configManager = (ConfigManager) modelMain;
         configManager.editHours();
     }
 }

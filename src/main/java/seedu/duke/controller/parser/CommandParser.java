@@ -86,6 +86,9 @@ public class CommandParser {
             commandType = CommandType.QUIZ;
             break;
         case INPUT_SET:
+            if (separatedInputs.length == LENGTH_SINGLE_WORD) {
+                throw new MissingModelException();
+            }
             commandType = CommandType.SET;
             break;
         default:
