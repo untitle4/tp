@@ -5,38 +5,39 @@ skinparam BoxPadding 5
 hide footbox
 
 box "Storage" #YellowGreen
-participant QuizStorageManager
-participant QuizListDecoder
+participant ":QuizStorageManager"
+participant ":QuizListDecoder"
 end box
 
 box "File" #orange
-participant File
+participant ":File"
 end box
--> QuizStorageManager
-activate QuizStorageManager
-QuizStorageManager -> QuizStorageManager : createDataFile()
-activate QuizStorageManager #salmon
-QuizStorageManager -> File ** : constructor()
-activate File
-File --> QuizStorageManager
-deactivate File
-QuizStorageManager -> File : createNewFile()
-activate File
-File --> QuizStorageManager
-deactivate File
-QuizStorageManager --> QuizStorageManager
-deactivate QuizStorageManager
 
-QuizStorageManager -> QuizListDecoder : decodeQuizList()
-activate QuizListDecoder
-QuizListDecoder -> QuizListDecoder : decodeQuizFromString()
-activate QuizListDecoder #salmon
-QuizListDecoder --> QuizListDecoder : Quiz
-deactivate QuizListDecoder
-QuizListDecoder --> QuizStorageManager : decodedQuizzes
-deactivate QuizListDecoder
-<-- QuizStorageManager
-deactivate QuizStorageManager
-destroy File
+-> ":QuizStorageManager"
+activate ":QuizStorageManager"
+":QuizStorageManager" -> ":QuizStorageManager" : createDataFile()
+activate ":QuizStorageManager" #salmon
+":QuizStorageManager" -> ":File" ** : constructor()
+activate ":File"
+":File" --> ":QuizStorageManager"
+deactivate ":File"
+":QuizStorageManager" -> ":File" : createNewFile()
+activate ":File"
+":File" --> ":QuizStorageManager"
+deactivate ":File"
+":QuizStorageManager" --> ":QuizStorageManager"
+deactivate ":QuizStorageManager"
+
+":QuizStorageManager" -> ":QuizListDecoder" : decodeQuizList()
+activate ":QuizListDecoder"
+":QuizListDecoder" -> ":QuizListDecoder" : decodeQuizFromString()
+activate ":QuizListDecoder" #salmon
+":QuizListDecoder" --> ":QuizListDecoder" : Quiz
+deactivate ":QuizListDecoder"
+":QuizListDecoder" --> ":QuizStorageManager" : decodedQuizzes
+deactivate ":QuizListDecoder"
+<-- ":QuizStorageManager"
+deactivate ":QuizStorageManager"
+destroy ":File"
 
 @enduml
