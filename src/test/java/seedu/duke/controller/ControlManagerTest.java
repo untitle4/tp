@@ -11,7 +11,7 @@ import seedu.duke.model.quiz.QuizManager;
 import seedu.duke.storage.contact.ContactStorageManager;
 import seedu.duke.storage.event.EventStorageManager;
 import seedu.duke.storage.quiz.QuizStorageManager;
-import seedu.duke.ui.ConfigManager;
+import seedu.duke.model.config.ConfigManager;
 
 import java.util.ArrayList;
 

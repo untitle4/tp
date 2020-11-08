@@ -3,7 +3,7 @@ package seedu.duke.model;
 import seedu.duke.model.contact.ContactManager;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.quiz.QuizManager;
-import seedu.duke.ui.ConfigManager;
+import seedu.duke.model.config.ConfigManager;
 
 //@@author AndreWongZH
 /**
