@@ -592,7 +592,7 @@ WARNING:
 
 ![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-![add_contact_wrongly]
+![add_contact_wrongly](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact_wrongly.png)
 
 #### Deleting a contact `delete contact`
 Allows you to delete a contact from the contact list.
@@ -628,14 +628,19 @@ The output is seen in the console.
 #### Finding a contact `find contact`
 Look for contacts that match the given keywords you want.
 
-Format: `find contact [keyword(s)]`
+In the case when you have many contacts in your list and you need to find a specific contact, you can use the 
+`find contact` command to look for the contact you want by entering keywords related to it.
 
-Examples: `find contact math`
+Let's say we need to find out the contact of our math teacher. We can type `find contact math` 
+into the command box, and press 'Enter' to execute it.
 
-Example Output:
-<br>
+![find_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find_contact_command.png)
+
+The output can then be seen in the console.
+
 ![find_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find_contact.png)
 
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find%20note.jpg" width="500"  alt="findnote"/>
 
 ### Exits Program: `bye`
 Exits the program once you have finished using it.
