@@ -2,6 +2,7 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 participant Main
 

@@ -331,18 +331,23 @@ If that is true, then it converts the userInput attribute to `LocalDate.now()`, 
 When filtering the events to be converted, the start time of the event is compared with the parameter date.
 If it is equal, the event will be converted and be printed out.
 
-#### List event week
+#### List event week/nextweek
 
-Inside this `EventManager#listSchedule()`, we then call the `UserInterface#printWeekSchedule(EventManager)`, passing in the current instance of EventManager into this method. 
-`UserInterface#printWeekSchedule(EventManager)` will then construct an instance of `CalendarWeekRenderer(EventManager)` which will display the week schedule to the user.
+![listeventweek](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListWeekSequence.png)
 
-As of V2.0, the CalendarWeekRenderer does not support printing the location parameter of the Tuition class and is expected to be introduced in V2.1. 
+Inside this `EventManager`, we then call the `UserInterface#printWeekSchedule(EventManager, ListWeekCommand)`, passing 
+in the current instance of EventManager into this method and a ListWeekCommand that determines if the current or next 
+week is to be printed. 
+`UserInterface#printWeekSchedule(EventManager)` will then construct an instance of `CalendarWeekRenderer(EventManager)` 
+which will display the week schedule to the user.
+
+As of V2.1, the CalendarWeekRenderer does not support printing the location parameter of the Tuition class.
 
 Example code snippet:
 
 ```
 UserInterface userInterface = UserInterface.getInstance();
-userInterface.printWeekSchedule(this); // the EventManager instance is passed into the method call
+userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK); // the EventManager instance is passed into the method call
 ```
 
 
@@ -386,19 +391,22 @@ This execution of the quiz command will invoke the QuizManager class’s quiz() 
 The variable correctCounter will be initialized to be 0.
 If the input <number> is:
 
-Less than 1 (including negative numbers), or
-More than the total number of questions in the current quiz list,
+- Less than 1 (including negative numbers), or
+- more than the total number of questions in the current quiz list,
 
 the program will inform the user that their input is invalid, and provide the range of questions the user can attempt.
 
-If the input is not an integer, the program will inform the user that their input is of the wrong format, and probe them to enter a value of integer type.
-The method will then randomly select the input number of quiz questions in the quiz ArrayList and convert it into its string representation.
-This is then passed to the UserInterface#printArray() to be printed out to the user.
-When each quiz question is printed, the user needs to input an answer to this question.
-The input answer will then be compared to the answer of that quiz question.
-If the answers are the same, the variable correctCounter in QuizManager() will be incremented by 1. 
-Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java to allow the continuous usage of the program.
-
+If the input is not an integer:
+- the program will inform the user that their input is of the wrong format, and
+- probe them to enter a value of integer type.
+- The method will then randomly select the input number of quiz questions in the quiz ArrayList, and
+- convert it into its string representation.
+- This is then passed to the UserInterface#printArray() to be printed out to the user.
+- When each quiz question is printed, the user needs to input an answer to this question.
+- The input answer will then be compared to the answer of that quiz question.
+- If the answers are the same, the variable correctCounter in QuizManager() will be incremented by 1. 
+- Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java,
+- which allows the continuous usage of the program.
 
 ## Product scope
 ### Target user profile

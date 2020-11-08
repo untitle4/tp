@@ -6,7 +6,6 @@ import java.time.LocalDate;
 /**
  * A class for quiz.
  */
-
 public class Quiz {
     private final String question;
     private final String option1;
@@ -55,11 +54,6 @@ public class Quiz {
 
     public LocalDate getLastAccessed() {
         return lastAccessed;
-    }
-
-    public String convertToData() {
-        return question + "|" + option1 + "|" + option2 + "|" + option3 + "|" + option4
-                + "|" + answer + "|" + explanation + "|" + lastAccessed;
     }
 
     @Override
@@ -113,9 +107,19 @@ public class Quiz {
 
     //@@author AndreWongZH
     /**
-     * Update quiz last accessed date to the current date.
+     * Updates the quiz last accessed date to the current date.
      */
     public void updateLastAccessed() {
         lastAccessed = LocalDate.now();
+    }
+
+    /**
+     * Converts quiz instance into storage readable string form.
+     *
+     * @return A string representation of the quiz.
+     */
+    public String convertToData() {
+        return question + "|" + option1 + "|" + option2 + "|" + option3 + "|" + option4
+                + "|" + answer + "|" + explanation + "|" + lastAccessed;
     }
 }

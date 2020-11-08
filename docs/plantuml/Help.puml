@@ -2,6 +2,7 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 box "Controller" #LightSalmon
 participant ControlManager
@@ -17,13 +18,14 @@ end box
 ControlManager -> CommandParser: extractCommand()
 activate ControlManager
 activate CommandParser
-CommandParser --> ControlManager: return command type
+CommandParser --> ControlManager: command type
 deactivate CommandParser
 
 ControlManager -> HelpCommand: execute()
 activate HelpCommand
 HelpCommand -> HelpCommand: handleHelp()
-activate HelpCommand
+activate HelpCommand #salmon
+HelpCommand --> HelpCommand
 deactivate HelpCommand
 
 HelpCommand -> UserInterface: showToUser()

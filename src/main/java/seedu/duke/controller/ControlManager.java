@@ -1,6 +1,6 @@
 package seedu.duke.controller;
 
-import seedu.duke.Duke;
+import seedu.duke.Main;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 
@@ -17,6 +17,7 @@ import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
 import seedu.duke.exception.MissingModelException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.CommandParser;
 import seedu.duke.controller.parser.CommandType;
@@ -24,8 +25,9 @@ import seedu.duke.controller.parser.ModelType;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.event.Event;
 import seedu.duke.model.quiz.Quiz;
-import seedu.duke.storage.EventStorageManager;
-import seedu.duke.storage.QuizStorageManager;
+import seedu.duke.storage.contact.ContactStorageManager;
+import seedu.duke.storage.event.EventStorageManager;
+import seedu.duke.storage.quiz.QuizStorageManager;
 import seedu.duke.ui.UserInterface;
 
 import java.io.IOException;
@@ -43,16 +45,18 @@ public class ControlManager {
     private final UserInterface userInterface;
     private final EventStorageManager eventStorageManager;
     private final QuizStorageManager quizStorageManager;
+    private final ContactStorageManager contactStorageManager;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
-    public ControlManager(String userInput, Model model,
-                          EventStorageManager eventStorageManager, QuizStorageManager quizStorageManager) {
+    public ControlManager(String userInput, Model model, EventStorageManager eventStorageManager,
+                          QuizStorageManager quizStorageManager, ContactStorageManager contactStorageManager) {
         assert userInput != null : "ControlManager must not accept null userInput";
         this.userInput = userInput;
         this.model = model;
         userInterface = UserInterface.getInstance();
         this.eventStorageManager = eventStorageManager;
         this.quizStorageManager = quizStorageManager;
+        this.contactStorageManager = contactStorageManager;
     }
 
     /**
@@ -77,7 +81,7 @@ public class ControlManager {
                 return commandType;
             }
 
-            // Only extract model for certain commands(add, delete, list, find, quiz, done).
+            // Only extract model for certain commands(add, delete, list, find, quiz, done, set).
             if (doesRequireModel(commandType)) {
                 logger.log(Level.INFO, "Extracting model");
                 modelType = new ModelParser(userInput).extractModel();
@@ -105,9 +109,14 @@ public class ControlManager {
             userInterface.showToUser(Messages.MESSAGE_INCOMPLETE_FIND_PARAMETERS);
         } catch (ExtraParameterException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
+        } catch (IndexOutOfBoundsException e) {
+            userInterface.showToUser(Messages.MESSAGE_CONTACT_INDEX_OUT_OF_BOUNDS);
+        } catch (SwappedParameterException e) {
+            userInterface.showToUser(Messages.MESSAGE_SWAPPED_PARAMETERS);
         } finally {
             refreshEvents();
             refreshQuizzes();
+            refreshContacts();
         }
 
         return commandType;
@@ -159,6 +168,17 @@ public class ControlManager {
         return isAdd || isDelete || isDone || isList || isFind || isQuiz || isSet;
     }
 
+    /**
+     * Saves the contacts data in ContactManager into contact.txt
+     */
+    private void refreshContacts() {
+        try {
+            contactStorageManager.saveData(model.getContactManager().getContacts(), Main.CONTACT_FILE_NAME);
+        } catch (IOException e) {
+            userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
+        }
+    }
+
     //@@author
     private void refreshEvents() {
         ArrayList<Event> events = new ArrayList<>();
@@ -179,7 +199,7 @@ public class ControlManager {
         ArrayList<Quiz> quizzes = model.getQuizManager().getQuizList();
 
         try {
-            quizStorageManager.saveData(quizzes, Duke.QUIZ_FILE_NAME);
+            quizStorageManager.saveData(quizzes, Main.QUIZ_FILE_NAME);
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
         }

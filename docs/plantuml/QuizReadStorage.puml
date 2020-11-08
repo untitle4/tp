@@ -2,33 +2,42 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 box "Storage" #YellowGreen
-participant QuizListDecoder
-participant QuizStorageManager
-participant StorageManager
+participant ":QuizStorageManager"
+participant ":QuizListDecoder"
 end box
 
 box "File" #orange
-participant File
+participant ":File"
 end box
 
-QuizStorageManager -> StorageManager : createDataFile()
-activate QuizStorageManager
-activate StorageManager
-StorageManager -> File ** : constructor()
-activate File
-File --> StorageManager : createNewFile()
-deactivate File
-destroy File
-StorageManager --> QuizStorageManager
-deactivate StorageManager
-QuizStorageManager -> QuizListDecoder : decodeQuizList()
-activate QuizListDecoder
-QuizListDecoder -> QuizListDecoder : decodeQuizFromString
-QuizListDecoder --> QuizStorageManager : decodedQuizzes
-deactivate QuizListDecoder
-deactivate QuizStorageManager
+-> ":QuizStorageManager"
+activate ":QuizStorageManager"
+":QuizStorageManager" -> ":QuizStorageManager" : createDataFile()
+activate ":QuizStorageManager" #salmon
+":QuizStorageManager" -> ":File" ** : constructor()
+activate ":File"
+":File" --> ":QuizStorageManager"
+deactivate ":File"
+":QuizStorageManager" -> ":File" : createNewFile()
+activate ":File"
+":File" --> ":QuizStorageManager"
+deactivate ":File"
+":QuizStorageManager" --> ":QuizStorageManager"
+deactivate ":QuizStorageManager"
 
+":QuizStorageManager" -> ":QuizListDecoder" : decodeQuizList()
+activate ":QuizListDecoder"
+":QuizListDecoder" -> ":QuizListDecoder" : decodeQuizFromString()
+activate ":QuizListDecoder" #salmon
+":QuizListDecoder" --> ":QuizListDecoder" : Quiz
+deactivate ":QuizListDecoder"
+":QuizListDecoder" --> ":QuizStorageManager" : decodedQuizzes
+deactivate ":QuizListDecoder"
+<-- ":QuizStorageManager"
+deactivate ":QuizStorageManager"
+destroy ":File"
 
 @enduml

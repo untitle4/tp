@@ -2,6 +2,7 @@ package seedu.duke.model;
 
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 
 //@@author AndreWongZH
 /**
@@ -16,7 +17,7 @@ public interface Interactable {
      * @throws MissingParameterException If command is missing parameters prefix.
      * @throws EmptyParameterException If no parameter inputs are found after the prefix.
      */
-    void add(String userInput) throws MissingParameterException, EmptyParameterException;
+    void add(String userInput) throws MissingParameterException, EmptyParameterException, SwappedParameterException;
 
     /**
      * Deletes an object from a ModelManager.

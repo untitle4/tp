@@ -20,4 +20,6 @@ public interface ContactInteractable extends Interactable {
      * @throws MissingParameterException If keyword is missing from the command.
      */
     void find(String userInput) throws MissingParameterException;
+
+    void delete(String[] userInputs) throws IndexOutOfBoundsException;
 }

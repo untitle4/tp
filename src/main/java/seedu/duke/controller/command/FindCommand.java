@@ -16,6 +16,13 @@ public class FindCommand extends Command {
         super(userInput);
     }
 
+    /**
+     * Runs find command on corresponding model type.
+     *
+     * @param modelMain A model type to be modified or read.
+     * @throws MissingParameterException If command is lacking keywords.
+     * @throws IncompleteFindCommandException If model is missing.
+     */
     @Override
     public void execute(ModelMain modelMain) throws MissingParameterException, IncompleteFindCommandException {
         if (modelMain == null) {

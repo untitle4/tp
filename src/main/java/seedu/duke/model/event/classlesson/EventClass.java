@@ -32,7 +32,7 @@ public class EventClass extends Event {
 
     @Override
     public String toString() {
-        String result = "";
+        String result;
         DateTimeParser dateTimeParser = new DateTimeParser();
         result = CLASS_ICON + " " + super.toString() + " from "
                 + dateTimeParser.obtainFormattedDateTimeString(this.getStart())

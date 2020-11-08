@@ -1,7 +1,6 @@
 package seedu.duke.model.event.test;
 
 import seedu.duke.model.event.Event;
-
 import seedu.duke.controller.parser.DateTimeParser;
 
 import java.util.Calendar;
@@ -30,9 +29,14 @@ public class EventTest extends Event {
         return TEST_ICON;
     }
 
+    /**
+     * Convert event to readable format for user in form of icon + description + converted date time.
+     *
+     * @return converted string
+     */
     @Override
     public String toString() {
-        String result = "";
+        String result;
         DateTimeParser dateTimeParser = new DateTimeParser();
         result = TEST_ICON + " " + super.toString() + " from "
                 + dateTimeParser.obtainFormattedDateTimeString(this.getStart())

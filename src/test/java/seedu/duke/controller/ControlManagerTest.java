@@ -8,8 +8,9 @@ import seedu.duke.model.contact.ContactManager;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
 import seedu.duke.model.quiz.QuizManager;
-import seedu.duke.storage.EventStorageManager;
-import seedu.duke.storage.QuizStorageManager;
+import seedu.duke.storage.contact.ContactStorageManager;
+import seedu.duke.storage.event.EventStorageManager;
+import seedu.duke.storage.quiz.QuizStorageManager;
 import seedu.duke.ui.ConfigManager;
 
 import java.util.ArrayList;
@@ -42,10 +43,10 @@ class ControlManagerTest {
 
     private ControlManager initializeControlManager(String userInput) {
         Model model = new Model(new EventManager(new EventParameter(), new ConfigParameter()),
-                new ContactManager(), new QuizManager(new ArrayList<>()), ConfigManager.getInstance());
+                new ContactManager(new ArrayList<>()), new QuizManager(new ArrayList<>()), ConfigManager.getInstance());
         EventStorageManager eventStorageManager = new EventStorageManager("events.txt");
         QuizStorageManager quizStorageManager =  new QuizStorageManager("quiz.txt");
-        return new ControlManager(userInput, model,
-                eventStorageManager, quizStorageManager);
+        ContactStorageManager contactStorageManager =  new ContactStorageManager("contact.txt");
+        return new ControlManager(userInput, model, eventStorageManager, quizStorageManager, contactStorageManager);
     }
 }

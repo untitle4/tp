@@ -1,14 +1,10 @@
 package seedu.duke.model.event.classlesson;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,15 +12,16 @@ import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.model.event.EventDataManager;
 import seedu.duke.model.event.EventManager;
-import seedu.duke.model.event.test.EventTest;
 import seedu.duke.ui.UserInterface;
 
 //@@author elizabethcwt
+
 /**
  * <h2>ClassManager class</h2>
  * Stores user's classes in an ArrayList of Event class, named classes.
@@ -34,13 +31,11 @@ import seedu.duke.ui.UserInterface;
  *     <li>Attaining class list size</li>
  *     <li>Adding new classes into ArrayList</li>
  *     <li>Deleting classes from ArrayList</li>
- *     <li>Setting class as {@code DONE}</li>
  * </ul>
  *
  * @see EventClassManager#getClassListSize()
  * @see EventClassManager#add(String)
  * @see EventClassManager#delete(String[])
- * @see EventClassManager#setDone(String[])
  */
 public class EventClassManager extends EventDataManager {
 
@@ -81,7 +76,8 @@ public class EventClassManager extends EventDataManager {
      * @throws MissingParameterException if user input does not meet the requirements.
      */
     @Override
-    public void add(String userInput) throws MissingParameterException, EmptyParameterException {
+    public void add(String userInput) throws MissingParameterException, EmptyParameterException,
+            SwappedParameterException {
         logger.log(Level.INFO, "initialising adding of a class");
 
         // Checks if user input contains the 3 required parameters (/n, /s and /e)
@@ -92,7 +88,9 @@ public class EventClassManager extends EventDataManager {
         }
 
         // Splitting /n, /s and /e info. via a String array called classDetails
-        final String[] classDetails = userInput.trim().split("\\/");
+        final String[] classDetails = userInput.trim().split("/");
+
+        validateSwappedParameters(classDetails);
 
         logger.log(Level.INFO, "splitting the user input into class description, start date-time and end "
                 + "date-time");
@@ -130,7 +128,7 @@ public class EventClassManager extends EventDataManager {
                 sortList();
                 logger.log(Level.INFO, "sorted classes ArrayList");
 
-            //If events clashed, show the corresponding error message
+                //If events clashed, show the corresponding error message
             } else if (clashedEvents.size() > 0) {
                 userInterface.showToUser("The class you were trying to add",
                         eventClass.toString(),
@@ -138,19 +136,16 @@ public class EventClassManager extends EventDataManager {
                 for (Event clashedEvent : clashedEvents) {
                     userInterface.showToUser(clashedEvent.toString());
                 }
-                userInterface.showToUser("Please check the start and end inputs again!");
+                userInterface.showToUser(Messages.MESSAGE_PROMPT_CHECK_START_END_INPUTS);
 
-            //If the recommended time exceeded, show the corresponding error message
+                //If the recommended time exceeded, show the corresponding error message
             } else if (eventManager.didTimeExceed(eventClass)) {
-                userInterface.showToUser("Recommended time exceeded! Class is not added!");
+                userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED + " Class is not added!");
             }
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | ParseException e) {
             userInterface.showToUser(Messages.MESSAGE_INVALID_DATE);
         } catch (InvalidDateException e) {
             eventManager.processInvalidDateException(e.getErrorType());
-        } catch (ParseException e) {
-            userInterface.showToUser("☹ OOPS!!! Please enter valid date "
-                    + "and time in format yyyy-mm-dd!");
         }
     }
 
@@ -196,7 +191,7 @@ public class EventClassManager extends EventDataManager {
     private void getClassStatement(Event event) {
         String classStatement = getClassListSize() == 1 ? " class" : " classes";
         userInterface.showToUser("Now you have " + getClassListSize() + classStatement + " in the list.");
-        userInterface.showToUser("Time left for this day: " + eventManager.getTimeLeft(event));
+        userInterface.showToUser(Messages.MESSAGE_TIME_LEFT_HEADER + eventManager.getTimeLeft(event));
     }
 
     /**
@@ -205,6 +200,7 @@ public class EventClassManager extends EventDataManager {
      *
      * @param userInputs To take in the class index of the class to be set as done.
      * @throws IndexOutOfBoundsException when user input is an invalid class index integer.
+     * @Deprecated This method should not be used, as the done feature has been removed from our application.
      */
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {

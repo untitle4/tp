@@ -2,6 +2,7 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 box "Controller" #LightSalmon
 participant FindCommand
@@ -29,14 +30,15 @@ EventManager -> FindSchedule : getFilteredEvents()
 activate FindSchedule
 FindSchedule --> EventManager : filteredEvents
 deactivate FindSchedule
-destroy FindSchedule
 EventManager -> UserInterface : printArray()
 activate UserInterface
 UserInterface --> EventManager
 deactivate UserInterface
+EventManager --> EventManager
 deactivate EventManager
 EventManager --> FindCommand
 deactivate EventManager
 deactivate FindCommand
+destroy FindSchedule
 
 @enduml

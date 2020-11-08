@@ -36,14 +36,15 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public static final int INPUT_LENGTH_NO_PARAMS = 2;
     public static final int INPUT_LENGTH_ONE_PARAM = 3;
     public static final int DATE_PARAM_INDEX = 2;
-    public static final String INPUT_NEXTWEEK = "nextweek";
+    public static final String INPUT_NEXT_WEEK = "nextweek";
+
     private static EventClassManager eventClassManager;
     private static EventTestManager eventTestManager;
     private static EventCcaManager eventCcaManager;
     private static EventTuitionManager eventTuitionManager;
+    private final ConfigParameter configParameter;
     private final UserInterface userInterface;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
-    private final ConfigParameter configParameter;
     DateTimeParser dateTimeParser = new DateTimeParser();
 
     public EventManager(EventParameter eventParameter, ConfigParameter configParameter) {
@@ -99,6 +100,13 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     }
 
     //@@author AndreWongZH
+    /**
+     * Lists out user's events based on everything, date or week.
+     * Checks if there are any extra parameters and will inform user if there is.
+     * The dateParam here passed into listSchedule can be null to indicate list everything.
+     *
+     * @param userInput The input entered by the user.
+     */
     @Override
     public void list(String userInput) {
         ArrayList<String> printedEvents;
@@ -120,7 +128,7 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                     eventTuitionManager.getTuitions(), configParameter);
 
             if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
-                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXTWEEK)) {
+                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXT_WEEK)) {
                 userInterface.printWeekSchedule(this, ListWeekCommand.NEXT_WEEK);
             } else if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
                     && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_WEEK)) {
@@ -228,12 +236,10 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
     public void processInvalidDateException(InvalidDateType errorCode) {
         switch (errorCode) {
         case START_AFTER_END:
-            userInterface.showToUser("The start time given is later than the end time given!",
-                    "Please check your inputs again!");
+            userInterface.showToUser(Messages.MESSAGE_ERROR_START_AFTER_END);
             break;
         case START_EQUALS_END:
-            userInterface.showToUser("The start time given is the same as the end time given!",
-                    "Please check your inputs again!");
+            userInterface.showToUser(Messages.MESSAGE_ERROR_EQUALS_END);
             break;
         default:
             // No default cases needed here
@@ -271,12 +277,8 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
             return true;
         }
 
-        if (startInputCalendar.equals(startReferenceCalendar)
-                || endInputCalendar.equals(endReferenceCalendar)) {
-            return true;
-        }
-
-        return false;
+        return startInputCalendar.equals(startReferenceCalendar)
+                || endInputCalendar.equals(endReferenceCalendar);
     }
 
     /**
@@ -297,16 +299,16 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
      * Get the total number of productive minutes for a particular day.
      *
      * @param event Event that user is trying to add
-     * @param eventArrayList Masterlist containing all the events
+     * @param eventArrayList Master List containing all the events
      * @return total number of minutes for that day
      */
     private long getNoOfMinutes(Event event, ArrayList<Event> eventArrayList) {
         long noOfMinutes = 0;
-        for (int i = 0; i < eventArrayList.size(); i++) {
-            if (dateTimeParser.isDateEqual(eventArrayList.get(i).getStart(),
+        for (Event value : eventArrayList) {
+            if (dateTimeParser.isDateEqual(value.getStart(),
                     event.getStart())) {
-                noOfMinutes += dateTimeParser.getDuration(eventArrayList.get(i).getStart(),
-                        eventArrayList.get(i).getEnd());
+                noOfMinutes += dateTimeParser.getDuration(value.getStart(),
+                        value.getEnd());
             }
         }
         return noOfMinutes;

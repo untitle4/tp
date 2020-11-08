@@ -32,7 +32,7 @@ public class CommandParser {
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     public CommandParser(String userInput) {
-        separatedInputs = userInput.split(INPUT_SPACES);
+        separatedInputs = userInput.toLowerCase().split(INPUT_SPACES);
         commandType = null;
     }
 
@@ -42,6 +42,8 @@ public class CommandParser {
      *
      * @return CommandType corresponding to the command.
      * @throws InvalidCommandException If no command word matches the first word.
+     * @throws MissingModelException If command is missing a model word.
+     * @throws ExtraParameterException If command contains extra parameters.
      */
     public CommandType extractCommand() throws InvalidCommandException, MissingModelException, ExtraParameterException {
         logger.log(Level.INFO, "Extracting command now...");
@@ -69,7 +71,7 @@ public class CommandParser {
             commandType = CommandType.LIST;
             break;
         case INPUT_BYE:
-            if (separatedInputs.length > 1) {
+            if (separatedInputs.length > LENGTH_SINGLE_WORD) {
                 throw new ExtraParameterException();
             }
             commandType = CommandType.BYE;

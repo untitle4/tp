@@ -2,6 +2,7 @@ package seedu.duke.model.quiz;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.SwappedParameterException;
 
 import java.util.ArrayList;
 
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class AddQuizJUnitTest {
     @Test
-    void addQuizToList() throws EmptyParameterException {
+    void addQuizToList() throws EmptyParameterException, SwappedParameterException {
         ArrayList<Quiz> quizzes = new ArrayList<>();
         QuizManager quizManager = new QuizManager(quizzes);
         quizManager.add("add quiz /q What is 1+1? /o1 1 /o2 2 "
@@ -27,11 +28,11 @@ public class AddQuizJUnitTest {
 
     //@@author durianpancakes
     @Test
-    void parseQuiz_invalidAnswerIndex_exceptionThrown() {
+    void parseQuiz_emptyOptions_exceptionThrown() {
         ArrayList<Quiz> quizzes = new ArrayList<>();
         QuizManager quizManager = new QuizManager(quizzes);
 
         assertThrows(EmptyParameterException.class, () -> quizManager.add("add quiz /q What is 1+1? /o1 1 /o2 2 "
-                + "/o3 3 /o4 4 /a 6 /exp 1 plus 1 must be equal to 2!"));
+                + "/o3 /o4 4 /a 3"));
     }
 }

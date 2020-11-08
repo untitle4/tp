@@ -1,4 +1,5 @@
 @startuml
+hide footbox
 
 -> ":EventStorageManager" : loadData(:ArrayList<String>)
 activate ":EventStorageManager"

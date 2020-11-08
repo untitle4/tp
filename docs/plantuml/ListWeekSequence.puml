@@ -1,25 +1,37 @@
 @startuml
+hide footbox
+
+box "Controller" #LightSalmon
+participant ":ListCommand"
+end box
+
+box "Model" #YellowGreen
+participant ":EventManager"
+end box
+
+box "UserInterface" #skyblue
+participant ":UserInterface"
+participant ":CalendarWeekRenderer"
+end box
 
 ":ListCommand" -> ":EventManager" : execute()
 activate ":ListCommand"
 activate ":EventManager"
 ":EventManager" -> ":EventManager" : listSchedule()
-activate ":EventManager"
-":EventManager" -> ":ListSchedule"** : constructor()
-activate ":ListSchedule"
-":ListSchedule" --> ":EventManager"
-deactivate ":ListSchedule"
+activate ":EventManager" #Salmon
 ":EventManager" -> ":UserInterface" : printWeekSchedule(this)
 activate ":UserInterface"
 ":UserInterface" -> ":CalendarWeekRenderer"** : constructor()
 activate ":CalendarWeekRenderer"
 ":CalendarWeekRenderer" -> ":UserInterface"
-destroy ":CalendarWeekRenderer"
+deactivate ":CalendarWeekRenderer"
 ":UserInterface" --> ":EventManager"
 deactivate ":UserInterface"
+":EventManager" --> ":EventManager"
 deactivate ":EventManager"
 ":EventManager" --> ":ListCommand"
 deactivate
 deactivate ":ListCommand"
+destroy ":CalendarWeekRenderer"
 
 @enduml

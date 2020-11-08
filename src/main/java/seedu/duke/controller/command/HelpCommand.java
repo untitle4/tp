@@ -10,6 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author AndreWongZH
+/**
+ * Represents the command for asking for help.
+ */
 public class HelpCommand extends Command {
     private final UserInterface userInterface = UserInterface.getInstance();
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();

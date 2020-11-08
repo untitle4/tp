@@ -2,35 +2,40 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 box "Controller" #LightSalmon
-participant ControlManager
+participant ":ControlManager"
 end box
 
 box "Storage" #YellowGreen
-participant QuizStorageManager
-participant QuizListEncoder
+participant ":QuizStorageManager"
+participant ":QuizListEncoder"
 end box
 
 box "UserInterface" #skyblue
-participant UserInterface
+participant ":UserInterface"
 end box
 
-
-activate ControlManager
-ControlManager -> ControlManager : refreshQuizzes()
-ControlManager -> QuizStorageManager : saveData()
-activate QuizStorageManager
-QuizStorageManager -> QuizListEncoder : encodeQuizList()
-activate QuizListEncoder
-QuizListEncoder --> QuizStorageManager : encodedQuizzes
-deactivate QuizListEncoder
-QuizStorageManager --> ControlManager
-deactivate QuizStorageManager
-ControlManager -> UserInterface : showToUser()
-activate UserInterface
-UserInterface --> ControlManager
-deactivate UserInterface
-deactivate ControlManager
+-> ":ControlManager"
+activate ":ControlManager"
+":ControlManager" -> ":ControlManager" : refreshQuizzes()
+activate ":ControlManager" #salmon
+":ControlManager" -> ":QuizStorageManager" : saveData()
+activate ":QuizStorageManager"
+":QuizStorageManager" -> ":QuizListEncoder" : encodeQuizList()
+activate ":QuizListEncoder"
+":QuizListEncoder" --> ":QuizStorageManager" : encodedQuizzes
+deactivate ":QuizListEncoder"
+":QuizStorageManager" --> ":ControlManager"
+deactivate ":QuizStorageManager"
+":ControlManager" -> ":UserInterface" : showToUser()
+activate ":UserInterface"
+":UserInterface" --> ":ControlManager"
+deactivate ":UserInterface"
+":ControlManager" --> ":ControlManager"
+deactivate ":ControlManager"
+<-- ":ControlManager"
+deactivate ":ControlManager"
 
 @enduml

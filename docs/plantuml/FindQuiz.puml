@@ -2,41 +2,43 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 box "Controller" #LightSalmon
-participant FindCommand
+participant ":FindCommand"
 end box
 
 box "Model" #YellowGreen
-participant QuizManager
-participant FindQuiz
+participant ":QuizManager"
+participant ":FindQuiz"
 end box
 
 box "UserInterface" #skyblue
-participant UserInterface
+participant ":UserInterface"
 end box
 
-FindCommand -> QuizManager : execute()
-activate FindCommand
-activate QuizManager
-QuizManager -> QuizManager : findQuiz()
-activate QuizManager #DarkSalmon
-QuizManager -> FindQuiz ** : constructor()
-activate FindQuiz
-FindQuiz --> QuizManager
-deactivate FindQuiz
-QuizManager -> FindQuiz : getFilteredQuizzes()
-activate FindQuiz
-FindQuiz --> QuizManager : filteredQuizzes
-deactivate FindQuiz
-destroy FindQuiz
-QuizManager -> UserInterface : printArray()
-activate UserInterface
-UserInterface --> QuizManager
-deactivate UserInterface
-deactivate QuizManager
-QuizManager --> FindCommand
-deactivate QuizManager
-deactivate FindCommand
+":FindCommand" -> ":QuizManager" : execute()
+activate ":FindCommand"
+activate ":QuizManager"
+":QuizManager" -> ":QuizManager" : findQuiz()
+activate ":QuizManager" #DarkSalmon
+":QuizManager" -> ":FindQuiz" ** : constructor()
+activate ":FindQuiz"
+":FindQuiz" --> ":QuizManager"
+deactivate ":FindQuiz"
+":QuizManager" -> ":FindQuiz" : getFilteredQuizzes()
+activate ":FindQuiz"
+":FindQuiz" --> ":QuizManager" : filteredQuizzes
+deactivate ":FindQuiz"
+":QuizManager" -> ":UserInterface" : printArray()
+activate ":UserInterface"
+":UserInterface" --> ":QuizManager"
+deactivate ":UserInterface"
+":QuizManager" --> ":QuizManager"
+deactivate ":QuizManager"
+":QuizManager" --> ":FindCommand"
+deactivate ":QuizManager"
+deactivate ":FindCommand"
+destroy ":FindQuiz"
 
 @enduml

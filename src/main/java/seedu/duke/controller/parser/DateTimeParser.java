@@ -1,15 +1,9 @@
 package seedu.duke.controller.parser;
 
 import seedu.duke.common.LogManager;
-import seedu.duke.model.event.Event;
 
 import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.text.SimpleDateFormat;
-import java.text.DateFormat;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,6 +21,7 @@ import java.util.regex.Pattern;
 public class DateTimeParser {
 
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
+    public static final int MAX_HHMM = 2400;
 
     /**
      * Get the suffix for each day.
@@ -110,7 +105,7 @@ public class DateTimeParser {
             throw new ParseException("Invalid datetime", 0);
         }
         
-        if (Integer.parseInt(matcher.group(1)) >  2400) {
+        if (Integer.parseInt(matcher.group(1)) > MAX_HHMM) {
             throw new ParseException("Invalid datetime", 0);
         }
     }
@@ -264,7 +259,7 @@ public class DateTimeParser {
      */
     public long getDuration(Calendar startDateCalendar, Calendar endDateCalendar) {
         logger.log(Level.INFO, "getting duration between two dates");
-        long timeDurationInMinutes = 0;
+        long timeDurationInMinutes;
         timeDurationInMinutes = Duration.between(startDateCalendar.toInstant(),
                 endDateCalendar.toInstant()).toMinutes();
         return timeDurationInMinutes;
