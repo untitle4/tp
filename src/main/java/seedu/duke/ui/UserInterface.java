@@ -136,7 +136,6 @@ public class UserInterface {
     }
 
     //@@author durianpancakes
-
     /**
      * Method to print the week schedule of the user.
      * @param eventManager EventManager instance for CalendarWeekRenderer to access helper methods.
