@@ -76,36 +76,37 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     //@@author elizabethcwt
     public void checkQuizSizeValidity(String[] separatedInputs) {
+        try {
+            noOfQues = Integer.parseInt(separatedInputs[1]);
+            assert noOfQues != 0 : "noOfQues should not be 0";
 
-        if (getQuizListSize() == 0) {
+            if (getQuizListSize() == 0) {
 
-            // If user attempts to take a quiz, but the quiz list is empty
-            userInterface.showToUser(Messages.MESSAGE_EMPTY_QUIZ_LIST);
-        } else {
+                // If user attempts to take a quiz, but the quiz list is empty
+                userInterface.showToUser(Messages.MESSAGE_EMPTY_QUIZ_LIST);
+            } else {
 
-            // If user attempts to take a quiz, and the quiz list has at least 1 quiz question
-            takeQuiz(separatedInputs);
+                // If user attempts to take a quiz, and the quiz list has at least 1 quiz question
+                takeQuiz(separatedInputs);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            // To check the validity of user input before taking a quiz.
+            userInterface.showToUser(Messages.MESSAGE_INVALID_HELP_COMMAND);
         }
     }
 
     //@@author elizabethcwt
     private void takeQuiz(String[] separatedInputs) {
-        try {
-            noOfQues = Integer.parseInt(separatedInputs[1]);
-            assert noOfQues != 0 : "noOfQues should not be 0";
 
-            if (!((noOfQues > 0) && (noOfQues <= getQuizListSize()))) {
+        if (!((noOfQues > 0) && (noOfQues <= getQuizListSize()))) {
 
-                // If user inputs an invalid number of questions to be attempted (NOT within range of 1 to quiz size)
-                handleInvalidNumOfQuestions();
-            } else {
+            // If user inputs an invalid number of questions to be attempted (NOT within range of 1 to quiz size)
+            handleInvalidNumOfQuestions();
+        } else {
 
-                // If user inputs a valid number of quiz questions (within range of 1 to quiz size)
-                handleValidNumOfQuestions();
-                QUIZ_ATTEMPTS++;
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            userInterface.showToUser(Messages.MESSAGE_INVALID_HELP_COMMAND);
+            // If user inputs a valid number of quiz questions (within range of 1 to quiz size)
+            handleValidNumOfQuestions();
+            QUIZ_ATTEMPTS++;
         }
     }
 
