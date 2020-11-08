@@ -495,19 +495,10 @@ Taking a Mathematics quiz with any number of questions you want, ranging from ju
 
 Format: `quiz [number of questions]`
 
-Examples: `quiz 15`
+Examples: `quiz 1`
 
 Example Output:
-
-```
-    Question 1: What is 1 + 1?
-    (1) 0
-    (2) 1
-    (3) 2
-    (4) 3
-    
-    ... 14 more questions in the same format once you enter your answer for each question ...
-```
+![quiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quiz1.png)
 <br>
 
 #### Adding a Quiz Question: `add quiz`
@@ -518,14 +509,10 @@ Note that the `/e (explanation)` is an optional parameter. You can add a quiz qu
 Format: `add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer]
 /e (explanation)`
 
-Examples: `add quiz /q What is 1+1? /o1 0 /o2 1 /o3 2 /o4 3 /a 3`
+Examples: `add quiz /q What is 26+5? /o1 28 /o2 31 /o3 38 /o4 41 /a 2 /exp Adding 5 to 26 gives us 31.`
 
 Example Output:
-
-```
-    Quiz question added!
-```
-
+![quizadded](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizadded.png)
 <br />
 
 
@@ -534,20 +521,10 @@ Allows you to delete a quiz question from the quiz list.
 
 Format: `delete quiz [quiz question]`
 
-Examples: `delete quiz 11`
+Examples: `delete quiz 1`
 
 Expected output:
-```
-    Noted. I've removed this quiz question:
-    What is 1+1?
-    (1) 0
-    (2) 1
-    (3) 2
-    (4) 3
-    
-    Now you have 10 quizzes in the quiz list.
-```
-
+![deletequiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/deletequiz1.png)
 <br />
 
 #### Listing out All Quiz Questions: `list quiz`
@@ -556,29 +533,7 @@ Allows you to list out all the questions in the quiz list.
 Format: `list quiz`
 
 Example Output:
-
-```
-    Here are the questions in your quiz list:
-    Question 1:
-    1+1=?
-    
-    (1) 1
-    (2) 2
-    (3) 3
-    (4) 4
-    
-    Explanation: one plus one must be equal to two!
-    
-    
-    Question 2:
-    1+1=?
-    
-    (1) 1
-    (2) 2
-    (3) 3
-    (4) 4
-
-```
+![listquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/listquiz.png)
 
 
 #### Finding a quiz: `find quiz`
@@ -588,30 +543,10 @@ Note that searches are case-insensitive and user can provide multiple words to c
 
 Format: `find quiz [keyword(s)]`
 
-Examples: `find quiz 1+1`
+Examples: `find quiz 26`
 
 Example Output:
-```
-    Question 1:
-    1+1=?
-    
-    (1) 1
-    (2) 2
-    (3) 3
-    (4) 4
-    
-    Explanation: one plus one must be equal to two!
-    
-    
-    Question 2:
-    1+1=?
-    
-    (1) 1
-    (2) 2
-    (3) 3
-    (4) 4
-
-```
+![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/findquiz.png)
 
 #### Searching for former incorrect quiz questions: `quiz record`
 Allows you to list out the incorrect quizzes in your last quiz attempt.
@@ -619,20 +554,7 @@ Allows you to list out the incorrect quizzes in your last quiz attempt.
 Format: `quiz record`
 
 Example Output:
-```
-    Here are the incorrect quizzes in your last quiz attempt:
-    
-    1+1=?
-    
-    (1) 1
-    (2) 2
-    (3) 3
-    (4) 4
-    
-    
-    Your answer: (1)
-    Correct answer: (2)
-```
+![quizrecord](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizrecord.png)
 
 ### Contact component of Plan&Score
 
