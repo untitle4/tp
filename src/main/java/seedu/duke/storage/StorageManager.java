@@ -21,7 +21,6 @@ public abstract class StorageManager {
     }
 
     //@@author durianpancakes
-
     /**
      * Constructor for Test files.
      *

@@ -6,6 +6,7 @@ import seedu.duke.storage.event.EventStorageManager;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//@@author durianpancakes
 public class StorageTest {
     EventStorageManager validEventStorage = new EventStorageManager("testdata", "/validdata.txt");
     EventStorageManager invalidEventStorage = new EventStorageManager("testdata", "/invaliddata.txt");
