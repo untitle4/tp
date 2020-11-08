@@ -20,26 +20,66 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author durianpancakes
+/**
+ * Manager class to manage EventTuition.
+ *
+ * <p>
+ * Contain methods which allow:
+ * <ul>
+ *     <li>Obtaining EventTuition list size</li>
+ *     <li>Adding new EventTuition into ArrayList</li>
+ *     <li>Deleting EventTuition from ArrayList</li>
+ * </ul>
+ * </p>
+ */
 public class EventTuitionManager extends EventDataManager {
     private final ArrayList<Event> tuitions;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
     private final EventManager eventManager;
+    public static final int INDEX_OFFSET = 1;
+    public static final int NO_EVENTS = 0;
+    public static final int ONE_EVENT = 1;
+    public static final int DELETE_INDEX = 1;
 
+    /**
+     * Constructs an EventTuitionManager.
+     *
+     * @param tuitions Contains a list of Event that are classified as EventTuition.
+     * @param eventManager EventManager instance.
+     */
     public EventTuitionManager(ArrayList<Event> tuitions, EventManager eventManager) {
         this.tuitions = tuitions;
         this.eventManager = eventManager;
         userInterface = UserInterface.getInstance();
     }
 
+    /**
+     * Obtain the EventTuition list.
+     *
+     * @return the list of EventTuition.
+     */
     public ArrayList<Event> getTuitions() {
         return tuitions;
     }
 
+    /**
+     * Obtain the number of tuition in the list of EventTuition.
+     *
+     * @return the number of EventTuition in the list.
+     */
     public int getTuitionListSize() {
         return tuitions.size();
     }
 
+    /**
+     * Method to add an EventTuition into the list of EventTuition.
+     *
+     * @param userInput The input entered by the user.
+     * @throws MissingParameterException when any of the following prefixes are missing in the userInput:
+     *     '/n', '/s', '/e', '/l'.
+     * @throws EmptyParameterException when any of the following parameters are empty: '/n', '/s', '/e', '/l'.
+     */
     @Override
     public void add(String userInput) throws MissingParameterException, EmptyParameterException {
         logger.log(Level.INFO, "Initializing adding of a tuition");
@@ -86,7 +126,7 @@ public class EventTuitionManager extends EventDataManager {
             ArrayList<Event> clashedEvents = eventManager.checkEventClash(eventTuition);
 
             //If no events clash and the recommended time did not exceed, add tuition
-            if (clashedEvents.size() == 0 && !eventManager.didTimeExceed(eventTuition)) {
+            if (clashedEvents.size() == NO_EVENTS && !eventManager.didTimeExceed(eventTuition)) {
                 tuitions.add(eventTuition);
                 logger.log(Level.INFO, "Tuition added successfully");
 
@@ -99,7 +139,7 @@ public class EventTuitionManager extends EventDataManager {
                 logger.log(Level.INFO, "sorted Tuition ArrayList");
 
             //If events clashed, show the corresponding error message
-            } else if (clashedEvents.size() > 0) {
+            } else if (clashedEvents.size() > NO_EVENTS) {
                 userInterface.showToUser("The tuition you were trying to add",
                         eventTuition.toString(),
                         "clashes with the following events in your list:");
@@ -119,21 +159,26 @@ public class EventTuitionManager extends EventDataManager {
         }
     }
 
+    /**
+     * Method to delete an EventTuition from the list of EventTuition based on the index given by the user.
+     *
+     * @param userInputs The input entered by the user.
+     */
     @Override
     public void delete(String[] userInputs) {
         try {
             // Tries to convert classIndex user input into an integer
-            int tuitionIndex = Integer.parseInt(userInputs[2]);
+            int tuitionIndex = Integer.parseInt(userInputs[DELETE_INDEX]);
 
             // Just to test if class index is valid - for exception use only
-            tuitions.get(tuitionIndex - 1);
+            tuitions.get(tuitionIndex - INDEX_OFFSET);
 
             userInterface.showToUser(Messages.MESSAGE_TUITION_DELETE_SUCCESS,
-                    tuitions.get(tuitionIndex - 1).toString());
+                    tuitions.get(tuitionIndex - INDEX_OFFSET).toString());
 
             // Deletes class from classes ArrayList
-            Event eventTuition = tuitions.get(tuitionIndex - 1);
-            tuitions.remove(tuitionIndex - 1);
+            Event eventTuition = tuitions.get(tuitionIndex - INDEX_OFFSET);
+            tuitions.remove(tuitionIndex - INDEX_OFFSET);
             logger.log(Level.INFO, "Deletion of tuition class from ArrayList");
             userInterface.showToUser(getTuitionStatement(),
                     Messages.MESSAGE_TIME_LEFT_HEADER + eventManager.getTimeLeft(eventTuition));
@@ -146,6 +191,14 @@ public class EventTuitionManager extends EventDataManager {
         }
     }
 
+    /**
+     * Method to set an EventTuition to be DONE.
+     *
+     * @param userInputs The input entered by the user.
+     * @throws IndexOutOfBoundsException when user gives an index that is smaller than or equals to 0, or
+     *     when index is greater than the number of EventTuition in the list.
+     */
+    @Deprecated
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {
         int tuitionNumber;
@@ -170,24 +223,33 @@ public class EventTuitionManager extends EventDataManager {
         }
 
         // Sets class as done
-        tuitions.get(tuitionNumber - 1).setDone();
+        tuitions.get(tuitionNumber - INDEX_OFFSET).setDone();
         logger.log(Level.INFO, "set class as done from ArrayList");
 
         userInterface.showToUser(Messages.MESSAGE_TUITION_DONE_SUCCESS,
-                "  " + tuitions.get(tuitionNumber - 1),
+                "  " + tuitions.get(tuitionNumber - INDEX_OFFSET),
                 getTuitionStatement());
     }
 
     private String getTuitionStatement() {
-        String tuitionStatement = getTuitionListSize() == 1 ? " class" : " classes";
+        String tuitionStatement = getTuitionListSize() == ONE_EVENT ? " class" : " classes";
 
         return "Now you have " + getTuitionListSize() + tuitionStatement + " in the list";
     }
 
+    /**
+     * Helper function to check if a string is empty.
+     *
+     * @param string String to be checked.
+     * @return boolean, true if empty, false if not empty.
+     */
     private boolean isEmptyString(String string) {
         return string.equals("");
     }
 
+    /**
+     * Sorts the list of EventTuition based on the start time of the Event.
+     */
     private void sortList() {
         Collections.sort(tuitions);
     }

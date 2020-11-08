@@ -1,10 +1,10 @@
-package seedu.duke;
+package seedu.duke.model.event.classlesson;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.storage.TestUtils;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
-import seedu.duke.model.event.classlesson.EventClassManager;
 
 import java.util.ArrayList;
 

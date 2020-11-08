@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.storage;
 
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.ConfigParameter;
@@ -9,6 +9,7 @@ import seedu.duke.model.event.cca.EventCca;
 import seedu.duke.model.event.classlesson.EventClass;
 import seedu.duke.model.event.test.EventTest;
 import seedu.duke.model.event.tuition.EventTuition;
+import seedu.duke.storage.event.EventStorageManager;
 
 import java.text.ParseException;
 import java.util.ArrayList;

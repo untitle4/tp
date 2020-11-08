@@ -1,20 +1,20 @@
-package seedu.duke;
+package seedu.duke.model.event.cca;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.storage.TestUtils;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
-import seedu.duke.model.event.cca.EventCcaManager;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DoneEventCcaJUnitTest {
+public class DeleteEventCcaJUnitTest {
     TestUtils testUtils = new TestUtils();
 
     @Test
-    void setCcaDone() throws EmptyParameterException, MissingParameterException {
+    void deleteCcaInList() throws EmptyParameterException, MissingParameterException {
         ArrayList<Event> cca = new ArrayList<>();
         EventCcaManager eventCcaManager = new EventCcaManager(cca,
                 testUtils.getEmptyEventManager());
@@ -22,17 +22,17 @@ public class DoneEventCcaJUnitTest {
         eventCcaManager.add("add cca /n basketball "
                 + "/s 2020-10-13 1500 /e 2020-10-13 1700");
 
-        String[] userInput = "done cca 1".trim().split(" ");
+        String[] userInput = "delete cca 1".trim().split(" ");
 
         try {
-            eventCcaManager.setDone(userInput);
+            eventCcaManager.delete(userInput);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
         }
 
-        boolean actualOutputs = cca.get(0).isDone();
-        boolean expectedOutputs = true;
+        int actualOutput = eventCcaManager.getCcaListSize();
+        int expectedOutput = 0;
 
-        assertEquals(actualOutputs, expectedOutputs);
+        assertEquals(actualOutput, expectedOutput);
     }
 }

@@ -1,15 +1,11 @@
 package seedu.duke.controller;
 
 import org.junit.jupiter.api.Test;
-import seedu.duke.TestUtils;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.ConfigParameter;
-import seedu.duke.model.event.Event;
 import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
-
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

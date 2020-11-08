@@ -1,6 +1,6 @@
 @startuml
 skinparam Shadowing false
-skinparam MinClassWidth 100
+skinparam MinClassWidth 120
 skinparam classBackgroundColor #SkyBlue
 skinparam packageStyle rectangle
 hide circle
@@ -23,10 +23,8 @@ package Controller {
 
 }
 
-Model -[#YellowGreen]-> UserInterface
-UserInterface -[#SkyBlue]--> Controller
-Controller -[#Salmon]-> UserInterface
-
-
+Model <..[#YellowGreen]. UserInterface
+UserInterface -[#SkyBlue]--> Controller :creates
+Controller -[#Salmon]----> UserInterface :call prints errors to >
 
 @enduml

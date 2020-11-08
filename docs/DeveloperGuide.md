@@ -391,19 +391,22 @@ This execution of the quiz command will invoke the QuizManager class’s quiz() 
 The variable correctCounter will be initialized to be 0.
 If the input <number> is:
 
-Less than 1 (including negative numbers), or
-More than the total number of questions in the current quiz list,
+- Less than 1 (including negative numbers), or
+- more than the total number of questions in the current quiz list,
 
 the program will inform the user that their input is invalid, and provide the range of questions the user can attempt.
 
-If the input is not an integer, the program will inform the user that their input is of the wrong format, and probe them to enter a value of integer type.
-The method will then randomly select the input number of quiz questions in the quiz ArrayList and convert it into its string representation.
-This is then passed to the UserInterface#printArray() to be printed out to the user.
-When each quiz question is printed, the user needs to input an answer to this question.
-The input answer will then be compared to the answer of that quiz question.
-If the answers are the same, the variable correctCounter in QuizManager() will be incremented by 1. 
-Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java to allow the continuous usage of the program.
-
+If the input is not an integer:
+- the program will inform the user that their input is of the wrong format, and
+- probe them to enter a value of integer type.
+- The method will then randomly select the input number of quiz questions in the quiz ArrayList, and
+- convert it into its string representation.
+- This is then passed to the UserInterface#printArray() to be printed out to the user.
+- When each quiz question is printed, the user needs to input an answer to this question.
+- The input answer will then be compared to the answer of that quiz question.
+- If the answers are the same, the variable correctCounter in QuizManager() will be incremented by 1. 
+- Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java,
+- which allows the continuous usage of the program.
 
 ## Product scope
 ### Target user profile
