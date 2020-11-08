@@ -63,24 +63,22 @@ Given below are my contributions to the project.
     * Reported bugs and suggestions for other teams: [#16](https://github.com/nus-cs2113-AY2021S1/tp/pull/16)
     
 * Contribution to user guide
-    * Wrote documentation for `add test`
-    * Wrote documentation for `delete test`
-    * Wrote documentation for `list event today`
-    * Wrote documentation for `list event [date]`
-    * Wrote documentation for `bye`
+    * Wrote documentation for `add test`,`delete test`,`list event today`,
+    `list event [date]`,`bye`
     * Help to enhance documentation for `help`, `add class`, `delete class`, `add cca`, 
     `delete cca`, `add test`, `delete test`, `add tuition`, `delete tuition`,
-    `list event`, `list event today`, `list event [date]`
+    `list event`, `list event today`, `list event [date]`, `list event week`,
+    `list event nextweek`
     * Wrote documentation and did diagrams for Initialisation
     * Did diagrams for `help`, `add class`, `delete class`, `add cca`, 
     `delete cca`, `add test`, `delete test`, `add tuition`, `delete tuition`,
-    `list event`, `list event today`, `list event [date]`
+    `list event`, `list event today`, `list event [date]`, `list event week`,
+    `list event nextweek`
     * Update table for `command summary`
     
 
 * Contribution to developer guide
-    * Wrote documentation and did UML for `configManager`
     * Wrote documentation for `help` feature
     * Did UML for `add` and `delete` feature
     * Wrote documentation for `product scope`
-    * Wrote documentation for set hours
+    * Wrote documentation and did UML for `set hours`
