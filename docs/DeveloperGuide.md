@@ -8,7 +8,7 @@
 ### Purpose
 This document describes the architecture and system design of Plan&Score, which will evolve throughout future releases. 
 
-Each release will have an edition of the document, and the current edition of the document for the first public release is v2.0.
+Each release will have an edition of the document, and the current edition of the document for the first public release is v2.1.
 
 The goal of this document is to cover the high-level system architecture and design. This document is divided into three major parts: design, implementation, product proposition. 
 
@@ -261,12 +261,27 @@ This displays the help message via the showToUser() method of the userInterface.
 
 Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java to allow the continuous usage of the program.
 
+### Set Hours feature
+
+![sethourscomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/SetHours.png)
+
+Figure 13. Sequence Diagram of the set hours feature
+
+When a user enters ‘set hours’, the input will be read in by the UI class.
+The UI class will then parse the user input into the ControlManager class, which calls the runLogic() method.
+The extractCommand() method of the CommandParser class is then called, extracting and returning the command type based on the user’s input.
+In this case, the command type would be ‘set hours’.
+The corresponding actionableCommand will be generated via the generateActionableCommand() method in the CommandFactory class.
+Lastly, the execute() method in the SetHoursCommand class is called, which in turn calls the editHours() function from the configManager class.
+
+
+Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java to allow the continuous usage of the program.
 
 ### Add feature
 
 ![addcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Add.png)
 
-Figure 13. Sequence Diagram of the add feature
+Figure 14. Sequence Diagram of the add feature
 
 Firstly, when the user enters add .. /n .. /s .. /e .. , the input will be read in by the UI class.
 The UI class will then parse the user input into the ControlManager class where the command will be extracted and processed by the CommandParser class.
@@ -281,7 +296,7 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 
 ![deletecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/DeleteFeatureDiagram.png)
 
-Figure 14. Sequence Diagram of the delete feature
+Figure 15. Sequence Diagram of the delete feature
 
 Firstly, when the user enters delete <event> <number>, the input will be read in by the UI class.
 The UI class will then parse the user input into the ControlManager class where the command will be extracted and processed by the CommandParser class. The result is passed into ModelExtractor Class.
@@ -296,14 +311,14 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 
 ![listcontact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListContact.png)
 
-Figure 15. Sequence diagram for listing quizzes
+Figure 16. Sequence diagram for listing quizzes
 
 The list command will invoke the `ContactManager` or `QuizManager` class’s list() method respectively.
 If the ArrayList is empty, it will inform the user that there is no data to display.
 The method will then loop through the ArrayList and convert it into its string representation.
 This is then passed to the `UserInterface#printArray()` to be printed out to the user.
 
-#### List event (<date> / today / week)
+#### List event ([date] / today / week)
 While the back-end data processing is the same for all three types of list requests, the list event week request requires a different front-end class to display to the user.
 As such, we divide this section into 2 sub-sections, with List event (<date>/today) in the first subsection, and List event week in the next subsection.
 
@@ -311,11 +326,11 @@ The execution of the ListCommand will cause the `EventManager` class to invoke `
 This will then create an instance of the `ListSchedule` class, with all the classes, ccas, tests and tuitions data
 as its attributes.
 
-#### List event (<date> / today)
+#### List event ([date] / today)
 
 ![listevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListEvent.png)
 
-Figure 16. Sequence diagram for listing out events.
+Figure 17. Sequence diagram for listing out events.
 
 Inside this `EventManager#listSchedule()`, we then call the `ListSchedule#getPrintableEvents()` and this will start
 to convert ArrayList of type Event into its corresponding `toString()` representation.
@@ -334,6 +349,7 @@ If it is equal, the event will be converted and be printed out.
 #### List event week/nextweek
 
 ![listeventweek](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListWeekSequence.png)
+Figure 18. Sequence diagram for listing out events for week/nextweek.
 
 Inside this `EventManager`, we then call the `UserInterface#printWeekSchedule(EventManager, ListWeekCommand)`, passing 
 in the current instance of EventManager into this method and a ListWeekCommand that determines if the current or next 
@@ -367,7 +383,7 @@ This is then passed to the `UserInterface#printArray()` to be printed out to the
 The diagram below shows the execution flow explained below.
 
 ![findevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindEvent.png)
-Figure 17. Sequence diagram for finding events.
+Figure 19. Sequence diagram for finding events.
 
 #### Find quiz <keyword(s)>
 
@@ -381,7 +397,7 @@ The diagram below shows the execution flow explained below.
 
 ![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindQuiz.png)
 
-Figure 18. Sequence diagram for finding quizzes.
+Figure 20. Sequence diagram for finding quizzes.
 
 ### Quiz feature
 
