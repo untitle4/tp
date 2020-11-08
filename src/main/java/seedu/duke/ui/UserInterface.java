@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 //@@author durianpancakes
-
 /**
  * Singleton UserInterface class containing methods to obtain input from user, and prints output to use.
  */
