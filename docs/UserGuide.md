@@ -9,6 +9,7 @@
     - [Category Types](#category-types)
   - [Help:](#viewing-help-help) `help`
   - [PLAN component of Plan&Score](#plan-component-of-planscore)
+    - [Set Recommended Hours](#set-recommended-hours-set-hours) `set hours`
     - [Class Category](#category-class)
       - [Add a class:](#adding-a-class-add-class) `add class`
       - [Delete a task:](#deleting-a-class-delete-class) `delete class`
@@ -147,6 +148,33 @@ It allows you to plan and track the following category types:
 * Tuitions
 
 ![indexinfo](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/indexinfo.png)
+
+#### Set Recommended Hours: `set hours`
+Allows you to change the number of recommended hours you would want to have per day.
+
+Firstly, type `set hours` in the command line as seen below. Press 'Enter' to execute it.
+
+![sethours1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_1.png)
+
+Afterwards, Plan&Score will prompt you to enter the number of recommended hours that 
+you wish to accomplish per day. 
+
+![sethours2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_2.png)
+
+Key in your new desired number of hours and press 'Enter' to proceed. 
+The output is then seen in the console as shown below.
+
+![sethours3](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_3.png)
+
+<br />
+WARNING:
+<br />
+
+* `[number of hours]` must be written in numerals.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![sethourserror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_error.png)
 
 #### Category: Class
 ##### Adding a class: `add class`
