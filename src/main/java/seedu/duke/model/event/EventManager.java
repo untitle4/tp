@@ -220,6 +220,14 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return masterList;
     }
 
+    //@@author durianpancakes
+
+    /**
+     * Checks if the input Event clashes with the master list of Events
+     *
+     * @param event Event input from user
+     * @return ArrayList of Events that clashes with the input Event
+     */
     public ArrayList<Event> checkEventClash(Event event) {
         ArrayList<Event> relevantEvents = getDayEventList(getEventMasterList(), event.getStart());
         ArrayList<Event> results = new ArrayList<>();
@@ -233,6 +241,11 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         return results;
     }
 
+    /**
+     * Prints out the right error message for the event that is invalid
+     *
+     * @param errorCode InvalidDateType START_AFTER_END or START_EQUALS_END
+     */
     public void processInvalidDateException(InvalidDateType errorCode) {
         switch (errorCode) {
         case START_AFTER_END:

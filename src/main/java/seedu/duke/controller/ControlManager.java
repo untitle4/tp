@@ -179,7 +179,10 @@ public class ControlManager {
         }
     }
 
-    //@@author
+    //@@author durianpancakes
+    /**
+     * Obtains the latest Events from the data file
+     */
     private void refreshEvents() {
         ArrayList<Event> events = new ArrayList<>();
 
@@ -195,6 +198,9 @@ public class ControlManager {
         }
     }
 
+    /**
+     * Obtains the latest Quizzes from the data file
+     */
     private void refreshQuizzes() {
         ArrayList<Quiz> quizzes = model.getQuizManager().getQuizList();
 

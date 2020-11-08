@@ -23,7 +23,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author durianpancakes
-
 /**
  * Manages the reading and writing operations of Event Storage.
  */

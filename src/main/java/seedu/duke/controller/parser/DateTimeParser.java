@@ -159,19 +159,7 @@ public class DateTimeParser {
         return dayOfMonthString + " " + monthAndYearString;
     }
 
-    /**
-     * Convert date time from Calendar form to dd-MM-yyyy, hh:mma format in String form.
-     *
-     * @param calendar date time in Calendar form
-     * @return dd-MM-yyyy, hh:mma format in String form
-     */
-    public String obtainFormattedDateString(Calendar calendar) {
-        logger.log(Level.INFO, "converting to dd-MM-yyyy, hh:mma format");
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy, hh:mma");
-
-        return sdf.format(calendar.getTime());
-    }
-
+    //@@author durianpancakes
     /**
      * Convert date time in Calendar form to dd-MM in String form.
      *
@@ -185,6 +173,7 @@ public class DateTimeParser {
         return sdf.format(calendar.getTime());
     }
 
+    //@@author Aliciaho
     /**
      * Check if two dates are equal.
      *
@@ -270,6 +259,7 @@ public class DateTimeParser {
         return getDaysOfWeek(calendar);
     }
 
+    //@@author durianpancakes
     public ArrayList<Calendar> getNextDaysOfWeek() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, 7);
