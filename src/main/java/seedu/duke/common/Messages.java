@@ -16,7 +16,7 @@ public class Messages {
             + Messages.MESSAGE_LOGO;
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
     public static final String MESSAGE_PROMPT_HOURS = "Key in the number of hours you would like "
-            + "to study each day (not more than 12)?";
+            + "to be productive each day (not more than 12)?";
     public static final String MESSAGE_SHOW_HOURS = "This is your recommended hours per day: ";
     public static final String MESSAGE_SHOW_NEW_HOURS = "This is your new recommended hours per day: ";
     public static final String MESSAGE_HELLO = "Hello ";
@@ -29,8 +29,15 @@ public class Messages {
     //@@author durianpancakes
     public static final String MESSAGE_STORAGE_READ_ERROR = "There was an error loading your files.";
     public static final String MESSAGE_STORAGE_INITIALIZATION_ERROR = "STORAGE: There was an error";
-    public static final String MESSAGE_STORAGE_CORRUPTED = "): Storage file corrupted. "
-            + "Please delete your data directory and relaunch.";
+    public static final String MESSAGE_STORAGE_CORRUPTED = "): Storage file corrupted.";
+    public static final String MESSAGE_FACTORY_RESET_PROMPT = "Would you like to reset Plan&Score? [y/n]"
+            + "(NOTE: This will result in the loss of all data!)";
+    public static final String MESSAGE_MANUAL_TROUBLESHOOT_PROMPT = "Otherwise, consider going through the "
+            + "troubleshooting steps provided in our User Guide to fix the problem manually.";
+    public static final String MESSAGE_FACTORY_RESET_INVALID_INPUT_PROMPT = "Please enter [y/n] only!";
+    public static final String MESSAGE_FACTORY_RESET_SUCCESSFUL = "Reset successful! Please relaunch Plan&Score.";
+    public static final String MESSAGE_FACTORY_RESET_FAILED_OR_CANCELLED = "Reset failed/cancelled. "
+            + "Please follow troubleshooting steps provided in our User Guide to reset Plan&Score.";
     public static final String MESSAGE_INCOMPLETE_LIST_PARAMETERS = "Please tell me what you want to be listed! "
             + "You can either 'list event' or 'list quiz' or 'list contact'";
     public static final String MESSAGE_RECOMMENDED_TIME_EXCEEDED = "Recommended time exceeded!";
@@ -52,15 +59,17 @@ public class Messages {
     public static final String MESSAGE_MISSING_PARAMETERS = ":( OOPS!!! "
             + "Remember to include ALL %s inputs!";
     public static final String MESSAGE_EMPTY_PARAMETERS = ":( OOPS!!! Ensure ALL parameters are filled up!";
-    public static final String MESSAGE_LIST_INVALID_DATE = ":( OOPS!!! Please enter today/week/valid date"
-            + "and time in format yyyy-mm-dd!";
-    public static final String MESSAGE_INVALID_DATE = ":( OOPS!!! "
-            + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
     public static final String MESSAGE_INVALID_COMMAND = ":( Oops! I did not recognize that command! "
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INVALID_MODEL = ":( Oops! I did not recognize that model type! "
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INVALID_EXTRA_PARAM = ":( OOPS!!! Please do not enter extra inputs";
+    //@@author Aliciaho
+    //Messages for date time
+    public static final String MESSAGE_LIST_INVALID_DATE = ":( OOPS!!! Please enter today/week/valid date"
+            + "and time in format yyyy-mm-dd!";
+    public static final String MESSAGE_INVALID_DATE = ":( OOPS!!! "
+            + "Please enter valid date and time in format yyyy-mm-dd HHMM!";
 
     //@@author durianpancakes
     // Messages from CalendarWeekRenderer

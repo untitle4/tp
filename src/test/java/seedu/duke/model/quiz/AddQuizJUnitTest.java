@@ -27,11 +27,11 @@ public class AddQuizJUnitTest {
 
     //@@author durianpancakes
     @Test
-    void parseQuiz_invalidAnswerIndex_exceptionThrown() {
+    void parseQuiz_emptyOptions_exceptionThrown() {
         ArrayList<Quiz> quizzes = new ArrayList<>();
         QuizManager quizManager = new QuizManager(quizzes);
 
         assertThrows(EmptyParameterException.class, () -> quizManager.add("add quiz /q What is 1+1? /o1 1 /o2 2 "
-                + "/o3 3 /o4 4 /a 6 /exp 1 plus 1 must be equal to 2!"));
+                + "/o3 /o4 4 /a 3"));
     }
 }

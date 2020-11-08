@@ -20,6 +20,7 @@ import seedu.duke.model.event.EventManager;
 import seedu.duke.ui.UserInterface;
 
 //@@author elizabethcwt
+
 /**
  * <h2>ClassManager class</h2>
  * Stores user's classes in an ArrayList of Event class, named classes.
@@ -29,13 +30,11 @@ import seedu.duke.ui.UserInterface;
  *     <li>Attaining class list size</li>
  *     <li>Adding new classes into ArrayList</li>
  *     <li>Deleting classes from ArrayList</li>
- *     <li>Setting class as {@code DONE}</li>
  * </ul>
  *
  * @see EventClassManager#getClassListSize()
  * @see EventClassManager#add(String)
  * @see EventClassManager#delete(String[])
- * @see EventClassManager#setDone(String[])
  */
 public class EventClassManager extends EventDataManager {
 
@@ -125,7 +124,7 @@ public class EventClassManager extends EventDataManager {
                 sortList();
                 logger.log(Level.INFO, "sorted classes ArrayList");
 
-            //If events clashed, show the corresponding error message
+                //If events clashed, show the corresponding error message
             } else if (clashedEvents.size() > 0) {
                 userInterface.showToUser("The class you were trying to add",
                         eventClass.toString(),
@@ -135,7 +134,7 @@ public class EventClassManager extends EventDataManager {
                 }
                 userInterface.showToUser(Messages.MESSAGE_PROMPT_CHECK_START_END_INPUTS);
 
-            //If the recommended time exceeded, show the corresponding error message
+                //If the recommended time exceeded, show the corresponding error message
             } else if (eventManager.didTimeExceed(eventClass)) {
                 userInterface.showToUser(Messages.MESSAGE_RECOMMENDED_TIME_EXCEEDED + " Class is not added!");
             }
@@ -197,6 +196,7 @@ public class EventClassManager extends EventDataManager {
      *
      * @param userInputs To take in the class index of the class to be set as done.
      * @throws IndexOutOfBoundsException when user input is an invalid class index integer.
+     * @Deprecated This method should not be used, as the done feature has been removed from our application.
      */
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {

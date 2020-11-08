@@ -40,7 +40,6 @@ UserInterface -down[bold,#SkyBlue]-> Controller
 Controller -[Bold,#LightSalmon]-> Model : manipulate data
 Model --[bold,#YellowGreen]> UserInterface : update view
 UserInterface <-[#Silver] Main
-Main -left[#Silver]> Controller
 Main -up[#Silver]> Model
 Main -right[#Silver]> Storage
 Storage ..[#Peru]> Data

@@ -2,6 +2,7 @@ package seedu.duke.storage.quiz;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
+import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.UserInterface;
 import seedu.duke.model.quiz.Quiz;
@@ -56,7 +57,7 @@ public class QuizStorageManager extends StorageManager {
             } else {
                 logger.log(Level.INFO, "Data file not found, initializing data file...");
             }
-        } catch (IOException e) {
+        } catch (IOException | StorageCorruptedException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
         }

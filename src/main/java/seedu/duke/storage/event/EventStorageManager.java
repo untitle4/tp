@@ -32,8 +32,21 @@ public class EventStorageManager extends StorageManager {
     private final EventListDecoder eventListDecoder;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
-
+  
     /**
+     * Constructs an EventStorageManager with the given directory and fileName.
+     *
+     * @param directory String containing the directory to be accessed
+     * @param fileName String containing the fileName to be created/read from.
+     */
+    public EventStorageManager(String directory, String fileName) {
+        super(directory, fileName);
+        this.eventListEncoder = new EventListEncoder();
+        this.eventListDecoder = new EventListDecoder();
+        userInterface = UserInterface.getInstance();
+    }
+
+   /**
      * Constructs an EventStorageManager with the given fileName.
      *
      * @param fileName String containing the fileName to be created/read from.

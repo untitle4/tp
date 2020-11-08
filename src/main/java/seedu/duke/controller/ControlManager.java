@@ -1,6 +1,6 @@
 package seedu.duke.controller;
 
-import seedu.duke.Duke;
+import seedu.duke.Main;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 
@@ -170,7 +170,7 @@ public class ControlManager {
      */
     private void refreshContacts() {
         try {
-            contactStorageManager.saveData(model.getContactManager().getContacts(), Duke.CONTACT_FILE_NAME);
+            contactStorageManager.saveData(model.getContactManager().getContacts(), Main.CONTACT_FILE_NAME);
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
         }
@@ -196,7 +196,7 @@ public class ControlManager {
         ArrayList<Quiz> quizzes = model.getQuizManager().getQuizList();
 
         try {
-            quizStorageManager.saveData(quizzes, Duke.QUIZ_FILE_NAME);
+            quizStorageManager.saveData(quizzes, Main.QUIZ_FILE_NAME);
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
         }

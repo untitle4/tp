@@ -3,11 +3,13 @@
 - [2. About this User Guide](#about-this-user-guide)
 - [3. How to user this User Guide](#how-to-use-this-user-guide)
 - [4. Quick Start](#quick-start)
-- [5. Commands](#commands)
+- [5. Initialisation](#initialisation)
+- [6. Commands](#commands)
     - [Command Format](#command-format)
     - [Category Types](#category-types)
   - [Help:](#viewing-help-help) `help`
   - [PLAN component of Plan&Score](#plan-component-of-planscore)
+    - [Set Recommended Hours](#set-recommended-hours-set-hours) `set hours`
     - [Class Category](#category-class)
       - [Add a class:](#adding-a-class-add-class) `add class`
       - [Delete a task:](#deleting-a-class-delete-class) `delete class`
@@ -20,7 +22,7 @@
     - [Tuition Category](#category-tuition)
       - [Add a tuition:](#adding-a-tuition-add-tuition) `add tuition`
       - [Delete a tuition:](#deleting-a-tuition-delete-tuition) `delete tuition`
-    - [List schedule:](#listing-out-schedule-list-event) `list event`
+    - [List schedule:](#listing-out-schedule-list-event-<today/[date]/week/nextweek>) `list event <today/[date]/week/nextweek>`
     - [Find event:](#finding-an-event-find-event) `find event`
   - [SCORE component of Plan&Score:](#score-component-of-planscore)
     - [Take a quiz:](#taking-a-quiz-quiz)`quiz`
@@ -35,10 +37,10 @@
     - [List a contact:](#listing-out-contacts-list-contact) `list contact`
     - [Find a contact:](#finding-a-contact-find-contact) `find contact`
   - [Exit the program:](#exits-program-bye) `bye`
-- [6. Saving Data](#saving-data)
-- [7. FAQ](#faq)
-- [8. Troubleshooting](#troubleshooting)
-- [9. Command Summary](#command-summary)
+- [7. Saving Data](#saving-data)
+- [8. FAQ](#faq)
+- [9. Troubleshooting](#troubleshooting)
+- [10. Command Summary](#command-summary)
 
 ## Introduction
 
@@ -83,6 +85,28 @@ The highlights and symbols used in this document are as follow:
 3. Run the program by entering `java -jar plan.jar` in your terminal.
 4. You can exit the program by running `bye`.
 
+## Initialisation
+
+When you first open Plan&Score, you will be greeted by a welcome message as well as 
+a prompt asking for your name. This is as shown below.
+
+![introduction](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/intro_screen.png)
+
+Type in your name and press 'Enter' to proceed.
+
+![keyname](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/name.png)
+
+Afterwards, you will be prompt to enter the number of recommended hours that 
+you wish to accomplish per day. Key in your desired number of hours 
+and press 'Enter' to proceed. 
+
+![keyhours](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/hours.png)
+
+This is the end of the initialisation process. You can now enjoy the rest of Plan&Score's
+amazing features!
+
+![finishintro](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/finish_intro.png)
+
 ## Commands
 
 #### Command Format
@@ -114,62 +138,44 @@ Firstly, type ‘help’ in the command line as seen below, and press ‘Enter�
 
 The output containing all the different commands is seen in the console.
 
-![help2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help2.png)
-
-Format: `help`
-
-Example Output:
-
-```
-Hello! Here is a list of commands you can try:
-
-	1. Add class: 'add class /n [name of class] /s [start date-time of class] /e [end date-time of class]'
-	2. Delete class: 'delete class [class number]'
-
-	3. Add cca: 'add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]'
-	4. Delete cca: 'delete cca [cca number]'
-
-	5. Add test: 'add test /n [name of test] /s [start date-time of test] /e [end date-time of test]'
-	6. Delete test: 'delete test [test number]'
-
-	7. Add tuition: 'add tuition /n [name of tuition] /s [start date-time of tuition] /e start date-time of tuition] /l [location of tuition]'
-	8. Delete tuition: 'delete tuition [tuition number]'
-
-	9. List events (class, test, cca, tuition): 'list'
-
-	10. Find relevant event(s): 'find [keyword(s)]'
-
-	11. Add contact: 'add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]'
-	12. Delete contact: 'delete contact [contact number]'
-	13. List contact: 'list contact'
-    14. Find contact: 'find contact [keyword(s)]'
-
-	15. Take Mathematics quiz: 'quiz [no. of questions]'
-	16. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /exp (explanation)'
-	17. Delete quiz question: 'delete quiz [question number]'
-	18. List quiz questions: 'list quiz'
-	19. Find quiz questions: 'find quiz [keyword(s)]'
-	20. Display former incorrect quiz question records: 'quiz record'
-
-	21. Exit program: 'bye'
-
-
-	NOTE:
-	1. Please enter the date-time in the following format: YYYY-MM-DD [time in 24hr format]
-	e.g. 2020-08-19 1300
-
-	2. For command 16 (Add quiz question), the 'explanation' field is OPTIONAL
-
-```
+![help2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help_command_1.png)
+![help2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/help_command_2.png)
 
 ### Plan component of Plan&Score
 It allows you to plan and track the following category types:
-Class
-Cca
-Test
-Tuitions
+* Class
+* Cca
+* Test
+* Tuitions
 
 ![indexinfo](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/indexinfo.png)
+
+#### Set Recommended Hours: `set hours`
+Allows you to change the number of recommended hours you would want to have per day.
+
+Firstly, type `set hours` in the command line as seen below. Press 'Enter' to execute it.
+
+![sethours1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_1.png)
+
+Afterwards, Plan&Score will prompt you to enter the number of recommended hours that 
+you wish to accomplish per day. 
+
+![sethours2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_2.png)
+
+Key in your new desired number of hours and press 'Enter' to proceed. 
+The output is then seen in the console as shown below.
+
+![sethours3](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_3.png)
+
+<br />
+WARNING:
+<br />
+
+* `[number of hours]` must be written in numerals.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![sethourserror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_error.png)
 
 #### Category: Class
 ##### Adding a class: `add class`
@@ -181,50 +187,45 @@ Firstly, type `add` in the command line as seen below, followed by the category 
 
 The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-![addclass2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/addclass2.png)
+![addclass2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_class_2.png)
 
-Format: `add class /n [name of class] /s [start date-time of class] /e [end date-time of class]`
+<br />
+WARNING:
+<br />
 
 * `[name of class]` can be in a natural language format and
 cannot contain '/'. 
 
-* `[start date-time of class]` and `[end date-time of class]` must be in
+* `[start date-time of class]` and `[end date-time of class]` must be in yyyy-mm-dd HHMM format with HHMM in 24-hour format.
 
-yyyy-mm-dd HHMM format with HHMM in 24-hour format.
+* Parameters `/n`, `/s`, `/e` cannot be swapped.
+
 
 ![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-![invalid date](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_class_invalid_date_given.PNG)
+![addclasserror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/class_error.png)
 
 
-Examples: `add class /n Math /s 2020-08-19 1300 /e 2020-08-19 1400`
-
-Example Output:
-
-```
-    Got it. I've added this class:
-    [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
-    Now you have 1 class in the list.
-```
-
-<br>
+<br />
 
 ##### Deleting a class: `delete class`
 Allows you to delete a class based on its index in the list.
 
-Format: `delete class [class number]`
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the class. Afterwards, key in the corresponding index of the class you would like to delete. Press ‘Enter’ to execute it.
+![deleteclass1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_class_1.png)
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+![deleteclass2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_class_2.png)
+
+<br />
+WARNING:
+<br />
 
 * `[class number]` must be written in numerals.
 
-Examples: `delete class 1`
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-Example Output:
-```
-    Noted. I've removed this class:
-    [CLASS] Math from 19th August 2020, 01:00 pm to 19th August 2020, 02:00 pm
-    Now you have 0 classes in the list.
-```
-
+![deleteclasserror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_class_error.png)
 
 <br>
 
@@ -232,216 +233,221 @@ Example Output:
 ##### Adding a cca: `add cca`
 Allow you to add a new cca with a name, date and time.
 
-Format: `add cca /n [name of cca] /s [start date-time of cca] /e [end date-time of cca]`
+Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the description of the cca as well as its start and end date and time. Press ‘Enter’ to execute it.
 
-Examples: `add cca /n Basketball training /s 2020-09-19 1900 /e 2020-09-19 2100`
+![addCca1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_cca_1.png)
 
-Example Output:
-```
-    Got it. I've added this cca:
-    [CCA] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
-    Now you have 1 cca in the list.
-```
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-<br>
+![addCca2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_cca_2.png)
+
+<br />
+WARNING:
+<br />
+
+* `[name of cca]` can be in a natural language format and
+cannot contain '/'. 
+
+* `[start date-time of cca]` and `[end date-time of cca]` must be in yyyy-mm-dd HHMM format with HHMM in 24-hour format.
+
+* Parameters `/n`, `/s`, `/e` cannot be swapped.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![addccaerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_cca_error.png)
+
+<br />
 
 ##### Deleting a cca: `delete cca`
 Allows you to delete a cca based on its index in the list.
 
-Format: `delete cca [cca number]`
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the cca. Afterwards, key in the corresponding index of the cca you would like to delete. Press ‘Enter’ to execute it.
+
+![deleteCca1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_cca_1.png)
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+![deleteCca2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_cca_2.png)
+
+<br />
+WARNING:
+<br />
 
 * `[cca number]` must be written in numerals.
 
-Examples: `delete cca 1`
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-Example Output:
+![deleteccaerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_cca_error.png)
 
-```
-Noted. I've removed this cca:
-[CCA] Basketball training from 19th September 2020, 07:00 pm to 19th September 2020, 09:00 pm
-Now you have 0 ccas in the list.
-```
-
-<br>
+<br />
 
 #### Category: Test
 ##### Adding a test: `add test`
 Allows you to add a new test with a name, date and time.
 
-Format: `add test /n [name of test] /s [start date-time of test] /e [end date-time of test]`
+Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the test. Afterwards, key in the description of the test as well as its start and end date and time. Press ‘Enter’ to execute it.
 
-Examples: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
+![addtest1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_test_1.png)
 
-Example Output:
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-```
-Got it. I've added this test:
-[TEST] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
-Now you have 1 test in the list.
-```
+![addtest2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_test_2.png)
 
-<br>
+<br />
+WARNING:
+<br />
+
+* `[name of test]` can be in a natural language format and
+cannot contain '/'. 
+
+* `[start date-time of test]` and `[end date-time of test]` must be in yyyy-mm-dd HHMM format with HHMM in 24-hour format.
+
+* Parameters `/n`, `/s`, `/e` cannot be swapped.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![addtesterror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_test_error.png)
+
+<br />
 
 ##### Deleting a test: `delete test`
 Allows you to delete a test event based on its index in the list.
 
-Format: `delete test [test number]`
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the test. Afterwards, key in the corresponding index of the test you would like to delete. Press ‘Enter’ to execute it.
+
+![deletetest1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_test_1.png)
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+![deletetest2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_test_2.png)
+
+<br />
+WARNING:
+<br />
 
 * `[test number]` must be written in numerals.
 
-Examples: `delete test 1`
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-Example Output:
+![deletetesterror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_test_error.png)
 
-```
-Noted. I've removed this test:
-[TEST] Math test from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm
-Now you have 0 tests in the list.
-```
-
-<br>
+<br />
 
 #### Category: Tuition
 ##### Adding a tuition: `add tuition`
 Allows you to add a new test with a name, date, time, location.
 
-Format: `add tuition /n [name of tuition] /s [start date-time of test] /e [end date-time of test] /l [location of tuition]`
+Firstly, type ‘add’ in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the description of the tuition, its start and end date and time as well as its location. Press ‘Enter’ to execute it.
 
-Examples: `add tuition /n Math /s 2020-10-3 1300 /e 2020-10-3 1400 /l home`
+![addtuition1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_tuition_1.png)
 
-Example Output:
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-```
-Got it. I've added this tuition:
-[TUITION] Math from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
-Now you have 1 tuition in the list.
-```
+![addtuition2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_tuition_2.png)
 
-<br>
+<br />
+WARNING:
+<br />
+
+* `[name of tuition]` and `[location of tuition]` can be in a natural language format and
+cannot contain '/'. 
+
+* `[start date-time of tuition]` and `[end date-time of tuition]` must be in yyyy-mm-dd HHMM format with HHMM in 24-hour format.
+
+* Parameters `/n`, `/s`, `/e`, `/l` cannot be swapped.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![addtuitionerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_tuition_error.png)
+
+<br />
 
 ##### Deleting a tuition: `delete tuition`
 Allows you to delete a tuition based on its index in the list.
 
-Format: `delete tuition [tuition number]`
+Firstly, type ‘delete’ in the command line as seen below, followed by the category type which is the tuition. Afterwards, key in the corresponding index of the tuition you would like to delete. Press ‘Enter’ to execute it.
+
+![deletetuition1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_tuition_1.png)
+
+The output is seen in the console. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+![deletetuition2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_tuition_2.png)
+
+<br />
+WARNING:
+<br />
 
 * `[tuition number]` must be written in numerals.
 
-Examples: `delete tuition 1`
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
-Example Output:
+![deletetuitionerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_tuition_error.png)
 
-```
-Noted. I've removed this tuition:
-[TUITION] Math tuition from 3rd October 2020, 01:00 pm to 3rd October 2020, 02:00 pm at home
-Now you have 0 tuitions in the list.
-```
+<br />
 
-<br>
-
-#### Listing out schedule: `list event`
+#### Listing out schedule: `list event <today/[date]/week/nextweek>`
 
 Allows you to list out the entire schedule for classes, ccas and tests.
 You can also choose to list today's schedule, the schedule
 for the week or the schedule for a specific date.
 
-Format: `list event`
+##### List event: `list event`
+Firstly, to list out all events, type ‘list event’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
-Example Output:
+![listevent1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_1.png)
 
-```
-   Classes:
-   1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
-   2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
-   CCA:
-   1. [CCA] Frisbee from 19th Sep, 06:00 PM to 19th Sep, 07:00 PM
-   2. [CCA] Basketball Camp from 21st Sep, 01:00 PM to 22nd Sep, 03:00 PM
-   Test:
-   1. [TEST] Math from 26th Sep, 11:00 AM to 26th Sep, 12:00 PM
-```
+The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
+
+![listevent2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_2.png)
+
 <br />
 
-Format: `list event today`
+##### List event today: `list event today`
 
-Example Output: For date, 2020-08-19
+Secondly, to list out all events today, type ‘list event today’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
-```   
-    Classes:
-    1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
-    2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
-    CCA:
-    1. [CCA] Frisbee from 19th Aug, 06:00 PM to 19th Aug, 07:00 PM
-    Test:
-    1. [TEST] Math from 19th Aug, 11:00 AM to 19th Aug, 12:00 PM
-```
+![listeventtoday1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_today_1.png)
+
+The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly. The index of the event is corresponding to its index in the entire list.
+
+![listeventtoday2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_today_2.png)
+
 <br />
 
-Format: `list event week`
+##### List event week: `list event week`
 
-Example Output: For a particular week, 2020-11-02 to 2020-11-08
+Thirdly, to list out all events in the current week, type ‘list event week’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
-```
-              [MON]            [TUE]            [WED]            [THU]            [FRI]            [SAT]            [SUN]      
-                              [TODAY]                                                                                          
-             [02-11]          [03-11]          [04-11]          [05-11]          [06-11]          [07-11]          [08-11]     
-        1.[CLASS]        1.[TEST]         1.[TEST]         1.[CLASS]        1.[CCA]          1.[CLASS]                         
-          demo presen...   math             science          english          basketball       science                         
-          12:00PM-02:00PM  09:00AM-11:00AM  09:00AM-11:00AM  11:00AM-12:00PM  09:00AM-11:00AM  02:00PM-03:00PM                 
-        
-                           4h0m break                        6h0m break       0h0m break                                       
-        
-                         2.[CCA]                           2.[CCA]          2.[CLASS]                                          
-                           basketball                        basketball       math                                             
-                           03:00PM-05:00PM                   06:00PM-07:00PM  11:00AM-12:00PM                                  
-        
-                                                                              1h0m break                                       
-        
-                                                                            3.[CLASS]                                          
-                                                                              PE                                               
-                                                                              01:00PM-02:00PM
-```
+![listeventweek1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_week_1.png)
 
-<br>
+The output is seen in the console. It is displayed in a calendar format for easier readability. The events are listed according to time. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-Format: `list event nextweek`
+![listeventweek2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_week_2.png)
 
-Example Output: For a particular week, 2020-11-02 to 2020-11-08
+<br />
 
-```
-              [MON]            [TUE]            [WED]            [THU]            [FRI]            [SAT]            [SUN]      
-                              [TODAY]                                                                                          
-             [02-11]          [03-11]          [04-11]          [05-11]          [06-11]          [07-11]          [08-11]     
-        1.[CLASS]        1.[TEST]         1.[TEST]         1.[CLASS]        1.[CCA]          1.[CLASS]                         
-          demo presen...   math             science          english          basketball       science                         
-          12:00PM-02:00PM  09:00AM-11:00AM  09:00AM-11:00AM  11:00AM-12:00PM  09:00AM-11:00AM  02:00PM-03:00PM                 
-        
-                           4h0m break                        6h0m break       0h0m break                                       
-        
-                         2.[CCA]                           2.[CCA]          2.[CLASS]                                          
-                           basketball                        basketball       math                                             
-                           03:00PM-05:00PM                   06:00PM-07:00PM  11:00AM-12:00PM                                  
-        
-                                                                              1h0m break                                       
-        
-                                                                            3.[CLASS]                                          
-                                                                              PE                                               
-                                                                              01:00PM-02:00PM
-```
+##### List event next week: `list event nextweek`
 
-<br>
+Fourthly, to list out all events in the next week, type ‘list event nextweek’ in the command line, as seen below. Press ‘Enter’ to execute it.
 
-Format: `list event [date]`
+![listeventnextweek1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_nextweek_1.png)
 
-Example Output: For date, 2020-08-19
+The output is seen in the console. It is displayed in a calendar format for easier readability. The events are listed according to time. The date and time is converted to a more readable form, enabling you to read it more pleasantly.
 
-```  
-    Classes:
-    1. [CLASS] Math from 19th Aug, 01:00 PM to 19th Aug , 02:00 PM
-    2. [CLASS] Science from 19th Aug, 03:00 PM to 19th Aug , 04:00 PM
-    CCA:
-    1. [CCA] Frisbee from 19th Aug, 06:00 PM to 19th Aug, 07:00 PM
-    Test:
-    1. [TEST] Math from 19th Aug, 11:00 AM to 19th Aug, 12:00 PM
-```
+![listeventnextweek2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_nextweek_2.png)
+
+<br />
+
+##### List event date: `list event [desired date]`
+
+Lastly, to list out all events on a particular date, type ‘list event [desired date]’ in the command line, as seen below. Press ‘Enter’ to execute it.
+
+![listeventdate1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_date_1.png)
+
+The output is seen in the console. The list is arranged by their respective categories. The date and time is converted to a more readable form, enabling you to read it more pleasantly. The index of the event is corresponding to its index in the entire list.
+
+![listeventdate2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_date_2.png)
+
 <br />
 
 #### Finding an event: `find event`
@@ -702,13 +708,13 @@ Example Output:
 ### Exits Program: `bye`
 Exits the program once you have finished using it.
 
-Format: `bye`
+Type the command and press 'Enter' to execute it.
 
-Example Output:
+![bye1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/bye_1.png)
 
-```
-    BYE BYE! SEE YOU NEXT TIME! :3
-```
+The output is shown in the console. It contains a simple goodbye message.
+
+![bye2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/bye_2.png)
 
 ## Saving Data
 Plan&Score saves all your data automatically after every command. There is no need to save manually.
@@ -754,10 +760,20 @@ We recommend keeping a duplicate of the contents in `events.txt` to assist with 
 Action | Format | Examples
 -------|--------|--------
 help|`help`
-add|`add [category] /n [description] /s [start-date-time] /e [end date-time]` `add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /e (explanation)` `add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
-delete|`delete [category] [item number]`|`delete class 1`, `delete test 1`, `delete cca 1`
+add event|`add [class/cca/test/tuition] /n [description] /s [start-date-time] /e [end date-time]`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
+add quiz|`add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /e (explanation)`|`add quiz /q 1 + 1 = ? /o1 1 /o2 2 /o3 3 /o4 4 /a 2 /exp no explanation needed`
+add contact|`add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]`|`add contact /s math /n thomas /p 91779977 /e thomas@gmail.com`
+delete event|`delete [class/cca/test/tuition] [item number]`|`delete class 1`, `delete test 1`, `delete cca 1`
+delete quiz|`delete quiz [item number]`|`delete quiz 1`
+delete contact|`delete contact [item number]`|`delete contact 1`
+list event|`list event (<date/today/week>)`|`list event 2020-09-06`
+list quiz|`list quiz`
+list contact| `list contact`
+Find event|`find event [keyword(s)]`|`find event English`
+Find quiz|`find quiz [keyword(s)]`|`find quiz 2 + 2 = 4`
+Find contact|`find contact [keyword(s)]`|`find contact jonny@gmail.com`
 quiz|`quiz [no of questions]`|`quiz 15`
-list| `list quiz` `list event (date)` `list contact`|`list event (<date/today/week>)`
-Find|`find event [keyword(s)]` `find quiz [keyword(s)]` `find contact [keyword(s)]`|`find event English`
+display quiz record|`quiz record`
+set hours|`set hours`
 bye|`bye`
 

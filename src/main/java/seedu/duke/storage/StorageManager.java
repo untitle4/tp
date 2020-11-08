@@ -24,8 +24,20 @@ public abstract class StorageManager {
     }
 
     //@@author durianpancakes
-
     /**
+     * Constructor for Test files.
+     *
+     * @param directory String containing the directory to be accessed.
+     * @param fileName String containing the file to be accessed.
+     */
+    public StorageManager(String directory, String fileName) {
+        assert !directory.equals(EMPTY_FILE_NAME);
+        DIRECTORY_FOLDER_PATH = new File(directory).getAbsolutePath();
+        assert !fileName.equals(EMPTY_FILE_NAME);
+        this.fileName = fileName;
+    }
+  
+     /**
      * Creates the 'data' directory if it does not exist. Creates the data file .txt if it does not exist.
      *
      * @return boolean. true if data file is created, false if data file already exists
