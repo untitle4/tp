@@ -37,6 +37,8 @@ Given below are my contributions to the project.
             * swapped parameters
             * command in uppercase
             * command with extra whitespaces
+    * Factory reset
+        * Ensure program can still run after factory reset
 
 * Project management:
     * Update code using forking workflow when doing pull requests
@@ -51,13 +53,15 @@ Given below are my contributions to the project.
     * Reported bugs and suggestions for other teams: [#2](https://github.com/nus-cs2113-AY2021S1/tp/pull/2)
 
 * Contribution to user guide
-    * Wrote documentation for `Finding an event`
-    * Update table for `command summary`
+    * Wrote documentation for `Finding events`, `Finding contacts`
+    * Wrote documentation for `Listing events`, `Adding quiz`, `Quiz notification`
+    * Added images initially for initialization, help, add and delete class
+    * Update and enhanced table for `command summary`
 
 * Contribution to developer guide
-    * Add colors to UML diagrams
+    * Add colors and removed footboxes to UML diagrams
     * Add UML diagrams for figure 1, 3, 4, 15, 16
-    * Wrote documentation for Architecture section `Controller component` and `Model component`
+    * Wrote documentation for `Architecture`, `Controller component` and `Model component` in the Design section
     * Wrote documentation for `List contact/quiz` and `List event (/today)` feature
     * Wrote documentation for `Find event <keyword(s)>` feature
     * Wrote documentation for Non-Functional Requirements
