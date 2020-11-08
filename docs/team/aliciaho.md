@@ -67,6 +67,9 @@ Given below are my contributions to the project.
     * Wrote documentation for `list event today`
     * Wrote documentation for `list event [date]`
     * Wrote documentation for `bye`
+    * Help to enhance documentation for `help`, `add class`, `delete class`, `add cca`, 
+    `delete cca`, `add test`, `delete test`, `add tuition`, `delete tuition`,
+    `list event`, `list event today`, `list event [date]`
     * Wrote documentation for Initialisation
     * Did diagrams for `help`, `add class`, `delete class`, `add cca`, 
     `delete cca`, `add test`, `delete test`, `add tuition`, `delete tuition`,
