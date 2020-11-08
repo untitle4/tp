@@ -40,4 +40,5 @@ quiz and contacts tracker. It is written in Java.
     * Developer Guide:
         * Added implementation details of the `Storage` feature.
         * Added manual testing instructions for missing and corrupted files.
-        * Added UML diagrams for figures 2, 5
+        * Added UML diagrams for figures 2, 5, 6, 7, 8
+
