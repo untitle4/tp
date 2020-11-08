@@ -97,7 +97,7 @@ public class EventStorageManager extends StorageManager {
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
-        } catch (StorageSeparatorException e) {
+        } catch (Exception e) {
             logger.log(Level.SEVERE, "Event Storage corrupted");
             throw new StorageCorruptedException();
         }

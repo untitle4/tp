@@ -12,7 +12,7 @@
     - [Set Recommended Hours](#set-recommended-hours-set-hours) `set hours`
     - [Class Category](#category-class)
       - [Add a class:](#adding-a-class-add-class) `add class`
-      - [Delete a task:](#deleting-a-class-delete-class) `delete class`
+      - [Delete a class:](#deleting-a-class-delete-class) `delete class`
     - [Cca Category](#category-cca)
       - [Add a cca:](#adding-a-cca-add-cca) `add cca`
       - [Delete a cca:](#deleting-a-cca-delete-cca) `delete cca`
@@ -576,45 +576,71 @@ This will come in version 2.1.
 #### Adding a contact `add contact`
 Allows you to add a teacher's contact details to the contact list.
 
-Format: `add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]`
+Firstly, type 'add' in the command line as seen below, followed by the category type which is the contact. 
+Afterwards, key in the description of the contact. Press 'Enter' to execute it.
 
-Examples: `add contact /s math /n thomas /p 91779977 /e thomas@gmail.com`
+![add_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact_command.png)
 
-Example Output:
-<br>
+The output is seen in the console.
+
 ![add_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact.png)
+
+WARNING:
+* `[subject of contact]`, `[name of contact]`, `[phone number of contact]` and 
+`[email of contact]` can be in a natural language format and cannot contain '/'.
+* Parameters `/s`, `/n`, `/p`, `/e` cannot be swapped.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![add_contact_wrongly](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact_wrongly.png)
 
 #### Deleting a contact `delete contact`
 Allows you to delete a contact from the contact list.
 
-Format: `delete contact [contact list number]`
+Firstly, type 'delete' in the command line as seen below, followed by the category type which is the contact. 
+Afterwards, key in the corresponding index of the contact you would like to delete. Press 'Enter' to execute it.
 
-Examples: `delete contact 1`
+![delete_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact_command.png)
 
-Example Output:
-<br>
+The output is seen in the console.
+
 ![delete_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact.png)
+
+WARNING:
+* `[contact number]` must be written in numerals.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![delete_contact_wrongly](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact_wrongly.png)
 
 #### Listing out contacts `list contact`
 Allows you to list out all the contacts in the contact list
 
-Format: `list contact`
+To list out all contacts, type 'list contact' in the command line, as seen below. 
+Press 'Enter' to execute it.
 
-Example Output:
-<br>
+![list_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_contact_command.png)
+
+The output is seen in the console.
+
 ![list_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_contact.png)
 
 #### Finding a contact `find contact`
 Look for contacts that match the given keywords you want.
 
-Format: `find contact [keyword(s)]`
+In the case when you have many contacts in your list and you need to find a specific contact, you can use the 
+`find contact` command to look for the contact you want by entering keywords related to it.
 
-Examples: `find contact math`
+Let's say we need to find out the contact of our math teacher. We can type `find contact math` 
+into the command box, and press 'Enter' to execute it.
 
-Example Output:
-<br>
+![find_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find_contact_command.png)
+
+The output can then be seen in the console.
+
 ![find_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find_contact.png)
 
+<img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find%20note.jpg" width="500"  alt="findnote"/>
 
 ### Exits Program: `bye`
 Exits the program once you have finished using it.

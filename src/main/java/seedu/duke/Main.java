@@ -27,6 +27,7 @@ public class Main {
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     private static UserInterface userInterface;
+    private static boolean isRunning = true;
 
     private EventStorageManager eventStorageManager;
     private QuizStorageManager quizStorageManager;
@@ -47,12 +48,14 @@ public class Main {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
-        try {
-            new Main().run();
-        } catch (StorageCorruptedException e) {
-            userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
-            StorageExceptionHandler storageExceptionHandler = new StorageExceptionHandler();
-            storageExceptionHandler.handleCorruptedStorage();
+        while (isRunning) {
+            try {
+                new Main().run();
+            } catch (StorageCorruptedException e) {
+                userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
+                StorageExceptionHandler storageExceptionHandler = new StorageExceptionHandler();
+                storageExceptionHandler.handleCorruptedStorage();
+            }
         }
     }
 
@@ -64,6 +67,7 @@ public class Main {
 
             while (isActive) {
                 isActive = userInterface.runUi(model, eventStorageManager, quizStorageManager, contactStorageManager);
+                isRunning = isActive;
             }
         } catch (NoSuchElementException e) {
             logger.log(Level.SEVERE, "Program ended unexpectedly");
