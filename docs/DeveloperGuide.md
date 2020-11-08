@@ -8,7 +8,7 @@
 ### Purpose
 This document describes the architecture and system design of Plan&Score, which will evolve throughout future releases. 
 
-Each release will have an edition of the document, and the current edition of the document for the first public release is v2.0.
+Each release will have an edition of the document, and the current edition of the document for the first public release is v2.1.
 
 The goal of this document is to cover the high-level system architecture and design. This document is divided into three major parts: design, implementation, product proposition. 
 
