@@ -1,14 +1,11 @@
-package seedu.duke;
+package seedu.duke.model.event.tuition;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.storage.TestUtils;
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
 import seedu.duke.model.event.Event;
-import seedu.duke.model.event.EventManager;
-import seedu.duke.model.event.EventParameter;
-import seedu.duke.model.event.tuition.EventTuition;
-import seedu.duke.model.event.tuition.EventTuitionManager;
 
 import java.text.ParseException;
 import java.util.ArrayList;

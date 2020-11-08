@@ -86,6 +86,7 @@ The highlights and symbols used in this document are as follow:
 4. You can exit the program by running `bye`.
 
 ##Initialisation
+
 When you first open Plan&Score, you will be greeted by a welcome message as well as 
 a prompt asking for your name. This is as shown below.
 
@@ -773,5 +774,6 @@ Find quiz|`find quiz [keyword(s)]`|`find quiz 2 + 2 = 4`
 Find contact|`find contact [keyword(s)]`|`find contact jonny@gmail.com`
 quiz|`quiz [no of questions]`|`quiz 15`
 display quiz record|`quiz record`
+set hours|`set hours`
 bye|`bye`
 

@@ -16,7 +16,7 @@ public class Messages {
             + Messages.MESSAGE_LOGO;
     public static final String MESSAGE_PROMPT_NAME = "What is your name?";
     public static final String MESSAGE_PROMPT_HOURS = "Key in the number of hours you would like "
-            + "to study each day (not more than 12)?";
+            + "to be productive each day (not more than 12)?";
     public static final String MESSAGE_SHOW_HOURS = "This is your recommended hours per day: ";
     public static final String MESSAGE_SHOW_NEW_HOURS = "This is your new recommended hours per day: ";
     public static final String MESSAGE_HELLO = "Hello ";
