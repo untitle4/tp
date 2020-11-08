@@ -2,6 +2,7 @@ package seedu.duke.model.quiz;
 
 import org.junit.jupiter.api.Test;
 import seedu.duke.exception.EmptyParameterException;
+import seedu.duke.exception.SwappedParameterException;
 
 import java.util.ArrayList;
 
@@ -9,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DeleteQuizJUnitTest {
     @Test
-    void deleteQuizToList() throws EmptyParameterException {
+    void deleteQuizToList() throws EmptyParameterException, SwappedParameterException {
         ArrayList<Quiz> quizzes = new ArrayList<>();
         QuizManager quizManager = new QuizManager(quizzes);
         String userInput = "delete quiz 1";
