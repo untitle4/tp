@@ -31,6 +31,7 @@ Given below are my contributions to the project.
     * EventManager class to add another layer of abstraction
     * Refactor storage class to inherit from abstract StorageManager to merge duplicated methods [#125](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/125)
     * Logger class follows a singleton pattern [#146](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/146)
+    * Add encapsulation to models by adding an interface to all the modelManagers
     * Command sanitization
         * Ensure that handle cases where there are
             * extra parameters
