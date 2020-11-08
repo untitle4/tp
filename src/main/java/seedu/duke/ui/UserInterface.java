@@ -69,9 +69,6 @@ public class UserInterface {
         return in.nextLine();
     }
 
-    /**
-     * Helper function to show an empty line.
-     */
     private void showEmptyLine() {
         showToUser("");
     }

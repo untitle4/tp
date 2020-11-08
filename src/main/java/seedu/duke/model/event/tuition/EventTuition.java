@@ -7,7 +7,6 @@ import seedu.duke.controller.parser.DateTimeParser;
 import java.util.Calendar;
 
 //@@author durianpancakes
-
 /**
  * Class EventTuition.
  * Contains constructors, getters, toString and equals methods.

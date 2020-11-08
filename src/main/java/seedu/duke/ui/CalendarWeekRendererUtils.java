@@ -1,6 +1,5 @@
 package seedu.duke.ui;
 
-import com.sun.jdi.ThreadReference;
 import seedu.duke.common.Messages;
 import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.model.event.Event;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 //@@author durianpancakes
-
 /**
  * Utility class containing methods to assist CalendarWeekRenderer to produce the Week View.
  */
@@ -75,7 +73,7 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the day label of a given day.
+     * Obtains the day label of a given day.
      *
      * @param num int containing the day number based on the Calendar API.
      * @return String containing the day label based on the day number provided.
@@ -102,7 +100,7 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the Event's duration in NUM "h" NUM "m" format.
+     * Obtains the Event's duration in NUM "h" NUM "m" format.
      *
      * @param start Calendar containing the start time of the Event.
      * @param end Calendar containing the end time of the Event.
@@ -143,7 +141,7 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the Date label of a given day in the week.
+     * Obtains the Date label of a given day in the week.
      *
      * @param daysOfWeek ArrayList containing the Calendars of a week.
      * @param num int containing the Day number (0 for Monday, 6 for Sunday).
@@ -156,7 +154,7 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the Event Icon of Event to be rendered.
+     * Obtains the Event Icon of Event to be rendered.
      *
      * @param events ArrayList containing Events of the week.
      * @param counterIndex int containing the day's event to be printed.
@@ -180,7 +178,7 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the Event's description to be rendered.
+     * Obtains the Event's description to be rendered.
      *
      * @param events ArrayList containing Events of the week.
      * @param counterIndex int containing the day's event to be printed, if any.
@@ -209,7 +207,7 @@ public class CalendarWeekRendererUtils {
     }
 
     /**
-     * Obtain the Event's start end time to be rendered.
+     * Obtains the Event's start end time to be rendered.
      *
      * @param events ArrayList containing Events of the week.
      * @param counterIndex int containing the day's event to be printed, if any.

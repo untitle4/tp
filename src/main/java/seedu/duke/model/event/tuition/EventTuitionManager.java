@@ -20,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author durianpancakes
-
 /**
  * Manager class to manage EventTuition.
  *
