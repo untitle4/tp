@@ -99,7 +99,7 @@ public class EventStorageManager extends StorageManager {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
         } catch (StorageSeparatorException e) {
-            logger.log(Level.SEVERE, "Storage corrupted");
+            logger.log(Level.SEVERE, "Event Storage corrupted");
             throw new StorageCorruptedException();
         }
         return new EventParameter();

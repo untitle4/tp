@@ -1,5 +1,6 @@
 package seedu.duke.storage.contact;
 
+import seedu.duke.exception.StorageSeparatorException;
 import seedu.duke.model.contact.Contact;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class ContactListDecoder {
     public static final int INDEX_NAME = 1;
     public static final int INDEX_PHONE_NUM = 2;
     public static final int INDEX_EMAIL = 3;
+    public static final int NUMBER_OF_PARAMETERS_REQUIRED = 4;
 
     /**
      * Reads and extracts out the information from quiz storage.
@@ -22,7 +24,7 @@ public class ContactListDecoder {
      * @param encodedContactList An array list of contacts in string.
      * @return An arraylist of type contact stored in the text file.
      */
-    public ArrayList<Contact> decodeContactList(ArrayList<String> encodedContactList) {
+    public ArrayList<Contact> decodeContactList(ArrayList<String> encodedContactList) throws StorageSeparatorException {
         final ArrayList<Contact> decodedContacts = new ArrayList<>();
         for (String encodedContact : encodedContactList) {
             decodedContacts.add(decodeContactFromString(encodedContact));
@@ -37,8 +39,12 @@ public class ContactListDecoder {
      * @param encodedContact A string of input from storage.
      * @return A contact instance.
      */
-    private Contact decodeContactFromString(String encodedContact) {
+    private Contact decodeContactFromString(String encodedContact) throws StorageSeparatorException {
         final String[] data = encodedContact.trim().split("\\|");
+
+        if (data.length != 4) {
+            throw new StorageSeparatorException();
+        }
 
         String subject = data[INDEX_SUBJECT];
         String name = data[INDEX_NAME];
