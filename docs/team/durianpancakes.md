@@ -35,10 +35,10 @@ quiz and contacts tracker. It is written in Java.
 
 * Documentation:
     * User Guide: 
-        * Added documentations for `UserInterface`, `tuition` and `Troubleshooting` sections.
+        * Added documentations for `Tuition`, `list event week`, `list event nextweek` and `Troubleshooting` sections.
         * Added initial version of the `Command Summary`
     * Developer Guide:
-        * Added implementation details of the `Storage` feature.
+        * Added implementation details of the `UserInterface`, `list event week/nextweek` and `Storage` features.
         * Added manual testing instructions for missing and corrupted files.
         * Added UML diagrams for figures 2, 5, 6, 7, 8
 
