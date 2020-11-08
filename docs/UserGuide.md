@@ -575,9 +575,6 @@ You should see the full list of questions you have answered wrongly in your prev
 
 ### Contact component of Plan&Score
 
-Note that our current implementation of contact does not store the contact details in any file storage.
-This will come in version 2.1.
-
 #### Adding a contact `add contact`
 Allows you to add a teacher's contact details to the contact list.
 
