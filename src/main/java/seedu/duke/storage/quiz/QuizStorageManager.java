@@ -61,7 +61,6 @@ public class QuizStorageManager extends StorageManager {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
         } catch (StorageCorruptedException e) {
-            userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
             logger.log(Level.SEVERE, "Quiz Storage corrupted");
             throw new StorageCorruptedException();
         }

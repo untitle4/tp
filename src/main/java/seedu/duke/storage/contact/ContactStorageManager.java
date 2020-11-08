@@ -63,7 +63,6 @@ public class ContactStorageManager extends StorageManager {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
         } catch (StorageSeparatorException e) {
-            userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
             logger.log(Level.SEVERE, "Contact Storage corrupted");
             throw new StorageCorruptedException();
         }
