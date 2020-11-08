@@ -49,7 +49,9 @@ public class EventListDecoder {
      */
     private Event decodeEventFromString(String encodedEvent) throws StorageSeparatorException,
             StorageCorruptedException {
-        final String[] data = encodedEvent.trim().split("\\|", 3);
+        final String[] data = encodedEvent.trim().split("\\|");
+
+        assert data.length > 3;
 
         switch (data[0]) {
         case EventCca.CCA_ICON:
