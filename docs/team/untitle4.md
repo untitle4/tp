@@ -31,18 +31,21 @@ store the quizzes in a text file automatically.
 * Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=untitle4&tabRepo=AY2021S1-CS2113T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
 * Project management:
+    * PRs reviewed: [#363](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/363)
 
 * Enhancements to existing features:
-    * Added an optional parameter for a quiz question: explanation: [#150](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/150)
+    * Added an optional parameter `explanation` for a quiz question: [#150](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/150)
         
 * Documentation:
     * User Guide:
         * Added implementation details of the `add`, `delete`,
         `list` and `find` features for quiz.
         * Added implementation details of the `add` and `delete` for cca.
+        * Added picture demonstration of the `add`, `delete`, `list` and `find` command for contacts 
+        and update the corresponding implementation details.
     * Developer Guide:
+        * Drafted the description of the `quiz` feature.
         * Added UML diagrams for the `quiz storage` and `find quiz` features.
        
 * Community:
-    * PRs reviewed: [#363](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/363)
     * Reported bugs and suggestions for other teams in the class (example: [Reviewing T14-3](https://github.com/untitle4/ped/issues/4))
