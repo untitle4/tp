@@ -149,9 +149,9 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     private void assignCorrectnessLogo(int l) {
 
         // Assert that the correctness of the user's input is true in this if loop
-        assert ((userAnswerManager.getCorrectness().get(l).equals(true)) ||
-                (userAnswerManager.getCorrectness().get(l).equals(false))) : "User's answer should either be correct or"
-                + " false for this question";
+        assert ((userAnswerManager.getCorrectness().get(l).equals(true))
+                || (userAnswerManager.getCorrectness().get(l).equals(false))) : "User's answer should either be correct"
+                + "or false for this question";
 
         if (userAnswerManager.getCorrectness().get(l).equals(true)) {
 
