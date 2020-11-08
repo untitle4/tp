@@ -108,19 +108,17 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         initialisingShufflingOfQuestions();
 
         int questionCounter = 0;
-        while (questionCounter < noOfQues) {
 
-            // Assert that questionCounter is less than noOfQues
-            assert (questionCounter < noOfQues) : "questionCounter should not be more than noOfQues";
+        // Assert that questionCounter is less than noOfQues
+        assert (questionCounter < noOfQues) : "questionCounter should not be more than noOfQues";
+
+        while (questionCounter < noOfQues) {
 
             questionCounter = testForValidInput(questionCounter);
         }
 
         // Initialising counter for correctly answered questions
         int correctCounter = 0;
-
-        // Assert that correctCounter is 0 initially
-        assert (correctCounter == 0) : "questionCounter should be 0 initially";
 
         // Clear arraylist to store incorrect quizzes
         lastIncorrectQuizzes.clear();
@@ -149,11 +147,13 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     private void assignCorrectnessLogo(int l) {
-        if (userAnswerManager.getCorrectness().get(l).equals(true)) {
 
-            // Assert that the correctness of the user's input is true in this if loop
-            assert (userAnswerManager.getCorrectness().get(l).equals(true)) : "User's answer should be"
-                    + " correct for this question";
+        // Assert that the correctness of the user's input is true in this if loop
+        assert ((userAnswerManager.getCorrectness().get(l).equals(true)) ||
+                (userAnswerManager.getCorrectness().get(l).equals(false))) : "User's answer should either be correct or"
+                + " false for this question";
+
+        if (userAnswerManager.getCorrectness().get(l).equals(true)) {
 
             correctnessLogo = " [CORRECT ☺︎]";
         } else {
@@ -217,9 +217,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
         if (userInput.equals("")) {
 
-            // Assert that the user's input is ""
-            assert (userInput.equals(""));
-
             userInterface.showToUser(Messages.MESSAGE_QUIZ_MISSING_ANSWER);
         } else {
 
@@ -228,15 +225,16 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
             if (b) {
 
-                // Assert that the user's input is one of the valid options
-                assert (b) : "User's input should be one of the valid options (1, 2, 3 or 4)";
-
                 // Store user's quiz answers into ArrayList
                 userAnswerManager.getUserAnswers().add(Integer.parseInt(userInput));
 
                 questionCounter++;
                 return questionCounter;
             } else {
+
+                // Assert that the user's input is NOT one of the valid options
+                assert (!b) : "User's input should not be one of the valid options (1, 2, 3 or 4)";
+
                 userInterface.showToUser(Messages.MESSAGE_QUIZ_INVALID_ANS_PROVIDED);
             }
         }
@@ -245,6 +243,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+
     /**
      * Delete a quiz in the Arraylist of quizzes.
      * Extract the index of the quiz that the user want to delete.
@@ -277,6 +276,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author AndreWongZH
+
     /**
      * Adds a quiz to the ArrayList of quizzes.
      * Extracts the question, options, explanations if any before adding it as a quiz.
@@ -324,6 +324,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     //@@author AndreWongZH
     //Refactored by durianpancakes
+
     /**
      * Extracts out the question, options, answers and explanation from user input.
      * If there is no explanation given, explanation will be empty string by default.
@@ -331,7 +332,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      * @param separatedInputs An array string of user's input.
      * @return A Quiz object.
      * @throws EmptyParameterException If parameters are empty spaces.
-     * @throws NumberFormatException If answer index is not between 1 and 4.
+     * @throws NumberFormatException   If answer index is not between 1 and 4.
      */
     private Quiz parseQuizQuestion(String[] separatedInputs) throws EmptyParameterException, NumberFormatException {
         String question = separatedInputs[INDEX_QUESTION].substring(OFFSET_QUESTION).trim();
@@ -363,6 +364,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+
     /**
      * To find the quiz with certain keyword(s) in the Arraylist of quizzes.
      *
@@ -389,6 +391,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+
     /**
      * Show the incorrect quizzes in the user's last attempt.
      */
@@ -412,6 +415,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author untitle4
+
     /**
      * List the Arraylist of quiz.
      */
