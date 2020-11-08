@@ -5,29 +5,54 @@ Plan&Score is a Java command-line application that allows Primary 6 students to 
 ## Contributions
 Given below are my contributions to the project.
 * Features:
-    * List events
-    * Find events
-    * Add quiz
-    * Find contacts
-    * Quiz Notification
-    
+    * List events [#18](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/18)
+        * What it does: allows the user to list out all their classes, ccas, tests and tuitions.
+        * Justification: Allow users to view all their schedule at a glance. The numbering that appears here also corresponds to which events to delete later.
+    * Find events [#178](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/178)
+        * What it does: allows the user to search for all the events by keywords.
+        * Justification: multiple keywords can be entered to be search again.
+    * Add quiz [#123](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/123)
+        * What it does: allows the user to add a quiz question to quiz manager
+    * Find contacts [#240](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/240)
+        * What it does: allows the user to find contacts.
+    * Quiz Notification [#217](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/217)
+        * What it does: shows notification to user if quiz has not been attempted since two days ago.
+    * Contacts storage [#347](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/347)
+
 * Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=AndreWongZH&tabRepo=AY2021S1-CS2113T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
+* Enhancements:
+    * Refactor code in controller package
+        * Have a command parser to extract out commands
+        * Have a model parser to extract out the models
+        * Adhere to single responsibility principle
+    * Create a command factory that generates the correct command class to execute on
+        * All commands inherit from abstract class command so that all commands will have method execute()
+    * EventManager class to add another layer of abstraction
+    * Refactor storage class to inherit from abstract StorageManager to merge duplicated methods [#125](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/125)
+    * Logger class follows a singleton pattern [#146](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/146)
+    * Command sanitization
+        * Ensure that handle cases where there are
+            * extra parameters
+            * swapped parameters
+            * command in uppercase
+            * command with extra whitespaces
+
 * Project management:
+    * Update code using forking workflow when doing pull requests
     * Set up issue tracker and milestones for `v1.0`, `v2.0` and `v2.1`
     * Set up github project dashboard to track progress
     * Released `v2.0` onto github
-    * Reviewed PRs: [#17](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/17)
-    
+    * Reviewed PRs: [#17](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/17) [#355](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/355) [#363](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/363) [#375](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/375)
+
 * Community:
     * Contributed to forum discussions: [#37](https://github.com/nus-cs2113-AY2021S1/forum/issues/87)
     * Helping others on the forum: [#29](https://github.com/nus-cs2113-AY2021S1/forum/issues/29)
     * Reported bugs and suggestions for other teams: [#2](https://github.com/nus-cs2113-AY2021S1/tp/pull/2)
-    
+
 * Contribution to user guide
     * Wrote documentation for `Finding an event`
     * Update table for `command summary`
-    
 
 * Contribution to developer guide
     * Add colors to UML diagrams

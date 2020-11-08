@@ -13,7 +13,7 @@ public class ConfigParameter {
 
     public ConfigParameter() {
         this.name = "";
-        this.recommendedHours = 0;
+        this.recommendedHours = 1;
         this.hasProgramRan = false;
     }
 

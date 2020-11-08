@@ -38,7 +38,7 @@ public class QuizStorageManager extends StorageManager {
      * Load the content of the quiz text file.
      * @return An ArrayList of type quiz
      */
-    public ArrayList<Quiz> loadData() {
+    public ArrayList<Quiz> loadData() throws StorageCorruptedException {
         File quizFile = new File(DIRECTORY_FOLDER_PATH + fileName);
         ArrayList<String> data = new ArrayList<>();
         logger.log(Level.INFO, "Loading storage...");
@@ -57,9 +57,12 @@ public class QuizStorageManager extends StorageManager {
             } else {
                 logger.log(Level.INFO, "Data file not found, initializing data file...");
             }
-        } catch (IOException | StorageCorruptedException e) {
+        } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
+        } catch (StorageCorruptedException e) {
+            logger.log(Level.SEVERE, "Quiz Storage corrupted");
+            throw new StorageCorruptedException();
         }
         return new ArrayList<>();
     }

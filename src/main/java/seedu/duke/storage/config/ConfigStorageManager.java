@@ -2,6 +2,7 @@ package seedu.duke.storage.config;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
+import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.UserInterface;
@@ -33,7 +34,7 @@ public class ConfigStorageManager extends StorageManager {
         Files.write(Path.of(DIRECTORY_FOLDER_PATH + fileName), Collections.singleton(encodedConfig));
     }
 
-    public ConfigParameter loadData() {
+    public ConfigParameter loadData() throws StorageCorruptedException {
         File eventFile = new File(DIRECTORY_FOLDER_PATH + fileName);
         logger.log(Level.INFO, "Loading storage...");
 
@@ -45,6 +46,7 @@ public class ConfigStorageManager extends StorageManager {
                 String dataString = sc.nextLine();
                 ConfigParameter configParameter = configDecoder.decodeConfig(dataString);
                 logger.log(Level.INFO, "Load successful");
+
                 return configParameter;
             } else {
                 logger.log(Level.INFO, "Data file not found, initializing data file...");
@@ -52,6 +54,9 @@ public class ConfigStorageManager extends StorageManager {
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Config Storage corrupted");
+            throw new StorageCorruptedException();
         }
         return new ConfigParameter();
     }

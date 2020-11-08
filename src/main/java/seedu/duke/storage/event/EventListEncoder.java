@@ -10,7 +10,6 @@ import seedu.duke.model.event.tuition.EventTuition;
 import java.util.ArrayList;
 
 //@@author durianpancakes
-
 /**
  * Class responsible for the encoding of Events to String for writing to the data file.
  */

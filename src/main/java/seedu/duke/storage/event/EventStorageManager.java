@@ -23,7 +23,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author durianpancakes
-
 /**
  * Manages the reading and writing operations of Event Storage.
  */
@@ -98,8 +97,8 @@ public class EventStorageManager extends StorageManager {
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
-        } catch (StorageSeparatorException e) {
-            logger.log(Level.SEVERE, "Storage corrupted");
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Event Storage corrupted");
             throw new StorageCorruptedException();
         }
         return new EventParameter();

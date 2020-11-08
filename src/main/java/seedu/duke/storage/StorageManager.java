@@ -13,6 +13,10 @@ import java.util.logging.Logger;
 public abstract class StorageManager {
     //@@author durianpancakes
     public static final String EMPTY_FILE_NAME = "";
+    public static final String EVENT_FILE_NAME = "/events.txt";
+    public static final String QUIZ_FILE_NAME = "/quiz.txt";
+    public static final String CONTACT_FILE_NAME = "/contact.txt";
+    public static final String CONFIG_FILE_NAME = "/config.txt";
     protected static String DIRECTORY_FOLDER_PATH = new File("data").getAbsolutePath();
     protected String fileName;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();

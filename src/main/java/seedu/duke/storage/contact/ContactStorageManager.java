@@ -2,6 +2,8 @@ package seedu.duke.storage.contact;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
+import seedu.duke.exception.StorageCorruptedException;
+import seedu.duke.exception.StorageSeparatorException;
 import seedu.duke.model.contact.Contact;
 import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.UserInterface;
@@ -38,7 +40,7 @@ public class ContactStorageManager extends StorageManager {
      *
      * @return An array list of type Contact.
      */
-    public ArrayList<Contact> loadData() {
+    public ArrayList<Contact> loadData() throws StorageCorruptedException {
         File contactFile = new File(DIRECTORY_FOLDER_PATH + fileName);
         ArrayList<String> data = new ArrayList<>();
         logger.log(Level.INFO, "Loading storage...");
@@ -60,6 +62,9 @@ public class ContactStorageManager extends StorageManager {
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
             logger.log(Level.SEVERE, "Initialization failed");
+        } catch (StorageSeparatorException e) {
+            logger.log(Level.SEVERE, "Contact Storage corrupted");
+            throw new StorageCorruptedException();
         }
         return new ArrayList<>();
     }

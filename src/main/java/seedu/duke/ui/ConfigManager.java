@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
+import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.ModelMain;
 import seedu.duke.storage.config.ConfigStorageManager;
@@ -14,11 +15,11 @@ public class ConfigManager extends ModelMain {
     public static final String CONFIG_FILE_NAME = "/config.txt";
     private final ConfigStorageManager configStorageManager;
     private static UserInterface userInterface;
-    private final ConfigParameter configParameter;
+    private ConfigParameter configParameter;
     private static ConfigManager INSTANCE = null;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
-    public static ConfigManager getInstance()  {
+    public static ConfigManager getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new ConfigManager();
         }
@@ -28,21 +29,16 @@ public class ConfigManager extends ModelMain {
     private ConfigManager() {
         userInterface = UserInterface.getInstance();
         this.configStorageManager = new ConfigStorageManager(CONFIG_FILE_NAME);
-        this.configParameter = getConfig();
+        this.configParameter = null;
     }
-
-    public ConfigParameter getConfigParameter() {
-        return configParameter;
-    }
-
 
     /**
      * Load data from configStorageManager to configParam.
      *
      * @return configParam containing data from configStorageManager
      */
-    private ConfigParameter getConfig() {
-        ConfigParameter configParameter = null;
+    public ConfigParameter getConfig() throws StorageCorruptedException {
+        ConfigParameter configParameter;
         configParameter = configStorageManager.loadData();
         return configParameter;
     }
@@ -93,7 +89,13 @@ public class ConfigManager extends ModelMain {
         int newHours;
         newHours = getInputHours();
         userInterface.showToUser(Messages.MESSAGE_SHOW_NEW_HOURS + newHours);
-        configParameter.setRecommendedHours(newHours);
-        saveConfigParameter(configParameter);
+        try {
+            configParameter = getConfig();
+            configParameter.setRecommendedHours(newHours);
+            saveConfigParameter(configParameter);
+        } catch (StorageCorruptedException e) {
+            // This should not occur at this point in time
+            userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
+        }
     }
 }
