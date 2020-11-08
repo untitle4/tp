@@ -111,9 +111,15 @@ amazing features!
 
 #### Command Format
 * A command can contain multiple parameters.
-For example:
-  * A `test` contains a `description`, `start` and `end`, where
-  * `description`, `start` and `end` are parameters that make up a `test`.
+    * A `test` contains a `description`, `start` and `end`, where `description`, `start` and `end` are parameters that make up a `test`.
+* Command parameters cannot be swapped.
+    * `add test /n [name of test] /s [start date-time of test] /e [end date-time of test]` will work but `add test /s [start date-time of test] /e [end date-time of test] /n [name of test]` will give an error
+* Extra spaces in the command will be sanitized.
+    * `   list     event      ` will be sanitized to `list event`
+* Command will be converted as lowercase.
+    * `LIST EVENT` will be modified to `list event`
+* Commands with extra parameters provided will give an error
+    * `delete class 1 2 3 abc` will be give an error.
 
 
 #### Category Types
