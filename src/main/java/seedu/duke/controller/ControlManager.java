@@ -147,6 +147,10 @@ public class ControlManager {
                 && (modelType != ModelType.EVENT && modelType != ModelType.CONTACT && modelType != ModelType.QUIZ)) {
             throw new InvalidModelException();
         }
+
+        if ((commandType == CommandType.SET) && (modelType != ModelType.HOURS)) {
+            throw new InvalidModelException();
+        }
     }
 
     /**
