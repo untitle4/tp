@@ -196,7 +196,7 @@ public class EventClassManager extends EventDataManager {
      *
      * @param userInputs To take in the class index of the class to be set as done.
      * @throws IndexOutOfBoundsException when user input is an invalid class index integer.
-     * @deprecated
+     * @Deprecated This method should not be used, as the done feature has been removed from our application.
      */
     @Override
     public void setDone(String[] userInputs) throws IndexOutOfBoundsException {

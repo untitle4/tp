@@ -38,16 +38,10 @@ public class Event implements Comparable<Event> {
         return end;
     }
 
-    /**
-     * @deprecated
-     */
     public boolean isDone() {
         return isDone;
     }
 
-    /**
-     * @deprecated
-     */
     public void setDone() {
         this.isDone = true;
     }
