@@ -570,32 +570,53 @@ This will come in version 2.1.
 #### Adding a contact `add contact`
 Allows you to add a teacher's contact details to the contact list.
 
-Format: `add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]`
+Firstly, type 'add' in the command line as seen below, followed by the category type which is the contact. 
+Afterwards, key in the description of the contact. Press 'Enter' to execute it.
 
-Examples: `add contact /s math /n thomas /p 91779977 /e thomas@gmail.com`
+![add_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact_command.png)
 
-Example Output:
-<br>
+The output is seen in the console.
+
 ![add_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact.png)
+
+WARNING:
+* `[subject of contact]`, `[name of contact]`, `[phone number of contact]` and 
+`[email of contact]` can be in a natural language format and cannot contain '/'.
+* Parameters `/s`, `/n`, `/p`, `/e` cannot be swapped.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![add_contact_wrongly]
 
 #### Deleting a contact `delete contact`
 Allows you to delete a contact from the contact list.
 
-Format: `delete contact [contact list number]`
+Firstly, type 'delete' in the command line as seen below, followed by the category type which is the contact. 
+Afterwards, key in the corresponding index of the contact you would like to delete. Press 'Enter' to execute it.
 
-Examples: `delete contact 1`
+![delete_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact_command.png)
 
-Example Output:
-<br>
+The output is seen in the console.
+
 ![delete_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact.png)
+
+WARNING:
+* `[contact number]` must be written in numerals.
+
+![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
+
+![delete_contact_wrongly](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact_wrongly.png)
 
 #### Listing out contacts `list contact`
 Allows you to list out all the contacts in the contact list
 
-Format: `list contact`
+To list out all contacts, type 'list contact' in the command line, as seen below. 
+Press 'Enter' to execute it.
 
-Example Output:
-<br>
+![list_contact_command](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_contact_command.png)
+
+The output is seen in the console.
+
 ![list_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_contact.png)
 
 #### Finding a contact `find contact`
