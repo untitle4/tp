@@ -331,18 +331,23 @@ If that is true, then it converts the userInput attribute to `LocalDate.now()`, 
 When filtering the events to be converted, the start time of the event is compared with the parameter date.
 If it is equal, the event will be converted and be printed out.
 
-#### List event week
+#### List event week/nextweek
 
-Inside this `EventManager#listSchedule()`, we then call the `UserInterface#printWeekSchedule(EventManager)`, passing in the current instance of EventManager into this method. 
-`UserInterface#printWeekSchedule(EventManager)` will then construct an instance of `CalendarWeekRenderer(EventManager)` which will display the week schedule to the user.
+![listeventweek](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListWeekSequence.png)
 
-As of V2.0, the CalendarWeekRenderer does not support printing the location parameter of the Tuition class and is expected to be introduced in V2.1. 
+Inside this `EventManager`, we then call the `UserInterface#printWeekSchedule(EventManager, ListWeekCommand)`, passing 
+in the current instance of EventManager into this method and a ListWeekCommand that determines if the current or next 
+week is to be printed. 
+`UserInterface#printWeekSchedule(EventManager)` will then construct an instance of `CalendarWeekRenderer(EventManager)` 
+which will display the week schedule to the user.
+
+As of V2.1, the CalendarWeekRenderer does not support printing the location parameter of the Tuition class.
 
 Example code snippet:
 
 ```
 UserInterface userInterface = UserInterface.getInstance();
-userInterface.printWeekSchedule(this); // the EventManager instance is passed into the method call
+userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK); // the EventManager instance is passed into the method call
 ```
 
 

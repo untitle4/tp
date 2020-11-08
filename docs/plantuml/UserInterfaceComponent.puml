@@ -7,11 +7,11 @@ hide circle
 hide members
 
 package UserInterface {
-    class UserInterface <singleton>
+    class "<<Singleton>> \nUserInterface"
     class CalendarWeekRenderer
     class CalendarWeekRendererUtils
 
-    UserInterface -[#SkyBlue]-> CalendarWeekRenderer : creates
+    "<<Singleton>> \nUserInterface" -[#SkyBlue]-> CalendarWeekRenderer : creates
     CalendarWeekRenderer -[#SkyBlue][dotted]-> CalendarWeekRendererUtils : creates
 }
 

@@ -7,7 +7,6 @@ end box
 
 box "Model" #YellowGreen
 participant ":EventManager"
-participant ":ListSchedule"
 end box
 
 box "UserInterface" #skyblue
@@ -20,10 +19,6 @@ activate ":ListCommand"
 activate ":EventManager"
 ":EventManager" -> ":EventManager" : listSchedule()
 activate ":EventManager" #Salmon
-":EventManager" -> ":ListSchedule"** : constructor()
-activate ":ListSchedule"
-":ListSchedule" --> ":EventManager"
-deactivate ":ListSchedule"
 ":EventManager" -> ":UserInterface" : printWeekSchedule(this)
 activate ":UserInterface"
 ":UserInterface" -> ":CalendarWeekRenderer"** : constructor()
