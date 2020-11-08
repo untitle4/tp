@@ -774,5 +774,6 @@ Find quiz|`find quiz [keyword(s)]`|`find quiz 2 + 2 = 4`
 Find contact|`find contact [keyword(s)]`|`find contact jonny@gmail.com`
 quiz|`quiz [no of questions]`|`quiz 15`
 display quiz record|`quiz record`
+set hours|`set hours`
 bye|`bye`
 
