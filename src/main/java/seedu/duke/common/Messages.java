@@ -51,7 +51,7 @@ public class Messages {
     //@@author AndreWongZH
     public static final String MESSAGE_EMPTY_SCHEDULE_LIST = "Schedule is %s. Add some!";
     public static final String MESSAGE_INITIALIZATION_LOGGER_FAILED = "Failed to set up logger";
-    public static final String MESSAGE_MISSING_MODEL = ":( Oops! Model type is missing! "
+    public static final String MESSAGE_MISSING_MODEL = ":( Oops! Category type is missing! "
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INCOMPLETE_FIND_PARAMETERS = "Please tell me what you want to be listed! "
             + "You can either 'find event' or 'find quiz' or 'find contact'";
@@ -62,7 +62,8 @@ public class Messages {
     public static final String MESSAGE_EMPTY_PARAMETERS = ":( OOPS!!! Ensure ALL parameters are filled up!";
     public static final String MESSAGE_INVALID_COMMAND = ":( Oops! I did not recognize that command! "
             + "Enter 'help' if needed!";
-    public static final String MESSAGE_INVALID_MODEL = ":( Oops! I did not recognize that model type! "
+    public static final String MESSAGE_INVALID_MODEL = ":( Oops! I did not recognize that category type"
+            + " or category not compatible with command! "
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INVALID_EXTRA_PARAM = ":( OOPS!!! Please do not enter extra inputs";
     //@@author Aliciaho
