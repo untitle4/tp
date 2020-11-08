@@ -17,6 +17,7 @@ import seedu.duke.exception.InvalidHelpCommandException;
 import seedu.duke.exception.InvalidModelException;
 import seedu.duke.exception.MissingModelException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.model.Model;
 import seedu.duke.controller.parser.CommandParser;
 import seedu.duke.controller.parser.CommandType;
@@ -110,6 +111,8 @@ public class ControlManager {
             userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
         } catch (IndexOutOfBoundsException e) {
             userInterface.showToUser(Messages.MESSAGE_CONTACT_INDEX_OUT_OF_BOUNDS);
+        } catch (SwappedParameterException e) {
+            userInterface.showToUser(Messages.MESSAGE_SWAPPED_PARAMETERS);
         } finally {
             refreshEvents();
             refreshQuizzes();

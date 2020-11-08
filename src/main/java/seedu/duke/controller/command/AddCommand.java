@@ -2,6 +2,7 @@ package seedu.duke.controller.command;
 
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.model.ModelMain;
 import seedu.duke.model.ModelManager;
 
@@ -22,7 +23,8 @@ public class AddCommand extends Command {
      * @throws MissingParameterException If command is lacking prefixes.
      */
     @Override
-    public void execute(ModelMain modelMain) throws EmptyParameterException, MissingParameterException {
+    public void execute(ModelMain modelMain) throws EmptyParameterException, MissingParameterException,
+            SwappedParameterException {
         ModelManager modelManager = (ModelManager) modelMain;
         modelManager.add(userInput);
     }

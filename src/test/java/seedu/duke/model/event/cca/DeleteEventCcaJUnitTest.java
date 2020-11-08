@@ -1,6 +1,7 @@
 package seedu.duke.model.event.cca;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.storage.TestUtils;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
@@ -14,7 +15,7 @@ public class DeleteEventCcaJUnitTest {
     TestUtils testUtils = new TestUtils();
 
     @Test
-    void deleteCcaInList() throws EmptyParameterException, MissingParameterException {
+    void deleteCcaInList() throws EmptyParameterException, MissingParameterException, SwappedParameterException {
         ArrayList<Event> cca = new ArrayList<>();
         EventCcaManager eventCcaManager = new EventCcaManager(cca,
                 testUtils.getEmptyEventManager());

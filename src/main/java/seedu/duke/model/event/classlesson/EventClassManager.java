@@ -12,6 +12,7 @@ import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
@@ -75,7 +76,8 @@ public class EventClassManager extends EventDataManager {
      * @throws MissingParameterException if user input does not meet the requirements.
      */
     @Override
-    public void add(String userInput) throws MissingParameterException, EmptyParameterException {
+    public void add(String userInput) throws MissingParameterException, EmptyParameterException,
+            SwappedParameterException {
         logger.log(Level.INFO, "initialising adding of a class");
 
         // Checks if user input contains the 3 required parameters (/n, /s and /e)
@@ -87,6 +89,8 @@ public class EventClassManager extends EventDataManager {
 
         // Splitting /n, /s and /e info. via a String array called classDetails
         final String[] classDetails = userInput.trim().split("/");
+
+        validateSwappedParameters(classDetails);
 
         logger.log(Level.INFO, "splitting the user input into class description, start date-time and end "
                 + "date-time");

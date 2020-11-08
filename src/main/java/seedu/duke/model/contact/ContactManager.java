@@ -4,6 +4,7 @@ import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
 
@@ -12,9 +13,19 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ContactManager extends ModelManager implements ContactInteractable {
+    public static final int BEGIN_INDEX = 0;
+    public static final int END_INDEX = 1;
     private static final int USER_INPUT_OFFSET = 12;
     private static final int EMPTY_SIZE = 0;
     private static final String INPUT_SPACE = " ";
+    private static final int S_INDEX = 1;
+    private static final int N_INDEX = 2;
+    private static final int P_INDEX = 3;
+    private static final int E_INDEX = 4;
+    private static final String S_PREFIX = "s";
+    private static final String N_PREFIX = "n";
+    private static final String P_PREFIX = "p";
+    private static final String E_PREFIX = "e";
     private final ArrayList<Contact> contacts;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
     private final UserInterface userInterface;
@@ -40,13 +51,16 @@ public class ContactManager extends ModelManager implements ContactInteractable 
      * @throws MissingParameterException if sections symbols are missing.
      */
     @Override
-    public void add(String userInput) throws EmptyParameterException, MissingParameterException {
+    public void add(String userInput) throws EmptyParameterException, MissingParameterException,
+            SwappedParameterException {
         if (!userInput.contains("/s") || !userInput.contains("/n")
                 || !userInput.contains("/p") || !userInput.contains("/e")) {
             throw new MissingParameterException("'/s', '/n', '/p' and '/e'");
         }
 
         String[] separatedInputs = userInput.trim().split("/");
+
+        validateSwappedParameters(separatedInputs);
 
         logger.log(Level.INFO, "splitting user input into subject, name, phone number"
                 + "and email address.");
@@ -166,6 +180,24 @@ public class ContactManager extends ModelManager implements ContactInteractable 
         }
 
         return filteredContacts;
+    }
+
+    //@@author AndreWongZH
+    /**
+     * Validates if the parameters are swapped.
+     *
+     * @param userInputs An arraylist of type string of the user input.
+     * @throws SwappedParameterException If letter does not match up with the required prefix.
+     */
+    protected void validateSwappedParameters(String[] userInputs) throws SwappedParameterException {
+        boolean hasS = userInputs[S_INDEX].substring(BEGIN_INDEX, END_INDEX).contentEquals(S_PREFIX);
+        boolean hasN = userInputs[N_INDEX].substring(BEGIN_INDEX, END_INDEX).contentEquals(N_PREFIX);
+        boolean hasP = userInputs[P_INDEX].substring(BEGIN_INDEX, END_INDEX).contentEquals(P_PREFIX);
+        boolean hasE = userInputs[E_INDEX].substring(BEGIN_INDEX, END_INDEX).contentEquals(E_PREFIX);
+
+        if (!hasS || !hasN || !hasP || !hasE) {
+            throw new SwappedParameterException();
+        }
     }
 
     //@@author untitle4

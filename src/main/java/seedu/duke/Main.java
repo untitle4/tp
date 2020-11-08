@@ -1,5 +1,6 @@
 package seedu.duke;
 
+import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.Model;
@@ -15,11 +16,15 @@ import seedu.duke.ui.UserInterface;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
     public static final String EVENT_FILE_NAME = "/events.txt";
     public static final String QUIZ_FILE_NAME = "/quiz.txt";
     public static final String CONTACT_FILE_NAME = "/contact.txt";
+    private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
     private static UserInterface userInterface;
 
@@ -101,12 +106,16 @@ public class Main {
     }
 
     public void run() {
-        userInterface.showToUser(Messages.MESSAGE_HELLO_FROM_DUKE);
-        configManager.getIntroductoryVariables(configManager.getConfigParameter());
-        userInterface.showWelcomeMessage(configManager.getConfigParameter());
+        try {
+            userInterface.showToUser(Messages.MESSAGE_HELLO_FROM_DUKE);
+            configManager.getIntroductoryVariables(configManager.getConfigParameter());
+            userInterface.showWelcomeMessage(configManager.getConfigParameter());
 
-        while (isActive) {
-            isActive = userInterface.runUi(model, eventStorageManager, quizStorageManager, contactStorageManager);
+            while (isActive) {
+                isActive = userInterface.runUi(model, eventStorageManager, quizStorageManager, contactStorageManager);
+            }
+        } catch (NoSuchElementException e) {
+            logger.log(Level.SEVERE, "Program ended undexpectedly");
         }
 
         // Exit Message
