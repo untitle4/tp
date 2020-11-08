@@ -4,6 +4,7 @@ import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
@@ -81,7 +82,8 @@ public class EventTuitionManager extends EventDataManager {
      * @throws EmptyParameterException when any of the following parameters are empty: '/n', '/s', '/e', '/l'.
      */
     @Override
-    public void add(String userInput) throws MissingParameterException, EmptyParameterException {
+    public void add(String userInput) throws MissingParameterException, EmptyParameterException,
+            SwappedParameterException {
         logger.log(Level.INFO, "Initializing adding of a tuition");
         final String descriptionPrefix = "/n";
         final String startPrefix = "/s";
@@ -94,6 +96,8 @@ public class EventTuitionManager extends EventDataManager {
                     + " missing");
             throw new MissingParameterException("'/n', '/s', '/e' and '/l'");
         }
+
+        validateSwappedParameters(userInput.split("/"));
 
         final int indexOfDescriptionPrefix = userInput.indexOf(descriptionPrefix);
         final int indexOfStartPrefix = userInput.indexOf(startPrefix);

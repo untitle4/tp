@@ -4,6 +4,7 @@ import seedu.duke.controller.parser.DateTimeParser;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.InvalidDateException;
 import seedu.duke.exception.MissingParameterException;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.model.event.Event;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
@@ -52,7 +53,8 @@ public class EventCcaManager extends EventDataManager {
      * @throws EmptyParameterException if no parameters are provided.
      */
     @Override
-    public void add(String userInput) throws MissingParameterException, EmptyParameterException {
+    public void add(String userInput) throws MissingParameterException, EmptyParameterException,
+            SwappedParameterException {
         logger.log(Level.INFO, "initialising adding of a cca");
 
         if ((!userInput.contains("/n")) || (!userInput.contains("/s"))
@@ -62,6 +64,8 @@ public class EventCcaManager extends EventDataManager {
         }
 
         final String[] ccaDetails = userInput.trim().split("/");
+
+        validateSwappedParameters(ccaDetails);
 
         logger.log(Level.INFO, "splitting user input into description, start date and end date");
         String ccaDescription = ccaDetails[1].substring(1).trim();

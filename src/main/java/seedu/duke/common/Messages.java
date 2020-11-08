@@ -55,6 +55,7 @@ public class Messages {
             + "Enter 'help' if needed!";
     public static final String MESSAGE_INCOMPLETE_FIND_PARAMETERS = "Please tell me what you want to be listed! "
             + "You can either 'find event' or 'find quiz' or 'find contact'";
+    public static final String MESSAGE_SWAPPED_PARAMETERS = ":( Please do not swap the parameters";
     //@@author elizabethcwt
     public static final String MESSAGE_MISSING_PARAMETERS = ":( OOPS!!! "
             + "Remember to include ALL %s inputs!";
