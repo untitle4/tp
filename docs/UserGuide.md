@@ -85,7 +85,7 @@ The highlights and symbols used in this document are as follow:
 3. Run the program by entering `java -jar plan.jar` in your terminal.
 4. You can exit the program by running `bye`.
 
-##Initialisation
+## Initialisation
 
 When you first open Plan&Score, you will be greeted by a welcome message as well as 
 a prompt asking for your name. This is as shown below.
