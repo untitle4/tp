@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 //@@author durianpancakes
-
 /**
  * Class responsible for the decoding of events read from the data file.
  */
