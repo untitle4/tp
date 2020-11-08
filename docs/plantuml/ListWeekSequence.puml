@@ -1,5 +1,6 @@
 @startuml
 hide footbox
+skinparam BoxPadding 5
 
 box "Controller" #LightSalmon
 participant ":ListCommand"

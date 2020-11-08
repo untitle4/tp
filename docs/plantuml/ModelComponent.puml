@@ -9,72 +9,43 @@ hide circle
 hide members
 
 package Model {
-
-'    class "{abstract}\nModelMain"
-'    class "{abstract}\nModelManager"
-
-'    class "<<interface>>\ninteractable"
-
     class Model
 
     Package Quiz {
-'        class Quiz
         class QuizManager
         class "<<interface>>\nQuizInteractable"
     }
 
     Package Event {
-'        class "{abstract}\nEvent"
         class EventManager
-'        class ClassManager
-'        class Class
-'        class CcaManager
-'        class Cca
-'        class TestManager
-'        class Test
         class IndividualManager
-'        class Tuition
-'        class "{abstract}\nEventDataManager"
         class "<<interface>>\nEventManagerInteractable"
         class "<<interface>>\nEventInteractable"
     }
 
     Package Contact {
-'        class Contact
         class ContactManager
         class "<<interface>>\nContactInteractable"
     }
+
+    Package Config {
+        class ConfigManager
+        class "<<interface>>\nConfigInteractable"
+    }
 }
 
-'"{abstract}\nModelManager" -up-|> "{abstract}\nModelMain"
-'EventManager -up-|> "{abstract}\nModelMain"
-'"{abstract}\nModelManager" ..|> "<<interface>>\ninteractable"
-'"{abstract}\nEventDataManager" -up-|> "{abstract}\nModelManager"
+
 QuizManager ..|> "<<interface>>\nQuizInteractable"
 ContactManager ..|> "<<interface>>\nContactInteractable"
 
 Model ---> ContactManager
 Model ---> EventManager
 Model ---> QuizManager
-'QuizManager --> Quiz
-'ContactManager --> Contact
-'EventManager --> ClassManager
-'EventManager --> CcaManager
-'EventManager --> TestManager
+Model ---> ConfigManager
 EventManager --> IndividualManager
-'ClassManager --> Class
-'CcaManager --> Cca
-'TestManager --> Test
-'TuitionManager --> Tuition
-'Class --|> "{abstract}\nEvent"
-'Cca --|> "{abstract}\nEvent"
-'Test --|> "{abstract}\nEvent"
-'Tuition --|> "{abstract}\nEvent"
-'ContactManager --|> "{abstract}\nModelManager"
-'QuizManager --|> "{abstract}\nModelManager"
-'EventManager --|> "{abstract}\nEventDataManager"
 EventManager ..|> "<<interface>>\nEventManagerInteractable"
 IndividualManager ..|> "<<interface>>\nEventInteractable"
+ConfigManager ..|> "<<interface>>\nConfigInteractable"
 note bottom of IndividualManager : IndividualManager can be either\nClass, CCA, Test or Tuition
 
 @enduml
