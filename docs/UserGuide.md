@@ -498,6 +498,7 @@ Format: `quiz [number of questions]`
 Examples: `quiz 1`
 
 Example Output:
+<br>
 ![quiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quiz1.png)
 <br>
 
@@ -512,6 +513,7 @@ Format: `add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4
 Examples: `add quiz /q What is 26+5? /o1 28 /o2 31 /o3 38 /o4 41 /a 2 /exp Adding 5 to 26 gives us 31.`
 
 Example Output:
+<br>
 ![quizadded](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizadded.png)
 <br />
 
@@ -524,6 +526,7 @@ Format: `delete quiz [quiz question]`
 Examples: `delete quiz 1`
 
 Expected output:
+<br>
 ![deletequiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/deletequiz1.png)
 <br />
 
@@ -533,6 +536,7 @@ Allows you to list out all the questions in the quiz list.
 Format: `list quiz`
 
 Example Output:
+<br>
 ![listquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/listquiz.png)
 
 
@@ -546,6 +550,7 @@ Format: `find quiz [keyword(s)]`
 Examples: `find quiz 26`
 
 Example Output:
+<br>
 ![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/findquiz.png)
 
 #### Searching for former incorrect quiz questions: `quiz record`
@@ -554,6 +559,7 @@ Allows you to list out the incorrect quizzes in your last quiz attempt.
 Format: `quiz record`
 
 Example Output:
+<br>
 ![quizrecord](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizrecord.png)
 
 ### Contact component of Plan&Score
