@@ -1,6 +1,5 @@
 package seedu.duke.controller;
 
-import seedu.duke.Main;
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
 
@@ -34,6 +33,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static seedu.duke.storage.StorageManager.CONTACT_FILE_NAME;
+import static seedu.duke.storage.StorageManager.QUIZ_FILE_NAME;
 
 //@@author AndreWongZH
 /**
@@ -173,7 +175,7 @@ public class ControlManager {
      */
     private void refreshContacts() {
         try {
-            contactStorageManager.saveData(model.getContactManager().getContacts(), Main.CONTACT_FILE_NAME);
+            contactStorageManager.saveData(model.getContactManager().getContacts(), CONTACT_FILE_NAME);
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
         }
@@ -205,7 +207,7 @@ public class ControlManager {
         ArrayList<Quiz> quizzes = model.getQuizManager().getQuizList();
 
         try {
-            quizStorageManager.saveData(quizzes, Main.QUIZ_FILE_NAME);
+            quizStorageManager.saveData(quizzes, QUIZ_FILE_NAME);
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_INITIALIZATION_ERROR);
         }
