@@ -9,7 +9,7 @@ package storage <<rectangle>> {
         - createDataFile():boolean
     }
 
-    class EventStorageManager implements StorageManager {
+    class EventStorageManager extends StorageManager {
         + EventStorageManager(:String)
         + saveData(:ArrayList<Event>)
         + loadData():EventParameter
@@ -39,7 +39,7 @@ package storage <<rectangle>> {
     EventStorageManager --> EventListEncoder
 
 
-    class QuizStorageManager implements StorageManager {
+    class QuizStorageManager extends StorageManager {
         + QuizStorageManager(:String)
         + saveData(:ArrayList<Quiz>, :String)
         + loadData():ArrayList<ArrayList<Quiz>
@@ -58,7 +58,7 @@ package storage <<rectangle>> {
     QuizStorageManager --> QuizListEncoder
 
 
-    class ConfigStorageManager implements StorageManager {
+    class ConfigStorageManager extends StorageManager {
 
     }
 

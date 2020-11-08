@@ -731,10 +731,19 @@ We recommend keeping a duplicate of the contents in `events.txt` to assist with 
 Action | Format | Examples
 -------|--------|--------
 help|`help`
-add|`add [category] /n [description] /s [start-date-time] /e [end date-time]` `add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /e (explanation)` `add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
-delete|`delete [category] [item number]`|`delete class 1`, `delete test 1`, `delete cca 1`
+add event|`add [class/cca/test/tuition] /n [description] /s [start-date-time] /e [end date-time]`|`add class /n Math /s 2020-09-06 1300 /e 2020-09-06 1400`
+add quiz|`add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /e (explanation)`|`add quiz /q 1 + 1 = ? /o1 1 /o2 2 /o3 3 /o4 4 /a 2 /exp no explanation needed`
+add contact|`add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]`|`add contact /s math /n thomas /p 91779977 /e thomas@gmail.com`
+delete event|`delete [class/cca/test/tuition] [item number]`|`delete class 1`, `delete test 1`, `delete cca 1`
+delete quiz|`delete quiz [item number]`|`delete quiz 1`
+delete contact|`delete contact [item number]`|`delete contact 1`
+list event|`list event (<date/today/week>)`|`list event 2020-09-06`
+list quiz|`list quiz`
+list contact| `list contact`
+Find event|`find event [keyword(s)]`|`find event English`
+Find quiz|`find quiz [keyword(s)]`|`find quiz 2 + 2 = 4`
+Find contact|`find contact [keyword(s)]`|`find contact jonny@gmail.com`
 quiz|`quiz [no of questions]`|`quiz 15`
-list| `list quiz` `list event (date)` `list contact`|`list event (<date/today/week>)`
-Find|`find event [keyword(s)]` `find quiz [keyword(s)]` `find contact [keyword(s)]`|`find event English`
+display quiz record|`quiz record`
 bye|`bye`
 

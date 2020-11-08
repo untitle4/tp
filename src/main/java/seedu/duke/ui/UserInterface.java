@@ -94,7 +94,7 @@ public class UserInterface {
      * @param quizStorageManager Updates the storage data in quiz.txt after command is ran.
      * @return A boolean to tell the program to quit or not.
      */
-    public boolean runUI(Model model,
+    public boolean runUi(Model model,
                          EventStorageManager eventStorageManager,
                          QuizStorageManager quizStorageManager,
                          ContactStorageManager contactStorageManager) {
