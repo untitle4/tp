@@ -134,13 +134,12 @@ Hello! Here is a list of commands you can try:
 	8. Delete tuition: 'delete tuition [tuition number]'
 
 	9. List events (class, test, cca, tuition): 'list'
-
 	10. Find relevant event(s): 'find [keyword(s)]'
 
 	11. Add contact: 'add contact /s [subject] /n [name of contact person] /p [phone number] /e [email address]'
 	12. Delete contact: 'delete contact [contact number]'
 	13. List contact: 'list contact'
-    14. Find contact: 'find contact [keyword(s)]'
+        14. Find contact: 'find contact [keyword(s)]'
 
 	15. Take Mathematics quiz: 'quiz [no. of questions]'
 	16. Add quiz question: 'add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer] /exp (explanation)'
