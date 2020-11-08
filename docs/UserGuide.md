@@ -499,11 +499,9 @@ The quiz feature enables you to spend the extra time resulting from your product
 #### Taking a Quiz: `quiz`
 Taking a Mathematics quiz with any number of questions you want, ranging from just 1 question to the total number of questions in the quiz list.
 
-Format: `quiz [number of questions]`
+First, enter `quiz`, followed by the number of questions you would like to take in your quiz. For example, you could enter `quiz 1` to attempt a quiz with 1 question.
 
-Examples: `quiz 1`
-
-Example Output:
+The following output would then be displayed.
 <br>
 ![quiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quiz1.png)
 <br>
@@ -513,12 +511,19 @@ Allows you to add a Mathematics multiple-choice quiz question to the quiz list.
 
 Note that the `/e (explanation)` is an optional parameter. You can add a quiz question with or without an explanation.
 
-Format: `add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4 [option 4] /a [option answer]
-/e (explanation)`
+First, enter `add quiz`, follow by `/q`.
 
-Examples: `add quiz /q What is 26+5? /o1 28 /o2 31 /o3 38 /o4 41 /a 2 /exp Adding 5 to 26 gives us 31.`
+Then, enter the question you would like to add.
 
-Example Output:
+Next, enter `/o1`, followed by the answer option you would like to enter. Repeat this for the rest of the three options.
+
+Now, enter `/a`, followed by the number corresponding to the correct answer option.
+
+Lastly, enter `/e`, followed by the explanation to the solution of the question. This last part is optional.
+
+An example of such a command would be: `add quiz /q What is 26+5? /o1 28 /o2 31 /o3 38 /o4 41 /a 2 /exp Adding 5 to 26 gives us 31.`.
+
+The corresponding output would then be displayed as shown below.
 <br>
 ![quizadded](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizadded.png)
 <br />
@@ -527,11 +532,11 @@ Example Output:
 #### Deleting a Quiz Question: `delete quiz`
 Allows you to delete a quiz question from the quiz list.
 
-Format: `delete quiz [quiz question]`
+Simply enter `delete quiz`, followed by the index number corresponding to the quiz question you would like to delete in your quiz list.
 
-Examples: `delete quiz 1`
+For example, you could enter `delete quiz 1`.
 
-Expected output:
+You would expect to see this output.
 <br>
 ![deletequiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/deletequiz1.png)
 <br />
@@ -539,9 +544,9 @@ Expected output:
 #### Listing out All Quiz Questions: `list quiz`
 Allows you to list out all the questions in the quiz list.
 
-Format: `list quiz`
+All you have to enter is `list quiz` for this command.
 
-Example Output:
+This output should then be seen.
 <br>
 ![listquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/listquiz.png)
 
@@ -551,20 +556,20 @@ Look for quizzes that match the given keyword(s) that you want.
 
 Note that searches are case-insensitive and user can provide multiple words to compare with
 
-Format: `find quiz [keyword(s)]`
+The format for this command is `find quiz`, followed by the keyword(s) you would like to search for in your list of quiz questions.
 
-Examples: `find quiz 26`
+For example, you could enter `find quiz 26`.
 
-Example Output:
+Then, you would expect to see this in your output.
 <br>
 ![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/findquiz.png)
 
 #### Searching for former incorrect quiz questions: `quiz record`
 Allows you to list out the incorrect quizzes in your last quiz attempt.
 
-Format: `quiz record`
+Simply enter `quiz record`.
 
-Example Output:
+You should see the full list of questions you have answered wrongly in your previous quiz attempt, as shown below.
 <br>
 ![quizrecord](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizrecord.png)
 
