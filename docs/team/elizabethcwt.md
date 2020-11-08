@@ -31,23 +31,35 @@ Link to my code contribution (via RepoSense):
 
 Given below are my contributions to Plan&Score.
 
-1. Feature: Help
+- Feature: Help
     - What it does: Displays the updated list of available features and corresponding commands for user
     - Justification: By including the required format to enter the input via quotation marks, provides a convenient way for users to remember how to input commands. It also allows them to view and track new features during application updates.
     - Highlights: This feature is usually what the user first accesses when launching the application, and provides a bird’s eye view of the whole application before delving into each individual feature.
 
-1. Feature: Class
+- Feature: Class
     - What it does: Stores user’s classes, attains class list size, allows adding and deleting of classes
     - Justification: This feature allows users to schedule well, by entering their school classes into the application. Users can then remove any of these classes once they’re done, or no longer relevant. Users can then view exactly how many classes, as well as which classes they have, to manage their workload and time better.
     - Highlights: This feature affects existing commands and commands to be added in future. It requires an in-depth analysis of design alternatives.
     - Relevant classes in source code: EventClass.java class and EventClassManager.java
 
-1. Feature: Take Quiz
+- Feature: Take Quiz
     - What it does: Displays a number of quiz questions, as specified by the user, in randomised order. Then, reviews the correctness of the user’s answers, an explanation for each question, as well as the user’s score.
     - Justification: This feature allows users to score well, by allowing them to take quizzes of any size they’d like, according to how much time they have. Since it is integrated into this application, along with the scheduler, it is highly accessible for users.
     - Highlights: This feature requires the use of a manager, to manage multiple arraylists. It also requires a lot of checks to handle different user inputs for each question, valid or invalid.
     - Relevant classes in source code: Quiz.java, QuizManager.java and UserAnswerManager.java
 
-1. Project Management:
+- Project Management
     - Managed release `v1.0` on GitHub
     - Reviewed PRs: [#363](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/363)
+    
+- Documentation
+    - User Guide
+        - Created structure and added hyperlinks
+        - Created photos of tips and warnings boxes
+        - Added photos for score component features/commands
+        - Added details for `help`, `add class`, `delete class`, and `quiz` commands/features
+        - Added `help` and `quiz` components in the Command Summary
+                     
+    - Developer's Guide
+        - Added explanation for help feature
+        - Added UML diagrams for the `quiz storage` and `find quiz` features.

@@ -504,6 +504,7 @@ Format: `quiz [number of questions]`
 Examples: `quiz 1`
 
 Example Output:
+<br>
 ![quiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quiz1.png)
 <br>
 
@@ -518,6 +519,7 @@ Format: `add quiz /q [question] /o1 [option 1] /o2 [option 2] /o3 [option 3] /o4
 Examples: `add quiz /q What is 26+5? /o1 28 /o2 31 /o3 38 /o4 41 /a 2 /exp Adding 5 to 26 gives us 31.`
 
 Example Output:
+<br>
 ![quizadded](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizadded.png)
 <br />
 
@@ -530,6 +532,7 @@ Format: `delete quiz [quiz question]`
 Examples: `delete quiz 1`
 
 Expected output:
+<br>
 ![deletequiz1](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/deletequiz1.png)
 <br />
 
@@ -539,6 +542,7 @@ Allows you to list out all the questions in the quiz list.
 Format: `list quiz`
 
 Example Output:
+<br>
 ![listquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/listquiz.png)
 
 
@@ -552,6 +556,7 @@ Format: `find quiz [keyword(s)]`
 Examples: `find quiz 26`
 
 Example Output:
+<br>
 ![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/findquiz.png)
 
 #### Searching for former incorrect quiz questions: `quiz record`
@@ -560,6 +565,7 @@ Allows you to list out the incorrect quizzes in your last quiz attempt.
 Format: `quiz record`
 
 Example Output:
+<br>
 ![quizrecord](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizrecord.png)
 
 ### Contact component of Plan&Score
@@ -575,15 +581,8 @@ Format: `add contact /s [subject] /n [name of contact person] /p [phone number] 
 Examples: `add contact /s math /n thomas /p 91779977 /e thomas@gmail.com`
 
 Example Output:
-
-```
-    Got it. I've added this contact: 
-    math teacher: thomas
-    Phone number: 91779977
-    email address: thomas@gmail.com
-    
-    Now you have 1 contact in your list.
-```
+<br>
+![add_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/add_contact.png)
 
 #### Deleting a contact `delete contact`
 Allows you to delete a contact from the contact list.
@@ -593,15 +592,8 @@ Format: `delete contact [contact list number]`
 Examples: `delete contact 1`
 
 Example Output:
-
-```
-    Noted. I've removed this contact: 
-    math teacher: thomas
-    Phone number: 91779977
-    email address: thomas@gmail.com
-    
-    Now you have 0 contact in your list.
-```
+<br>
+![delete_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_contact.png)
 
 #### Listing out contacts `list contact`
 Allows you to list out all the contacts in the contact list
@@ -609,13 +601,8 @@ Allows you to list out all the contacts in the contact list
 Format: `list contact`
 
 Example Output:
-
-```
-    Contact 1:
-    math teacher: thomas
-    Phone number: 91779977
-    email address: thomas@gmail.com
-```
+<br>
+![list_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_contact.png)
 
 #### Finding a contact `find contact`
 Look for contacts that match the given keywords you want.
@@ -625,12 +612,8 @@ Format: `find contact [keyword(s)]`
 Examples: `find contact math`
 
 Example Output:
-
-```
-    math teacher: thomas
-    Phone number: 91779977
-    email address: thomas@gmail.com
-```
+<br>
+![find_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find_contact.png)
 
 
 ### Exits Program: `bye`
