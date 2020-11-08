@@ -14,10 +14,22 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 //@@author durianpancakes
+
+/**
+ * Class responsible for the decoding of events read from the data file.
+ */
 public class EventListDecoder {
     public EventListDecoder() {
     }
 
+    /**
+     * Decodes an ArrayList of Strings read from the data file to an ArrayList of Events.
+     *
+     * @param encodedEventList ArrayList of encoded String read from the data file.
+     * @return ArrayList of decoded String.
+     * @throws StorageSeparatorException when any separator other than "|" is used.
+     * @throws StorageCorruptedException when the storage file is determined to be unreadable.
+     */
     public ArrayList<Event> decodeEventList(ArrayList<String> encodedEventList) throws StorageSeparatorException,
             StorageCorruptedException {
         final ArrayList<Event> decodedEvents = new ArrayList<>();
@@ -27,6 +39,14 @@ public class EventListDecoder {
         return decodedEvents;
     }
 
+    /**
+     * Decode a String to an Event.
+     *
+     * @param encodedEvent String containing the encoded Event.
+     * @return Event decoded from the String.
+     * @throws StorageSeparatorException when any separator other than "|" is used.
+     * @throws StorageCorruptedException when the storage file is determined to be unreadable.
+     */
     private Event decodeEventFromString(String encodedEvent) throws StorageSeparatorException,
             StorageCorruptedException {
         final String[] data = encodedEvent.trim().split("\\|", 3);
@@ -45,6 +65,14 @@ public class EventListDecoder {
         }
     }
 
+    /**
+     * Parses a separated String input into an EventCca.
+     *
+     * @param data Array of Strings containing the separated parameters.
+     * @return EventCca decoded from the String
+     * @throws StorageSeparatorException when any separator other than "|" is used.
+     * @throws StorageCorruptedException when the storage file is determined to be unreadable.
+     */
     private EventCca parseCca(String[] data) throws StorageSeparatorException, StorageCorruptedException {
         boolean isDone;
         String description;
@@ -72,6 +100,14 @@ public class EventListDecoder {
         return new EventCca(description, isDone, startCalendar, endCalendar);
     }
 
+    /**
+     * Parses a separated String input into an EventClass.
+     *
+     * @param data Array of Strings containing the separated parameters.
+     * @return EventClass decoded from the String
+     * @throws StorageSeparatorException when any separator other than "|" is used.
+     * @throws StorageCorruptedException when the storage file is determined to be unreadable.
+     */
     private EventClass parseClass(String[] data) throws StorageSeparatorException, StorageCorruptedException {
         boolean isDone;
         String description;
@@ -99,6 +135,14 @@ public class EventListDecoder {
         return new EventClass(description, isDone, startCalendar, endCalendar);
     }
 
+    /**
+     * Parses a separated String input into an EventTest.
+     *
+     * @param data Array of Strings containing the separated parameters.
+     * @return EventTest decoded from the String
+     * @throws StorageSeparatorException when any separator other than "|" is used.
+     * @throws StorageCorruptedException when the storage file is determined to be unreadable.
+     */
     private EventTest parseTest(String[] data) throws StorageSeparatorException, StorageCorruptedException {
         boolean isDone;
         String description;
@@ -126,6 +170,14 @@ public class EventListDecoder {
         return new EventTest(description, isDone, startCalendar, endCalendar);
     }
 
+    /**
+     * Parses a separated String input into an EventTuition.
+     *
+     * @param data Array of Strings containing the separated parameters.
+     * @return EventTuition decoded from the String
+     * @throws StorageSeparatorException when any separator other than "|" is used.
+     * @throws StorageCorruptedException when the storage file is determined to be unreadable.
+     */
     private EventTuition parseTuition(String[] data) throws StorageSeparatorException, StorageCorruptedException {
         boolean isDone;
         String description;

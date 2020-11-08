@@ -2,6 +2,7 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 participant User
 
@@ -24,25 +25,25 @@ end box
 
 User -> UserInterface: "add test /n CS2113T Finals /s 2020-12-01 1300 /e 2020-12-01 1400
 activate UserInterface
+UserInterface -> UserInterface :runUI()
+activate UserInterface #salmon
 UserInterface -> Controller: runLogic()
-activate UserInterface
 activate Controller
 Controller -> Model: add(userInput)
-activate Controller
+activate Model
 Model --> Controller
-deactivate Controller
+deactivate Model
 Controller -> Storage: refreshEvents()
-activate Controller
 activate Storage
 Storage -> Storage: saveData()
-activate Storage
+activate Storage #salmon
 Storage --> Storage
 deactivate Storage
 Storage --> Controller
 deactivate Storage
-deactivate Controller
 Controller --> UserInterface
 deactivate Controller
+UserInterface --> UserInterface : isActive
 deactivate UserInterface
 UserInterface --> User
 deactivate UserInterface

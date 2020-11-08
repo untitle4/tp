@@ -46,14 +46,14 @@ public class ContactManager extends ModelManager implements ContactInteractable 
             throw new MissingParameterException("'/s', '/n', '/p' and '/e'");
         }
 
-        String[] seperatedInputs = userInput.trim().split("/");
+        String[] separatedInputs = userInput.trim().split("/");
 
         logger.log(Level.INFO, "splitting user input into subject, name, phone number"
                 + "and email address.");
-        String subject = seperatedInputs[1].substring(1).trim();
-        String name = seperatedInputs[2].substring(1).trim();
-        String phoneNumber = seperatedInputs[3].substring(1).trim();
-        String emailAddress = seperatedInputs[4].substring(1).trim();
+        String subject = separatedInputs[1].substring(1).trim();
+        String name = separatedInputs[2].substring(1).trim();
+        String phoneNumber = separatedInputs[3].substring(1).trim();
+        String emailAddress = separatedInputs[4].substring(1).trim();
 
         if (subject.equals("") || name.equals("")
                 || phoneNumber.equals("") || emailAddress.equals("")) {
@@ -76,7 +76,7 @@ public class ContactManager extends ModelManager implements ContactInteractable 
      */
     @Override
     public void delete(String[] userInput) throws IndexOutOfBoundsException {
-        int contactIndex = 0;
+        int contactIndex;
 
         try {
             contactIndex = Integer.parseInt(userInput[2]);

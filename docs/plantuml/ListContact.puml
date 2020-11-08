@@ -1,41 +1,45 @@
 @startuml
 
 skinparam ParticipantPadding 10
+skinparam SequenceGroup 200
 skinparam BoxPadding 5
+hide footbox
 
 box "Controller" #LightSalmon
-participant ListCommand
+participant ":ListCommand"
 end box
 
 box "Model" #YellowGreen
-participant QuizManager
+participant ":QuizManager"
 end box
 
 box "UserInterface" #skyblue
-participant UserInterface
+participant ":UserInterface"
 end box
 
-ListCommand -> QuizManager : execute()
-activate ListCommand
-activate QuizManager
-QuizManager -> QuizManager : list()
-activate QuizManager #DarkSalmon
+":ListCommand" -> ":QuizManager" : execute()
+activate ":ListCommand"
+activate ":QuizManager"
+":QuizManager" -> ":QuizManager" : list()
+activate ":QuizManager" #DarkSalmon
 alt empty ArrayList
-    QuizManager -> UserInterface : printToUser()
-    activate UserInterface
-    UserInterface --> QuizManager
-    deactivate UserInterface
-    QuizManager --> ListCommand
+    ":QuizManager" -> ":UserInterface" : showToUser()
+    activate ":UserInterface"
+    ":UserInterface" --> ":QuizManager"
+    deactivate ":UserInterface"
+    ":QuizManager" --> ":ListCommand"
 else else
     loop until end of ArrayList
-        QuizManager -> UserInterface : printToUser()
-        activate UserInterface
-        UserInterface --> QuizManager
-        deactivate UserInterface
+        ":QuizManager" -> ":UserInterface" : showToUser()
+        activate ":UserInterface"
+        ":UserInterface" --> ":QuizManager"
+        deactivate ":UserInterface"
+        ":QuizManager" --> ":QuizManager"
+        deactivate ":QuizManager"
+        |||
     end
-    QuizManager --> ListCommand
-    deactivate QuizManager
-    deactivate QuizManager
-    deactivate ListCommand
+    ":QuizManager" --> ":ListCommand"
+    deactivate ":QuizManager"
+    deactivate ":ListCommand"
 end
 @enduml
