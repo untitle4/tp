@@ -1,6 +1,7 @@
 package seedu.duke.model.event.test;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.storage.TestUtils;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
@@ -14,7 +15,7 @@ public class DeleteTestJUnitTest {
     TestUtils testUtils = new TestUtils();
 
     @Test
-    void deleteTestFromList() throws MissingParameterException, EmptyParameterException {
+    void deleteTestFromList() throws MissingParameterException, EmptyParameterException, SwappedParameterException {
         ArrayList<Event> test = new ArrayList<>();
         EventTestManager eventTestManager = new EventTestManager(test,
                 testUtils.getEmptyEventManager());

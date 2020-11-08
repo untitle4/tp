@@ -1,6 +1,7 @@
 package seedu.duke.model.event.classlesson;
 
 import org.junit.jupiter.api.Test;
+import seedu.duke.exception.SwappedParameterException;
 import seedu.duke.storage.TestUtils;
 import seedu.duke.exception.EmptyParameterException;
 import seedu.duke.exception.MissingParameterException;
@@ -14,7 +15,7 @@ class AddEventClassJUnitTest {
     TestUtils testUtils = new TestUtils();
 
     @Test
-    void addClassToList() throws EmptyParameterException, MissingParameterException {
+    void addClassToList() throws EmptyParameterException, MissingParameterException, SwappedParameterException {
         ArrayList<Event> classes = new ArrayList<>();
         EventClassManager eventClassManager = new EventClassManager(classes,
                 testUtils.getEmptyEventManager());
