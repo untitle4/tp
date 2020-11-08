@@ -1,4 +1,5 @@
 @startuml
+hide footbox
 
 -> ":EventStorageManager" : saveData(:ArrayList<Event>)
 activate ":EventStorageManager"
@@ -7,7 +8,7 @@ activate ":EventListEncoder"
 
 loop number of events
 ":EventListEncoder" -> ":EventListEncoder" : encodeEventToString(:Event)
-activate ":EventListEncoder"
+activate ":EventListEncoder" #salmon
 ":EventListEncoder" --> ":EventListEncoder" : :String
 deactivate ":EventListEncoder"
 ":EventListEncoder" --> ":EventStorageManager"

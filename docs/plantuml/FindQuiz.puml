@@ -2,6 +2,7 @@
 
 skinparam ParticipantPadding 10
 skinparam BoxPadding 5
+hide footbox
 
 box "Controller" #LightSalmon
 participant FindCommand
@@ -29,14 +30,15 @@ QuizManager -> FindQuiz : getFilteredQuizzes()
 activate FindQuiz
 FindQuiz --> QuizManager : filteredQuizzes
 deactivate FindQuiz
-destroy FindQuiz
 QuizManager -> UserInterface : printArray()
 activate UserInterface
 UserInterface --> QuizManager
 deactivate UserInterface
+QuizManager --> QuizManager
 deactivate QuizManager
 QuizManager --> FindCommand
 deactivate QuizManager
 deactivate FindCommand
+destroy FindQuiz
 
 @enduml

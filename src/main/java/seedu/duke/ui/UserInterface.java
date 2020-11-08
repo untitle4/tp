@@ -36,8 +36,7 @@ public class UserInterface {
     }
 
     public void showWelcomeMessage(ConfigParameter configParameter) {
-        showToUser(Messages.MESSAGE_HELLO_FROM_DUKE,
-                Messages.MESSAGE_HELLO + configParameter.getName(),
+        showToUser(Messages.MESSAGE_HELLO + configParameter.getName(),
                 Messages.MESSAGE_SHOW_HOURS + configParameter.getRecommendedHours());
         out.print(Messages.MESSAGE_PROMPT_COMMAND);
     }
@@ -95,7 +94,7 @@ public class UserInterface {
      * @param quizStorageManager Updates the storage data in quiz.txt after command is ran.
      * @return A boolean to tell the program to quit or not.
      */
-    public boolean runUI(Model model,
+    public boolean runUi(Model model,
                          EventStorageManager eventStorageManager,
                          QuizStorageManager quizStorageManager,
                          ContactStorageManager contactStorageManager) {
