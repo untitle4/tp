@@ -1,41 +1,40 @@
 @startuml
 hide footbox
 
--> ":EventStorageManager" : loadData(:ArrayList<String>)
+-> ":EventStorageManager" : loadData()
 activate ":EventStorageManager"
-":EventStorageManager" -> ":EventListDecoder" : decodeEventList(:ArrayList<String>)
+":EventStorageManager" -> ":EventListDecoder" : decodeEventList(encodedEventList)
 activate ":EventListDecoder"
 
 loop number of strings
-":EventListDecoder" -> ":EventListDecoder" : decodeEventFromString(:String)
+":EventListDecoder" -> ":EventListDecoder" : decodeEventFromString(encodedEvent)
 activate ":EventListDecoder" #salmon
 alt cca
-":EventListDecoder" -> ":EventListDecoder" : parseCca(:String)
+":EventListDecoder" -> ":EventListDecoder" : parseCca(splitData)
 activate ":EventListDecoder"
-":EventListDecoder" --> ":EventListDecoder" : :EventCca
+":EventListDecoder" --> ":EventListDecoder" : eventCca
 deactivate ":EventListDecoder"
 else tuition
-":EventListDecoder" -> ":EventListDecoder" : parseTuition(:String)
+":EventListDecoder" -> ":EventListDecoder" : parseTuition(splitData)
 activate ":EventListDecoder"
-":EventListDecoder" --> ":EventListDecoder" : :EventTuition
+":EventListDecoder" --> ":EventListDecoder" : eventTuition
 deactivate ":EventListDecoder"
 else class
-":EventListDecoder" -> ":EventListDecoder" : parseClass(:String)
+":EventListDecoder" -> ":EventListDecoder" : parseClass(splitData)
 activate ":EventListDecoder"
-":EventListDecoder" --> ":EventListDecoder" : :EventClass
+":EventListDecoder" --> ":EventListDecoder" : eventClass
 deactivate ":EventListDecoder"
 else test
-":EventListDecoder" -> ":EventListDecoder" : parseTest(:String)
+":EventListDecoder" -> ":EventListDecoder" : parseTest(splitData)
 activate ":EventListDecoder"
-":EventListDecoder" --> ":EventListDecoder" : :EventTest
+":EventListDecoder" --> ":EventListDecoder" : eventTest
 deactivate ":EventListDecoder"
-|||
 end alt
 ":EventListDecoder" --> ":EventListDecoder"
 deactivate ":EventListDecoder"
-":EventListDecoder" --> ":EventStorageManager" : :ArrayList<Event>
+":EventListDecoder" --> ":EventStorageManager" : decodedEventList
 deactivate ":EventListDecoder"
 end loop
-<-- ":EventStorageManager" : :EventParameter
+<-- ":EventStorageManager" : eventParameter
 deactivate ":EventStorageManager"
 @enduml

@@ -1,15 +1,15 @@
 @startuml
 hide footbox
 
--> ":EventStorageManager" : saveData(:ArrayList<Event>)
+-> ":EventStorageManager" : saveData(eventList)
 activate ":EventStorageManager"
-":EventStorageManager" -> ":EventListEncoder" : encodeEventList(:ArrayList<Event>)
+":EventStorageManager" -> ":EventListEncoder" : encodeEventList(eventList)
 activate ":EventListEncoder"
 
 loop number of events
-":EventListEncoder" -> ":EventListEncoder" : encodeEventToString(:Event)
+":EventListEncoder" -> ":EventListEncoder" : encodeEventToString(event)
 activate ":EventListEncoder" #salmon
-":EventListEncoder" --> ":EventListEncoder" : :String
+":EventListEncoder" --> ":EventListEncoder" : data
 deactivate ":EventListEncoder"
 ":EventListEncoder" --> ":EventStorageManager"
 deactivate ":EventListEncoder"
