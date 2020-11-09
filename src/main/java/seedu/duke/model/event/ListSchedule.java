@@ -16,6 +16,8 @@ import java.util.logging.Logger;
  * Represents the process of filtering events by date and getting all the required events for listing.
  */
 public class ListSchedule {
+    public static final int DURATION_MINUTES = 60;
+    public static final int EMPTY_LIST_SIZE = 0;
     private final ArrayList<Event> classes;
     private final ArrayList<Event> ccas;
     private final ArrayList<Event> tests;
@@ -84,7 +86,7 @@ public class ListSchedule {
             addToMainList(printedTuitions, printedEvents, CATEGORY_TUITIONS);
         }
 
-        if (hasNoSchedule() || printedEvents.size() == 0) {
+        if (hasNoSchedule() || printedEvents.size() == EMPTY_LIST_SIZE) {
             logger.log(Level.WARNING, "schedule is empty");
             if (userInput == null) {
                 throw new EmptyListException("empty");
@@ -93,28 +95,28 @@ public class ListSchedule {
         }
 
         if (inputCalendar != null) {
-            long noOfMinutesLeft = (configParameter.getRecommendedHours() * 60) - totalDuration;
-            int hoursLeft = Math.toIntExact(noOfMinutesLeft / 60);
-            int minsLeft = Math.toIntExact(noOfMinutesLeft - (hoursLeft * 60));
+            long noOfMinutesLeft = (configParameter.getRecommendedHours() * DURATION_MINUTES) - totalDuration;
+            int hoursLeft = Math.toIntExact(noOfMinutesLeft / DURATION_MINUTES);
+            int minsLeft = Math.toIntExact(noOfMinutesLeft - (hoursLeft * DURATION_MINUTES));
             printedEvents.add("Time left for this day: " + hoursLeft + "hr " + minsLeft + "mins");
         }
         return printedEvents;
     }
 
     private boolean haveClasses() {
-        return classes.size() != 0;
+        return classes.size() != EMPTY_LIST_SIZE;
     }
 
     private boolean haveCcas() {
-        return ccas.size() != 0;
+        return ccas.size() != EMPTY_LIST_SIZE;
     }
 
     private boolean haveTests() {
-        return tests.size() != 0;
+        return tests.size() != EMPTY_LIST_SIZE;
     }
 
     private boolean haveTuitions() {
-        return tuitions.size() != 0;
+        return tuitions.size() != EMPTY_LIST_SIZE;
     }
 
     private boolean hasNoSchedule() {

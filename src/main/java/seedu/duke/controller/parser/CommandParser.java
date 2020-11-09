@@ -50,21 +50,15 @@ public class CommandParser {
 
         switch (separatedInputs[MAIN_COMMAND_INDEX]) {
         case INPUT_ADD:
-            if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new MissingModelException();
-            }
+            checkSingleLengthWord();
             commandType = CommandType.ADD;
             break;
         case INPUT_DELETE:
-            if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new MissingModelException();
-            }
+            checkSingleLengthWord();
             commandType = CommandType.DELETE;
             break;
         case INPUT_DONE:
-            if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new MissingModelException();
-            }
+            checkSingleLengthWord();
             commandType = CommandType.DONE;
             break;
         case INPUT_LIST:
@@ -86,9 +80,7 @@ public class CommandParser {
             commandType = CommandType.QUIZ;
             break;
         case INPUT_SET:
-            if (separatedInputs.length == LENGTH_SINGLE_WORD) {
-                throw new MissingModelException();
-            }
+            checkSingleLengthWord();
             commandType = CommandType.SET;
             break;
         default:
@@ -96,5 +88,16 @@ public class CommandParser {
         }
 
         return commandType;
+    }
+
+    /**
+     * Throws error if user input only have one word.
+     *
+     * @throws MissingModelException If user input only have one word.
+     */
+    private void checkSingleLengthWord() throws MissingModelException {
+        if (separatedInputs.length == LENGTH_SINGLE_WORD) {
+            throw new MissingModelException();
+        }
     }
 }

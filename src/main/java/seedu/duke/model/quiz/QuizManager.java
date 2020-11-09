@@ -17,8 +17,11 @@ import java.util.logging.Logger;
 public class QuizManager extends ModelManager implements QuizInteractable {
     public static final int BEGIN_INDEX = 0;
     public static final int END_INDEX = 1;
+    public static final int END_DOUBLE_INDEX = 2;
+    public static final int END_TRIPLE_INDEX = 3;
     public static final int EMPTY_SIZE = 0;
     public static final int USER_INPUT_OFFSET = 9;
+
     public static final int INDEX_QUESTION = 1;
     public static final int INDEX_OP1 = 2;
     public static final int INDEX_OP2 = 3;
@@ -26,16 +29,20 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public static final int INDEX_OP4 = 5;
     public static final int INDEX_ANS = 6;
     public static final int INDEX_EXP = 7;
+
     public static final int OFFSET_QUESTION = 1;
     public static final int OFFSET_OPTION = 2;
     public static final int OFFSET_ANS = 1;
     public static final int OFFSET_EXP = 3;
+
     public static final int ANS_MIN = 1;
     public static final int ANS_MAX = 4;
+
     public static final String EMPTY_STRING = "";
     public static final int INDEX_OFFSET = 1;
     public static final int MAX_INPUT_LENGTH_NO_EXP = 7;
     public static final int MAX_INPUT_LENGTH_WITH_EXP = 8;
+
     public static final String QUESTION_PREFIX = " /q ";
     public static final String ANSWER_PREFIX = " /a ";
     public static final String OPTION_ONE_PREFIX = " /o1 ";
@@ -43,12 +50,12 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     public static final String OPTION_THREE_PREFIX = " /o3 ";
     public static final String OPTION_FOUR_PREFIX = " /o4 ";
     public static final String EXPLANATION_PREFIX = " /exp ";
-    public static final int END_DOUBLE_INDEX = 2;
-    public static final int END_TRIPLE_INDEX = 3;
+
     public static final int SLASH_INDEX = 2;
-    public static final int OFFSET_1 = 3;
-    public static final int OFFSET_2 = 4;
-    public static final int OFFSET_3 = 5;
+    public static final int OFFSET_PREFIX_1 = 3;
+    public static final int OFFSET_PREFIX_2 = 4;
+    public static final int OFFSET_PREFIX_3 = 5;
+
     public static int QUIZ_ATTEMPTS = 0;
     private final ArrayList<Quiz> quizzes;
     private final ArrayList<Quiz> lastIncorrectQuizzes = new ArrayList<>();
@@ -318,17 +325,13 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
         String[] separatedInputs = userInput.trim().split("/");
 
+        if ((separatedInputs.length > MAX_INPUT_LENGTH_NO_EXP && !userInput.contains(EXPLANATION_PREFIX))
+                || (separatedInputs.length > MAX_INPUT_LENGTH_WITH_EXP)) {
+            userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
+            return;
+        }
+
         validateSwappedParameters(separatedInputs);
-
-        if (separatedInputs.length > MAX_INPUT_LENGTH_NO_EXP && !userInput.contains(EXPLANATION_PREFIX)) {
-            userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
-            return;
-        }
-
-        if (separatedInputs.length > MAX_INPUT_LENGTH_WITH_EXP) {
-            userInterface.showToUser(Messages.MESSAGE_INVALID_EXTRA_PARAM);
-            return;
-        }
 
         try {
             quizzes.add(parseQuizQuestion(separatedInputs));
@@ -385,24 +388,24 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      * @param userInputs An arraylist of type string of the user input.
      * @throws SwappedParameterException If letter does not match up with the required prefix.
      */
-    protected void validateSwappedParameters(String[] userInputs) throws SwappedParameterException {
+    private void validateSwappedParameters(String[] userInputs) throws SwappedParameterException {
         boolean hasQ = userInputs[INDEX_QUESTION].substring(BEGIN_INDEX, END_INDEX)
-                .contentEquals(QUESTION_PREFIX.substring(SLASH_INDEX, OFFSET_1));
+                .contentEquals(QUESTION_PREFIX.substring(SLASH_INDEX, OFFSET_PREFIX_1));
         boolean hasO1 = userInputs[INDEX_OP1].substring(BEGIN_INDEX, END_DOUBLE_INDEX)
-                .contentEquals(OPTION_ONE_PREFIX.substring(SLASH_INDEX,OFFSET_2));
+                .contentEquals(OPTION_ONE_PREFIX.substring(SLASH_INDEX, OFFSET_PREFIX_2));
         boolean hasO2 = userInputs[INDEX_OP2].substring(BEGIN_INDEX, END_DOUBLE_INDEX)
-                .contentEquals(OPTION_TWO_PREFIX.substring(SLASH_INDEX,OFFSET_2));
+                .contentEquals(OPTION_TWO_PREFIX.substring(SLASH_INDEX, OFFSET_PREFIX_2));
         boolean hasO3 = userInputs[INDEX_OP3].substring(BEGIN_INDEX, END_DOUBLE_INDEX)
-                .contentEquals(OPTION_THREE_PREFIX.substring(SLASH_INDEX, OFFSET_2));
+                .contentEquals(OPTION_THREE_PREFIX.substring(SLASH_INDEX, OFFSET_PREFIX_2));
         boolean hasO4 = userInputs[INDEX_OP4].substring(BEGIN_INDEX, END_DOUBLE_INDEX)
-                .contentEquals(OPTION_FOUR_PREFIX.substring(SLASH_INDEX, OFFSET_2));
+                .contentEquals(OPTION_FOUR_PREFIX.substring(SLASH_INDEX, OFFSET_PREFIX_2));
         boolean hasA = userInputs[INDEX_ANS].substring(BEGIN_INDEX, END_INDEX)
-                .contentEquals(ANSWER_PREFIX.substring(SLASH_INDEX, OFFSET_1));
+                .contentEquals(ANSWER_PREFIX.substring(SLASH_INDEX, OFFSET_PREFIX_1));
         boolean hasE = true;
 
         if (userInputs.length == MAX_INPUT_LENGTH_WITH_EXP) {
             hasE = userInputs[INDEX_EXP].substring(BEGIN_INDEX, END_TRIPLE_INDEX)
-                    .contentEquals(EXPLANATION_PREFIX.substring(SLASH_INDEX, OFFSET_3));
+                    .contentEquals(EXPLANATION_PREFIX.substring(SLASH_INDEX, OFFSET_PREFIX_3));
         }
 
         if (!hasQ || !hasO1 || !hasO2 || !hasO3 || !hasO4 || !hasA || !hasE) {

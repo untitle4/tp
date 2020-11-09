@@ -7,6 +7,10 @@ import seedu.duke.model.quiz.QuizManager;
 import static seedu.duke.common.Messages.MESSAGE_MISSING_QUIZ_PARAM;
 import static seedu.duke.common.Messages.MESSAGE_QUIZ_NON_NUMBER;
 
+//@@author AndreWongZH
+/**
+ * Represents the command for taking and recording of quizzes.
+ */
 public class QuizCommand extends Command {
 
     public static final String INPUT_SPACE = " ";
@@ -17,7 +21,7 @@ public class QuizCommand extends Command {
         super(userInput);
     }
 
-
+    //@@author untitle4
     @Override
     public void execute(ModelMain modelMain) throws ExtraParameterException {
         QuizManager quizManager = (QuizManager) modelMain;

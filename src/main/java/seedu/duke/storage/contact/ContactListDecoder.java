@@ -42,7 +42,7 @@ public class ContactListDecoder {
     private Contact decodeContactFromString(String encodedContact) throws StorageSeparatorException {
         final String[] data = encodedContact.trim().split("\\|");
 
-        if (data.length != 4) {
+        if (data.length != NUMBER_OF_PARAMETERS_REQUIRED) {
             throw new StorageSeparatorException();
         }
 

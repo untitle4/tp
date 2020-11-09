@@ -1,5 +1,6 @@
 package seedu.duke.model;
 
+//@@author Aliciaho
 public class ConfigParameter {
     private String name;
     private int recommendedHours;
