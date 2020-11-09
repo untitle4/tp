@@ -139,8 +139,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     /**
      * <h2>handleValidNumOfQuestions() Method</h2>
-     * This method first calls the initialisingShufflingOfQuestions() method, which shuffles ALL the questions in the current
-     * quiz list.
+     * This method first calls the initialisingShufflingOfQuestions() method, which shuffles ALL the questions in the\
+     * current quiz list.
      * <br><br>
      * Initialises a counter for counting the number of questions to be taken (questionCounter, which acts as a
      * variable).
@@ -251,8 +251,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      * <br>
      * If the user's answer is correct, increment the correctCounter variable by 1.
      *
-     * @return correctCounter - For the purpose of calculating the user's quiz score.
      * @param correctCounter The counter responsible for counting the number of correct answers by the user.
+     * @return correctCounter - For the purpose of calculating the user's quiz score.
      */
     private int storeCorrectnessOfQuizAnswer(int correctCounter) {
         for (int k = 0; k < noOfQues; k++) {
@@ -318,8 +318,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      *     variable by 1, to print the next question in the quiz</li>
      * </ul>
      *
-     * @return questionCounter - To update the program of which question to print next.
      * @param questionCounter - To inform the program which question to print for the current iteration.
+     * @return questionCounter - To update the program of which question to print next.
      */
     public int testForValidInput(int questionCounter) {
         // Print out each question
