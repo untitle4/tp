@@ -16,6 +16,7 @@ import static seedu.duke.storage.StorageManager.CONTACT_FILE_NAME;
 import static seedu.duke.storage.StorageManager.EVENT_FILE_NAME;
 import static seedu.duke.storage.StorageManager.QUIZ_FILE_NAME;
 
+//@@author durianpancakes
 /**
  * Class to handle StorageCorruptedException.
  */
@@ -26,7 +27,7 @@ public class StorageExceptionHandler {
         userInterface = UserInterface.getInstance();
     }
 
-    public void handleCorruptedStorage() {
+    public boolean handleCorruptedStorage() {
         // Valid input is defined to be y or n
         boolean validInput = false;
         boolean resetSuccessful = false;
@@ -44,8 +45,7 @@ public class StorageExceptionHandler {
                 break;
             case "n":
                 userInterface.showToUser();
-                validInput = true;
-                break;
+                return false;
             default:
                 userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_INVALID_INPUT_PROMPT);
             }
@@ -55,7 +55,9 @@ public class StorageExceptionHandler {
             userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_SUCCESSFUL);
         } else {
             userInterface.showToUser(Messages.MESSAGE_FACTORY_RESET_FAILED_OR_CANCELLED);
+            return false;
         }
+        return true;
     }
 
     private boolean factoryReset() {
