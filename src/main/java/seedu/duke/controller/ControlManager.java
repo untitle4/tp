@@ -147,7 +147,7 @@ public class ControlManager {
 
         if ((commandType == CommandType.FIND || commandType == CommandType.LIST)
                 && (modelType != ModelType.EVENT && modelType != ModelType.CONTACT
-                && modelType != ModelType.QUIZ && modelType!= null)) {
+                && modelType != ModelType.QUIZ && modelType != null)) {
             throw new InvalidModelException();
         }
 
