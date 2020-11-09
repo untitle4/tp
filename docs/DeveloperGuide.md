@@ -23,7 +23,7 @@ Figure 1. Architecture Diagram
 The Architecture Diagram given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 The `Main` class is responsible for,
-* At app launch: Initializes the main components in the correct sequence and read data from our data files
+* At app launch: Initializes the main components in the correct sequence
 * At shut down: Terminates the continuous loop and shut down the components
 
 `Common` represents a collection of classes used by multiple other components.
@@ -35,7 +35,6 @@ The rest of the App consists of four components.
 * `Storage`: Reads data from, and writes data to, the hard disk.
 
 Each of the four components:
-The interaction between them is defined in an interface.
 Exposes its functionality using a concrete {Component Name}Manager class.
 
 The sections below give more details of each component.
@@ -51,7 +50,7 @@ API: UserInterface.java
 
 The UserInterface component,
 * Prompts commands from the user.
-* Execute user commands using the Controller component.
+* Creates the Controller component and execute user commands.
 * Displays information based on changes to Model data.
 * Prints the user’s events of the week in a timetable format.
 
@@ -75,6 +74,11 @@ The Controller component,
 * Generate the required command from the CommandFactory.java class
 * Extract the required model to be accessed and modified.
 * Executes the command with the corresponding model.
+* The sequence diagram below illustrates the above mentioned steps.
+
+![controllercomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ControllerSequence.png)
+
+Figure 4. Sequence Diagram of the Controller component
 
 <br />
 <br />
@@ -83,15 +87,15 @@ The Controller component,
 
 ![modelcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ModelComponent.png)
 
-Figure 4. Class Diagram of the Model component
+Figure 5. Class Diagram of the Model component
 
 API: Model.java
 
 The Model component,
-* Holds all the in-memory data of type event, quiz and contact.
+* Holds all the in-memory data of type event, quiz, config and contact.
 * Each data type has a corresponding manager that the controller can interface with. This is named as <datatype>Manager.java.
 * During a command execution, the manager will handle the modification and reading of its data type.
-* After the execution, the corresponding output is then passed on to the User Interface component to be shown to the user.
+* After the execution, the corresponding output is passed on to the User Interface component to be shown to the user.
 
 <br />
 <br />
@@ -100,7 +104,7 @@ The Model component,
 #### Storage component
 ![storagecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/StorageComponent.png)
 
-Figure 5. Class Diagram of the Storage component
+Figure 6. Class Diagram of the Storage component
 
 API: StorageManager.java
 
@@ -117,7 +121,7 @@ Each `StorageManager` reads in their respective data files through a `decoder` a
 ##### Event Storage
 ![eventstorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageManager.png)
 
-Figure 6. Class Diagram of EventStorageManager
+Figure 7. Class Diagram of EventStorageManager
 
 API: EventStorageManager.java
 `EventStorageManager` is responsible for the reading and writing of data from Plan&Score’s `events.txt` file, located in the `{root}/data` directory.
@@ -132,7 +136,7 @@ It returns an `EventParameter` to `EventStorageManager`.
 
 ![eventreadstorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageReadSequence.png)
 
-Figure 7. Sequence Diagram of the reading of data
+Figure 8. Sequence Diagram of the reading of data
 
 ###### Writing events
 
@@ -142,7 +146,7 @@ It returns a `String` to `EventStorageManager` for further writing.
 
 ![eventwritestorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageSaveSequence.png)
 
-Figure 8. Sequence Diagram of the writing of data
+Figure 9. Sequence Diagram of the writing of data
 <!-- @@author -->
 
 ##### Quiz Storage
@@ -150,22 +154,23 @@ API: QuizStorageManager.java
 
 ![quizwritestorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/QuizWriteStorage.png)
 
-Figure 9. Sequence Diagram of the writing of data
+Figure 10. Sequence Diagram of the writing of data
 
 ![quizreadstorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/QuizReadStorage.png)
 
-Figure 10. Sequence Diagram of the reading of data
+Figure 11. Sequence Diagram of the reading of data
 
 The Quiz Storage,
 * Checks existence of the quiz data file in the `data` directory. If the file does not exist, create a new data file for quiz storage.
 * Invokes the `quizListEncoder` class to encode the ArrayList of type Quiz into its String representations and writes them into the quiz data file.
 * Invokes the `quizListDecoder` class to decode the String representations of quizzes in the quiz data file and add the quizzes back into the ArrayList of type Quiz.
 
+<!-- @@author Aliciaho-->
 ##### Config Storage
 API: ConfigStorageManager.java
 ![configstoragecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ConfigStorage.png)
 
-Figure 11. Class Diagram of the ConfigStorageManager
+Figure 12. Class Diagram of the ConfigStorageManager
 
 The Config Storage,
 * Checks existence of the config data file in the `data` directory. If the file does not exist, create a new data file for config storage.
@@ -176,7 +181,7 @@ The Config Storage,
 The Config Parameter,
 * Helps to store the String of user name, the integer number of recommended hours and finally, the boolean which checks if the program has run before.
 * Contents stored in the parameter are subsequently used by configEncoder to encode them into a string. 
-
+<!-- @@author Aliciaho-->
 
 ---
 
@@ -250,12 +255,12 @@ public void printArray(ArrayList<String> stringArrayList) {
    }
 }
 ```
-
+<!-- @@author Aliciaho-->
 ### Help feature
 
 ![helpcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Help.png)
 
-Figure 12. Sequence Diagram of the help feature
+Figure 13. Sequence Diagram of the help feature
 
 When a user enters ‘help’, the input will be read in by the UI class.
 The UI class will then parse the user input into the ControlManager class, which calls the runLogic() method.
@@ -271,7 +276,7 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 
 ![sethourscomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/SetHours.png)
 
-Figure 13. Sequence Diagram of the set hours feature
+Figure 14. Sequence Diagram of the set hours feature
 
 When a user enters ‘set hours’, the input will be read in by the UI class.
 The UI class will then parse the user input into the ControlManager class, which calls the runLogic() method.
@@ -282,12 +287,12 @@ Lastly, the execute() method in the SetHoursCommand class is called, which in tu
 
 
 Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java to allow the continuous usage of the program.
-
+<!-- @@author Aliciaho-->
 ### Add feature
 
 ![addcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Add.png)
 
-Figure 14. Sequence Diagram of the add feature
+Figure 15. Sequence Diagram of the add feature
 
 Firstly, when the user enters add .. /n .. /s .. /e .. , the input will be read in by the UI class.
 The UI class will then parse the user input into the ControlManager class where the command will be extracted and processed by the CommandParser class.
@@ -302,7 +307,7 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 
 ![deletecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/DeleteFeatureDiagram.png)
 
-Figure 15. Sequence Diagram of the delete feature
+Figure 16. Sequence Diagram of the delete feature
 
 Firstly, when the user enters delete <event> <number>, the input will be read in by the UI class.
 The UI class will then parse the user input into the ControlManager class where the command will be extracted and processed by the CommandParser class. The result is passed into ModelExtractor Class.
@@ -317,14 +322,14 @@ Upon completion of this feature, it returns a boolean value “true” to the ac
 
 ![listcontact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListContact.png)
 
-Figure 16. Sequence diagram for listing quizzes
+Figure 17. Sequence diagram for listing quizzes
 
 The list command will invoke the `ContactManager` or `QuizManager` class’s list() method respectively.
 If the ArrayList is empty, it will inform the user that there is no data to display.
-The method will then loop through the ArrayList and convert it into its string representation.
+Else the method will then loop through the ArrayList as show in the loop box in figure 17 and convert it into its string representation.
 This is then passed to the `UserInterface#printArray()` to be printed out to the user.
 
-#### List event ([date] / today / week)
+#### List event (date / today / week)
 While the back-end data processing is the same for all three types of list requests, the list event week request requires a different front-end class to display to the user.
 As such, we divide this section into 2 sub-sections, with List event (<date>/today) in the first subsection, and List event week in the next subsection.
 
@@ -332,11 +337,11 @@ The execution of the ListCommand will cause the `EventManager` class to invoke `
 This will then create an instance of the `ListSchedule` class, with all the classes, ccas, tests and tuitions data
 as its attributes.
 
-#### List event ([date] / today)
+#### List event (date / today)
 
 ![listevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListEvent.png)
 
-Figure 17. Sequence diagram for listing out events.
+Figure 18. Sequence diagram for listing out events.
 
 Inside this `EventManager#listSchedule()`, we then call the `ListSchedule#getPrintableEvents()` and this will start
 to convert ArrayList of type Event into its corresponding `toString()` representation.
@@ -357,7 +362,7 @@ If it is equal, the event will be converted and be printed out.
 
 ![listeventweek](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListWeekSequence.png)
 
-Figure 18. Sequence diagram for listing out events for week/nextweek.
+Figure 19. Sequence diagram for listing out events for week/nextweek.
 
 Inside this `EventManager`, we then call the `UserInterface#printWeekSchedule(EventManager, ListWeekCommand)`, passing 
 in the current instance of EventManager into this method and a ListWeekCommand that determines if the current or next 
@@ -378,14 +383,11 @@ userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK); // the Even
 
 ### Find feature
 
-#### Find contact / quiz
-The find feature will invoke the `ContactManager` or `QuizManager` class’s find() method respectively.
-
 #### Find event <keyword(s)>
 
-The execution of FindCommand will cause the `EventManager` class to invoke `EventManager#findSchedule()`. Inside this `EventManager#findSchedule()`, it creates an instance of the `FindSchedule` class, with all the classes, ccas, tests and tuitions data as its attributes. 
+The execution of FindCommand will cause the `EventManager` class to invoke `EventManager#find()`. Inside this `EventManager#find()`, it creates an instance of the `FindSchedule` class, with all the classes, ccas, tests and tuitions data as its attributes. 
 
-We then call the `FindSchedule#getFilteredEvents()` and this will start to convert ArrayList of type Event into its corresponding `toString()` representation. An ArrayList of type String is returned to `EventManager#findSchedule()`.
+We then call the `FindSchedule#getFilteredEvents()` and this will start to convert ArrayList of type Event into its corresponding `toString()` representation. An ArrayList of type String is returned to `EventManager#find()`.
 
 This is then passed to the `UserInterface#printArray()` to be printed out to the user.
 
@@ -393,7 +395,7 @@ The diagram below shows the execution flow explained below.
 
 ![findevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindEvent.png)
 
-Figure 19. Sequence diagram for finding events.
+Figure 20. Sequence diagram for finding events.
 
 #### Find quiz <keyword(s)>
 
@@ -407,7 +409,7 @@ The diagram below shows the execution flow explained below.
 
 ![findquiz](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindQuiz.png)
 
-Figure 20. Sequence diagram for finding quizzes.
+Figure 21. Sequence diagram for finding quizzes.
 
 ### Quiz feature
 
@@ -482,14 +484,14 @@ Given below are instructions to test the app manually
 
 ### Adding of CCAs
 1. Test case: `add`
-    * Expected: Inform the user that the model type is missing.
+    * Expected: Inform the user that the category type is missing.
 1. Test case: `add cca`
     * Expected: Inform the user to include all /n /s and /e inputs.
 1. Test case: `add cca /n abc /s date1 /e date 2`
 	* Expected: Inform the user to enter a valid date time format.
-1. Test case: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
+1. Test case: `add test /n Math test /s 2020-10-03 1300 /e 2020-10-03 1400`
 	* Expected: Inform the user that cca has been added. Running `list event` command will show the added cca inside.
-1. Test case: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1000`
+1. Test case: `add test /n Math test /s 2020-10-03 1300 /e 2020-10-03 1000`
     * Expected: Inform the user that start time is later than end time.
 
 ### Listing of events
@@ -497,7 +499,7 @@ Given below are instructions to test the app manually
 	* Expected: Inform the user to list either event, quiz or contact
 1. Test case: `list event`
 	* Expected: Show a list of events and categorized into its event type. If there are no events, inform the user that the schedule is empty.
-1. Test case: `list event 2020-10-3`
+1. Test case: `list event 2020-10-03`
 	* Expected: Show a  list of events that matches with the specified date. If no events that match, inform the user that the schedule is not found.
 1. Test case: `list event date`
 	* Expected: Inform the user to enter a valid date time format.
@@ -507,12 +509,12 @@ Given below are instructions to test the app manually
 ### Finding of contacts
 1. Test case: `find`
 	* Expected: Inform the user to find either event, quiz or contact
-1. Test case: `list contact math`
+1. Test case: `find contact math`
 	* Expected: Show a list of contacts that matches the keywords. If there are no contacts found , inform the user that the search has no result.
-1. Test case: `find event`
+1. Test case: `find contact`
 	* Expected: Remind the user to include the keyword in the command.
 1. Test case: `find testing`
-	* Expected: Inform user that the program does not recognise the model.
+	* Expected: Inform user that the program does not recognise the category.
 
 <!-- @@author durianpancakes -->
 ### Saving data
@@ -542,8 +544,8 @@ We can simulate this by changing the encoded text in the file. For example, a Cl
 should be encoded as “[CLASS]|false|Math tutorial|2020-09-21 1500|2020-09-21 1600” in the events.txt file. 
 
 Corrupted forms can be in the following forms, but not limited to:
-* “[CLASS]|Math tutorial|2020-09-21 1500|2020-09-21 1600”: the isDone parameter is missing from the encoded string.
-* “[CLASS]|false|Math tutorial|2020-09-21 1600”: one of the date-time parameter is missing from the encoded string
+* “[CLASS]\|Math tutorial\|2020-09-21 1500\|2020-09-21 1600”: the isDone parameter is missing from the encoded string.
+* “[CLASS]\|false\|Math tutorial\|2020-09-21 1600”: one of the date-time parameter is missing from the encoded string
 * “[CLASS]+false+Math tutorial+2020-09-21 1500+2020-09-21 1600”: the parameter separator “+” is not recognized by our decoder.
 
 Expected: the program will not be able to start, with the error message “): Storage file corrupted. Please delete your data directory and relaunch.” shown.

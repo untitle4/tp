@@ -22,7 +22,7 @@
     - [Tuition Category](#category-tuition)
       - [Add a tuition:](#adding-a-tuition-add-tuition) `add tuition`
       - [Delete a tuition:](#deleting-a-tuition-delete-tuition) `delete tuition`
-    - [List schedule:](#listing-out-schedule-list-event-<today/[date]/week/nextweek>) `list event <today/[date]/week/nextweek>`
+    - [List schedule:](#listing-out-schedule-list-event-todaydateweeknextweek>) `list event <today/[date]/week/nextweek>`
     - [Find event:](#finding-an-event-find-event) `find event`
   - [SCORE component of Plan&Score:](#score-component-of-planscore)
     - [Take a quiz:](#taking-a-quiz-quiz)`quiz`
@@ -85,6 +85,7 @@ The highlights and symbols used in this document are as follow:
 3. Run the program by entering `java -jar plan.jar` in your terminal.
 4. You can exit the program by running `bye`.
 
+<!-- @@author Aliciaho -->
 ## Initialisation
 
 When you first open Plan&Score, you will be greeted by a welcome message as well as 
@@ -106,6 +107,8 @@ This is the end of the initialisation process. You can now enjoy the rest of Pla
 amazing features!
 
 ![finishintro](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/finish_intro.png)
+
+<!-- @@author Aliciaho-->
 
 ## Commands
 
@@ -156,6 +159,7 @@ It allows you to plan and track the following category types:
 
 ![indexinfo](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/indexinfo.png)
 
+<!-- @@author Aliciaho-->
 #### Set Recommended Hours: `set hours`
 Allows you to change the number of recommended hours you would want to have per day.
 
@@ -182,6 +186,7 @@ WARNING:
 ![erroraddclass](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/erroraddclass.png)
 
 ![sethourserror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/set_hours_error.png)
+<!-- @@author Aliciaho-->
 
 #### Category: Class
 ##### Adding a class: `add class`
@@ -287,6 +292,7 @@ WARNING:
 
 <br />
 
+<!-- @@author Aliciaho-->
 #### Category: Test
 ##### Adding a test: `add test`
 Allows you to add a new test with a name, date and time.
@@ -338,6 +344,7 @@ WARNING:
 ![deletetesterror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_test_error.png)
 
 <br />
+<!-- @@author Aliciaho-->
 
 <!-- @@author durianpancakes -->
 #### Category: Tuition
@@ -410,6 +417,7 @@ The output is seen in the console. The list is arranged by their respective cate
 
 <br />
 
+<!-- @@author Aliciaho-->
 ##### List event today: `list event today`
 
 Secondly, to list out all events today, type ‘list event today’ in the command line, as seen below. Press ‘Enter’ to execute it.
@@ -421,6 +429,7 @@ The output is seen in the console. The list is arranged by their respective cate
 ![listeventtoday2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_today_2.png)
 
 <br />
+<!-- @@author Aliciaho-->
 
 <!-- @@author durianpancakes -->
 ##### List event week: `list event week`
@@ -448,6 +457,7 @@ The output is seen in the console. It is displayed in a calendar format for easi
 <br />
 <!-- @@author -->
 
+<!-- @@author Aliciaho-->
 ##### List event date: `list event [desired date]`
 
 Lastly, to list out all events on a particular date, type ‘list event [desired date]’ in the command line, as seen below. Press ‘Enter’ to execute it.
@@ -459,6 +469,7 @@ The output is seen in the console. The list is arranged by their respective cate
 ![listeventdate2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_date_2.png)
 
 <br />
+<!-- @@author Aliciaho-->
 
 #### Finding events: `find event`
 Allows you to look for classes, ccas and tests and tuitions that match your given keyphrase.
@@ -636,6 +647,7 @@ The output can then be seen in the console.
 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find%20note.jpg" width="500"  alt="findnote"/>
 
+<!-- @@author Aliciaho-->
 ### Exits Program: `bye`
 Exits the program once you have finished using it.
 
@@ -646,6 +658,8 @@ Type the command and press 'Enter' to execute it.
 The output is shown in the console. It contains a simple goodbye message.
 
 ![bye2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/bye_2.png)
+<!-- @@author Aliciaho-->
+
 <!-- @@author durianpancakes -->
 ## Saving Data
 Plan&Score saves all your data automatically after every command. There is no need to save manually.
@@ -708,4 +722,3 @@ quiz|`quiz [no of questions]`|`quiz 15`
 display quiz record|`quiz record`
 set hours|`set hours`
 bye|`bye`
-
