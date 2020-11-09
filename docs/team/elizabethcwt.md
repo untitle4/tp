@@ -7,10 +7,10 @@ Plan&Score is a Java command-line application that does two main things:
 <br>
 Allows students to plan and track their:
     <ul>
-        <li>School classes
-        <li>CCAs
-        <li>Tests
-        <li>Tuition
+        <li>School classes</li>
+        <li>CCAs</li>
+        <li>Tests</li>
+        <li>Tuition</li>
     </ul>
 
     This inculcates effective scheduling habits in these students from a young age, which they will carry with them as they grow older.
