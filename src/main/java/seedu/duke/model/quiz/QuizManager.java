@@ -287,6 +287,10 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         Collections.shuffle(quizIndexes);
     }
 
+    /**
+     * <h2>handleInvalidNumOfQuestions() Method</h2>
+     * Displays message corresponding to an invalid number of questions to take in a quiz.
+     */
     private void handleInvalidNumOfQuestions() {
 
         // Assert that noOfQues is NOT an acceptable value
