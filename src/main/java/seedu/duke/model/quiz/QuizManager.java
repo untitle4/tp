@@ -217,6 +217,13 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userAnswerManager.getCorrectness().clear();
     }
 
+    /**
+     * <h2>assignCorrectnessLogo() Method</h2>
+     * Checks if user's answers for the quiz question matches the correct quiz answer for the same question stored in
+     * the quiz list text file.
+     *
+     * @param l A variable representing the index of relevant the quiz question at that point of time.
+     */
     private void assignCorrectnessLogo(int l) {
 
         // Assert that the correctness of the user's input is true in this if loop
