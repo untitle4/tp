@@ -1,9 +1,8 @@
 package seedu.duke.model;
 
-//@@author AndreWongZH
-
 import seedu.duke.model.config.ConfigManager;
 
+//@@author AndreWongZH
 /**
  * Represents the main model class which is inherited by all Managers.
  *
