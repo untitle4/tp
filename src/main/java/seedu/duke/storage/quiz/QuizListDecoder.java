@@ -1,6 +1,5 @@
 package seedu.duke.storage.quiz;
 
-import dorkbox.notify.Notify;
 import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.quiz.Quiz;
 
@@ -20,7 +19,6 @@ public class QuizListDecoder {
     //@@author AndreWongZH
     /**
      * Reads and extracts out the information from quiz storage.
-     * Checks is any quizzes that have not been attempted since the last 2 days, notify user if so.
      *
      * @param encodedQuizList An array list of quizzes in string.
      * @return An arraylist of type quiz stored in the text file.
@@ -30,18 +28,6 @@ public class QuizListDecoder {
         final ArrayList<Quiz> decodedQuizzes = new ArrayList<>();
         for (String encodedQuiz : encodedQuizList) {
             decodedQuizzes.add(decodeQuizFromString(encodedQuiz));
-        }
-
-        for (Quiz quiz : decodedQuizzes) {
-            long numDays = DAYS.between(LocalDate.now(), quiz.getLastAccessed());
-            if (numDays <= NUM_OF_DAYS) {
-                Notify.create()
-                        .title("Plan&score Notification")
-                        .text("you have outdated quizzes! Attempt them now!")
-                        .hideAfter(10000)
-                        .showInformation();
-                break;
-            }
         }
 
         return decodedQuizzes;
