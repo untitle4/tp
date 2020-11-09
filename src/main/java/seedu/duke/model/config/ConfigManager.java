@@ -1,4 +1,4 @@
-package seedu.duke.ui;
+package seedu.duke.model.config;
 
 import seedu.duke.common.LogManager;
 import seedu.duke.common.Messages;
@@ -6,12 +6,14 @@ import seedu.duke.exception.StorageCorruptedException;
 import seedu.duke.model.ConfigParameter;
 import seedu.duke.model.ModelMain;
 import seedu.duke.storage.config.ConfigStorageManager;
+import seedu.duke.ui.UserInterface;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ConfigManager extends ModelMain {
+//@@author Aliciaho
+public class ConfigManager extends ModelMain implements ConfigInteractable {
     public static final String CONFIG_FILE_NAME = "/config.txt";
     private final ConfigStorageManager configStorageManager;
     private static UserInterface userInterface;
@@ -43,6 +45,7 @@ public class ConfigManager extends ModelMain {
         return configParameter;
     }
 
+    @Override
     public void getIntroductoryVariables(ConfigParameter configParameter) {
         logger.log(Level.INFO, "getting username and recommended hours from user");
         if (!configParameter.getHasProgramRan()) {
@@ -84,6 +87,7 @@ public class ConfigManager extends ModelMain {
         }
     }
 
+    @Override
     public void editHours() {
         logger.log(Level.INFO, "editing hours to take in new hours input");
         int newHours;

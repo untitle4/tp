@@ -12,7 +12,7 @@ import seedu.duke.model.event.EventManager;
 import seedu.duke.model.event.EventParameter;
 import seedu.duke.model.event.classlesson.EventClassManager;
 import seedu.duke.model.quiz.QuizManager;
-import seedu.duke.ui.ConfigManager;
+import seedu.duke.model.config.ConfigManager;
 
 import java.util.ArrayList;
 

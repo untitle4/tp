@@ -19,7 +19,7 @@ end box
 
 ":ListCommand" -> ":EventManager" : execute()
 activate ":EventManager"
-":EventManager" -> ":EventManager" : ":ListSchedule"()
+":EventManager" -> ":EventManager" : list()
 activate ":EventManager" #DarkSalmon
 ":EventManager" -> ":ListSchedule" ** : constructor()
 activate ":ListSchedule"

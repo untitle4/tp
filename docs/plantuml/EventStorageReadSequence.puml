@@ -8,7 +8,7 @@ activate ":EventListDecoder"
 
 loop number of strings
 ":EventListDecoder" -> ":EventListDecoder" : decodeEventFromString(:String)
-activate ":EventListDecoder"
+activate ":EventListDecoder" #salmon
 alt cca
 ":EventListDecoder" -> ":EventListDecoder" : parseCca(:String)
 activate ":EventListDecoder"
@@ -29,6 +29,7 @@ else test
 activate ":EventListDecoder"
 ":EventListDecoder" --> ":EventListDecoder" : :EventTest
 deactivate ":EventListDecoder"
+|||
 end alt
 ":EventListDecoder" --> ":EventListDecoder"
 deactivate ":EventListDecoder"

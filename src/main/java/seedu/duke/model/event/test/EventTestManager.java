@@ -117,7 +117,7 @@ public class EventTestManager extends EventDataManager {
 
                 userInterface.showToUser(Messages.MESSAGE_TEST_ADD_SUCCESS,
                         tests.get(getTestListSize() - 1).toString());
-                getTaskStatement(eventTest);
+                getTestStatement(eventTest);
 
                 sortList();
                 logger.log(Level.INFO, "sorted Test ArrayList");
@@ -166,7 +166,7 @@ public class EventTestManager extends EventDataManager {
             tests.remove(testNumber - 1);
             logger.log(Level.INFO, "deleted test from ArrayList");
 
-            getTaskStatement(eventTest);
+            getTestStatement(eventTest);
         } catch (NumberFormatException e) {
             logger.log(Level.WARNING, "wrong number format entered");
             userInterface.showToUser(Messages.MESSAGE_TEST_DELETE_ERROR_NON_NUMBER);
@@ -183,7 +183,7 @@ public class EventTestManager extends EventDataManager {
      * <h2>getTaskStatement()</h2>
      * Prints statement to update the user once test has been added or deleted.
      */
-    private void getTaskStatement(Event event) {
+    private void getTestStatement(Event event) {
         if ((getTestListSize() - 1 == 0) || (getTestListSize() == 0)) {
             userInterface.showToUser("Now you have " + getTestListSize() + " test in the list.");
         } else {
@@ -229,7 +229,7 @@ public class EventTestManager extends EventDataManager {
         userInterface.showToUser(Messages.MESSAGE_TEST_DONE_SUCCESS,
                 "  " + tests.get(testNumber - 1));
 
-        getTaskStatement(eventTest);
+        getTestStatement(eventTest);
     }
 
     private void sortList() {

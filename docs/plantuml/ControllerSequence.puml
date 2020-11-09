@@ -1,0 +1,63 @@
+@startuml
+skinparam ParticipantPadding 10
+skinparam BoxPadding 5
+hide footbox
+
+box "Controller" #LightSalmon
+participant ":ControlManager"
+participant ":CommandParser"
+participant ":CommandFactory"
+participant ":ModelParser"
+participant ":ModelExtractor"
+end box
+
+-> ":ControlManager" : runLogic()
+activate ":ControlManager"
+":ControlManager" -> ":CommandParser" ** : constructor()
+activate ":CommandParser"
+":CommandParser" --> ":ControlManager"
+deactivate ":CommandParser"
+":ControlManager" -> ":CommandParser" : extractCommand()
+activate ":CommandParser"
+":CommandParser" --> ":ControlManager" : Command Type
+deactivate ":CommandParser"
+
+":ControlManager" -> ":CommandFactory" ** : constructor()
+activate ":CommandFactory"
+":CommandFactory" --> ":ControlManager"
+deactivate ":CommandFactory"
+":ControlManager" -> ":CommandFactory" : generateActionableCommand()
+activate ":CommandFactory"
+":CommandFactory" --> ":ControlManager" : Command
+deactivate ":CommandFactory"
+
+":ControlManager" -> ":ModelParser" ** : constructor()
+activate ":ModelParser"
+":ModelParser" --> ":ControlManager"
+deactivate ":ModelParser"
+":ControlManager" -> ":ModelParser" : extractModel()
+activate ":ModelParser"
+":ModelParser" --> ":ControlManager" : Model Type
+deactivate ":ModelParser"
+
+":ControlManager" -> ":ModelExtractor" ** : constructor()
+activate ":ModelExtractor"
+":ModelExtractor" --> ":ControlManager"
+deactivate ":ModelExtractor"
+":ControlManager" -> ":ModelExtractor" : retrieveModel()
+activate ":ModelExtractor"
+":ModelExtractor" --> ":ControlManager" : Model
+deactivate ":ModelExtractor"
+
+":ControlManager" -> : execute()
+":ControlManager" <--
+
+<-- ":ControlManager"
+deactivate ":ControlManager"
+
+destroy ":CommandParser"
+destroy ":CommandFactory"
+destroy ":ModelParser"
+destroy ":ModelExtractor"
+
+@enduml

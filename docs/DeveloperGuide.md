@@ -349,6 +349,7 @@ If it is equal, the event will be converted and be printed out.
 #### List event week/nextweek
 
 ![listeventweek](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListWeekSequence.png)
+
 Figure 18. Sequence diagram for listing out events for week/nextweek.
 
 Inside this `EventManager`, we then call the `UserInterface#printWeekSchedule(EventManager, ListWeekCommand)`, passing 
@@ -383,6 +384,7 @@ This is then passed to the `UserInterface#printArray()` to be printed out to the
 The diagram below shows the execution flow explained below.
 
 ![findevent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/FindEvent.png)
+
 Figure 19. Sequence diagram for finding events.
 
 #### Find quiz <keyword(s)>

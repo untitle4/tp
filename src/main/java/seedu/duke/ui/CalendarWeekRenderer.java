@@ -79,6 +79,7 @@ public class CalendarWeekRenderer {
 
         StringBuilder todayLabelString = new StringBuilder();
         for (int i = 0; i < DAYS_IN_WEEK; i++) {
+            assert daysOfWeek != null;
             todayLabelString.append(utils.getIsToday(daysOfWeek.get(i)));
         }
         userInterface.showToUser(todayLabelString.toString());
