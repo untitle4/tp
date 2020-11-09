@@ -1,10 +1,8 @@
-# Andre Wong's Project Portfolio Page
-
 ## Project: Plan&Score
 
 Plan&Score is a Java command-line application that allows Primary 6 students to plan and track their classes, CCAs and test dates. This enables the students to remember their schedule, so they can plan well in advance for their tests and score better.
 
-## Contributions
+## Contributions by Andre Wong
 Given below are my contributions to the project.
 * Features:
     * List events [#18](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/18)
@@ -22,6 +20,11 @@ Given below are my contributions to the project.
     * Contacts storage [#347](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/347)
         * What it does: allows the application to store the contacts in a text file automatically.
         * Justification: The contact-data will now be persistent even after the application closes.
+        
+* Unused Feature:
+    * Quiz Notification [#217](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/217)
+        * What it does: shows notification to user if quiz has not been attempted since two days ago.
+        * Justification: Reminds users to attempt quiz that they might have forgotten to do their quiz.
 
 * Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=AndreWongZH&tabRepo=AY2021S1-CS2113T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
@@ -52,13 +55,12 @@ Given below are my contributions to the project.
 * Contribution to user guide
     * Wrote documentation for `Finding events`, `Finding contacts`, `Listing events`, `Adding quiz`, `Quiz notification`
     * Added images initially for initialization, help, add and delete class
-    * Added images for `find events`
+    * Added images under section `Finding events`
     * Update and enhanced table for `command summary`
-
+    
 * Contribution to developer guide
     * Add colors and removed footboxes to UML diagrams
-    * Add UML diagrams for figure 1, 3, 4, 15, 16
+    * Add UML diagrams for figure 1, 3, 4, 5, 17, 18
     * Wrote documentation for `Architecture`, `Controller component` and `Model component` in the Design section
-    * Wrote documentation for `List contact/quiz`, `List event (/today)` and `Find event <keyword(s)>` feature
-    * Wrote documentation for Non-Functional Requirements
-    * Wrote documentation for manual testing for sections on `Adding of CCAs`, `Listing of events` and `Finding of contacts`
+    * Wrote documentation for `List contact/quiz`, `List event (date /today)` and `Find event <keyword(s)>` feature
+    * Wrote documentation for manual testing for sections on `Adding of CCAs`, `Listing of events` and `Finding of contacts` and for Non-Functional Requirements
