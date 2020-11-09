@@ -60,7 +60,8 @@ Given below are my contributions to the project.
     * Reviewed PRs: https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/355#pullrequestreview-525631892
     
 * Community:
-    * Reported bugs and suggestions for other teams: [#16](https://github.com/nus-cs2113-AY2021S1/tp/pull/16)
+    * Reported bugs and suggestions for other teams: [CS2113-T13-2](https://github.com/AY2021S1-CS2113-T13-2/tp)
+    * Review DG: [#16](https://github.com/nus-cs2113-AY2021S1/tp/pull/16)
     
 * Contribution to user guide
     * Wrote documentation for `add test`,`delete test`,`list event today`,
