@@ -75,6 +75,19 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author elizabethcwt
+    /**
+     * <h2>checkQuizSizeValidity() Method</h2>
+     * Checks if the number of questions in the quiz list is a valid integer (at least 1).
+     * <br><br>
+     * If quiz size is 0, displays message stating quiz list is empty.
+     * <br>
+     * If the quiz size is a valid integer above 0, the takeQuiz() method is called.
+     * <br><br>
+     * Catches ArrayIndexOutOfBoundsException when number of questions user wants to take in the quiz is too little
+     * (less than 1) or too much (more than quiz list size).
+     * @param separatedInputs To take in the number of questions in the quiz list.
+     * @see QuizManager#takeQuiz(String[])
+     */
     public void checkQuizSizeValidity(String[] separatedInputs) {
         try {
             noOfQues = Integer.parseInt(separatedInputs[1]);
@@ -91,7 +104,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             // To check the validity of user input before taking a quiz.
-            userInterface.showToUser(Messages.MESSAGE_INVALID_HELP_COMMAND);
+            userInterface.showToUser(Messages.MESSAGE_INVALID_QUIZ_COMMAND);
         }
     }
 

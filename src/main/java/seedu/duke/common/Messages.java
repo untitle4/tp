@@ -164,7 +164,7 @@ public class Messages {
     // Messages from Quiz related classes
     public static final String MESSAGE_QUIZ_DELETE_ERROR_NON_NUMBER = ":( OOPS!!! Please indicate in NUMERALS, "
             + "which quiz you'd like to delete!\n";
-    public static final String MESSAGE_INVALID_HELP_COMMAND = ":( OOPS!!! Are you trying to take a quiz or add/delete a"
+    public static final String MESSAGE_INVALID_QUIZ_COMMAND = ":( OOPS!!! Are you trying to take a quiz or add/delete a"
             + " quiz question? Enter 'help' to check the correct format!";
     public static final String MESSAGE_EMPTY_QUIZ_LIST = "Quiz list is empty. Add some!";
     public static final String MESSAGE_QUIZ_INDEX_OUT_OF_BOUND = "There is no such question in your quiz list!";
