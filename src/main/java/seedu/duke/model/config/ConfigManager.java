@@ -13,6 +13,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 //@@author Aliciaho
+/**
+ * Represents a handler that manages the recommended hours features.
+ */
 public class ConfigManager extends ModelMain implements ConfigInteractable {
     public static final String CONFIG_FILE_NAME = "/config.txt";
     private final ConfigStorageManager configStorageManager;
@@ -21,6 +24,11 @@ public class ConfigManager extends ModelMain implements ConfigInteractable {
     private static ConfigManager INSTANCE = null;
     private static final Logger logger = LogManager.getLogManagerInstance().getLogger();
 
+    /**
+     * Get the instance of ConfigManager.
+     *
+     * @return INSTANCE instance of ConfigManager
+     */
     public static ConfigManager getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new ConfigManager();
@@ -28,6 +36,9 @@ public class ConfigManager extends ModelMain implements ConfigInteractable {
         return INSTANCE;
     }
 
+    /**
+     * Constructor for ConfigManager.
+     */
     private ConfigManager() {
         userInterface = UserInterface.getInstance();
         this.configStorageManager = new ConfigStorageManager(CONFIG_FILE_NAME);
@@ -45,6 +56,11 @@ public class ConfigManager extends ModelMain implements ConfigInteractable {
         return configParameter;
     }
 
+    /**
+     * Get the username and recommended hours from user.
+     *
+     * @param configParameter configParameter class
+     */
     @Override
     public void getIntroductoryVariables(ConfigParameter configParameter) {
         logger.log(Level.INFO, "getting username and recommended hours from user");
@@ -60,6 +76,12 @@ public class ConfigManager extends ModelMain implements ConfigInteractable {
         saveConfigParameter(configParameter);
     }
 
+    /**
+     * Prompt the user to key in the number of recommended hours.
+     *
+     * @return recommendedHours hours that the user has inputted which is not less than 0 or more than 12
+     * @exception NumberFormatException exception thrown when non-integer is inputted
+     */
     private int getInputHours() {
         int recommendedHours = 0;
         do {
@@ -87,6 +109,9 @@ public class ConfigManager extends ModelMain implements ConfigInteractable {
         }
     }
 
+    /**
+     * Prompt and edit hours according to user's new recommended hours.
+     */
     @Override
     public void editHours() {
         logger.log(Level.INFO, "editing hours to take in new hours input");

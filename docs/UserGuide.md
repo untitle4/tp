@@ -339,6 +339,7 @@ WARNING:
 
 <br />
 
+<!-- @@author durianpancakes -->
 #### Category: Tuition
 ##### Adding a tuition: `add tuition`
 Allows you to add a new test with a name, date, time, location.
@@ -389,7 +390,8 @@ WARNING:
 
 ![deletetuitionerror](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/delete_tuition_error.png)
 
-<br />
+<br /
+<!-- @@author -->
 
 #### Listing out schedule: `list event <today/[date]/week/nextweek>`
 
@@ -420,6 +422,7 @@ The output is seen in the console. The list is arranged by their respective cate
 
 <br />
 
+<!-- @@author durianpancakes -->
 ##### List event week: `list event week`
 
 Thirdly, to list out all events in the current week, type ‘list event week’ in the command line, as seen below. Press ‘Enter’ to execute it.
@@ -443,6 +446,7 @@ The output is seen in the console. It is displayed in a calendar format for easi
 ![listeventnextweek2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/list_event_nextweek_2.png)
 
 <br />
+<!-- @@author -->
 
 ##### List event date: `list event [desired date]`
 
@@ -642,7 +646,7 @@ Type the command and press 'Enter' to execute it.
 The output is shown in the console. It contains a simple goodbye message.
 
 ![bye2](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/bye_2.png)
-
+<!-- @@author durianpancakes -->
 ## Saving Data
 Plan&Score saves all your data automatically after every command. There is no need to save manually.
 
@@ -680,6 +684,7 @@ We recommend keeping a duplicate of the contents in `events.txt` to assist with 
 1. `events.txt` should appear in the `data` directory
 1. Copy any unaffected events from the duplicated file in Step 1
 1. Re-add affected events through the command line interface
+<!--@@author -->
 
 ## Command Summary
 
