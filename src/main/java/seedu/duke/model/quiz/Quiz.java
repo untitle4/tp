@@ -75,6 +75,12 @@ public class Quiz {
     }
 
     //@@author elizabethcwt
+    /**
+     * <h2>printQuizQuestion() Method</h2>
+     * Prints the quiz question for the user to answer.
+     *
+     * @return String - quiz question in given format.
+     */
     public String printQuizQuestion() {
         return question + "\n\n"
                 + "(1) " + option1 + "\n"
@@ -83,7 +89,33 @@ public class Quiz {
                 + "(4) " + option4 + "\n\n";
     }
 
-    //@@author elizabethcwt
+    /**
+     * <h2>printPostQuizQuestion() Method</h2>
+     * This method first checks if the relevant quiz question has an explanation in the quiz list text file.
+     * <br>
+     * Explanation absent - Prints:
+     * <ul>
+     *     <li>Quiz question</li>
+     *     <li>Correctness logo of the question (correct or wrong)</li>
+     *     <li>Question options</li>
+     *     <li>User's answer (correct or wrong)</li>
+     *     <li>Correct answer</li>
+     * </ul>
+     * <br>
+     * Explanation present - Prints:
+     * <ul>
+     *     <li>Quiz question</li>
+     *     <li>Correctness logo of the question (correct or wrong)</li>
+     *     <li>Question options</li>
+     *     <li>User's answer (correct or wrong)</li>
+     *     <li>Correct answer</li>
+     *     <li>Explanation for the question</li>
+     * </ul>
+     * @param l - A variable to count the quiz question number the user is at, at that point of time.
+     * @param correctnessLogo - To attach the icon representing the correctness of the user's answer for the relevant
+     *                        question.
+     * @return String - Components as stated above, and in given format.
+     */
     public String printPostQuizQuestion(int l, String correctnessLogo) {
         if (explanation.equals("")) {
             return question + correctnessLogo + "\n\n"
