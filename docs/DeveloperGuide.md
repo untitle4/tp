@@ -475,14 +475,14 @@ Given below are instructions to test the app manually
 
 ### Adding of CCAs
 1. Test case: `add`
-    * Expected: Inform the user that the model type is missing.
+    * Expected: Inform the user that the category type is missing.
 1. Test case: `add cca`
     * Expected: Inform the user to include all /n /s and /e inputs.
 1. Test case: `add cca /n abc /s date1 /e date 2`
 	* Expected: Inform the user to enter a valid date time format.
-1. Test case: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1400`
+1. Test case: `add test /n Math test /s 2020-10-03 1300 /e 2020-10-03 1400`
 	* Expected: Inform the user that cca has been added. Running `list event` command will show the added cca inside.
-1. Test case: `add test /n Math test /s 2020-10-3 1300 /e 2020-10-3 1000`
+1. Test case: `add test /n Math test /s 2020-10-03 1300 /e 2020-10-03 1000`
     * Expected: Inform the user that start time is later than end time.
 
 ### Listing of events
@@ -490,7 +490,7 @@ Given below are instructions to test the app manually
 	* Expected: Inform the user to list either event, quiz or contact
 1. Test case: `list event`
 	* Expected: Show a list of events and categorized into its event type. If there are no events, inform the user that the schedule is empty.
-1. Test case: `list event 2020-10-3`
+1. Test case: `list event 2020-10-03`
 	* Expected: Show a  list of events that matches with the specified date. If no events that match, inform the user that the schedule is not found.
 1. Test case: `list event date`
 	* Expected: Inform the user to enter a valid date time format.
@@ -500,12 +500,12 @@ Given below are instructions to test the app manually
 ### Finding of contacts
 1. Test case: `find`
 	* Expected: Inform the user to find either event, quiz or contact
-1. Test case: `list contact math`
+1. Test case: `find contact math`
 	* Expected: Show a list of contacts that matches the keywords. If there are no contacts found , inform the user that the search has no result.
-1. Test case: `find event`
+1. Test case: `find contact`
 	* Expected: Remind the user to include the keyword in the command.
 1. Test case: `find testing`
-	* Expected: Inform user that the program does not recognise the model.
+	* Expected: Inform user that the program does not recognise the category.
 
 ### Saving data
 #### Dealing with missing data files
@@ -534,8 +534,8 @@ We can simulate this by changing the encoded text in the file. For example, a Cl
 should be encoded as “[CLASS]|false|Math tutorial|2020-09-21 1500|2020-09-21 1600” in the events.txt file. 
 
 Corrupted forms can be in the following forms, but not limited to:
-* “[CLASS]|Math tutorial|2020-09-21 1500|2020-09-21 1600”: the isDone parameter is missing from the encoded string.
-* “[CLASS]|false|Math tutorial|2020-09-21 1600”: one of the date-time parameter is missing from the encoded string
+* “[CLASS]\|Math tutorial\|2020-09-21 1500\|2020-09-21 1600”: the isDone parameter is missing from the encoded string.
+* “[CLASS]\|false\|Math tutorial\|2020-09-21 1600”: one of the date-time parameter is missing from the encoded string
 * “[CLASS]+false+Math tutorial+2020-09-21 1500+2020-09-21 1600”: the parameter separator “+” is not recognized by our decoder.
 
 Expected: the program will not be able to start, with the error message “): Storage file corrupted. Please delete your data directory and relaunch.” shown.
