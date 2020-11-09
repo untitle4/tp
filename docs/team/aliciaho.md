@@ -54,7 +54,7 @@ Given below are my contributions to the project.
     <br>
     Credits: [To find out ordinal numbers] https://stackoverflow.com/questions/4011075/how-do-you-format-the-day-of-the-month-to-say-11th-21st-or-23rd-ordinal
     
-* Code contributed: [RepoSense link](https://github.com/AY2021S1-CS2113T-W12-4/tp/commit/30a3bdd436ef6e9b0d9aba258a316a60399fef46)
+* Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=AliciaHo&tabRepo=AY2021S1-CS2113T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * Project management:
     * Reviewed PRs: https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/355#pullrequestreview-525631892
@@ -78,6 +78,7 @@ Given below are my contributions to the project.
     
 
 * Contribution to developer guide
+    * Wrote documentation and did UML for `configStorage`
     * Wrote documentation for `help` feature
     * Did UML for `add` and `delete` feature
     * Wrote documentation for `product scope`
