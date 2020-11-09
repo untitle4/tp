@@ -161,6 +161,7 @@ The Quiz Storage,
 * Invokes the `quizListEncoder` class to encode the ArrayList of type Quiz into its String representations and writes them into the quiz data file.
 * Invokes the `quizListDecoder` class to decode the String representations of quizzes in the quiz data file and add the quizzes back into the ArrayList of type Quiz.
 
+<!-- @@author Aliciaho-->
 ##### Config Storage
 API: ConfigStorageManager.java
 ![configstoragecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ConfigStorage.png)
@@ -176,7 +177,7 @@ The Config Storage,
 The Config Parameter,
 * Helps to store the String of user name, the integer number of recommended hours and finally, the boolean which checks if the program has run before.
 * Contents stored in the parameter are subsequently used by configEncoder to encode them into a string. 
-
+<!-- @@author Aliciaho-->
 
 ---
 
@@ -248,7 +249,7 @@ public void printArray(ArrayList<String> stringArrayList) {
    }
 }
 ```
-
+<!-- @@author Aliciaho-->
 ### Help feature
 
 ![helpcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Help.png)
@@ -280,7 +281,7 @@ Lastly, the execute() method in the SetHoursCommand class is called, which in tu
 
 
 Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java to allow the continuous usage of the program.
-
+<!-- @@author Aliciaho-->
 ### Add feature
 
 ![addcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Add.png)
