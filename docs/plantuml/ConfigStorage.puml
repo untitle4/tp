@@ -3,16 +3,20 @@ hide circles
 skinparam classAttributeIconSize 0
 skinparam classBackgroundColor Tan
 
-abstract class StorageManager {
-    + StorageManager(:String)
-    - createDataFile():boolean
+class StorageManager <<abstract>> #Tan {
+    # fileName:String
+    + StorageManager(fileName)
+    + StorageManager(directory, fileName)
+    # createDataFile():boolean
 }
 
-class ConfigStorageManager {
+class ConfigStorageManager #Tan {
     + ConfigStorageManager(:String)
     + saveData(:ConfigParameter)
     + loadData()(:ConfigParameter)
 }
+
+ConfigStorageManager --|> StorageManager
 
 class ConfigParameter {
     - name(:String)
@@ -33,6 +37,9 @@ class ConfigDecoder {
     - hasProgramRan(:boolean)
 }
 
-StorageManager --> ConfigStorageManager
-ConfigEncoder --> ConfigParameter
+ConfigStorageManager --> ConfigEncoder
+ConfigStorageManager --> ConfigDecoder
+ConfigParameter --> ConfigEncoder
+ConfigDecoder --> ConfigParameter
+
 @enduml

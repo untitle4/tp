@@ -54,31 +54,26 @@ Given below are my contributions to the project.
     <br>
     Credits: [To find out ordinal numbers] https://stackoverflow.com/questions/4011075/how-do-you-format-the-day-of-the-month-to-say-11th-21st-or-23rd-ordinal
     
-* Code contributed: [RepoSense link](https://github.com/AY2021S1-CS2113T-W12-4/tp/commit/30a3bdd436ef6e9b0d9aba258a316a60399fef46)
-
+* Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=AliciaHo&tabRepo=AY2021S1-CS2113T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 * Project management:
     * Reviewed PRs: https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/355#pullrequestreview-525631892
     
 * Community:
-    * Reported bugs and suggestions for other teams: [#16](https://github.com/nus-cs2113-AY2021S1/tp/pull/16)
+    * Reported bugs and suggestions for other teams: [CS2113-T13-2](https://github.com/AY2021S1-CS2113-T13-2/tp)
+    * Review DG: [#16](https://github.com/nus-cs2113-AY2021S1/tp/pull/16)
     
 * Contribution to user guide
     * Wrote documentation for `add test`,`delete test`,`list event today`,
     `list event [date]`,`bye`
-    * Help to enhance documentation for `help`, `add class`, `delete class`, `add cca`, 
+    * Help to enhance documentation and did diagrams for `help`, `add class`, `delete class`, `add cca`, 
     `delete cca`, `add test`, `delete test`, `add tuition`, `delete tuition`,
     `list event`, `list event today`, `list event [date]`, `list event week`,
     `list event nextweek`
     * Wrote documentation and did diagrams for Initialisation
-    * Did diagrams for `help`, `add class`, `delete class`, `add cca`, 
-    `delete cca`, `add test`, `delete test`, `add tuition`, `delete tuition`,
-    `list event`, `list event today`, `list event [date]`, `list event week`,
-    `list event nextweek`
     * Update table for `command summary`
     
 
 * Contribution to developer guide
-    * Wrote documentation for `help` feature
+    * Wrote documentation and did UML for `configStorage`, `set hours`
+    * Wrote documentation for `help`, `product scope`
     * Did UML for `add` and `delete` feature
-    * Wrote documentation for `product scope`
-    * Wrote documentation and did UML for `set hours`

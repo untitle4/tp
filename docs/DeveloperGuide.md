@@ -39,6 +39,7 @@ Exposes its functionality using a concrete {Component Name}Manager class.
 
 The sections below give more details of each component.
 
+<!-- @@author durianpancakes -->
 #### UserInterface component
 
 ![userinterfacecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/UserInterfaceComponent.png)
@@ -57,6 +58,7 @@ This component uses the singleton design, meaning that there is only an instance
 `UserInterface userInterface = UserInterface.getInstance()`
 <br />
 <br />
+<!-- @@author -->
 
 #### Controller component
 
@@ -98,6 +100,7 @@ The Model component,
 <br />
 <br />
 
+<!-- @@author durianpancakes -->
 #### Storage component
 ![storagecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/StorageComponent.png)
 
@@ -144,6 +147,7 @@ It returns a `String` to `EventStorageManager` for further writing.
 ![eventwritestorage](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/EventStorageSaveSequence.png)
 
 Figure 9. Sequence Diagram of the writing of data
+<!-- @@author -->
 
 <!-- @@author untitle4 -->
 ##### Quiz Storage
@@ -163,6 +167,7 @@ The Quiz Storage,
 * Invokes the `quizListDecoder` class to decode the String representations of quizzes in the quiz data file and add the quizzes back into the ArrayList of type Quiz.
 <!-- @@author -->
 
+<!-- @@author Aliciaho-->
 ##### Config Storage
 API: ConfigStorageManager.java
 ![configstoragecomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ConfigStorage.png)
@@ -178,7 +183,7 @@ The Config Storage,
 The Config Parameter,
 * Helps to store the String of user name, the integer number of recommended hours and finally, the boolean which checks if the program has run before.
 * Contents stored in the parameter are subsequently used by configEncoder to encode them into a string. 
-
+<!-- @@author Aliciaho-->
 
 ---
 
@@ -186,6 +191,7 @@ The Config Parameter,
 
 This section describes some noteworthy details on how certain features are implemented.
 
+<!-- @@author durianpancakes -->
 ### User Interface
 The user interface of Plan&Score uses the singleton design. There is only one instance of UserInterface to be used throughout the application. The API for the user interface is UserInterface.java.
 
@@ -216,6 +222,7 @@ public void showToUser(String... message) {
    }
 }
 ```
+<!-- @@author -->
 
 
 #### Printing arrays to user
@@ -250,7 +257,7 @@ public void printArray(ArrayList<String> stringArrayList) {
    }
 }
 ```
-
+<!-- @@author Aliciaho-->
 ### Help feature
 
 ![helpcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Help.png)
@@ -282,7 +289,7 @@ Lastly, the execute() method in the SetHoursCommand class is called, which in tu
 
 
 Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java to allow the continuous usage of the program.
-
+<!-- @@author Aliciaho-->
 ### Add feature
 
 ![addcomponent](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/Add.png)
@@ -352,6 +359,7 @@ If that is true, then it converts the userInput attribute to `LocalDate.now()`, 
 When filtering the events to be converted, the start time of the event is compared with the parameter date.
 If it is equal, the event will be converted and be printed out.
 
+<!-- @@author durianpancakes -->
 #### List event week/nextweek
 
 ![listeventweek](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/diagram/ListWeekSequence.png)
@@ -372,6 +380,7 @@ Example code snippet:
 UserInterface userInterface = UserInterface.getInstance();
 userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK); // the EventManager instance is passed into the method call
 ```
+<!-- @@author -->
 
 
 ### Find feature
@@ -511,6 +520,7 @@ Given below are instructions to test the app manually
 1. Test case: `find testing`
 	* Expected: Inform user that the program does not recognise the category.
 
+<!-- @@author durianpancakes -->
 ### Saving data
 #### Dealing with missing data files
 
@@ -543,3 +553,4 @@ Corrupted forms can be in the following forms, but not limited to:
 * “[CLASS]+false+Math tutorial+2020-09-21 1500+2020-09-21 1600”: the parameter separator “+” is not recognized by our decoder.
 
 Expected: the program will not be able to start, with the error message “): Storage file corrupted. Please delete your data directory and relaunch.” shown.
+<!-- @@author -->

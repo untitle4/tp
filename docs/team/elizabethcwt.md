@@ -7,10 +7,10 @@ Plan&Score is a Java command-line application that does two main things:
 <br>
 Allows students to plan and track their:
     <ul>
-        <li>School classes
-        <li>CCAs
-        <li>Tests
-        <li>Tuition
+        <li>School classes</li>
+        <li>CCAs</li>
+        <li>Tests</li>
+        <li>Tuition</li>
     </ul>
 
     This inculcates effective scheduling habits in these students from a young age, which they will carry with them as they grow older.
@@ -63,3 +63,10 @@ Given below are my contributions to Plan&Score.
     - Developer's Guide
         - Added explanation for help feature
         - Added UML diagrams for the `quiz storage` and `find quiz` features.
+        
+- Community
+    - Reported bugs and gave suggestions to other teams based on their newest release (jarfile):
+    [T13-3](https://github.com/AY2021S1-CS2113-T13-3/tp/releases)
+    
+    - Reviewed and gave comments and suggestions to the Developer's Guide for another team:
+    [T13-2](https://ay2021s1-cs2113t-w13-2.github.io/tp/DeveloperGuide.html)
