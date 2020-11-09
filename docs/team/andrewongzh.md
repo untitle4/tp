@@ -36,10 +36,8 @@ Given below are my contributions to the project.
     * Storage class inherit from abstract StorageManager to merge duplicated methods [#125](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/125)
     * Logger class follows a singleton pattern [#146](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/146)
     * Add encapsulation to models by adding an interface to all the modelManagers
-    * Command sanitization
-        * Ensure that handle cases where there are extra parameters, swapped parameters, command in uppercase and command with extra whitespaces
-    * Factory reset
-        * Ensure the program can still run after factory reset
+    * Command sanitization to ensure cases where there are extra parameters, swapped parameters, command in uppercase and command with extra whitespaces are handled
+    * Factory reset to ensure the program can still loop after factory reset.
 
 * Project management:
     * Update code using forking workflow when doing pull requests
