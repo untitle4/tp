@@ -561,6 +561,7 @@ You should see the full list of questions you have answered wrongly in your prev
 <br>
 ![quizrecord](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/quizrecord.png)
 
+<!-- @@author untitle4 -->
 ### Contact component of Plan&Score
 
 #### Adding a contact `add contact`
@@ -631,6 +632,7 @@ The output can then be seen in the console.
 ![find_contact](https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find_contact.png)
 
 <img src="https://raw.githubusercontent.com/AY2021S1-CS2113T-W12-4/tp/master/docs/images/find%20note.jpg" width="500"  alt="findnote"/>
+<!-- @@author -->
 
 ### Exits Program: `bye`
 Exits the program once you have finished using it.

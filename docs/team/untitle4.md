@@ -7,26 +7,28 @@ possess a schedule, quiz and contact tracker. It is written in Java.
 
 Given below are my contributions to the project.
 
-* New Feature: Added the ability to add/delete ccas.
-    * What it does: Allows the user to add an event of type cca in the schedule.
+* Features:
+    * Add/Delete ccas [#25](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/25)
+        * What it does: Allows the user to add an event of type cca in the schedule.
     Allows the user to delete the existing ccas in the schedule.
-    * Justification: This is a basic feature for constructing the schedule.
-
-
-* New Feature: Added a file storage feature for quiz that allows the application to
-store the quizzes in a text file automatically.
-
-* New Feature: Added the ability to delete quizzes.
-    * What it does: Allows the user to delete the existing quizzes in the quiz list.
-
-* New Feature: Added a find quiz command for users to find quizzes in the quiz list with input keyword(s).
-
-* New Feature: Added a quiz record feature.
-    * What it does: Allows users to review the incorrect quizzes in their last quiz attempt.
-
-* New Feature: Added the ability to add/delete contacts.
-    * What it does: Allows users to add a contact in the contact list.
+        * Justification: This is a basic feature for constructing the schedule.
+    * Quiz storage [#121](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/121)
+        * What it does: Allows the application to store the quizzes in a text file automatically.
+    * Delete quiz [#121](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/121)
+        * What it does: Allows the user to delete the existing quizzes in the quiz list.
+    * Find quiz [#185](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/185)
+        * What it does: Allows users to find quizzes in the quiz list with input keyword(s).
+    * List quiz [#127](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/127)
+        * What it does: Allows users to list out all quiz questions in the quiz list.
+    * Quiz record [#213](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/213)
+        * What it does: Allows users to review the incorrect quizzes in their last quiz attempt.
+    * Add/Delete contacts [#131](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/131)
+        * What it does: Allows users to add a contact in the contact list.
     Allows the user to delete the existing contacts in the contact list.
+
+* Unused Features:
+    * Set ccas done [#34](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/34)
+        * What it does: Allows users to set a cca from `NOT DONE` to `DONE`.
 
 * Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=untitle4&tabRepo=AY2021S1-CS2113T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code)
 
