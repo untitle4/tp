@@ -139,7 +139,7 @@ public class QuizManager extends ModelManager implements QuizInteractable {
 
     /**
      * <h2>handleValidNumOfQuestions() Method</h2>
-     * First calls the initialisingShufflingOfQuestions() method, which shuffles ALL the questions in the current
+     * This method first calls the initialisingShufflingOfQuestions() method, which shuffles ALL the questions in the current
      * quiz list.
      * <br><br>
      * Initialises a counter for counting the number of questions to be taken (questionCounter, which acts as a
@@ -301,6 +301,26 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userInterface.showToUser(Messages.invalid_number_of_quiz_questions_message(quizzes.size()));
     }
 
+    /**
+     * <h2>testForValidInput() Method</h2>
+     * This method first prints the first question to the user.
+     * <br>
+     * It then scans the user's answer.
+     * <br>
+     * If the user's answer is:
+     * <ul>
+     *     <li>Empty - Displays message corresponding to a missing quiz question answer</li>
+     *     <li>
+     *         Not empty but invalid (such as a non-integer, or an integer that is not 1, 2, 3 or 4) - Displays message
+     *         corresponding to an invalid quiz question answer
+     *     </li>
+     *     <li>Valid - Adds the user's answer to the getUserAnswers ArrayList, then increments the question counter
+     *     variable by 1, to print the next question in the quiz</li>
+     * </ul>
+     *
+     * @return questionCounter - To update the program of which question to print next.
+     * @param questionCounter - To inform the program which question to print for the current iteration.
+     */
     public int testForValidInput(int questionCounter) {
         // Print out each question
         userInterface.showToUser("",
