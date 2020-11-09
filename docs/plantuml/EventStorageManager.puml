@@ -3,9 +3,10 @@ hide circles
 skinparam classAttributeIconSize 0
 
 class StorageManager <<abstract>> #Tan {
-    - fileName:String
-    + StorageManager(:String)
-    - createDataFile():boolean
+    # fileName:String
+    + StorageManager(fileName)
+    + StorageManager(directory, fileName)
+    # createDataFile():boolean
 }
 
 class EventStorageManager #Tan {
@@ -17,20 +18,21 @@ class EventStorageManager #Tan {
 EventStorageManager --|> StorageManager
 
 class EventListDecoder #Tan {
-    + EventListEncoder()
-    + encodeEventList(:ArrayList<Event> eventList)
-    - encodeEventToString(:Event)
+     + EventListDecoder(:String)
+     + EventListDecoder(:String, :String)
+     + decodeEventFromString(:String)
+     - parseClass(:String[])
+     - parseCca(:String[])
+     - parseTest(:String[])
+     - parseTuition(:String[])
 }
 
 EventStorageManager -> EventListDecoder
 
 class EventListEncoder #Tan {
-    + EventListDecoder()
-    - decodeEventFromString(:String)
-    - parseClass(:String[])
-    - parseCca(:Cca[])
-    - parseTest(:Test[])
-    - parseTuition(:Tuition[])
+    + EventListEncoder()
+    + encodeEventList(:ArrayList<Event> eventList)
+    - encodeEventToString(:Event)
 }
 
 EventStorageManager -> EventListEncoder

@@ -16,6 +16,7 @@ import static seedu.duke.storage.StorageManager.CONTACT_FILE_NAME;
 import static seedu.duke.storage.StorageManager.EVENT_FILE_NAME;
 import static seedu.duke.storage.StorageManager.QUIZ_FILE_NAME;
 
+//@@author durianpancakes
 /**
  * Class to handle StorageCorruptedException.
  */
