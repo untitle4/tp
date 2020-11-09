@@ -1,10 +1,8 @@
-# Andre Wong's Project Portfolio Page
-
 ## Project: Plan&Score
 
 Plan&Score is a Java command-line application that allows Primary 6 students to plan and track their classes, CCAs and test dates. This enables the students to remember their schedule, so they can plan well in advance for their tests and score better.
 
-## Contributions
+## Contributions by Andre Wong
 Given below are my contributions to the project.
 * Features:
     * List events [#18](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/18)
@@ -20,23 +18,26 @@ Given below are my contributions to the project.
         * What it does: allows the user to find contacts.
         * Justification: Users can search by email, phone number , name or subject if they cannot remember them all.
     * Contacts storage [#347](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/347)
-        * What it does: allows the application to store the contacts in a text file automatically.
-        * Justification: The contact-data will now be persistent even after the application closes.
+        * What it does: allows the application to store the contacts in a text file.
+        * Justification: The data will now be persistent even after the application closes.
+
+* Unused Feature:
+    * Quiz Notification [#217](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/217)
+        * What it does: shows notification to user if quiz has not been attempted since two days ago.
+        * Justification: Reminds users to attempt quiz if they forgot to do their quiz.
 
 * Code contributed: [RepoSense link](https://nus-cs2113-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-09-27&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=AndreWongZH&tabRepo=AY2021S1-CS2113T-W12-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * Enhancements:
-    * Refactor code in controller package to have a command parser to extract out commands, have a model parser to extract out the models so to adhere to single responsibility principle
+    * Refactor code in controller package to have a command and model parser to extract out commands and models so to adhere to single responsibility principle
     * Create a command factory that generates the correct command class to execute on
-        * All commands inherit from abstract class command so that all commands will have method execute()
+        * All commands inherit from abstract class command have method execute()
     * EventManager class to add another layer of abstraction
-    * Refactor storage class to inherit from abstract StorageManager to merge duplicated methods [#125](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/125)
+    * Storage class inherit from abstract StorageManager to merge duplicated methods [#125](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/125)
     * Logger class follows a singleton pattern [#146](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/146)
     * Add encapsulation to models by adding an interface to all the modelManagers
-    * Command sanitization
-        * Ensure that handle cases where there are extra parameters, swapped parameters, command in uppercase and command with extra whitespaces
-    * Factory reset
-        * Ensure the program can still run after factory reset
+    * Command sanitized to ensure cases where there are extra or swapped parameters, command in uppercase and command with extra whitespaces are handled
+    * Factory reset to ensure the program can still loop after factory reset.
 
 * Project management:
     * Update code using forking workflow when doing pull requests
@@ -50,15 +51,13 @@ Given below are my contributions to the project.
     * Reported bugs and suggestions for other teams: [#2](https://github.com/nus-cs2113-AY2021S1/tp/pull/2)
 
 * Contribution to user guide
-    * Wrote documentation for `Finding events`, `Finding contacts`, `Listing events`, `Adding quiz`, `Quiz notification`
+    * Wrote documentation for `Finding events`, `Finding contacts`, `Listing events`, `Adding quiz`
     * Added images initially for initialization, help, add and delete class
-    * Added images for `find events`
-    * Update and enhanced table for `command summary`
-
+    * Added images under section `Finding events` and enhanced table for `command summary`
+    
 * Contribution to developer guide
     * Add colors and removed footboxes to UML diagrams
-    * Add UML diagrams for figure 1, 3, 4, 15, 16
+    * Add UML diagrams for figure 1, 3, 4, 5, 17, 18
     * Wrote documentation for `Architecture`, `Controller component` and `Model component` in the Design section
-    * Wrote documentation for `List contact/quiz`, `List event (/today)` and `Find event <keyword(s)>` feature
-    * Wrote documentation for Non-Functional Requirements
-    * Wrote documentation for manual testing for sections on `Adding of CCAs`, `Listing of events` and `Finding of contacts`
+    * Wrote documentation for `List contact/quiz`, `List event (date /today)` and `Find event <keyword(s)>` feature
+    * Wrote documentation for manual testing for sections on `Adding of CCAs`, `Listing of events` and `Finding of contacts` and for Non-Functional Requirements
