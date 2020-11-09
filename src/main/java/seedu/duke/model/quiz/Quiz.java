@@ -74,6 +74,12 @@ public class Quiz {
         }
     }
 
+    /**
+     * <h2>printQuizQuestion() Method</h2>
+     * Prints the quiz question for the user to answer.
+     *
+     * @return String - quiz question in given format.
+     */
     //@@author elizabethcwt
     public String printQuizQuestion() {
         return question + "\n\n"
