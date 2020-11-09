@@ -136,6 +136,40 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
+    /**
+     * <h2>handleValidNumOfQuestions() Method</h2>
+     * First calls the initialisingShufflingOfQuestions() method, which shuffles ALL the questions in the current
+     * quiz list.
+     * <br><br>
+     * Initialises a counter for counting the number of questions to be taken (questionCounter, which acts as a
+     * variable).
+     * <br>
+     * Calls the testForValidInput() method until questionCounter is incremented to the value of the number of questions
+     * the user wants to take for the quiz.
+     * <br><br>
+     * Initialises a counter to count the number of questions answered correctly by the user in the quiz.
+     * <br>
+     * Clears or empties the ArrayLists: lastIncorrectQuizzes and lastIncorrectAnswers to refresh the arrayList for a
+     * new quiz attempt.
+     * <br>
+     * Calls the storeCorrectnessOfQuizAnswer) method.
+     * <br><br>
+     * Prints out the review of the questions, which consists of:
+     * <ul>
+     *     <li>Questions in the same order as the user has taken them in</li>
+     *     <li>Correctness logo next to the start of each question (correct or wrong)</li>
+     *     <li>User's answers (correct or wrong)</li>
+     *     <li>Correct answer</li>
+     *     <li>(Optional) Explanation to the question</li>
+     *     <li>The total score the user has attained at the bottom of all the questions</li>
+     * </ul>
+     * <br>
+     * Lastly, this method empties the userAnswers and correctness ArrayLists
+     *
+     * @see QuizManager#initialisingShufflingOfQuestions()
+     * @see QuizManager#testForValidInput(int)
+     * @see QuizManager#storeCorrectnessOfQuizAnswer(int)
+     */
     private void handleValidNumOfQuestions() {
 
         // Assert that noOfQues is within a valid range
