@@ -27,7 +27,7 @@ deactivate ":EventStorageManager"
 
 Main -> ":EventStorageManager" : loadData()
 activate ":EventStorageManager"
-":EventStorageManager" --> Main : :EventParameter
+":EventStorageManager" --> Main : eventParameter
 deactivate ":EventStorageManager"
 
 Main -> ":QuizStorageManager"** : constructor()
@@ -37,7 +37,7 @@ deactivate ":QuizStorageManager"
 
 Main -> ":QuizStorageManager" : loadData()
 activate ":QuizStorageManager"
-":QuizStorageManager" --> Main : :ArrayList<Quiz>
+":QuizStorageManager" --> Main : quizList
 deactivate ":QuizStorageManager"
 
 Main -> ":UserInterface" : runUI()
