@@ -13,8 +13,8 @@ participant ":QuizStorageManager"
 participant ":QuizListEncoder"
 end box
 
-box "UserInterface" #skyblue
-participant ":UserInterface"
+box "File" #skyblue
+participant ":File"
 end box
 
 -> ":ControlManager"
@@ -29,13 +29,14 @@ activate ":QuizListEncoder"
 deactivate ":QuizListEncoder"
 ":QuizStorageManager" --> ":ControlManager"
 deactivate ":QuizStorageManager"
-":ControlManager" -> ":UserInterface" : showToUser()
-activate ":UserInterface"
-":UserInterface" --> ":ControlManager"
-deactivate ":UserInterface"
+":ControlManager" -> ":File" : write(encodedQuizzes)
+activate ":File"
+":File" --> ":ControlManager"
+deactivate ":File"
 ":ControlManager" --> ":ControlManager"
 deactivate ":ControlManager"
 <-- ":ControlManager"
 deactivate ":ControlManager"
+destroy ":File"
 
 @enduml
