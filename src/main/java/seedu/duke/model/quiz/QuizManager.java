@@ -9,6 +9,7 @@ import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.Collections;
@@ -269,6 +270,12 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         return correctCounter;
     }
 
+    /**
+     * <h2>initialisingShufflingOfQuestions() Method</h2>
+     * Shuffles ALL the quiz questions in the quiz list.
+     *
+     * @see Collections#shuffle(List)
+     */
     private void initialisingShufflingOfQuestions() {
         // Create a new list of the question indexes
         quizIndexes = new ArrayList<>();
