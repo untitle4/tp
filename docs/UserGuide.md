@@ -22,7 +22,7 @@
     - [Tuition Category](#category-tuition)
       - [Add a tuition:](#adding-a-tuition-add-tuition) `add tuition`
       - [Delete a tuition:](#deleting-a-tuition-delete-tuition) `delete tuition`
-    - [List schedule:](#listing-out-schedule-list-event-<today/[date]/week/nextweek>) `list event <today/[date]/week/nextweek>`
+    - [List schedule:](#listing-out-schedule-list-event-todaydateweeknextweek>) `list event <today/[date]/week/nextweek>`
     - [Find event:](#finding-an-event-find-event) `find event`
   - [SCORE component of Plan&Score:](#score-component-of-planscore)
     - [Take a quiz:](#taking-a-quiz-quiz)`quiz`
