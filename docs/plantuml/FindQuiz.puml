@@ -20,13 +20,13 @@ end box
 ":FindCommand" -> ":QuizManager" : execute()
 activate ":FindCommand"
 activate ":QuizManager"
-":QuizManager" -> ":QuizManager" : findQuiz()
+":QuizManager" -> ":QuizManager" : find()
 activate ":QuizManager" #DarkSalmon
 ":QuizManager" -> ":FindQuiz" ** : constructor()
 activate ":FindQuiz"
 ":FindQuiz" --> ":QuizManager"
 deactivate ":FindQuiz"
-":QuizManager" -> ":FindQuiz" : getFilteredQuizzes()
+":QuizManager" -> ":FindQuiz" : filteredQuizzes()
 activate ":FindQuiz"
 ":FindQuiz" --> ":QuizManager" : filteredQuizzes
 deactivate ":FindQuiz"

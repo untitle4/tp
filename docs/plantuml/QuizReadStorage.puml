@@ -13,7 +13,7 @@ box "File" #orange
 participant ":File"
 end box
 
--> ":QuizStorageManager"
+-> ":QuizStorageManager" : loadData()
 activate ":QuizStorageManager"
 ":QuizStorageManager" -> ":QuizStorageManager" : createDataFile()
 activate ":QuizStorageManager" #salmon
@@ -23,11 +23,10 @@ activate ":File"
 deactivate ":File"
 ":QuizStorageManager" -> ":File" : createNewFile()
 activate ":File"
-":File" --> ":QuizStorageManager"
+":File" --> ":QuizStorageManager" : fileCreated
 deactivate ":File"
-":QuizStorageManager" --> ":QuizStorageManager"
-deactivate ":QuizStorageManager"
 
+opt !fileCreated
 ":QuizStorageManager" -> ":QuizListDecoder" : decodeQuizList()
 activate ":QuizListDecoder"
 ":QuizListDecoder" -> ":QuizListDecoder" : decodeQuizFromString()
@@ -36,7 +35,11 @@ activate ":QuizListDecoder" #salmon
 deactivate ":QuizListDecoder"
 ":QuizListDecoder" --> ":QuizStorageManager" : decodedQuizzes
 deactivate ":QuizListDecoder"
-<-- ":QuizStorageManager"
+<-- ":QuizStorageManager" : decodedQuizzes
+deactivate ":QuizStorageManager"
+end opt
+
+<-- ":QuizStorageManager" : new ArrayList<>()
 deactivate ":QuizStorageManager"
 destroy ":File"
 
