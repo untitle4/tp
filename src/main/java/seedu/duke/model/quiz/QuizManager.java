@@ -244,6 +244,15 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
+    /**
+     * <h2>storeCorrectnessOfQuizAnswer() Method</h2>
+     * Stores whether the user's answers are correct or wrong for each question, in the getCorrectness ArrayList.
+     * <br>
+     * If the user's answer is correct, increment the correctCounter variable by 1.
+     *
+     * @return correctCounter - For the purpose of calculating the user's quiz score.
+     * @param correctCounter The counter responsible for counting the number of correct answers by the user.
+     */
     private int storeCorrectnessOfQuizAnswer(int correctCounter) {
         for (int k = 0; k < noOfQues; k++) {
             if (userAnswerManager.getUserAnswers().get(k).equals(quizzes.get(quizIndexes
