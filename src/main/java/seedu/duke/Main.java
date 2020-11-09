@@ -54,11 +54,16 @@ public class Main {
             } catch (StorageCorruptedException e) {
                 userInterface.showToUser(Messages.MESSAGE_STORAGE_CORRUPTED);
                 StorageExceptionHandler storageExceptionHandler = new StorageExceptionHandler();
-                storageExceptionHandler.handleCorruptedStorage();
+                isRunning = storageExceptionHandler.handleCorruptedStorage();
             }
         }
     }
 
+    /**
+     * Loops continuously through and lets the user interface ask user for input.
+     *
+     * @throws StorageCorruptedException If there is error when reading config values.
+     */
     public void run() throws StorageCorruptedException {
         try {
             userInterface.showToUser(Messages.MESSAGE_HELLO_FROM_DUKE);

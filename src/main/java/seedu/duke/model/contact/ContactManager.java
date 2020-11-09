@@ -172,6 +172,7 @@ public class ContactManager extends ModelManager implements ContactInteractable 
                 boolean matchEmail = contact.getEmail().toLowerCase().contains(keyword);
                 boolean matchSubject = contact.getSubject().toLowerCase().contains(keyword);
                 boolean matchPhoneNumber = contact.getPhoneNumber().toLowerCase().contains(keyword);
+
                 if (matchName || matchEmail || matchSubject || matchPhoneNumber) {
                     filteredContacts.add(contact.toString());
                     break;
@@ -189,7 +190,7 @@ public class ContactManager extends ModelManager implements ContactInteractable 
      * @param userInputs An arraylist of type string of the user input.
      * @throws SwappedParameterException If letter does not match up with the required prefix.
      */
-    protected void validateSwappedParameters(String[] userInputs) throws SwappedParameterException {
+    private void validateSwappedParameters(String[] userInputs) throws SwappedParameterException {
         boolean hasS = userInputs[S_INDEX].substring(BEGIN_INDEX, END_INDEX).contentEquals(S_PREFIX);
         boolean hasN = userInputs[N_INDEX].substring(BEGIN_INDEX, END_INDEX).contentEquals(N_PREFIX);
         boolean hasP = userInputs[P_INDEX].substring(BEGIN_INDEX, END_INDEX).contentEquals(P_PREFIX);

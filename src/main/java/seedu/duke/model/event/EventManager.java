@@ -109,7 +109,6 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
      */
     @Override
     public void list(String userInput) {
-        ArrayList<String> printedEvents;
         try {
             String[] separatedInputs = userInput.split(INPUT_SPACE);
 
@@ -119,24 +118,14 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
                 return;
             }
 
-            String dateParam =  separatedInputs.length == INPUT_LENGTH_NO_PARAMS
-                    ? null
+            String dateParam =  separatedInputs.length == INPUT_LENGTH_NO_PARAMS ? null
                     : separatedInputs[DATE_PARAM_INDEX];
 
             ListSchedule listSchedule = new ListSchedule(dateParam, eventClassManager.getClasses(),
                     eventCcaManager.getCcas(), eventTestManager.getTests(),
                     eventTuitionManager.getTuitions(), configParameter);
 
-            if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
-                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXT_WEEK)) {
-                userInterface.printWeekSchedule(this, ListWeekCommand.NEXT_WEEK);
-            } else if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
-                    && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_WEEK)) {
-                userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK);
-            } else {
-                printedEvents = listSchedule.getPrintableEvents();
-                userInterface.printArray(printedEvents);
-            }
+            printToUser(separatedInputs, listSchedule);
         } catch (EmptyListException e) {
             userInterface.showToUser(String.format(Messages.MESSAGE_EMPTY_SCHEDULE_LIST, e.getMessage()));
         } catch (DateTimeParseException e) {
@@ -144,6 +133,23 @@ public class EventManager extends ModelMain implements EventManagerInteractable 
         } catch (ParseException e) {
             logger.log(Level.WARNING, "valid datetime not inputted");
             userInterface.showToUser(Messages.MESSAGE_LIST_INVALID_DATE);
+        }
+    }
+
+    /** Prints list to user based on the different inputs. */
+    private void printToUser(String[] separatedInputs, ListSchedule listSchedule)
+            throws EmptyListException, ParseException {
+        ArrayList<String> printedEvents;
+
+        if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
+                && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_NEXT_WEEK)) {
+            userInterface.printWeekSchedule(this, ListWeekCommand.NEXT_WEEK);
+        } else if (separatedInputs.length == INPUT_LENGTH_ONE_PARAM
+                && separatedInputs[DATE_PARAM_INDEX].contentEquals(INPUT_WEEK)) {
+            userInterface.printWeekSchedule(this, ListWeekCommand.CURRENT_WEEK);
+        } else {
+            printedEvents = listSchedule.getPrintableEvents();
+            userInterface.printArray(printedEvents);
         }
     }
 

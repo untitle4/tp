@@ -13,7 +13,6 @@ import static seedu.duke.ui.CalendarWeekRendererUtils.DATE_LABEL_SPACES_OFFSET;
 import static seedu.duke.ui.CalendarWeekRendererUtils.DAY_LABEL_SPACES_OFFSET;
 
 //@@author durianpancakes
-
 /**
  * Driver class for rendering the Week View of the `list event week` command.
  */

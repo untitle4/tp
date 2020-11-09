@@ -9,6 +9,7 @@ import seedu.duke.storage.StorageManager;
 import seedu.duke.ui.UserInterface;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -41,23 +42,16 @@ public class ContactStorageManager extends StorageManager {
      * @return An array list of type Contact.
      */
     public ArrayList<Contact> loadData() throws StorageCorruptedException {
-        File contactFile = new File(DIRECTORY_FOLDER_PATH + fileName);
-        ArrayList<String> data = new ArrayList<>();
+        ArrayList<String> data;
         logger.log(Level.INFO, "Loading storage...");
 
         try {
             boolean fileCreated = createDataFile();
             if (!fileCreated) {
                 logger.log(Level.INFO, "Data file found, reading data file...");
-                Scanner sc = new Scanner(contactFile);
-                while (sc.hasNext()) {
-                    String dataString = sc.nextLine();
-                    data.add(dataString);
-                }
+                data = getDataFromFile();
                 logger.log(Level.INFO, "Load successful");
                 return contactListDecoder.decodeContactList(data);
-            } else {
-                logger.log(Level.INFO, "Data file not found, initializing data file...");
             }
         } catch (IOException e) {
             userInterface.showToUser(Messages.MESSAGE_STORAGE_READ_ERROR);
@@ -66,7 +60,28 @@ public class ContactStorageManager extends StorageManager {
             logger.log(Level.SEVERE, "Contact Storage corrupted");
             throw new StorageCorruptedException();
         }
+        logger.log(Level.INFO, "Data file not found, initializing data file...");
         return new ArrayList<>();
+    }
+
+    /**
+     * Reads data from contact.txt line by line and saves to an array list.
+     * Returns the arrayList.
+     *
+     * @return An array list of contents in the contact.txt file.
+     * @throws FileNotFoundException If file is not found.
+     */
+    private ArrayList<String> getDataFromFile() throws FileNotFoundException {
+        ArrayList<String> data = new ArrayList<>();
+        File contactFile = new File(DIRECTORY_FOLDER_PATH + fileName);
+        Scanner sc = new Scanner(contactFile);
+
+        while (sc.hasNext()) {
+            String dataString = sc.nextLine();
+            data.add(dataString);
+        }
+
+        return data;
     }
 
     /**

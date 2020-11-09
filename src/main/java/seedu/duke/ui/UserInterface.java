@@ -125,13 +125,24 @@ public class UserInterface {
         CommandType commandType = null;
         String line = getUserCommand();
 
-        if (!line.trim().isEmpty()) {
+        if (hasInputs(line)) {
             ControlManager controlManager = new ControlManager(line, model,
                     eventStorageManager, quizStorageManager, contactStorageManager);
             commandType = controlManager.runLogic();
         }
 
         return checkIfProgramEnds(commandType);
+    }
+
+    //@@author AndreWongZH
+    /**
+     * Returns true if input is not empty.
+     *
+     * @param userInput String the user has entered.
+     * @return A boolean to check if user input is not empty.
+     */
+    private boolean hasInputs(String userInput) {
+        return !userInput.trim().isEmpty();
     }
 
     //@@author durianpancakes
