@@ -85,7 +85,8 @@ public class QuizManager extends ModelManager implements QuizInteractable {
      * <br><br>
      * Catches ArrayIndexOutOfBoundsException when number of questions user wants to take in the quiz is too little
      * (less than 1) or too much (more than quiz list size).
-     * @param separatedInputs To take in the number of questions in the quiz list.
+     *
+     * @param separatedInputs To take in the number of questions the user would like to take for the quiz.
      * @see QuizManager#takeQuiz(String[])
      */
     public void checkQuizSizeValidity(String[] separatedInputs) {
@@ -108,7 +109,19 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
-    //@@author elizabethcwt
+    /**
+     * <h2>takeQuiz() Method</h2>
+     * First checks if the user's input of the number of questions they want to take is valid.
+     * <br><br>
+     * If this value is invalid, calls the handleInvalidNumOfQuestions() method.
+     * <br>
+     * If this value is valid, calls the handleValidNumOfQuestions() method, then increments the QUIZ_ATTEMPTS variable
+     * by 1.
+     *
+     * @param separatedInputs To take in the number of questions the user would like to take for the quiz.
+     * @see QuizManager#handleInvalidNumOfQuestions()
+     * @see QuizManager#handleValidNumOfQuestions()
+     */
     private void takeQuiz(String[] separatedInputs) {
 
         if (!((noOfQues > 0) && (noOfQues <= getQuizListSize()))) {
@@ -123,7 +136,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
-    //@@author elizabethcwt
     private void handleValidNumOfQuestions() {
 
         // Assert that noOfQues is within a valid range
@@ -171,7 +183,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userAnswerManager.getCorrectness().clear();
     }
 
-    //@@author elizabethcwt
     private void assignCorrectnessLogo(int l) {
 
         // Assert that the correctness of the user's input is true in this if loop
@@ -192,7 +203,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
-    //@@author elizabethcwt
     private int storeCorrectnessOfQuizAnswer(int correctCounter) {
         for (int k = 0; k < noOfQues; k++) {
             if (userAnswerManager.getUserAnswers().get(k).equals(quizzes.get(quizIndexes
@@ -209,7 +219,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         return correctCounter;
     }
 
-    //@@author elizabethcwt
     private void initialisingShufflingOfQuestions() {
         // Create a new list of the question indexes
         quizIndexes = new ArrayList<>();
@@ -221,7 +230,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         Collections.shuffle(quizIndexes);
     }
 
-    //@@author elizabethcwt
     private void handleInvalidNumOfQuestions() {
 
         // Assert that noOfQues is NOT an acceptable value
@@ -232,7 +240,6 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userInterface.showToUser(Messages.invalid_number_of_quiz_questions_message(quizzes.size()));
     }
 
-    //@@author elizabethcwt
     public int testForValidInput(int questionCounter) {
         // Print out each question
         userInterface.showToUser("",
