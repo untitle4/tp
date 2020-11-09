@@ -416,16 +416,16 @@ If the input <number> is:
 the program will inform the user that their input is invalid, and provide the range of questions the user can attempt.
 
 If the input is not an integer:
-- the program will inform the user that their input is of the wrong format, and
-- probe them to enter a value of integer type.
-- The method will then randomly select the input number of quiz questions in the quiz ArrayList, and
-- convert it into its string representation.
+- the program will inform the user that their input is of the wrong format
+ and probe them to enter a value of integer type.
+- The method will then randomly select the input number of quiz questions in the quiz ArrayList
+ and convert them into their string representation.
 - This is then passed to the UserInterface#printArray() to be printed out to the user.
 - When each quiz question is printed, the user needs to input an answer to this question.
 - The input answer will then be compared to the answer of that quiz question.
 - If the answers are the same, the variable correctCounter in QuizManager() will be incremented by 1. 
 - Upon completion of this feature, it returns a boolean value “true” to the active flag in UserInterface.java,
-- which allows the continuous usage of the program.
+ which allows the continuous usage of the program.
 
 ## Product scope
 ### Target user profile
@@ -508,31 +508,34 @@ Given below are instructions to test the app manually
 	* Expected: Inform user that the program does not recognise the model.
 
 ### Saving data
-Dealing with missing data files
+#### Dealing with missing data files
 
 There are two ways we use to define a missing file: 
-When the “data” directory in the project root directory is missing.
-When any of the critical data .txt files (i.e events.txt, quiz.txt) are missing from the “data” directory.
+1. When the “data” directory in the project root directory is missing.
+1. When any of the critical data .txt files (i.e events.txt, quiz.txt) are missing from the “data” directory.
 
 We can simulate this by deleting any of the critical data .txt file, or the “data” directory 	as a whole. 
+
 Expected: The “data” directory as well as “event.txt“ and “quiz.txt” are recreated.
 However, any prior data stored will be lost. 	
 
 
-Dealing with corrupted data files
+#### Dealing with corrupted data files
 
 We define a file to be corrupted when our decoders are unable to decode the data .txt files.
 
 We can simulate this by changing the encoded text in the file. For example, a Class that has the follow parameters:
-Description: Math tutorial
-isDone: false
-Start: 2020-09-21 1500
-End: 2020-09-21 1600
+
+* Description: Math tutorial
+* isDone: false
+* Start: 2020-09-21 1500
+* End: 2020-09-21 1600
+
 should be encoded as “[CLASS]|false|Math tutorial|2020-09-21 1500|2020-09-21 1600” in the events.txt file. 
 
 Corrupted forms can be in the following forms, but not limited to:
-“[CLASS]|Math tutorial|2020-09-21 1500|2020-09-21 1600”: the isDone parameter is missing from the encoded string.
-“[CLASS]|false|Math tutorial|2020-09-21 1600”: one of the date-time parameter is missing from the encoded string
-“[CLASS]+false+Math tutorial+2020-09-21 1500+2020-09-21 1600”: the parameter separator “+” is not recognized by our decoder.
+* “[CLASS]|Math tutorial|2020-09-21 1500|2020-09-21 1600”: the isDone parameter is missing from the encoded string.
+* “[CLASS]|false|Math tutorial|2020-09-21 1600”: one of the date-time parameter is missing from the encoded string
+* “[CLASS]+false+Math tutorial+2020-09-21 1500+2020-09-21 1600”: the parameter separator “+” is not recognized by our decoder.
 
 Expected: the program will not be able to start, with the error message “): Storage file corrupted. Please delete your data directory and relaunch.” shown.

@@ -9,6 +9,7 @@ import seedu.duke.model.ModelManager;
 import seedu.duke.ui.UserInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.Collections;
@@ -82,6 +83,20 @@ public class QuizManager extends ModelManager implements QuizInteractable {
     }
 
     //@@author elizabethcwt
+    /**
+     * <h2>checkQuizSizeValidity() Method</h2>
+     * Checks if the number of questions in the quiz list is a valid integer (at least 1).
+     * <br><br>
+     * If quiz size is 0, displays message stating quiz list is empty.
+     * <br>
+     * If the quiz size is a valid integer above 0, the takeQuiz() method is called.
+     * <br><br>
+     * Catches ArrayIndexOutOfBoundsException when number of questions user wants to take in the quiz is too little
+     * (less than 1) or too much (more than quiz list size).
+     *
+     * @param separatedInputs To take in the number of questions the user would like to take for the quiz.
+     * @see QuizManager#takeQuiz(String[])
+     */
     public void checkQuizSizeValidity(String[] separatedInputs) {
         try {
             noOfQues = Integer.parseInt(separatedInputs[1]);
@@ -98,11 +113,23 @@ public class QuizManager extends ModelManager implements QuizInteractable {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             // To check the validity of user input before taking a quiz.
-            userInterface.showToUser(Messages.MESSAGE_INVALID_HELP_COMMAND);
+            userInterface.showToUser(Messages.MESSAGE_INVALID_QUIZ_COMMAND);
         }
     }
 
-    //@@author elizabethcwt
+    /**
+     * <h2>takeQuiz() Method</h2>
+     * First checks if the user's input of the number of questions they want to take is valid.
+     * <br><br>
+     * If this value is invalid, calls the handleInvalidNumOfQuestions() method.
+     * <br>
+     * If this value is valid, calls the handleValidNumOfQuestions() method, then increments the QUIZ_ATTEMPTS variable
+     * by 1.
+     *
+     * @param separatedInputs To take in the number of questions the user would like to take for the quiz.
+     * @see QuizManager#handleInvalidNumOfQuestions()
+     * @see QuizManager#handleValidNumOfQuestions()
+     */
     private void takeQuiz(String[] separatedInputs) {
 
         if (!((noOfQues > 0) && (noOfQues <= getQuizListSize()))) {
@@ -117,7 +144,40 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
-    //@@author elizabethcwt
+    /**
+     * <h2>handleValidNumOfQuestions() Method</h2>
+     * This method first calls the initialisingShufflingOfQuestions() method, which shuffles ALL the questions in the\
+     * current quiz list.
+     * <br><br>
+     * Initialises a counter for counting the number of questions to be taken (questionCounter, which acts as a
+     * variable).
+     * <br>
+     * Calls the testForValidInput() method until questionCounter is incremented to the value of the number of questions
+     * the user wants to take for the quiz.
+     * <br><br>
+     * Initialises a counter to count the number of questions answered correctly by the user in the quiz.
+     * <br>
+     * Clears or empties the ArrayLists: lastIncorrectQuizzes and lastIncorrectAnswers to refresh the arrayList for a
+     * new quiz attempt.
+     * <br>
+     * Calls the storeCorrectnessOfQuizAnswer) method.
+     * <br><br>
+     * Prints out the review of the questions, which consists of:
+     * <ul>
+     *     <li>Questions in the same order as the user has taken them in</li>
+     *     <li>Correctness logo next to the start of each question (correct or wrong)</li>
+     *     <li>User's answers (correct or wrong)</li>
+     *     <li>Correct answer</li>
+     *     <li>(Optional) Explanation to the question</li>
+     *     <li>The total score the user has attained at the bottom of all the questions</li>
+     * </ul>
+     * <br>
+     * Lastly, this method empties the userAnswers and correctness ArrayLists
+     *
+     * @see QuizManager#initialisingShufflingOfQuestions()
+     * @see QuizManager#testForValidInput(int)
+     * @see QuizManager#storeCorrectnessOfQuizAnswer(int)
+     */
     private void handleValidNumOfQuestions() {
 
         // Assert that noOfQues is within a valid range
@@ -165,7 +225,13 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userAnswerManager.getCorrectness().clear();
     }
 
-    //@@author elizabethcwt
+    /**
+     * <h2>assignCorrectnessLogo() Method</h2>
+     * Checks if user's answers for the quiz question matches the correct quiz answer for the same question stored in
+     * the quiz list text file.
+     *
+     * @param l A variable representing the index of relevant the quiz question at that point of time.
+     */
     private void assignCorrectnessLogo(int l) {
 
         // Assert that the correctness of the user's input is true in this if loop
@@ -186,7 +252,15 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         }
     }
 
-    //@@author elizabethcwt
+    /**
+     * <h2>storeCorrectnessOfQuizAnswer() Method</h2>
+     * Stores whether the user's answers are correct or wrong for each question, in the getCorrectness ArrayList.
+     * <br>
+     * If the user's answer is correct, increment the correctCounter variable by 1.
+     *
+     * @param correctCounter The counter responsible for counting the number of correct answers by the user.
+     * @return correctCounter - For the purpose of calculating the user's quiz score.
+     */
     private int storeCorrectnessOfQuizAnswer(int correctCounter) {
         for (int k = 0; k < noOfQues; k++) {
             if (userAnswerManager.getUserAnswers().get(k).equals(quizzes.get(quizIndexes
@@ -203,7 +277,12 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         return correctCounter;
     }
 
-    //@@author elizabethcwt
+    /**
+     * <h2>initialisingShufflingOfQuestions() Method</h2>
+     * Shuffles ALL the quiz questions in the quiz list.
+     *
+     * @see Collections#shuffle(List)
+     */
     private void initialisingShufflingOfQuestions() {
         // Create a new list of the question indexes
         quizIndexes = new ArrayList<>();
@@ -215,7 +294,10 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         Collections.shuffle(quizIndexes);
     }
 
-    //@@author elizabethcwt
+    /**
+     * <h2>handleInvalidNumOfQuestions() Method</h2>
+     * Displays message corresponding to an invalid number of questions to take in a quiz.
+     */
     private void handleInvalidNumOfQuestions() {
 
         // Assert that noOfQues is NOT an acceptable value
@@ -226,7 +308,26 @@ public class QuizManager extends ModelManager implements QuizInteractable {
         userInterface.showToUser(Messages.invalid_number_of_quiz_questions_message(quizzes.size()));
     }
 
-    //@@author elizabethcwt
+    /**
+     * <h2>testForValidInput() Method</h2>
+     * This method first prints the first question to the user.
+     * <br>
+     * It then scans the user's answer.
+     * <br>
+     * If the user's answer is:
+     * <ul>
+     *     <li>Empty - Displays message corresponding to a missing quiz question answer</li>
+     *     <li>
+     *         Not empty but invalid (such as a non-integer, or an integer that is not 1, 2, 3 or 4) - Displays message
+     *         corresponding to an invalid quiz question answer
+     *     </li>
+     *     <li>Valid - Adds the user's answer to the getUserAnswers ArrayList, then increments the question counter
+     *     variable by 1, to print the next question in the quiz</li>
+     * </ul>
+     *
+     * @param questionCounter - To inform the program which question to print for the current iteration.
+     * @return questionCounter - To update the program of which question to print next.
+     */
     public int testForValidInput(int questionCounter) {
         // Print out each question
         userInterface.showToUser("",

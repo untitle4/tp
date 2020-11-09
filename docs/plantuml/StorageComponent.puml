@@ -10,29 +10,27 @@ package storage <<rectangle>> {
     }
 
     class EventStorageManager extends StorageManager {
-        + EventStorageManager(:String)
-        + saveData(:ArrayList<Event>)
-        + loadData():EventParameter
+        + EventStorageManager(fileName)
+        + EventStorageManager(directory, fileName)
+        + saveData(eventList)
+        + loadData():eventList
         - separateEventsIntoList(:ArrayList<Event>):EventParameter
     }
 
     class EventListDecoder {
         + EventListDecoder()
-        + decodeEventList(:ArrayList<String>):ArrayList<Event>
-        - decodeEventFromString(:String):Event
-        - parseCca(:String[]):EventCca
-        - parseClass(:String[]):EventClass
-        - parseTest(:String[]):EventTest
-        - parseTuition(:String[]):EventTuition
-        - isValidParams(:String, :String, :String)
-        - isValidTuition(:String, :String, :String, :String)
+        + decodeEventList(encodedEventList):decodedEvents
+        - decodeEventFromString(encodedEvent):decodedEvent
+        - parseCca(data):eventCca
+        - parseClass(data):eventClass
+        - parseTest(data):eventTest
+        - parseTuition(data):eventTuition
     }
 
     class EventListEncoder {
         + EventListEncoder()
-        + encodeEventList(:ArrayList<Event>):ArrayList<String>
-        - encodeEventToString(:Event):String
-        - isValidParams(:String, :String, :String)
+        + encodeEventList(eventList):encodedEvents
+        - encodeEventToString(event):encodedEvent
     }
 
     EventStorageManager --> EventListDecoder
@@ -40,14 +38,14 @@ package storage <<rectangle>> {
 
 
     class QuizStorageManager extends StorageManager {
-        + QuizStorageManager(:String)
-        + saveData(:ArrayList<Quiz>, :String)
-        + loadData():ArrayList<ArrayList<Quiz>
+        + QuizStorageManager(fileName)
+        + saveData(quizList, filePath)
+        + loadData():data
     }
 
     class QuizListDecoder {
-        + decodeQuizList(:ArrayList<String>):ArrayList<Quiz>
-        - decodeQuizFromString(:String):Quiz
+        + decodeQuizList(data):quizList
+        - decodeQuizFromString(data):quiz
     }
 
     class QuizListEncoder {
