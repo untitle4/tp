@@ -36,7 +36,7 @@ Given below are my contributions to the project.
     * Storage class inherit from abstract StorageManager to merge duplicated methods [#125](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/125)
     * Logger class follows a singleton pattern [#146](https://github.com/AY2021S1-CS2113T-W12-4/tp/pull/146)
     * Add encapsulation to models by adding an interface to all the modelManagers
-    * Command sanitization to ensure cases where there are extra parameters, swapped parameters, command in uppercase and command with extra whitespaces are handled
+    * Command sanitized to ensure cases where there are extra or swapped parameters, command in uppercase and command with extra whitespaces are handled
     * Factory reset to ensure the program can still loop after factory reset.
 
 * Project management:
@@ -53,8 +53,7 @@ Given below are my contributions to the project.
 * Contribution to user guide
     * Wrote documentation for `Finding events`, `Finding contacts`, `Listing events`, `Adding quiz`
     * Added images initially for initialization, help, add and delete class
-    * Added images under section `Finding events`
-    * Update and enhanced table for `command summary`
+    * Added images under section `Finding events` and enhanced table for `command summary`
     
 * Contribution to developer guide
     * Add colors and removed footboxes to UML diagrams
